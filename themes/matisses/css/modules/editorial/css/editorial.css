@@ -1,0 +1,39 @@
+#editorial_block_center{
+	text-align: center;
+	line-height: 1;
+	padding-bottom: 76px;
+	padding-top: 77px;
+	background: #f7f7f7;
+	clear: both;
+}
+#editorial_block_center h2.title_main_section{
+	margin-bottom: 35px;
+}
+#editorial_block_center h3{
+	font-size: 16px;
+	color: #666;
+	margin-bottom: 48px;
+}
+#editorial_block_center .rte{
+	font-size: 14px;
+	color: #6d6d6d;
+	line-height: 1.72;
+	font-weight: normal;
+	}
+#editorial_image_legend{
+	line-height: 3.5;
+}
+.editorial_logo{
+	display: inline-block;
+	text-align: center;
+	margin-top: 20px;
+}
+#editorial_block_center .btn{
+	margin-top: 46px;
+	font-style: normal;
+}
+@media (max-width: 767px){
+	#editorial_block_center{
+		padding: 30px 0;
+	}
+}

@@ -1,0 +1,52 @@
+.pb-right-column .socialsharing_product {
+	margin: 8px 0 20px;
+	text-align: center;
+}
+.socialsharing_product button.btn:hover{
+	border-color: transparent;
+}
+#social-share-compare button {
+	width: 100%;
+	margin-bottom: 10px;
+}
+#product_comparison td.compare_extra_information {
+	padding: 10px; }
+#product_comparison #social-share-compare {
+	margin-bottom: 50px; 
+}
+.socialsharing_product .btn.btn-default{
+	position: relative;
+	padding: 0;
+	height: 32px;
+	width: 32px;
+	line-height: 32px;
+	background-color: transparent;
+	font-size: 15px;
+	border-style: solid;
+	border-width: 1px;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	z-index: 0;
+	margin-right: 4px;
+}
+.socialsharing_product .btn.btn-default:last-child{
+	margin-right: 0;
+}
+#product .socialsharing_product .btn.btn-default:before{
+	content: '';
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 0;
+	z-index: -1;
+}
+#product .socialsharing_product .btn.btn-default:hover:before{
+	height: 100%;
+}
+#product  .socialsharing_product .btn.btn-default span {
+	display: none;
+}
+.socialsharing_product .btn.btn-default:after{
+	display: none;
+}

@@ -1,0 +1,453 @@
+/*
+Uniform Theme: Uniform Default
+Version: 1.8
+By: Josh Pyles
+License: MIT License
+---
+For use with the Uniform plugin:
+http://uniformjs.com/
+
+*/
+/* General settings */
+div.checker span, div.radio span, div.uploader, div.uploader span.action, div.button, div.button span {
+  background-repeat: no-repeat;
+  -webkit-font-smoothing: antialiased; }
+div.selector, div.checker, div.button, div.radio, div.uploader {
+  vertical-align: middle;
+  /* Keeping this as :focus to remove browser styles */ }
+  div.selector:focus, div.checker:focus, div.button:focus, div.radio:focus, div.uploader:focus {
+	outline: 0; }
+div.selector, div.selector *, div.radio, div.radio *, div.checker, div.checker *, div.uploader, div.uploader *, div.button, div.button * {
+  margin: 0;
+  padding: 0; }
+
+.fancybox-skin .fancybox-close:after {
+padding: 0px;
+display: inline-block;
+line-height: 1;
+vertical-align: top;
+text-align: right;
+float: right;
+margin-right: 5px;
+}
+
+.select2-arrow .fa {
+font-family: FontAwesome;
+}
+
+.highContrastDetect {
+  width: 0px;
+  height: 0px; }
+
+/* Remove default webkit and possible mozilla .search styles.
+ * Keeping this as :active to remove browser styles */
+div.checker input,
+input[type="search"],
+input[type="search"]:active {
+  -moz-appearance: none;
+  -webkit-appearance: none; }
+
+
+
+/* Checkbox */
+div.checker {
+  position: relative; }
+  div.checker, div.checker span, div.checker input {
+	width: 12px;
+	height: 12px; }
+  div.checker span {
+	display: -moz-inline-box;
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+	text-align: center;
+	 }
+	div.checker span.checked {
+	   }
+  div.checker input {
+	opacity: 0;
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	border: none;
+	background: none;
+	display: -moz-inline-box;
+	display: inline-block;
+	*display: inline;
+	zoom: 1; 
+	position: absolute;
+	left: -1px;
+	top: 0px;
+	cursor: pointer;
+}
+  div.checker.active span {
+	 }
+	div.checker.active span.checked {
+	   }
+  div.checker.hover span, div.checker.focus span {
+	 }
+	div.checker.hover span.checked, div.checker.focus span.checked {
+	   }
+  div.checker.hover.active span, div.checker.focus.active span {
+	 }
+	div.checker.hover.active span.checked, div.checker.focus.active span.checked {
+	   }
+  div.checker.disabled, div.checker.disabled.active {
+	 }
+	div.checker.disabled span.checked, div.checker.disabled.active span.checked {
+	   }
+
+/* Radio */
+div.radio {
+  position: relative;
+  display: inline; }
+  div.radio, div.radio span, div.radio input {
+	width: 13px;
+	height: 13px; }
+  div.radio span {
+	display: -moz-inline-box;
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+	text-align: center;
+	 }
+div.radio span:not(.checked) {
+	cursor:pointer;
+}
+  div.radio input {
+	opacity: 0;
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	border: none;
+	background: none;
+	display: -moz-inline-box;
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+	text-align: center; }
+  div.radio.active span {
+	 }
+	div.radio.active span.checked {
+	   }
+  div.radio.hover span, div.radio.focus span {
+	 }
+	div.radio.hover span.checked, div.radio.focus span.checked {
+	   }
+  div.radio.hover.active span, div.radio.focus.active span {
+	 }
+	div.radio.hover.active span.checked, div.radio.focus.active span.checked {
+	   }
+  div.radio.disabled span, div.radio.disabled.active span {
+	 }
+	div.radio.disabled span.checked, div.radio.disabled.active span.checked {
+	   }
+
+/* Uploader */
+div.uploader {
+  background: none;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden; }
+  div.uploader span.action {
+	height: 27px;
+	line-height: 27px;
+	width: 94px;
+	text-align: center;
+	float: left;
+	display: inline;
+	overflow: hidden;
+	cursor: pointer; }
+  div.uploader span.filename {
+	text-overflow: ellipsis;
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	float: left;
+	cursor: default;
+	height: 27px;
+	margin: 0px 0 0px 0px;
+	line-height: 27px;
+	width: 172px;
+	padding: 0 10px; }
+  div.uploader input {
+	opacity: 0;
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	border: none;
+	background: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	float: right;
+	cursor: default;
+	width: 100%;
+	height: 100%; }
+
+/* Buttons */
+div.button {
+  height: 30px;
+  cursor: pointer;
+  position: relative;
+  /* Keep buttons barely visible so they can get focus */ }
+  div.button a, div.button button, div.button input {
+	opacity: 0.01;
+	filter: alpha(opacity=1);
+	-moz-opacity: 0.01;
+	display: block;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute; }
+  div.button span {
+	display: -moz-inline-box;
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+	line-height: 30px;
+	text-align: center;
+	height: 30px;
+	margin-left: 13px;
+	padding: 0; }
+  div.button.active {
+	 }
+	div.button.active span {
+	    cursor: default; }
+  div.button.hover, div.button.focus {
+	 }
+	div.button.hover span, div.button.focus span {
+	   }
+  div.button.disabled, div.button.disabled.active {
+	 }
+	div.button.disabled span, div.button.disabled.active span {
+	   cursor: default;
+	}
+
+/* PRESENTATION */
+/* Buttons */
+div.button span {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase; }
+div.button.hover span, div.button.focus span {
+  color: #555; }
+div.button.disabled span, div.button.disabled.active span {
+  color: #bbb; }
+
+/* Select */
+#compare_shipping .form-group label {
+  display: block; }
+  div.selector select {
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-size: 12px; }
+  div.selector.disabled span, div.selector.disabled.active span {
+	color: #bbb; }
+
+.checker span input {
+  margin: 0 !important; }
+
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+  margin: 0 !important; }
+
+.radio-inline, .checkbox-inline {
+  cursor: default; }
+
+/* Checker */
+div.checker {
+  cursor: pointer;
+  margin-right: 5px; }
+
+div.checker span {
+	border-style: solid;
+	border-width: 1px;
+	-webkit-border-radius:50%;
+	-moz-border-radius:50%;
+	border-radius:50%;
+	box-sizing: border-box;
+	vertical-align: top;
+}
+
+.radio, .checkbox{
+	min-height: 15px;
+}
+
+#layered_block_left ul li input.checkbox {
+vertical-align: top;
+}
+
+.checker .checked:before,.radio .checked:before {
+	display: inline-block;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	content: "✔";
+	position: relative;
+	top: -4px;
+	left: 1px;
+	font-size: 9px;
+}
+
+#layered_form div.checker {
+  display: inline-block;
+  vertical-align: bottom; }
+
+/* Radio */
+div.radio {
+  margin-right: 3px; }
+  div.radio span {
+	position: relative;
+	top: -2px; }
+
+/* Uploader */
+div.uploader span.action {
+  text-shadow: rgba(0, 0, 0, 0.1) 0px 1px 0px;
+  font-size: 13px;
+  padding: 0 5px;
+  height: 33px;
+  line-height: 33px;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+div.uploader span.filename {
+  color: #777;
+  border: solid 1px #d6d4d4;
+  font-size: 13px;
+  height: 33px;
+  line-height: 33px;
+  padding:0 5px;
+  background: #fbfbfb;
+  margin-right: 2px;
+  width: 100%;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  border-radius:4px;
+   }
+div.uploader.disabled span.action, div.uploader.disabled.active span.action {
+  color: #aaa; }
+div.uploader.disabled span.filename, div.uploader.disabled.active span.filename {
+  border: solid 1px #d6d4d4;
+  font-size: 13px;
+  background: #fbfbfb;
+  color: #555;
+  border-radius: 4px; }
+
+
+/* Select */
+div.selector {
+  position: relative;
+  overflow: hidden;
+}
+.show_selector div.selector{
+	width: 100% !important;
+}
+/* #order-opc div.selector,.id_state div.selector,#layered_block_left div.selector{
+	  display: block !important;
+} */
+.id_state div.selector{
+	width: 271px !important;
+}
+div.selector span {
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	cursor: pointer;
+	width: 100% !important;
+	display: block;
+	text-overflow:ellipsis;
+}
+  div.selector.fixedWidth {
+	width: 190px; }
+	div.selector.fixedWidth span {
+	  width: 150px; }
+  div.selector select {
+	opacity: 0;
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	border: none;
+	background: none;
+	position: absolute;
+	height: 27px;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;}
+  div.selector.active span {
+	 }
+  div.selector.hover span, div.selector.focus span {
+	 }
+  div.selector.hover.active span, div.selector.focus.active span {
+	 }
+  div.selector.disabled span, div.selector.disabled.active span {
+	 }
+
+div.selector span{
+	cursor: pointer;
+}
+div.selector{
+  margin: 0;
+  position: relative;
+  display: inline-block;
+  border-radius: 0;
+  border-style:solid;
+  border-width: 1px;
+  line-height: 40px;
+  height: 40px;
+  background: none;
+  padding: 0 20px 0 10px;
+font-size: 13px;
+	z-index: 0;
+}
+div.selector:after{
+  font-family: "fontello";
+	content: '\e803';
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 19px;
+  z-index: -1;
+}
+#order-opc  div.selector select{
+	cursor: pointer;
+	display: block;
+	height: 100%;
+}
+#order-opc .box p{
+	margin-bottom: 10px;
+}
+
+#layered_block_left ul li input.checkbox{
+	cursor: pointer;
+}
+div.radio span {
+	position: relative;
+	border-style:solid;
+	border-width: 1px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	width: 12px;
+	height: 12px;
+}
+div.radio span.checked:before{
+	content: '';
+	display: block;
+	position: absolute;
+	width: 4px;
+	height: 4px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+#layered_block_left div.selector{
+	width: 100% !important;
+}

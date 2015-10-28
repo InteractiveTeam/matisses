@@ -1,0 +1,89 @@
+.header_user_info{
+	padding: 0 15px;
+	float: right;
+	position: relative;
+	z-index: 102;
+}
+.header_user_info #drop_content_user a {
+	position: relative;
+	display: inline-block;
+	font-size: 12px;
+	color: #fff;
+	padding: 0 12px;
+	border-right-style: solid;
+	border-right-width: 1px;
+}
+
+.header_user_info #drop_content_user a.login,
+.header_user_info #drop_content_user a.logout{
+	border-right-width: 0;
+}
+.header_user_info #drop_content_user a.login{
+	padding-right: 0;
+}
+#drop_links {
+	display: block;
+	color: #fff;
+}
+@media (min-width: 768px){
+	.header_user_info{
+		width: 25%;
+		text-align: right;
+	}
+}
+@media (min-width: 768px) and (max-width: 1199px){
+	.header_user_info{
+		width: 28%;
+	}
+}
+@media (min-width: 768px) and (max-width: 991px){
+	.header_user_info{
+		width: 7%;
+	}
+}
+@media (min-width: 992px){
+	#drop_links {
+		display: none;
+	}
+	#drop_content_user{
+		background: none;
+	}
+}
+@media (max-width: 991px){
+	.header_user_info{
+		height: 38px;
+	}
+	#drop_links {
+		position: relative;
+		white-space: nowrap;
+		line-height: 2.4;
+	}
+	#drop_links:after{
+		content: "\f107";
+		font-family: "FontAwesome";
+		font-size: 12px;
+		line-height: 12px;
+		padding-left: 5px;
+	}
+	#drop_content_user{
+		display: none;
+		position: absolute;
+		top: 100%;
+		right: 0;
+		margin-top: 8px;
+		width: auto;
+		white-space: nowrap;
+		z-index: 2;
+		padding: 10px 12px;
+		line-height: 2.3;
+		text-transform: uppercase;
+	}
+	.header_user_info #drop_content_user a{
+		display: block;
+		padding: 0;
+		border-right-width: 0;
+	}
+	.header_user_info #drop_content_user a:after{
+		display: none;
+	}
+}

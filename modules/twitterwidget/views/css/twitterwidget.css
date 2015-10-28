@@ -1,0 +1,12 @@
+.twitter-box {width: 100% !important; position: relative; margin-top: 20px; clear: both;}
+.twitter-box table {min-width:800px; margin: 0 auto;}
+.twitter-box table td {padding: 0px; border: none;}
+.twitter-box a img {border: none;}
+.twitter-box #twittcontent{width:600px; text-align: center; padding: 15px;}
+.twitter-box #twittbuttontop{height: 50px;}
+.twitter-box ul{margin:0; padding: 4px;}
+.twitter-box ul li {display: inline; margin-right: 5px; padding: 3px; display: none}
+.twitter-box #nextbutton {padding-right:2px;}
+
+
+

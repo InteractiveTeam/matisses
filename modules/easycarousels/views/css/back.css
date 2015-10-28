@@ -1,0 +1,189 @@
+.easycarousels .hook_content {
+	margin-top: 20px;
+	padding: 20px;
+	border: 1px solid #DDD;
+	border-radius: 5px;	
+	display: none;
+}
+.easycarousels .hook_content.active {
+	display: block;
+}
+.carousel_item {
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding: 15px;
+	background: #FAFAFA;
+	margin-bottom: 15px;
+}
+.carousel_header {
+	position: relative;
+}
+.easycarousels i.icon {
+	cursor:pointer;
+	margin: 0 3px;
+}
+.carousel_header .carousel_name {
+	font-size: 1.3em;
+	line-height: 1.5;	
+}
+
+.easycarousels > .form-horizontal {
+	margin-bottom: 20px;
+}
+/* hook settings */
+.hook_settings {
+	margin: 5px 0;
+	color: #999;
+}
+.callSettings {
+	margin: 0 5px;
+	position: relative;
+}
+.callSettings.active:before, .callSettings.active:after{
+	content: '';
+	display:block;
+	height: 0px;	
+	border: 15px solid transparent;
+	border-top: 0;
+	border-bottom: 15px solid #DDD;	
+	position: absolute;
+	left: 50%;
+	margin-left: -15px;
+	margin-top: 10px;
+	z-index: 1;
+}
+.callSettings.active:after{
+	border-bottom: 15px solid #FFF;	
+	margin-top: 11px;
+}
+.easycarousels a:hover, .easycarousels a:focus{
+	text-decoration: none!important;
+}
+.chk-action {
+	margin-right: 10px;
+}
+#settings_content h4 {
+	padding: 7px 20px;
+	margin: 10px -20px;
+	background: #FAFAFA;	
+	border-top: 1px solid #EEE;
+	border-bottom: 1px solid #EEE;
+}
+.panel #settings_content .p-footer {
+	margin: 15px -20px -20px -20px;
+	background: #FAFAFA;
+	border-top: 1px solid #EEE;
+}
+.bootstrap label.label-checkbox {
+	font-weight: normal;
+}
+.label-checkbox input[type="checkbox"], .help-block input[type="checkbox"]{
+	margin: -1px 0 0 0;
+	vertical-align: middle;
+}
+
+/* activate */
+.activateCarousel {
+	padding: 1px 0;
+	margin: 0 20px 0 0;
+	vertical-align: middle;
+	float:left;
+}
+.bootstrap .activateCarousel:focus {
+	color: #FFF;
+}
+.activateCarousel i {
+	display:none;
+}
+.activateCarousel.action-enabled i.icon-check {
+	display:inline-block;
+}
+.activateCarousel.action-disabled i.icon-remove {
+	display:inline-block;
+}
+
+/* actions */
+.carousel_item  .actions .scrollUp,  .carousel_item.open .actions .editCarousel{
+	display:none;
+}
+.carousel_item.open .actions .scrollUp {
+	display: inline-block;	
+	border-radius: 3px 0 0 3px!important;
+}
+
+/* drag */
+.easycarousels i.icon.dragger {
+	padding: 5px 10px;
+	margin: -8px 0 -5px -10px;
+	color: #DDD;	
+	vertical-align: middle;
+	cursor: url(../img/grab.cur), auto;
+}
+.easycarousels i.dragger:hover {
+	color: #999;
+}
+.easycarousels i.dragger:active {
+	cursor: url(../img/grabbing.cur), auto;
+}
+.easycarousels .new_position_placeholder {
+	background: #FFF;
+	border-radius: 5px;
+	border: 1px dashed #71B238;
+	height: 59px;
+	margin: 0 0 15px 0;
+}
+
+/* form */
+.carousel_item form {
+	margin-top: 15px;
+	border-top: 1px solid #ddd;
+	padding-top: 15px;
+}
+.bootstrap.easycarousels .switch label {
+	line-height: 27px;
+}
+.bootstrap.easycarousels .switch {
+	height: 27px;
+}
+
+.panel .p-footer {
+	margin: 0 -15px -15px;
+	border-top: 1px solid #DDD;
+	background: #EFEFEF;
+	padding: 15px;
+	clear: both;
+	border-radius: 0 0 5px 5px;
+}
+
+.alert-warning i.icon{
+	cursor: pointer;
+	float: right;
+	line-height: 1.3;
+	opacity: 0.5;
+}
+
+#load_owl {
+	margin: 0 10px!important;
+	vertical-align: middle;
+}
+
+/* import */
+.importer form {
+	display: inline-block;
+	margin-left: 3px;
+}
+
+/* ajax bar at the top*/
+#re-progress {
+  top: 0;
+  height: 2px;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 999999;
+}
+#re-progress .progress-inner {
+  background-color: #71b238;  
+  height: 2px;
+  width: 0;
+}

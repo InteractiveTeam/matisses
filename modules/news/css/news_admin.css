@@ -1,0 +1,377 @@
+.tag_options{
+    display: inline-block;
+    width: 160px;
+    padding: 5px 5px;
+    border-bottom: 1px solid #DFD5C3;
+    min-height: 20px;
+}
+.tag_edit_option{
+    display: block;
+    min-height: 20px;
+}
+.div_edit_tag{
+    display: block;
+    padding: 5px 5px;
+    background: #DFD5C3;
+    min-height: 20px;
+}
+
+.removeTag{
+    width: 16px;
+    height: 16px;
+    padding: 0;
+}
+.addTag{
+    width: 16px;
+    height: 16px;
+}
+
+.confirm_delete_tag{
+    display: inline-block;
+    float: right;
+    padding-left: 5px;
+}
+
+.check_tag{
+     display: inline-block;
+    float: left;
+}
+.tag_title{
+    display: inline-block;
+    float: left;
+    font-size: 10px;
+    padding: 0 0 0 5px;
+}
+.tag_edit_img{
+    display: inline-block;
+    float: right;
+    padding-left: 5px;
+}
+
+.cat_options{
+    display: inline-block;
+    width: 160px;
+    padding: 5px 5px;
+    border-bottom: 1px solid #DFD5C3;
+    min-height: 20px;
+}
+.cat_edit_option{
+    display: block;
+    min-height: 20px;
+}
+.div_edit_cat{
+    display: block;
+    padding: 5px 5px;
+    background: #DFD5C3;
+    min-height: 20px;
+}
+
+.removeCat{
+    width: 16px;
+    height: 16px;
+    padding: 0;
+}
+.addCat{
+    width: 16px;
+    height: 16px;
+}
+
+.confirm_delete_cat{
+    display: inline-block;
+    float: right;
+    padding-left: 5px;
+}
+
+.check_cat{
+     display: inline-block;
+    float: left;
+}
+.cat_title{
+    display: inline-block;
+    float: left;
+    font-size: 10px;
+    padding: 0 0 0 5px;
+}
+.cat_edit_img{
+    display: inline-block;
+    float: right;
+    padding-left: 5px;
+}
+
+.posCat{
+    display: inline-block;
+    float: left;
+    width: 13px;
+}
+
+.newsBlockImagsAdd{
+   display: inline-block;
+   width: 100%;
+   margin: 0 ;
+   font-size: 10px;
+   color: #000;
+   
+}
+.newsUploadInput{
+	display: inline-block;
+	float: left;
+}
+.newsBlockImagsAdd p{
+	color: #7F7F7F;
+font-size: 10px;;
+   
+}
+.newsBlockImagsRel{
+   display: inline-block;
+   float: left;
+   width: 190px;
+   margin-right: 1px;
+   height: 300px;
+   overflow: auto;
+   border:  1px solid #DFD5C3;
+}
+.newsBlockImagsArq{
+	
+   display: inline-block;
+   float: left;
+   width: 420px;
+   height: 300px;
+   overflow: auto;
+   
+}
+.newsUploadStatusAjax{
+	display: inline-block;
+	float: right;
+	width: 250px;
+	margin-right: 10px;
+	height: 30px;
+	
+}
+#newsUploadStatusLoadind{
+	display: block;
+	font-size: 11px;
+	font-weight: bold;
+	color: #0000AA;	
+}
+.newsUploadError{
+	color: red;
+	font-size: 10px;
+}
+.newsImgsRel{
+	display: inline-block;
+	width: 100%;
+	height: 85px;
+	text-align: center;
+	overflow: hidden;
+	border-bottom:  1px solid #DFD5C3;
+    margin-bottom: 1px;
+}
+.newsImgsRelContent{
+	display: inline-block;
+	width: 100%;
+	height: 85px;
+	overflow: hidden;
+    position: relative;
+    float: left;
+}
+.newsImgsRelActions{
+	display: inline-block;
+	width: 30px;
+	height: 65px;
+	overflow: hidden;
+	background:#DFD5C3;
+	position: relative;
+	top: -85px;
+	left: -63px;
+	text-align: center;
+    opacity:0.8;
+    filter:alpha(opacity=80);
+    padding: 10px 5px;
+}
+.newsImgsArqContent{
+	display: inline-block;
+	width: 95px;
+	height: 40px;
+	overflow: hidden;
+    position: relative;
+    float: left;
+}
+.newsImgsArq{
+	display: inline-block;
+	width: 95px;
+	height: 40px;
+	text-align: center;
+	overflow: hidden;
+	border:  1px solid #DFD5C3;
+    margin-bottom: 1px;
+    margin-left: 1px;
+}
+.newsImgsArqActions{
+	display: inline-block;
+	width: 44px;
+	height: 35px;
+	overflow: hidden;
+	position: relative;
+	top: -20px;
+	left: 25px;
+    padding: 2px 5px;
+	text-align: left;
+    background: #DFD5C3;
+    opacity:0.8;
+    filter:alpha(opacity=80);
+}
+
+.noImagesRel{
+	
+	display: block;
+	padding: 30px 10px 0 10px;
+	font-size: 11px;
+	color: #400;
+	text-align: center;
+}
+
+.newsBlockProdRel{
+   display: inline-block;
+   float: left;
+   width: 250px;
+   min-height: 300px;
+   max-height: 500px;
+   overflow: scroll;
+  /* border:  1px solid #DFD5C3;*/
+}
+.newsBlockProdArq{
+   display: inline-block;
+   float: left;
+   width: 350px;
+   min-height: 300px;
+   max-height: 500px;
+   overflow: scroll;
+   margin-left: 10px;
+}
+.newsBlockProdArqList{
+   display: inline-block;
+   float: right;
+   width: 250px;
+   min-height: 300px;
+   max-height: 500px;
+   overflow: scroll;
+}
+
+.newsCatProdBlockRel
+{
+    display: block;
+    height: 50px;
+    border-bottom: 1px solid #ccc;
+    color: #8E8E8E;
+    overflow: hidden;
+}
+a.newsCatProdBlock,
+a.newsCatProdBlock:active,
+a.newsCatProdBlock:visited,
+a.newsCatProdBlock:link
+{
+    display: block;
+    height: 50px;
+    border-bottom: 1px solid #ccc;
+    color: #8E8E8E;
+    overflow: hidden;
+}
+a.newsCatProdBlock:hover{
+    background: #E6E4DF;
+    color: #000;
+}
+
+.newsCatProdBlock_img{
+     display: block;
+     width: 50px;
+     height: 50px;
+     overflow: hidden;
+     float: left;
+     padding: 0 5px 0 0;
+}
+.newsCatProdBlock_text{
+     display: block;
+     width: 110px;
+     height: 45px;
+     font-size: 10px;
+     font-weight: bold;
+     overflow: hidden;
+     float: left;
+     text-align: left;
+     padding: 5px 0 0px 5px;;
+}
+.newsRelProdBlock_text{
+     display: block;
+     width: 100px;
+     height: 45px;
+     font-size: 10px;
+     font-weight: bold;
+     overflow: hidden;
+     float: left;
+     text-align: left;
+     padding: 5px 0 0px 5px;;
+}
+.newsCatProdBlock_action{
+    display: block;
+     float: left;
+     text-align: left;
+     width: 20px;
+     height: 30px;
+     padding: 15px 10px 20px 10px;
+     line-height: 50px;
+}
+.newsCatProdBlockRel_action{
+    display: block;
+     float: left;
+     text-align: center;
+     width: 20px;
+     height: 40px;
+     padding: 5px 10px 0px 10px;
+}
+.newsCatProdBlockRel_action2{
+    display: block;
+     float: left;
+     text-align: center;
+     width: 20px;
+     height: 40px;
+     padding: 15px 0px 0px 5px;
+}
+.newsBlockNewsRel{
+   display: inline-block;
+   float: left;
+   width: 400px;
+   height: 300px;
+   overflow: auto;
+   border:  1px solid #DFD5C3;
+}
+.newsBlockNewsList{
+   display: inline-block;
+   float: right;
+   width: 440px;
+   height: 300px;
+   overflow: auto;
+   border:  1px solid #DFD5C3;
+}
+
+.relNewsRight{
+	
+   display: inline-block;
+   width:  100%;	
+   border-bottom:  1px solid #DFD5C3;
+}
+
+.removeNewsRel{
+	
+   display: inline-block;
+   width:  20px;
+   float: right;
+   padding: 7px 20px;
+}
+.removeNewsRelTitle{
+	
+   display: inline-block;
+   width:  300px;
+   float: left;
+   padding: 10px;
+   font-size: 10px;
+}

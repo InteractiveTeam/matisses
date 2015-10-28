@@ -1,0 +1,231 @@
+#content.bootstrap .testimonialswithavatars.panel.closed h3 {
+	margin: -15px;
+	border: 0;
+}
+i.toggle_content {	
+	cursor: pointer;
+	padding: 7px 10px;
+	position: absolute;
+	right: 0;
+	color: #777;
+}
+.testimonialswithavatars .tab-content {
+	padding: 15px 15px 5px;
+	border: 1px solid #DDD;
+	border-radius: 3px;
+}
+.tab-content#controller {
+	border-radius: 0 3px 3px 3px;
+}
+.postRow {
+	background: #FAFAFA;	
+	padding: 15px;
+	margin-bottom: 15px;
+	position: relative;
+	border: 1px solid #EEE;
+	border-radius: 5px;	
+	position: relative;
+	min-height: 130px;
+}
+
+.postRow .data_row {
+	margin-left: 90px;
+	margin-bottom: 5px;
+}
+.ui-datepicker .ui-slider-handle {
+	background:#FFF!important;
+}
+
+
+/* avatar */
+.postRow .avatar {
+	width: 82px;
+	text-align: center;
+	position: absolute;
+}
+.postRow .avatar .imgholder {
+	padding: 5px;
+	border: 1px solid #DDD;
+	background: #FFF;
+	border-radius: 100%;
+	margin: 5px 0;
+	text-align: center;
+}
+.postRow.being_edited .avatar .imgholder  {	
+	border: 1px dashed #CCC;
+	cursor: pointer;
+}
+.postRow .avatar .imgholder > div {
+	width: 70px;
+	height: 70px;
+	background-size: cover;
+	background-position: 50% 50%;
+	border-radius: 100%;
+}
+
+/* actions */
+.action-enabled .icon-check, .action-disabled .icon-remove {
+	display: inline-block;
+}
+.action-enabled .icon-remove, .action-disabled .icon-check {
+	display: none;
+}
+.actions .btn-group {
+	margin-left: 10px;
+}
+.activatePost {
+	padding: 1px 0;	
+}
+.actions .savePost {	
+	border-radius: 3px 0 0 3px!important;
+}
+.bootstrap .activatePost:focus {
+	color: #FFF;
+}
+
+/* editable content */
+.postRow .new_val, .postRow.being_edited .current_val{
+	display: none;
+}
+.postRow .current_val, .postRow.being_edited .new_val{
+	display: block;
+}
+div.current_val {
+	padding: 5px 0;
+	font-size: 1.1em;
+	line-height: 1.5;
+}
+/* rating */
+.post_rating {
+	float: left;
+	padding: 7px 0;
+}
+.rating_star {
+	color: #DDD;
+	font-size: 15px;
+	float: left;
+	padding-right: 3px;
+}
+.rating_star.on {
+	color: #FFCC00;
+}
+.rating_star.highlighted{
+	color: #FFDD00;
+}
+.being_edited .rating_star {
+	cursor: pointer;
+}
+#rating_symbol_demo {
+	position: absolute;
+	right: -25px;
+	top: 5px;
+	color: #CCC;
+	font-size: 17px;
+}
+.multilang_switcher {
+	position: absolute;
+	right: -45px;
+	top: 0;
+}
+@media (max-width: 1999px) {
+	.has_tail {
+		margin-right: 50px;
+	}
+}
+
+
+/* mce */
+.postRow .inline_edit {
+	padding: 2%;
+	border: 1px solid #CCC;
+	border-radius: 3px;
+	background: #FFF;
+	max-height: 150px;
+	overflow-y: scroll;
+}
+
+.postRow .inline_edit .mce-edit-focus {
+	outline: none;
+	background: #fefbe2;
+	border-color: #66afe9;	
+}
+
+div.mce-panel.mce-floatpanel {	
+	background:#FFF;
+	border: 1px solid #DDD;
+	padding: 3px 0;
+}
+
+div.mce-panel {	
+	background:#FFF;	
+}
+
+.mce-panel .mce-btn-group .mce-btn {
+	border: 1px solid #DDD;
+	border-radius: 3px;
+	background: #FFF;
+	margin: 0 3px;
+	color: #777;
+}
+
+.mce-panel .mce-btn-group .mce-btn button {
+	padding: 3px 5px;
+}
+
+.mce-panel .mce-flow-layout-item {
+	margin: 0;
+}
+
+.mce-tooltip-inner {
+	box-shadow:none!important;
+}
+
+/* sortable */
+i.dragger{
+	position: absolute;
+	z-index: 2;
+	left: 0;
+	padding: 10px;	
+	bottom: 0;
+	border-top: 1px solid #ECECEC;
+	border-right: 1px solid #ECECEC;
+	border-radius: 0 5px 0 5px;	
+	background: #FEFEFE;
+	color: #DDD;	
+	font-size: 20px;
+	cursor: url(../img/grab.cur), auto;
+	display:none;
+}
+.postRow:not(.being_edited):hover i.dragger {
+	display: block;	
+}
+i.dragger:active{
+	cursor: url(../img/grabbing.cur), auto;
+}
+.new_position_placeholder {
+	background: #FFF;
+	border-radius: 5px;
+	border: 1px dashed #71B238;
+	height: 50px;
+	margin: 0 0 15px 0;
+}
+
+/* bb styles*/
+.b {font-weight:bold;}
+.i {font-style:italic;}
+.u {text-decoration:underline;}
+
+/* ajax bar at the top*/
+#re-progress {
+  top: 0;
+  height: 2px;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 999999;
+}
+#re-progress .progress-inner {
+  background-color: #71b238;  
+  height: 2px;
+  width: 0;
+}

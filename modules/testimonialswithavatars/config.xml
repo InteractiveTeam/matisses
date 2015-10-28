@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>testimonialswithavatars</name>
+	<displayName><![CDATA[Testimonials with avatars]]></displayName>
+	<version><![CDATA[2.0.0]]></version>
+	<description><![CDATA[Testimonials with uploadable avatars and rating.]]></description>
+	<author><![CDATA[Amazzing]]></author>
+	<tab><![CDATA[front_office_features]]></tab>
+	<confirmUninstall><![CDATA[Are you sure you want to uninstall? This action will erase all reviews]]></confirmUninstall>
+	<is_configurable>1</is_configurable>
+	<need_instance>0</need_instance>
+	<limited_countries></limited_countries>
+</module>

@@ -1,0 +1,35 @@
+#prosocial_block{
+	float: right;
+}
+#prosocial_block li {
+	display: inline-block;
+}
+#prosocial_block li a {
+	display: block;
+	line-height: 1;
+	font-size: 25px;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: transparent; 
+	text-align: center;
+}
+#prosocial_block h4 {
+	font-weight: bold;
+	 font-family: 'MuseoSansCyrl700','Open Sans';
+	font-size: 16px;
+	line-height: 1.4;
+	padding-bottom: 33px;
+}
+#prosocial_block li:last-child{
+	margin-right: 0;
+}
+@media (max-width: 767px){
+	#prosocial_block {
+		width: 100%;
+		text-align: center;
+		padding-top: 30px;
+	}
+}

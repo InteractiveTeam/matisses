@@ -1,0 +1,38 @@
+.responsive_tabs_selection.title_block{
+	display: none !important;
+}
+.man-sup-item h5 {
+	display: none;
+}
+.man-sup-item {
+	display: block;
+	text-align: center;
+	padding: 0 15px;
+}
+.man-sup-item img {
+	display: inline-block;
+	opacity: 0.4;
+	-webkit-transition: all 0.4s ease 0s;
+	-moz-transition: all 0.4s ease 0s;
+	-o-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+}
+.manufacturers .easycarousel{
+	margin-top: 80px;
+}
+.man-sup-item img:hover {
+  opacity: 1;
+}
+.manufacturers .owl-prev, .manufacturers .owl-next{
+	top: 0;
+	bottom: 0;
+	margin: auto 0;
+}
+.easycarousels.in_tabs{
+	margin-top: 60px;
+	margin-bottom: 100px;
+}
+.carousel_block.single_carousel{
+	margin-top: 119px;
+	margin-bottom: 100px;
+}

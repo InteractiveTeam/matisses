@@ -1,0 +1,115 @@
+#search_block_top {
+	float: left;
+}
+#search_block_top #searchbox {
+	white-space: nowrap;
+	line-height: 34px;
+}
+#search_block_top .button-search:before {
+	content: "\f002";
+	display: block;
+	font-family: "FontAwesome";
+	font-size: 15px;
+	text-align: center; 
+}
+#search_block_top #search_query_top,#search_block_top .button-search{
+	background: none;
+	border: none;
+	display: inline-block;
+	outline: none;
+}
+#search_block_top .button-search{
+	float: right;
+}
+.ac_results {
+background: white;
+border: none;
+width: 271px;
+margin-top: -1px;
+}
+.ac_results li {
+font-weight: normal;
+color: #686666;
+font-size: 13px;
+line-height: 22px;
+padding: 4px 10px;
+}
+.ac_results li.ac_odd {
+background: #eee;
+}
+.ac_results li:hover, .ac_results li.ac_over {
+background: #bbb;
+color: #fff;
+cursor: pointer;
+}
+
+form#searchbox {
+	position: relative; 
+}
+form#searchbox label {
+	color: #333333; 
+}
+form#searchbox input#search_query_block {
+	margin-right: 10px;
+	max-width: 222px;
+	margin-bottom: 10px;
+	display: inline-block;
+	float: left; 
+}
+form#searchbox .button.button-small {
+	float: left; 
+}
+form#searchbox .button.button-small i {
+	margin-right: 0; 
+}
+#search_query_top {
+	width: 100%;
+	font-size: 12px;
+	padding-right: 20px;
+}
+
+#search_query_top::-webkit-input-placeholder {color:#fff;}
+#search_query_top::-moz-placeholder          {color:#fff;}/* Firefox 19+ */
+#search_query_top:-moz-placeholder           {color:#fff;}/* Firefox 18- */
+#search_query_top:-ms-input-placeholder      {color:#fff;}
+
+@media (min-width: 768px){
+	#search_block_top{
+		width: 45%;
+	}
+}
+@media (min-width: 768px) and (max-width: 1199px){
+	#search_block_top {
+	  width: 36.5%;
+	}
+}
+@media (min-width: 768px) and (max-width: 991px){
+	#search_block_top {
+	  width: 60.5%;
+	}
+}
+@media (max-width: 767px){
+	#search_block_top{
+		position: absolute;
+		top: 0;
+  		left: 129px;
+  		right: 130px;
+	}
+}
+@media (max-width: 479px){
+	#search_block_top {
+		position: static;
+		max-width: none;
+		width: 100%;
+		clear: both;
+		padding-top: 15px;
+		z-index: 1;
+	}
+	.main_panel {
+		padding-top: 45px;
+	}
+}
+
+header .search-container{
+	display:none;
+}

@@ -1,0 +1,110 @@
+
+figure, figcaption {
+	display: block;
+}
+#countdown {
+	padding: 33px 0;
+	margin-bottom: 56px;
+}
+.transition {
+    -webkit-transition: top 400ms linear;
+    -moz-transition: top 400ms linear;
+    -ms-transition: top 400ms linear;
+    -o-transition: top 400ms linear;
+    transition: top 400ms linear;
+}
+
+.timeTo {
+	font-family: Tahoma, Verdana, Aial, sans-serif;
+	font-size: 28px;
+}
+
+.timeTo span {
+	display: none;
+}
+.timeTo.timeTo-white .timeTo-alert {
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 35%, #e17373 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(35%,#ffffff), color-stop(100%,#e17373)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffffff 35%,#e17373 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffffff 35%,#e17373 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffffff 35%,#e17373 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #ffffff 35%,#e17373 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e17373',GradientType=0 ); /* IE6-9 */
+}
+
+.timeTo figure {
+	position: relative;
+	width: 25%!important;
+	max-width: none !important;
+	float: left;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+.timeTo figure:after{
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	border-right-style:solid;
+	border-right-width:1px;
+}
+.timeTo figure:last-child:after{
+	display: none;
+}
+.timeTo figcaption {
+	text-align: center;
+	font-weight: 300;
+	font-family: 'MuseoSansCyrl100','Open Sans';
+	text-transform: capitalize;
+}
+
+.timeTo div {
+	width: 70px !important;
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+	font-weight: 400;
+	font-family: 'MuseoSansCyrl500','Open Sans';
+	line-height: 1;
+}
+.timeTo ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	left: 3px;
+}
+.timeTo ul li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+@media (max-width:991px){
+	.timeTo div{
+		width: 44px !important;
+	}
+}
+@media (max-width:767px){
+	.timeTo div {
+		width: 32px !important;
+	}
+}
+@media (max-width:580px){
+	#maintenance h1{
+		font-size: 25px;
+	}
+}
+@media (max-width:480px){
+	.timeTo div {
+		width: 27px !important;
+	}
+}
+@media (max-width:380px){
+	.timeTo div {
+		width: 21px !important;
+	}
+}

@@ -1,0 +1,170 @@
+.twa_posts .post{
+	margin-bottom: 2%;
+}
+
+.twa_posts .post h5{
+	font-size: 1.3em;
+}
+
+@media (min-width: 767px) {
+	.twa_posts.grid {
+		margin: 0 -2% 0 0;
+	}
+	
+	.twa_posts.grid .post {
+		width: 48%;
+		margin-right: 2%;
+		float: left;
+	}
+}
+
+.twa_container {
+	margin-bottom: 15px;
+}
+
+.twa_container .owl-carousel{
+	margin-left: -18px;
+	width: auto;
+}
+
+.twa_container .owl-theme .owl-controls{
+	margin-left: 16px;
+}
+
+.twa_container .carousel .post{
+	margin-left: 15px;
+}
+
+.neat {
+	font-size: 0.8em;
+	text-transform: uppercase;
+}
+
+a.view_all {
+	text-decoration: none;
+	color: #CCC;
+	margin-top: 5px;
+	display: block;
+	text-align: center;
+	clear: both;
+}
+
+.twa_posts .content_wrapper {
+	padding: 30px 15px 45px;
+	background: #FAFAFA;
+	border: 1px solid #CCC;
+	border-radius: 5px;	
+	position: relative;
+}
+
+.twa_posts .post_content {
+	max-height: 130px;	
+	overflow: hidden;	 	
+}
+
+.post_content img {
+	margin: 0 3px;
+	vertical-align: top;
+}
+
+.twa_posts .post.expanded .post_content {
+	max-height: none;
+	overflow: hidden; 
+	height: auto!important;
+	padding-bottom: 15px;
+}
+
+.twa_posts .post_avatar img {	
+	width: 70px;
+	height: 70px;
+	padding: 5px;
+	background: #FFF;
+	border: 1px solid #CCC;
+	border-radius: 100%;
+	/* requires important because some global styles include body selector */
+	margin: 0 0 -35px!important;
+	position: relative;
+	z-index: 1;
+}
+
+.post_footer {	
+	position: absolute;	
+	bottom: 0;
+	right: 0;
+	margin: 15px;
+	z-index: 1;	
+}
+
+.twa_posts .expand{
+	display:none;
+}
+
+.twa_posts .expandable .expand {	
+	height: 20px;
+	margin-top: -20px;
+	line-height: 20px;	
+	background: #FAFAFA;
+	z-index: 1;
+	position: relative;
+	cursor: pointer;
+	display: block;
+}
+
+.twa_posts .expandable.expanded  .expand {
+	margin-top: -10px;
+}
+
+.expanded .icon-angle-down:before {
+	content: '\f106';
+}
+
+.icon-angle-down-double:before {
+	content: '\f103';
+}
+
+.middle-line {
+	display: block;
+	overflow: hidden;
+    text-align: center;
+}
+
+.middle-line:before,
+.middle-line:after {
+    background-color: #CCC;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+}
+.middle-line:before {
+    right: 0.5em;
+    margin-left: -50%;
+}
+.middle-line:after {
+    left: 0.5em;
+    margin-right: -50%;
+}
+
+.post_rating {
+	float: right;
+	margin-right: -3px;
+}
+.rating_star {
+	color: #DDD;
+	font-size: 15px;
+	float: left;
+	padding-right: 3px;
+}
+.rating_star.on {
+	color: #FFCC00;
+}
+.rating_star.highlighted{
+	color: #FFDD00;
+}
+
+/* bb styles*/
+.b {font-weight:bold;}
+.i {font-style:italic;}
+.u {text-decoration:underline;}

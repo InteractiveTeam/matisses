@@ -1,0 +1,96 @@
+#block_contact_infos{
+	padding-top: 93px;
+	background: url(../img/contacts_bg.jpg) no-repeat center top;
+	background-attachment: fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+}
+.undertitle_main.title_contacts_over{
+	margin-bottom: 38px;
+}
+#block_contact_infos p{
+	font-size: 14px;
+	line-height: 1.5;
+	text-align: center;
+}
+#block_contact_infos ul li {
+	text-align: center;
+	padding: 0 15px;
+	margin: 120px 0;
+}
+#block_contact_infos ul li .title_contact_item{
+	font-weight: bold;
+	font-family: 'MuseoSansCyrl900','Open Sans';
+	display: inline-block;
+	font-size: 18px;
+	position: relative;
+	padding: 0 5px 10px;
+	margin: 16px 0 8px;
+	border-bottom-style: double;
+	border-bottom-width: 4px;
+}
+#block_contact_infos ul li.address_item .content_item{
+	padding: 0 21%;
+}
+#block_contact_infos ul li .content_item{
+	display: block;
+	line-height: 1.8;
+	font-family: 'MuseoSansCyrl300','Open Sans';
+}
+#block_contact_infos ul li:before{
+	content: "\f003";
+	font-family: "fontAwesome";
+	display: block;
+	font-size: 47px;
+	line-height: 1;
+}
+#block_contact_infos ul li.address_item:before{
+	content: "\f041";
+}
+#block_contact_infos ul li.phones_item:before{
+	content: '\e808';
+	font-family: 'fontello';
+}
+@media (min-width: 768px){
+	.big-cross{
+  position: absolute;
+  right: 0;
+  top: 56px;
+}
+.big-cross:before,.big-cross:after{
+	display: block;
+  content: '';
+  background: rgba(255,255,255,0.4);
+  width: 1px;
+  height: 80px;
+  position: absolute;
+}
+.big-cross:before{
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.big-cross:after{
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+}
+@media (min-width: 768px) and (max-width: 991px){
+	.big-cross:before,.big-cross:after{
+		height: 60px;
+	}
+}
+@media (max-width: 767px){
+	#block_contact_infos {
+		padding: 50px 0;
+	}
+	#block_contact_infos ul li {
+		padding: 0 15px 0;
+		margin: 30px 0 0;
+	}
+}
+@media (max-width: 480px){
+	#block_contact_infos ul li .title_contact_item{
+		font-size: 15px;
+	}
+}

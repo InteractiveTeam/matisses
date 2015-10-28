@@ -1,0 +1,27 @@
+===========================
+v 2.0.0 (February 10, 2015)
+===========================
+
+Changed name from guestbookwithavatars to testimonialswithavatars.
+
+
+Added
+-----
+- Possibility to add rating
+- Possibility to change post positions
+
+Updated
+-----
+- Enhanced demo data install
+- Updated backoffice interface
+- Misc bug fixes
+
+
+Files modified:
+-----
+Most of files were modified/renamed due to module name change
+
+===========================
+v 1.0.0 (November 12, 2014)
+===========================
+Initial relesase
