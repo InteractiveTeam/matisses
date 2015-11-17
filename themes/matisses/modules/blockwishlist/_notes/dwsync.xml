@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
 <file name="blockwishlist.tpl" server="192.168.3.45" local="130896646480240983" remote="130896826200000000" Dst="0" />
+<file name="blockwishlist-ajax.tpl" server="192.168.3.45" local="130922748116084849" remote="130895995200000000" Dst="0" />
+<file name="blockwishlist_button.tpl" server="192.168.3.45" local="130922748116094622" remote="130895995200000000" Dst="0" />
+<file name="blockwishlist-extra.tpl" server="192.168.3.45" local="130922748118116795" remote="130895995200000000" Dst="0" />
+<file name="blockwishlist_top.tpl" server="192.168.3.45" local="130922748127299628" remote="130895995200000000" Dst="0" />
+<file name="index.php" server="192.168.3.45" local="130922748127309411" remote="130895995200000000" Dst="0" />
+<file name="my-account.tpl" server="192.168.3.45" local="130922748127905309" remote="130895995200000000" Dst="0" />
 </dwsync>

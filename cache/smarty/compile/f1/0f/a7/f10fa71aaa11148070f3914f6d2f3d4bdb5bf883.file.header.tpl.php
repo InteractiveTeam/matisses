@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2015-10-19 20:25:00
+<?php /* Smarty version Smarty-3.1.19, created on 2015-11-13 17:34:39
          compiled from "/var/www/www.matisses.co/www/themes/matisses/header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:5244530156241290d923f1-12289712%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f10fa71aaa11148070f3914f6d2f3d4bdb5bf883' => 
     array (
       0 => '/var/www/www.matisses.co/www/themes/matisses/header.tpl',
-      1 => 1445304288,
+      1 => 1447453805,
       2 => 'file',
     ),
   ),
@@ -57,14 +57,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_56241290f2ecc9_93778421')) {function content_56241290f2ecc9_93778421($_smarty_tpl) {?><?php if (!is_callable('smarty_function_implode')) include '/var/www/www.matisses.co/www/tools/smarty/plugins/function.implode.php';
-?> 
-<!DOCTYPE HTML> 
+?>
+<!DOCTYPE HTML>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7 " lang="<?php echo $_smarty_tpl->tpl_vars['lang_iso']->value;?>
-"><![endif]--> 
+"><![endif]-->
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8 ie7" lang="<?php echo $_smarty_tpl->tpl_vars['lang_iso']->value;?>
-"><![endif]--> 
+"><![endif]-->
 <!--[if IE 8]><html class="no-js lt-ie9 ie8" lang="<?php echo $_smarty_tpl->tpl_vars['lang_iso']->value;?>
-"><![endif]--> 
+"><![endif]-->
 <!--[if gt IE 8]> <html class="no-js ie9" lang="<?php echo $_smarty_tpl->tpl_vars['lang_iso']->value;?>
 "><![endif]-->
 <html lang="<?php echo $_smarty_tpl->tpl_vars['lang_iso']->value;?>
@@ -115,13 +115,13 @@ $_smarty_tpl->tpl_vars['media']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['js_files']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['js_uri']->key => $_smarty_tpl->tpl_vars['js_uri']->value) {
 $_smarty_tpl->tpl_vars['js_uri']->_loop = true;
-?> 
+?>
 <script type="text/javascript" src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['js_uri']->value, ENT_QUOTES, 'UTF-8', true);?>
-"></script> 
+"></script>
 <?php } ?>
 <?php }?>
 		<?php echo $_smarty_tpl->tpl_vars['HOOK_HEADER']->value;?>
- 
+
 <!--[if IE 8]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
@@ -143,103 +143,91 @@ $_smarty_tpl->tpl_vars['js_uri']->_loop = true;
 <?php }?>
 <div id="page">
 <div class="header-container">
-  <header id="header">
-    <div class="main_panel">
-      <div class="container">
-        <div class="row">
-          <div id="menu-left" class="col-md-4 menu-left">
-            <div class="col-md-12 left-up-menu">
-              <ul class="menu">
-                <li id="tiendas"><a href="<?php echo $_smarty_tpl->tpl_vars['link']->value->getPageLink('stores');?>
+  	<header id="header">
+    	<div class="main_panel cf">
+          	<div id="menu-left" class="col-md-5 menu-left">
+	            <div class="col-md-12 left-up-menu">
+	              <ul class="menu">
+	                <li id="tiendas"><a href="<?php echo $_smarty_tpl->tpl_vars['link']->value->getPageLink('stores');?>
 "><?php echo smartyTranslate(array('s'=>'Tiendas'),$_smarty_tpl);?>
 </a></li>
-                <li id="metodos-envio"><a href="<?php echo $_smarty_tpl->tpl_vars['link']->value->getCMSLink('1');?>
-"><?php echo smartyTranslate(array('s'=>'Metodos de envio'),$_smarty_tpl);?>
+	                <li id="metodos-envio"><a href="<?php echo $_smarty_tpl->tpl_vars['link']->value->getCMSLink('1');?>
+"><?php echo smartyTranslate(array('s'=>'Métodos de envío'),$_smarty_tpl);?>
 </a></li>
-                <li id="garantias"><a href="#"><?php echo smartyTranslate(array('s'=>'Garantias'),$_smarty_tpl);?>
+	                <li id="garantias"><a href="#"><?php echo smartyTranslate(array('s'=>'Garantías'),$_smarty_tpl);?>
 </a></li>
-              </ul>
-               </div>
-            <div class="col-md-12 left-down-menu"> <?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>"displayMatMegamenu"),$_smarty_tpl);?>
+	              </ul>
+	              
+			  	</div>
+            	<div class="col-md-12 left-down-menu"> <?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>"displayMatMegamenu"),$_smarty_tpl);?>
 
-              <ul id="menu" class="col-md-9 menu-experiencias" style="color:black">
-                <li id="experiencias"><a href="#"><span></span><?php echo smartyTranslate(array('s'=>'Experiencias'),$_smarty_tpl);?>
-</a></li>
-                <li id="wishlist"><?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>"displayMatWishlist"),$_smarty_tpl);?>
+	              <ul id="menu" class="col-md-9 menu-experiencias" style="color:black">
+	                <li id="wishlist"><?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>"displayMatWishlist"),$_smarty_tpl);?>
 </li>
-                <li id="giftlist"><a href="#"><span></span><?php echo smartyTranslate(array('s'=>'Lista de regalos'),$_smarty_tpl);?>
+	                <li id="giftlist"><a href="#"><span></span><?php echo smartyTranslate(array('s'=>'Lista de regalos'),$_smarty_tpl);?>
 </a></li>
-              </ul>
-            </div>
-          </div>
-          <div id="header_logo" class="col-md-3"> <a href="<?php echo $_smarty_tpl->tpl_vars['base_dir']->value;?>
+	              </ul>
+            	</div>
+          	</div>
+          	<div id="header_logo" class="col-md-2"> <a href="<?php echo $_smarty_tpl->tpl_vars['base_dir']->value;?>
 " title="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['shop_name']->value, ENT_QUOTES, 'UTF-8', true);?>
 "> <img class="logo img-responsive" src="<?php echo $_smarty_tpl->tpl_vars['logo_url']->value;?>
 " alt="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['shop_name']->value, ENT_QUOTES, 'UTF-8', true);?>
 "<?php if (isset($_smarty_tpl->tpl_vars['logo_image_width']->value)&&$_smarty_tpl->tpl_vars['logo_image_width']->value) {?> width="<?php echo $_smarty_tpl->tpl_vars['logo_image_width']->value;?>
 "<?php }?><?php if (isset($_smarty_tpl->tpl_vars['logo_image_height']->value)&&$_smarty_tpl->tpl_vars['logo_image_height']->value) {?> height="<?php echo $_smarty_tpl->tpl_vars['logo_image_height']->value;?>
 "<?php }?>/> </a> </div>
-          <div id="menu-right" class="col-md-4 menu-right">
-            <div class="col-md-12 right-up-menu">
-              <ul class="menu">
-                <li id="redes"><?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>'displayMatRedes'),$_smarty_tpl);?>
-</li>
-                <li id="cart"><?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>'displayMatCart'),$_smarty_tpl);?>
-</li>
-                <li id="user"><?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>'displayMatUser'),$_smarty_tpl);?>
-</li>
-              </ul>
-            </div>
-            <div class="col-md-12 right-down-menu">
-              <ul class="menu">
-                <ul id="chat" class="chat">
-                  <a href="#">
-                  
-                  
-                              <span></span>
-            <!-- This code must be installed within the body tags -->
-            <script type="text/javascript">
-                var lhnAccountN = "27089-1";
-                var lhnButtonN = 4827;
-                var lhnChatPosition = 'righttab';
-                var lhnInviteEnabled = 1;
-                var lhnWindowN = 0;
-                var lhnDepartmentN = 0;
-                var lhnChatPositionYVal = 150;
-            </script>
-            <a href="http://www.livehelpnow.net/products/live-chat-system" target="_blank" style="font-size:10px;" id="lhnHelp"><?php echo smartyTranslate(array('s'=>'Chat'),$_smarty_tpl);?>
-</a>
-            <script src="//www.livehelpnow.net/lhn/widgets/chatbutton/lhnchatbutton-current.min.js" type="text/javascript" id="lhnscript"></script>
-                              
-                  
-                  
-                  </a>
-                  
 
-                  
-                  
-                  
-                </ul>
-                <ul id="blog" class="blog">
-                  <a href="<?php echo $_smarty_tpl->tpl_vars['link']->value->getModuleLink('news','list');?>
-"><span></span><?php echo smartyTranslate(array('s'=>'Blog'),$_smarty_tpl);?>
+	        <div id="menu-right" class="col-md-5 menu-right">
+	        	<div class="col-md-12 right-up-menu">
+	              <ul>
+	                <li id="redes"><?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>'displayMatRedes'),$_smarty_tpl);?>
+</li>
+	                <li id="cart"><?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>'displayMatCart'),$_smarty_tpl);?>
+</li>
+	                <li id="user"><?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>'displayMatUser'),$_smarty_tpl);?>
+</li>
+	              </ul>
+	            </div>
+	            <div class="col-md-12 right-down-menu">
+	              	<ul>
+						<li id="experiencias"><a href="#"><?php echo smartyTranslate(array('s'=>'Experiencias'),$_smarty_tpl);?>
+</a></li>
+		                <li id="chat" class="chat">
+
+				            	<!-- This code must be installed within the body tags -->
+				            	<script type="text/javascript">
+				                var lhnAccountN = "27089-1";
+				                var lhnButtonN = 4827;
+				                var lhnChatPosition = 'righttab';
+				                var lhnInviteEnabled = 1;
+				                var lhnWindowN = 0;
+				                var lhnDepartmentN = 0;
+				                var lhnChatPositionYVal = 150;
+				            	</script>
+		            			<a href="http://www.livehelpnow.net/products/live-chat-system" target="_blank" id="lhnHelp"><?php echo smartyTranslate(array('s'=>'Chat'),$_smarty_tpl);?>
 </a>
-                </ul>
-                <ul id="search" class="search">
-                  <a href="javascript:void(0)"><span></span><?php echo smartyTranslate(array('s'=>'Buscar'),$_smarty_tpl);?>
+		            			<script src="//www.livehelpnow.net/lhn/widgets/chatbutton/lhnchatbutton-current.min.js" type="text/javascript" id="lhnscript"></script>
+
+						</li>
+		            	<li id="blog" class="blog">
+		                  	<a href="<?php echo $_smarty_tpl->tpl_vars['link']->value->getModuleLink('news','list');?>
+"><?php echo smartyTranslate(array('s'=>'Blog'),$_smarty_tpl);?>
 </a>
-                </ul>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="search-container"> <?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>"displayMatBuscador"),$_smarty_tpl);?>
+						</li>
+		            	<li id="search" class="search">
+		                  	<a href="javascript:void(0)"><?php echo smartyTranslate(array('s'=>'Buscar'),$_smarty_tpl);?>
+</a>
+						</li>
+	        		</ul>
+	        	</div>
+	        </div>
+    	</div>
+    	<div class="search-container"> <?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>"displayMatBuscador"),$_smarty_tpl);?>
  </div>
-  </header>
+  	</header>
 </div>
-<div class="columns-container">
+
+<div class="main-container">
 <?php if ($_smarty_tpl->tpl_vars['page_name']->value!='index'&&$_smarty_tpl->tpl_vars['page_name']->value!='pagenotfound') {?>
 <div class="top_banner_wrap">  </div>
 <?php }?>
@@ -254,20 +242,20 @@ $_smarty_tpl->tpl_vars['js_uri']->_loop = true;
 					<?php }?>
 <?php if ($_smarty_tpl->tpl_vars['page_name']->value=='index'&&false) {?>
 <div id="slider_row">
-  <div id="top_column" class="center_column col-xs-12 col-sm-12"> 
-    <!-- hook displayTopColumn --> 
-    <?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>"displayTopColumn"),$_smarty_tpl);?>
- 
-    <!-- end hook displayTopColumn --> 
-    <!-- hook displayEasyCarousel2 --> 
-    <?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>'displayEasyCarousel2'),$_smarty_tpl);?>
- 
-    <!-- end hook displayEasyCarousel2 --> 
-    <!-- hook dislayCustomBanners2 --> 
-    <?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>'displayCustomBanners2'),$_smarty_tpl);?>
- 
-    <!-- end hook dislayCustomBanners2 --> 
-  </div>
+	  <div id="top_column" class="center_column">
+	    <!-- hook displayTopColumn -->
+	    <?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>"displayTopColumn"),$_smarty_tpl);?>
+
+	    <!-- end hook displayTopColumn -->
+	    <!-- hook displayEasyCarousel2 -->
+	    <?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>'displayEasyCarousel2'),$_smarty_tpl);?>
+
+	    <!-- end hook displayEasyCarousel2 -->
+	    <!-- hook dislayCustomBanners2 -->
+	    <?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0][0]->smartyHook(array('h'=>'displayCustomBanners2'),$_smarty_tpl);?>
+
+	    <!-- end hook dislayCustomBanners2 -->
+	  </div>
 </div>
 <?php }?>
 <div class="<?php if ($_smarty_tpl->tpl_vars['page_name']->value!='index'&&$_smarty_tpl->tpl_vars['page_name']->value!='pagenotfound') {?>row<?php }?>">
@@ -277,6 +265,7 @@ $_smarty_tpl->tpl_vars['js_uri']->_loop = true;
 </div>
 <?php }?>
 						<?php if (isset($_smarty_tpl->tpl_vars['left_column_size']->value)&&isset($_smarty_tpl->tpl_vars['right_column_size']->value)) {?><?php $_smarty_tpl->tpl_vars['cols'] = new Smarty_variable((12-$_smarty_tpl->tpl_vars['left_column_size']->value-$_smarty_tpl->tpl_vars['right_column_size']->value), null, 0);?><?php } else { ?><?php $_smarty_tpl->tpl_vars['cols'] = new Smarty_variable(12, null, 0);?><?php }?>
-                        <div id="center_column" class="center_column col-xs-12 col-sm-<?php echo intval($_smarty_tpl->tpl_vars['cols']->value);?>
+                        <div id="center_column" class="center_column <?php echo intval($_smarty_tpl->tpl_vars['cols']->value);?>
 ">
-<?php }?><?php }} ?>
+<?php }?>
+<?php }} ?>

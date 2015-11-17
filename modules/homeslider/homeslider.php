@@ -36,7 +36,7 @@ include_once(_PS_MODULE_DIR_.'homeslider/HomeSlide.php');
 class HomeSlider extends Module
 {
 	private $_html = '';
-	private $default_width = 779;
+	private $default_width = 1893;
 	private $default_speed = 500;
 	private $default_pause = 3000;
 	private $default_loop = 1;
@@ -122,7 +122,7 @@ class HomeSlider extends Module
 
 		return false;
 	}
-	
+
 	public function hookdisplayMatSlider($params)
 	{
 		return $this->hookDisplayHome($params);
