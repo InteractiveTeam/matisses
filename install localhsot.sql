@@ -1,0 +1,1 @@
+UPDATE `matisses`.`ps_shop_url` SET `domain_ssl` = 'localhost', `domain` = 'localhost', `physical_uri` = 'localhost' WHERE `ps_shop_url`.`id_shop_url` = 1;
