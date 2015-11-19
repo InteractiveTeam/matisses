@@ -42,7 +42,7 @@ span.exclusive,
 span.exclusive_large,
 span.exclusive_large_disabled,.displayCustomBanners3 .inner-banner-item>a:hover,
 .btn.btn-default,.share_product a,.alert-warning,.twits_cont .twitter_btn:hover,.twits_cont .twitter_btn:hover i {
-	color: #fff;
+	color: #d7162f;
 }
 #more_info_tabs li a{
 	color: #515151;
@@ -69,16 +69,15 @@ a:hover,.select2-container .select2-choice > .select2-chosen,#block_contact_info
  #layer_cart .layer_cart_cart h2,#layer_cart .cross:hover,#reviews_carousel .subject_review,.footer_line_two ul li:hover a,
  .gba .single_post  .date_add,.gba .single_post .subject,.button_down,.product_list .wrap_view>a:hover,.c_item .wrap_view>a:hover,.form-control,
  .elem_butt li a:hover{
-	color: #5dc0ba;
+	color: #d7162f;
 }
 .share_product a:hover,.list .share_product a{
 	color: #57d3ef;
 }
 .fancybox-skin .fancybox-close,
 h2.title_main_section,.block .title_block,.block h4,#layered_block_left .layered_subtitle,.pb-right-column h1,
-#maintenance h1 span{
-	color: #5dc0bd;
-}
+#maintenance h1 span{}
+
 .custombanners.displayHome .wrap-icon-feature.second-style,#block_contact_infos ul li.phones_item:before,.product_list .wrap_view>a.quick-view:hover,.c_item .wrap_view>a.quick-view:hover{
 	color:#ffa33b;
 }
@@ -178,7 +177,7 @@ span.exclusive:hover,
 span.exclusive_large:hover,
 span.exclusive_large_disabled:hover,
 .btn.btn-default:hover{
-	color: #FF006F;
+	color: #d7162f;
 }
 .facebook-box .likeButton{
 	color: #00bcff;
@@ -243,7 +242,7 @@ span.exclusive:hover:before,
 span.exclusive_large:hover:before,
 span.exclusive_large_disabled:hover:before,
 .btn.btn-default:hover:before{
-	background: #FF006F;
+	background: #d7162f;
 }
 .tag.price-percent-reduction{
 	background: #ffa33b;
@@ -494,8 +493,8 @@ span.exclusive_small,
 span.exclusive,
 span.exclusive_large,
 span.exclusive_large_disabled,
-.btn.btn-default,#prosocial_block li a:hover,.facebook-box .fb_followers li:hover img {
-	border-color: #db1d70;
+.btn.btn-default, #prosocial_block li a:hover,.facebook-box .fb_followers li:hover img {
+	border-color: #d7162f;
 }
 #maintenance #prosocial_block li a:hover {
 	border-color: #2ac0f3;
@@ -542,7 +541,7 @@ span.exclusive:hover,
 span.exclusive_large:hover,
 span.exclusive_large_disabled:hover,
 .btn.btn-default:hover{
-		border-color:#FF006F;
+	border-color:#d7162f;
 }
 
 #layered_form>div>div,.layered_weight,.layered_price,.display li,.display_m li,
@@ -699,7 +698,7 @@ span.exclusive_large:before,
 span.exclusive_large_disabled:before,
 .btn.btn-default:before,.btn.btn_border:after,.btn.btn_border:before
 {
-	background-color: #db1d70;
+	background-color: transparent;
 }
 
 /* social button */

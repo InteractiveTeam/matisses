@@ -127,6 +127,17 @@ textarea {
 	min-height: 8.75rem;
 }
 
+.index h1{
+	color: #000;
+	text-align: center;
+	margin-bottom: 2.1875rem;
+	margin-right: 1.25rem;
+	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-size: 3rem;
+	text-transform: uppercase;
+	display: inline-block;
+	}
+
 #header_logo {
 	text-align: center;
 	padding: 1.875rem 0;
@@ -242,9 +253,6 @@ textarea {
 	padding-right: 0;
 
 }
-
-
-
 
 li#chat a {
     position: static !important;
@@ -383,7 +391,7 @@ span.ajax_cart_no_product {
     margin-right: 0;
 	}
 
-	.viewed-products .product-content h5 {
+	.viewed-products .product-content h2 {
 	text-transform: uppercase;
 	color: #d7162f;
 	font-size: 1.5rem;
@@ -403,13 +411,15 @@ span.ajax_cart_no_product {
 	padding: 4.0625rem 0;
 	}
 
-	.new-products h1.title_block {
-    color: #000;
-    text-align: center;
-    margin-bottom: 2.1875rem;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
-	font-size: 3rem;
-	text-transform: uppercase;
+	.btn-title-new{
+	display: block;
+	text-align: center;
+	}
+
+	.btn-view-products {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 0.3125rem;
 	}
 
 	.new-products .owl-item {
@@ -499,6 +509,14 @@ span.ajax_cart_no_product {
     vertical-align: top;
 	}
 
+	/*Experiencias*/
+	.experiences{
+	background-color: #f2f2f2;
+	padding: 4.0625rem 0;
+	}
+
+	/*Blog*/
+	
 
 /*Footer*/
 #footer{
@@ -819,17 +837,14 @@ span.exclusive_large_disabled,
 	display: inline-block;
 	background: none;
 	text-transform: uppercase;
-	padding: 13px 30px 11px;
+	padding: 0.3125rem 0.9375rem;
 	line-height: 1.5;
 	height: auto;
-	font-size: 12px;
-	font-family: 'MuseoSansCyrl500','Open Sans';
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	font-size: 1rem;
+	font-family: "Conv_trade-gothic-bold-condensed-no";
 	border:none;
 	border-style: solid;
-	border-width: 1px;
+	border-width: 2px;
 	-webkit-transition: color .2s linear;
 	-o-transition: color .2s linear;
 	-moz-transition: color .2s linear;

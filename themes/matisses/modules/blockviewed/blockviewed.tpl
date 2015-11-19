@@ -31,23 +31,24 @@
 			{if $smarty.foreach.myLoop.iteration <= Configuration::get('PRODUCTS_VIEWED_NBR')}
 				<li class="item clearfix{if $smarty.foreach.myLoop.last} last_item{elseif $smarty.foreach.myLoop.first} first_item{else} item{/if}">
 					<a
-					class="wrap_scale products-block-image" 
-					href="{$viewedProduct->product_link|escape:'html':'UTF-8'}" 
+					class="wrap_scale products-block-image"
+					href="{$viewedProduct->product_link|escape:'html':'UTF-8'}"
 					title="{l s='More about %s' mod='blockviewed' sprintf=[$viewedProduct->name|escape:'html':'UTF-8']}" >
 						<img class="img-responsive"
-						src="{if isset($viewedProduct->id_image) && $viewedProduct->id_image}{$link->getImageLink($viewedProduct->link_rewrite, $viewedProduct->cover, 'home_default')}{else}{$img_prod_dir}{$lang_iso}-default-medium_default.jpg{/if}" 
+						src="{if isset($viewedProduct->id_image) && $viewedProduct->id_image}{$link->getImageLink($viewedProduct->link_rewrite, $viewedProduct->cover, 'home_default')}{else}{$img_prod_dir}{$lang_iso}-default-medium_default.jpg{/if}"
 						alt="{$viewedProduct->legend|escape:'html':'UTF-8'}" />
 					</a>
 					<div class="product-content">
 
-						<h5>
-							<a class="product-name" 
-							href="{$viewedProduct->product_link|escape:'html':'UTF-8'}" 
+						<h2>
+							<a class="product-name"
+							href="{$viewedProduct->product_link|escape:'html':'UTF-8'}"
 							title="{l s='More about %s' mod='blockviewed' sprintf=[$viewedProduct->name|escape:'html':'UTF-8']}">
 								{$viewedProduct->name|truncate:25:'...'|escape:'html':'UTF-8'}
 							</a>
-						</h5>
-						<p class="product-description">{$viewedProduct->description_short|strip_tags:'UTF-8'|truncate:60}</p>
+						</h2>
+						
+						<!-- <p class="product-description">{$viewedProduct->description_short|strip_tags:'UTF-8'|truncate:60}</p> -->
 					</div>
 				</li>
 				{/if}

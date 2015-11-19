@@ -24,12 +24,12 @@
 *}
 <!-- MODULE Block new products -->
 <div id="new-products_block_right" class="block products_block">
-	<div class="cf">
+	<div class="btn-title-new cf">
 		<h1 class="title_block">
     		<a href="{$link->getPageLink('new-products')|escape:'html'}" title="{l s='New products' mod='blocknewproducts'}">{l s='Nuevos productos' mod='blocknewproducts'}</a>
     	</h1>
 		<div class="btn-view-products">
-			<a href="{$link->getPageLink('new-products')|escape:'html'}" title="{l s='All new products' mod='blocknewproducts'}" class="btn btn-default button button-small">{l s='All new products' mod='blocknewproducts'}</a>
+			<a href="{$link->getPageLink('new-products')|escape:'html'}" title="{l s='All new products' mod='blocknewproducts'}" class="btn btn-default button button-small">{l s='Ver todos' mod='blocknewproducts'}</a>
 		</div>
 	</div>
     <div class="block_content products-block">
