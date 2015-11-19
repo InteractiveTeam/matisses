@@ -13,7 +13,7 @@
 	<atom:link href="http://www.prestashop.com/blog/es/feed/" rel="self" type="application/rss+xml" />
 	<link>https://www.prestashop.com/blog/es</link>
 	<description></description>
-	<lastBuildDate>Tue, 17 Nov 2015 09:00:19 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 19 Nov 2015 11:18:35 +0000</lastBuildDate>
 	<language>es-ES</language>
 		<sy:updatePeriod>hourly</sy:updatePeriod>
 		<sy:updateFrequency>1</sy:updateFrequency>
@@ -37,6 +37,7 @@
 				<content:encoded><![CDATA[<p>Hoy, nuestro colaborador Jordi Ordóñez, Consultor Ecommerce, desarrollo web y SEO. nos hablará sobre el desarrollo de una tienda online en prestashop.</p>
 <p>Seguimos con la tanda de posts sobre cómo montar una tienda online. Os recuerdo que el primero es <a href="https://www.prestashop.com/blog/es/empezando-plantear-el-proyecto-el-estudio-de-mercado/">Empezando a plantear el proyecto: el estudio de mercado</a> y el segundo <a href="https://www.prestashop.com/blog/es/proveedores-temas-legales-y-plataformas-de-pago/">Proveedores, temas legales y plataformas de pago</a>.</p>
 <p>Llegamos al punto de la serie de artículos donde os recomendaré lo que probablemente poca gente os haya recomendado: gastad poca pasta.</p>
+<p><span id="more-13464"></span></p>
 <p>Si tenemos un 100% de presupuesto, <b>no me gastaría más de un 20% en el desarrollo y sí un 80% en captación</b> y en ofrecer un servicio que haga que nuestros clientes vuelvan a la tienda. <b>La carcasa y el sistema se pueden ir mejorando</b>, basta con que tengas algo adecentado. El servicio y la captación determinarán, junto con la demanda del producto y el producto en sí, si el negocio funciona o no.</p>
 <p>Es muy raro que un negocio online, una tienda en este caso, <b>no venda por el aspecto de la web</b>. Muy mal tiene que estar para que no venda por eso. Es cierto que el desarrollo y el diseño ayudan y mucho, pero <b>no hay plataforma de comercio electrónico ni plantilla chulísima que vendan un mal producto o servicio</b>. Hay que meterse eso en la cabeza.</p>
 <p>Dicho esto, <b>¿cómo comienzo desarrollando mi tienda en PrestaShop?</b> Pues, antes que nada, debo determinar si PrestaShop es la mejor solución y eso lo haré viendo si da respuesta a mis problemas y demandas:</p>
@@ -66,7 +67,7 @@
 <p>La entrada <a rel="nofollow" href="https://www.prestashop.com/blog/es/desarrollando-la-tienda-sobre-prestashop/">Desarrollando la tienda sobre PrestaShop</a> aparece primero en <a rel="nofollow" href="https://www.prestashop.com/blog/es">ES - Blog Ecommerce de PrestaShop</a>.</p>
 ]]></content:encoded>
 			<wfw:commentRss>https://www.prestashop.com/blog/es/desarrollando-la-tienda-sobre-prestashop/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
+		<slash:comments>1</slash:comments>
 		</item>
 		<item>
 		<title>¡Redsys ha cambiado! Pon al día tu módulo de pago</title>
@@ -101,7 +102,7 @@
 <p>La entrada <a rel="nofollow" href="https://www.prestashop.com/blog/es/tpv-pon-al-dia-tu-modulo-de-pago/">¡Redsys ha cambiado! Pon al día tu módulo de pago</a> aparece primero en <a rel="nofollow" href="https://www.prestashop.com/blog/es">ES - Blog Ecommerce de PrestaShop</a>.</p>
 ]]></content:encoded>
 			<wfw:commentRss>https://www.prestashop.com/blog/es/tpv-pon-al-dia-tu-modulo-de-pago/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
+		<slash:comments>2</slash:comments>
 		</item>
 		<item>
 		<title>E-commerce para principiantes: Pagos en un tuit</title>

@@ -39,11 +39,15 @@
 		</div>
 	</div>
     <div class="experiences">
-    	{l s='Expereincias'}
+		<div class="container">
+    		<h1>{l s='Experiencias'}</h1>
+		</div>
     </div>
     <div class="blog">
-    	{hook h="displayMatBlog"}
-    </div>
+		<div class="container">
+			{hook h="displayMatBlog"}
+		</div>
+	</div>
 </div>
 
 
