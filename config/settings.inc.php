@@ -35,4 +35,3 @@ if($_SERVER['SERVER_NAME']=='localhost')
 			define('_RIJNDAEL_KEY_', 'nM6wqH5QdaBtqTzBg5xzLNdvndd3XYRf');
 			define('_RIJNDAEL_IV_', 'LcmHtgdbjnG1lLWhiyVsWQ==');
 	 }
->>>>>>> 2b60f1d4fd294d8c0ebbbb11120c364ffb534ea9
