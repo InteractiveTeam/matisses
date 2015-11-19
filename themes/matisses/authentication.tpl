@@ -357,7 +357,7 @@
 							<label for="postcode_invoice">{l s='Zip/Postal Code'} <sup>*</sup></label>
 							<input type="text" class="form-control" name="postcode_invoice" id="postcode_invoice" value="" onkeyup="$('#postcode').val($('#postcode').val().toUpperCase());" />
 						</div>
-						{/if}					
+						{/if}
 						{if !$stateExist}
 						<div class="required id_state_invoice form-group unvisible">
 							<label for="id_state_invoice">{l s='State'} <sup>*</sup></label>
@@ -372,7 +372,7 @@
 						</div>
 						{if isset($one_phone_at_least) && $one_phone_at_least}
 							<p class="inline-infos required is_customer_param">{l s='You must register at least one phone number.'}</p>
-						{/if}					
+						{/if}
 						<div class="form-group is_customer_param">
 							<label for="phone_invoice">{l s='Home phone'}</label>
 							<input type="text" class="form-control" name="phone_invoice" id="phone_invoice" value="{if isset($guestInformations) && $guestInformations.phone_invoice}{$guestInformations.phone_invoice}{/if}" />
@@ -445,7 +445,7 @@
 			<div class="required password form-group">
 				<label for="passwd">{l s='Password'} <sup>*</sup></label><span class="form_info">{l s='(Five characters minimum)'}</span>
 				<input type="password" class="is_required validate form-control" data-validate="isPasswd" name="passwd" id="passwd" />
-			</div> 
+			</div>
 			<div class="form-group">
 				<label>{l s='Date of Birth'}</label>
 				<div class="row">
@@ -598,7 +598,7 @@
 						<label for="postcode">{l s='Zip/Postal Code'} <sup>*</sup></label>
 						<input type="text" class="form-control" name="postcode" id="postcode" value="{if isset($smarty.post.postcode)}{$smarty.post.postcode}{/if}" onkeyup="$('#postcode').val($('#postcode').val().toUpperCase());" />
 					</p>
-				{/if}		
+				{/if}
 				{if $stateExist eq false}
 					<p class="required id_state select unvisible form-group">
 						<label for="id_state">{l s='State'} <sup>*</sup></label>

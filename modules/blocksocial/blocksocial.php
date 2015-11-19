@@ -47,6 +47,7 @@ class blocksocial extends Module
 	public function install()
 	{
 		return (parent::install() AND Configuration::updateValue('BLOCKSOCIAL_FACEBOOK', '') && 
+			Configuration::updateValue('BLOCKSOCIAL_HOUZZ', '') &&
 			Configuration::updateValue('BLOCKSOCIAL_TWITTER', '') && 
 			Configuration::updateValue('BLOCKSOCIAL_RSS', '') && 
 			Configuration::updateValue('BLOCKSOCIAL_YOUTUBE', '') && 
@@ -64,6 +65,7 @@ class blocksocial extends Module
 	{
 			$this->smarty->assign(array(
 				'facebook_url' => Configuration::get('BLOCKSOCIAL_FACEBOOK'),
+				'houzz_url' => Configuration::get('BLOCKSOCIAL_HOUZZ'),
 				'twitter_url' => Configuration::get('BLOCKSOCIAL_TWITTER'),
 				'rss_url' => Configuration::get('BLOCKSOCIAL_RSS'),
 				'youtube_url' => Configuration::get('BLOCKSOCIAL_YOUTUBE'),
@@ -80,6 +82,7 @@ class blocksocial extends Module
 	{
 		//Delete configuration
 		return (Configuration::deleteByName('BLOCKSOCIAL_FACEBOOK') AND 
+		    Configuration::deleteByName('BLOCKSOCIAL_HOUZZ') AND 
 			Configuration::deleteByName('BLOCKSOCIAL_TWITTER') AND 
 			Configuration::deleteByName('BLOCKSOCIAL_RSS') AND 
 			Configuration::deleteByName('BLOCKSOCIAL_YOUTUBE') AND 
@@ -97,6 +100,7 @@ class blocksocial extends Module
 		if (Tools::isSubmit('submitModule'))
 		{	
 			Configuration::updateValue('BLOCKSOCIAL_FACEBOOK', Tools::getValue('blocksocial_facebook', ''));
+			Configuration::updateValue('BLOCKSOCIAL_HOUZZ', Tools::getValue('blocksocial_houzz', ''));
 			Configuration::updateValue('BLOCKSOCIAL_TWITTER', Tools::getValue('blocksocial_twitter', ''));
 			Configuration::updateValue('BLOCKSOCIAL_RSS', Tools::getValue('blocksocial_rss', ''));
 			Configuration::updateValue('BLOCKSOCIAL_YOUTUBE', Tools::getValue('blocksocial_youtube', ''));
@@ -121,6 +125,7 @@ class blocksocial extends Module
 		if (!$this->isCached('blocksocial.tpl', $this->getCacheId()))
 			$this->smarty->assign(array(
 				'facebook_url' => Configuration::get('BLOCKSOCIAL_FACEBOOK'),
+				'houzz_url' => Configuration::get('BLOCKSOCIAL_HOUZZ'),
 				'twitter_url' => Configuration::get('BLOCKSOCIAL_TWITTER'),
 				'rss_url' => Configuration::get('BLOCKSOCIAL_RSS'),
 				'youtube_url' => Configuration::get('BLOCKSOCIAL_YOUTUBE'),
@@ -147,6 +152,12 @@ class blocksocial extends Module
 						'label' => $this->l('Facebook URL'),
 						'name' => 'blocksocial_facebook',
 						'desc' => $this->l('Your Facebook fan page.'),
+					),
+					array(
+						'type' => 'text',
+						'label' => $this->l('Houzz URL'),
+						'name' => 'blocksocial_houzz',
+						'desc' => $this->l('Your Houzz fan page.'),
 					),
 					array(
 						'type' => 'text',
@@ -220,6 +231,7 @@ class blocksocial extends Module
 	{
 		return array(
 			'blocksocial_facebook' => Tools::getValue('blocksocial_facebook', Configuration::get('BLOCKSOCIAL_FACEBOOK')),
+			'blocksocial_houzz' => Tools::getValue('blocksocial_houzz', Configuration::get('BLOCKSOCIAL_HOUZZ')),
 			'blocksocial_twitter' => Tools::getValue('blocksocial_twitter', Configuration::get('BLOCKSOCIAL_TWITTER')),
 			'blocksocial_rss' => Tools::getValue('blocksocial_rss', Configuration::get('BLOCKSOCIAL_RSS')),
 			'blocksocial_youtube' => Tools::getValue('blocksocial_youtube', Configuration::get('BLOCKSOCIAL_YOUTUBE')),
