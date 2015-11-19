@@ -60,7 +60,7 @@
 							<div class="wrap_features">
 								{if isset($product.new) && $product.new == 1}
 									<a class="new tag" href="{$product.link|escape:'html':'UTF-8'}">
-										<span class="new-label">{l s='New'}</span>
+										<span class="new-label">{l s='Nuevos productos'}</span>
 									</a>
 								{/if}
 							{if isset($product.on_sale) && $product.on_sale && isset($product.show_price) && $product.show_price && !$PS_CATALOG_MODE}
@@ -121,7 +121,7 @@
 										{if !$priceDisplay}{convertPrice price=$product.price}{else}{convertPrice price=$product.price_tax_exc}{/if}
 									</span>
 									<meta itemprop="priceCurrency" content="{$currency->iso_code}" />
-									
+
 									{hook h="displayProductPriceBlock" product=$product type="price"}
 									{hook h="displayProductPriceBlock" product=$product type="unit_price"}
 								{/if}
@@ -142,7 +142,7 @@
 								<span class="discount">{l s='Reduced price!'}</span>
 							{/if}
 					</div>
-					
+
 				</div>
 				<div class="wrap_view wrap_visible_hover">
 							<a itemprop="url" class="scale_hover_in lnk_view" href="{$product.link|escape:'html':'UTF-8'}" title="{l s='View'}">
@@ -188,7 +188,7 @@
 						</div>
 					</div>
 			</div><!-- .product-container> -->
-			
+
 		</div>
 	{/foreach}
 	</div>
