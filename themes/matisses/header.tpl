@@ -42,8 +42,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <link rel="icon" type="image/vnd.microsoft.icon" href="{$favicon_url}?{$img_update_time}" />
 <link rel="shortcut icon" type="image/x-icon" href="{$favicon_url}?{$img_update_time}" />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700,300,800,400&amp;subset=cyrillic-ext,latin' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,600' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="{$css_dir}bootstrap.min.css" type="text/css" media="all" />
+
 {if isset($css_files)}
 	{foreach from=$css_files key=css_uri item=media}
 <link rel="stylesheet" href="{$css_uri|escape:'html':'UTF-8'}" type="text/css" media="{$media|escape:'html':'UTF-8'}" />

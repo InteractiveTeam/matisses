@@ -2,7 +2,7 @@
 #header,.btn.btn_border,.tparrows.default,h2.title_main_section.white_clr,.custombanners.displayHome,#block_contact_infos,
 .undertitle_main.white_clr,#prosocial_block,#newsletter_block_left,.form-control.white,.gbwa_home_container h2.title_main_section span,
 .twa_posts .owl-buttons>div,.twa_container.home-carousel-reviews,.button_down:hover,.wrap_button_video,#back-top a,div.copyright,
-.custombanners.displayTopColumn .custom-html,.tabs_carousel > li.active a, .tabs_carousel > li a:hover,.tag,.product_list
+.custombanners.displayTopColumn .custom-html,.tabs_carousel > li.active a, .tabs_carousel > li a:hover, .product_list
  .wrap_view>a,.c_item .wrap_view>a,.title_topbanner,.breadcrumb,.owl-prev:hover,.owl-next:hover,#back-top a:hover,
  .custombanners.displayCustomBanners3 .banner-item,.pb-left-column #image-block #view_full_size .span_link,#social-share-compare button,#social-share-compare button i,
  #product .socialsharing_product .btn.btn-default:hover i,#pagenotfound,#pagenotfound label,#maintenance,
@@ -203,12 +203,8 @@ span.exclusive_large_disabled:hover,
 .pb-left-column #image-block #view_full_size .span_link{
 	background: #5dc0bd;
 }
-.tag.new{
-	background: #00c3cf;
-}
-.twitter-box{
-	background: #e5f8ff;
-}
+
+
 button.button:hover:after,
 a.button_mini:hover:after,
 a.button_small:hover:after,
@@ -282,7 +278,7 @@ ul.step li.step_current,ul.step li.step_current span:after,div.uploader span.act
 #more_info_tabs li a{
 	background: #fff;
 }
-.tabs_carousel > li.active a, .tabs_carousel > li a:hover,.tag.sale,div.radio span.checked:before,.breadcrumb,.owl-prev:after,.owl-next:after,#back-top a:after,.tparrows.default:after,
+.tabs_carousel > li.active a, .tabs_carousel > li a:hover, div.radio span.checked:before,.breadcrumb,.owl-prev:after,.owl-next:after,#back-top a:after,.tparrows.default:after,
 .pb-left-column #image-block #view_full_size .span_link:hover,.owl-prev:before, .owl-next:before, #back-top a:after,
 #back-top a:before,.tparrows.default:before{
 	background-color: #db1d70;
