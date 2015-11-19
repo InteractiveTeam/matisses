@@ -403,7 +403,7 @@ span.ajax_cart_no_product {
 	padding: 4.0625rem 0;
 	}
 
-	.new-products h4.title_block {
+	.new-products h1.title_block {
     color: #000;
     text-align: center;
     margin-bottom: 2.1875rem;
@@ -417,45 +417,55 @@ span.ajax_cart_no_product {
 	background: #fff;
     margin-left: 0.9375rem;
 	position: relative;
-	padding: 5.3125rem 0.9375rem 0.9375rem 0.9375rem;
+	padding: 5.3125rem 0 0;
 	}
 
 	.new-products .owl-item:first-child {
     margin-left: 0;
 	}
 
-	.new-products .wrap_image_left{
-	background: url("../img/logo-2.png") 0 0 no-repeat transparent;
-	}
-
 	.new-products .product-content {
     position: absolute;
     top: 1.25rem;
-    width: 91%;
+    width: 100%;
+	padding: 0 0.9375rem;
 	}
 
-	.new-products .product-description {
-    font-family: 'Open Sans', sans-serif;
+	.new-products .product-description{
+	background-color: #f8f8f8;
+	}
+	.new-products .product-description p {
+    font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 1.125rem;
+	color:#777676;
+	padding: 1.5625rem;
 	}
 
 	.rate_left_product {
 	display: none;
 	}
 
-	.product-content h5{
+	.product-content h2{
 	text-transform: uppercase;
     color: #d7162f;
     font-size: 1.5rem;
     border-bottom: 1px solid #d5d5d5;
     padding-bottom: 0.3125rem;
     margin-bottom: 0.625rem;
-    font-family: "Conv_trade-gothic-bold-condensed-no";
+    font-family:"Conv_trade-gothic-bold-condensed-no";
 	}
 
 	.product-content .price-box span{
 	font-family: "Conv_trade-gothic-no-18-condense";
-	font-size: 1.5rem;
+	font-size: 2rem;
 	color: #000;
+	}
+
+	.logo-matisses{
+	background: url("../img/logo-2.png") 0 0 no-repeat transparent;
+	width: 1.875rem;
+	height: 1.875rem;
+	margin-bottom: 1.25rem;
 	}
 
 	.tag {
@@ -464,23 +474,31 @@ span.ajax_cart_no_product {
 	}
 
 	.tag span {
-    color: #767676;
-	border: 1px solid #767676;
-    padding: 0.3125rem;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	color: #767676;
+    border: 2px solid #767676;
+    padding: 0.125rem 0.625rem;
+    font-family: "Conv_trade-gothic-bold-condensed-no";
+    font-size: 1rem;
 	}
 
 	.products_block .tag{
-	position: absolute;
-	top: 0;
 	padding: 0;
 	}
-	.products_block .tag.new{
-	right: 0;
+
+	.new-products .tag{
+	display: inline-block;
+    float: right;
 	}
+
 	.products_block .tag.sale{
 	right: 0;
 	}
+
+	.new-products .price-box {
+    display: inline-block;
+    vertical-align: top;
+	}
+
 
 /*Footer*/
 #footer{

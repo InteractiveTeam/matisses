@@ -28,7 +28,7 @@
 	{include file="$tpl_dir./product-list.tpl" products=$new_products class='blocknewproducts' id='blocknewproducts'}
 	</div>
 		<div class="link_more">
-                <a href="{$link->getPageLink('new-products')|escape:'html'}" title="{l s='All new products' mod='blocknewproducts'}" class="btn btn-default button button-small"><span>{l s='View more' mod='blocknewproducts'}</span></a>
+                <a href="{$link->getPageLink('new-products')|escape:'html'}" title="{l s='All new products' mod='blocknewproducts'}" class="btn btn-default button button-small">{l s='View more' mod='blocknewproducts'}</a>
        </div>
 </div>
 {else}

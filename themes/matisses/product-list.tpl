@@ -60,7 +60,7 @@
 							<div class="wrap_features">
 								{if isset($product.new) && $product.new == 1}
 									<a class="new tag" href="{$product.link|escape:'html':'UTF-8'}">
-										<span class="new-label">{l s='Nuevos productos'}</span>
+										<span class="new-label">{l s='New'}</span>
 									</a>
 								{/if}
 							{if isset($product.on_sale) && $product.on_sale && isset($product.show_price) && $product.show_price && !$PS_CATALOG_MODE}
@@ -99,12 +99,12 @@
 				<div class="right-block">
 					<div class="wrap_content_price">
 						{hook h='displayProductListReviews' product=$product}
-						<h5 class="product-name" itemprop="name">
+						<h2 class="product-name" itemprop="name">
 							{if isset($product.pack_quantity) && $product.pack_quantity}{$product.pack_quantity|intval|cat:' x '}{/if}
 							<a href="{$product.link|escape:'html':'UTF-8'}" title="{$product.name|escape:'html':'UTF-8'}" itemprop="url" >
 								{$product.name|truncate:45:'...'|escape:'html':'UTF-8'}
 							</a>
-						</h5>
+						</h2>
 						<p class="product-desc" itemprop="description">
 							{$product.description_short|strip_tags:'UTF-8'|truncate:300:'...'}
 						</p>
