@@ -6,93 +6,97 @@
         {rdelim});
     </script>
 
-    
-    <div id="tabsNews" class="newsHome">
-         <div class="newsHomeBarTitle">
+
+    <div id="news-home" class="newsHome">
+         <!-- <div class="newsHomeBarTitle">
              <a href="{$link->getModuleLink('news', 'news', [] ,false)}" >{l s='News' mod='news'}</a>
              <a class="newsRss newsRssHome " href="{$link->getModuleLink('news', 'rss', ['rss_news'=>1] ,false)}" target="_blank"></a>
-        </div>
-        <ul>
+        </div> -->
+
+
            {assign var='cats_position' value=1}
+                <div class="btn-title cf">
                 {foreach from=$catsObj item='cats' name=myLoop}
-                    <li>
-                            <a href="#tabs-{$cats_position}">
-                                {$cats->title|truncate:50:'...'|escape:html:'UTF-8'}
-                            </a>
-                    </li>
+                    <h1>
+                        <a href="#tabs-{$cats_position}">
+                            {$cats->title|truncate:50:'...'|escape:html:'UTF-8'}
+                        </a>
+                    </h1>
                     {assign var='cats_position' value=$cats_position+1}
                 {/foreach}
-               
-        </ul>
-
-           {assign var='cats_position' value=1}
-           {foreach from=$catsProductsObj item='catsProducts' name=myLoop}
-                <div id="tabs-{$cats_position}">
-                    <table cellpadding="0" cellspacing="0" width="100%">
-                        <tr>
-                            <td valign="top" class="newsHomeSepLeft" >
-                             {assign var='cat_products_position' value=1}
-                             {foreach from=$catsProducts item='catProduct' name=myLoop}
-
-                                     {assign var='cat_produto' value=$catProduct->id_cat}
-                                     {assign var='cat_rewrite' value=$catProduct->cat_rewrite}
-
-                                     {if $cat_products_position==2}
-                                         </td><td width="50%"  valign="top" class="newsHomeSep">
-                                     {/if}
-
-
-                                     <a href="{$link->getModuleLink('news', 'new', 
-                                                            [
-                                                                'id_news'  => "{$catProduct->id_news}",
-                                                                'cat_news' => "{$catProduct->id_cat}",
-                                                                'page_cat'     => 0,
-                                                                'rewrite'  => "{$catProduct->rewrite}",
-                                                                'cat_rewrite'  => "{$cat_rewrite}"
-                                                             ]
-
-                                                            ,false)}" 
-                                        alt="{$catProduct->title|escape:html:'UTF-8'}" class="newsHomeItem"  >
-                                         {if $cat_products_position==1}
-                                          <div class="newsHomeImg">  <img src="{$catProduct->img}" ></div>
-                                          {/if}
-                                         <div class="newsHomeDate">
-                                            {$catProduct->date}
-                                         </div>
-                                         <div class="newsHomeTitle">
-                                            {$catProduct->title|escape:html:'UTF-8'}
-                                         </div>
-                                          {if $cat_products_position==1}
-                                             <div class="newsHomeDescription">
-                                                {$catProduct->new|truncate:250:'...'|escape:html:'UTF-8'}
-                                             </div>
-										  {else}
-											<div class="newsHomeDescription">
-                                                {$catProduct->new|truncate:100:'...'|escape:html:'UTF-8'}
-                                             </div>
-                                          {/if}
-                                     </a>
-
-                                     
-                                    {assign var='cat_products_position' value=$cat_products_position+1}
-                             {/foreach}
-                            </td>
-                        </tr>
-                    </table>
-                    {if $cat_products_position>1}
-					<a href="{$link->getModuleLink('news', 'list', 
-                                                            [
-                                                                'cat_news' => "{$cat_produto}",
-                                                                'page_cat' => 0,
-                                                                'rewrite'  => "{$cat_rewrite}"
-                                                             ]
-
-                                                            ,false)}" alt="{l s='More' mod='news'}" class="newsHomeMore">
-						{l s='See More' mod='news'}
-					</a>
-                    {/if}
                 </div>
-                {assign var='cats_position' value=$cats_position+1}
-           {/foreach}
+
+                <div class="content-blog">
+
+                    {assign var='cats_position' value=1}
+                    {foreach from=$catsProductsObj item='catsProducts' name=myLoop}
+                     <div id="tabs-{$cats_position}">
+                        <div class="newsLeft news-home" >
+                          {assign var='cat_products_position' value=1}
+                          {foreach from=$catsProducts item='catProduct' name=myLoop}
+                              {assign var='cat_produto' value=$catProduct->id_cat}
+                              {assign var='cat_rewrite' value=$catProduct->cat_rewrite}
+                                {if $cat_products_position==2}
+                        </div>
+                        <div class="newsRight news-home">
+                            {/if}
+                            <div class="newsHomeDate">
+                                <span>{$catProduct->date}</span>
+                            </div>
+                            <div class="newsHomeContent">
+                                <a href="{$link->getModuleLink('news', 'new',
+                                    [
+                                        'id_news'  => "{$catProduct->id_news}",
+                                        'cat_news' => "{$catProduct->id_cat}",
+                                        'page_cat'     => 0,
+                                        'rewrite'  => "{$catProduct->rewrite}",
+                                        'cat_rewrite'  => "{$cat_rewrite}"
+                                    ]
+                                    ,false)}"
+                                    alt="{$catProduct->title|escape:html:'UTF-8'}" class="newsHomeItem"  >
+                                    {if $cat_products_position==1}
+                                    <div class="newsHomeImg">
+                                        <img src="{$catProduct->img}" >
+                                    </div>
+                                    {/if}
+
+                                    <div class="newsHomeTitle">
+                                        <h2>{$catProduct->title|escape:html:'UTF-8'}</h2>
+                                    </div>
+                                </a>
+
+                                        {if $cat_products_position==1}
+                                    <div class="newsHomeDescription">
+                                        <p>{$catProduct->new|truncate:250:'...'|escape:html:'UTF-8'}</p>
+                                    </div>
+             							{else}
+             						<div class="newsHomeDescription">
+                                        <p>{$catProduct->new|truncate:100:'...'|escape:html:'UTF-8'}</p>
+                                    </div>
+                                        {/if}
+
+                            </div>
+                                    {assign var='cat_products_position' value=$cat_products_position+1}
+                                  {/foreach}
+
+                         {if $cat_products_position>1}
+     					<a href="{$link->getModuleLink('news', 'list',
+                             [
+                                 'cat_news' => "{$cat_produto}",
+                                 'page_cat' => 0,
+                                 'rewrite'  => "{$cat_rewrite}"
+                              ]
+
+                             ,false)}" alt="{l s='More' mod='news'}" class="newsHomeMore">
+     						{l s='Ver más' mod='news'}
+     					</a>
+                        {/if}
+                     </div>
+                     {assign var='cats_position' value=$cats_position+1}
+                {/foreach}
+
+            </div>
+
+
     </div>
 {/if}

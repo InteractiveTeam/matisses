@@ -67,7 +67,7 @@ a:hover,.select2-container .select2-choice > .select2-chosen,#block_contact_info
  .content_sortPagiBar .sortPagiBar #productsSortForm label:before,.content_sortPagiBar .sortPagiBar .nbrItemPage label:before,
 .comment_author_infos strong,.comment_details .title_block strong,#layer_cart .crossseling h2,#layer_cart .layer_cart_product h2,
  #layer_cart .layer_cart_cart h2,#layer_cart .cross:hover,#reviews_carousel .subject_review,.footer_line_two ul li:hover a,
- .gba .single_post  .date_add,.gba .single_post .subject,.button_down,.product_list .wrap_view>a:hover,.c_item .wrap_view>a:hover,.form-control,
+ .gba .single_post  .date_add,.gba .single_post .subject,.button_down,.product_list .wrap_view>a:hover,.c_item .wrap_view>a:hover,
  .elem_butt li a:hover{
 	color: #d7162f;
 }
@@ -566,18 +566,7 @@ span.exclusive_large_disabled:hover,
 #view_scroll_left, #view_scroll_right{
 	color: #898989;
 }
-#product .wrap_up_down .button-plus:hover,
-#product .wrap_up_down .button-minus:hover,
-div.selector,.form-control,.box,
-.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th,
-.table-bordered>thead>tr>td,.table-bordered>tbody>tr>td,.table-bordered>tfoot>tr>td,
-#my-account ul.myaccount-link-list li a:hover,#my-account ul.myaccount-link-list li a:hover span,
-#my-account ul.myaccount-link-list li a i,.fixedHeader .main_panel,.table-bordered,p.payment_module a:hover,
-#reviews_carousel .wrap_avatar_review img,ul.step li.step_current span,
-.gba .single_post .inner_item,.addForm .imgholder,
-.tp-bullets.simplebullets.round .bullet:hover,.tp-bullets.simplebullets.round .bullet.selected{
-	border-color:#00ceb8;
-}
+
 div.checker span,div.radio span,#layered_form .color-option {
 	border-color: #39314e;
 }

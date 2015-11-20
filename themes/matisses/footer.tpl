@@ -32,96 +32,79 @@
 			</div><!-- .columns-container -->
 			{if isset($HOOK_FOOTER)}
 				<!-- Footer -->
-                <footer id="footer" class="clearfix">
-						<div class="footer_line_two col-xs-12">
+                <footer id="footer" class="footer cf">
+						<div class="footer-up">
 							<div class="container">
-								<div class="col-md-5">
+								<div class="left-fotter cont-footer">
                                 	{hook h='displayMatNewsletter'}
                                 </div>
-                                <div class="col-md-7">
-                                	<div class="row">
-                                        <div id="menu-footer1" class="menu-footer col-md-4">
-                                            <ul>
-                                                <li><a href="{$link->getCMSLink(6)}">{l s='Matisses'}</a></li>
-                                                <li><a href="{$link->getPageLink('stores')}">{l s='Tiendas'}</a></li>
-                                                <li><a href="{$link->getCMSLink(7)}">{l s='Trabaja con nosotros'}</a></li>
-                                            </ul>
-                                        </div> 
-                                        <div id="menu-footer2" class="menu-footer col-md-4">
-                                            <ul>
-                                                <li><a href="{$link->getPageLink('sitemap')}">{l s='Mapa del sitio'}</a></li>
-                                                <li><a href="{$link->getPageLink('contact')}">{l s='Contactanos'}</a></li>
-                                                <li><a href="{$link->getCMSLink(8)}">{l s='Financiacion'}</a></li>
-                                            </ul>
-                                        </div> 
-                                        <div id="menu-footer3" class="menu-footer col-md-4">
-                                            <ul>
-                                                <li><a href="{$link->getCMSLink(9)}">{l s='Metodos de envio'}</a></li>
-                                                <li><a href="">{l s='Garantias'}</a></li>
-                                                <li><a href="{$link->getCMSLink(10)}">{l s='Preguntas Frecuentes'}</a></li>
-                                            </ul>
-                                        </div> 
-                                    </div> 
-                                    <div class="row">
-                                    	<div class="footer-share col-md-12">
-                                        
-                                        	<div id="fb-root"></div>
-												<script>(function(d, s, id) 
-												{
-                                                  var js, fjs = d.getElementsByTagName(s)[0];
-                                                  if (d.getElementById(id)) return;
-                                                  js = d.createElement(s); js.id = id;
-                                                  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5&appId=91447363386";
-                                                  fjs.parentNode.insertBefore(js, fjs);
-                                                }(document, 'script', 'facebook-jssdk'));</script>
-                                        
-                                        
-                                        
-                                        	{l s='Siguenos en facebook'} <div class="fb-like" data-href="{$base_url}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                                <div class="right-fotter cont-footer">
+                                    <div id="menu-footer" class="menu-footer">
+                                        <ul class="column-1 column">
+                                            <li><a href="{$link->getCMSLink(6)}">{l s='Matisses'}</a></li>
+											<li><a href="{$link->getPageLink('sitemap')}">{l s='Mapa del sitio'}</a></li>
+											<li><a href="{$link->getCMSLink(9)}">{l s='Métodos de envio'}</a></li>
+                                        </ul>
+										<ul class="column-2 column">
+											<li><a href="{$link->getPageLink('stores')}">{l s='Tiendas'}</a></li>
+											<li><a  href="{$link->getPageLink('contact')}">{l s='Contáctanos'}</a></li>
+											<li><a href="">{l s='Garantías'}</a></li>
+										</ul>
+										<ul class="column-3 column">
+											<li><a href="{$link->getCMSLink(7)}">{l s='Trabaja con nosotros'}</a></li>
+											<li><a href="{$link->getCMSLink(8)}">{l s='Financiación'}</a></li>
+											<li><a href="{$link->getCMSLink(10)}">{l s='Preguntas Frecuentes'}</a></li>
+										</ul>
+                                    </div>
 
-                                        </div>
-                                    </div>                             
+                                    <div class="footer-share">
+                                    	<div id="fb-root"></div>
+										<script>(function(d, s, id)
+										{
+                                          var js, fjs = d.getElementsByTagName(s)[0];
+                                          if (d.getElementById(id)) return;
+                                          js = d.createElement(s); js.id = id;
+                                          js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5&appId=91447363386";
+                                          fjs.parentNode.insertBefore(js, fjs);
+                                        }(document, 'script', 'facebook-jssdk'));</script>
+                                		{l s='Siguenos en facebook'} <div class="fb-like" data-href="{$base_url}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                                    </div>
                                 </div>
 							</div>
 						</div>
-                        <div class="copyright col-xs-12">
+                        <div class="footer-down">
 							<div class="container">
-                            	<div class="row">
-                                	<div class="logo-copyright col-md-2">
-                                    	<img src="" class="img-responsive" />
-                                    </div>
-                                    <div class="menu-copyright col-md-10">
-                                    	<ul>
-                                        	<li><a href="{$link->getCMSLink(11)}">{l s='Términos y condiciones'}</a></li>
-                                            <li><a href="$link->getCMSLink(12)">{l s='Política de manejo de datos'}</a></li>
-                                            <li><a href="$link->getCMSLink(13)">{l s='Política de privacidad'}</a></li>
-                                            <li id="copyright"> <a class="copyright" href="{$base_url}" title="{l s='Matisses'}">© {l s='All right reserved'} {l s='Matisses'} {$smarty.now|date_format:"%Y"}</a></li>
-                                        </ul>
-                                    </div>
+                            	<div class="logo-copyright">
+                                	<img src="../../img/logo-footer.png" alt="matisses">
                                 </div>
+                                <div class="menu-copyright">
+                                	<ul>
+                                    	<li><a href="{$link->getCMSLink(11)}">{l s='Términos y condiciones'}</a></li>
+                                        <li><a href="$link->getCMSLink(12)">{l s='Política de manejo de datos'}</a></li>
+                                        <li><a href="$link->getCMSLink(13)">{l s='Política de privacidad'}</a></li>
+                                        <li id="copyright"> <a class="copyright" href="{$base_url}" title="{l s='Matisses'}">© {l s='All right reserved'} {l s='Matisses'} {$smarty.now|date_format:"%Y"}</a></li>
+                                    </ul>
+                                </div>
+
 							</div>
 						</div>
                 </footer>
-                
-                
+
+
                 {if false}
-					<footer id="footer" class="clearfix">
-                    	
-						<div class="footer_line_one col-xs-12">
+					<footer id="footer" class="footer cf">
+
+						<div class="footer_line_one">
 							<div class="container">
-								<div class="row">
-									{hook h="FooterTop"}
-								</div>
+								{hook h="FooterTop"}
 							</div>
 						</div>
-						<div class="footer_line_two col-xs-12">
+						<div class="footer_line_two">
 							<div class="container">
-								<div class="row">
 									{$HOOK_FOOTER}
-								</div>
 							</div>
 						</div>
-						<div class="copyright col-xs-12">
+						<div class="copyright">
 							<div class="container">
 								<a class="" href="http://www.prestapro.ru" title="{l s='Prestapro'}">© {$smarty.now|date_format:"%Y"} {l s='Created By'} <span>{l s='Prestapro.'}</span> {l s='All right reserved'}</a>
 							</div>
@@ -131,7 +114,7 @@
 								</a>
 							</div>
 						</div>
-                        
+
 					</footer>{/if}
 					<!-- #footer -->
 			{/if}

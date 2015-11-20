@@ -5,26 +5,8 @@
 	line-height: 1.4;
 	padding-bottom: 33px;
 }
-#newsletter_block_left .form-group:before{
-	content: "\f003";
-	font-family: "fontAwesome";
-	display: inline-block;
-	height: 23px;
-	padding-right: 12px;
-	border-right-style: solid;
-	border-right-width: 1px;
-	line-height: 21px;
-	position: absolute;
-	padding-left: 12px;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	margin: auto 0;
-}
-#newsletter_block_left #newsletter-input{
-	max-width: none;
-	padding-left: 57px;
-}
+
+
 #newsletter_block_left .sub_btn{
 	position: absolute;
 	right: 0;
