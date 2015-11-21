@@ -40,13 +40,13 @@
 	</div>
     <div class="experiences">
 		<div class="container">
-<<<<<<< HEAD
+
     		<h1>{l s='Experiencias'}</h1>
-=======
+
 			<div class="btn-title cf">
 				<h1><a href="#">{l s='Experiencias'}</a></h1>
 			</div>
->>>>>>> efdd7dadeab018a5723fad8fc084d0807accb7df
+
 		</div>
     </div>
     <div class="blog">

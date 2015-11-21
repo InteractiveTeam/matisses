@@ -4,4 +4,5 @@
 <file name="blocknewproducts_home.tpl" server="192.168.3.45" local="130922748009935227" remote="130895995200000000" Dst="0" />
 <file name="index.php" server="192.168.3.45" local="130922748010873044" remote="130895995200000000" Dst="0" />
 <file name="tab.tpl" server="192.168.3.45" local="130922748013979576" remote="130895995200000000" Dst="0" />
+<file name="blocknewproducts.tpl" server="C:/xampp/htdocs/matisses/" local="130925379801779185" remote="130925379800000000" Dst="0" />
 </dwsync>
