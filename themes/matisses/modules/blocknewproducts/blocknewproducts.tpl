@@ -25,8 +25,12 @@
 <!-- MODULE Block new products -->
 <div id="new-products_block_right" class="block products_block">
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<div class="btn-title-new cf">
 =======
+=======
+
+>>>>>>> ana.ocampo
 	<div class="btn-title cf">
 >>>>>>> efdd7dadeab018a5723fad8fc084d0807accb7df
 		<h1 class="title_block">
