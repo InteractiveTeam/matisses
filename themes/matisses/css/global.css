@@ -130,11 +130,7 @@ textarea {
 .index h1{
 	color: #000;
 	text-align: center;
-<<<<<<< HEAD
 	margin-bottom: 2.1875rem;
-=======
-	margin-bottom: 2.8125rem;
->>>>>>> efdd7dadeab018a5723fad8fc084d0807accb7df
 	margin-right: 1.25rem;
 	font-family: "Conv_trade-gothic-bold-condensed-no";
 	font-size: 3rem;
@@ -420,11 +416,9 @@ span.ajax_cart_no_product {
 	padding: 4.0625rem 0;
 	}
 
-<<<<<<< HEAD
-	.btn-title-new{
-=======
+
 	.btn-title{
->>>>>>> efdd7dadeab018a5723fad8fc084d0807accb7df
+
 	display: block;
 	text-align: center;
 	}
@@ -525,13 +519,6 @@ span.ajax_cart_no_product {
 	}
 
 	/*Blog*/
-<<<<<<< HEAD
-	
-=======
-	.blog{
-	padding: 4.0625rem 0;
-	}
->>>>>>> efdd7dadeab018a5723fad8fc084d0807accb7df
 
 /*Footer*/
 #footer{
