@@ -130,7 +130,7 @@ textarea {
 .index h1{
 	color: #000;
 	text-align: center;
-	margin-bottom: 2.8125rem;
+	margin-bottom: 2.1875rem;
 	margin-right: 1.25rem;
 	font-family: "Conv_trade-gothic-bold-condensed-no";
 	font-size: 3rem;
@@ -416,7 +416,9 @@ span.ajax_cart_no_product {
 	padding: 4.0625rem 0;
 	}
 
+
 	.btn-title{
+
 	display: block;
 	text-align: center;
 	}
@@ -517,9 +519,6 @@ span.ajax_cart_no_product {
 	}
 
 	/*Blog*/
-	.blog{
-	padding: 4.0625rem 0;
-	}
 
 /*Footer*/
 #footer{
@@ -544,19 +543,9 @@ span.ajax_cart_no_product {
 	width: 100%;
 }
 
-
-.habeas{
-	font-family: "Conv_trade-gothic-no-18-condense";
-	font-size: 1rem;
-}
-
-
 .main_panel>.container>.row{
 	position: static;
 }
-
-
-
 
 #header_logo span{
 	font-size: 24px;
@@ -3080,15 +3069,32 @@ div.star.star_hover{
 }
 
 /* footer */
-.footer p{
+.footer  p{
 	color: #fff;
-}
+	}
+
+.footer .checker {
+	display: inline-block;
+	}
+
+.footer .habeas p {
+    color: #fff;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 0.625rem;
+	}
 
 .footer-up{
 	background-color: #212121;
 	color: #fff;
 	padding: 4.0625rem 0;
-}
+	}
+
+.habeas{
+	font-family: "Conv_trade-gothic-no-18-condense";
+	font-size: 1rem;
+	margin-top: 3.125rem;
+	}
 
 .cont-footer {
     display: inline-block;
@@ -3110,7 +3116,32 @@ div.star.star_hover{
 	font-style: italic;
 	color: #fff;
 	border-top: none;
+	border-right: none;
 	border-radius: 0;
+	display: inline-block;
+    width: 75%;
+    vertical-align: top;
+	height: 2.5rem;
+	padding: 0 1.25rem;
+	}
+
+	button.button-small.btn-enviar {
+    border: 1px solid #fff;
+    padding: 0.4375rem 2.5rem;
+    margin-left: -0.25rem;
+	}
+
+	button.button-small.btn-enviar:hover{
+	border: 1px solid #fff;
+	}
+
+	button.button-small.btn-enviar:hover:before,
+	button.button-small.btn-enviar:hover:after{
+	background: #f0f0f0;
+	}
+
+	button.btn-enviar span {
+    color: #fff;
 	}
 
 .right-fotter {

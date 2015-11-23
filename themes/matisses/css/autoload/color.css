@@ -455,7 +455,7 @@ input.exclusive_large_disabled:hover{
 .footer_line_two ul li:hover:before{
 	border-left-color:#00ceb8;
 }
-.btn.btn_border,.tabs_carousel,.tabs_carousel > li,div.checker span.checked,
+.btn.btn_border,.tabs_carousel,.tabs_carousel > li,
 div.radio span:checked,#layered_block_left #enabled_filters,#layered_form .color-option.on,
 #attributes .attribute_list #color_to_pick_list li.selected,.tabs_carousel > li a,.product_list.list .btn.btn_border.disabled,
 input.button_mini,
