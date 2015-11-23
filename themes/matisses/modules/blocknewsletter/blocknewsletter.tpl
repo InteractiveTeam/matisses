@@ -28,13 +28,16 @@
 	<div class="block_content">
 		<form action="{$link->getPageLink('index')|escape:'html':'UTF-8'}" method="post">
 			<div class="form-group{if isset($msg) && $msg } {if $nw_error}form-error{else}form-ok{/if}{/if}" >
-				<input class="inputNew form-control grey newsletter-input" id="newsletter-input" type="text" name="email" size="18" placeholder="{l s='Escriba su correo electronico' mod='blocknewsletter'}" value="{$value}" />
-                <button type="submit" name="submitNewsletter" class="btn btn-default button button-small">
-                    <span>{l s='Ok' mod='blocknewsletter'}</span>
-                </button>
+				<div class="cf">
+					<input class="inputNew form-control grey newsletter-input" id="newsletter-input" type="text" name="email" size="18" placeholder="{l s='Escriba su correo electronico' mod='blocknewsletter'}" value="{$value}" />
+	                <button type="submit" name="submitNewsletter" class="btn btn-default button button-small btn-enviar">
+	                    <span>{l s='Enviar' mod='blocknewsletter'}</span>
+	                </button>
+				</div>
 				<input type="hidden" name="action" value="0" />
-                <div class="habeas">
-                <input type="checkbox" checked="checked" name="habeas" id="habeas" value="1" /> {l s='Acepto la ley de tratamiento y uso de datos Matisses' mod='blocknewsletter'}
+                <div class="habeas cf">
+                <input type="checkbox" checked="checked" name="habeas" id="habeas" value="1" />
+					<p>{l s='Acepto la ley de tratamiento y uso de datos de Matisses' mod='blocknewsletter'}</p>
                 </div>
 			</div>
 		</form>
