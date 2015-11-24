@@ -142,6 +142,7 @@ textarea {
     box-shadow: 0px 4px 9px 0px rgba(50, 50, 50, 0.37);
     height: 8.75rem;
 	z-index: 10;
+	border-bottom: 1px solid #800080;
 	}
 
 	#header_logo {
@@ -245,7 +246,8 @@ textarea {
 }
 
 .left-down-menu {
-    padding: 1.5625rem 0 0 1.875rem;
+    /*padding: 1.5625rem 0 0 1.875rem;*/
+	padding: 0;
 }
 
 .left-down-menu .menu-experiencias li{
@@ -261,19 +263,24 @@ textarea {
 }
 
 .menu-experiencias {
-    padding: 0;
+	padding: 1.5625rem 0 1.25rem 0;
 }
 
 .menu-experiencias li {
     display: inline-block;
 }
 
-.menu-experiencias li a{
+.menu-left li a{
 	font-size:1.0625rem;
 	font-family: "Conv_trade-gothic-bold-condensed-no";
 	color: #000;
 	padding:0 1.25rem 0 1.5625rem;
 	text-transform: uppercase;
+}
+
+.menu-left li a:hover,
+.menu-right li a:hover{
+	color: #d7162f;
 }
 
 .sf-menu > li > a {
@@ -593,10 +600,10 @@ span.ajax_cart_no_product {
 	}
 
 	/*Blog*/
-	.blog{
+	.zona-blog{
 	padding: 4.0625rem 0;
 	}
-	
+
 	/*Buscador*/
 	.search-container form .search_query {
     background: #d9282e;
