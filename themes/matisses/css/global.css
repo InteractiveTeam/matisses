@@ -620,13 +620,8 @@ span.ajax_cart_no_product {
 
 #index #left_column ,#index #right_column {
 	display: none;
-<<<<<<< HEAD
 	}
 
-.main_panel>.container>.row{
-	position: static;
-	}
-=======
 }
 
 
@@ -3189,11 +3184,7 @@ div.star.star_hover{
 	border-right: none;
 	border-radius: 0;
 	display: inline-block;
-<<<<<<< HEAD
     width: 18.125rem;
-=======
-    width: 75%;
->>>>>>> 4883b0a80825de95bf25688930d77945aa552970
     vertical-align: top;
 	height: 2.5rem;
 	padding: 0 1.25rem;
