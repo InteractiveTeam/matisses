@@ -49,7 +49,7 @@
 
 		</div>
     </div>
-    <div class="blog">
+    <div class="zona-blog">
 		<div class="container">
 			{hook h="displayMatBlog"}
 		</div>
