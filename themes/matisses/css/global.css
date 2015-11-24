@@ -494,6 +494,7 @@ span.ajax_cart_no_product {
 
 
 	.btn-title{
+
 	display: block;
 	text-align: center;
 	}
@@ -593,6 +594,7 @@ span.ajax_cart_no_product {
 	}
 
 	/*Blog*/
+<<<<<<< HEAD
 	.blog{
 	padding: 4.0625rem 0;
 	}
@@ -607,6 +609,8 @@ span.ajax_cart_no_product {
 	font-family: "Conv_trade-gothic-bold-condensed-no";
 	text-transform: uppercase;
 	}
+=======
+>>>>>>> 7041d766979e2a9f3e0f150d2ce35a57ce762fb7
 
 
 

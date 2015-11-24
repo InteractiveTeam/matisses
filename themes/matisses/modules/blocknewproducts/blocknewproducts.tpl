@@ -24,7 +24,11 @@
 *}
 <!-- MODULE Block new products -->
 <div id="new-products_block_right" class="block products_block">
+
+	<div class="btn-title-new cf">
+
 	<div class="btn-title cf">
+
 		<h1 class="title_block">
     		<a href="{$link->getPageLink('new-products')|escape:'html'}" title="{l s='New products' mod='blocknewproducts'}">{l s='Nuevos productos' mod='blocknewproducts'}</a>
     	</h1>
