@@ -30,7 +30,8 @@
 			{foreach from=$productsViewedObj item=viewedProduct name=myLoop}
 			{if $smarty.foreach.myLoop.iteration <= Configuration::get('PRODUCTS_VIEWED_NBR')}
 				<li class="item clearfix{if $smarty.foreach.myLoop.last} last_item{elseif $smarty.foreach.myLoop.first} first_item{else} item{/if}">
-					<a
+					
+                    <a
 					class="wrap_scale products-block-image"
 					href="{$viewedProduct->product_link|escape:'html':'UTF-8'}"
 					title="{l s='More about %s' mod='blockviewed' sprintf=[$viewedProduct->name|escape:'html':'UTF-8']}" >
@@ -47,6 +48,10 @@
 								{$viewedProduct->name|truncate:25:'...'|escape:'html':'UTF-8'}
 							</a>
 						</h2>
+                        
+                        <div class="colors">{if $viewedProduct->colors|count ==1} {$viewedProduct->colors|count} {l s='Color'} {else} {$viewedProduct->colors|count} {l s='Colores'} {/if}</div>
+                        <div class="price">{convertPrice price=$viewedProduct->price}</div>
+                        
 						
 						<!-- <p class="product-description">{$viewedProduct->description_short|strip_tags:'UTF-8'|truncate:60}</p> -->
 					</div>

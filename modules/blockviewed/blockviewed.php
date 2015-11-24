@@ -108,8 +108,12 @@ class BlockViewed extends Module
 				$productsImagesArray[$pi['id_product']] = $pi;
 
 			$productsViewedObj = array();
+			
+			
+			
 			foreach ($productsViewed as $productViewed)
 			{
+				
 				$obj = (object)'Product';
 				if (!isset($productsImagesArray[$productViewed]) || (!$obj->active = $productsImagesArray[$productViewed]['active']))
 					continue;
@@ -123,6 +127,8 @@ class BlockViewed extends Module
 					$obj->description_short = $productsImagesArray[$productViewed]['description_short'];
 					$obj->link_rewrite = $productsImagesArray[$productViewed]['link_rewrite'];
 					$obj->category_rewrite = $productsImagesArray[$productViewed]['category_rewrite'];
+					$obj->price				= Product::getPriceStatic($obj->id);
+					$obj->colors			= current(Product::getAttributesColorList(array($obj->id)));
 					// $obj is not a real product so it cannot be used as argument for getProductLink()
 					$obj->product_link = $this->context->link->getProductLink($obj->id, $obj->link_rewrite, $obj->category_rewrite);
 
@@ -137,6 +143,8 @@ class BlockViewed extends Module
 
 			if (!count($productsViewedObj))
 				return;
+
+			//echo "<pre>"; print_r($productsViewedObj); echo "</pre>";
 
 			$this->smarty->assign(array(
 				'productsViewedObj' => $productsViewedObj,
