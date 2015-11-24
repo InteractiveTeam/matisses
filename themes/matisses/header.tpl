@@ -45,6 +45,7 @@
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,600' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="{$css_dir}bootstrap.min.css" type="text/css" media="all" />
+<link rel="stylesheet" href="{$css_dir}grid.css" type="text/css" media="all" />
 
 {if isset($css_files)}
 	{foreach from=$css_files key=css_uri item=media}

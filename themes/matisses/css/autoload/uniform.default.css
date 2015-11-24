@@ -53,8 +53,8 @@ input[type="search"]:active {
 div.checker {
   position: relative; }
   div.checker, div.checker span, div.checker input {
-	width: 12px;
-	height: 12px; }
+	width: 15px;
+	height: 15px; }
   div.checker span {
 	display: -moz-inline-box;
 	display: inline-block;
@@ -73,7 +73,7 @@ div.checker {
 	display: -moz-inline-box;
 	display: inline-block;
 	*display: inline;
-	zoom: 1; 
+	zoom: 1;
 	position: absolute;
 	left: -1px;
 	top: 0px;
@@ -255,9 +255,16 @@ div.button.disabled span, div.button.disabled.active span {
   cursor: default; }
 
 /* Checker */
-div.checker {
-  cursor: pointer;
-  margin-right: 5px; }
+div.checker {}
+
+    .habeas .checker span {
+    background: #F00;
+    border-radius: 0;
+    width: 1.25rem;
+    position: relative;
+    height: 1.25rem;
+    }
+
 
 div.checker span {
 	border-style: solid;
@@ -274,8 +281,8 @@ div.checker span {
 }
 
 #layered_block_left ul li input.checkbox {
-vertical-align: top;
-}
+    vertical-align: top;
+    }
 
 .checker .checked:before,.radio .checked:before {
 	display: inline-block;
@@ -283,11 +290,11 @@ vertical-align: top;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	content: "✔";
-	position: relative;
-	top: -4px;
-	left: 1px;
-	font-size: 9px;
-}
+	font-size:0.8125rem;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    }
 
 #layered_form div.checker {
   display: inline-block;

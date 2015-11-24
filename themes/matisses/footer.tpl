@@ -27,11 +27,12 @@
 					{if isset($right_column_size) && !empty($right_column_size)}
 						<div id="right_column" class="col-xs-12 col-sm-{$right_column_size|intval} column">{$HOOK_RIGHT_COLUMN}</div>
 					{/if}
-					</div><!-- .row -->
-				</div><!-- #columns -->
-			</div><!-- .columns-container -->
+					</div>
+				</div>
+			</div>
+		</div>
 			{if isset($HOOK_FOOTER)}
-				<!-- Footer -->
+
                 <footer id="footer" class="footer cf">
 						<div class="footer-up">
 							<div class="container">
@@ -67,22 +68,25 @@
                                           js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5&appId=91447363386";
                                           fjs.parentNode.insertBefore(js, fjs);
                                         }(document, 'script', 'facebook-jssdk'));</script>
-                                		{l s='Siguenos en facebook'} <div class="fb-like" data-href="{$base_url}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+										<div class="share cf">
+											<p>{l s='Siguenos en nuestras redes'}</p>
+											<div class="fb-like" data-href="{$base_url}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+										</div>
                                     </div>
                                 </div>
 							</div>
 						</div>
-                        <div class="footer-down">
+                        <div class="footer-down cf">
 							<div class="container">
                             	<div class="logo-copyright">
-                                	<img src="../../img/logo-footer.png" alt="matisses">
+                                	<img src="/matisses/themes/matisses/img/logo-footer.png" alt="matisses">
                                 </div>
                                 <div class="menu-copyright">
                                 	<ul>
                                     	<li><a href="{$link->getCMSLink(11)}">{l s='Términos y condiciones'}</a></li>
-                                        <li><a href="$link->getCMSLink(12)">{l s='Política de manejo de datos'}</a></li>
-                                        <li><a href="$link->getCMSLink(13)">{l s='Política de privacidad'}</a></li>
-                                        <li id="copyright"> <a class="copyright" href="{$base_url}" title="{l s='Matisses'}">© {l s='All right reserved'} {l s='Matisses'} {$smarty.now|date_format:"%Y"}</a></li>
+                                        <li><a href="$link->getCMSLink(12)">{l s='Política de Manejo de Datos'}</a></li>
+                                        <li><a href="$link->getCMSLink(13)">{l s='Política de Privacidad'}</a></li>
+                                        <li id="copyright"> <a class="copyright" href="{$base_url}" title="{l s='Matisses'}">© {l s='Todos los derechos reservados'} {l s='Matisses'} {$smarty.now|date_format:"%Y"}</a></li>
                                     </ul>
                                 </div>
 
@@ -116,7 +120,6 @@
 						</div>
 
 					</footer>{/if}
-					<!-- #footer -->
 			{/if}
 		</div><!-- #page -->
 {/if}
