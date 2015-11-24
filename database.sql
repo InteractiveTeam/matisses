@@ -7,7 +7,6 @@
 -- Versión del servidor: 5.5.37
 -- Versión de PHP: 5.4.4-14+deb7u11
 
-USE matisses;
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
