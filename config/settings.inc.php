@@ -1,6 +1,4 @@
 <?php
-//echo "<pre>"; print_r($_SERVER); echo "</pre>";
-
 define('_DB_SERVER_', '181.143.37.186');
 define('_DB_NAME_', 'prestashop_matisses16014');
 define('_DB_USER_', 'prestauser16014'); 
