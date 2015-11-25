@@ -1,10 +1,8 @@
 <?php
-//echo "<pre>"; print_r($_SERVER); echo "</pre>";
-
-define('_DB_SERVER_', 'localhost');
-define('_DB_NAME_', 'matisses');
-define('_DB_USER_', 'root');
-define('_DB_PASSWD_', '');
+define('_DB_SERVER_', '181.143.37.186');
+define('_DB_NAME_', 'prestashop_matisses16014');
+define('_DB_USER_', 'prestauser16014'); 
+define('_DB_PASSWD_', 'M4T2015&&!10');
 define('_DB_PREFIX_', 'ps_');
 define('_MYSQL_ENGINE_', 'InnoDB');
 define('_PS_CACHING_SYSTEM_', 'CacheMemcache');
@@ -16,5 +14,4 @@ if (!defined('_PS_VERSION_'))
 	define('_PS_VERSION_', '1.6.0.14');
 define('_RIJNDAEL_KEY_', 'nM6wqH5QdaBtqTzBg5xzLNdvndd3XYRf');
 define('_RIJNDAEL_IV_', 'LcmHtgdbjnG1lLWhiyVsWQ==');
-
 ?>
