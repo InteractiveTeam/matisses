@@ -13,7 +13,7 @@
 	<atom:link href="http://www.prestashop.com/blog/es/feed/" rel="self" type="application/rss+xml" />
 	<link>https://www.prestashop.com/blog/es</link>
 	<description></description>
-	<lastBuildDate>Thu, 19 Nov 2015 11:18:35 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 24 Nov 2015 10:11:28 +0000</lastBuildDate>
 	<language>es-ES</language>
 		<sy:updatePeriod>hourly</sy:updatePeriod>
 		<sy:updateFrequency>1</sy:updateFrequency>
@@ -96,13 +96,13 @@
 <h2>¿Aún no tienes módulo de pago?</h2>
 <p>Adquiere los módulos de pago Redsys totalmente actualizados con la nueva firma HMAC SHA-256, para aumentar la tasa de conversión en tu tienda aportando confianza a tus clientes</p>
 <h3><span style="color: #c10951">Disfruta de una oportunidad única para hacerte con tu módulo de pago: <strong>¡-50% en los módulos Redsys desarrollados por PrestaShop! ¡Sólo hasta el domingo!</strong></span></h3>
-<h3><a href="http://bit.ly/1Huphet" target="_blank"><span style="color: #3366ff">Accede a la Oferta</span></a></h3>
+<h3><a href="http://bit.ly/PSaddons" target="_blank"><span style="color: #3366ff">Accede a la Oferta</span></a></h3>
 <h2>Información adicional sobre SHA-1 y SHA-256</h2>
 <p>El algoritmo SHA-1 se centra en la seguridad de la conexión de la tienda con el TPV virtual, que se encarga de firmar electrónicamente mediante su algoritmo cuando se realiza un pago con la tarjeta al TPV.  será un algoritmo obsoleto según los estándares de seguridad, y podría ser objeto de vulnerabilidad y ataques. Para garantizar la mayor seguridad en la conexión con el TPV Virtual, se actualizo a la nueva firma basada en HMAC SHA256, que es más robusta, segura y confiable que le proporcionará una mayor seguridad en las transacciones.</p>
 <p>La entrada <a rel="nofollow" href="https://www.prestashop.com/blog/es/tpv-pon-al-dia-tu-modulo-de-pago/">¡Redsys ha cambiado! Pon al día tu módulo de pago</a> aparece primero en <a rel="nofollow" href="https://www.prestashop.com/blog/es">ES - Blog Ecommerce de PrestaShop</a>.</p>
 ]]></content:encoded>
 			<wfw:commentRss>https://www.prestashop.com/blog/es/tpv-pon-al-dia-tu-modulo-de-pago/feed/</wfw:commentRss>
-		<slash:comments>2</slash:comments>
+		<slash:comments>4</slash:comments>
 		</item>
 		<item>
 		<title>E-commerce para principiantes: Pagos en un tuit</title>
@@ -530,7 +530,7 @@ Por último, crea un botón de acción que lleve al enlace&#8230; ¡e incluya un
 <p>La entrada <a rel="nofollow" href="https://www.prestashop.com/blog/es/como-crear-emails-marketing-que-te-consigan-clientes/">Cómo crear emails marketing que te consigan clientes</a> aparece primero en <a rel="nofollow" href="https://www.prestashop.com/blog/es">ES - Blog Ecommerce de PrestaShop</a>.</p>
 ]]></content:encoded>
 			<wfw:commentRss>https://www.prestashop.com/blog/es/como-crear-emails-marketing-que-te-consigan-clientes/feed/</wfw:commentRss>
-		<slash:comments>2</slash:comments>
+		<slash:comments>3</slash:comments>
 		</item>
 	</channel>
 </rss>
