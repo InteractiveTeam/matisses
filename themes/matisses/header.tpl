@@ -76,7 +76,7 @@
 <div class="header-container">
   	<header id="header">
     	<div class="main_panel cf">
-          	<div id="menu-left" class="col-md-5 menu-left">
+          	<div id="menu-left" class="grid_5 menu-left">
 	            <div class="col-md-12 left-up-menu">
 	              <ul class="menu">
 	                <li id="tiendas"><a href="{$link->getPageLink('stores')}">{l s='Tiendas'}</a></li>
@@ -92,9 +92,9 @@
 	              </ul>
             	</div>
           	</div>
-          	<div id="header_logo" class="col-md-2"> <a href="{$base_dir}" title="{$shop_name|escape:'html':'UTF-8'}"> <img class="logo img-responsive" src="{$logo_url}" alt="{$shop_name|escape:'html':'UTF-8'}"{if isset($logo_image_width) && $logo_image_width} width="{$logo_image_width}"{/if}{if isset($logo_image_height) && $logo_image_height} height="{$logo_image_height}"{/if}/> </a> </div>
+          	<div id="header_logo" class="grid_2"> <a href="{$base_dir}" title="{$shop_name|escape:'html':'UTF-8'}"> <img class="logo img-responsive" src="{$logo_url}" alt="{$shop_name|escape:'html':'UTF-8'}"{if isset($logo_image_width) && $logo_image_width} width="{$logo_image_width}"{/if}{if isset($logo_image_height) && $logo_image_height} height="{$logo_image_height}"{/if}/> </a> </div>
 
-	        <div id="menu-right" class="col-md-5 menu-right">
+	        <div id="menu-right" class="grid_5 menu-right">
 	        	<div class="col-md-12 right-up-menu">
 	              <ul>
 	                <li id="redes">{hook h='displayMatRedes'}</li>
