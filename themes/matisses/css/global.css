@@ -601,8 +601,12 @@ span.ajax_cart_no_product {
 	}
 
 	/*Blog*/
+<<<<<<< HEAD
+<<<<<<< HEAD
+	.blog{
+=======
 	.zona-blog{
-
+>>>>>>> ana.ocampo
 	padding: 4.0625rem 0;
 	}
 
@@ -616,14 +620,21 @@ span.ajax_cart_no_product {
 	font-family: "Conv_trade-gothic-bold-condensed-no";
 	text-transform: uppercase;
 	}
+=======
+>>>>>>> 7041d766979e2a9f3e0f150d2ce35a57ce762fb7
 
 
 
 
 #index #left_column ,#index #right_column {
 	display: none;
+<<<<<<< HEAD
 	}
 
+.main_panel>.container>.row{
+	position: static;
+	}
+=======
 }
 
 
@@ -3186,7 +3197,11 @@ div.star.star_hover{
 	border-right: none;
 	border-radius: 0;
 	display: inline-block;
+<<<<<<< HEAD
     width: 18.125rem;
+=======
+    width: 75%;
+>>>>>>> 4883b0a80825de95bf25688930d77945aa552970
     vertical-align: top;
 	height: 2.5rem;
 	padding: 0 1.25rem;
