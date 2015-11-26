@@ -21,3 +21,5 @@ $_MODULE['<{blockuserinfo}matisses>nav_4b877ba8588b19f1b278510bf2b57ebb'] = 'Cer
 $_MODULE['<{blockuserinfo}matisses>nav_c87aacf5673fada1108c9f809d354311'] = 'Cerrar sesión';
 $_MODULE['<{blockuserinfo}matisses>nav_d4151a9a3959bdd43690735737034f27'] = 'Entrar a tu cuenta de cliente';
 $_MODULE['<{blockuserinfo}matisses>nav_b6d4223e60986fa4c9af77ee5f7149c5'] = 'Iniciar sesión';
+$_MODULE['<{blockuserinfo}matisses>nav_d95cf4ab2cbf1dfb63f066b50558b07d'] = 'Mi cuenta';
+$_MODULE['<{blockuserinfo}matisses>nav_99dea78007133396a7b8ed70578ac6ae'] = 'Ingresar';

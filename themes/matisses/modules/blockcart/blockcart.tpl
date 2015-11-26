@@ -203,7 +203,7 @@
 </div>
 {/if}
 {counter name=active_overlay assign=active_overlay}
-{if !$PS_CATALOG_MODE && $active_overlay == 1}
+{if !$PS_CATALOG_MODE}
 	<div id="layer_cart">
 		<div class="clearfix">
 			<div class="layer_cart_product col-xs-12 col-md-6">
