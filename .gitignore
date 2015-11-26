@@ -12,4 +12,5 @@
 /themes/matisses/modules/blockfacebooklike/views/templates/hook/fans.tpl
 /_notes/
 *.html
+*.htaccess
 
