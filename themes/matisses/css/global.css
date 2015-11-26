@@ -229,11 +229,12 @@ textarea {
     padding-left: 0;
 }
 
-.menu li a{
+.left-up-menu .menu li a{
 	font-size:1rem;
 	font-family: 'Conv_trade-gothic-no-18-condense';
 	color: #777676;
 	padding:0.9375rem;
+	text-transform: capitalize;
 }
 
 .menu li a:hover{
@@ -298,7 +299,6 @@ textarea {
 }
 
 #redes {
-    padding-right: 1.875rem;
     vertical-align: middle;
 }
 
@@ -440,8 +440,6 @@ span.ajax_cart_no_product {
 
 
 /*content page*/
-.container {}
-
 	.index p {
     font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 1.125rem;
@@ -501,6 +499,7 @@ span.ajax_cart_no_product {
 
 
 	.btn-title{
+
 	display: block;
 	text-align: center;
 	}
@@ -614,14 +613,21 @@ span.ajax_cart_no_product {
 	font-family: "Conv_trade-gothic-bold-condensed-no";
 	text-transform: uppercase;
 	}
+=======
+>>>>>>> 7041d766979e2a9f3e0f150d2ce35a57ce762fb7
 
 
 
 
 #index #left_column ,#index #right_column {
 	display: none;
+<<<<<<< HEAD
 	}
 
+.main_panel>.container>.row{
+	position: static;
+	}
+=======
 }
 
 

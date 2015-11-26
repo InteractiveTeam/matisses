@@ -16,10 +16,6 @@
   visibility: inherit;
   /* fixes IE7 'sticky bug' */ }
 
-.sf-menu > li {
-	display: inline-block;
-}
-
 .sf-menu > li:last-child > a{
 	padding-right: 0;
 }
@@ -36,29 +32,18 @@
 .submenu-container {
     z-index: 10;
     padding: 0 ;
-    margin-top: 10px;
 	background: #f6f6f6;
 	width: 1800px;
 	border-bottom: 4px solid #F00;
 	}
 
 .submenu-container > li {
-    width: 1200px;
-    margin: 0 auto;
+
 }
-
-
-
-
-
-ul.sf-menu li:hover li ul,
-ul.sf-menu li.sfHover li ul {
-  /*top: -999em;*/ }
 
 ul.sf-menu li li:hover ul,
 ul.sf-menu li li.sfHover ul {
   left: 200px;
-  /* match ul width */
   top: 0; }
 
 ul.sf-menu li li:hover li ul,
@@ -68,7 +53,6 @@ ul.sf-menu li li.sfHover li ul {
 ul.sf-menu li li li:hover ul,
 ul.sf-menu li li li.sfHover ul {
   left: 200px;
-  /* match ul width */
   top: 0; }
 
 
@@ -105,8 +89,8 @@ ul li#category-thumbnail > div:last-child{
 }
 .sf-menu > li > ul > li.category-thumbnail > div img,
 .sf-menu > li > ul > li#category-thumbnail > div img {
-	  width: 100%;
-	  display: block;
+	width: 100%;
+	display: block;
 }
 .banner_thumb  {
 	display: inline-block;
@@ -130,17 +114,17 @@ ul li#category-thumbnail > div:last-child{
 	color: #9c9b9b;
 	border: 1px solid #d6d4d4;
 }
-.fixedHeader #block_top_menu {}
-
 
 /*21-11-2015*/
-.menu-content > li.sfHover{
+.menu-content > li .submenu-container{
 	width: 112.5rem
 }
 .menu-content a.sf-with-ul{
 	padding: 1.5625rem 0 1.25rem 1.875rem;
 }
 
+
+/*1 Nivel*/
 .submenu-container > li a {
     color: #414040;
     display: block;
@@ -150,11 +134,17 @@ ul li#category-thumbnail > div:last-child{
 	text-transform: uppercase;
 }
 
-.submenu-container > li ul li {
-    display: inline-block;
-    vertical-align: top;
+.submenu-container > li ul li a.sf-with-ul {
+    padding: 0 0 20px 0;
 }
 
+/*2 Nivel*/
+.submenu-container > li ul li {
+    display: table-cell;
+    vertical-align: top;
+	width: 234px;
+	padding: 20px;
+}
 
 .submenu-container > li ul li a {
     color: #231f20;
@@ -162,21 +152,31 @@ ul li#category-thumbnail > div:last-child{
 	font-family: "Conv_trade-gothic-bold-condensed-no";
 	font-size: 1.25rem;
 	display: block;
+	text-transform: uppercase;
+	background: transparent;
+}
+
+/*3 Nivel*/
+.submenu-container > li ul li > ul li{
+	display: block;
+	padding: 0;
+
 }
 
 .submenu-container > li ul li > ul li a {
-    color: #EE82EE;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 1.125rem;
+	color:#777676;
 	border: none;
+	display: block;
+	padding: 0 0 15px 0;
 }
 
-.submenu-container > li ul li > ul li{
-	display: block;
-}
+
 
  @media (min-width: 768px) and (max-width: 1199px) {
 	.sf-menu > li > a{
-	font-size: 12px;
-	padding: 0 14px;
+
 	}
 	.fixedHeader #block_top_menu {
 	padding-top: 16px;

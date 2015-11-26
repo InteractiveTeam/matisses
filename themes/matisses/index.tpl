@@ -40,9 +40,13 @@
 	</div>
     <div class="experiences">
 		<div class="container">
+
+    		<h1>{l s='Experiencias'}</h1>
+
 			<div class="btn-title cf">
 				<h1><a href="#">{l s='Experiencias'}</a></h1>
 			</div>
+
 		</div>
     </div>
     <div class="zona-blog">
