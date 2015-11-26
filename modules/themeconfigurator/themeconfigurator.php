@@ -111,6 +111,7 @@ class ThemeConfigurator extends Module
 			!$this->registerHook('displayLeftColumn') ||
 			!$this->registerHook('displayRightColumn') ||
 			!$this->registerHook('displayHome') ||
+			!$this->registerHook('displayMatAdvertisingHome') ||
 			!$this->registerHook('displayFooter') ||
 			!$this->registerHook('displayBackOfficeHeader') ||
 			!$this->registerHook('actionObjectLanguageAddAfter') ||
@@ -215,6 +216,11 @@ class ThemeConfigurator extends Module
 			return false;
 
 		return true;
+	}
+	
+	public function hookdisplayMatAdvertisingHome()
+	{
+		return $this->hookDisplayHome();
 	}
 
 	public function hookDisplayBackOfficeHeader()

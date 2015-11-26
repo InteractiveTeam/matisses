@@ -27,6 +27,7 @@
 <div id="index" >
 	<div id="slider" class="slider cf">
     	{hook h="displayMatSlider"}
+        {hook h="displayMatAdvertisingHome"}
     </div>
     <div id="viewed-products" class="viewed-products">
 		<div class="container">
