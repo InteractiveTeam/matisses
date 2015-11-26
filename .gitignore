@@ -6,9 +6,11 @@
 
 # Exluir la cache
 
+/cache
 /cache/*
 /modules/blockfacebooklike/views/templates/hook/fans.tpl
 /themes/matisses/modules/blockfacebooklike/views/templates/hook/fans.tpl
 /_notes/
 *.html
+*.htaccess
 
