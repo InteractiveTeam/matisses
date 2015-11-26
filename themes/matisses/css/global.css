@@ -229,11 +229,12 @@ textarea {
     padding-left: 0;
 }
 
-.menu li a{
+.left-up-menu .menu li a{
 	font-size:1rem;
 	font-family: 'Conv_trade-gothic-no-18-condense';
 	color: #777676;
 	padding:0.9375rem;
+	text-transform: capitalize;
 }
 
 .menu li a:hover{
@@ -298,7 +299,6 @@ textarea {
 }
 
 #redes {
-    padding-right: 1.875rem;
     vertical-align: middle;
 }
 
@@ -440,8 +440,6 @@ span.ajax_cart_no_product {
 
 
 /*content page*/
-.container {}
-
 	.index p {
     font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 1.125rem;
@@ -601,12 +599,7 @@ span.ajax_cart_no_product {
 	}
 
 	/*Blog*/
-<<<<<<< HEAD
-<<<<<<< HEAD
-	.blog{
-=======
 	.zona-blog{
->>>>>>> ana.ocampo
 	padding: 4.0625rem 0;
 	}
 
@@ -3197,11 +3190,7 @@ div.star.star_hover{
 	border-right: none;
 	border-radius: 0;
 	display: inline-block;
-<<<<<<< HEAD
     width: 18.125rem;
-=======
-    width: 75%;
->>>>>>> 4883b0a80825de95bf25688930d77945aa552970
     vertical-align: top;
 	height: 2.5rem;
 	padding: 0 1.25rem;
