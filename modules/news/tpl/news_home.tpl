@@ -21,7 +21,19 @@
                         <a href="#tabs-{$cats_position}">
                             {$cats->title|truncate:50:'...'|escape:html:'UTF-8'}
                         </a>
+
                     </h1>
+                    <a class="blog-view-all" href="{$link->getModuleLink('news', 'list',
+                             [
+                                 'cat_news' => "{$cat_produto}",
+                                 'page_cat' => 0,
+                                 'rewrite'  => "{$cat_rewrite}"
+                              ]
+
+                             ,false)}" alt="{l s='More' mod='news'}" class="newsHomeMore">
+     						{l s='Leer más' mod='news'}
+     					</a>
+                    
                     {assign var='cats_position' value=$cats_position+1}
                 {/foreach}
                 </div>
@@ -54,43 +66,47 @@
                                     ]
                                     ,false)}"
                                     alt="{$catProduct->title|escape:html:'UTF-8'}" class="newsHomeItem"  >
-                                    {if $cat_products_position==1}
-                                    <div class="newsHomeImg">
-                                        <img src="{$catProduct->img}" >
-                                    </div>
-                                    {/if}
+                                   
 
                                     <div class="newsHomeTitle">
                                         <h2>{$catProduct->title|escape:html:'UTF-8'}</h2>
                                     </div>
+                                    <div class="newsHomeAutor">
+                                        <p>{l s='Autor:'} {$catProduct->autor}</p>
+                                    </div>
+                                     <div class="newsHomeImg">
+                                        <img src="{$catProduct->img}" > 
+                                    </div>
+                                    
+                                    
+                                    
                                 </a>
 
-                                        {if $cat_products_position==1}
                                     <div class="newsHomeDescription">
                                         <p>{$catProduct->new|truncate:250:'...'|escape:html:'UTF-8'}</p>
                                     </div>
-             							{else}
-             						<div class="newsHomeDescription">
-                                        <p>{$catProduct->new|truncate:100:'...'|escape:html:'UTF-8'}</p>
-                                    </div>
-                                        {/if}
+  
+                                        
+                                <a href="{$link->getModuleLink('news', 'new',
+                                    [
+                                        'id_news'  => "{$catProduct->id_news}",
+                                        'cat_news' => "{$catProduct->id_cat}",
+                                        'page_cat'     => 0,
+                                        'rewrite'  => "{$catProduct->rewrite}",
+                                        'cat_rewrite'  => "{$cat_rewrite}"
+                                    ]
+                                    ,false)}"
+                                    alt="{$catProduct->title|escape:html:'UTF-8'}" class="newsHomeItem"  > 
+                                   {l s='Leer más' mod='news'} 
+                                </a>         
 
                             </div>
                                     {assign var='cat_products_position' value=$cat_products_position+1}
                                   {/foreach}
 
-                         {if $cat_products_position>1}
-     					<a href="{$link->getModuleLink('news', 'list',
-                             [
-                                 'cat_news' => "{$cat_produto}",
-                                 'page_cat' => 0,
-                                 'rewrite'  => "{$cat_rewrite}"
-                              ]
 
-                             ,false)}" alt="{l s='More' mod='news'}" class="newsHomeMore">
-     						{l s='Ver más' mod='news'}
-     					</a>
-                        {/if}
+
+
                      </div>
                      {assign var='cats_position' value=$cats_position+1}
                 {/foreach}
