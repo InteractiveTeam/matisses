@@ -432,6 +432,19 @@ span.ajax_cart_no_product {}
 	}
 
 /*HOME*/
+	/*Slider*/
+	#htmlcontent_home:after {clear: both;}
+	#htmlcontent_home:before, #htmlcontent_home:after {	content: ""; display: table;}
+
+	#htmlcontent_home {
+    background: #231f20;
+	}
+
+	#htmlcontent_home h3{
+	color: #fff8f9;
+	font-size: 1.5rem;
+	    font-family: 'Conv_trade-gothic-no-18-condense';
+	}
 
 	/*Productos visualizados*/
 	.viewed-products {
