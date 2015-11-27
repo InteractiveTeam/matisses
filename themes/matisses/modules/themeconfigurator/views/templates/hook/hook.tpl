@@ -23,22 +23,23 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 {if isset($htmlitems) && $htmlitems}
-<div id="htmlcontent_{$hook|escape:'htmlall':'UTF-8'}">
+<div id="htmlcontent_{$hook|escape:'htmlall':'UTF-8'}" class="cf coleccion">
 	{foreach name=items from=$htmlitems item=hItem}
-    	<div class="col-md-6">
-
-            {if $hItem.title && $hItem.title_use == 1}
-                <h3 class="item-title">{$hItem.title|escape:'htmlall':'UTF-8'}</h3>
-            {/if}
-            {if $hItem.html}
-                <p class="item-html">
-                    {$hItem.html} <i class="icon-double-angle-right"></i>
-                </p>
-            {/if}
+    	<div class="grid_6 alpha omega">
+			<div class="content-coleccion">
+	            {if $hItem.title && $hItem.title_use == 1}
+	                <h2 class="item-title">{$hItem.title|escape:'htmlall':'UTF-8'}</h2>
+	            {/if}
+	            {if $hItem.html}
+	                <p class="item-html">
+	                    {$hItem.html} <i class="icon-double-angle-right"></i>
+	                </p>
+	            {/if}
+			</div>
              {if $hItem.image}
                 <img src="{$link->getMediaLink("`$module_dir`img/`$hItem.image`")}" class="item-img {if $hook == 'left' || $hook == 'right'}img-responsive{/if}" title="{$hItem.title|escape:'htmlall':'UTF-8'}" alt="{$hItem.title|escape:'htmlall':'UTF-8'}" width="{if $hItem.image_w}{$hItem.image_w|intval}{else}100%{/if}" height="{if $hItem.image_h}{$hItem.image_h|intval}{else}100%{/if}"/>
-            {/if} 
-            
+            {/if}
+
         </div>
     {/foreach}
 </div>

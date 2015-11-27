@@ -405,9 +405,9 @@ span.ajax_cart_no_product {}
 }
 
 .user-profile{
-	background: url("../img/user.png") 0 0 no-repeat transparent;
-	height: 36px;
-	width: 36px;
+	background: url("../img/user.png") 0 6px no-repeat transparent;
+	height: 2.875rem;
+	width: 2.25rem;
 	vertical-align: middle;
 	display: inline-block;
 }
@@ -416,11 +416,13 @@ span.ajax_cart_no_product {}
     color: #fff;
 	font-family: "Conv_trade-gothic-bold-condensed-no";
 	text-transform: uppercase;
-    padding-right: 1.25rem;
 }
 
 #user .login {
-    display: inline-block;
+	display: inline-block;
+    vertical-align: top;
+    padding-top: 1.125rem;
+    padding-right: 0.625rem;
 }
 
 
@@ -433,17 +435,37 @@ span.ajax_cart_no_product {}
 
 /*HOME*/
 	/*Slider*/
-	#htmlcontent_home:after {clear: both;}
-	#htmlcontent_home:before, #htmlcontent_home:after {	content: ""; display: table;}
-
-	#htmlcontent_home {
+	.coleccion {
     background: #231f20;
 	}
 
-	#htmlcontent_home h3{
+	.coleccion .grid_6 {
+    display: table;
+	}
+
+	.content-coleccion {
+	display: table-cell;
+    vertical-align: middle;
+    width: 27.1875rem;
+    padding-left: 3.125rem;
+    padding-right: 1.25rem;
+	}
+
+	.coleccion img {
+    margin-left: -0.25rem;
+    display: table-cell;
+	vertical-align: top;
+	}
+
+	.coleccion h2{
 	color: #fff8f9;
 	font-size: 1.5rem;
-	    font-family: 'Conv_trade-gothic-no-18-condense';
+    font-family: 'Conv_trade-gothic-no-18-condense';
+	padding-bottom: 0.3125rem;
+	}
+
+	.coleccion p {
+    color: #fff;
 	}
 
 	/*Productos visualizados*/
@@ -467,11 +489,11 @@ span.ajax_cart_no_product {}
 	margin-right: 2.625rem;
 	}
 
-	.viewed-products ul li.first_item {
+	.viewed-products ul li.item:first-child {
 	width: 17.1875rem;
     border: 1px solid #ccc;
     margin-left: 0;
-    margin-right: 1.5625rem;
+    margin-right: 2.8125rem;
 	}
 
 	.viewed-products ul li.last_item {
@@ -487,10 +509,46 @@ span.ajax_cart_no_product {}
 	margin-bottom: 0.625rem;
 	font-family: "Conv_trade-gothic-bold-condensed-no";
 	}
-
 	.viewed-products .product-content {
 	padding: 0.9375rem;
 	}
+	.header-products{
+	border-bottom: 1px solid #d5d5d5;
+	padding-bottom: 0.3125rem;
+	margin-bottom: 0.625rem;
+	}
+	.header-products h2{
+	text-transform: uppercase;
+	font-size: 1.5rem;
+	font-family: "Conv_trade-gothic-bold-condensed-no";
+	float: left;
+    padding-right: 0.625rem;
+	}
+	.header-products .colors {
+    display: inline-block;
+    float: right;
+	color: #7b7b7b;
+	font-family: 'Conv_trade-gothic-no-18-condense';
+	font-size: 0.875rem;
+	text-transform: uppercase;
+	padding-top: 0.3125rem;
+	}
+	.viewed-products .price{
+	font-size: 1.375rem;
+	color: #231f20;
+	font-family: 'Conv_trade-gothic-no-18-condense';
+	}
+	.viewed-products .item:first-child .product-content-view {
+    padding: 0 0.625rem 0.625rem;
+	}
+	.header-products h2 a{
+	color: #d7162f;
+	}
+	.header-products h2 a:hover{
+	color: #000;
+	}
+
+
 
 	/*Nuevos productos*/
 	#new-products {
