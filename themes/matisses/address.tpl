@@ -1,4 +1,4 @@
-{*
+{* 
 * 2007-2014 PrestaShop
 *
 * NOTICE OF LICENSE
@@ -27,7 +27,7 @@
 	<h1 class="page-subheading">{l s='Your addresses'}</h1>
 	<p class="info-title">
 		{if isset($id_address) && (isset($smarty.post.alias) || isset($address->alias))}
-			{l s='Modify address'} 
+			{l s='Modify address'}
 			{if isset($smarty.post.alias)}
 				"{$smarty.post.alias}"
 			{else}
@@ -150,7 +150,7 @@
 				<label for="postcode">{l s='Zip/Postal Code'} <sup>*</sup></label>
 				<input class="is_required validate form-control" data-validate="{$address_validation.postcode.validate}" type="text" id="postcode" name="postcode" value="{if isset($smarty.post.postcode)}{$smarty.post.postcode}{else}{if isset($address->postcode)}{$address->postcode|escape:'html':'UTF-8'}{/if}{/if}" />
 			</div>
-		{/if}		
+		{/if}
 		{if !$stateExist}
 			<div class="required id_state form-group unvisible">
 				<label for="id_state">{l s='State'} <sup>*</sup></label>
@@ -195,7 +195,7 @@
 			{if isset($back)}<input type="hidden" name="back" value="{$back}" />{/if}
 			{if isset($mod)}<input type="hidden" name="mod" value="{$mod}" />{/if}
 			{if isset($select_address)}<input type="hidden" name="select_address" value="{$select_address|intval}" />{/if}
-			<input type="hidden" name="token" value="{$token}" />		
+			<input type="hidden" name="token" value="{$token}" />
 			<button type="submit" name="submitAddress" id="submitAddress" class="btn btn-default button button-medium">
 				<span>
 					{l s='Save'}
