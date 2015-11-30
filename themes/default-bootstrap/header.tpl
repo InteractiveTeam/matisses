@@ -94,6 +94,7 @@
 									</a>
 								</div>
 								{if isset($HOOK_TOP)}{$HOOK_TOP}{/if}
+								
 							</div>
 						</div>
 					</div>
