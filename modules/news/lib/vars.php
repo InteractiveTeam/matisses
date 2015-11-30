@@ -91,7 +91,7 @@ $_moduleRoutes = array(
 $_imagesSizes= Array(
         'sides' => Array(175, 85),
         'list' => Array(175, 85),
-        'home' => Array(245, 150),
+        'home' => Array(460, 136),
         'thumbnail' => Array(70, 30)
     );
 ?>
