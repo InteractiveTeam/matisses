@@ -77,7 +77,7 @@
   	<header id="header">
     	<div class="main_panel cf">
           	<div id="menu-left" class="grid_5 menu-left">
-	            <div class="col-md-12 left-up-menu">
+	            <div class="left-up-menu">
 	              <ul class="menu">
 	                <li id="tiendas"><a href="{$link->getPageLink('stores')}">{l s='Tiendas'}</a></li>
 	                <li id="metodos-envio"><a href="{$link->getCMSLink('1')}">{l s='Métodos de envío'}</a></li>
@@ -85,15 +85,28 @@
 	              </ul>
 	              {*$HOOK_TOP*}
 			  	</div>
+<<<<<<< HEAD
             	<div class="col-md-12 left-down-menu"> {hook h="displayMatMegamenu"}
 	              <ul id="menu" class="col-md-9 menu-experiencias" style="color:black">
                     <li id="experiencias"><a href="#">{l s='Experiencias'}</a></li>
+=======
+            	<div class="left-down-menu"> {hook h="displayMatMegamenu"}
+	              <ul id="menu" class="grid_10
+				   menu-experiencias" style="color:black">
+>>>>>>> 0549cc6dd7f96e15078d1601775580e8e898c63d
 	                <li id="wishlist">{hook h="displayMatWishlist"}</li>
 	                <li id="giftlist"><a href="#"><span></span>{l s='Lista de regalos'}</a></li>
 	              </ul>
             	</div>
           	</div>
-          	<div id="header_logo" class="grid_2"> <a href="{$base_dir}" title="{$shop_name|escape:'html':'UTF-8'}"> <img class="logo img-responsive" src="{$logo_url}" alt="{$shop_name|escape:'html':'UTF-8'}"{if isset($logo_image_width) && $logo_image_width} width="{$logo_image_width}"{/if}{if isset($logo_image_height) && $logo_image_height} height="{$logo_image_height}"{/if}/> </a> </div>
+          	<div id="header_logo" class="grid_2">
+				<a class="logo-desktop" href="{$base_dir}" title="{$shop_name|escape:'html':'UTF-8'}">
+					<img class="logo img-responsive" src="{$logo_url}" alt="{$shop_name|escape:'html':'UTF-8'}"{if isset($logo_image_width) && $logo_image_width} width="{$logo_image_width}"{/if}{if isset($logo_image_height) && $logo_image_height} height="{$logo_image_height}"{/if}/>
+				</a>
+				<a class="logo-sticky" href="{$base_dir}" title="{$shop_name|escape:'html':'UTF-8'}">
+					<img src="http://localhost/matisses/themes/matisses/img/logo-sticky.png">
+				</a>
+			</div>
 
 	        <div id="menu-right" class="grid_5 menu-right">
 	        	<div class="col-md-12 right-up-menu">

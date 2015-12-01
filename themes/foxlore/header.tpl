@@ -20,11 +20,11 @@
 *  @author PrestaShop SA <contact@prestashop.com> *  @copyright  2007-2014 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
-*} 
-<!DOCTYPE HTML> 
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7 " lang="{$lang_iso}"><![endif]--> 
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8 ie7" lang="{$lang_iso}"><![endif]--> 
-<!--[if IE 8]><html class="no-js lt-ie9 ie8" lang="{$lang_iso}"><![endif]--> 
+*}
+<!DOCTYPE HTML>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7 " lang="{$lang_iso}"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8 ie7" lang="{$lang_iso}"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9 ie8" lang="{$lang_iso}"><![endif]-->
 <!--[if gt IE 8]> <html class="no-js ie9" lang="{$lang_iso}"><![endif]-->
 <html lang="{$lang_iso}" class="{if $page_name == 'pagenotfound'}{$page_name|escape:'html':'UTF-8'}{/if}">
 <head>
@@ -51,11 +51,11 @@
 {/if}
 {if isset($js_defer) && !$js_defer && isset($js_files) && isset($js_def)}
 	{$js_def}
-	{foreach from=$js_files item=js_uri} 
-<script type="text/javascript" src="{$js_uri|escape:'html':'UTF-8'}"></script> 
+	{foreach from=$js_files item=js_uri}
+<script type="text/javascript" src="{$js_uri|escape:'html':'UTF-8'}"></script>
 {/foreach}
 {/if}
-		{$HOOK_HEADER} 
+		{$HOOK_HEADER}
 <!--[if IE 8]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
@@ -78,7 +78,7 @@
           <nav class="clearfix">{*hook h="displayNav"*}</nav>
         </div>
       </div>
-    </div> 
+    </div>
     <div class="main_panel" style="background:#FFF; border: 1px solid red;">
       <div class="container">
           <div id="menuleft" class="col-md-4 menuleft"> sadasdasd </div>
@@ -102,16 +102,16 @@
 					{/if}
 					{if $page_name =='index'}
 <div id="slider_row">
-  <div id="top_column" class="center_column col-xs-12 col-sm-12"> 
-    <!-- hook displayTopColumn --> 
-    {hook h="displayTopColumn"} 
-    <!-- end hook displayTopColumn --> 
-    <!-- hook displayEasyCarousel2 --> 
-    {hook h='displayEasyCarousel2'} 
-    <!-- end hook displayEasyCarousel2 --> 
-    <!-- hook dislayCustomBanners2 --> 
-    {hook h='displayCustomBanners2'} 
-    <!-- end hook dislayCustomBanners2 --> 
+  <div id="top_column" class="center_column col-xs-12 col-sm-12">
+    <!-- hook displayTopColumn -->
+    {hook h="displayTopColumn"}
+    <!-- end hook displayTopColumn -->
+    <!-- hook displayEasyCarousel2 -->
+    {hook h='displayEasyCarousel2'}
+    <!-- end hook displayEasyCarousel2 -->
+    <!-- hook dislayCustomBanners2 -->
+    {hook h='displayCustomBanners2'}
+    <!-- end hook dislayCustomBanners2 -->
   </div>
 </div>
 {/if}
