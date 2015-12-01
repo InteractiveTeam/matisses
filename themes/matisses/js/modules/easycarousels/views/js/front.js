@@ -60,7 +60,14 @@ $(document).ready(function(){
 						},
 						*/
 					});
-				})				
+				})
+
+				
+				if($('.owl-item').size()<=3)
+				{
+					alert('asas');
+					$('.owl-controls').addClass('hidden')
+				} 				
 			},
 			error: function(r)
 			{

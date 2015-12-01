@@ -85,9 +85,10 @@
 	              </ul>
 	              {*$HOOK_TOP*}
 			  	</div>
-            	<div class="left-down-menu"> {hook h="displayMatMegamenu"}
-	              <ul id="menu" class="grid_10
-				   menu-experiencias" style="color:black">
+
+            	<div class="col-md-12 left-down-menu"> {hook h="displayMatMegamenu"}
+	              <ul id="menu" class="col-md-9 menu-experiencias" style="color:black">
+                    <li id="experiencias"><a href="#">{l s='Experiencias'}</a></li>
 	                <li id="wishlist">{hook h="displayMatWishlist"}</li>
 	                <li id="giftlist"><a href="#"><span></span>{l s='Lista de regalos'}</a></li>
 	              </ul>
@@ -112,7 +113,7 @@
 	            </div>
 	            <div class="col-md-12 right-down-menu">
 	              	<ul>
-						<li id="experiencias"><a href="#">{l s='Experiencias'}</a></li>
+						
 		                <li id="chat" class="chat">
 
 				            	<!-- This code must be installed within the body tags -->
