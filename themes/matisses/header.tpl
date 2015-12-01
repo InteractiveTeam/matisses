@@ -85,15 +85,24 @@
 	              </ul>
 	              {*$HOOK_TOP*}
 			  	</div>
-<<<<<<< HEAD
-            	<div class="col-md-12 left-down-menu"> {hook h="displayMatMegamenu"}
-	              <ul id="menu" class="col-md-9 menu-experiencias" style="color:black">
-                    <li id="experiencias"><a href="#">{l s='Experiencias'}</a></li>
-=======
+<<<<<<< Temporary merge branch 1
             	<div class="left-down-menu"> {hook h="displayMatMegamenu"}
 	              <ul id="menu" class="grid_10
 				   menu-experiencias" style="color:black">
->>>>>>> 0549cc6dd7f96e15078d1601775580e8e898c63d
+=======
+            	<div class="col-md-12 left-down-menu"> {hook h="displayMatMegamenu"}
+	              <ul id="menu" class="col-md-9 menu-experiencias" style="color:black">
+                    <li id="experiencias"><a href="#">{l s='Experiencias'}</a></li>
+>>>>>>> Temporary merge branch 2
+
+            	<div class="col-md-12 left-down-menu"> {hook h="displayMatMegamenu"}
+	              <ul id="menu" class="col-md-9 menu-experiencias" style="color:black">
+                    <li id="experiencias"><a href="#">{l s='Experiencias'}</a></li>
+
+
+
+
+
 	                <li id="wishlist">{hook h="displayMatWishlist"}</li>
 	                <li id="giftlist"><a href="#"><span></span>{l s='Lista de regalos'}</a></li>
 	              </ul>
