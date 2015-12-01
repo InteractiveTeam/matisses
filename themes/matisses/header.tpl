@@ -77,7 +77,7 @@
   	<header id="header">
     	<div class="main_panel cf">
           	<div id="menu-left" class="grid_5 menu-left">
-	            <div class="left-up-menu">
+	            <div class="left-up-menu cf">
 	              <ul class="menu">
 	                <li id="tiendas"><a href="{$link->getPageLink('stores')}">{l s='Tiendas'}</a></li>
 	                <li id="metodos-envio"><a href="{$link->getCMSLink('1')}">{l s='Métodos de envío'}</a></li>
@@ -86,8 +86,8 @@
 	              {*$HOOK_TOP*}
 			  	</div>
 
-            	<div class="col-md-12 left-down-menu"> {hook h="displayMatMegamenu"}
-	              <ul id="menu" class="col-md-9 menu-experiencias" style="color:black">
+            	<div class="left-down-menu cf"> {hook h="displayMatMegamenu"}
+	              <ul id="menu" class="grid_10 menu-experiencias" style="color:black">
                     <li id="experiencias"><a href="#">{l s='Experiencias'}</a></li>
 	                <li id="wishlist">{hook h="displayMatWishlist"}</li>
 	                <li id="giftlist"><a href="#"><span></span>{l s='Lista de regalos'}</a></li>
@@ -104,31 +104,28 @@
 			</div>
 
 	        <div id="menu-right" class="grid_5 menu-right">
-	        	<div class="col-md-12 right-up-menu">
+	        	<div class="cf right-up-menu">
 	              <ul>
 	                <li id="redes">{hook h='displayMatRedes'}</li>
 	                <li id="cart">{hook h='displayMatCart'}</li>
 	                <li id="user">{hook h='displayMatUser'}</li>
 	              </ul>
 	            </div>
-	            <div class="col-md-12 right-down-menu">
+	            <div class="cf right-down-menu">
 	              	<ul>
-						
 		                <li id="chat" class="chat">
-
-				            	<!-- This code must be installed within the body tags -->
-				            	<script type="text/javascript">
-				                var lhnAccountN = "27089-1";
-				                var lhnButtonN = 4827;
-				                var lhnChatPosition = 'righttab';
-				                var lhnInviteEnabled = 1;
-				                var lhnWindowN = 0;
-				                var lhnDepartmentN = 0;
-				                var lhnChatPositionYVal = 150;
-				            	</script>
-		            			<a href="http://www.livehelpnow.net/products/live-chat-system" target="_blank" id="lhnHelp">{l s='Chat'}</a>
-		            			<script src="//www.livehelpnow.net/lhn/widgets/chatbutton/lhnchatbutton-current.min.js" type="text/javascript" id="lhnscript"></script>
-
+			            	<!-- This code must be installed within the body tags -->
+			            	<script type="text/javascript">
+			                var lhnAccountN = "27089-1";
+			                var lhnButtonN = 4827;
+			                var lhnChatPosition = 'righttab';
+			                var lhnInviteEnabled = 1;
+			                var lhnWindowN = 0;
+			                var lhnDepartmentN = 0;
+			                var lhnChatPositionYVal = 150;
+			            	</script>
+	            			<a href="http://www.livehelpnow.net/products/live-chat-system" target="_blank" id="lhnHelp">{l s='Chat'}</a>
+	            			<script src="//www.livehelpnow.net/lhn/widgets/chatbutton/lhnchatbutton-current.min.js" type="text/javascript" id="lhnscript"></script>
 						</li>
 		            	<li id="blog" class="blog">
 		                  	<a href="{$link->getModuleLink('news','list')}">{l s='Blog'}</a>
@@ -148,7 +145,7 @@
 {if $page_name !='index' && $page_name !='pagenotfound'}
 <div class="top_banner_wrap"> {*hook h="displayBanner"*} </div>
 {/if}
-<div id="columns" class="clearfix {if $page_name !='index' && $page_name !='product' && $page_name != 'module-guestbookwithavatars-guestbook'}container{/if}">
+<div id="columns" class="cf {if $page_name !='index' && $page_name !='product' && $page_name != 'module-guestbookwithavatars-guestbook'}container{/if}">
 {if $page_name !='index' && $page_name !='pagenotfound'}
 						{if $page_name =='product' || $page_name == 'module-guestbookwithavatars-guestbook'}
 <div class="container"> {/if}

@@ -1,6 +1,6 @@
 {if $MENU != ''}
-	<nav id="block_top_menu" class="sf-contener clearfix col-md-2">
-		<ul class="sf-menu clearfix menu-content">
+	<nav id="block_top_menu" class="sf-contener grid_2">
+		<ul class="sf-menu menu-content">
 			{$MENU}
 			{if $MENU_SEARCH}
 				<li class="sf-search noBack" style="float:right">
@@ -16,5 +16,5 @@
 			{/if}
 		</ul>
 	</nav>
-	<!--/ Menu -->
+
 {/if}
