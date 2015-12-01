@@ -4,7 +4,6 @@
     max-width: 100%;
     max-height: 100%;
     overflow: hidden;
-    position: relative;
     }
 
  #homepage-slider #homeslider {
@@ -29,7 +28,6 @@
     }
 
     #homepage-slider .bx-wrapper {
-    position: relative;
     padding: 0;
     *zoom: 1; }
 
@@ -47,8 +45,6 @@
     #homepage-slider .bx-wrapper .bx-pager,
 
     #homepage-slider .bx-wrapper .bx-controls-auto {
-    position: absolute;
-    bottom: -30px;
     width: 100%; }
 
     #homepage-slider .bx-wrapper .bx-loading {
@@ -62,12 +58,11 @@
     z-index: 2000; }
 
     #homepage-slider .bx-wrapper .bx-pager {
-    text-align: center;
     font-size: .85em;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     color: #666;
-    padding-top: 20px; }
+    }
 
     #homepage-slider .bx-wrapper .bx-pager .bx-pager-item,
 
@@ -77,21 +72,21 @@
     *display: inline; }
 
     #homepage-slider .bx-wrapper .bx-pager.bx-default-pager a {
-    background: #666;
+    background: #fff;
     text-indent: -9999px;
     display: block;
-    width: 10px;
-    height: 10px;
+    width: 16px;
+    height: 16px;
     margin: 0 5px;
     outline: 0;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px; }
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%; }
 
     #homepage-slider .bx-wrapper .bx-pager.bx-default-pager a:hover,
 
     #homepage-slider .bx-wrapper .bx-pager.bx-default-pager a.active {
-    background: #000; }
+    background: #d7162f; }
 
     #homepage-slider .bx-wrapper .bx-prev {
     right: 60px; }
@@ -320,14 +315,14 @@
 .slide-3 h2{
     font-size: 6.25rem;
     font-family: 'Conv_trade-gothic-no-18-condense';
-}
+    }
 
 .slide-3 h3{
     font-weight: 300;
     font-family: 'Open Sans';
     font-size: 3.125rem;
     color: #fff;
-}
+    }
 
 .slide-3 .circle {
     background: url("../../../img/icon-flecha.png") center center no-repeat;
@@ -369,6 +364,18 @@
     display: inline-block;
     vertical-align: top;
     padding-top: 1.875rem;
+    }
+
+/*01-12-2015*/
+.bx-controls.bx-has-pager {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    }
+
+#homepage-slider .bx-pager.bx-default-pager {
+    position: static;
+    padding-top: 0;
     }
 
 @media (max-width: 767px) {

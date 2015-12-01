@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 {if isset($htmlitems) && $htmlitems}
-<div id="htmlcontent_{$hook|escape:'htmlall':'UTF-8'}" class="cf coleccion">
+<div id="htmlcontent_{$hook|escape:'htmlall':'UTF-8'}" class="cf coleccion grid_12 alpha omega">
 	{foreach name=items from=$htmlitems item=hItem}
     	<div class="grid_6 alpha omega">
 			<div class="content-coleccion">
