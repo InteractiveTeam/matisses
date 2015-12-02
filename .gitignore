@@ -1,7 +1,7 @@
-# Excluye todos los ficheros con extensión .log
+# Excluye todos los ficheros con extensiÃ³n .log
 *.log
 
-# Excluye todos los ficheros con extensión .log
+# Excluye todos los ficheros con extensiÃ³n .log
 *.xml
 
 # Exluir la cache
@@ -13,4 +13,5 @@
 /_notes/
 *.html
 *.htaccess
+*fans.tpl
 
