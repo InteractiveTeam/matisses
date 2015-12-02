@@ -27,16 +27,3 @@
 .form-error #newsletter-input{
 	background-image:none;
 }
-@media (max-width: 480px){
-	#newsletter_block_left #newsletter-input{
-		font-size: 12px;
-		padding-left: 39px;
-	}
-	#newsletter_block_left .sub_btn{
-		font-size: 8px;
-		padding: 0 12px;
-	}
-	#newsletter_block_left .form-group:before{
-		padding-right: 7px;
-	}
-}
