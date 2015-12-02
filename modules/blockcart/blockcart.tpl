@@ -132,7 +132,7 @@ var generated_date = {$smarty.now|intval};
 					</td>
 				</tr>
 				{/if}
-			{/foreach}					
+			{/foreach}
 		</table>
 		{/if}
 		<p id="cart-prices">
@@ -173,4 +173,3 @@ var generated_date = {$smarty.now|intval};
 	</div>
 </div>
 <!-- /MODULE Block cart -->
-

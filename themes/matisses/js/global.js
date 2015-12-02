@@ -93,7 +93,12 @@ $(document).ready(function(){
 			closeBtn : '<a title="' + FancyboxI18nClose + '" class="fancybox-item fancybox-close" href="javascript:;"></a>',
 			next     : '<a title="' + FancyboxI18nNext + '" class="fancybox-nav fancybox-next" href="javascript:;"><span></span></a>',
 			prev     : '<a title="' + FancyboxI18nPrev + '" class="fancybox-nav fancybox-prev" href="javascript:;"><span></span></a>'
-		});
+		});	
+		
+	if($('.owl-item').size()<=3)
+	{
+		$('.owl-controls').addClass('hidden')
+	} 	
 });
 
 function highdpiInit()
@@ -375,3 +380,4 @@ function resizeCatimg()
 	if (div.length)
 		image.src = div.css('background-image').replace(/url\("?|"?\)$/ig, '');
 }
+

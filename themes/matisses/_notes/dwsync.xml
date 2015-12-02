@@ -65,6 +65,8 @@
 <file name="stores.tpl" server="192.168.3.45" local="130922749091507162" remote="130895995200000000" Dst="0" />
 <file name="supplier-list.tpl" server="192.168.3.45" local="130922749093001800" remote="130895995200000000" Dst="0" />
 <file name="supplier.tpl" server="192.168.3.45" local="130922749093539103" remote="130895995200000000" Dst="0" />
-<file name="index.tpl" server="C:/xampp/htdocs/matisses/" local="130925379822106766" remote="130925379820000000" Dst="0" />
+<file name="index.tpl" server="C:/xampp/htdocs/matisses/" local="130933848349740552" remote="130933848340000000" Dst="0" />
 <file name="product-list.tpl" server="C:/xampp/htdocs/matisses/" local="130926014592464576" remote="130926014590000000" Dst="0" />
+<file name="footer.tpl" server="C:/xampp/htdocs/matisses/" local="130933916415522988" remote="130933916410000000" Dst="0" />
+<file name="header.tpl" server="C:/xampp/htdocs/matisses/" local="130934561913266720" remote="130934561910000000" Dst="0" />
 </dwsync>

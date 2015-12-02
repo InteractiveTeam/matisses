@@ -25,14 +25,23 @@ class matisses extends Module
 		// install controllers
 		$install[] = $this->__installTabs('adminMatisses','Matisses',0);
 		$parent = (int)Tab::getIdFromClassName('adminMatisses');
-		$install[] = $this->__installTabs('adminWebservices','Webservices',$parent);
-		$install[] = $this->__installTabs('adminDestacados','Destacados',$parent);
-		$install[] = $this->__installTabs('adminExperiencias','Experiencias',$parent);
+		//$install[] = $this->__installTabs('adminWebservices','Webservices',$parent);
+		$install[] = $this->__installTabs('adminHighlights','Destacados',$parent);
+		//$install[] = $this->__installTabs('adminExperiencias','Experiencias',$parent);
 		
-		echo "<pre>"; print_r($install); echo "</pre>";
-		die();
+		$sql = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'highlights` (
+				  `id_highlight` int(11) NOT NULL AUTO_INCREMENT,
+				  `active` int(1) NOT NULL,
+				  PRIMARY KEY (`id_highlight`),
+				  KEY `active` (`active`)
+				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;';
 		
-		if (!parent::install() || !in_array(0,$install))
+		if(!file_exists(_PS_IMG_DIR_.'highlights'))
+			mkdir(_PS_IMG_DIR_.'highlights',755);
+		
+
+		
+		if (!parent::install() || in_array(0,$install) || !Db::getInstance()->Execute($sql))
 			return false;
 		return true;
 	}
@@ -48,8 +57,8 @@ class matisses extends Module
 				$tab->name[$lang['id_lang']] = $name;
 				
 			$tab->id_parent = $parent;
-			$tab->module = $this->name;
-			
+			$tab->module 	= $this->name;
+			$tab->add(); 
 			if($page && $title)
 			{
 				$meta = new Meta();
@@ -61,6 +70,8 @@ class matisses extends Module
 					
 				if($url_rewrite)
 				$meta->url_rewrite	= Tools::link_rewrite($url_rewrite);
+				$meta->add(); 
+				
 			}
 			return true;
 			
@@ -69,7 +80,9 @@ class matisses extends Module
 		}
 		
 	}
-	
+	/***********************************************
+	*	INSTALACIÓN
+	***********************************************/	
 	public function uninstall()
 	{
 		
@@ -78,7 +91,14 @@ class matisses extends Module
 		$uninstall[] = $this->__uninstallTabs('adminWebservices');
 		$uninstall[] = $this->__uninstallTabs('adminMatisses');
 		
-		if (!parent::uninstall() || in_array(false,$uninstall))
+		
+		$sql = 'DROP TABLE IF EXISTS `'._DB_PREFIX_.'highlights`;';
+		
+		if(file_exists(_PS_IMG_DIR_.'highlights'))
+			Tools::deleteDirectory(_PS_IMG_DIR_.'highlights');
+
+		
+		if (!parent::uninstall() || in_array(0,$uninstall) || !Db::getInstance()->Execute($sql))
 			return false;
 		return true;
 	}

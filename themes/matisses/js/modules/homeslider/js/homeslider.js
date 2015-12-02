@@ -43,7 +43,7 @@ $(document).ready(function(){
 	if ($('#htmlcontent_top').length > 0)
 		$('#homepage-slider').addClass('col-xs-8');
 	else
-		$('#homepage-slider').addClass('col-xs-12');
+		$('#homepage-slider').addClass('grid_12');
 
 	if (!!$.prototype.bxSlider)
 		$('#homeslider').bxSlider({
@@ -52,11 +52,11 @@ $(document).ready(function(){
 			slideWidth: homeslider_width,
 			infiniteLoop: homeslider_loop,
 			hideControlOnEnd: true,
-			pager: false,
+			pager: true,
 			autoHover: true,
 			auto: homeslider_loop,
 			speed: parseInt(homeslider_speed),
 			pause: homeslider_pause,
-			controls: true
+			controls: false
 		});
 });

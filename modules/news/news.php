@@ -571,7 +571,7 @@ class News extends Module {
                 $trads = $this->getTranslations((int) ($new['id_news']));
                 $obj->title = $trads[$id_lang]['title'];
                 $obj->rewrite = Tools::str2url($trads[$id_lang]['title']);
-                $obj->autor = $new['autor'];
+                $obj->autor = $new['autor']; 
                 $obj->date = ($new['date'] != 0 ? ( $this->_months[date('n', $new['date'])] . ' ' . date('j', $new['date']) . ', ' . date('Y', $new['date']) ) : '');
                 $obj->new = strip_tags($trads[$id_lang]['new']);
                 $obj->img = '';
@@ -648,27 +648,36 @@ class News extends Module {
                 AND id_news IN ( SELECT id_new AS id_news FROM ' . _DB_PREFIX_ . 'news_cats_rel WHERE id_cat=' . $catObj->id . ' )
             ORDER by pos ASC LIMIT ' . ((int) Configuration::get('NEWS_N_HOME')) . ' ');
 
+			//echo "<pre>"; print_r( $news); echo "</pre>";
+
                 if ($news) {
                     foreach ($news AS $new) {
                         $obj = (object) 'News';
                         $obj->id_cat = (int) ($catObj->id);
                         $obj->cat_rewrite = $this->getCatRewrite((int) ($catObj->id), $id_lang);
                         $obj->id_news = (int) ($new['id_news']);
+						$obj->autor = $new['autor'];
                         $trads = $this->getTranslations((int) ($new['id_news']));
                         $obj->title = $trads[$id_lang]['title'];
                         $obj->rewrite = Tools::str2url($trads[$id_lang]['title']);
                         $obj->new = strip_tags($trads[$id_lang]['new']);
-                        $obj->date = ($new['date'] > 0 ? ( $this->_months[date('n', $new['date'])] . ' ' . date('j', $new['date']) . ', ' . date('Y', $new['date']) ) : '');
-
+                       // $obj->date = ($new['date'] > 0 ? ( $this->_months[date('n', $new['date'])] . ' ' . date('j', $new['date']) . ', ' . date('Y', $new['date']) ) : '');
+						$date['year'] = date('Y',$new['date']);
+						$date['month'] = date('M',$new['date']);
+						$date['day'] = date('d',$new['date']);
+						
+						$obj->date = '<span>'.$date['day'].'</span><p>'.$date['month'].'</p><p>'.$date['year'].'</p>';
                         $obj->img = '';
                         // get images
                         $img = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS('
-                        SELECT a.id_img  FROM ' . _DB_PREFIX_ . 'news_imgs a
-                            LEFT JOIN `' . _DB_PREFIX_ . 'news_imgs_rel` b ON (a.`id_img` = b.`id_img`)
+                        SELECT * FROM ' . _DB_PREFIX_ . 'news_imgs a
+                            INNER JOIN `' . _DB_PREFIX_ . 'news_imgs_rel` b ON (a.`id_img` = b.`id_img`)
                         WHERE a.id_img IN ( SELECT id_img FROM ' . _DB_PREFIX_ . 'news_imgs_rel WHERE
                                                   id_news = ' . (int) ($new['id_news']) . ' ORDER BY pos DESC)
                        ORDER BY b.pos ASC LIMIT 1 ;  ');
-
+						
+						
+						
                         if (isset($img[0]['id_img'])) {
                             if (intval($img[0]['id_img']) > 0) {
                                 if (file_exists($this->path_to_module . '/imgs/' . $img[0]['id_img'] . '-home.' . $this->_imageType)) {
@@ -684,7 +693,7 @@ class News extends Module {
                 $count++;
             }
         }
-
+		
         $this->smarty->assign(array(
             'catsProductsObj' => $catsProducts,
             'catsObj' => $cats_list

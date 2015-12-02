@@ -270,7 +270,7 @@ ul.step li.step_current,ul.step li.step_current span:after,div.uploader span.act
 	background-color: #F8A496;
 }
 
-#header .cart_block,#languages-block-top ul,#currencies-block-top ul{
+#languages-block-top ul,#currencies-block-top ul{
 	background: rgba(31, 24, 48, 0.85);
 }
 .custombanners.displayHome h4:after,.custombanners.displayBanner:before, .custombanners.displayBanner:after,.tp-bullets.simplebullets.round .bullet,

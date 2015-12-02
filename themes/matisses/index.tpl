@@ -27,6 +27,7 @@
 <div id="index" >
 	<div id="slider" class="slider cf">
     	{hook h="displayMatSlider"}
+        {hook h="displayMatAdvertisingHome"}
     </div>
     <div id="viewed-products" class="viewed-products">
 		<div class="container">
@@ -40,9 +41,6 @@
 	</div>
     <div class="experiences">
 		<div class="container">
-
-    		<h1>{l s='Experiencias'}</h1>
-
 			<div class="btn-title cf">
 				<h1><a href="#">{l s='Experiencias'}</a></h1>
 			</div>
