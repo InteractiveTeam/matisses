@@ -211,15 +211,14 @@ ul li.category-thumbnail > div, ul li#category-thumbnail > div{
 	}
 }
   @media (max-width: 767px) {
-	.sf-menu > li {
-	float: none;
-	position: relative;
-	border-right: none;
-	display: block;
+	.menu-mobile-grover {
+	position: absolute;
+	left: 60px;
+	top: 7px;
 	}
 	.sf-menu > li span {
 	position: absolute;
-	right: 6px;
+	left: 2px;
 	top: 7px;
 	width: 30px;
 	height: 30px;
@@ -231,26 +230,26 @@ ul li.category-thumbnail > div, ul li#category-thumbnail > div{
 	font-size: 22px;
 	}
 	.menu-mobile-grover{
-		cursor: pointer;
+	cursor: pointer;
 	}
 	.sf-menu > li span.active:after {
-		content: '\e804';
+	content: '\e804';
 	}
 }
 @media (max-width: 767px) {
 	.sf-menu li ul {
-		top: 0;
+	top: 0;
 	}
 }
 @media (max-width: 767px) {
 	.sf-menu > li > ul > li {
-		width: 50%;
+	width: 50%;
 	}
 }
 @media (max-width: 480px) {
 	.sf-menu > li > ul > li {
-		width: 100%;
-		text-align: left;
+	width: 100%;
+	text-align: left;
 	}
 }
 @media (min-width: 768px) {
@@ -258,24 +257,24 @@ ul li.category-thumbnail > div, ul li#category-thumbnail > div{
 	padding: 0;
 	}
 	.sf-menu > li > ul > li.first-in-line-lg {
-		clear: left;
+	clear: left;
 	}
 	#block_top_menu ul li.category-thumbnail, #block_top_menu ul li#category-thumbnail{
-		text-align: right;
+	text-align: right;
 	}
 
 }
 @media (min-width: 480px) and (max-width: 767px) {
 	.sf-menu > li > ul > li.first-in-line-xs {
-		clear: left;
+	clear: left;
 	}
 }
 @media (max-width: 479px) {
 	.sf-menu > li > ul > li#category-thumbnail > div {
-		width: 100%;
-		padding-left: 0;
-		padding-top: 10px;
-		text-align: center;
+	width: 100%;
+	padding-left: 0;
+	padding-top: 10px;
+	text-align: center;
 	}
 }
 @media (max-width: 767px) {
@@ -312,13 +311,12 @@ ul li.category-thumbnail > div, ul li#category-thumbnail > div{
 	.cat-title.active:after {
 	content: '\e804';
 	}
-
-#block_top_menu ul li.category-thumbnail,
-#block_top_menu ul li#category-thumbnail{
+	#block_top_menu ul li.category-thumbnail,
+	#block_top_menu ul li#category-thumbnail{
 	width: 100%;
-}
-.sf-menu li ul{
+	}
+	.sf-menu li ul{
 	position: static;
 	margin: 0;
-}
+	}
 }

@@ -70,12 +70,12 @@ function desktopInit()
 	$('.sf-menu').removeAttr('style');
 	categoryMenu.superfish('init');
 	//add class for width define
-	$('.sf-menu > li > ul').addClass('submenu-container clearfix'); 
+	$('.sf-menu > li > ul').addClass('submenu-container clearfix');
 	 // loop through each sublist under each top list item
     $('.sf-menu > li > ul').each(function(){
         i = 0;
         //add classes for clearing
-        $(this).each(function(){ 
+        $(this).each(function(){
             if ($(this).attr('id') != "category-thumbnail"){
                 i++;
                 if(i % 2 == 1)
@@ -86,7 +86,7 @@ function desktopInit()
         });
     });
 }
-
+//$('.sf-menu').css{('display','none')};
 function mobileInit()
 {
 
@@ -97,6 +97,7 @@ function mobileInit()
 		$(this).toggleClass('active').parent().find('ul.menu-content').stop().slideToggle('medium');
 		return false;
 	});
+
 
 	$('.sf-menu > li > ul').addClass('menu-mobile clearfix').parent().prepend('<span class="menu-mobile-grover"></span>');
 
@@ -115,9 +116,9 @@ function mobileInit()
 		return false;
 	});
 
-	
+
 	$('#block_top_menu > ul:first > li > a').on('click touchstart', function(e){
-		var parentOffset = $(this).prev().offset(); 
+		var parentOffset = $(this).prev().offset();
 	   	var relX = parentOffset.left - e.pageX;
 		if ($(this).parent('li').find('ul').length && relX >= 0 && relX <= 20)
 		{
@@ -136,7 +137,7 @@ function mobileInit()
 			}
 		}
 	});
-	
+
 }
 
 // change the menu display at different resolutions
