@@ -905,8 +905,20 @@
 	top: 0.4375rem;
 	}
 	.menu-mobile li a {
-    padding-left: 0;
+    padding: 30px 20px;
+    color: #a5a5a5;
+    font-family: 'Conv_trade-gothic-no-18-condense';
+    font-size: 16px;
+    border-top: 0.0625rem solid #151515;
+    border-bottom: 0.0625rem solid #353535;
+    display: block;
 	}
+	.menu-mobile {
+    background: #212121;
+    z-index: 10;
+    position: relative;
+	}
+
 	.header-container .main_panel.cf{
 	height: auto;
 	box-shadow:none;
@@ -920,10 +932,12 @@
 	nav#block_top_menu {
     position: absolute;
     left: 0;
+	padding: 0;
 	}
 	#menu.menu-experiencias{
 	position: absolute;
-	top: 10rem;
+	top: 10.9375rem;
+	text-align: center;
 	}
 	.menu-mobile{
 	display: none;
@@ -963,24 +977,30 @@
 	position: absolute;
 	right: 0;
 	}
-	.right-down-menu #search a {
-    margin: 1.25rem 0 0 4.375rem;
+	#search {
+    position: absolute;
+    left: 125px;
+    top: 15px;
 	}
 	.shopping_cart{
 	background: none;
 	}
 	.products_block .owl-controls{
-	top:3.75rem;
+	top: inherit;
+    bottom: -2.5rem;
+    left: 7.5rem;
 	}
 	/*zona perfil*/
 	#user{
-	min-width: 5.625rem;
+	min-width: 4.375rem;
+	padding: 0.625rem;
 	}
 	#user .login{
 	display: none;
 	}
 	.user-profile{
 	display: block;
+	margin: 0 auto;
 	}
 
 	/*slider*/
@@ -990,8 +1010,9 @@
 
 	/*Content*/
 	.index h1 {
-    margin: 0;
+	margin: 0;
 	font-size: 1.875rem;
+	margin-right: 0.3125rem;
 	}
 
 	/*productos visualizados*/
@@ -1003,24 +1024,21 @@
 	.products-block {
     margin-top: 1.875rem;
 	}
+	.products_block .owl-carousel{
+	position: relative;
+	}
 	.btn-view-products a.btn.btn-default {
-    border: 1px solid;
-    border-radius: 50%;
-    text-indent: 99em;
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    background: #D9292E;
-    padding: 0;
-	}
-	.owl-wrapper {
-    width: 100% !important;
-	}
-	.new-products .owl-item {
-    width: 100% !important;
+	background: url("../../img/icon-ver-mas.png") 0 center no-repeat;
+	text-indent: 99em;
+	display: inline-block;
+	padding: 0;
+	border: none;
+	width: 25px;
+	height: 25px;
 	}
 	.new-products .owl-item {
     margin-left: 0;
+	width: 18.125rem !important;
 	}
 
 	/*destacados*/
@@ -1102,10 +1120,10 @@
 	.column-1 li:first-child a {
     border-top: none;
 	}
-	.column-3 li:last-child a {
-    border-bottom: none;
-	}
 	.footer-down {
     text-align: center;
+	}
+	.menu-footer {
+    margin-bottom: 3.125rem;
 	}
 }

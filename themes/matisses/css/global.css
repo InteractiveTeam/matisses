@@ -2,27 +2,25 @@
 
 /*fuentes*/
 @font-face {
-	font-family: 'Conv_trade-gothic-bold-condensed-no';
-	src: url('../font/trade-gothic-bold-condensed-no.eot');
-	src: url('../font/trade-gothic-bold-condensed-no.woff') format('woff'), url('../font/trade-gothic-bold-condensed-no.ttf') format('truetype'), url('../font/trade-gothic-bold-condensed-no.svg') format('svg');
-	font-weight: normal;
-	font-style: normal;
+font-family: 'Conv_trade-gothic-bold-condensed-no';
+src: url('../font/trade-gothic-bold-condensed-no.eot');
+src: url('../font/trade-gothic-bold-condensed-no.woff') format('woff'), url('../font/trade-gothic-bold-condensed-no.ttf') format('truetype'), url('../font/trade-gothic-bold-condensed-no.svg') format('svg');
+font-weight: normal;
+font-style: normal;
 }
-
 @font-face {
-	font-family: 'Conv_trade-gothic-lh-extended-bold';
-	src: url('../font/trade-gothic-lh-extended-bold.eot');
-	src: url('../font/trade-gothic-lh-extended-bold.woff') format('woff'), url('../font/trade-gothic-lh-extended-bold.ttf') format('truetype'), url('../font/trade-gothic-lh-extended-bold.svg') format('svg');
-	font-weight: normal;
-	font-style: normal;
+font-family: 'Conv_trade-gothic-lh-extended-bold';
+src: url('../font/trade-gothic-lh-extended-bold.eot');
+src: url('../font/trade-gothic-lh-extended-bold.woff') format('woff'), url('../font/trade-gothic-lh-extended-bold.ttf') format('truetype'), url('../font/trade-gothic-lh-extended-bold.svg') format('svg');
+font-weight: normal;
+font-style: normal;
 }
-
 @font-face {
-	font-family: 'Conv_trade-gothic-no-18-condense';
-	src: url('../font/trade-gothic-no-18-condense.eot');
-	src: url('../font/trade-gothic-no-18-condense.woff') format('woff'), url('../font/trade-gothic-no-18-condense.ttf') format('truetype'), url('../font/trade-gothic-no-18-condense.svg') format('svg');
-	font-weight: normal;
-	font-style: normal;
+font-family: 'Conv_trade-gothic-no-18-condense';
+src: url('../font/trade-gothic-no-18-condense.eot');
+src: url('../font/trade-gothic-no-18-condense.woff') format('woff'), url('../font/trade-gothic-no-18-condense.ttf') format('truetype'), url('../font/trade-gothic-no-18-condense.svg') format('svg');
+font-weight: normal;
+font-style: normal;
 }
 
 /*General styles*/
@@ -39,80 +37,64 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline; }
+margin: 0;
+padding: 0;
+border: 0;
+font: inherit;
+font-size: 100%;
+vertical-align: baseline;
+}
 
 *,
 *:before,
 *:after {
-	box-sizing: border-box;
+box-sizing: border-box;
 }
-
 *:first-child {margin-top: 0;}
-
 *:last-child {margin-bottom: 0;}
 
 .cf:before, .cf:after { content: ""; display: table; }
 .cf:after { clear: both; }
 
-html {line-height: 1; }
-
-ol, ul {list-style: none; }
-
-table {
+	html {line-height: 1; }
+	ol, ul {list-style: none; }
+	table {
 	border-collapse: collapse;
 	border-spacing: 0; }
-
-caption, th, td {
+	caption, th, td {
 	text-align: left;
 	font-weight: normal;
 	vertical-align: middle; }
-
-q, blockquote {
+	q, blockquote {
 	quotes: none; }
 	q:before, q:after, blockquote:before, blockquote:after {
 	content: "";
 	content: none; }
-
-a img {
+	a img {
 	border: none; }
-
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
 	display: block; }
-
-a,button{
+	a,button{
 	-webkit-transition: color .6s ease,background .6s ease,border-color .6s ease;
 	-o-transition: color .6s ease,background .6s ease,border-color .6s ease;
 	-moz-transition: color .6s ease,background .6s ease,border-color .6s ease;
 	transition: color .6s ease,background .6s ease,border-color .6s ease;
-}
-
-a{	color: inherit;}
-
-a, a:hover,a:active,a:focus {
+	}
+	a{color: inherit;}
+	a, a:hover,a:active,a:focus {
 	text-decoration: none;
 	outline: none;
-}
-
-sup { top: -.2em; }
-
-#page { overflow: hidden;}
-
-body.content_only {	background: none;}
-
-textarea {resize: none;}
-
+	}
+	sup { top: -.2em; }
+	#page { overflow: hidden;}
+	body.content_only {	background: none;}
+	textarea {resize: none;}
 /*end general styles*/
 
 /*Header*/
 .header-container {
 	min-height: 8.75rem;
 	}
-
 .index h1{
 	color: #000;
 	text-align: center;
@@ -124,82 +106,50 @@ textarea {resize: none;}
 	display: inline-block;
 	vertical-align: top;
 	}
-
 	.header-container .main_panel.cf {
     box-shadow: 0px 4px 9px 0px rgba(50, 50, 50, 0.37);
     height: 8.75rem;
 	z-index: 10;
 	}
-
 	#header_logo {
 	text-align: center;
 	}
-
 	#header,.main_panel,#header_logo img,#header_logo span{
 	-webkit-transition:all .36s ease;
 	-o-transition:all .36s ease;
 	-moz-transition:all .36s ease;
 	transition:all .36s ease;
 	}
-
-	#header_logo span{
-	font-size: 24px;
-	line-height: 1;
-	padding-left: 16px;
-	font-weight: bold;
-	font-family: 'MuseoSansCyrl700','Open Sans';
-	text-transform: uppercase;
-	display: inline-block;
-	vertical-align: middle;
-	}
-
 	#header_logo img{
 	display: inline-block;
 	vertical-align: middle;
 	}
-
-	.fixedHeader #header_logo img{
-	padding: 0 8% 0 0;
-	}
-
-	.fixedHeader #header_logo span{
-	font-size: 18px;
-	padding-left: 0;
-	}
-
 	header {
 	z-index: 1;
 	width: 100%;
 	}
-
 	header .banner {
 	background: black;
 	max-height: 100%;
 	}
-
 	header .banner .row {
 	margin: 0px;
 	}
-
 	header .nav {
 	line-height: 37px;
 	height: 53px;
 	padding-top: 8px;
 	}
-
 	header .nav nav {
 	width: 100%;
 	position: relative;
 	}
-
 	header .row {
 	position: relative;
 	}
-
 	header .row > .container {
 	position: relative;
 	}
-
 	.logo-desktop {
     padding: 1.875rem 0;
     display: block;
@@ -208,12 +158,10 @@ textarea {resize: none;}
 	-moz-transition:all .36s ease;
 	transition:all .36s ease;
 	}
-
 	.logo-sticky {
     display: none;
 	transition:all .36s ease;
 	}
-
 	.fixedHeader  .logo-sticky{
 	display: block;
 	-webkit-transition:all .36s ease;
@@ -231,15 +179,12 @@ textarea {resize: none;}
 	.menu-left{
 	padding: 1.875rem 0 0 0;
 	}
-
 	.menu li {
 	display: inline-block;
 	}
-
 	.left-up-menu .menu li:first-child a {
 	padding-left: 0;
 	}
-
 	.left-up-menu .menu li a{
 	font-size:1rem;
 	font-family: 'Conv_trade-gothic-no-18-condense';
@@ -247,40 +192,34 @@ textarea {resize: none;}
 	padding:0.9375rem;
 	text-transform: capitalize;
 	}
-
 	.menu li a:hover{
 	color:#d9282e;
 	}
-
 	.left-up-menu {
 	border-bottom: 1px solid #ccc;
 	padding: 0 0 1.25rem 1.875rem;
 	}
-
 	.left-down-menu {
 	padding: 0;
 	}
-
 	.left-down-menu .menu-experiencias li{
-	background: url("../img/sprite-01.png") 0 0 no-repeat;
+	background: url("../img/sprite-menu-top.png") 0 0 no-repeat;
 	}
-
+	.left-down-menu #experiencias {
+    background-position: 0 -43px;
+	}
 	.left-down-menu #wishlist{
-	background-position: 0 0;
+	background-position: 0 -3px;
 	}
-
 	.left-down-menu #giftlist{
-	background-position: 0 -18px;
+	background-position: 0 -23px;
 	}
-
 	.menu-experiencias {
-	padding: 1.5625rem 0 1.25rem 0;
+	padding: 1.5625rem 0 1.25rem 0.625rem;
 	}
-
 	.menu-experiencias li {
 	display: inline-block;
 	}
-
 	.menu-left li a{
 	font-size:1.0625rem;
 	font-family: "Conv_trade-gothic-bold-condensed-no";
@@ -288,12 +227,10 @@ textarea {resize: none;}
 	padding:0 1.25rem 0 1.5625rem;
 	text-transform: uppercase;
 	}
-
 	.menu-left li a:hover,
 	.menu-right li a:hover{
 	color: #d7162f;
 	}
-
 	.sf-menu > li > a {
 	text-transform: uppercase;
 	display: block;
@@ -302,38 +239,31 @@ textarea {resize: none;}
 	font-family: "Conv_trade-gothic-bold-condensed-no";
 	color: #000;
 	}
-
 	.right-up-menu{
 	border-bottom: 1px solid #ccc;
 	padding: 0;
 	}
-
 	.right-up-menu > ul{
 	float: right;
 	}
+	#redes { vertical-align: middle; }
+	#social_block li {padding: 0 1.25rem;}
 
-#redes { vertical-align: middle; }
-
-#social_block li {padding: 0 1.25rem;}
-
-	.right-down-menu{ padding: 1.25rem 1.875rem 0 0; }
-
+	.right-down-menu{
+	padding: 1.25rem 1.875rem 0 0;
+	}
 	.right-down-menu > ul{
 	float: right;
 	}
-
 	.right-down-menu li a{
-	background: url("../img/sprite-03.png") 0 0 no-repeat;
+	background: url("../img/sprite-menu-top.png") 0 0 no-repeat;
 	}
-
-	.right-down-menu #experiencias a{
-	background-position: 0 0;
-	}
-
 	.right-down-menu #chat a{
-	background-position: 0 -19px;
+	background-position: 0 -60px;
 	}
-
+	.right-down-menu #blog a{
+	background-position: 0 -80px;
+	}
 	.right-down-menu #search a{
 	text-indent: 99em;
 	display: inline-block;
@@ -342,16 +272,11 @@ textarea {resize: none;}
 	width: 31px;
 	padding-top: 10px;
 	padding-right: 0;
-
 	}
 
-	li#chat a {
+	#chat a {
 	position: static !important;
 	left: 0!important;
-	}
-
-	.right-down-menu #blog{
-	background-position: 0 -39px;
 	}
 
 	#menu-right {
@@ -399,8 +324,7 @@ textarea {resize: none;}
 
 	.menu-right #cart {
 	background: url("../img/shopping.png") center 5px no-repeat #000;
-	width: 5.9375rem;
-	height: 3.4375rem;
+	width: 5rem;
 	position: relative;
 	}
 
@@ -1489,7 +1413,8 @@ table.table_block td {
 	}
 
 	.block .products-block .item .products-block-image img {
-	width: 100%;
+	margin: 0 auto;
+	display: block;
 	}
 	.products_block {
 	position: relative;

@@ -76,7 +76,7 @@ Product list Styles
 }
 .product_list .color-list-container,.product_list .product-flags {
 	display: none;
-	
+
 }
 .product_list .product-image-container,.c_item .product-image-container {
 	position: relative;
@@ -108,7 +108,7 @@ Product list Styles
 	margin-right: 2px;
 }
 /*******************************************************
-Product list(Grid) Styles 
+Product list(Grid) Styles
 ********************************************************/
 .category_list.grid .inner-product-list{
 	font-size: 0;
@@ -187,7 +187,8 @@ Product list(Grid) Styles
 }
 .product_list.category_list.grid .product-container{
 	padding-bottom: 30px;
-}
+	cursor: pointer;
+	}
 .product_list.category_list .product-container{
 	border-style:solid;
 	border-width:1px;
