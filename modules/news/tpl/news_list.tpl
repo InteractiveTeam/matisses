@@ -23,7 +23,7 @@
                  {foreach from=$catsObj item='cats' name=myLoop}
                         <div class="{if $smarty.foreach.myLoop.last}news_last_item{else}news_first_item{/if}"><a
                                 class="{if $cat==$cats->id} newsMenuHover_{$menu_position}_selected{/if} newsItemMenu newsMenuHover_{$menu_position}"
-                               href="{$link->getModuleLink('news', 'list', 
+                               href="{$link->getModuleLink('news', 'list',
                                                             [
                                                                 'cat_news' => "{$cats->id}",
                                                                 'page_cat' => 0,
@@ -54,9 +54,9 @@
         {/if}
     {/if}
 	{foreach from=$newsObj item='news' name=myLoop}
-        
-        
-    <a onclick="document.location = '{$link->getModuleLink('news', 'new', 
+
+
+    <a onclick="document.location = '{$link->getModuleLink('news', 'new',
                                                             [
                                                                 'id_news'  => "{$news->id_news}",
                                                                 'cat_news' => "{if $cat}{$cat}{/if}",
@@ -65,8 +65,8 @@
                                                                 'cat_rewrite'  => "{$cat_rewrite}"
                                                              ]
 
-                                                            ,false)}'" 
-        href="{$link->getModuleLink('news', 'new', 
+                                                            ,false)}'"
+        href="{$link->getModuleLink('news', 'new',
                                                             [
                                                                 'id_news'  => "{$news->id_news}",
                                                                 'cat_news' => "{if $cat}{$cat}{/if}",
@@ -112,7 +112,7 @@
 	{if $ajaxPager}
         {if $showPagerAjax}
             <a alt="{l s='Next News' mod='news'}" class="newsPager page_more"
-               href="{$link->getModuleLink('news', 'list', 
+               href="{$link->getModuleLink('news', 'list',
                                                             [
                                                                 'cat_news' => "{$cat}",
                                                                 'page_cat' => "{$page+1}",
@@ -122,7 +122,7 @@
                                                              ]
 
                                                             ,false)}"
-               onclick="news_ajax('{$link->getModuleLink('news', 'list', 
+               onclick="news_ajax('{$link->getModuleLink('news', 'list',
                                                             [
                                                                 'cat_news' => "{$cat}",
                                                                 'page_cat' => "{$page+1}",
@@ -142,7 +142,7 @@
                         {if $page != 0}
                             {assign var='p_previous' value=$page-1}
                 <li id="newsPagination_previous">
-                    <a  href="{$link->getModuleLink('news', 'list', 
+                    <a  href="{$link->getModuleLink('news', 'list',
                                                             [
                                                                 'cat_news' => "{$cat}",
                                                                 'page_cat' => "{$p_previous}",
@@ -158,7 +158,7 @@
                             {if $page == $smarty.section.pagination.index-1}
                 <li class="current"><span>{$page+1|escape:'htmlall':'UTF-8'}</span></li>
                             {else}
-                <li><a href="{$link->getModuleLink('news', 'list', 
+                <li><a href="{$link->getModuleLink('news', 'list',
                                                             [
                                                                 'cat_news' => "{$cat}",
                                                                 'page_cat' => "{$smarty.section.pagination.index-1}",
@@ -173,7 +173,7 @@
 
                         {if $pages > 0 AND $page != $pages}
                             {assign var='p_next' value=$page+1}
-                <li id="newsPagination_next"><a href="{$link->getModuleLink('news', 'list', 
+                <li id="newsPagination_next"><a href="{$link->getModuleLink('news', 'list',
                                                             [
                                                                 'cat_news' => "{$cat}",
                                                                 'page_cat' => "{$p_next}",

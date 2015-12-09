@@ -95,14 +95,16 @@ box-sizing: border-box;
 .header-container {
 	min-height: 8.75rem;
 	}
-.index h1{
+h1{
+	font-family: "Conv_trade-gothic-bold-condensed-no";
 	color: #000;
+	text-transform: uppercase;
+}
+.index h1{
 	text-align: center;
 	margin-bottom: 2.1875rem;
 	margin-right: 1.25rem;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
 	font-size: 3rem;
-	text-transform: uppercase;
 	display: inline-block;
 	vertical-align: top;
 	}
@@ -388,10 +390,11 @@ box-sizing: border-box;
 	}
 
 /*content page*/
-	.index p {
+	p {
     font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 1.125rem;
 	color:#777676;
+	line-height: normal;
 	}
 
 /*HOME*/
@@ -532,6 +535,8 @@ box-sizing: border-box;
 	.new-products .product-description{
 	background-color: #f8f8f8;
 	padding: 1.5625rem;
+	min-height: 6.5625rem;
+	display: block;
 	}
 	.rate_left_product {
 	display: none;
@@ -588,6 +593,9 @@ box-sizing: border-box;
 	}
 	.destacados .info{
 	position: relative;
+	}
+	.destacados .info img {
+    width: 100%;
 	}
 	.destacados .info .mask{
 	background: rgba(55, 54, 54, 0.9);
@@ -1450,9 +1458,7 @@ table.table_block td {
 	line-height: 1;
 	text-decoration: line-through;
 	}
-	.block .products-block .product-description {
-	display: block;
-	}
+
 	#viewed-products_block_left.block .products-block .product-description {
 	display: block;
 	}
@@ -2038,44 +2044,43 @@ font-size: 15px;
 	color: #333333; }
 
 
+/*Breadcrum*/
+.nav-breadcrum {
+    background: #272727;
+    padding: 0.625rem;
+	margin-bottom: 3.75rem;
+	}
 
 .breadcrumb {
-	display: inline-block;
+	display: block;
 	position: relative;
 	z-index: 1;
 	background: none;
-	margin:25px 0;
-	font-size: 12px;
-	text-transform: uppercase;
-	line-height: 27px;
-	height: 27px;
-	padding: 0 8px;
+	margin:0;
+	padding: 0;
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	border-radius: 0;
-}
+	text-transform: uppercase;
+	color: #fff;
+	font-family: "Conv_trade-gothic-no-18-condense";
+	font-size: 0.9375rem;
+	}
+
 .breadcrumb .navigation-pipe {
-	display: inline-block;
-	width: 15px;
-	text-align: center;
-}
+	color: #fff;
+    padding: 0 0.625rem;
+	}
 .breadcrumb a {
 	display: inline-block;
-	position: relative;
-	z-index: 2;
-}
+	color: #fff;
+	font-family: "Conv_trade-gothic-no-18-condense";
+	}
 
-
-
-
-.footer_line_two ul li a {
-	font-size: 12px;
-	font-family: 'MuseoSansCyrl500','Open Sans';
-}
 
 #reinsurance_block {
 	clear: both !important;
-}
+	}
 #short_description_content ul,
 #short_description_content ol,
 #short_description_content dl,
@@ -2083,35 +2088,35 @@ font-size: 15px;
 #tinymce ol,
 #tinymce dl {
 	margin-left: 20px;
-}
-
+	}
 .rte ul {
 	list-style-type: disc;
 	padding-left: 15px;
-}
+	}
 
 .rte ol {
 	list-style-type: decimal;
 	padding-left: 15px;
-}
+	}
 .block_hidden_only_for_screen {
 	display: none;
-}
+	}
 .cart_navigation {
 	margin: 0 0 20px;
-}
+	}
 .cart_navigation .button.button-medium{
 	float: right;
-}
+	}
 .cart_last_product {
 	display: none;
-}
+	}
 .cart_quantity .cart_quantity_input {
 	height: 27px;
 	line-height: 27px;
 	padding: 0;
 	text-align: center;
-	width: 57px; }
+	width: 57px;
+	}
 
 .cart_gift_quantity .cart_quantity_input {
 	height: 27px;
@@ -3280,6 +3285,7 @@ div.star.star_hover{
 	.menu-copyright{
 	display: inline-block;
 	padding: 1.25rem 0;
+	float: right;
 	}
 	.menu-copyright ul li:first-child {
     padding-left: 0;

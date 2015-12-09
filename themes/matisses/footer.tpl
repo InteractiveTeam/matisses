@@ -67,17 +67,13 @@
             <p>{l s='Siguenos en nuestras redes'}</p>
             <div class="fb-like" data-href="http://www.matisses.com/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
           </div>
-
-
-
-
         </div>
       </div>
     </div>
   </div>
   <div class="footer-down cf">
     <div class="container">
-      <div class="logo-copyright"> <img src="/matisses/themes/matisses/img/logo-footer.png" alt="matisses"> </div>
+      <div class="logo-copyright"> <img src="../../themes/matisses/img/logo-footer.png" alt="matisses"> </div>
       <div class="menu-copyright">
         <ul>
           <li><a href="{$link->getCMSLink(11)}">{l s='Términos y condiciones'}</a></li>
