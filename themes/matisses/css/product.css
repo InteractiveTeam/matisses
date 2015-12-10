@@ -1,8 +1,3 @@
-#product .wrap_buttons{
-	border-top-style: solid;
-	border-top-width: 1px;
-	padding: 20px 0;
-	}
 .print_prod{
 	font-size: 12px;
 	float: right;
@@ -299,14 +294,6 @@ a.fancybox-nav {
 .pb-center-column {
 	float: right;
 }
-.wrap_extra_right {
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-}
-#buy_block {
-	padding-top: 10px;
-	clear: both;
-}
 #product p#loyalty {
 	padding: 17px 0 15px 35px;
 	margin: 10px 0 0;
@@ -334,14 +321,11 @@ a.fancybox-nav {
 	padding: 0 20px 20px;
 	word-wrap: break-word;
 }
-#attributes {
-	margin: 0 -15px;
-	}
 .attribute_fieldset .chosen-container{
 	width: 100% !important;
 	}
 #attributes fieldset {
-	padding:0 15px 16px;
+	padding:0 15px 0 0;
 	float: left;
 	width: 50%;
 	}
@@ -354,10 +338,9 @@ a.fancybox-nav {
 	}
 #attributes .attribute_list .form-control option {
 	background: white;
-	color: #666666; }
-#attributes .attribute_list ul {
-	clear: both;
-}
+	color: #666666;
+	}
+
 #attributes .attribute_list input.attribute_radio {
 	float: left;
 	margin-left: 3px;
@@ -367,9 +350,6 @@ a.fancybox-nav {
 #attributes .attribute_list div.radio input {
 	float: none;
 	display: inline-block;
-}
-#attributes .attribute_list #color_to_pick_list {
-	list-style-type: none;
 }
 #attributes .attribute_list #color_to_pick_list li {
 	float: left;
@@ -498,18 +478,16 @@ a.fancybox-nav {
 	}
 
 #short_description_block {
-	clear: both;
-	float: left;
-	padding-top: 10px;
-	font-size: 12px;
-	line-height: 2;
+	padding-top: 0.625rem;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 1.875rem;
+	margin-bottom: 1.875rem;
 	}
 .pb-right-column #short_description_block .buttons_bottom_block {
-  display: none;
+	display: none;
 	}
 .pb-right-column #short_description_block #short_description_content {
-	word-wrap: break-word;
-	padding: 0 0 15px 0;
+	padding: 0;
 	}
 .pb-right-column .tag {
 	position: static;
@@ -627,28 +605,7 @@ a.fancybox-nav {
 	#availability_statut span#availability_label,
 	#availability_date_label {
 	display: inline-block; }
-	.wrap_attr{
-	clear: both;
-	font-size: 12px;
-	padding-top: 25px;
-	margin-top: 19px;
-	float: left;
-	width: 100%;
-	}
-	#buy_block,.wrap_attr{
-	border-top-style: solid;
-	border-top-width: 1px;
-	}
-	.wrap_attr label,#quantityAvailableTxtMultiple,#quantityAvailableTxt,#availability_label,#availability_date_label {
-	font-weight: 700;
-	font-family: 'MuseoSansCyrl700','Open Sans';
-	}
-	.wrap_attr li {
-	position: relative;
-	margin-bottom: 19px;
-	padding-left: 24px;
-	line-height: 1;
-	}
+
 	.wrap_attr li:before{
 	content: '';
 	display: block;
@@ -702,21 +659,12 @@ a.fancybox-nav {
 	padding-top: 10px;
 	line-height: 1.5;
 	}
-	.product_attributes {
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	}
 	#add_to_cart button {
 	width: 100%;
 	padding-top: 12px;
 	padding-bottom: 10px;
 	}
-	.buttons_bottom_block #wishlist_button {
-	font-weight: 700; }
 
-	.wrap_bottom div.price{
-	position: relative;
-	}
 /* SEND TO FRIEND (pop-in) */
 	#send_friend_form {
 	padding: 0 3px;
@@ -840,6 +788,21 @@ a.fancybox-nav {
 #product h1{
 	font-size: 2.125rem;
 	color: #d7162f;
+	margin-bottom: 1.25rem;
+	padding-bottom: 0.625rem;
+	border-bottom: 1px solid #dbdbdb;
+	}
+#product p{
+	font-family: 'Open Sans Condensed', sans-serif;
+	}
+#product ul.wrap_attr{
+	padding-left: 20px;
+	}
+#product ul.wrap_attr li{
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 1.125rem;
+	color: #777676;
+	list-style: disc;
 	}
 .print_prod{
 	display: none;
@@ -852,11 +815,26 @@ a.fancybox-nav {
     margin-bottom: 0.625rem;
 	}
 .price span {
-    color: #000;
+    color: #231f20;
 	font-family: "Conv_trade-gothic-bold-condensed-no";
 	font-size: 2.25rem;
 	}
+.product_attributes {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1.875rem;
+    margin-bottom: 1.875rem;
+	}
+.content_prices {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1.875rem;
+    margin-bottom: 1.875rem;
+}
 
+.wrap_quan {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
 
 
 

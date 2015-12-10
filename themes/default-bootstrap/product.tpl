@@ -330,7 +330,7 @@
 						</p>
 						{if isset($groups)}
 							<!-- attributes -->
-							<div id="attributes">
+							<div id="attributes" class="attributes">
 								<div class="clearfix"></div>
 								{foreach from=$groups key=id_attribute_group item=group}
 									{if $group.attributes|@count}

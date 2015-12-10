@@ -260,8 +260,7 @@
 					<div class="product_attributes cf">
 						{if isset($groups)}
 							<!-- attributes -->
-							<div id="attributes" class="cf">
-								<div class="cf"></div>
+							<div id="attributes" class="attributes cf">
 								{foreach from=$groups key=id_attribute_group item=group}
 									{if $group.attributes|@count}
 										<fieldset class="attribute_fieldset">
@@ -391,8 +390,8 @@
 						</div>
 					</div>
 					</div> <!-- end box-cart-bottom -->
-					<div class="wrap_buttons clearfix">
-						<div class="row">
+					<div class="wrap_buttons cf">
+						<div class="grid_12 omega alpha">
 							{if isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS}{$HOOK_PRODUCT_ACTIONS}{/if}
 							{if !$content_only}
 								<!-- usefull links-->

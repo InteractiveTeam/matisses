@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 <!-- Block Newsletter module-->
-<div id="newsletter_block_left" class="block">
+<div id="newsletter_block_left" class="block newsletter-footer">
 	<p>{l s='Sé el primero en descubrir las ofertas exclusivas, Las ultimas lookbooks y tendencias principales.' mod='blocknewsletter'}</p>
 	<div class="block_content">
 		<form action="{$link->getPageLink('index')|escape:'html':'UTF-8'}" method="post">
@@ -32,7 +32,7 @@
 			<div class="form-group{if isset($msg) && $msg } {if $nw_error}form-error{else}form-ok{/if}{/if}" >
 				<div class="cf">
 					<input class="inputNew form-control grey newsletter-input" id="newsletter-input" type="text" name="email" size="18" placeholder="{l s='Escriba su correo electronico' mod='blocknewsletter'}" value="{$value}" />
-	                <button type="submit" name="submitNewsletter" class="btn btn-default button button-small btn-enviar">
+
 	                <button type="submit" name="submitNewsletter" id="submitNewsletter" class="btn btn-default button button-small btn-enviar">
 	                    <span>{l s='Enviar' mod='blocknewsletter'}</span>
 	                </button>

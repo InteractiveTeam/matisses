@@ -48,7 +48,7 @@
 				</div>
 			</div>
 			<div class="info">
-				<img src="http://localhost/matisses/themes/matisses/img/destacados.jpg" alt="destacados">
+				<img src="../../themes/matisses/img/destacados.jpg" alt="destacados">
 				<div class="mask">
 					<h1>Espacio para Chaordic</h1>
 				</div>

@@ -636,9 +636,6 @@ div.checker span,div.radio span,#layered_form .color-option {
 	box-shadow: inset 0px 0px 0px 1px #fba08f;
 }
 .form-control:focus{
-	-webkit-box-shadow:0 0 10px 0 #00ceb8;
-	-moz-box-shadow:0 0 10px 0 #00ceb8;
-	box-shadow:0 0 10px 0 #00ceb8;
 	border-color: transparent;
 }
 
