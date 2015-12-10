@@ -1,17 +1,30 @@
-# Excluye todos los ficheros con extensión .log
+﻿# Excluye todos los ficheros con extensión .log
 *.log
 
 # Excluye todos los ficheros con extensión .log
 *.xml
 
 # Exluir la cache
-
 /cache
+
+# Exluir la todo lo de cache
 /cache/*
+
+# Exluir la fans.tpl
 /modules/blockfacebooklike/views/templates/hook/fans.tpl
+
+# Exluir la fans.tpl
 /themes/matisses/modules/blockfacebooklike/views/templates/hook/fans.tpl
+
+# Exluir la notes.tpl
 /_notes/
+
+# Exluir la html
 *.html
+
+# Exluir la htaccess
 *.htaccess
+
+# Exluir la fans.tpl
 *fans.tpl
 
