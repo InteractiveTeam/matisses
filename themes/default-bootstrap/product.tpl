@@ -35,7 +35,7 @@
 		{assign var='productPriceWithoutReduction' value=$product->getPriceWithoutReduct(true, $smarty.const.NULL, $priceDisplayPrecision)}
 	{/if}
 <div itemscope itemtype="http://schema.org/Product">
-	<div class="primary_block row">
+	<div class="primary_block grid_12 alpha omega">
 		{if !$content_only}
 			<div class="container">
 				<div class="top-hr"></div>
@@ -57,7 +57,7 @@
 			</p>
 		{/if}
 		<!-- left infos-->
-		<div class="pb-left-column col-xs-12 col-sm-4 col-md-5">
+		<div class="pb-left-column grid_6 alpha">
 			<!-- product img-->
 			<div id="image-block" class="clearfix">
 				{if $product->new}
@@ -146,7 +146,7 @@
 		</div> <!-- end pb-left-column -->
 		<!-- end left infos-->
 		<!-- center infos -->
-		<div class="pb-center-column col-xs-12 col-sm-4">
+		<div class="pb-center-column grid_6 omega">
 			{if $product->online_only}
 				<p class="online_only">{l s='Online only'}</p>
 			{/if}
@@ -238,7 +238,7 @@
 		</div>
 		<!-- end center infos-->
 		<!-- pb-right-column-->
-		<div class="pb-right-column col-xs-12 col-sm-4 col-md-3">
+		<div class="pb-right-column grid_6">
 			{if ($product->show_price && !isset($restricted_country_mode)) || isset($groups) || $product->reference || (isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS)}
 			<!-- add to cart form-->
 			<form id="buy_block"{if $PS_CATALOG_MODE && !isset($groups) && $product->quantity > 0} class="hidden"{/if} action="{$link->getPageLink('cart')|escape:'html':'UTF-8'}" method="post">
@@ -250,7 +250,7 @@
 					<input type="hidden" name="id_product_attribute" id="idCombination" value="" />
 				</p>
 				<div class="box-info-product">
-					<div class="content_prices clearfix">
+					<div class="content_prices cf">
 						{if $product->show_price && !isset($restricted_country_mode) && !$PS_CATALOG_MODE}
 							<!-- prices -->
 							<div>
@@ -309,7 +309,7 @@
 						{hook h="displayProductPriceBlock" product=$product type="weight"}
 						<div class="clear"></div>
 					</div> <!-- end content_prices -->
-					<div class="product_attributes clearfix">
+					<div class="product_attributes cf">
 						<!-- quantity wanted -->
 						{if !$PS_CATALOG_MODE}
 						<p id="quantity_wanted_p"{if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>

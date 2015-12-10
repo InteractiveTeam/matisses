@@ -270,3 +270,14 @@ ul li.category-thumbnail > div, ul li#category-thumbnail > div{
 	width: 100%;
 	}
 }
+
+@media screen and (max-width: 1024px){
+	.menu-content a.sf-with-ul {
+    margin-left: 0.9375rem;
+	}
+	.fixedHeader .menu-content a.sf-with-ul {
+	padding-top: 0;
+	margin-left: 0;
+	padding-bottom: 0;
+	}
+}

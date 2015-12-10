@@ -36,7 +36,7 @@
 	{/if}
 <div itemscope itemtype="http://schema.org/Product">
 	<div class="container">
-	<div class="primary_block row">
+	<div class="primary_block grid_12 alpha omega">
 		{if isset($adminActionDisplay) && $adminActionDisplay}
 			<div id="admin-action">
 				<p>{l s='This product is not visible to your customers.'}
@@ -53,9 +53,9 @@
 			</p>
 		{/if}
 		<!-- left infos-->
-		<div class="pb-left-column col-xs-12 col-md-4">
+		<div class="pb-left-column grid_6 alpha">
 			<!-- product img-->
-			<div id="image-block" class="clearfix">
+			<div id="image-block" class="cf">
 				<div class="wrap_image_block">
 				{if $have_image}
 					<span id="view_full_size">
@@ -113,7 +113,7 @@
 					{if isset($images) && count($images) > 3}
 						<span class="view_scroll_spacer">
 							<a id="view_scroll_left" class="" title="{l s='Other views'}" href="javascript:{ldelim}{rdelim}">
-							
+
 							</a>
 						</span>
 					{/if}
@@ -138,7 +138,7 @@
 					</div> <!-- end thumbs_list -->
 					{if isset($images) && count($images) > 3}
 						<a id="view_scroll_right" title="{l s='Other views'}" href="javascript:{ldelim}{rdelim}">
-							
+
 						</a>
 					{/if}
 				</div> <!-- end views-block -->
@@ -157,7 +157,7 @@
 		</div> <!-- end pb-left-column -->
 		<!-- end left infos-->
 		<!-- pb-right-column-->
-		<div class="pb-right-column col-xs-12 col-md-5">
+		<div class="pb-right-column grid_6 omega">
 			{if $product->online_only}
 				<p class="online_only">{l s='Online only'}</p>
 			{/if}
@@ -170,7 +170,7 @@
 			{/if}
 			<ul class="wrap_attr">
 			{if isset($product->manufacturer_name)}
-			<li class="man_name"><label>{l s='Brand:'} </label> 
+			<li class="man_name"><label>{l s='Brand:'} </label>
 				<span>
 					{$product->manufacturer_name}</span>
 			</li>
@@ -214,10 +214,10 @@
 					<span {if $product->quantity > 1} style="display: none;"{/if} id="quantityAvailableTxt">{l s='Item:'}</span>
 					<span {if $product->quantity == 1} style="display: none;"{/if} id="quantityAvailableTxtMultiple">{l s='Items:'}</span>
 					<span id="quantityAvailable">{$product->quantity|intval}</span>
-					
+
 				</li>
 			{/if}
-			
+
 			</ul>
 			{if $product->description_short || $packItems|@count > 0}
 				<div id="short_description_block">
@@ -257,11 +257,11 @@
 					<input type="hidden" name="id_product_attribute" id="idCombination" value="" />
 				</p>
 				<div class="box-info-product">
-					<div class="product_attributes clearfix">
+					<div class="product_attributes cf">
 						{if isset($groups)}
 							<!-- attributes -->
-							<div id="attributes" class="clearfix">
-								<div class="clearfix"></div>
+							<div id="attributes" class="cf">
+								<div class="cf"></div>
 								{foreach from=$groups key=id_attribute_group item=group}
 									{if $group.attributes|@count}
 										<fieldset class="attribute_fieldset">
@@ -275,7 +275,7 @@
 														{/foreach}
 													</select>
 												{elseif ($group.group_type == 'color')}
-													<ul id="color_to_pick_list" class="clearfix">
+													<ul id="color_to_pick_list" class="cf">
 														{assign var="default_colorpicker" value=""}
 														{foreach from=$group.attributes key=id_attribute item=group_attribute}
 															{assign var='img_color_exists' value=file_exists($col_img_dir|cat:$id_attribute|cat:'.jpg')}
@@ -309,8 +309,8 @@
 							</div> <!-- end attributes -->
 						{/if}
 					</div> <!-- end product_attributes -->
-					<div class="wrap_bottom row">
-						<div class="content_prices clearfix">
+					<div class="wrap_bottom grid_12 alpha omega">
+						<div class="content_prices cf">
 						{if $product->show_price && !isset($restricted_country_mode) && !$PS_CATALOG_MODE}
 							<!-- prices -->
 							<div class="price">
@@ -415,10 +415,10 @@
 			</div>
 		</div> <!-- end pb-right-column-->
 		<!-- center infos -->
-		
-			
-			
-		
+
+
+
+
 		<div class="pb-center-column col-xs-12 col-md-3 ">
 			{hook h='displayCustomBanners3'}
 		</div>
@@ -541,7 +541,7 @@
 										{if !$priceDisplay}{convertPrice price=$accessory.price}{else}{convertPrice price=$accessory.price_tax_exc}{/if}
 									</span>
 									<meta itemprop="priceCurrency" content="{$currency->iso_code}" />
-									
+
 									{hook h="displayProductPriceBlock" product=$accessory type="price"}
 									{hook h="displayProductPriceBlock" product=$accessory type="unit_price"}
 								{/if}
@@ -562,7 +562,7 @@
 								<span class="discount">{l s='Reduced price!'}</span>
 							{/if}
 					</div>
-					
+
 				</div>
 				<div class="wrap_view wrap_visible_hover">
 							<a itemprop="url" class="scale_hover_in lnk_view" href="{$accessory.link|escape:'html':'UTF-8'}" title="{l s='View'}">

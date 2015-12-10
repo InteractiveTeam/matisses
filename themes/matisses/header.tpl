@@ -149,12 +149,14 @@
 <div id="columns" class="cf {if $page_name !='index' && $page_name !='product' && $page_name != 'module-guestbookwithavatars-guestbook'}container{/if}">
 {if $page_name !='index' && $page_name !='pagenotfound'}
 						{if $page_name =='product' || $page_name == 'module-guestbookwithavatars-guestbook'}
-<div class="container"> {/if}
+<div class="nav-breadcrum">{/if}
   {include file="$tpl_dir./breadcrumb.tpl"}
-  {if $page_name =='product'  || $page_name == 'module-guestbookwithavatars-guestbook'} </div>
+  {if $page_name =='product'  || $page_name == 'module-guestbookwithavatars-guestbook'}
+</div>
 {/if}
 					{/if}
 {if $page_name =='index' && false}
+
 <div id="slider_row">
 	  <div id="top_column" class="center_column">
 	    <!-- hook displayTopColumn -->

@@ -3,7 +3,7 @@
     <a href="{$link->getPageLink('index.php',true)}" >{l s='Home' mod='news'}</a>
     <span class="navigation-pipe">&gt;</span>
     <span class="navigation_page">
-        <a href="{$link->getModuleLink('news', 'list', 
+        <a href="{$link->getModuleLink('news', 'list',
                                                             [
                                                                 'cat_news' => "{$cat}",
                                                                 'page_cat' => "{$page}",
@@ -29,7 +29,7 @@
                  {foreach from=$catsObj item='cats' name=myLoop}
                         <div class="{if $smarty.foreach.myLoop.last}news_last_item{else}news_first_item{/if}"><a
                                 class="{if $cat==$cats->id} newsMenuHover_{$menu_position}_selected{/if} newsItemMenu newsMenuHover_{$menu_position}"
-                               href="{$link->getModuleLink('news', 'list', 
+                               href="{$link->getModuleLink('news', 'list',
                                                             [
                                                                 'cat_news' => "{$cats->id}",
                                                                 'page_cat' => 0,
@@ -66,7 +66,7 @@
 
             {if $socialButtons[0]=='1'}
                 <!-- FACEBOOK BTN COUNT -->
-                <iframe src="http://www.facebook.com/plugins/like.php?href={$link->getModuleLink('news', 'new', 
+                <iframe src="http://www.facebook.com/plugins/like.php?href={$link->getModuleLink('news', 'new',
                                                             [
                                                                 'id_news'  => "{$id_news}",
                                                                 'cat_news' => "{$cat}",
@@ -82,7 +82,7 @@
             {if $socialButtons[1]=='1'}
             <!-- TWITTER BTN COUNT -->
             <div>
-                <a href="https://twitter.com/share" class="twitter-share-button" data-url="{$link->getModuleLink('news', 'new', 
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="{$link->getModuleLink('news', 'new',
                                                             [
                                                                 'id_news'  => "{$id_news}",
                                                                 'cat_news' => "{$cat}",
@@ -95,7 +95,7 @@
                 <script type="text/javascript" >!function(d,s,id) {ldelim}
                     var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)) {ldelim}
                         js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);
-                    } 
+                    }
                 }(document,"script","twitter-wjs");</script>
             </div>
             <!-- TWITTER BTN COUNT -->
@@ -104,7 +104,7 @@
             {if $socialButtons[2]=='1'}
             <!-- Google + BTN COUNT -->
             <!-- Place this tag where you want the +1 button to render -->
-            <div><g:plusone size="medium" href="{$link->getModuleLink('news', 'new', 
+            <div><g:plusone size="medium" href="{$link->getModuleLink('news', 'new',
                                                             [
                                                                 'id_news'  => "{$id_news}",
                                                                 'cat_news' => "{$cat}",
@@ -130,7 +130,7 @@
             <!-- linkedin BTN COUNT -->
             <div>
                 <script src="http//platform.linkedin.com/in.js" type="text/javascript"></script>
-                <script type="IN/Share" data-url="{$link->getModuleLink('news', 'new', 
+                <script type="IN/Share" data-url="{$link->getModuleLink('news', 'new',
                                                             [
                                                                 'id_news'  => "{$id_news}",
                                                                 'cat_news' => "{$cat}",
@@ -147,7 +147,7 @@
             {if $socialButtons[4]=='1'}
             <!-- pinterest BTN COUNT -->
             <div>
-                <a href="http://pinterest.com/pin/create/button/?url={$link->getModuleLink('news', 'new', 
+                <a href="http://pinterest.com/pin/create/button/?url={$link->getModuleLink('news', 'new',
                                                             [
                                                                 'id_news'  => "{$id_news}",
                                                                 'cat_news' => "{$cat}",
@@ -171,7 +171,7 @@
             {if $socialButtons[6]=='1'}
             <!-- stumbleupon BTN COUNT -->
             <div><!-- Place this tag where you want the su badge to render -->
-                <su:badge layout="2" location="{$link->getModuleLink('news', 'new', 
+                <su:badge layout="2" location="{$link->getModuleLink('news', 'new',
                                                             [
                                                                 'id_news'  => "{$id_news}",
                                                                 'cat_news' => "{$cat}",
@@ -203,7 +203,7 @@
         {if $imgsObj}
             <script type="text/javascript">
                 $(function()  {ldelim}
-                    
+
 
 				 $('#newSlideshow a').lightBox( {ldelim}
                         imageLoading:'{$url_to_module}/js/lightbox/images/loading.gif',		// (string) Path and the name of the loading icon
@@ -217,7 +217,7 @@
                     });
 
 				{if count($imgsObj)>1}
-					
+
 					$('#newGallery a').lightBox( {ldelim}
                         imageLoading:'{$url_to_module}/js/lightbox/images/loading.gif',		// (string) Path and the name of the loading icon
                         imageBtnPrev:'{$url_to_module}/js/lightbox/images/prev.png',			// (string) Path and the name of the prev button image
@@ -248,7 +248,7 @@
             <div class="newImgsContent" >
                 <div class="newSlideshow" id="newSlideshow" >
                     {foreach from=$imgsObj item='img' name=myLoop}
-                        <a href="{$img->img}" title="{$title|escape:html:'UTF-8'|truncate:220:'...'} -  {$date}"><img 
+                        <a href="{$img->img}" title="{$title|escape:html:'UTF-8'|truncate:220:'...'} -  {$date}"><img
 								src="{$img->img_slider}"  alt="" width="{$news_slideshow_width}"  height="{$news_slideshow_height}"  /></a>
                     {/foreach}
                 </div>
@@ -322,7 +322,7 @@
             <div class="relNewsContent" >
                 <div class="relNewsTitle">{l s='Related' mod='news'}</div>
                 {foreach from=$relNewsObj item='rel' name=myLoop}
-                    <a class="relNews" href="{$link->getModuleLink('news', 'new', 
+                    <a class="relNews" href="{$link->getModuleLink('news', 'new',
                                                             [
                                                                 'id_news'  => "{$rel->id}",
                                                                 'cat_news' => 0,
@@ -347,7 +347,7 @@
                   js.src = "http://connect.facebook.net/{$fbCommentsLang}/all.js#xfbml=1";
                   fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));</script>
-                <div class="fb-comments" data-href="{$link->getModuleLink('news', 'new', 
+                <div class="fb-comments" data-href="{$link->getModuleLink('news', 'new',
                                                             [
                                                                 'id_news'  => "{$id_news}",
                                                                 'cat_news' => 0,
@@ -359,12 +359,12 @@
                                                             ,false)}" data-num-posts="20" data-width="{$newsWidth-10}"></div>
             </div>
         {/if}
-        
+
         {if $prev_id_news||$next_id_news}
             <div class="newPrevNext">
                 {if $prev_id_news}
                     <a class="button" style="float: left"
-                       href="{$link->getModuleLink('news', 'new', 
+                       href="{$link->getModuleLink('news', 'new',
                                                             [
                                                                 'id_news'  => "{$prev_id_news}",
                                                                 'cat_news' => "{$cat}",
@@ -378,7 +378,7 @@
                 {/if}
                 {if $next_id_news}
                     <a class="button" style="float: right"
-                       href="{$link->getModuleLink('news', 'new', 
+                       href="{$link->getModuleLink('news', 'new',
                                                             [
                                                                 'id_news'  => "{$next_id_news}",
                                                                 'cat_news' => "{$cat}",
@@ -390,10 +390,10 @@
                                                             ,false)}"
                        >{l s='Next >' mod='news'}</a>
                 {/if}
-                
+
             </div>
         {/if}
-        
+
     </div>
 
 

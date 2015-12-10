@@ -48,7 +48,7 @@
 				</div>
 			</div>
 			<div class="info">
-				<img src="/matisses/themes/matisses/img/destacados.jpg" alt="destacados">
+				<img src="http://localhost/matisses/themes/matisses/img/destacados.jpg" alt="destacados">
 				<div class="mask">
 					<h1>Espacio para Chaordic</h1>
 				</div>
@@ -69,7 +69,7 @@
 					<li>
 						<div class="slide-left grid_6 alpha">
 							<figure>
-								<img src="/matisses/themes/matisses/img/exp-01.jpg" alt="">
+								<img src="../../themes/matisses/img/exp-01.jpg" alt="">
 								<figcaption class="cf">
 									<h2>Sky soul</h2>
 									<button class="btn btn-default buy">Ver más</button>
@@ -78,7 +78,7 @@
 						</div>
 						<div class="slide-right grid_6 omega">
 							<figure>
-								<img src="/matisses/themes/matisses/img/exp-02.jpg" alt="">
+								<img src="../../themes/matisses/img/exp-02.jpg" alt="">
 								<figcaption class="cf">
 									<h2>Over view</h2>
 									<button class="btn btn-default buy">Ver más</button>
@@ -87,7 +87,7 @@
 						</div>
 						<div class="slide-right grid_6 alpha">
 							<figure>
-								<img src="/matisses/themes/matisses/img/exp-03.jpg" alt="">
+								<img src="../../themes/matisses/img/exp-03.jpg" alt="">
 								<figcaption class="cf">
 									<h2>Cold mountain</h2>
 									<button class="btn btn-default buy">Ver más</button>
@@ -96,7 +96,7 @@
 						</div>
 						<div class="slide-right grid_6 omega">
 							<figure>
-								<img src="/matisses/themes/matisses/img/exp-04.jpg" alt="">
+								<img src="../../themes/matisses/img/exp-04.jpg" alt="">
 								<figcaption class="cf">
 									<h2>Gold line</h2>
 									<button class="btn btn-default buy">Ver más</button>

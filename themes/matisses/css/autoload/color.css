@@ -277,7 +277,7 @@ ul.step li.step_current,ul.step li.step_current span:after,div.uploader span.act
 #more_info_tabs li a{
 	background: #fff;
 }
-.tabs_carousel > li.active a, .tabs_carousel > li a:hover, div.radio span.checked:before,.breadcrumb,.owl-prev:after,.owl-next:after,#back-top a:after,.tparrows.default:after,
+.tabs_carousel > li.active a, .tabs_carousel > li a:hover, div.radio span.checked:before,.owl-prev:after,.owl-next:after,#back-top a:after,.tparrows.default:after,
 .pb-left-column #image-block #view_full_size .span_link:hover,.owl-prev:before, .owl-next:before, #back-top a:after,
 #back-top a:before,.tparrows.default:before{
 	background-color: #db1d70;
