@@ -16,6 +16,8 @@ class matisses extends Module
 		$this->description 		= $this->l('Instalador componentes matisses');
 		$this->_module 			= $this->name;
 		$this->confirmUninstall = $this->l('Si desinstala este modulo el sitio puede no funcionar correctamente, ¿Esta seguro de continuar?');
+		//!Db::getInstance()->Execute('UPDATE ps_category_lang SET name= "Inicio" WHERE id_category = 2');
+		
 	}
 	/***********************************************
 	*	INSTALACIÓN
