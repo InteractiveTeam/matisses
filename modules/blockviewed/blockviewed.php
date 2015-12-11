@@ -82,7 +82,6 @@ class BlockViewed extends Module
 	public function hookRightColumn($params)
 	{
 		$productsViewed = (isset($params['cookie']->viewed) && !empty($params['cookie']->viewed)) ? array_slice(array_reverse(explode(',', $params['cookie']->viewed)), 0, Configuration::get('PRODUCTS_VIEWED_NBR')) : array();
-
 		if (count($productsViewed))
 		{
 			$defaultCover = Language::getIsoById($params['cookie']->id_lang).'-default';
@@ -144,10 +143,17 @@ class BlockViewed extends Module
 			if (!count($productsViewedObj))
 				return;
 
-			//echo "<pre>"; print_r($productsViewedObj); echo "</pre>";
 
+			$npro= 4;
+			$nli = ceil(count($productsViewedObj)/$npro);
+			for($i=0; $i<=$nli; $i++)
+			{
+				$viewed[$i] = array_slice($productsViewedObj,($i*$npro),$npro);
+			}
+			
+			$viewed = array_filter($viewed);
 			$this->smarty->assign(array(
-				'productsViewedObj' => $productsViewedObj,
+				'viewed' => $viewed,
 				'mediumSize' => Image::getSize('medium')));
 
 			return $this->display(__FILE__, 'blockviewed.tpl');
@@ -182,8 +188,11 @@ class BlockViewed extends Module
 			}
 		}
 		$this->context->controller->addCSS(($this->_path).'blockviewed.css', 'all');
+		$this->context->controller->addCSS(($this->_path).'/bxslider/jquery.bxslider.css', 'all');
+		$this->context->controller->addJs(($this->_path).'/bxslider/jquery.bxslider.min.js', 'all');
+		$this->context->controller->addJs(($this->_path).'blockviewed.js', 'all');
 	}
-
+	
 	public function renderForm()
 	{
 		$fields_form = array(

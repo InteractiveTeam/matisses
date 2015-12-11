@@ -24,9 +24,17 @@
 *}
 <!-- Block Viewed products -->
 <div id="viewed-products_block_left" class="block">
-	<p class="title_block"><span>{l s='Productos Visualizados' mod='blockviewed'}</span></p>
+	<p class="title_block"><span>{l s='Productos Visualizados' mod='blockviewed'}</span><div><a href="#" id="reload-slider"> refresh</a></div>
+    
+    <div class="outside">
+      <p><span id="slider-next"></span> | <span id="slider-prev"></span></p>
+    </div>
+    </p>
 	<div class="block_content products-block">
-		<ul>
+		<ul class="viewedslider">
+        {foreach from=$viewed item=productsViewedObj name=myLoop2}
+        <li>
+        <ul>
 			{foreach from=$productsViewedObj item=viewedProduct name=myLoop}
 			{if $smarty.foreach.myLoop.iteration <= Configuration::get('PRODUCTS_VIEWED_NBR')}
 				<li class="item clearfix{if $smarty.foreach.myLoop.last} last_item{elseif $smarty.foreach.myLoop.first} first_item{else} item{/if}">
@@ -58,6 +66,9 @@
 				</li>
 				{/if}
 			{/foreach}
+           </li> </ul>
+          {/foreach}
+            
 		</ul>
 	</div>
 </div>
