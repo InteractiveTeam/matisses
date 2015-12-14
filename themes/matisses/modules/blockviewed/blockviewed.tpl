@@ -24,12 +24,20 @@
 *}
 <!-- Block Viewed products -->
 <div id="viewed-products_block_left" class="block">
-	<p class="title_block"><span>{l s='Productos Visualizados' mod='blockviewed'}</span><div><a href="#" id="reload-slider"> refresh</a></div>
-    
-    <div class="outside">
-      <p><span id="slider-next"></span> | <span id="slider-prev"></span></p>
-    </div>
-    </p>
+	<div class="header-viewed cf">
+		<div class="title_block">
+			<span>{l s='Productos Visualizados' mod='blockviewed'}</span>
+		</div>
+		<div class="btns-viewed">
+			<div class="reload">
+				<a href="#" id="reload-slider"> refresh</a>
+			</div>
+		    <div class="outside">
+		      	<span id="slider-next" class="next-viewed"></span>
+				<span id="slider-prev" class="prev-viewed"></span>
+		    </div>
+		</div>
+	</div>
 	<div class="block_content products-block">
 		<ul class="viewedslider">
         {foreach from=$viewed item=productsViewedObj name=myLoop2}
@@ -68,7 +76,7 @@
 			{/foreach}
            </li> </ul>
           {/foreach}
-            
+
 		</ul>
 	</div>
 </div>

@@ -123,15 +123,13 @@ Product list(Grid) Styles
 }
 .product_list.grid .product-container,.c_item .product-container{
 	position: relative;
-	text-align: center;
-	padding-bottom: 25px;
 	overflow: hidden;
 }
 .product_list.grid .wrap_view,.c_item .wrap_view{
 	z-index: 2;
 	text-align: center;
 	position: absolute;
-	top: 18%;
+	top: 30%;
 	width: 100%;
 }
 .product_list.grid .right-block,.c_item .right-block{
@@ -140,7 +138,7 @@ Product list(Grid) Styles
 	padding-top: 10px;
 }
 .product_list.grid .button-container,.c_item .button-container{
-	margin-top: 16%;
+	margin-top: 8%;
 }
 .product_list  .wrap_view>a,.c_item .wrap_view>a{
 	display: inline-block;
@@ -234,7 +232,8 @@ Product list(Grid) Styles
 }
 @media (min-width: 768px){
 	.product_list.grid .product-container:hover:before,.c_item .product-container:hover:before{
-		bottom: 50%;
+	top: 0;
+	height: 100%;
 	}
 	.product_list.grid .product-container:hover:after,.c_item .product-container:hover:after{
 		top: 50%;

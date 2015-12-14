@@ -38,7 +38,7 @@
                 {foreach from=$new_products item=product name=myLoop}
                     <div class="clearfix item product-container">
 						<div class="product-content">
-                       
+
                             <div class="rate_left_product">{hook h='displayProductListReviews' product=$product}</div>
 
 								<h2>
@@ -94,15 +94,16 @@
 											<span>{l s='Add to Compare'}</span></a>
 								{/if}
 						{/if}
-						<div class="button-container clearfix">
-                        	<a class=" btn btn_border showmore" href="{$product.link|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Descubre mas'}" data-id-product="{$product.id_product|intval}">
-											<span>{l s='Descubre mas'}</span>
+						<div class="button-container cf">
+                        	<a class="btn btn-default showmore" href="{$product.link|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Descubre más'}" data-id-product="{$product.id_product|intval}">
+											<span>{l s='Descubre más'}</span>
 							</a>
 							{if ($product.id_product_attribute == 0 || (isset($add_prod_display) && ($add_prod_display == 1))) && $product.available_for_order && !isset($restricted_country_mode) && $product.minimal_quantity <= 1 && $product.customizable != 2 && !$PS_CATALOG_MODE}
 								{if (!isset($product.customization_required) || !$product.customization_required) && ($product.allow_oosp || $product.quantity > 0)}
 									{if isset($static_token)}
-										<a class=" btn btn_border ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, "add=1&amp;id_product={$product.id_product|intval}&amp;token={$static_token}", false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}">
-											<span>{l s='Add to cart'}</span>
+										<a class=" btn btn-default
+buy-now ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, "add=1&amp;id_product={$product.id_product|intval}&amp;token={$static_token}", false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Comprar ahora'}" data-id-product="{$product.id_product|intval}">
+											<span>{l s='Comprar ahora'}</span>
 										</a>
 									{else}
 										<a class=" btn btn_border ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, 'add=1&amp;id_product={$product.id_product|intval}', false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}">

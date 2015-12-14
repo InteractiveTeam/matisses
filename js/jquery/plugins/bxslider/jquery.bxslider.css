@@ -82,15 +82,8 @@
   .bx-wrapper .bx-controls-direction a:hover:before {
     color: #333; }
 
-.bx-next {
-  right: 10px; }
-  .bx-next:before {
-    content: "\f138"; }
-
-.bx-prev {
-  left: 10px; }
-  .bx-prev:before {
-    content: "\f137"; }
+/*.bx-next { right: 10px; }*/
+/*.bx-prev { left: 10px; }*/
 
 .bx-wrapper .bx-controls-direction a.disabled {
   display: none; }

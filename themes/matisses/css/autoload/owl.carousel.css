@@ -1,4 +1,4 @@
-/* 
+/*
  * 	Core Owl Carousel CSS File
  *	v1.3.3
  */
@@ -33,7 +33,7 @@
 	-o-transition: height 500ms ease-in-out;
 	transition: height 500ms ease-in-out;
 }
-	
+
 .owl-carousel .owl-item{
 	float: left;
 }
@@ -123,10 +123,7 @@
 #index div.owl-carousel.home_carousel{
 	padding: 0 15px;
 }
-.product_list.owl-carousel .product-container,.c_item .product-container{
-	border-left-style: solid;
-	border-left-width: 1px;
-}
+
 .product_list.owl-carousel .ajax_block_product{
 	width: 100%;
 	padding: 0;

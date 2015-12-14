@@ -106,7 +106,7 @@
 										{if !$priceDisplay}{convertPrice price=$categoryProduct.price}{else}{convertPrice price=$categoryProduct.price_tax_exc}{/if}
 									</span>
 									<meta itemprop="priceCurrency" content="{$currency->iso_code}" />
-									
+
 									{hook h="displayProductPriceBlock" product=$categoryProduct type="price"}
 									{hook h="displayProductPriceBlock" product=$categoryProduct type="unit_price"}
 								{/if}
@@ -127,7 +127,7 @@
 								<span class="discount">{l s='Reduced price!' mod='productscategory'}</span>
 							{/if}
 					</div>
-					
+
 				</div>
 				<div class="wrap_view wrap_visible_hover">
 							<a itemprop="url" class="scale_hover_in lnk_view" href="{$categoryProduct.link|escape:'html':'UTF-8'}" title="{l s='View' mod='productscategory'}">
