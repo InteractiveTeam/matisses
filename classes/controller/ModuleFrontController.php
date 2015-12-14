@@ -75,6 +75,8 @@ class ModuleFrontControllerCore extends FrontController
 	 */
 	public function getTemplatePath($template)
 	{
+		echo "veme por ak";
+		
 		if (Tools::file_exists_cache(_PS_THEME_DIR_.'modules/'.$this->module->name.'/'.$template))
 			return _PS_THEME_DIR_.'modules/'.$this->module->name.'/'.$template;
 		elseif (Tools::file_exists_cache(_PS_THEME_DIR_.'modules/'.$this->module->name.'/views/templates/front/'.$template))

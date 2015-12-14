@@ -30,17 +30,55 @@ class matisses extends Module
 		$parent = (int)Tab::getIdFromClassName('adminMatisses');
 		//$install[] = $this->__installTabs('adminWebservices','Webservices',$parent);
 		$install[] = $this->__installTabs('adminHighlights','Destacados',$parent);
-		//$install[] = $this->__installTabs('adminExperiencias','Experiencias',$parent);
+		$install[] = $this->__installTabs('adminExperiences','Experiencias',$parent);
 		
 		$sql = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'highlights` (
 				  `id_highlight` int(11) NOT NULL AUTO_INCREMENT,
 				  `active` int(1) NOT NULL,
 				  PRIMARY KEY (`id_highlight`),
 				  KEY `active` (`active`)
-				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;';
+				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+				
+				CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'experiences` (
+				  `id_experience` int(11) NOT NULL AUTO_INCREMENT,
+				  `id_shop_default` int(2) NOT NULL,
+				  `position` int(3) NOT NULL,
+				  `active` int(1) NOT NULL,
+				  PRIMARY KEY (`id_experience`),
+				  KEY `active` (`active`),
+				  KEY `position` (`position`)
+				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+				
+				CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'experiences_lang` (
+				  `id_experience` int(11) NOT NULL AUTO_INCREMENT,
+				  `id_shop` int(2) NOT NULL,
+				  `id_lang` int(3) NOT NULL,
+				  `name` varchar(200) NOT NULL,
+				  `description` text,
+				  `link_rewrite` varchar(200),
+				  `meta_title` varchar(200),
+				  `meta_keywords` text,
+				  `meta_description` text,
+				  PRIMARY KEY (`id_experience`,`id_shop`,`id_lang`),
+				  KEY `active` (`active`)
+				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+				
+				CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'experiences_product` (
+				  `id_experience` int(11) NOT NULL AUTO_INCREMENT,
+				  `id_product` int(11) NOT NULL,
+				  `top` int(4) NOT NULL,
+				  `left` int(4) NOT NULL,
+				  PRIMARY KEY (`id_experience`,`id_product`)
+				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;					
+		';
+		
+		
 		
 		if(!file_exists(_PS_IMG_DIR_.'highlights'))
 			mkdir(_PS_IMG_DIR_.'highlights',755);
+			
+		if(!file_exists(_PS_IMG_DIR_.'experiences'))
+			mkdir(_PS_IMG_DIR_.'experiences',755);	
 		
 
 		
@@ -52,30 +90,37 @@ class matisses extends Module
 	private function __installTabs($class_name,$name,$parent=0,$page=NULL,$title=NULL,$description=NULL, $url_rewrite=NULL)
 	{
 		try{
-			$tab = new Tab();
-			$tab->active = 1;
-			$tab->class_name = $class_name;
-			$tab->name = array();
-			foreach (Language::getLanguages(true) as $lang)
-				$tab->name[$lang['id_lang']] = $name;
-				
-			$tab->id_parent = $parent;
-			$tab->module 	= $this->name;
-			$tab->add(); 
-			if($page && $title)
+			$id_tab = (int)Tab::getIdFromClassName($class_name);
+			if(!$id_tab)
 			{
-				$meta = new Meta();
-				$meta->page 		= $page;
-				$meta->title 		= $title;
-				
-				if($description)
-					$meta->description	= $description;
+				$tab = new Tab();
+				$tab->active = 1;
+				$tab->class_name = $class_name;
+				$tab->name = array();
+				foreach (Language::getLanguages(true) as $lang)
+					$tab->name[$lang['id_lang']] = $name;
 					
-				if($url_rewrite)
-				$meta->url_rewrite	= Tools::link_rewrite($url_rewrite);
-				$meta->add(); 
-				
-			}
+				$tab->id_parent = $parent;
+				$tab->module 	= $this->name;
+				$tab->add(); 
+				if($page && $title)
+				{
+					$meta = new Meta();
+					$meta->page 		= $page;
+					$meta->title 		= $title;
+					
+					if($description)
+						$meta->description	= $description;
+						
+					if($url_rewrite)
+					$meta->url_rewrite	= Tools::link_rewrite($url_rewrite);
+					$meta->add(); 
+					
+				}
+			}else{
+					$this->__uninstallTabs($class_name);
+					self::__installTabs($class_name,$name,$parent,$page,$title,$description, $url_rewrite);
+				 }
 			return true;
 			
 		}catch (Exception $e) {
@@ -89,16 +134,23 @@ class matisses extends Module
 	public function uninstall()
 	{
 		
-		$uninstall[] = $this->__uninstallTabs('adminExperiencias');
+		$uninstall[] = $this->__uninstallTabs('adminExperiences');
 		$uninstall[] = $this->__uninstallTabs('adminDestacados');
 		$uninstall[] = $this->__uninstallTabs('adminWebservices');
 		$uninstall[] = $this->__uninstallTabs('adminMatisses');
 		
 		
-		$sql = 'DROP TABLE IF EXISTS `'._DB_PREFIX_.'highlights`;';
+		$sql = 'DROP TABLE IF EXISTS `'._DB_PREFIX_.'highlights`;
+				DROP TABLE IF EXISTS `'._DB_PREFIX_.'experiences`;
+				DROP TABLE IF EXISTS `'._DB_PREFIX_.'experiences_lang`;
+				DROP TABLE IF EXISTS `'._DB_PREFIX_.'experiences_product`;
+		';
 		
 		if(file_exists(_PS_IMG_DIR_.'highlights'))
 			Tools::deleteDirectory(_PS_IMG_DIR_.'highlights');
+			
+		if(file_exists(_PS_IMG_DIR_.'experiences'))
+			Tools::deleteDirectory(_PS_IMG_DIR_.'experiences');	
 
 		
 		if (!parent::uninstall() || in_array(0,$uninstall) || !Db::getInstance()->Execute($sql))
