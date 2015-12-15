@@ -32,7 +32,7 @@ $(document).ready(function(){
 	mCategoryGrover = $('.sf-contener .cat-title');
 	responsiveMenu();
 	$(window).resize(responsiveMenu);
-	$("#category-thumbnail,.category-thumbnail").children('div').addClass('banner_thumb').wrap("<div class=\"col-xs-12 wrap_scale\"><div class=\"wrap_banner_item\"></div></div>");
+	$("#category-thumbnail,.category-thumbnail").children('div').addClass('banner_thumb').wrap("<div class=\"grid_4 alpha omega  wrap_scale\"><div class=\"wrap_banner_item\"></div></div>");
 	$("#category-thumbnail,.category-thumbnail").find('img').wrap("<a class=\"wrap_scale wrap_image_thumb\">");
 	$('.sf-menu').children('li').children('.sf-with-ul').each(function(){
 		var categiryLink = $(this).attr('href');

@@ -203,7 +203,7 @@
 {counter name=active_overlay assign=active_overlay}
 {if !$PS_CATALOG_MODE && $active_overlay == 1}
 	<div id="layer_cart">
-		<div class="clearfix">
+		<div class="cf">
 			<div class="layer_cart_product col-xs-12 col-md-6">
 				<span class="cross" title="{l s='Close window' mod='blockcart'}"></span>
 				<h2>

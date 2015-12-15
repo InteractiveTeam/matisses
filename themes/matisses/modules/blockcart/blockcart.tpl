@@ -81,7 +81,7 @@
 													<a href="{$link->getProductLink($product, $product.link_rewrite, $product.category, null, null, $product.id_shop, $product.id_product_attribute)|escape:'html':'UTF-8'}" title="{l s='Product detail' mod='blockcart'}">{$product.attributes_small}</a>
 												</div>
 											{/if}
-											
+
 										</div>
 										<span class="remove_link">
 											{if !isset($customizedDatas.$productId.$productAttributeId) && (!isset($product.is_gift) || !$product.is_gift)}
@@ -209,7 +209,7 @@
 {counter name=active_overlay assign=active_overlay}
 {if !$PS_CATALOG_MODE}
 	<div id="layer_cart">
-		<div class="clearfix">
+		<div class="cf">
 			<div class="layer_cart_product col-xs-12 col-md-6">
 				<span class="cross" title="{l s='Close window' mod='blockcart'}"></span>
 				<h2>
@@ -241,7 +241,7 @@
 						{l s='There is 1 item in your cart.' mod='blockcart'}
 					</span>
 				</h2>
-	
+
 				<div class="layer_cart_row">
 					<strong class="dark">
 						{l s='Total products' mod='blockcart'}
@@ -259,7 +259,7 @@
 						{/if}
 					</span>
 				</div>
-	
+
 				{if $show_wrapping}
 					<div class="layer_cart_row">
 						<strong class="dark">
@@ -299,7 +299,7 @@
 						<span class="price cart_block_tax_cost ajax_cart_tax_cost">{$tax_cost}</span>
 					</div>
 				{/if}
-				<div class="layer_cart_row">	
+				<div class="layer_cart_row">
 					<strong class="dark">
 						{l s='Total' mod='blockcart'}
 						{if $display_tax_label}
@@ -320,7 +320,7 @@
 						{/if}
 					</span>
 				</div>
-				<div class="button-container">	
+				<div class="button-container">
 					<span class="continue btn btn-default button exclusive-medium" title="{l s='Continue shopping' mod='blockcart'}">
 						<span>
 							<i class="icon-chevron-left left"></i>{l s='Continue shopping' mod='blockcart'}
@@ -330,7 +330,7 @@
 						<span>
 							{l s='Proceed to checkout' mod='blockcart'}<i class="icon-chevron-right right"></i>
 						</span>
-					</a>	
+					</a>
 				</div>
 			</div>
 		</div>
