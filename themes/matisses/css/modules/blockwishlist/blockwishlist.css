@@ -2,7 +2,6 @@
 #wishlist_button {
 	font-size: 13px;
 	position: relative;
-	padding-left: 20px;
 	display: inline-block;
 }
 #wishlist_button:before {
@@ -12,9 +11,7 @@
 	top: 0;
 	left: 0;
 }
-#wishlist_button span{
-	display: inline-block;
-}
+
 /* wishlist block */
 #wishlist_block #wishlist_block_list {
   margin: 0 0 20px 0; }
@@ -144,11 +141,7 @@ ul.wlp_bought_list li .lnkdel {
 .product_list .addToWishlist:hover i:before{
 	content: "\f004";
 }
-@media (min-width: 640px){
-	#wishlist_button:before{
-		position: absolute;
-	}
-}
+
 @media (max-width: 480px){
 #mywishlist table thead,#mywishlist table tbody{
 	display: block;

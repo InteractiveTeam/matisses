@@ -153,88 +153,6 @@
     display: block;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-	/*.sf-menu.menu-content {
-	position: relative;
-	}
-	.sf-menu.menu-content > li > ul > li {
-    display: table-cell;
-	position: relative;
-	width: 160px;
-	}
-	.sf-menu.menu-content > li > ul.submenu-container {
-	padding: 20px;
-	width: 112.5rem;
-	background: #f7f7f7;
-	}
-	.sf-menu.menu-content > li > ul.submenu-container > li > ul {
-    background: #F00;
-    position: absolute;
-	}
-	.menu-content a.sf-with-ul{
-	padding: 1.5625rem 0 1.25rem 1.875rem;
-	margin-left: 1.875rem;
-	}
-	.sf-menu.menu-content > li > ul > li a {
-	color: #414040;
-	display: block;
-	background: #fff;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
-	font-size: 1.125rem;
-	text-transform: uppercase;
-	margin: 1px;
-	padding: 10px;
-	}
-	.sf-menu.menu-content > li > ul.submenu-container > li > ul {
-    background: #F00;
-	}
-	.sf-menu.menu-content > li > ul.submenu-container > li > ul > li{
-	display: table-cell;
-	vertical-align: top;
-	}
-	.submenu-container > li ul li a {
-	color: #231f20;
-	border: none;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
-	font-size: 1.25rem;
-	display: block;
-	text-transform: uppercase;
-	background: transparent;
-	}
-	.submenu-container > li ul li > ul li{
-	display: block;
-	padding: 0;
-	}
-	.submenu-container > li ul li > ul li a {
-	font-family: 'Open Sans Condensed', sans-serif;
-	font-size: 1.125rem;
-	color:#777676;
-	border: none;
-	display: block;
-	padding: 0 0 15px 0;
-	}*/
-
-
-
-
-
-
-
-
-
-
-
-
 /*07-12-2015*/
 
 
@@ -283,8 +201,6 @@ ul li.category-thumbnail > div, ul li#category-thumbnail > div{
 	content: '\e803';
 	font-size: 22px;
 	}
-
-
 	.sf-menu > li span.active:after {
 	content: '\e804';
 	}
@@ -318,7 +234,6 @@ ul li.category-thumbnail > div, ul li#category-thumbnail > div{
 	#block_top_menu ul li.category-thumbnail, #block_top_menu ul li#category-thumbnail{
 	text-align: right;
 	}
-
 }
 @media (min-width: 480px) and (max-width: 767px) {
 	.sf-menu > li > ul > li.first-in-line-xs {
@@ -334,7 +249,6 @@ ul li.category-thumbnail > div, ul li#category-thumbnail > div{
 	}
 }
 @media (max-width: 767px) {
-
 	.cat-title {
 	display: block;
 	text-transform: uppercase;
