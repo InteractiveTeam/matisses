@@ -156,7 +156,7 @@
 /*07-12-2015*/
 
 
- /*@media (min-width: 768px) and (max-width: 1199px) {
+ @media (min-width: 768px) and (max-width: 1199px) {
 	.fixedHeader #block_top_menu {
 	padding-top: 16px;
 	}
@@ -196,7 +196,7 @@ ul li.category-thumbnail > div, ul li#category-thumbnail > div{
 	}
 
 	.sf-menu > li span:after {
-	background: url("../../../../img/icon-nav.png") 0 center no-repeat;
+	
 	font-family: "fontello";
 	content: '\e803';
 	font-size: 22px;
@@ -293,4 +293,4 @@ ul li.category-thumbnail > div, ul li#category-thumbnail > div{
 	margin-left: 0;
 	padding-bottom: 0;
 	}
-}*/
+}
