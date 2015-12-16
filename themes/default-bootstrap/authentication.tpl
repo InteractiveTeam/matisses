@@ -50,10 +50,10 @@
 	</div>
 	{/if}-->
 	<div class="row">
-		<div class="col-xs-12 col-sm-6">
+		<div class="grid_12">
 			<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="create-account_form" class="box">
-				<h3 class="page-subheading">{l s='Create an account'}</h3>
-				<div class="form_content clearfix">
+				<h2 class="page-subheading">{l s='Create an account'}</h2>
+				<div class="form_content cf">
 					<p>{l s='Please enter your email address to create an account.'}</p>
 					<div class="alert alert-danger" id="create_account_error" style="display:none"></div>
 					<div class="form-group">
@@ -73,7 +73,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="col-xs-12 col-sm-6">
+		<div class="grid_6">
 			<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="login_form" class="box">
 				<h3 class="page-subheading">{l s='Already registered?'}</h3>
 				<div class="form_content clearfix">

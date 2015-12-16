@@ -208,47 +208,44 @@ a.fancybox-nav {
 
 .view_scroll_spacer {
   margin-top: 38px; }
-/* link list */
+
 #usefull_link_block {
   list-style-type: none; }
-  #usefull_link_block li { }
-	#usefull_link_block li:first-child {
-}
+
 #product .wrap_buttons>.row{
 	margin: 0 -7px;
 }
 .elem_butt {
 	float: left;
 	width: 33.3333%;
-}
-.elem_butt > a{
-	text-align: center;
 	border: 1px solid #dbdbdb;
+	margin: 20px 15px 0 0;
+}
+.elem_butt a{
+	text-align: center;
 	padding: 15px 5px;
 	color: #F00;
+	display: block;
+}
+.elem_butt a:hover {
+    background: #E3E0E0;
 }
 
-.elem_butt > a span{
+.elem_butt a span{
 	font-family: 'Conv_trade-gothic-no-18-condense';
 }
 
-
-
-
-
-.elem_butt li a {
-	display: inline-block;
-	position: relative;
-	padding-left: 20px;
-	font-size: 12px;
+.elem_butt #wishlist_button:before {
+    font-size: 0.8125rem;
+    padding-right: 0.125rem;
 }
+
 #usefull_link_block li a:before {
 	font-family: "FontAwesome";
 	font-size: 14px;
-	position: absolute;
-	left: 0;
 	font-weight: normal;
 }
+
 #usefull_link_block li.print a:before {
 	content: "\f02f";
 }
@@ -790,6 +787,13 @@ a.fancybox-nav {
 #product p{
 	font-family: 'Open Sans Condensed', sans-serif;
 	}
+#product h3{
+	color: #231f20;
+	font-size: 1.125rem;
+	font-family: "Conv_trade-gothic-bold-condensed-no";
+	text-transform: uppercase;
+    margin-bottom: 0.625rem;
+}
 #product ul.wrap_attr{
 	padding-left: 20px;
 	}
@@ -827,15 +831,15 @@ a.fancybox-nav {
 
 .wrap_quan {
     border-bottom: 1px solid #ccc;
-    padding-bottom: 30px;
-    margin-bottom: 30px;
+    padding-bottom: 1.875rem;
+    margin-bottom: 1.875rem;
 }
 
 /*15-12-2015*/
 .add_to_cart button {
-    width: 380px;
-    font-size: 24px;
-    padding: 5px 5px;
+    width: 24.6875rem;
+    font-size: 1.5rem;
+    padding:0.3125rem;
 	color: #fff;
 }
 .add_to_cart button:hover{

@@ -37,7 +37,7 @@
 		<div id="opc_account-overlay" class="opc-overlay" style="display: none;"></div>
 {/if}
 <div class="addresses clearfix">
-	<div class="row">
+	<div class="row ">
 		<div class="col-xs-12 col-sm-6">
 			<div class="address_delivery select form-group selector1">
 				<label for="id_address_delivery">{if $cart->isVirtualCart()}{l s='Choose a billing address:'}{else}{l s='Choose a delivery address:'}{/if}</label>

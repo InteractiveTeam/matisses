@@ -41,7 +41,7 @@
 <div class="addresses clearfix">
 	<input type="hidden" name="id_address_delivery" id="id_address_delivery" value="{$cart->id_address_delivery}"/>
 	<p id="address_invoice_form" class="select" {if $cart->id_address_invoice == $cart->id_address_delivery}style="display: none;"{/if}>
-	
+
 	{if $addresses|@count >= 1}
     <div class="form-group selector1">
 		<label for="id_address_invoice" class="strong">{l s='Choose a billing address:'}</label>
@@ -55,7 +55,7 @@
 		<a href="{$link->getPageLink('address', true, NULL, "back={$back_order_page}?step=1{'&multi-shipping=1'|urlencode}{if $back}&mod={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Add'}" class="button button-small btn btn-default"><span>{l s='Add a new address'}<i class="icon-chevron-right right"></i></span></a>
 	{/if}
 	</p>
-	<div class="row">
+	<div class="row ">
     	<div class="col-sm-12 col-md-6">
             <ul class="address alternate_item {if $cart->isVirtualCart()}full_width{/if} box" id="address_invoice">
             </ul>

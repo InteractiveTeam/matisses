@@ -92,7 +92,7 @@
 {if $page_name !='index' && $page_name !='pagenotfound'}
 <div class="top_banner_wrap"> {hook h="displayBanner"} </div>
 {/if}
-<div id="columns" class="clearfix {if $page_name !='index' && $page_name !='product' && $page_name != 'module-guestbookwithavatars-guestbook'}container{/if}">
+<div id="columns" class="cf {if $page_name !='index' && $page_name !='product' && $page_name != 'module-guestbookwithavatars-guestbook'}container{/if}">
 {if $page_name !='index' && $page_name !='pagenotfound'}
 						{if $page_name =='product' || $page_name == 'module-guestbookwithavatars-guestbook'}
 <div class="container"> {/if}
@@ -102,16 +102,18 @@
 					{/if}
 					{if $page_name =='index'}
 <div id="slider_row">
-  <div id="top_column" class="center_column col-xs-12 col-sm-12">
-    <!-- hook displayTopColumn -->
-    {hook h="displayTopColumn"}
-    <!-- end hook displayTopColumn -->
-    <!-- hook displayEasyCarousel2 -->
-    {hook h='displayEasyCarousel2'}
-    <!-- end hook displayEasyCarousel2 -->
-    <!-- hook dislayCustomBanners2 -->
-    {hook h='displayCustomBanners2'}
-    <!-- end hook dislayCustomBanners2 -->
+  <div id="top_column" class="center_column">
+	<div class="container">
+	    <!-- hook displayTopColumn -->
+	    {hook h="displayTopColumn"}
+	    <!-- end hook displayTopColumn -->
+	    <!-- hook displayEasyCarousel2 -->
+	    {hook h='displayEasyCarousel2'}
+	    <!-- end hook displayEasyCarousel2 -->
+	    <!-- hook dislayCustomBanners2 -->
+	    {hook h='displayCustomBanners2'}
+	    <!-- end hook dislayCustomBanners2 -->
+	</div>
   </div>
 </div>
 {/if}

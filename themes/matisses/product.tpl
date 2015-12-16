@@ -363,6 +363,7 @@
 						<!-- quantity wanted -->
 						{if !$PS_CATALOG_MODE}
 						<div id="quantity_wanted_p"{if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
+							<h3>Cantidad</h3>
 							<input type="text" name="qty" id="quantity_wanted" class="text" value="{if isset($quantityBackup)}{$quantityBackup|intval}{else}{if $product->minimal_quantity > 1}{$product->minimal_quantity}{else}1{/if}{/if}" />
 							<div class="wrap_up_down">
 							<a href="#" data-field-qty="qty" class="button-plus product_quantity_up">

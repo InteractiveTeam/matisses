@@ -146,28 +146,30 @@
 {if $page_name !='index' && $page_name !='pagenotfound'}
 <div class="top_banner_wrap"> {*hook h="displayBanner"*} </div>
 {/if}
-<div id="columns" class="cf {if $page_name !='index' && $page_name !='product' && $page_name != 'module-guestbookwithavatars-guestbook'}container{/if}">
+<div id="columns" class="cf {if $page_name !='index' && $page_name !='product' && $page_name != 'module-guestbookwithavatars-guestbook'}{/if}">
 {if $page_name !='index' && $page_name !='pagenotfound'}
 						{if $page_name =='product' || $page_name == 'module-guestbookwithavatars-guestbook'}
-<div class="nav-breadcrum">{/if}
+{/if}
   {include file="$tpl_dir./breadcrumb.tpl"}
   {if $page_name =='product'  || $page_name == 'module-guestbookwithavatars-guestbook'}
-</div>
+
 {/if}
 					{/if}
 {if $page_name =='index' && false}
 
 <div id="slider_row">
 	  <div id="top_column" class="center_column">
-	    <!-- hook displayTopColumn -->
-	    {hook h="displayTopColumn"}
-	    <!-- end hook displayTopColumn -->
-	    <!-- hook displayEasyCarousel2 -->
-	    {hook h='displayEasyCarousel2'}
-	    <!-- end hook displayEasyCarousel2 -->
-	    <!-- hook dislayCustomBanners2 -->
-	    {hook h='displayCustomBanners2'}
-	    <!-- end hook dislayCustomBanners2 -->
+		  	<div class="container">
+			    <!-- hook displayTopColumn -->
+			    {hook h="displayTopColumn"}
+			    <!-- end hook displayTopColumn -->
+			    <!-- hook displayEasyCarousel2 -->
+			    {hook h='displayEasyCarousel2'}
+			    <!-- end hook displayEasyCarousel2 -->
+			    <!-- hook dislayCustomBanners2 -->
+			    {hook h='displayCustomBanners2'}
+			    <!-- end hook dislayCustomBanners2 -->
+			</div>
 	  </div>
 </div>
 {/if}

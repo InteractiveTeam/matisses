@@ -41,7 +41,7 @@
 			<em>01.</em> {l s='Summary'}
 		</a>
 		{else}
-			<span><em>01.</em> {l s='Summary'}</span>
+			<span>01.{l s='Summary'}</span>
 		{/if}
 	</li>
 	<li class="{if $current_step=='login'}step_current{elseif $current_step=='address'}step_done step_done_last{else}{if $current_step=='payment' || $current_step=='shipping' || $current_step=='address'}step_done{else}step_todo{/if}{/if} second">

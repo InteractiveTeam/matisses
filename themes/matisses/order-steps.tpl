@@ -41,7 +41,7 @@
 			<em>01.</em> <b>{l s='Summary'}</b>
 		</a>
 		{else}
-			<span><em>01.</em> <b>{l s='Summary'}</b></span>
+			<span>01.{l s='Summary'}</span>
 		{/if}
 	</li>
 	<li class="{if $current_step=='login'}step_current{elseif $current_step=='address'}step_done step_done_last{else}{if $current_step=='payment' || $current_step=='shipping' || $current_step=='address'}step_done{else}step_todo{/if}{/if} second">
@@ -50,7 +50,7 @@
 			<em>02.</em> <b>{l s='Sign in'}</b>
 		</a>
 		{else}
-			<span><em>02.</em> <b>{l s='Sign in'}</b></span>
+			<span>02.{l s='Sign in'}</span>
 		{/if}
 	</li>
 	<li class="{if $current_step=='address'}step_current{elseif $current_step=='shipping'}step_done step_done_last{else}{if $current_step=='payment' || $current_step=='shipping'}step_done{else}step_todo{/if}{/if} third">
@@ -59,7 +59,7 @@
 			<em>03.</em> <b>{l s='Address'}</b>
 		</a>
 		{else}
-			<span><em>03.</em> <b>{l s='Address'}</b></span>
+			<span>03.{l s='Address'}</span>
 		{/if}
 	</li>
 	<li class="{if $current_step=='shipping'}step_current{else}{if $current_step=='payment'}step_done step_done_last{else}step_todo{/if}{/if} four">
@@ -68,11 +68,11 @@
 			<em>04.</em> <b>{l s='Shipping'}</b>
 		</a>
 		{else}
-			<span><em>04.</em> <b>{l s='Shipping'}</b></span>
+			<span>04.{l s='Shipping'}</span>
 		{/if}
 	</li>
 	<li id="step_end" class="{if $current_step=='payment'}step_current{else}step_todo{/if} last">
-		<span><em>05.</em> <b>{l s='Payment'}</b></span>
+		<span>05.{l s='Payment'}</span>
 	</li>
 </ul>
 <!-- /Steps -->

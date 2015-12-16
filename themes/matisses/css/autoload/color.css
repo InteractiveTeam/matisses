@@ -41,7 +41,7 @@ span.exclusive_small,
 span.exclusive,
 span.exclusive_large,
 span.exclusive_large_disabled,.displayCustomBanners3 .inner-banner-item>a:hover,
-.btn.btn-default,.share_product a,.alert-warning,.twits_cont .twitter_btn:hover,.twits_cont .twitter_btn:hover i {
+.btn.btn-default,.share_product a,.alert-warning {
 	color: #d7162f;
 }
 #more_info_tabs li a{
@@ -49,9 +49,6 @@ span.exclusive_large_disabled,.displayCustomBanners3 .inner-banner-item>a:hover,
 }
 h3.undertitle_main,.old-price{
 	color: #666;
-}
-#short_description_block,.elem_butt li a,#idTab1{
-	color: #494056;
 }
 .print_prod{
 	color: #525252;
@@ -111,7 +108,7 @@ a:hover,.select2-container .select2-choice > .select2-chosen,#block_contact_info
 	color:#d7162f;
 }
 #product .socialsharing_product .btn.btn-default i{
-	color: #5d5d5d;
+	color: #fff;
 }
 .owl-prev,.owl-next,.tabs_carousel > li a,.product_list .product-container h5, .item_twits,
 .twits_cont .twitter_btn {
@@ -258,7 +255,7 @@ span.exclusive_large_disabled:hover:before,
 #product .wrap_up_down .button-minus:hover,.back_product,
 div.uploader span.action,.chosen-container .chosen-results li.highlighted,.label-success,
 ul.step li.step_current,ul.step li.step_current span:after,div.uploader span.action{
-	background:#00ceb8;
+	background:#D9232E;
 }
 #page .ui-slider-range.ui-widget-header.ui-corner-all{
 	background: #6f6883;
@@ -681,29 +678,22 @@ span.exclusive_large_disabled:before,
 /* social button */
 
 #social-share-compare .btn.btn-default.btn-twitter,.socialsharing_product .btn.btn-default.btn-twitter:before{
-	background-color: #00aaf0;
+	background-color: #B8B6B6;
 }
 #social-share-compare .btn.btn-default.btn-google-plus,.socialsharing_product .btn.btn-default.btn-google-plus:before{
 	background-color: #e04b34;
 }
 #social-share-compare .btn.btn-default.btn-pinterest,.socialsharing_product .btn.btn-default.btn-pinterest:before{
-	background-color: #ce1f21;
+	background-color: #dbdbdb;
 }
 #social-share-compare .btn.btn-default.btn-facebook,.socialsharing_product .btn.btn-default.btn-facebook:before {
-	background-color: #435f9f;
+	background-color: #dbdbdb;
 }
-.socialsharing_product .btn.btn-default.btn-twitter:hover,#social-share-compare .socialsharing_product .btn.btn-default.btn-twitter{
-	border-color: #00aaf0;
-}
+
 .socialsharing_product .btn.btn-default.btn-google-plus:hover,#social-share-compare .socialsharing_product .btn.btn-default.btn-google-plus{
 	border-color: #e04b34;
 }
-.socialsharing_product .btn.btn-default.btn-pinterest:hover,#social-share-compare .socialsharing_product .btn.btn-default.btn-pinterest{
-	border-color: #ce1f21;
-}
-.socialsharing_product .btn.btn-default.btn-facebook:hover,#social-share-compare .socialsharing_product .btn.btn-default.btn-facebook {
-	border-color: #435f9f;
-}
+
 .btn-facebook i {
 	color: #435f9f;
 }
@@ -713,9 +703,7 @@ span.exclusive_large_disabled:before,
 .btn-google-plus i {
 	color: #e04b34;
 }
-.btn-pinterest i {
-	color: #ce1f21;
-}
+.btn-pinterest i {}
 .alert-warning {
 	-webkit-text-shadow: 1px 0px 1px #333;
 	-moz-text-shadow: 1px 0px 1px #333;
