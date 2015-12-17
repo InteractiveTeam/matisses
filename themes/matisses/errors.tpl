@@ -24,7 +24,7 @@
 *}
 
 {if isset($errors) && $errors}
-	<div class="alert alert-danger">
+	<div class="alert alert-danger cf">
 		<p>{if $errors|@count > 1}{l s='There are %d errors' sprintf=$errors|@count}{else}{l s='There is %d error' sprintf=$errors|@count}{/if}</p>
 		<ol>
 		{foreach from=$errors key=k item=error}
@@ -32,7 +32,9 @@
 		{/foreach}
 		</ol>
 		{if isset($smarty.server.HTTP_REFERER) && !strstr($request_uri, 'authentication') && preg_replace('#^https?://[^/]+/#', '/', $smarty.server.HTTP_REFERER) != $request_uri}
-			<p class="lnk"><a href="{$smarty.server.HTTP_REFERER|escape:'html':'UTF-8'|secureReferrer}" title="{l s='Back'}">&laquo; {l s='Back'}</a></p>
+			<p class="lnk">
+				<a class="btn-red btn btn-default" href="{$smarty.server.HTTP_REFERER|escape:'html':'UTF-8'|secureReferrer}" title="{l s='Back'}">{l s='Back'}</a>
+			</p>
 		{/if}
 	</div>
 {/if}

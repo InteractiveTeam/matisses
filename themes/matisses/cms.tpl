@@ -46,7 +46,7 @@
 		{if $cms_category->description}
 			<p>{$cms_category->description|escape:'html':'UTF-8'}</p>
 		{/if}
-		{if isset($sub_category) && !empty($sub_category)}	
+		{if isset($sub_category) && !empty($sub_category)}
 			<p class="title_block">{l s='List of sub categories in %s:' sprintf=$cms_category->name}</p>
 			<ul class="bullet list-group">
 				{foreach from=$sub_category item=subcategory}

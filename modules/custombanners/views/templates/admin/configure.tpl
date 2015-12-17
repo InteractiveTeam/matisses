@@ -39,7 +39,7 @@
 {/if}
 <div class="bootstrap custombanners panel clearfix">
 	<h3><i class="icon icon-cogs"></i> {l s='General settings' mod='custombanners'}</h3>
-	<div class="col-lg-6">		
+	<div class="col-lg-6">
 		{foreach $custom_files as $type => $name}
 			<a href="#" class="custom-code" data-toggle="modal" data-target="#custom-{$type|escape:'html'}-form" title="{$name|escape:'html'}">
 				<span class="monospace">{ldelim}{rdelim}</span> {$name|escape:'html'}
@@ -87,16 +87,16 @@
 		<div class="col-lg-6 hook-settings">
 			<i class="icon icon-wrench"></i>
 			{l s='Hook settings' mod='custombanners'}:
-			<a href="#" class="callSettings" data-settings="exceptions">{l s='page exceptions' mod='custombanners'}</a> | 
+			<a href="#" class="callSettings" data-settings="exceptions">{l s='page exceptions' mod='custombanners'}</a> |
 			<a href="#" class="callSettings" data-settings="positions">{l s='module positions' mod='custombanners'}</a> |
 			<a href="#" class="callSettings" data-settings="carousel">{l s='carousel' mod='custombanners'}</a>
-		</div>		
+		</div>
 		<div class="col-lg-2 additional-add hidden">
 			<button type="button" class="addBanner btn btn-default pull-right">
 				<i class="icon icon-plus"></i> {l s='Add new banner' mod='custombanners'}
 			</button>
 		</div>
-	</form>		
+	</form>
 	<div id="settings-content" style="display:none;">{* filled dinamically *}</div>
 	{foreach $hooks item=qty key=hk}
 	<div id="{$hk|escape:'html'}" class="hook-contents {if $hk == 'displayHome'}active{/if}">
@@ -111,7 +111,7 @@
 					{include file="./banner-form.tpl" banner=$banner id_banner=$id_banner}
 				{/foreach}
 			{/if}
-		</div>		
+		</div>
 	</div>
 	{/foreach}
 	<div class="classes-wrapper" style="display:none;">

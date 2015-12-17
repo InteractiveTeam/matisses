@@ -188,15 +188,11 @@ ul li.category-thumbnail > div, ul li#category-thumbnail > div{
 	}
 	.sf-menu > li span {
 	position: absolute;
-	left: 2px;
-	top: 7px;
-	width: 30px;
-	height: 30px;
+	left: 20px;
+	top: 25px;
 	z-index: 2;
 	}
-
 	.sf-menu > li span:after {
-	
 	font-family: "fontello";
 	content: '\e803';
 	font-size: 22px;

@@ -1,50 +1,141 @@
 /**********************************************************
 				Authentication Styles
 **********************************************************/
-#account-creation_form .id_state,
-#account-creation_form .dni,
-#account-creation_form .postcode {
-  display: none; }
-.account_creation{
-  padding-top: 30px;
-}
-.authentication .page-subheading {
-  text-align: left;
-}
-#create-account_form {
-  min-height: 297px; }
-  #create-account_form p {
-    margin-bottom: 8px; }
-  #create-account_form .form-group {
+    #account-creation_form .id_state,
+    #account-creation_form .dni,
+    #account-creation_form .postcode {
+    display: none; }
+    .account_creation{
+    padding-top: 30px;
+    }
+
+    #create-account_form {
+    min-height: 297px; }
+
+    #create-account_form .form-group {
     margin: 0 0 20px 0; }
 
-#login_form {
-  min-height: 297px; }
-  #login_form .form-group {
+    #login_form {
+    min-height: 297px; }
+    #login_form .form-group {
     margin: 0 0 3px 0; }
     #login_form .form-group.lost_password {
-      margin: 14px 0 15px 0; }
-      #login_form .form-group.lost_password a {
-        text-decoration: underline; }
-        #login_form .form-group.lost_password a:hover {
-          text-decoration: none; }
-
-#login_form .form-control, #create-account_form .form-control {
-  max-width: 271px; }
-#create-account_form,#login_form{
+    margin: 14px 0 15px 0; }
+    #login_form .form-group.lost_password a {
+    text-decoration: underline; }
+    #create-account_form,#login_form{
     min-height: 320px;
-}
-#id_country_chosen {
-  display: block;
-}
+    }
+    #id_country_chosen {
+    display: block;
+    }
+
+    /**/
+    .authentication .page-subheading {
+    text-align: left;
+    background: #e1e1e1;
+    border: 1px solid #CFCECE;
+    font-family: "Conv_trade-gothic-bold-condensed-no";
+    color: #231f20;
+    margin-bottom: 1.25rem;
+    padding: 0.625rem 0.9375rem;
+    }
+    .create-account input {
+    border-radius: 0;
+    background-color: #f8f8f8;
+    border-color: #dbdbdb;
+	font-family: 'Conv_trade-gothic-no-18-condense';
+	color: #4b4b4b;
+	font-size: 1.125rem;
+    margin-top: 0.3125rem;
+    margin-bottom: 0.9375rem;
+    }
+    .create-account .lost_password {
+    text-align: right;
+    color: #7b7b7b;
+    font-family: 'Conv_trade-gothic-no-18-condense';
+    }
+    .create-account .lost_password a:hover{
+    text-decoration: underline;
+    }
+    .create-account button.button {
+    font-size: 1.125rem;
+    font-family: 'Conv_trade-gothic-no-18-condense';
+    padding: 0.3125rem 1.875rem;
+    float: right;
+    }
+    .create-account p {
+    margin-bottom: 1.25rem;
+    }
+    .lnk a.btn{
+    float: right;
+    padding: 0 1.25rem;
+    font-family: 'Conv_trade-gothic-no-18-condense';
+    }
+    .account_creation .form-group input {
+    background: #f8f8f8;
+    border-color: #dbdbdb;
+    font-family: 'Conv_trade-gothic-no-18-condense';
+    font-size: 1rem;
+    color: #757373;
+    }
+    .account_creation .form-group > label {
+    color: #4b4b4b;
+    font-family: "Conv_trade-gothic-bold-condensed-no";
+    font-size: 1rem;
+    display: block;
+    text-transform: uppercase;
+    padding-bottom: 0.625rem;
+    padding-left: 0.3125rem;
+    }
+    .account_creation .checkbox{
+    margin-bottom: 1.25rem;
+    }
+    .account_creation .checkbox label{
+    font-family: 'Conv_trade-gothic-no-18-condense';
+    color: #4b4b4b;
+    font-size: 1.0625rem;
+    }
+    .account_creation .submit{
+    margin-top: 1.875rem;
+    }
+    .account_creation button{
+    font-family: 'Conv_trade-gothic-no-18-condense';
+    }
+    .account_creation .required sup {
+    color: #d7162f;
+    font-weight: bold;
+    font-size: 1.25rem;
+    line-height: 0;
+    }
+    #account-creation_form .account_creation .form-group {
+    margin-bottom: 30px;
+    }
+    .account_creation .form-group select{
+    font-family: 'Conv_trade-gothic-no-18-condense';
+    color: #4b4b4b;
+    font-size: 1.0625rem;
+    background: #f8f8f8;
+    border-color: #dbdbdb;
+    }
+    #submitAccount {
+    padding: 0.3125rem 1.875rem;
+    font-family: 'Conv_trade-gothic-no-18-condense';
+    }
+    .account_creation .top {
+    font-family: 'Conv_trade-gothic-no-18-condense';
+    font-size: 1.125rem;
+    color:#4b4b4b;
+    }
+
 @media (max-width: 480px){
-  .id_state div.selector,#authentication div.selector,#authentication div.selector select{
+    .id_state div.selector,#authentication div.selector,#authentication div.selector select{
     width: 100% !important;
-  }
-  div.submit{
+    }
+    div.submit{
     text-align: center;
-  }
-  div.submit button{
+    }
+    div.submit button{
     width: 100%;
-  }
+    }
 }
