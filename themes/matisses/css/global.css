@@ -2,7 +2,7 @@
 
 /*fuentes*/
 @font-face {
-font-family: 'Conv_trade-gothic-bold-condensed-no';
+font-family: 'condensed';
 src: url('../font/trade-gothic-bold-condensed-no.eot');
 src: url('../font/trade-gothic-bold-condensed-no.eot#iefix') format('embedded-opentype'),
 	 url('../font/trade-gothic-bold-condensed-no.woff') format('woff'),
@@ -12,7 +12,7 @@ font-weight: normal;
 font-style: normal;
 }
 @font-face {
-font-family: 'Conv_trade-gothic-lh-extended-bold';
+font-family: 'extended';
 src: url('../font/trade-gothic-lh-extended-bold.eot');
 src: url('../font/trade-gothic-lh-extended-bold.eot#iefix') format('embedded-opentype'),
 	 url('../font/trade-gothic-lh-extended-bold.woff') format('woff'),
@@ -22,7 +22,7 @@ font-weight: normal;
 font-style: normal;
 }
 @font-face {
-font-family: 'Conv_trade-gothic-no-18-condense';
+font-family: 'gothic';
 src: url('../font/trade-gothic-no-18-condense.eot');
 src: url('../font/trade-gothic-no-18-condense.woff') format('woff'), url('../font/trade-gothic-no-18-condense.ttf') format('truetype'), url('../font/trade-gothic-no-18-condense.svg') format('svg');
 font-weight: normal;
@@ -109,7 +109,7 @@ box-sizing: border-box;
 	min-height: 8.75rem;
 	}
 	h1{
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-family: "condensed";
 	color: #231f20;
 	text-transform: uppercase;
 	}
@@ -202,7 +202,7 @@ box-sizing: border-box;
 	}
 	.left-up-menu .menu li a{
 	font-size:1rem;
-	font-family: 'Conv_trade-gothic-no-18-condense';
+	font-family: 'gothic';
 	color: #777676;
 	padding:0.9375rem;
 	text-transform: capitalize;
@@ -237,7 +237,7 @@ box-sizing: border-box;
 	}
 	.menu-left li a{
 	font-size:1.0625rem;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-family: "condensed";
 	color: #000;
 	padding:0 1.25rem 0 1.5625rem;
 	text-transform: uppercase;
@@ -309,7 +309,7 @@ box-sizing: border-box;
 
 	.right-down-menu li a {
 	color: #000;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-family: "condensed";
 	font-size: 1.0625rem;
 	padding: 0 1.25rem 0 1.5625rem;
 	text-transform: uppercase;
@@ -351,7 +351,7 @@ box-sizing: border-box;
 	width: 1.25rem;
 	height: 1.25rem;
 	color: #fff;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-family: "condensed";
 	position: absolute;
 	display: block;
 	bottom: 1.5625rem;
@@ -386,7 +386,7 @@ box-sizing: border-box;
 
 	#user .header_user_info a span {
 	color: #fff;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-family: "condensed";
 	text-transform: uppercase;
 	}
 
@@ -446,7 +446,7 @@ box-sizing: border-box;
 	.coleccion h2{
 	color: #fff8f9;
 	font-size: 1.5rem;
-	font-family: 'Conv_trade-gothic-no-18-condense';
+	font-family: 'gothic';
 	padding-bottom: 0.3125rem;
 	}
 	.coleccion p {
@@ -460,7 +460,7 @@ box-sizing: border-box;
 	.viewed-products .title_block span {
 	color: #000;
 	text-transform: uppercase;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-family: "condensed";
 	display: block;
 	font-size: 1.75rem;
 	padding-top: 0.3125rem;
@@ -490,7 +490,7 @@ box-sizing: border-box;
 	border-bottom: 1px solid #d5d5d5;
 	padding-bottom: 0.3125rem;
 	margin-bottom: 0.625rem;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-family: "condensed";
 	}
 	.viewed-products .product-content {
 	padding: 0.9375rem;
@@ -503,7 +503,7 @@ box-sizing: border-box;
 	.header-products h2{
 	text-transform: uppercase;
 	font-size: 1.5rem;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-family: "condensed";
 	float: left;
 	padding-right: 0.625rem;
 	}
@@ -511,7 +511,7 @@ box-sizing: border-box;
 	display: inline-block;
 	float: right;
 	color: #7b7b7b;
-	font-family: 'Conv_trade-gothic-no-18-condense';
+	font-family: 'gothic';
 	font-size: 0.875rem;
 	text-transform: uppercase;
 	padding-top: 0.3125rem;
@@ -519,7 +519,7 @@ box-sizing: border-box;
 	.viewed-products .price{
 	font-size: 1.375rem;
 	color: #231f20;
-	font-family: 'Conv_trade-gothic-no-18-condense';
+	font-family: 'gothic';
 	}
 
 	.header-products h2 a{
@@ -625,10 +625,10 @@ box-sizing: border-box;
 	border-bottom: 1px solid #d5d5d5;
 	padding-bottom: 0.3125rem;
 	margin-bottom: 0.625rem;
-	font-family:"Conv_trade-gothic-bold-condensed-no";
+	font-family:"condensed";
 	}
 	.product-content .price-box span{
-	font-family: "Conv_trade-gothic-no-18-condense";
+	font-family: "gothic";
 	font-size: 2rem;
 	color: #000;
 	}
@@ -648,7 +648,7 @@ box-sizing: border-box;
 	color: #777676;
 	border: 2px solid #777676;
 	padding: 0.125rem 0.625rem;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-family: "condensed";
 	font-size: 1rem;
 	text-transform: uppercase;
 	}
@@ -759,7 +759,7 @@ box-sizing: border-box;
 	float: left;
 	text-transform: uppercase;
 	font-size: 2.25rem;
-	font-family: "Conv_trade-gothic-no-18-condense";
+	font-family: "gothic";
 	color: #231f20;
 	}
 	.slide-experiencias .btn.btn-default{
@@ -795,7 +795,7 @@ box-sizing: border-box;
 	padding: 3.125rem 1.875rem;
 	color: #fff;
 	font-size: 3.125rem;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-family: "condensed";
 	text-transform: uppercase;
 	}
 
@@ -964,7 +964,7 @@ box-sizing: border-box;
 	float: left;
 	}
 	.alert-danger > p{
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-family: "condensed";
 	color: #d7162f;
 	}
 	.alert-danger ol li{
@@ -1070,7 +1070,7 @@ box-sizing: border-box;
 	line-height: 1.5;
 	height: auto;
 	font-size: 1rem;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-family: "condensed";
 	border:none;
 	border-style: solid;
 	border-width: 2px;
@@ -1373,7 +1373,7 @@ box-sizing: border-box;
 	background: #fbfbfb;
 	color: #231f20;
 	text-transform: capitalize;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-family: "condensed";
 	font-size: 1.125rem;
 	}
 	.table td a.color-myaccount {
@@ -2144,7 +2144,7 @@ box-sizing: border-box;
 	border-radius: 0;
 	text-transform: uppercase;
 	color: #fff;
-	font-family: "Conv_trade-gothic-no-18-condense";
+	font-family: "gothic";
 	font-size: 0.9375rem;
 	}
 	.breadcrumb .navigation-pipe {
@@ -2154,7 +2154,7 @@ box-sizing: border-box;
 	.breadcrumb a {
 	display: inline-block;
 	color: #fff;
-	font-family: "Conv_trade-gothic-no-18-condense";
+	font-family: "gothic";
 	}
 
 	#reinsurance_block {
@@ -3266,7 +3266,7 @@ box-sizing: border-box;
 	padding: 4.0625rem 0;
 	}
 	.habeas{
-	font-family: "Conv_trade-gothic-no-18-condense";
+	font-family: "gothic";
 	font-size: 1rem;
 	margin-top: 3.125rem;
 	}
@@ -3312,7 +3312,7 @@ box-sizing: border-box;
 	}
 	.menu-footer li a{
 	color: #a5a5a5;
-	font-family: 'Conv_trade-gothic-no-18-condense';
+	font-family: 'gothic';
 	font-size: 1rem;
 	text-transform: uppercase;
 	display: block;
@@ -3490,7 +3490,7 @@ h1.page-heading{
 	font-size: 1.125rem;
 	}
 .step span {
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-family: "condensed";
 	color: #231f20;
 	font-size: 1.125rem;
 	}
