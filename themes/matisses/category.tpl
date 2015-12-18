@@ -75,7 +75,7 @@
 		<!-- Subcategories -->
 		<div id="subcategories">
 			<p class="subcategory-heading">{l s='Subcategories'}</p>
-			<ul class="clearfix">
+			<ul class="cf">
 			{foreach from=$subcategories item=subcategory}
 				<li>
 					<div class="subcategory-image">

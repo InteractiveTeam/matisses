@@ -4,14 +4,20 @@
 @font-face {
 font-family: 'Conv_trade-gothic-bold-condensed-no';
 src: url('../font/trade-gothic-bold-condensed-no.eot');
-src: url('../font/trade-gothic-bold-condensed-no.woff') format('woff'), url('../font/trade-gothic-bold-condensed-no.ttf') format('truetype'), url('../font/trade-gothic-bold-condensed-no.svg') format('svg');
+src: url('../font/trade-gothic-bold-condensed-no.eot#iefix') format('embedded-opentype'),
+	 url('../font/trade-gothic-bold-condensed-no.woff') format('woff'),
+	 url('../font/trade-gothic-bold-condensed-no.ttf') format('truetype'),
+	 url('../font/trade-gothic-bold-condensed-no.svg#svgFontName') format('svg');
 font-weight: normal;
 font-style: normal;
 }
 @font-face {
 font-family: 'Conv_trade-gothic-lh-extended-bold';
 src: url('../font/trade-gothic-lh-extended-bold.eot');
-src: url('../font/trade-gothic-lh-extended-bold.woff') format('woff'), url('../font/trade-gothic-lh-extended-bold.ttf') format('truetype'), url('../font/trade-gothic-lh-extended-bold.svg') format('svg');
+src: url('../font/trade-gothic-lh-extended-bold.eot#iefix') format('embedded-opentype'),
+	 url('../font/trade-gothic-lh-extended-bold.woff') format('woff'),
+	 url('../font/trade-gothic-lh-extended-bold.ttf') format('truetype'),
+	 url('../font/trade-gothic-lh-extended-bold.svg#svgFontName') format('svg');
 font-weight: normal;
 font-style: normal;
 }
@@ -95,8 +101,6 @@ box-sizing: border-box;
 	.btn.btn-default.btn-red:after{ background-color: #d7162f; }
 	.btn.btn-default.btn-red{color: #fff; border-color: #d7162f;}
 	.btn.btn-default.btn-red:hover{color: #d7162f;}
-
-
 
 	/*end general styles*/
 
@@ -369,11 +373,7 @@ box-sizing: border-box;
 	min-width: 10.9375rem;
 	height: 3.4375rem;
 	vertical-align: top;
-	padding: 10px 30px;
-	}
-
-	#user a span{
-	color: #000;
+	padding: 0.625rem 1.875rem;
 	}
 
 	.user-profile{
@@ -384,17 +384,21 @@ box-sizing: border-box;
 	display: inline-block;
 	}
 
-	#user .login span {
+	#user .header_user_info a span {
 	color: #fff;
 	font-family: "Conv_trade-gothic-bold-condensed-no";
 	text-transform: uppercase;
 	}
 
-	#user .login {
+	#user .header_user_info a {
 	display: inline-block;
 	vertical-align: top;
 	padding-top: 1.125rem;
 	padding-right: 0.625rem;
+	}
+
+	#user .header_user_info a span:hover{
+	color: #F0EDED;
 	}
 
 	/*Menu Sticky*/
@@ -966,6 +970,7 @@ box-sizing: border-box;
 	.alert-danger ol li{
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 1.125rem;
+	padding-bottom: 5px;
 	}
 	p.lnk a {
 	color: #000;
@@ -2730,12 +2735,9 @@ box-sizing: border-box;
 	color: #777777; }
 
 	#identity #center_column form.std .row,
-	#authentication #center_column form.std .row,
-	#order-opc #center_column form.std .row {
-	margin-left: -5px;
-	margin-right: -5px; }
+	#order-opc #center_column form.std .row { }
+
 	#identity #center_column form.std .row .col-xs-4,
-	#authentication #center_column form.std .row .col-xs-4,
 	#order-opc #center_column form.std .row .col-xs-4 {
 	padding-left: 5px;
 	padding-right: 5px;
@@ -3501,5 +3503,3 @@ h1.page-heading{
 .stock-management-on .price {
     font-size: 1.375rem;
 	}
-
-/*Pag Autenticacion*/

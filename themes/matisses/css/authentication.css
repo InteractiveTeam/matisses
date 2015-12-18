@@ -5,9 +5,7 @@
     #account-creation_form .dni,
     #account-creation_form .postcode {
     display: none; }
-    .account_creation{
-    padding-top: 30px;
-    }
+    .account_creation{padding-top: 1.875rem;  }
 
     #create-account_form {
     min-height: 297px; }
@@ -95,6 +93,7 @@
     font-family: 'Conv_trade-gothic-no-18-condense';
     color: #4b4b4b;
     font-size: 1.0625rem;
+    padding-left: 15px;
     }
     .account_creation .submit{
     margin-top: 1.875rem;
@@ -127,6 +126,30 @@
     font-size: 1.125rem;
     color:#4b4b4b;
     }
+    .account_creation div.checker span{
+    border-width: 3px;
+    border-color: #7b7b7b;
+    width: 1.25rem;
+    height: 1.25rem;
+    }
+    .checker .checked:before {
+    color: #d7162f;
+    }
+    .authentication .submit {
+    margin: 3.75rem 0 5.625rem;
+    }
+    .create-account .pull-right.required span{color: #d7162f;}
+    .create_account div.radio span {
+    border-color: #d7162f;
+    border-width: 3px;
+    width: 18px;
+    height: 18px;
+    }
+    .create-account div.radio span.checked:before{
+    color: #4b4b4b;
+    }
+
+
 
 @media (max-width: 480px){
     .id_state div.selector,#authentication div.selector,#authentication div.selector select{

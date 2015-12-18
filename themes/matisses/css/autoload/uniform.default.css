@@ -101,8 +101,7 @@ div.radio {
   position: relative;
   display: inline; }
   div.radio, div.radio span, div.radio input {
-	width: 13px;
-	height: 13px; }
+	/*width: 13px;	height: 13px; */}
   div.radio span {
 	display: -moz-inline-box;
 	display: inline-block;
@@ -269,9 +268,6 @@ div.checker {}
 div.checker span {
 	border-style: solid;
 	border-width: 1px;
-	-webkit-border-radius:50%;
-	-moz-border-radius:50%;
-	border-radius:50%;
 	box-sizing: border-box;
 	vertical-align: top;
 }

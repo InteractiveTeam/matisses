@@ -509,6 +509,7 @@
 			</div>
 
 			{if $newsletter}
+			<div class="grid_12">
 				<div class="checkbox grid_12">
 					<input type="checkbox" name="newsletter" id="newsletter" value="1" {if isset($smarty.post.newsletter) AND $smarty.post.newsletter == 1} checked="checked"{/if} />
 					<label for="newsletter">{l s='Sign up for our newsletter!'}</label>
@@ -517,6 +518,7 @@
 					<input type="checkbox" name="optin" id="optin" value="1" {if isset($smarty.post.optin) AND $smarty.post.optin == 1} checked="checked"{/if} />
 					<label for="optin">{l s='Receive special offers from our partners!'}</label>
 				</div>
+			</div>
 			{/if}
 		</div>
 		{if $b2b_enable}

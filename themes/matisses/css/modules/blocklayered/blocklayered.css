@@ -5,7 +5,7 @@
   font-weight: bold;
   font-size: 12px; }
 #enabled_filters ul li {
-  padding: 2px 0; 
+  padding: 2px 0;
 }
 #enabled_filters li a:after {
 	display: inline-block;
@@ -18,7 +18,7 @@
 #enabled_filters li a {
   float: right;
   cursor: pointer;
-  top: 0; 
+  top: 0;
 }
 #layered_block_left .layered_close {
   float: right;
@@ -31,14 +31,9 @@
 
 
 #layered_block_left .layered_subtitle {
-	display: block;
-	font-size: 24px;
 	text-transform: uppercase;
 	font-weight: 700;
-	font-family: 'MuseoSansCyrl700','Open Sans';
-	line-height: 1;
-	margin-bottom: 24px;
-	clear: both; }
+	}
 #layered_block_left #enabled_filters .layered_subtitle{
 	font-size: 16px;
 	margin-bottom: 15px;
@@ -247,7 +242,7 @@
 	border-style: solid;
 	border-width: 1px;
 	padding: 10px;
-  	margin-bottom: 15px; 
+  	margin-bottom: 15px;
 }
 #layered_form div.layered_price ul, #layered_form div.layered_weight ul {
 	overflow-x: visible;

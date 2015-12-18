@@ -150,6 +150,7 @@
 {if $page_name !='index' && $page_name !='pagenotfound'}
 						{if $page_name =='product' || $page_name == 'module-guestbookwithavatars-guestbook'}
 {/if}
+
   {include file="$tpl_dir./breadcrumb.tpl"}
   {if $page_name =='product'  || $page_name == 'module-guestbookwithavatars-guestbook'}
 
@@ -175,8 +176,9 @@
 {/if}
 <div class="{if $page_name !='index' && $page_name !='pagenotfound'}row{/if}">
 {if isset($left_column_size) && !empty($left_column_size)}
-<div id="left_column" class="column col-xs-12 col-sm-{$left_column_size|intval}">{$HOOK_LEFT_COLUMN}</div>
+	<div class="container">
+		<div id="left_column" class="column grid_3 {$left_column_size|intval}">{$HOOK_LEFT_COLUMN}</div>
 {/if}
-						{if isset($left_column_size) && isset($right_column_size)}{assign var='cols' value=(12 - $left_column_size - $right_column_size)}{else}{assign var='cols' value=12}{/if}
-                        <div id="center_column" class="center_column {$cols|intval}">
+			{if isset($left_column_size) && isset($right_column_size)}{assign var='cols' value=(12 - $left_column_size - $right_column_size)}{else}{assign var='cols' value=12}{/if}
+            <div id="center_column" class="center_column {$cols|intval}">
 {/if}
