@@ -14,7 +14,7 @@ input:focus{
     }
     .newsHomeContent {
     display: inline-block;
-    width: 28.75rem;
+    width: 30rem;
     margin-left: -0.25rem;
     border-left: 1px solid #dddddd;
     padding-left: 1.25rem;
@@ -46,7 +46,7 @@ input:focus{
     }
 
     .newsHomeTitle h2{
-    font-family: "gothic";
+    font-family: 'condensed';
     color: #231f20;
     font-size: 1.75rem;
     }
@@ -156,8 +156,7 @@ a.newsSideMore:hover{
 a.newsHomeMore,
 a.newsHomeMore:link,
 a.newsHomeMore:active,
-a.newsHomeMore:visited
-{
+a.newsHomeMore:visited{
     font-size: 11px;
     font-family: Verdana, Arial, Helvetica, Sans-Serif;
     display: inline-block;
@@ -173,20 +172,11 @@ a.newsListItem:active,
 a.newsListItem:visited{
     display: block;
     cursor: pointer;
-    padding: 10px 0 10px 0;
-    margin: 5px 10px;
+    margin: 5px 0;
 }
 
 a.newsListItem:hover{
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
     background: #fff url(../img/bg_hover_list.png) left bottom repeat-x;
-}
-
-.newsBreadcrumb{
-    margin-bottom: 10px;
-    padding-left: 10px;
 }
 
 .newsListImg{
@@ -202,34 +192,6 @@ a.newsListItem:hover{
     -moz-border-radius: 5px;
     border-radius: 5px;
     background-color:#FCF5ED;
-}
-
-.newsListImgPadding{
-    display: inline-block;
-    float: left;
-    padding-left: 15px;
-}
-a.newsListItem .newsListTitle{
-    font-size: 15px;
-    color: #333;
-    display: block;
-    margin-right: 15px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    padding-left: 30px;
-}
-a.newsListItem:hover .newsListTitle{
-    color: #000;
-}
-a.newsListItem .newsListText{
-    font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
-    color: #333;
-    display: block;
-    margin-right: 15px;
-    padding-left: 30px;
-}
-a.newsListItem:hover .newsListText{
-    color: #000;
 }
 
 a.page_more,
@@ -271,18 +233,6 @@ a.page_more:hover{
 .newsMoreBtn{
     display: inline-block;
     float: right;
-    margin-top: 7px;
-    padding: 0px 15px;
-    border: 1px solid #e5e5e5;
-    color: #909090;
-    height: 15px;
-    line-height: 15px;
-    font-family: verdana;
-    font-size: 10px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    background: #FFF url(../img/miniBtn.png) top left repeat-x;
 }
 
 .newsInfBottom{
@@ -294,12 +244,6 @@ a.page_more:hover{
     line-height: 15px;
     font-family: verdana;
     font-size: 10px;
-}
-
-a.newsListItem:hover .newsMoreBtn{
-    border: 1px solid #fff;
-    color: #000;
-    background: #fff ;
 }
 
 .newsSearch{
@@ -456,12 +400,7 @@ a.newsMenuHover_10_selected{
     color: #77d5f7;
 }
 
-.iconNewsList{
-    border-bottom: 1px dotted #DEDEDE;
-    padding: 0 0 5px 0px ;
-    margin-bottom: 13px;
-    margin-top: 10px;
-}
+.iconNewsList{}
 
 a.newsRss,
 a.newsRss:link,
@@ -486,4 +425,59 @@ a.newsRss:visited{
     padding:7px 11px 5px 22px;
     color:#333;
     background:url(../img/arrow_right_2.png) no-repeat 10px 10px transparent;
+}
+
+/*Listado de noticias*/
+.iconNewsList{background: #ccc;}
+.newsListTitle h2{
+    font-family: 'condensed';
+    color: #231f20;
+    font-size: 1.75rem;
+}
+
+.new-author p{
+    font-weight: bold;
+    color: #a7a6a6;
+    margin: 0.3125rem 0 0.125rem;
+}
+
+div.button.newsMoreBtn {
+    border: 1px solid #d7162f;
+    color: #d7162f;
+    height: auto;
+    font-size: 1rem;
+    font-family: 'condensed';
+    padding: 0.625rem 0.9375rem;
+    text-transform: uppercase;
+}
+.news-date span {
+    display: block;
+    padding: 0.625rem 0 0.3125rem 0;
+    margin: 0.3125rem 0 0.9375rem;
+    font-family: 'gothic';
+    color: #666;
+    text-transform: uppercase;
+    border-bottom: 2px solid #d7162f;
+}
+
+.blog-list h1{
+    color: #231f20;
+    font-family: 'condensed';
+    font-size: 3rem;
+    border-bottom: 1px solid #dbdbdb;
+    padding-bottom: 0.625rem;
+    margin-bottom: 1.25rem;
+}
+
+/*Detalle noticias*/
+.newSlideshow img{
+    width: auto;
+    height: auto;
+}
+
+
+
+/*Borrar*/
+.sf-menu > li > ul{
+    display: none;
 }

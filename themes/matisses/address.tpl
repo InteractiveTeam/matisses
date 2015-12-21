@@ -195,18 +195,18 @@
 		</div>
 
 		<div class="btns-form grid_12 omega alpha">
-			<div class="submit2 grid_6">
+			<div class="submit2 grid_2">
 				{if isset($id_address)}<input type="hidden" name="id_address" value="{$id_address|intval}" />{/if}
 				{if isset($back)}<input type="hidden" name="back" value="{$back}" />{/if}
 				{if isset($mod)}<input type="hidden" name="mod" value="{$mod}" />{/if}
 				{if isset($select_address)}<input type="hidden" name="select_address" value="{$select_address|intval}" />{/if}
 				<input type="hidden" name="token" value="{$token}" />
-				<button type="submit" name="submitAddress" id="submitAddress" class="btn btn-default button button-medium">
+				<button type="submit" name="submitAddress" id="submitAddress" class="btn btn-default button btn-red">
 						{l s='Save'}
 				</button>
 			</div>
-			<div class="footer_links cf grid_6">
-				<a class="btn btn-defaul button button-small" href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}">
+			<div class="footer_links cf grid_2">
+				<a class="btn btn-defaul button btn-red" href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}">
 					{l s='Back to your addresses'}
 				</a>
 			</div>

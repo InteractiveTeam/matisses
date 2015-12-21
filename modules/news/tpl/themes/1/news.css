@@ -10,42 +10,6 @@
     padding: 10px 0 20px 0;
 }
 
-.newContentTopRigthSocial{
-    float: right;
-    padding-left: 15px;
-    margin: 0 0 20px 20px;
-    width: 115px;
-    border-left:  1px dotted #DEDEDE;
-}
-
-.newContentTopRigthSocial div{
-    margin-bottom: 10px;
-}
-.newComments{
-    display: inline-block;
-    margin-top: 24px;
-}
-
-.newTitle{
-     font-weight: bold;
-    font-size: 14px;
-    padding-top: 10px;
-}
-.newAutorDate{
-    font-size: 10px;
-    font-family: Arial;
-    font-style: italic;
-    color: #000;
-}
-.newText{
-    color: #333;
-    font-family: normal 12px/130% 'Lucida Grande', Helvetica, Arial, Verdana, sans-serif !important;
-}
-
-.newTopActions{
-    display: inline-block;
-    width: 100%;
-}
 a.newPrint,
 a.newPrint:link,
 a.newPrint:active,
@@ -263,4 +227,3 @@ a.relNews:hover
     width: 100%;
     margin: 20px 0;
 }
-

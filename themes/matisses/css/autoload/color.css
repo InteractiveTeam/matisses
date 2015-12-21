@@ -260,10 +260,6 @@ ul.step li.step_current,ul.step li.step_current span:after,div.uploader span.act
 #page .ui-slider-range.ui-widget-header.ui-corner-all{
 	background: #6f6883;
 }
-.alert-warning {
-	background-color: #F8A496;
-}
-
 #languages-block-top ul,#currencies-block-top ul{
 	background: rgba(31, 24, 48, 0.85);
 }
@@ -705,11 +701,7 @@ span.exclusive_large_disabled:before,
 	color: #e04b34;
 }
 .btn-pinterest i {}
-.alert-warning {
-	-webkit-text-shadow: 1px 0px 1px #333;
-	-moz-text-shadow: 1px 0px 1px #333;
-	text-shadow: 1px 0px 1px #333;
-}
+
 h3.undertitle_main.grey_clr,#block_contact_infos p{
 	color: #dfdfdf;
 }

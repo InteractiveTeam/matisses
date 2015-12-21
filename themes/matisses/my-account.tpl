@@ -33,7 +33,7 @@
 {/if}
 <p class="info-account">{l s='Welcome to your account. Here you can manage all of your personal information and orders.'}</p>
 <div class="row addresses-lists">
-	<div class="col-xs-12 col-md-4">
+	<div class="grid_12">
 		<ul class="myaccount-link-list">
 			{if $has_customer_an_address}
 			<li><a href="{$link->getPageLink('address', true)|escape:'html':'UTF-8'}" title="{l s='Add my first address'}"><i class="fa fa-truck"></i><span>{l s='Add my first address'}</span></a></li>
@@ -45,24 +45,26 @@
 			<li><a href="{$link->getPageLink('order-slip', true)|escape:'html':'UTF-8'}" title="{l s='Credit slips'}"><i class="fa fa-credit-card"></i><span>{l s='My credit slips'}</span></a></li>
 		</ul>
 	</div>
-	<div class="col-md-4 col-xs-12">
+	<div class="grid_12">
 		<ul class="myaccount-link-list">
 			 <li><a href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}" title="{l s='Addresses'}"><i class="fa fa-truck"></i><span>{l s='My addresses'}</span></a></li>
 			<li><a href="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}" title="{l s='Information'}"><i class="fa fa-user"></i><span>{l s='My personal information'}</span></a></li>
 		</ul>
 	</div>
 {if $voucherAllowed || isset($HOOK_CUSTOMER_ACCOUNT) && $HOOK_CUSTOMER_ACCOUNT !=''}
-	<div class="col-xs-12 col-md-4">
+	<div class="grid_12">
 		<ul class="myaccount-link-list">
 			{if $voucherAllowed}
 				<li><a href="{$link->getPageLink('discount', true)|escape:'html':'UTF-8'}" title="{l s='Vouchers'}"><i class="fa fa-barcode"></i><span>{l s='My vouchers'}</span></a></li>
 			{/if}
-			
+
 			{$HOOK_CUSTOMER_ACCOUNT}
 		</ul>
 	</div>
 {/if}
 </div>
-<ul class="footer_links clearfix">
-<li><a class="btn btn-default button button-small" href="{$base_dir}" title="{l s='Home'}"><span><i class="icon-chevron-left"></i> {l s='Home'}</span></a></li>
+<ul class="footer_links cf">
+	<li>
+		<a class="btn btn-default button " href="{$base_dir}" title="{l s='Home'}"> {l s='Home'}</a>
+	</li>
 </ul>

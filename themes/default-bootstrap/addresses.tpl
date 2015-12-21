@@ -50,7 +50,7 @@
                 <a class="btn btn-default button button-small" href="{$link->getPageLink('address', true, null, "id_address={$address.object.id|intval}&delete")|escape:'html':'UTF-8'}" onclick="return confirm('{l s='Are you sure?' js=1}');" title="{l s='Delete'}"><span>{l s='Delete'}<i class="icon-remove right"></i></span></a></li>
             </ul>
         </div>
-	{if $smarty.foreach.myLoop.index % 2 && !$smarty.foreach.myLoop.last} 
+	{if $smarty.foreach.myLoop.index % 2 && !$smarty.foreach.myLoop.last}
 	</div>
 	<div class="bloc_adresses row">
 	{/if}
@@ -60,7 +60,7 @@
 {else}
 	<p class="alert alert-warning">{l s='No addresses are available.'}&nbsp;<a href="{$link->getPageLink('address', true)|escape:'html':'UTF-8'}">{l s='Add a new address'}</a></p>
 {/if}
-<div class="clearfix main-page-indent">
+<div class="cf main-page-indent">
 	<a href="{$link->getPageLink('address', true)|escape:'html':'UTF-8'}" title="{l s='Add an address'}" class="btn btn-default button button-medium"><span>{l s='Add a new address'}<i class="icon-chevron-right right"></i></span></a>
 </div>
 <ul class="footer_links clearfix">

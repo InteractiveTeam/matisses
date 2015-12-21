@@ -1,16 +1,19 @@
 {if !$ajax}
-    <div class="breadcrumb newsBreadcrumb iconNewsList ">
-        <a href="{$link->getPageLink('index')}" >{l s='Home' mod='news'}</a>
-        <span class="navigation-pipe">&gt;</span>
-        <span class="navigation_page">
-            <a href="{$link->getModuleLink('news', 'news', [] ,false)}" >{l s='news' mod='news'}</a>
-        </span>
-
-        <a class="newsRss" href="{$link->getModuleLink('news', 'rss', ['rss_news'=>1] ,false)}" target="_blank"></a>
-    </div>
 
 
+<div class="blog-list">
     <div class="newsMenuCats">
+        <h1>Blog</h1>
+
+        <div class="breadcrumb newsBreadcrumb iconNewsList ">
+            <a href="{$link->getPageLink('index')}" >{l s='Home' mod='news'}</a>
+            <span class="navigation-pipe">&gt;</span>
+            <span class="navigation_page">
+                <a href="{$link->getModuleLink('news', 'news', [] ,false)}" >{l s='news' mod='news'}</a>
+            </span>
+
+            <a class="newsRss" href="{$link->getModuleLink('news', 'rss', ['rss_news'=>1] ,false)}" target="_blank"></a>
+        </div>
 
 
         <form action="{$link->getModuleLink('news', 'news', [] ,false)}" method="post" class="fromNewsSearch" name="fromNewsSearch">
@@ -21,19 +24,20 @@
       {if $catsObj}
                  {assign var='menu_position' value=1}
                  {foreach from=$catsObj item='cats' name=myLoop}
-                        <div class="{if $smarty.foreach.myLoop.last}news_last_item{else}news_first_item{/if}"><a
-                                class="{if $cat==$cats->id} newsMenuHover_{$menu_position}_selected{/if} newsItemMenu newsMenuHover_{$menu_position}"
+                        <div class="{if $smarty.foreach.myLoop.last}news_last_item{else}news_first_item{/if}">
+                            <a class="{if $cat==$cats->id} newsMenuHover_{$menu_position}_selected{/if} newsItemMenu newsMenuHover_{$menu_position}"
                                href="{$link->getModuleLink('news', 'list',
-                                                            [
-                                                                'cat_news' => "{$cats->id}",
-                                                                'page_cat' => 0,
-                                                                'rewrite'  => "{$cats->rewrite}"
-                                                             ]
+                                    [
+                                        'cat_news' => "{$cats->id}",
+                                        'page_cat' => 0,
+                                        'rewrite'  => "{$cats->rewrite}"
+                                     ]
 
-                                                            ,false)}"
+                                    ,false)}"
                                 title="{$cats->title|truncate:50:'...'|escape:html:'UTF-8'}">
                                 {$cats->title|escape:html:'UTF-8'}
-                            </a></div>
+                            </a>
+                        </div>
                         {assign var='menu_position' value=$menu_position+1}
                  {/foreach}
         {/if}
@@ -45,7 +49,7 @@
 {/if}
 
 
-<div id="news_block_list" >
+<div id="news_block_list" class="cf" >
     {if $notFoundResults}
         {if $search_news}
         <p class="warning">{l s=' No results found for your search : ' mod='news'} "{$search_news}"</p>
@@ -90,16 +94,20 @@
                 <td>
                     {/if}
                    <div class="newsListTitle">
-                        {$news->title|escape:html:'UTF-8'}<br>
+                        <h2>{$news->title|escape:html:'UTF-8'}</h2>
+                    </div>
+                    <div class="new-author">
+                        <p>{if $news->autor}{$news->autor} {l s='on' mod='news'}{/if}</p>
+                    </div>
+                    <div class="news-date">
+                        <span> {$news->date}</span>
                     </div>
                     <div class="newsListText">
-                        {$news->new|escape:html:'UTF-8'|truncate:220:'...'}<br>
-                        <div class="newsMoreBtn">{l s='See more' mod='news'}</div>
-                        <div class="newsInfBottom">
-                            <div class="newAutorDate">{if $news->autor}{$news->autor} {l s='on' mod='news'}{/if} {$news->date}</div>
+                        <p>{$news->new|escape:html:'UTF-8'|truncate:220:'...'}</p>
+                        <div class="button newsMoreBtn btn-red">
+                            {l s='Leer más' mod='news'}
                         </div>
                     </div>
-
                 </td>
         </table>
     </a>
@@ -194,4 +202,5 @@
 {/if}
 
     <div class="loadingAjax" style="display: none;"></div>
+</div>
 </div>

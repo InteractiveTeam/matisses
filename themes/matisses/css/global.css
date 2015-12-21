@@ -3493,6 +3493,7 @@ h1.page-heading{
 .stock-management-on .price {
     font-size: 1.375rem;
 	}
+
 /*Pag Autenticacion*/
 	.page-subheading {
 	text-align: left;
@@ -3503,6 +3504,7 @@ h1.page-heading{
 	margin-bottom: 1.25rem;
 	padding: 0.625rem 0.9375rem;
 	text-transform: uppercase;
+	font-size: 1.25rem;
 	}
 
 /*Pag Direcciones*/
@@ -3535,3 +3537,32 @@ h1.page-heading{
     font-size: 1.25rem;
     line-height: 0;
 	}
+	.chosen-single span,
+	.chosen-container .chosen-results li.active-result	{
+	font-family: 'gothic';
+	font-size: 1rem;
+    color: #757373;
+	}
+
+	.bloc_adresses ul li span{
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 1.125rem;
+    color: #777676;
+	line-height: 1.5;
+	}
+
+/*Pag Mi cuenta*/
+	.my-account .center_column{
+	width: 75rem;
+	padding: 0 0.9375rem;
+	margin: 0 auto;
+	}
+
+/*Pag Mis direcciones*/
+	.addresses .center_column{
+	width: 75rem;
+	padding: 0 0.9375rem;
+	margin: 0 auto;
+	}
+
+/*Detalle Blog*/

@@ -73,7 +73,7 @@
   </div>
   <div class="footer-down cf">
     <div class="container">
-      <div class="logo-copyright"> <img src="../../themes/matisses/img/logo-footer.png" alt="matisses"> </div>
+      <div class="logo-copyright"> <img src="/themes/matisses/img/logo-footer.png" alt="matisses"> </div>
       <div class="menu-copyright">
         <ul>
           <li><a href="{$link->getCMSLink(11)}">{l s='Términos y condiciones'}</a></li>
