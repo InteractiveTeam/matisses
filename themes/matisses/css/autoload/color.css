@@ -194,7 +194,7 @@ span.exclusive_large_disabled:hover,
 }
 .footer_line_one,.twa_container.none-column,.twa_container.none-column:before,.twa_container.none-column:after,
 .pb-left-column #image-block #view_full_size .span_link{
-	background: #5dc0bd;
+	background: #ccc;
 }
 
 
@@ -274,7 +274,8 @@ ul.step li.step_current,ul.step li.step_current span:after,div.uploader span.act
 .tabs_carousel > li.active a, .tabs_carousel > li a:hover, div.radio span.checked:before,.owl-prev:after,.owl-next:after,#back-top a:after,.tparrows.default:after,
 .pb-left-column #image-block #view_full_size .span_link:hover,.owl-prev:before, .owl-next:before, #back-top a:after,
 #back-top a:before,.tparrows.default:before{
-	background-color: #db1d70;
+	background-color: #666;
+    color: #fff;
 }
 input.button_mini,
 input.button_small,

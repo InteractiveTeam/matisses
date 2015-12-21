@@ -34,11 +34,11 @@
 
 {if !$opc}
 <!-- Steps -->
-<ul class="step clearfix" id="order_step">
+<ul class="step cf" id="order_step">
 	<li class="{if $current_step=='summary'}step_current {elseif $current_step=='login'}step_done_last step_done{else}{if $current_step=='payment' || $current_step=='shipping' || $current_step=='address' || $current_step=='login'}step_done{else}step_todo{/if}{/if} first">
 		{if $current_step=='payment' || $current_step=='shipping' || $current_step=='address' || $current_step=='login'}
 		<a href="{$link->getPageLink('order', true)}">
-			<em>01.</em> <b>{l s='Summary'}</b>
+			01.{l s='Summary'}
 		</a>
 		{else}
 			<span>01.{l s='Summary'}</span>
@@ -47,7 +47,7 @@
 	<li class="{if $current_step=='login'}step_current{elseif $current_step=='address'}step_done step_done_last{else}{if $current_step=='payment' || $current_step=='shipping' || $current_step=='address'}step_done{else}step_todo{/if}{/if} second">
 		{if $current_step=='payment' || $current_step=='shipping' || $current_step=='address'}
 		<a href="{$link->getPageLink('order', true, NULL, "{$smarty.capture.url_back}&step=1&multi-shipping={$multi_shipping}")|escape:'html':'UTF-8'}">
-			<em>02.</em> <b>{l s='Sign in'}</b>
+			02.{l s='Sign in'}
 		</a>
 		{else}
 			<span>02.{l s='Sign in'}</span>
@@ -56,7 +56,7 @@
 	<li class="{if $current_step=='address'}step_current{elseif $current_step=='shipping'}step_done step_done_last{else}{if $current_step=='payment' || $current_step=='shipping'}step_done{else}step_todo{/if}{/if} third">
 		{if $current_step=='payment' || $current_step=='shipping'}
 		<a href="{$link->getPageLink('order', true, NULL, "{$smarty.capture.url_back}&step=1&multi-shipping={$multi_shipping}")|escape:'html':'UTF-8'}">
-			<em>03.</em> <b>{l s='Address'}</b>
+			03.{l s='Address'}
 		</a>
 		{else}
 			<span>03.{l s='Address'}</span>
@@ -65,7 +65,7 @@
 	<li class="{if $current_step=='shipping'}step_current{else}{if $current_step=='payment'}step_done step_done_last{else}step_todo{/if}{/if} four">
 		{if $current_step=='payment'}
 		<a href="{$link->getPageLink('order', true, NULL, "{$smarty.capture.url_back}&step=2&multi-shipping={$multi_shipping}")|escape:'html':'UTF-8'}">
-			<em>04.</em> <b>{l s='Shipping'}</b>
+			04.{l s='Shipping'}
 		</a>
 		{else}
 			<span>04.{l s='Shipping'}</span>

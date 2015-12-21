@@ -208,29 +208,30 @@
 {/if}
 {counter name=active_overlay assign=active_overlay}
 {if !$PS_CATALOG_MODE}
-	<div id="layer_cart">
+	<div id="layer_cart" class="layer_cart">
 		<div class="cf">
-			<div class="layer_cart_product col-xs-12 col-md-6">
+			<div class="layer_cart_product grid_6">
 				<span class="cross" title="{l s='Close window' mod='blockcart'}"></span>
 				<h2>
-					<i class="icon-ok"></i>{l s='Product successfully added to your shopping cart' mod='blockcart'}
+					{l s='Product successfully added to your shopping cart' mod='blockcart'}
 				</h2>
 				<div class="product-image-container layer_cart_img">
 				</div>
 				<div class="layer_cart_product_info">
 					<span id="layer_cart_product_title" class="product-name"></span>
-					<span id="layer_cart_product_attributes"></span>
+					<p id="layer_cart_product_attributes"></p>
 					<div>
-						<strong class="dark">{l s='Quantity' mod='blockcart'}</strong>
-						<span id="layer_cart_product_quantity"></span>
+						<p><strong>{l s='Quantity' mod='blockcart'}</strong>
+							<span id="layer_cart_product_quantity"></span>
+						</p>
 					</div>
 					<div>
-						<strong class="dark">{l s='Total' mod='blockcart'}</strong>
-						<span id="layer_cart_product_price"></span>
+						<p><strong>{l s='Total' mod='blockcart'}</strong><span id="layer_cart_product_price"></span></p>
+
 					</div>
 				</div>
 			</div>
-			<div class="layer_cart_cart col-xs-12 col-md-6">
+			<div class="layer_cart_cart grid_6">
 				<h2>
 					<!-- Plural Case [both cases are needed because page may be updated in Javascript] -->
 					<span class="ajax_cart_product_txt_s {if $cart_qties < 2} unvisible{/if}">
@@ -243,7 +244,7 @@
 				</h2>
 
 				<div class="layer_cart_row">
-					<strong class="dark">
+					<p><strong>
 						{l s='Total products' mod='blockcart'}
 						{if $display_tax_label}
 							{if $priceDisplay == 1}
@@ -258,6 +259,8 @@
 							{convertPrice price=$cart->getOrderTotal(false, Cart::ONLY_PRODUCTS)}
 						{/if}
 					</span>
+				</p>
+
 				</div>
 
 				{if $show_wrapping}
@@ -282,25 +285,26 @@
 					</div>
 				{/if}
 				<div class="layer_cart_row">
-					<strong class="dark">
-						{l s='Total shipping' mod='blockcart'}&nbsp;{if $display_tax_label}{if $priceDisplay == 1}{l s='(tax excl.)' mod='blockcart'}{else}{l s='(tax incl.)' mod='blockcart'}{/if}{/if}
-					</strong>
-					<span class="ajax_cart_shipping_cost">
-						{if $shipping_cost_float == 0}
-							{l s='Free shipping!' mod='blockcart'}
-						{else}
-							{$shipping_cost}
-						{/if}
-					</span>
+					<p>
+						<strong>
+							{l s='Total shipping' mod='blockcart'}&nbsp;{if $display_tax_label}{if $priceDisplay == 1}{l s='(tax excl.)' mod='blockcart'}{else}{l s='(tax incl.)' mod='blockcart'}{/if}{/if}
+						</strong>
+						<span class="ajax_cart_shipping_cost">
+							{if $shipping_cost_float == 0}
+								{l s='Free shipping!' mod='blockcart'}
+							{else}
+								{$shipping_cost}
+							{/if}
+						</span>
+					</p>
 				</div>
 				{if $show_tax && isset($tax_cost)}
 					<div class="layer_cart_row">
-						<strong class="dark">{l s='Tax' mod='blockcart'}</strong>
-						<span class="price cart_block_tax_cost ajax_cart_tax_cost">{$tax_cost}</span>
+						<p><strong class="dark">{l s='Tax' mod='blockcart'}</strong> <span class="price cart_block_tax_cost ajax_cart_tax_cost">{$tax_cost}</span></p>
 					</div>
 				{/if}
 				<div class="layer_cart_row">
-					<strong class="dark">
+					<p><strong>
 						{l s='Total' mod='blockcart'}
 						{if $display_tax_label}
 							{if $priceDisplay == 1}
@@ -319,14 +323,14 @@
 							{/if}
 						{/if}
 					</span>
+					</p>
+
 				</div>
 				<div class="button-container">
-					<span class="continue btn btn-default button exclusive-medium" title="{l s='Continue shopping' mod='blockcart'}">
-						<span>
-							<i class="icon-chevron-left left"></i>{l s='Continue shopping' mod='blockcart'}
-						</span>
-					</span>
-					<a class="btn btn-default button button-medium"	href="{$link->getPageLink("$order_process", true)|escape:"html":"UTF-8"}" title="{l s='Proceed to checkout' mod='blockcart'}" rel="nofollow">
+					<div class="continue btn btn-default button btn-red" title="{l s='Continue shopping' mod='blockcart'}">
+						{l s='Continue shopping' mod='blockcart'}
+					</div>
+					<a class="btn btn-default button btn-red"	href="{$link->getPageLink("$order_process", true)|escape:"html":"UTF-8"}" title="{l s='Proceed to checkout' mod='blockcart'}" rel="nofollow">
 						<span>
 							{l s='Proceed to checkout' mod='blockcart'}<i class="icon-chevron-right right"></i>
 						</span>

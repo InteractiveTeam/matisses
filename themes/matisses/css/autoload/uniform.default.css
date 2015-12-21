@@ -347,12 +347,7 @@ div.selector {
 .show_selector div.selector{
 	width: 100% !important;
 }
-/* #order-opc div.selector,.id_state div.selector,#layered_block_left div.selector{
-	  display: block !important;
-} */
-.id_state div.selector{
-	width: 271px !important;
-}
+
 div.selector span {
 	display: block;
 	overflow: hidden;
@@ -398,7 +393,7 @@ div.selector{
   border-style:solid;
   border-width: 1px;
   line-height: 40px;
-  height: 40px;
+  height: 47px;
   background: none;
   padding: 0 20px 0 10px;
 font-size: 13px;

@@ -253,24 +253,24 @@
 
 /*Slide-1*/
 .slide-1 h2{
-    font-family: 'Conv_trade-gothic-no-18-condense';
+    font-family: 'gothic';
     font-size:5rem;
 }
 
 .slide-1 h3{
-    font-family: 'Conv_trade-gothic-bold-condensed-no';
+    font-family: 'condensed';
     color: #d7162f;
     font-size: 3.75rem;
 }
 
 /*Slide-2*/
     .slide-2 h2{
-    font-family: 'Conv_trade-gothic-lh-extended-bold';
+    font-family: 'extended';
     font-size: 6.25rem;
     }
 
     .slide-2 h3{
-    font-family: 'Conv_trade-gothic-no-18-condense';
+    font-family: 'gothic';
     font-size:3.75rem;
     color: #fff;
     }
@@ -316,7 +316,7 @@
 /*Slide-3*/
     .slide-3 h2{
     font-size: 6.25rem;
-    font-family: 'Conv_trade-gothic-no-18-condense';
+    font-family: 'gothic';
     }
 
     .slide-3 h3{
@@ -352,7 +352,7 @@
     }
 
     .homeslider-description .slide-3 p {
-    font-family: 'Conv_trade-gothic-lh-extended-bold';
+    font-family: extended;
     color: #d7162f;
     font-size: 4.375rem;
     padding: 0;

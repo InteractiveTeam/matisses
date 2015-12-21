@@ -27,9 +27,9 @@
 	#new_account_form .form-group.phone-number,
 	#opc_account_form .form-group.phone-number,
 	#authentication .form-group.phone-number {
-	float: left;
+	/*float: left;
 	width: 270px;
-	margin-right: 13px;
+	margin-right: 13px;*/
 	}
 
 	#address .form-group.phone-number + p,
@@ -38,8 +38,8 @@
 	#new_account_form .form-group.phone-number + p,
 	#opc_account_form .form-group.phone-number + p,
 	#authentication .form-group.phone-number + p {
-	padding: 23px 0 0 0px;
-	margin-bottom: 0;
+	/*padding: 23px 0 0 0px;
+	margin-bottom: 0;*/
 	}
 	#manufacturers_list.grid li.first-in-line,
 	#suppliers_list.grid li.first-in-line {

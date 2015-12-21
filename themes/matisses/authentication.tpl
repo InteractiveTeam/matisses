@@ -414,9 +414,10 @@
 		</ol>
 	</div>
 	{/if}-->
-	<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="account-creation_form" class="std box">
+	<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="account-creation_form" class="std box account-creation_form">
 		{$HOOK_CREATE_ACCOUNT_TOP}
 		<h3 class="page-subheading">{l s='Your personal information'}</h3>
+		<h4>Información personal</h4>
 		<div class="account_creation grid_12 omega alpha">
 			<div class="form-group grid_12 ">
 				<label class="hidden-xs">{l s='Género'}</label>

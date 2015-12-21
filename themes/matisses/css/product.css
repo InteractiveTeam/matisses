@@ -232,7 +232,7 @@ a.fancybox-nav {
 }
 
 .elem_butt a span{
-	font-family: 'Conv_trade-gothic-no-18-condense';
+	font-family: 'gothic';
 }
 
 .elem_butt #wishlist_button:before {
@@ -790,7 +790,7 @@ a.fancybox-nav {
 #product h3{
 	color: #231f20;
 	font-size: 1.125rem;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-family: "condensed";
 	text-transform: uppercase;
     margin-bottom: 0.625rem;
 }
@@ -809,13 +809,13 @@ a.fancybox-nav {
 .product_attributes label{
 	color: #231f20;
 	font-size: 1.125rem;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-family: "condensed";
 	text-transform: uppercase;
     margin-bottom: 0.625rem;
 	}
 .price span {
     color: #231f20;
-	font-family: "Conv_trade-gothic-bold-condensed-no";
+	font-family: "condensed";
 	font-size: 2.25rem;
 	}
 .product_attributes {
@@ -853,7 +853,7 @@ a.fancybox-nav {
     background-color:#d7162f;
     }
 #quantity_wanted{
-	font-family: 'Conv_trade-gothic-bold-condensed-no';
+	font-family: 'condensed';
 	font-size: 20px;
 	color: #272727;
 }

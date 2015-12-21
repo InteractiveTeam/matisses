@@ -27,7 +27,7 @@ input:focus{
     }
 
     .newsHomeDate span{
-    font-family: 'Conv_trade-gothic-lh-extended-bold';
+    font-family: 'extended';
     font-size:3rem;
     text-transform: uppercase;
     color: #7b7b7b;
@@ -40,13 +40,13 @@ input:focus{
     .newsHomeDate p{
     color: #231f20;
     font-size: 1.875rem;
-    font-family: 'Conv_trade-gothic-no-18-condense';
+    font-family: 'gothic';
     text-transform: uppercase;
     line-height: 25px;
     }
 
     .newsHomeTitle h2{
-    font-family: "Conv_trade-gothic-bold-condensed-no";
+    font-family: "gothic";
     color: #231f20;
     font-size: 1.75rem;
     }

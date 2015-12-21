@@ -922,7 +922,6 @@ box-sizing: border-box;
 	background: #fbfbfb;
 	}
 	p.info-title {
-	font-weight: bold;
 	color: #333333;
 	padding-bottom: 20px;
 	}
@@ -1411,9 +1410,7 @@ box-sizing: border-box;
 	.tag:hover {
 	color: #fff;
 	}
-	.box {
-	padding: 14px 18px 13px;
-	}
+	.box {}
 	.box p {
 	margin-bottom: 0;
 	}
@@ -1584,14 +1581,6 @@ box-sizing: border-box;
 	.page-heading.product-listing {
 	border-bottom: none;
 	margin-bottom: 0;
-	}
-	.page-subheading {
-	text-transform: uppercase;
-	color: #333;
-	font-size: 20px;
-	padding: 0 0 15px;
-	line-height: normal;
-	text-align: center;
 	}
 
 	h3.page-product-heading {
@@ -1992,7 +1981,7 @@ box-sizing: border-box;
 	display: none !important;
 	}
 	ul.step {
-	margin-bottom: 30px;
+	margin: 3.4375rem 0 1.875rem 0;
 	overflow: hidden;
 	clear: both;
 	}
@@ -2659,7 +2648,7 @@ box-sizing: border-box;
 	.not-displayable {
 	display: none;
 	}
-	#address .box,
+
 	#identity .box,
 	#account-creation_form .box,
 	#new_account_form .box,
@@ -2697,7 +2686,6 @@ box-sizing: border-box;
 	#identity .form-group .form-control,
 	#new_account_form .form-group .form-control,
 	#opc_account_form .form-group .form-control{
-	max-width: 271px;
 	display: block;
 	}
 	#address .form-group .form-control#adress_alias,
@@ -3489,12 +3477,14 @@ h1.page-heading{
 	padding-top: 1.5625rem;
 	font-size: 1.125rem;
 	}
-.step span {
+.step span,
+.step a {
 	font-family: "condensed";
 	color: #231f20;
 	font-size: 1.125rem;
+	text-transform: uppercase;
 	}
-.step .first span {
+.step .step_current span {
 	color: #fff;
 	}
 .stock-management-on tr td{
@@ -3502,4 +3492,46 @@ h1.page-heading{
 	}
 .stock-management-on .price {
     font-size: 1.375rem;
+	}
+/*Pag Autenticacion*/
+	.page-subheading {
+	text-align: left;
+	background: #e1e1e1;
+	border: 1px solid #CFCECE;
+	font-family: 'condensed';
+	color: #231f20;
+	margin-bottom: 1.25rem;
+	padding: 0.625rem 0.9375rem;
+	text-transform: uppercase;
+	}
+
+/*Pag Direcciones*/
+	#address .center_column{
+	margin: 0 auto;
+	width: 1200px;
+	padding: 0 15px;
+	}
+	.add-address label{
+	color: #4b4b4b;
+    font-family: 'condensed';
+    font-size: 1rem;
+    display: block;
+    text-transform: uppercase;
+    padding-bottom: 0.625rem;
+    padding-left: 0.3125rem;
+	}
+	.add-address input,
+	.add-address .chosen-single,
+	.add-address .selector{
+	background: #f8f8f8;
+    border-color: #dbdbdb;
+    font-family: 'gothic';
+    font-size: 1rem;
+    color: #757373;
+	}
+	.add-address .required sup{
+	color: #d7162f;
+    font-weight: bold;
+    font-size: 1.25rem;
+    line-height: 0;
 	}

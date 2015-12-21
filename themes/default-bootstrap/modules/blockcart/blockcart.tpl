@@ -204,7 +204,7 @@
 {if !$PS_CATALOG_MODE && $active_overlay == 1}
 	<div id="layer_cart">
 		<div class="cf">
-			<div class="layer_cart_product col-xs-12 col-md-6">
+			<div class="layer_cart_product grid_6">
 				<span class="cross" title="{l s='Close window' mod='blockcart'}"></span>
 				<h2>
 					<i class="icon-check"></i>{l s='Product successfully added to your shopping cart' mod='blockcart'}
@@ -224,7 +224,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="layer_cart_cart col-xs-12 col-md-6">
+			<div class="layer_cart_cart grid_6">
 				<h2>
 					<!-- Plural Case [both cases are needed because page may be updated in Javascript] -->
 					<span class="ajax_cart_product_txt_s {if $cart_qties < 2} unvisible{/if}">

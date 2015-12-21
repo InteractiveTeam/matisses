@@ -89,9 +89,9 @@
 	position: relative;
 	}
 	.sf-menu > li > ul {
-	padding: 1.25rem;
+	padding: 0 0 1.25rem 0;
     width: 1663px;
-    background: #ccc;
+    background: #fafafa;
 	}
 	.sf-menu ul li {
     display: inline-block;
@@ -100,53 +100,53 @@
 	.sf-menu > li > ul > li {
 	background: #fff;
 	vertical-align: top;
+	border-top: 1px solid #dbdbdb;
 	}
 	.sf-menu > li > ul > li a {
-    padding: 20px 50px;
+    padding: 1.25rem 3.4375rem;
     display: block;
-	font-size: 18px;
+	font-size: 1.125rem;
 	color: #414040;
 	}
 	.submenu-container li > ul {
     position: absolute;
-    width: 1280px;
+    min-width: 1663px;
+	margin-top: 0.125rem;
     left: 0;
-    margin-left: 20px;
-	background: #dedede;
+	background: #fff;
 	z-index: 10;
 	}
 
-	.submenu-container li ul li {
-    width: 11%;
-	}
+	.submenu-container li ul li {}
+
 	.submenu-container li > ul > li > ul {
-    padding-left: 0;
-    margin-left: 0;
-    background: #eee;
-	top: 40px;
+    background: #fafafa;
+	top: 3.625rem;
+	padding: 0.625rem 3.4375rem;
 	}
 
 	.submenu-container li ul li a {
-	font-size: 20px;
-	color: #231f20;
-	display: inline-block;
-	text-align: center;
-	padding: 10px;
+	font-size: 1.25rem;
+    color: #231f20;
+    display: block;
+    text-align: center;
+    padding: 1.5625rem 2.5rem 0.9375rem 3.4375rem;
 	}
 
 	.submenu-container li ul li ul li {
     display: block;
+	margin-bottom: 0.3125rem;
 	}
 	.submenu-container li ul li ul li a {
-    color: #F00;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 1.125rem;
+    color: #777676;
     display: block;
     padding: 0;
 	text-align: left;
+	background: url("/themes/matisses/img/vineta-menu.png") no-repeat 0 center transparent;
+	padding-left: 0.625rem;
 	}
-
-
-
-
 
 	.submenu-container li.category-thumbnail {
     background: #FFC0CB;
@@ -154,7 +154,6 @@
 	}
 
 /*07-12-2015*/
-
 
  @media (min-width: 768px) and (max-width: 1199px) {
 	.fixedHeader #block_top_menu {
@@ -170,10 +169,6 @@
  	}
  }
 
-ul li.category-thumbnail > div, ul li#category-thumbnail > div{
-	width: 100%;
-	text-align: center;
-	}
 }
 @media (max-width: 767px) {
 	.sf-menu ul {
@@ -227,9 +222,7 @@ ul li.category-thumbnail > div, ul li#category-thumbnail > div{
 	.sf-menu > li > ul > li.first-in-line-lg {
 	clear: left;
 	}
-	#block_top_menu ul li.category-thumbnail, #block_top_menu ul li#category-thumbnail{
-	text-align: right;
-	}
+	#block_top_menu ul li.category-thumbnail, #block_top_menu ul li#category-thumbnail{	}
 }
 @media (min-width: 480px) and (max-width: 767px) {
 	.sf-menu > li > ul > li.first-in-line-xs {

@@ -29,20 +29,20 @@
     }
 
     /**/
-    .authentication .page-subheading {
-    text-align: left;
-    background: #e1e1e1;
-    border: 1px solid #CFCECE;
-    font-family: "Conv_trade-gothic-bold-condensed-no";
-    color: #231f20;
-    margin-bottom: 1.25rem;
-    padding: 0.625rem 0.9375rem;
+
+    .account-creation_form h4{
+    font-family: 'condensed';
+    font-size: 1.125rem;
+    color:#231f20;
+    border-bottom: 1px solid #dbdbdb;
+    padding:0.625rem 0.9375rem 0.3125rem 0.9375rem;
+    text-transform: uppercase;
     }
     .create-account input {
     border-radius: 0;
     background-color: #f8f8f8;
     border-color: #dbdbdb;
-	font-family: 'Conv_trade-gothic-no-18-condense';
+	font-family: 'gothic';
 	color: #4b4b4b;
 	font-size: 1.125rem;
     margin-top: 0.3125rem;
@@ -51,14 +51,14 @@
     .create-account .lost_password {
     text-align: right;
     color: #7b7b7b;
-    font-family: 'Conv_trade-gothic-no-18-condense';
+    font-family: 'gothic';
     }
     .create-account .lost_password a:hover{
     text-decoration: underline;
     }
     .create-account button.button {
     font-size: 1.125rem;
-    font-family: 'Conv_trade-gothic-no-18-condense';
+    font-family: 'gothic';
     padding: 0.3125rem 1.875rem;
     float: right;
     }
@@ -68,18 +68,18 @@
     .lnk a.btn{
     float: right;
     padding: 0 1.25rem;
-    font-family: 'Conv_trade-gothic-no-18-condense';
+    font-family: 'gothic';
     }
     .account_creation .form-group input {
     background: #f8f8f8;
     border-color: #dbdbdb;
-    font-family: 'Conv_trade-gothic-no-18-condense';
+    font-family: 'gothic';
     font-size: 1rem;
     color: #757373;
     }
     .account_creation .form-group > label {
     color: #4b4b4b;
-    font-family: "Conv_trade-gothic-bold-condensed-no";
+    font-family: 'condensed';
     font-size: 1rem;
     display: block;
     text-transform: uppercase;
@@ -90,7 +90,7 @@
     margin-bottom: 1.25rem;
     }
     .account_creation .checkbox label{
-    font-family: 'Conv_trade-gothic-no-18-condense';
+    font-family: 'gothic';
     color: #4b4b4b;
     font-size: 1.0625rem;
     padding-left: 15px;
@@ -99,7 +99,7 @@
     margin-top: 1.875rem;
     }
     .account_creation button{
-    font-family: 'Conv_trade-gothic-no-18-condense';
+    font-family: 'gothic';
     }
     .account_creation .required sup {
     color: #d7162f;
@@ -111,7 +111,7 @@
     margin-bottom: 30px;
     }
     .account_creation .form-group select{
-    font-family: 'Conv_trade-gothic-no-18-condense';
+    font-family: 'gothic';
     color: #4b4b4b;
     font-size: 1.0625rem;
     background: #f8f8f8;
@@ -119,10 +119,10 @@
     }
     #submitAccount {
     padding: 0.3125rem 1.875rem;
-    font-family: 'Conv_trade-gothic-no-18-condense';
+    font-family: 'gothic';
     }
     .account_creation .top {
-    font-family: 'Conv_trade-gothic-no-18-condense';
+    font-family: 'gothic';
     font-size: 1.125rem;
     color:#4b4b4b;
     }
