@@ -25,12 +25,16 @@ class matisses extends Module
 	***********************************************/
 	public function install()
 	{
+		
 		// install controllers
 		$install[] = $this->__installTabs('adminMatisses','Matisses',0);
 		$parent = (int)Tab::getIdFromClassName('adminMatisses');
 		//$install[] = $this->__installTabs('adminWebservices','Webservices',$parent);
 		$install[] = $this->__installTabs('adminHighlights','Destacados',$parent);
 		$install[] = $this->__installTabs('adminExperiences','Experiencias',$parent);
+		
+		//images types
+		$install[] = $this->__installImageTypes('experiences-home',570,145);
 		
 		$sql = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'highlights` (
 				  `id_highlight` int(11) NOT NULL AUTO_INCREMENT,
@@ -59,8 +63,7 @@ class matisses extends Module
 				  `meta_title` varchar(200),
 				  `meta_keywords` text,
 				  `meta_description` text,
-				  PRIMARY KEY (`id_experience`,`id_shop`,`id_lang`),
-				  KEY `active` (`active`)
+				  PRIMARY KEY (`id_experience`,`id_shop`,`id_lang`)
 				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 				
 				CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'experiences_product` (
@@ -72,8 +75,6 @@ class matisses extends Module
 				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;					
 		';
 		
-		
-		
 		if(!file_exists(_PS_IMG_DIR_.'highlights'))
 			mkdir(_PS_IMG_DIR_.'highlights',755);
 			
@@ -81,6 +82,7 @@ class matisses extends Module
 			mkdir(_PS_IMG_DIR_.'experiences',755);	
 		
 
+		
 		
 		if (!parent::install() || in_array(0,$install) || !Db::getInstance()->Execute($sql))
 			return false;
@@ -138,7 +140,7 @@ class matisses extends Module
 		$uninstall[] = $this->__uninstallTabs('adminDestacados');
 		$uninstall[] = $this->__uninstallTabs('adminWebservices');
 		$uninstall[] = $this->__uninstallTabs('adminMatisses');
-		
+		$uninstall[] = $this->__uninstallImageTypes('experiences-home');
 		
 		$sql = 'DROP TABLE IF EXISTS `'._DB_PREFIX_.'highlights`;
 				DROP TABLE IF EXISTS `'._DB_PREFIX_.'experiences`;
@@ -158,7 +160,38 @@ class matisses extends Module
 		return true;
 	}
 	
-	public function __uninstallTabs($class_name)
+	private function __installImageTypes($name,$width,$height,$p=false,$c=false,$m=false,$su=false,$sc=false,$st=false)
+	{
+		try{
+			$ImageType = new ImageType();
+			$ImageType->name 	= $name;
+			$ImageType->width 	= $width;
+			$ImageType->height 	= $height;
+			$ImageType->products 		= $p;
+			$ImageType->categories 		= $c;
+			$ImageType->manufacturers 	= $m;
+			$ImageType->suppliers 		= $su;
+			$ImageType->scenes 			= $sc;
+			$ImageType->stores 			= $st;
+			$ImageType->add();
+			return true;
+		}catch (Exception $e) {
+			return false;
+		}
+	}
+	
+	
+	private function __uninstallImageTypes($name)
+	{
+		try{
+			Db::getInstance()->Execute('DELETE FROM '._DB_PREFIX_.'image_type WHERE name="'.$name.'" ');
+			return true;
+		}catch (Exception $e) {
+			return false;
+		}
+	}
+	
+	private function __uninstallTabs($class_name)
 	{
 		try{
 			$id_tab = (int)Tab::getIdFromClassName($class_name);
