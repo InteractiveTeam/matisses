@@ -3565,4 +3565,9 @@ h1.page-heading{
 	margin: 0 auto;
 	}
 
-/*Detalle Blog*/
+/*Pag buscador*/
+.search .center_column{
+	width: 75rem;
+	padding: 0 0.9375rem;
+	margin: 0 auto;
+}

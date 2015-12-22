@@ -45,11 +45,82 @@
         {/if}
 
      </div>
-<div class="newContent">
+<div class="newContent grid_12 omega alpha">
     <div class="newContentInt">
-        <div class="newContentTopRigthSocial">
-            <div class="newTopActions">
 
+        {if $imgsObj}
+            <script type="text/javascript">
+                $(function()  {ldelim}
+
+
+				 $('#newSlideshow a').lightBox( {ldelim}
+                        imageLoading:'{$url_to_module}/js/lightbox/images/loading.gif',		// (string) Path and the name of the loading icon
+                        imageBtnPrev:'{$url_to_module}/js/lightbox/images/prev.png',			// (string) Path and the name of the prev button image
+                        imageBtnNext:'{$url_to_module}/js/lightbox/images/next.png',			// (string) Path and the name of the next button image
+                        imageBtnClose:'{$url_to_module}/js/lightbox/images/close.png',		// (string) Path and the name of the close btn
+                        imageBlank:'{$url_to_module}/js/lightbox/images/lightbox-blank.gif',
+                        txtImage:'{l s='Image' mod='news'}',
+                        txtOf:'{l s='of' mod='news'}',
+                        fixedNavigation: true
+                    });
+
+				{if count($imgsObj)>1}
+
+					$('#newGallery a').lightBox( {ldelim}
+                        imageLoading:'{$url_to_module}/js/lightbox/images/loading.gif',		// (string) Path and the name of the loading icon
+                        imageBtnPrev:'{$url_to_module}/js/lightbox/images/prev.png',			// (string) Path and the name of the prev button image
+                        imageBtnNext:'{$url_to_module}/js/lightbox/images/next.png',			// (string) Path and the name of the next button image
+                        imageBtnClose:'{$url_to_module}/js/lightbox/images/close.png',		// (string) Path and the name of the close btn
+                        imageBlank:'{$url_to_module}/js/lightbox/images/lightbox-blank.gif',
+                        txtImage:'{l s='Image' mod='news'}',
+                        txtOf:'{l s='of' mod='news'}',
+                        fixedNavigation: true
+                    });
+					$('#newSlideshow').cycle( {ldelim}
+						fx:     'fade',
+						speed:  'fast',
+						timeout: 5000,
+						pagerEvent: 'mouseover',
+						pauseOnPagerHover: true ,
+						pager:  '#newGallery',
+						pagerAnchorBuilder: function(idx, slide)  {ldelim}
+							// return sel string for existing anchor
+							return '#newGallery a:eq(' + (idx) + ')';
+						}
+                });
+
+				{/if}
+            });
+
+            </script>
+        <div class="newImgsContent grid_12 alpha omega" >
+            <div class="newSlideshow" id="newSlideshow" >
+                {foreach from=$imgsObj item='img' name=myLoop}
+                    <a href="{$img->img}" title="{$title|escape:html:'UTF-8'|truncate:220:'...'} -  {$date}">
+                        <img src="{$img->img_slider}"  alt="" width="{$news_slideshow_width}"  height="{$news_slideshow_height}"  />
+                    </a>
+                {/foreach}
+            </div>
+
+			{if count($imgsObj)>1}
+				<div class="newGallery" id="newGallery">
+					{foreach from=$imgsObj item='img' name=myLoop}
+						<a href="{$img->img}" title="{$title|escape:html:'UTF-8'|truncate:220:'...'} -  {$date}"><img src="{$img->img_thumbnail}"  alt="" width="70" height="30"  /></a>
+					{/foreach}
+				</div>
+
+			{/if}
+        </div>
+        {/if}
+        <div class="description-news grid_12 alpha omega">
+            <div class="newTitle"><h1>{$title}</h1></div>
+            <div class="new-author"><p>{if $autor}{$autor} {l s='on' mod='news'}{/if} </p></div>
+            <div class="news-date"><span>{$date}</span></div>
+            <div class="newText"><p> {$new}</p></div>
+        </div>
+
+        <div class="newContentTopRigthSocial grid_12 alpha omega">
+            <div class="newTopActions">
                 <a href="javascript:window.print()" class="newPrint"></a>
                 <a href="javascript:void(0)" onclick="lessText()" class="newTextLess"></a>
                 <a href="javascript:void(0)" onclick="normalText()"  class="newTextNormal"></a>
@@ -200,74 +271,12 @@
             {/if}
 
         </div>
-        {if $imgsObj}
-            <script type="text/javascript">
-                $(function()  {ldelim}
 
 
-				 $('#newSlideshow a').lightBox( {ldelim}
-                        imageLoading:'{$url_to_module}/js/lightbox/images/loading.gif',		// (string) Path and the name of the loading icon
-                        imageBtnPrev:'{$url_to_module}/js/lightbox/images/prev.png',			// (string) Path and the name of the prev button image
-                        imageBtnNext:'{$url_to_module}/js/lightbox/images/next.png',			// (string) Path and the name of the next button image
-                        imageBtnClose:'{$url_to_module}/js/lightbox/images/close.png',		// (string) Path and the name of the close btn
-                        imageBlank:'{$url_to_module}/js/lightbox/images/lightbox-blank.gif',
-                        txtImage:'{l s='Image' mod='news'}',
-                        txtOf:'{l s='of' mod='news'}',
-                        fixedNavigation: true
-                    });
 
-				{if count($imgsObj)>1}
 
-					$('#newGallery a').lightBox( {ldelim}
-                        imageLoading:'{$url_to_module}/js/lightbox/images/loading.gif',		// (string) Path and the name of the loading icon
-                        imageBtnPrev:'{$url_to_module}/js/lightbox/images/prev.png',			// (string) Path and the name of the prev button image
-                        imageBtnNext:'{$url_to_module}/js/lightbox/images/next.png',			// (string) Path and the name of the next button image
-                        imageBtnClose:'{$url_to_module}/js/lightbox/images/close.png',		// (string) Path and the name of the close btn
-                        imageBlank:'{$url_to_module}/js/lightbox/images/lightbox-blank.gif',
-                        txtImage:'{l s='Image' mod='news'}',
-                        txtOf:'{l s='of' mod='news'}',
-                        fixedNavigation: true
-                    });
-					$('#newSlideshow').cycle( {ldelim}
-						fx:     'fade',
-						speed:  'fast',
-						timeout: 5000,
-						pagerEvent: 'mouseover',
-						pauseOnPagerHover: true ,
-						pager:  '#newGallery',
-						pagerAnchorBuilder: function(idx, slide)  {ldelim}
-							// return sel string for existing anchor
-							return '#newGallery a:eq(' + (idx) + ')';
-						}
-                });
 
-				{/if}
-            });
 
-            </script>
-            <div class="newImgsContent" >
-                <div class="newSlideshow" id="newSlideshow" >
-                    {foreach from=$imgsObj item='img' name=myLoop}
-                        <a href="{$img->img}" title="{$title|escape:html:'UTF-8'|truncate:220:'...'} -  {$date}"><img
-								src="{$img->img_slider}"  alt="" width="{$news_slideshow_width}"  height="{$news_slideshow_height}"  /></a>
-                    {/foreach}
-                </div>
-
-				{if count($imgsObj)>1}
-					<div class="newGallery" id="newGallery">
-						{foreach from=$imgsObj item='img' name=myLoop}
-							<a href="{$img->img}" title="{$title|escape:html:'UTF-8'|truncate:220:'...'} -  {$date}"><img src="{$img->img_thumbnail}"  alt="" width="70" height="30"  /></a>
-						{/foreach}
-					</div>
-
-				{/if}
-            </div>
-        {/if}
-        <div class="newTitle">{$title}</div><br>
-        <div class="newAutorDate">{if $autor}{$autor} {l s='on' mod='news'}{/if} {$date}</div><br>
-        <div class="newText">
-            {$new}
-        </div>
         {if $tagsObj}
             <div class="newItemTags" >
                 <span>{l s='TAGS ' mod='news'}</span>

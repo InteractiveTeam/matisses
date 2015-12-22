@@ -432,7 +432,10 @@ a.newsRss:visited{
 .newsListTitle h2{
     font-family: 'condensed';
     color: #231f20;
-    font-size: 1.75rem;
+    font-size: 1.5625rem;
+    border-bottom: 1px solid #dbdbdb;
+    padding-bottom: 0.3125rem;
+    text-transform: uppercase;
 }
 
 .new-author p{
@@ -450,17 +453,16 @@ div.button.newsMoreBtn {
     padding: 0.625rem 0.9375rem;
     text-transform: uppercase;
 }
-.news-date span {
-    display: block;
-    padding: 0.625rem 0 0.3125rem 0;
-    margin: 0.3125rem 0 0.9375rem;
-    font-family: 'gothic';
+.news-date span{
+    font-family: 'Open Sans Condensed', sans-serif;
     color: #666;
-    text-transform: uppercase;
-    border-bottom: 2px solid #d7162f;
+    background: #F6F6F6;
+    display: block;
+    padding: 0.3125rem 0.9375rem;
+    margin: 0.625rem 0;
 }
 
-.blog-list h1{
+.blog-list  h1{
     color: #231f20;
     font-family: 'condensed';
     font-size: 3rem;
@@ -474,10 +476,26 @@ div.button.newsMoreBtn {
     width: auto;
     height: auto;
 }
-
-
-
-/*Borrar*/
-.sf-menu > li > ul{
-    display: none;
+div.newImgsContent {
+    margin-bottom: 1.5625rem;
+}
+.newTitle h1{
+    font-size: 1.5625rem;
+    border-bottom: 2px solid #ED143D;
+    padding-bottom: 0.3125rem;
+}
+.news-date span{
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #666;
+    background: #F6F6F6;
+    display: block;
+    padding: 0.3125rem 0.9375rem;
+    margin: 0.625rem 0;
+}
+div.newContentTopRigthSocial{
+    margin-top: 1.25rem;
+}
+.newContentTopRigthSocial div {
+    display: inline-block;
+    vertical-align: top;
 }

@@ -34,8 +34,8 @@
     		<h3 class="page-subheading">{l s='Our offers'}</h3>
     		<ul>
     			<li>
-                    <a 
-                    href="{$link->getPageLink('new-products')|escape:'html':'UTF-8'}" 
+                    <a
+                    href="{$link->getPageLink('new-products')|escape:'html':'UTF-8'}"
                     title="{l s='View a new product'}">
                         {l s='New products'}
                     </a>
@@ -43,16 +43,16 @@
     			{if !$PS_CATALOG_MODE}
     			{if $PS_DISPLAY_BEST_SELLERS}
         			<li>
-                        <a 
-                        href="{$link->getPageLink('best-sales')|escape:'html':'UTF-8'}" 
+                        <a
+                        href="{$link->getPageLink('best-sales')|escape:'html':'UTF-8'}"
                         title="{l s='View top-selling products'}">
                             {l s='Best sellers'}
                         </a>
                     </li>
                 {/if}
         			<li>
-                        <a 
-                        href="{$link->getPageLink('prices-drop')|escape:'html':'UTF-8'}" 
+                        <a
+                        href="{$link->getPageLink('prices-drop')|escape:'html':'UTF-8'}"
                         title="{l s='View products with a price drop'}">
                             {l s='Price drop'}
                         </a>
@@ -60,8 +60,8 @@
     			{/if}
     			{if $display_manufacturer_link OR $PS_DISPLAY_SUPPLIERS}
                     <li>
-                        <a 
-                        href="{$link->getPageLink('manufacturer')|escape:'html':'UTF-8'}" 
+                        <a
+                        href="{$link->getPageLink('manufacturer')|escape:'html':'UTF-8'}"
                         title="{l s='View a list of manufacturers'}">
                             {l s='Manufacturers'}
                         </a>
@@ -69,8 +69,8 @@
                 {/if}
     			{if $display_supplier_link OR $PS_DISPLAY_SUPPLIERS}
                     <li>
-                        <a 
-                        href="{$link->getPageLink('supplier')|escape:'html':'UTF-8'}" 
+                        <a
+                        href="{$link->getPageLink('supplier')|escape:'html':'UTF-8'}"
                         title="{l s='View a list of suppliers'}">
                             {l s='Suppliers'}
                         </a>
@@ -79,7 +79,7 @@
     		</ul>
 	   </div>
     </div>
-    <div class="col-xs-12 col-sm-6">
+    <div class="grid_6">
 		<div class="sitemap_block box">
     		<h3 class="page-subheading">
                 {l s='Your Account'}
@@ -87,42 +87,42 @@
     		<ul>
         		{if $is_logged}
         			<li>
-                        <a 
-                        href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}" 
-                        rel="nofollow" 
+                        <a
+                        href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}"
+                        rel="nofollow"
                         title="{l s='Manage your customer account'}">
                             {l s='Your Account'}
                         </a>
                     </li>
         			<li>
-                        <a 
-                        href="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}" 
-                        rel="nofollow" 
+                        <a
+                        href="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}"
+                        rel="nofollow"
                         title="{l s='Manage your personal information'}">
                             {l s='Personal information'}
                         </a>
                     </li>
         			<li>
-                        <a 
-                        href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}" 
-                        rel="nofollow" 
+                        <a
+                        href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}"
+                        rel="nofollow"
                         title="{l s='View a list of my addresses'}">
                             {l s='Addresses'}
                         </a>
                     </li>
         			{if $voucherAllowed}
                         <li>
-                            <a 
-                            href="{$link->getPageLink('discount', true)|escape:'html':'UTF-8'}" 
-                            rel="nofollow" 
+                            <a
+                            href="{$link->getPageLink('discount', true)|escape:'html':'UTF-8'}"
+                            rel="nofollow"
                             title="{l s='View a list of my discounts'}">
                                 {l s='Discounts'}
                             </a>
                         </li>
                         {/if}
         			<li>
-                        <a 
-                        href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}" 
+                        <a
+                        href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}"
                         rel="nofollow"
                         title="{l s='View a list of my orders'}" >
                             {l s='Order history'}
@@ -130,17 +130,17 @@
                     </li>
         		{else}
         			<li>
-                        <a 
-                        href="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" 
+                        <a
+                        href="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}"
                         rel="nofollow"
                         title="{l s='Authentication'}" >
                             {l s='Authentication'}
                         </a>
                     </li>
         			<li>
-                        <a 
+                        <a
                         href="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}"
-                        rel="nofollow" 
+                        rel="nofollow"
                         title="{l s='Create new account'}" >
                             {l s='Create new account'}
                         </a>
@@ -148,8 +148,8 @@
         		{/if}
         		{if $is_logged}
         			<li>
-                        <a 
-                        href="{$link->getPageLink('index')}?mylogout" 
+                        <a
+                        href="{$link->getPageLink('index')}?mylogout"
                         rel="nofollow"
                         title="{l s='Sign out'}" >
                             {l s='Sign out'}
@@ -161,7 +161,7 @@
     </div>
 </div>
 <div id="listpage_content" class="row">
-	<div class="col-xs-12 col-sm-6">
+	<div class="grid_6 alpha">
 		<div class="categTree box">
             <h3 class="page-subheading">{l s='Categories'}</h3>
             <div class="tree_top">
@@ -180,7 +180,7 @@
             </ul>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-6">
+    <div class="grid_6 omega">
 		<div class="sitemap_block box">
             <h3 class="page-subheading">{l s='Pages'}</h3>
             <ul>
