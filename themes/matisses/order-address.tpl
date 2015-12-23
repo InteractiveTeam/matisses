@@ -36,9 +36,9 @@
 	<div id="opc_account" class="opc-main-block">
 		<div id="opc_account-overlay" class="opc-overlay" style="display: none;"></div>
 {/if}
-<div class="addresses clearfix">
+<div class="addresses cf">
 	<div class="row ">
-		<div class="col-xs-12 col-sm-6">
+		<div class="grid_6">
 			<div class="address_delivery select form-group selector1">
 				<label for="id_address_delivery">{if $cart->isVirtualCart()}{l s='Choose a billing address:'}{else}{l s='Choose a delivery address:'}{/if}</label>
 				<select name="id_address_delivery" id="id_address_delivery" class="address_select form-control">
@@ -54,7 +54,7 @@
 				<label for="addressesAreEquals">{l s='Use the delivery address as the billing address.'}</label>
 			</p>
 		</div>
-		<div class="col-xs-12 col-sm-6">
+		<div class="grid_6">
 			<div id="address_invoice_form" class="select form-group selector1"{if $cart->id_address_invoice == $cart->id_address_delivery} style="display: none;"{/if}>
 				{if $addresses|@count > 1}
 					<label for="id_address_invoice" class="strong">{l s='Choose a billing address:'}</label>
@@ -66,29 +66,27 @@
 					{/section}
 					</select><span class="waitimage"></span>
 				{else}
-					<a href="{$link->getPageLink('address', true, NULL, "back={$back_order_page}?step=1&select_address=1{if $back}&mod={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Add'}" class="button button-small btn btn-default">
-						<span>
-							{l s='Add a new address'}
-							<i class="icon-chevron-right right"></i>
-						</span>
+					<a href="{$link->getPageLink('address', true, NULL, "back={$back_order_page}?step=1&select_address=1{if $back}&mod={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Add'}" class="button button-small btn btn-red">
+						{l s='Add a new address'}
+						<i class="icon-chevron-right right"></i>
 					</a>
 				{/if}
 			</div>
 		</div>
 	</div> <!-- end row -->
 	<div class="row">
-		<div class="col-xs-12 col-sm-6"{if $cart->isVirtualCart()} style="display:none;"{/if}>
+		<div class="grid_6"{if $cart->isVirtualCart()} style="display:none;"{/if}>
 			<ul class="address item box" id="address_delivery">
 			</ul>
 		</div>
-		<div class="col-xs-12 col-sm-6">
+		<div class="grid_6">
 			<ul class="address alternate_item{if $cart->isVirtualCart()} full_width{/if} box" id="address_invoice">
 			</ul>
 		</div>
 	</div> <!-- end row -->
 	<p class="address_add submit">
-		<a href="{$link->getPageLink('address', true, NULL, "back={$back_order_page}?step=1{if $back}&mod={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Add'}" class="button button-small btn btn-default">
-			<span>{l s='Add a new address'}<i class="icon-chevron-right right"></i></span>
+		<a href="{$link->getPageLink('address', true, NULL, "back={$back_order_page}?step=1{if $back}&mod={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Add'}" class="button button-small btn btn-red">
+			{l s='Add a new address'}
 		</a>
 	</p>
 	{if !$opc}
@@ -99,12 +97,12 @@
 	{/if}
 </div> <!-- end addresses -->
 {if !$opc}
-			<p class="cart_navigation clearfix">
+			<p class="cart_navigation cf">
 				<input type="hidden" class="hidden" name="step" value="2" />
 				<input type="hidden" name="back" value="{$back}" />
-				<a href="{$link->getPageLink($back_order_page, true, NULL, "step=0{if $back}&back={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-default">
-					<i class="icon-chevron-left"></i>
-					{l s='Continue Shopping'}
+				<a href="{$link->getPageLink($back_order_page, true, NULL, "step=0{if $back}&back={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-red">
+					<i class="fa fa-angle-left"></i>
+					{l s='Continuar comprando'}
 				</a>
 				<button type="submit" name="processAddress" class="button btn btn-default button-medium">
 					<span>{l s='Proceed to checkout'}<i class="icon-chevron-right right"></i></span>

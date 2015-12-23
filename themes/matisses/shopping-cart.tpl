@@ -78,7 +78,7 @@
 	{assign var='total_wrapping_taxes_num' value="{if $total_wrapping != 0}1{else}0{/if}"}
 	{* eu-legal *}
 	{hook h="displayBeforeShoppingCartBlock"}
-	<div id="order-detail-content" class="table_block table-responsive">
+	<div id="order-detail-content" class="order-detail table_block table-responsive">
 		<table id="cart_summary" class="table table-bordered {if $PS_STOCK_MANAGEMENT}stock-management-on{else}stock-management-off{/if}">
 			<thead>
 				<tr>
@@ -90,7 +90,7 @@
 					{else}
 						{assign var='col_span_subtotal' value='2'}
 					{/if}
-					<th class="cart_unit item">{l s='Unit price'}</th>
+					<th class="cart_unit item">{l s='Precio (Unidad)'}</th>
 					<th class="cart_quantity item">{l s='Qty'}</th>
 					<th class="cart_total item">{l s='Total'}</th>
 					<th class="cart_delete last_item">&nbsp;</th>
@@ -462,12 +462,16 @@
 	{/if}
 
 	{if ((!empty($delivery_option) AND !isset($virtualCart)) OR $delivery->id OR $invoice->id) AND !$opc}
-		<div class="order_delivery clearfix row">
+		<div class="order_delivery cf row">
 			{if !isset($formattedAddresses) || (count($formattedAddresses.invoice) == 0 && count($formattedAddresses.delivery) == 0) || (count($formattedAddresses.invoice.formated) == 0 && count($formattedAddresses.delivery.formated) == 0)}
 				{if $delivery->id}
-					<div class="col-xs-12 col-sm-6"{if !$have_non_virtual_products} style="display: none;"{/if}>
+					<div class="grid_6"{if !$have_non_virtual_products} style="display: none;"{/if}>
 						<ul id="delivery_address" class="address item box">
-							<li><h3 class="page-subheading">{l s='Delivery address'}&nbsp;<span class="address_alias">({$delivery->alias})</span></h3></li>
+							<li>
+								<h3 class="page-subheading">{l s='Delivery address'}&nbsp;
+								<span class="address_alias">({$delivery->alias})</span>
+								</h3>
+							</li>
 							{if $delivery->company}<li class="address_company">{$delivery->company|escape:'html':'UTF-8'}</li>{/if}
 							<li class="address_name">{$delivery->firstname|escape:'html':'UTF-8'} {$delivery->lastname|escape:'html':'UTF-8'}</li>
 							<li class="address_address1">{$delivery->address1|escape:'html':'UTF-8'}</li>
@@ -478,7 +482,7 @@
 					</div>
 				{/if}
 				{if $invoice->id}
-					<div class="col-xs-12 col-sm-6">
+					<div class="grid_6">
 						<ul id="invoice_address" class="address alternate_item box">
 							<li><h3 class="page-subheading">{l s='Invoice address'}&nbsp;<span class="address_alias">({$invoice->alias})</span></h3></li>
 							{if $invoice->company}<li class="address_company">{$invoice->company|escape:'html':'UTF-8'}</li>{/if}
@@ -492,7 +496,7 @@
 				{/if}
 			{else}
 				{foreach from=$formattedAddresses key=k item=address}
-					<div class="col-xs-12 col-sm-6"{if $k == 'delivery' && !$have_non_virtual_products} style="display: none;"{/if}>
+					<div class="grid_6"{if $k == 'delivery' && !$have_non_virtual_products} style="display: none;"{/if}>
 						<ul class="address {if $address@last}last_item{elseif $address@first}first_item{/if} {if $address@index % 2}alternate_item{else}item{/if} box">
 							<li>
 								<h3 class="page-subheading">
@@ -530,22 +534,22 @@
 		</div>
 	{/if}
 	<div id="HOOK_SHOPPING_CART">{$HOOK_SHOPPING_CART}</div>
-	<p class="cart_navigation clearfix">
+	<div class="cart_navigation cf grid_12">
 		{if !$opc}
 			<a
 				href="{if $back}{$link->getPageLink('order', true, NULL, 'step=1&amp;back={$back}')|escape:'html':'UTF-8'}{else}{$link->getPageLink('order', true, NULL, 'step=1')|escape:'html':'UTF-8'}{/if}"
-				class="button btn btn-default standard-checkout button-medium"
+				class="button btn btn-default standard-checkout button-medium btn-red"
 				title="{l s='Proceed to checkout'}">
 				<span>{l s='Proceed to checkout'}<i class="icon-chevron-right right"></i></span>
 			</a>
 		{/if}
 		<a
 			href="{if (isset($smarty.server.HTTP_REFERER) && strstr($smarty.server.HTTP_REFERER, 'order.php')) || isset($smarty.server.HTTP_REFERER) && strstr($smarty.server.HTTP_REFERER, 'order-opc') || !isset($smarty.server.HTTP_REFERER)}{$link->getPageLink('index')}{else}{$smarty.server.HTTP_REFERER|escape:'html':'UTF-8'|secureReferrer}{/if}"
-			class="button-exclusive btn btn-default"
+			class="button-exclusive btn btn-default btn-red"
 			title="{l s='Continue shopping'}">
-			<i class="icon-chevron-left"></i>{l s='Continue shopping'}
+			<i class="fa fa-angle-left"></i>{l s='Continuar comprando'}
 		</a>
-	</p>
+	</div>
 	{if !empty($HOOK_SHOPPING_CART_EXTRA)}
 		<div class="clear"></div>
 		<div class="cart_navigation_extra">

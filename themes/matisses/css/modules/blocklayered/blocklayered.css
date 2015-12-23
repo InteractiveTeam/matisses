@@ -1,5 +1,29 @@
+/** Se ocultan porque no se han terminado de desarrollar **/
+.sf-menu.menu-content > li > ul,
+#special_block_right,
+#viewed-products_block_left,
+#new-products_block_right,
+#news_block_sides{
+  display: none;
+}
+
+.content_sortPagiBar .sortPagiBar .productsSortForm:before {
+    content: "Organizar por";
+    display: inline-block;
+    font-family: "OpenSans";
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    height: 47px;
+    padding: 11px 30px 0 20px;
+}
+.content_sortPagiBar .sortPagiBar .selector1{
+  display: inline-block;
+}
+
 #layered_block_left {
 	padding-top: 21px;
+  background: #f1f1f1;
 }
 #enabled_filters .layered_subtitle {
   font-weight: bold;
@@ -27,13 +51,38 @@
 #layered_block_left span.layered_close a,
 #layered_block_left span.layered_close a,
 #layered_block_left span.closed a {
-  display: none; }
+  display: none; 
+}
 
-
+#layered_block_left .block_content form#layered_form {
+    padding: 10px 20px;
+}
+#layered_block_left .block_content form#layered_form label {
+    margin-left: 5px;
+}
+#layered_block_left .block_content form#layered_form a{
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 200;
+    font-size: 1.1em;
+    color: #7F7E7E !important;
+}
+#layered_block_left .block_content form#layered_form .checker span {
+    border: 3px solid #7b7b7b;
+}
+#layered_block_left .block_content form#layered_form .checker span:before {
+    color: red;
+    position: absolute;
+    left: 4px;
+    top: 3px;
+    font-size: 0.7em;
+}
 #layered_block_left .layered_subtitle {
-	text-transform: uppercase;
-	font-weight: 700;
-	}
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: "condensed";
+  color: #000;
+  font-size: 1.6em;
+}
 #layered_block_left #enabled_filters .layered_subtitle{
 	font-size: 16px;
 	margin-bottom: 15px;

@@ -84,7 +84,7 @@
 
 <div class="adresses_bloc">
 	<div class="row">
-		<div class="col-xs-12 col-sm-6"{if $order->isVirtual()} style="display:none;"{/if}>
+		<div class="grid_6 alpha "{if $order->isVirtual()} style="display:none;"{/if}>
 			<ul class="address alternate_item box">
 				<li><h3 class="page-subheading">{l s='Delivery address'} ({$address_delivery->alias})</h3></li>
 				{foreach from=$dlv_adr_fields name=dlv_loop item=field_item}
@@ -98,9 +98,10 @@
 				{/foreach}
 			</ul>
 		</div>
-		<div class="col-xs-12 col-sm-6">
+		<div class="grid_6  omega">
 			<ul class="address item {if $order->isVirtual()}full_width{/if} box">
-				<li><h3 class="page-subheading">{l s='Invoice address'} ({$address_invoice->alias})</h3></li>
+				<li>
+					<h3 class="page-subheading">{l s='Invoice address'} ({$address_invoice->alias})</h3></li>
 				{foreach from=$inv_adr_fields name=inv_loop item=field_item}
 					{if $field_item eq "company" && isset($address_invoice->company)}<li class="address_company">{$address_invoice->company|escape:'html':'UTF-8'}</li>
 					{elseif $field_item eq "address2" && $address_invoice->address2}<li class="address_address2">{$address_invoice->address2|escape:'html':'UTF-8'}</li>

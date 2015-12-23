@@ -63,13 +63,7 @@
     color: #757373;
     margin-bottom: 1.25rem;
     }
+
     .store-image img {
     width: 100%;
-    min-width: 100px;
-    }
-    #locationSelect_chosen {
-    width: 100% !important;
-    }
-
-/*borrar*/
-.sf-menu > li > ul{display: none;}
+    min-width: 100px; }
