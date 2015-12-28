@@ -375,7 +375,7 @@
             </div>
         {/if}
         
-        {if $prev_id_news||$next_id_news}
+        {if ($prev_id_news||$next_id_news) && false}
             <div class="newPrevNext">
                 {if $prev_id_news}
                     <a class="button" style="float: left"

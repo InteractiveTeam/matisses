@@ -103,7 +103,8 @@
             <img src="{$img_ps_dir}loader.gif" class="middle" alt="" id="stores_loader" />
         </div>
 		<div class="store-content-select selector3 grid_6">
-	    	<select id="locationSelect" class="form-control">
+        <label for="locationSelect">{l s='Localization:'}</label>
+	    	<select id="locationSelect" name="locationSelect" class="form-control">
 	    		<option>-</option>
 	    	</select>
 	    </div>

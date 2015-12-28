@@ -52,6 +52,15 @@ class CustomerCore extends ObjectModel
 
 	/** @var string Firstname */
 	public $firstname;
+	
+	/** @var string secondname */
+	public $secondname;
+	
+	/** @var string surname */
+	public $surname;
+	
+	/** @var string charter */
+	public $charter;
 
 	/** @var string Birthday (yyyy-mm-dd) */
 	public $birthday = null;
@@ -161,6 +170,11 @@ class CustomerCore extends ObjectModel
 			'secure_key' => 				array('type' => self::TYPE_STRING, 'validate' => 'isMd5', 'copy_post' => false),
 			'lastname' => 					array('type' => self::TYPE_STRING, 'validate' => 'isName', 'required' => true, 'size' => 32),
 			'firstname' => 					array('type' => self::TYPE_STRING, 'validate' => 'isName', 'required' => true, 'size' => 32),
+			
+			'secondname' => 				array('type' => self::TYPE_STRING, 'validate' => 'isName', 'required' => true, 'size' => 32),
+			'surname' => 					array('type' => self::TYPE_STRING, 'validate' => 'isName', 'required' => true, 'size' => 32),
+			'charter' => 					array('type' => self::TYPE_STRING, 'required' => true, 'size' => 32),
+			
 			'email' => 						array('type' => self::TYPE_STRING, 'validate' => 'isEmail', 'required' => true, 'size' => 128),
 			'passwd' => 					array('type' => self::TYPE_STRING, 'validate' => 'isPasswd', 'required' => true, 'size' => 32),
 			'last_passwd_gen' =>			array('type' => self::TYPE_STRING, 'copy_post' => false),
