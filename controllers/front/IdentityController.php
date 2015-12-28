@@ -49,6 +49,14 @@ class IdentityControllerCore extends FrontController
 		{
 			$email = trim(Tools::getValue('email'));
 
+			if ((Tools::getValue('passwd') != Tools::getValue('passwd2')) || (empty(Tools::getValue('passwd')) || empty(Tools::getValue('passwd2'))))
+				$this->errors[] = sprintf(Tools::displayError('The %s do not match'),'<b>'.Tools::displayError('Passwords').'</b>');
+
+			if(!is_numeric(Tools::getValue('charter')))
+				$this->errors[] = sprintf(Tools::displayError('The %s is not valid'),'<b>'.Tools::displayError('Charter').'</b>');
+		
+			
+
 			if (Tools::getValue('months') != '' && Tools::getValue('days') != '' && Tools::getValue('years') != '')
 				$this->customer->birthday = (int)Tools::getValue('years').'-'.(int)Tools::getValue('months').'-'.(int)Tools::getValue('days');
 			elseif (Tools::getValue('months') == '' && Tools::getValue('days') == '' && Tools::getValue('years') == '')
@@ -101,6 +109,11 @@ class IdentityControllerCore extends FrontController
 				{
 					$this->context->cookie->customer_lastname = $this->customer->lastname;
 					$this->context->cookie->customer_firstname = $this->customer->firstname;
+					
+					$this->context->cookie->customer_secondname = $customer->secondname;
+					$this->context->cookie->customer_surname = $customer->surname;
+					$this->context->cookie->customer_charter = $customer->charter;
+					
 					$this->context->smarty->assign('confirmation', 1);
 				}
 				else

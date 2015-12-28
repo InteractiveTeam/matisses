@@ -275,6 +275,12 @@ class AuthControllerCore extends FrontController
 				$this->context->cookie->id_customer = (int)($customer->id);
 				$this->context->cookie->customer_lastname = $customer->lastname;
 				$this->context->cookie->customer_firstname = $customer->firstname;
+				
+				$this->context->cookie->customer_secondname = $customer->secondname;
+				$this->context->cookie->customer_surname = $customer->surname;
+				$this->context->cookie->customer_charter = $customer->charter;
+				
+				
 				$this->context->cookie->logged = 1;
 				$customer->logged = 1;
 				$this->context->cookie->is_guest = $customer->isGuest();
@@ -365,6 +371,14 @@ class AuthControllerCore extends FrontController
 	{
 		Hook::exec('actionBeforeSubmitAccount');
 		$this->create_account = true;
+		
+		if ((Tools::getValue('passwd') != Tools::getValue('passwd2')) || (empty(Tools::getValue('passwd')) || empty(Tools::getValue('passwd2'))))
+			$this->errors[] = sprintf(Tools::displayError('The %s do not match'),'<b>'.Tools::displayError('Passwords').'</b>');
+
+		if(!is_numeric(Tools::getValue('charter')))
+			$this->errors[] = sprintf(Tools::displayError('The %s is not valid'),'<b>'.Tools::displayError('Charter').'</b>');
+		
+		
 		if (Tools::isSubmit('submitAccount'))
 			$this->context->smarty->assign('email_create', 1);
 		// New Guest customer
@@ -382,8 +396,21 @@ class AuthControllerCore extends FrontController
 		$customer = new Customer();
 		$lastnameAddress = Tools::getValue('lastname');
 		$firstnameAddress = Tools::getValue('firstname');
+
+		$secondname = Tools::getValue('secondname');
+		$surname = Tools::getValue('surname');
+		$charter = Tools::getValue('charter');
+		
+		
 		$_POST['lastname'] = Tools::getValue('customer_lastname', $lastnameAddress);
 		$_POST['firstname'] = Tools::getValue('customer_firstname', $firstnameAddress);
+		
+		$_POST['secondname'] = Tools::getValue('secondname', $lastnameAddress);
+		$_POST['surname'] = Tools::getValue('surname', $firstnameAddress);
+		$_POST['charter'] = Tools::getValue('charter', $firstnameAddress);
+		
+		
+		
 		$addresses_types = array('address');
 		if (!Configuration::get('PS_ORDER_PROCESS_TYPE') && Configuration::get('PS_GUEST_CHECKOUT_ENABLED') && Tools::getValue('invoice_address'))
 			$addresses_types[] = 'address_invoice';

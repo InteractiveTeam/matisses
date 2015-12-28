@@ -23,17 +23,15 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 {capture name=path}{l s='Contact'}{/capture}
-<h1 class="page-heading bottom-indent">
+<h1 class="page-heading">
     {l s='Customer service'} - {if isset($customerThread) && $customerThread}{l s='Your reply'}{else}{l s='Contact us'}{/if}
 </h1>
 {if isset($confirmation)}
 	<p class="alert alert-success">{l s='Your message has been successfully sent to our team.'}</p>
 	<ul class="footer_links clearfix">
 		<li>
-            <a class="btn btn-default button button-small" href="{$base_dir}">
-                <span>
-                    <i class="icon-chevron-left"></i>{l s='Home'}
-                </span>
+            <a class="btn btn-default button btn-red" href="{$base_dir}">
+                <i class="icon-chevron-left"></i>{l s='Home'}
             </a>
         </li>
 	</ul>
@@ -41,10 +39,8 @@
 	<p class="alert alert-warning">{l s='Your message has already been sent.'}</p>
 	<ul class="footer_links clearfix">
 		<li>
-            <a class="btn btn-default button button-small" href="{$base_dir}">
-                <span>
+            <a class="btn btn-default button btn-red" href="{$base_dir}">
                     <i class="icon-chevron-left"></i>{l s='Home'}
-                </span>
             </a>
         </li>
 	</ul>
@@ -53,8 +49,8 @@
 	<form action="{$request_uri|escape:'html':'UTF-8'}" method="post" class="contact-form-box" enctype="multipart/form-data">
 		<fieldset>
         <h3 class="page-subheading">{l s='send a message'}</h3>
-        <div class="clearfix">
-            <div class="col-xs-12 col-md-3">
+        <div class="cf grid_12 alpha omega">
+            <div class="grid_6 alpha">
                 <div class="form-group selector1">
                     <label for="id_contact">{l s='Subject Heading'}</label>
                 {if isset($customerThread.id_contact)}
@@ -79,14 +75,14 @@
                         </p>
                     {/foreach}
                 {/if}
-                <p class="form-group">
+                <div class="form-group">
                     <label for="email">{l s='Email address'}</label>
                     {if isset($customerThread.email)}
                         <input class="form-control grey" type="text" id="email" name="from" value="{$customerThread.email|escape:'html':'UTF-8'}" readonly="readonly" />
                     {else}
                         <input class="form-control grey validate" type="text" id="email" name="from" data-validate="isEmail" value="{$email|escape:'html':'UTF-8'}" />
                     {/if}
-                </p>
+                </div>
                 {if !$PS_CATALOG_MODE}
                     {if (!isset($customerThread.id_order) || $customerThread.id_order > 0)}
                         <div class="form-group selector1">
@@ -124,22 +120,22 @@
                     {/if}
                 {/if}
                 {if $fileupload == 1}
-                    <p class="form-group">
-                        <label for="fileUpload">{l s='Attach File'}</label>
+                    <div class="form-group">
+                        <label for="fileUpload">{l s='Adjuntar archivo'}</label>
                         <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
                         <input type="file" name="fileUpload" id="fileUpload" class="form-control" />
-                    </p>
+                    </div>
                 {/if}
             </div>
-            <div class="col-xs-12 col-md-9">
+            <div class="grid_6 omega">
                 <div class="form-group">
                     <label for="message">{l s='Message'}</label>
                     <textarea class="form-control" id="message" name="message">{if isset($message)}{$message|escape:'html':'UTF-8'|stripslashes}{/if}</textarea>
                 </div>
             </div>
         </div>
-        <div class="submit">
-            <button type="submit" name="submitMessage" id="submitMessage" class="button btn btn-default button-medium"><span>{l s='Send'}<i class="icon-chevron-right right"></i></span></button>
+        <div class="submit grid_12 alpha omega">
+            <button type="submit" name="submitMessage" id="submitMessage" class="button btn btn-default btn-red">{l s='Send'}</button>
 		</div>
 	</fieldset>
 </form>

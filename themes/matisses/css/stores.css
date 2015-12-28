@@ -1,6 +1,11 @@
-    /***********************************************************
-    Stores Page Styles
-    ************************************************************/
+    /*Stores Page Styles*/
+    .stores .center_column {
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 0 0.9375rem;
+    width: 100%;
+    }
+
     #stores #map {
     width: 100%;
     height: 27.8125rem;
@@ -21,7 +26,6 @@
     display: none;
     margin-left: 5px; }
     #stores #locationSelect {
-    max-width: 356px;
     visibility: hidden; }
     #stores #stores-table {
     display: none; }

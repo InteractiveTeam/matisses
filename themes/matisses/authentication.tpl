@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 {capture name=path}
-	{if !isset($email_create)}{l s='Authentication'}{else}
+	{if !isset($email_create)}{l s='income users'}{else}
 		<a href="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Authentication'}">{l s='Authentication'}</a>
 		<span class="navigation-pipe">{$navigationPipe}</span>{l s='Create your account'}
 	{/if}
@@ -431,25 +431,26 @@
 				{/foreach}
 			</div>
 			<div class="cf">
+            	<pre></pre>
 				<div class="required form-group grid_6">
 					<label for="customer_firstname">{l s='First name'} <sup>*</sup></label>
 					<input onkeyup="$('#firstname').val(this.value);" type="text" class="is_required validate form-control" data-validate="isName" id="customer_firstname" name="customer_firstname" value="{if isset($smarty.post.customer_firstname)}{$smarty.post.customer_firstname}{/if}" />
 				</div>
 				<div class="form-group grid_6">
-					<label for="customer_secondname">{l s='Segundo Nombre'} </label>
-					<input onkeyup="$('#secondname').val(this.value);" type="text" class="is_required validate form-control" data-validate="isName" id="customer_secondname" name="customer_secondname" value="{if isset($smarty.post.customer_secondname)}{$smarty.post.customer_secondname}{/if}" />
+					<label for="customer_secondname">{l s='Second name'} </label>
+					<input onkeyup="$('#secondname').val(this.value);" type="text" class="is_required validate form-control" data-validate="isName" id="customer_secondname" name="secondname" value="{if isset($smarty.post.secondname)}{$smarty.post.secondname}{/if}" />
 				</div>
 				<div class="required form-group grid_6">
-					<label for="customer_lastname">{l s='Primer Apellido'} <sup>*</sup></label>
+					<label for="customer_lastname">{l s='Lastname'} <sup>*</sup></label>
 					<input onkeyup="$('#lastname').val(this.value);" type="text" class="is_required validate form-control" data-validate="isName" id="customer_lastname" name="customer_lastname" value="{if isset($smarty.post.customer_lastname)}{$smarty.post.customer_lastname}{/if}" />
 				</div>
 				<div class="form-group grid_6">
-					<label for="customer_surname">{l s='Segundo Apellido'} </label>
-					<input onkeyup="$('#surname').val(this.value);" type="text" class="is_required validate form-control" data-validate="isName" id="customer_surname" name="customer_surname" value="{if isset($smarty.post.customer_surname)}{$smarty.post.customer_surname}{/if}" />
+					<label for="customer_surname">{l s='Second Lastname'} </label>
+					<input onkeyup="$('#surname').val(this.value);" type="text" class="is_required validate form-control" data-validate="isName" id="customer_surname" name="surname" value="{if isset($smarty.post.surname)}{$smarty.post.surname}{/if}" />
 				</div>
 				<div class="form-group grid_6">
 					<label for="customer_charter">{l s='Cédula'} </label>
-					<input onkeyup="$('#charter').val(this.value);" type="text" class="is_required validate form-control" data-validate="isName" id="customer_charter" name="customer_charter" value="{if isset($smarty.post.customer_charter)}{$smarty.post.customer_charter}{/if}" />
+					<input onkeyup="$('#charter').val(this.value);" type="text" class="is_required validate form-control" data-validate="isName" id="customer_charter" max="11" maxlength="11" name="charter" value="{if isset($smarty.post.charter)}{$smarty.post.charter}{/if}" />
 				</div>
 				<div class="required form-group grid_6">
 					<label for="email">{l s='Email'} <sup>*</sup></label>
@@ -462,7 +463,7 @@
 				</div>
 				<div class="required password form-group grid_6">
 					<label for="passwd">{l s='Confirmar contraseña'} <sup>*</sup></label>
-					<input type="password" class="is_required validate form-control" data-validate="isPasswd" name="passwd" id="passwd" />
+					<input type="password" class="is_required validate form-control" data-validate="isPasswd" name="passwd2" id="passwd2" />
 				</div>
 				<div class="form-group grid_6">
 					<label>{l s='Date of Birth'}</label>
