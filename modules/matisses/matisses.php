@@ -30,7 +30,7 @@ class matisses extends Module
 		$install[] = $this->__installTabs('adminMatisses','Matisses',0);
 		$parent = (int)Tab::getIdFromClassName('adminMatisses');
 		//$install[] = $this->__installTabs('adminWebservices','Webservices',$parent);
-		$install[] = $this->__installTabs('adminHighlights','Destacados',$parent);
+		//$install[] = $this->__installTabs('adminHighlights','Destacados',$parent);
 		$install[] = $this->__installTabs('adminExperiences','Experiencias',$parent);
 		
 		//images types
