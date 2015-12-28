@@ -88,11 +88,11 @@
 		</p>
 	</div>
     <div class="store-content cf grid_12 alpha omega">
-        <div class="address-input grid_6">
+        <div class="address-input grid_6 alpha">
             <label for="addressInput">{l s='Your location:'}</label>
             <input class="form-control grey" placeholder="Dirección, Código postal, Estado o País" type="text" name="location" id="addressInput" value="{l s='Address, zip / postal code, city, state or country'}" />
         </div>
-        <div class="radius-input grid_6">
+        <div class="radius-input grid_6 omega">
             <label for="radiusSelect">{l s='Radius:'}</label>
             <select name="radius" id="radiusSelect" class="form-control">
                 <option value="15">15</option>
@@ -102,14 +102,14 @@
             </select>
             <img src="{$img_ps_dir}loader.gif" class="middle" alt="" id="stores_loader" />
         </div>
-		<div class="store-content-select selector3 grid_6">
+		<div class="store-content-select selector3 grid_6 alpha">
 	    	<select id="locationSelect" class="form-control">
 	    		<option>-</option>
 	    	</select>
 	    </div>
     </div>
 
-	<div class="grid_12">
+	<div class="grid_12 alpha omega">
 		<button name="search_locations" class="button btn btn-default btn-red">
 			{l s='Search'}
 		</button>
