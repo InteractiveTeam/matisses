@@ -3016,6 +3016,7 @@ box-sizing: border-box;
 .fancybox-skin .fancybox-close:after {
 	content: '\e811';
 	font-family: 'fontello';
+	color: #d7162f;
 	}
 
 	#cmsinfo_block {
@@ -3027,12 +3028,9 @@ box-sizing: border-box;
 
 	#cmsinfo_block {
 	border-left: 1px solid #d9d9d9; }
-
 	#cmsinfo_block > div {
 	padding: 35px 10px 0 0;
 	}
-
-
 	#cmsinfo_block > div + div {
 	border-left: 1px solid #d9d9d9;
 	min-height: 344px;
@@ -3053,34 +3051,34 @@ box-sizing: border-box;
 	-moz-border-radius: 100px;
 	border-radius: 100px; }
 	#cmsinfo_block .type-text {
-		overflow: hidden; }
+	overflow: hidden; }
 	#cmsinfo_block h3 {
-		margin: 0 0 5px 0;
-		font: 300 21px/25px "Open Sans", sans-serif;
-		color: #6f6d6d; }
+	margin: 0 0 5px 0;
+	font: 300 21px/25px "Open Sans", sans-serif;
+	color: #6f6d6d; }
 	#cmsinfo_block ul li {
-		padding-bottom: 22px; }
+	padding-bottom: 22px; }
 	#cmsinfo_block p em {
-		background: none;
-		-webkit-border-radius: 0;
-		-moz-border-radius: 0;
-		border-radius: 0;
-		margin: 0;
-		font-size: 13px;
-		color: #777777;
-		float: none;
-		height: inherit;
-		line-height: inherit;
-		text-align: left;
-		font-style: italic; }
-.ie8 #cmsinfo_block {
+	background: none;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	margin: 0;
+	font-size: 13px;
+	color: #777777;
+	float: none;
+	height: inherit;
+	line-height: inherit;
+	text-align: left;
+	font-style: italic; }
+	.ie8 #cmsinfo_block {
 	height: 344px; }
-#product.content_only div.pb-left-column p.resetimg {
+	#product.content_only div.pb-left-column p.resetimg {
 	margin-bottom: 0px;
 	padding-top: 0px; }
-#product.content_only div.pb-left-column #thumbs_list_frame {
+	#product.content_only div.pb-left-column #thumbs_list_frame {
 	margin-bottom: 0px;
-}
+	}
 .owl-prev,.owl-next,#back-top a,.tparrows.default{
 	overflow: hidden;
 	display: inline-block;
@@ -3120,18 +3118,18 @@ box-sizing: border-box;
 	-moz-transform: rotate(-135deg);
 	-ms-transform: rotate(-135deg);
 	transform: rotate(-135deg);
-}
-.owl-prev:hover:after,.owl-next:hover:after,#back-top a:hover:after,.tparrows.default:hover:after{
+	}
+	.owl-prev:hover:after,.owl-next:hover:after,#back-top a:hover:after,.tparrows.default:hover:after{
 	right: -32px;
-}
-.owl-prev:before,.owl-next:before,#back-top a:before,.tparrows.default:before{
+	}
+	.owl-prev:before,.owl-next:before,#back-top a:before,.tparrows.default:before{
 	right: -32px;
 	left: 70px;
-}
-.owl-prev:hover:before,.owl-next:hover:before,#back-top a:hover:before,.tparrows.default:hover:before{
+	}
+	.owl-prev:hover:before,.owl-next:hover:before,#back-top a:hover:before,.tparrows.default:hover:before{
 	left: -32px;
-}
-#back-top a{
+	}
+	#back-top a{
 	line-height: 1;
 	position: relative;
 	top: 0;
@@ -3139,15 +3137,15 @@ box-sizing: border-box;
 	right: 0;
 	left: 0;
 	margin: 0;
-}
-.owl-prev,.owl-next{
+	}
+	.owl-prev,.owl-next{
 	top: 37%;
 	right: 0;
-}
-.owl-prev{
+	}
+	.owl-prev{
 	right: auto;
 	left: 0;
-}
+	}
 	.owl-prev i,.owl-next i,#back-top a i{
 	-webkit-transform: rotate(-135deg);
 	-moz-transform: rotate(-135deg);
@@ -3201,7 +3199,8 @@ box-sizing: border-box;
 	.footer .block_content{
 	margin-top: 2.1875rem;
 	}
-	.newsletter-input{
+	.newsletter-footer .newsletter-input{
+	background: transparent;
 	font-size: 1.125rem;
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-style: italic;
@@ -3308,9 +3307,7 @@ box-sizing: border-box;
 	color: #fff;
 	}
 
-
 /********/
-
 	#back-top{
 	right: 0;
 	left: 0;
@@ -3361,7 +3358,6 @@ box-sizing: border-box;
 	display: inline-block;
 	overflow: hidden;
 	position: relative;
-
 	}
 	.hover_scale img {
 	display: inline-block;
@@ -3483,7 +3479,6 @@ h1.page-heading{
 	font-size: 1rem;
     color: #757373;
 	}
-
 	.bloc_adresses ul li span{
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 1.125rem;
@@ -3513,66 +3508,75 @@ h1.page-heading{
 	}
 
 /*Pag Mi Carrito*/
-.order-detail thead tr th{
+	.order-detail thead tr th{
 	background-color: #e1e1e1;
 	text-transform: uppercase;
 	font-size: 1.25rem;
 	border: 1px solid #dbdbdb;
-}
+	}
 
-.order-detail .product-name a{
+	.order-detail .product-name a{
 	font-family: 'condensed';
 	font-size:1.125rem;
 	color: #272727;
-}
-.order-detail .table {
-    border: none;
-}
-.order-detail .table td {
-    border: none;
-}
-.order-detail .table tr {
-    border-bottom: 1px solid #dbdbdb;
-}
-.order-detail td#cart_voucher {
-    background: #FBFBFB;
-    border: 1px solid #dbdbdb;
-}
-.order-detail .table tfoot tr{
+	}
+	.order-detail .table {
+	border: none;
+	}
+	.order-detail .table td {
+	border: none;
+	}
+	.order-detail .table tr {
+	border-bottom: 1px solid #dbdbdb;
+	}
+	.order-detail td#cart_voucher {
+	background: #FBFBFB;
+	border: 1px solid #dbdbdb;
+	}
+	.order-detail .table tfoot tr{
 	background: #fff;
-}
-.order-detail .price {
-    font-family: 'condensed';
-    color: #272727;
-}
-.fa-trash-o:before{
-	color: #d7162f;
-}
-.fa-trash-o:hover:before{
-	color: #000;
-}
-.order-detail #cart_summary .text-right,
-.order-detail .text-right span {
-    color: #272727;
+	}
+	.order-detail .price {
 	font-family: 'condensed';
-}
-.order-detail #cart_summary .text-right{
+	color: #272727;
+	}
+	.fa-trash-o:before{
+	color: #d7162f;
+	}
+	.fa-trash-o:hover:before{
+	color: #000;
+	}
+	.order-detail #cart_summary .text-right,
+	.order-detail .text-right span {
+	color: #272727;
+	font-family: 'condensed';
+	}
+	.order-detail #cart_summary .text-right{
 	font-size: 1.25rem;
-}
-.order-detail .text-right span {
+	}
+	.order-detail .text-right span {
 	font-size: 1.5625rem;
-}
-.cart_navigation .btn {
-    font-size: 1.125rem;
-}
-.order .cart_navigation{
+	}
+	.cart_navigation .btn {
+	font-size: 1.125rem;
+	}
+	.order .cart_navigation{
 	margin-top:1.25rem;
-}
-.order_delivery .address li span{
+	}
+	.order_delivery .address li span{
 	font-family: 'Open Sans Condensed', sans-serif;
 	color: #4b4b4b;
 	font-size: 1.125rem;
-}
-.cart_navigation .fa-angle-left:before {
-    padding-right: 10px;
-}
+	}
+	.cart_navigation .fa-angle-left:before {
+	padding-right: 10px;
+	}
+
+/*Pags genericas*/
+
+	/*Pag Metodos envio*/
+	.cms .center_column {
+	width: 100%;
+	max-width: 75rem;
+	margin: 0 auto;
+	}
