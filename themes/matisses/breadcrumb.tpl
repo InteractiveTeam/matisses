@@ -24,7 +24,12 @@
 *}
 
 <!-- Breadcrumb -->
+
+
 {if isset($smarty.capture.path)}{assign var='path' value=$smarty.capture.path}{/if}
+
+
+
 <div class="nav-breadcrum">
 <div class="breadcrumb">
 	<div class="container">

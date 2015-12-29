@@ -99,6 +99,7 @@ class News extends Module {
 
     public function __construct() {
 
+
         $this->name = 'news';
         $this->tab = 'front_office_features';
         $this->version = '2.2.9';
@@ -126,6 +127,10 @@ class News extends Module {
         if ( trim(substr(_PS_VERSION_, 0, 5)) < $this->_minVersion ) {
             $this->warning = $this->l("  Your PrestaShop version is [" . _PS_VERSION_ . "], this module is for version [{$this->_minVersion}.x] or higher , may not work correctly ");
         }
+		
+		//Configuration::updateValue('NEWS_SLIDESHOW_WIDTH', 1170);
+        //Configuration::updateValue('NEWS_SLIDESHOW_HEIGHT', 346); 
+		
     }
 
     /*
@@ -191,8 +196,8 @@ class News extends Module {
                 !Configuration::updateValue('NEWS_FB_COMMENTS_LANGS', 'a:0:{}') OR
                 !Configuration::updateValue('NEWS_THEME', 1) OR 
                 !Configuration::updateValue('NEWS_THEME', 1) OR
-                !Configuration::updateValue('NEWS_SLIDESHOW_WIDTH', 380) OR
-                !Configuration::updateValue('NEWS_SLIDESHOW_HEIGHT', 250) OR 
+                !Configuration::updateValue('NEWS_SLIDESHOW_WIDTH', 1170) OR
+                !Configuration::updateValue('NEWS_SLIDESHOW_HEIGHT', 346) OR 
                 $this->registerHook('moduleRoutes') == false OR
                 $this->registerHook('news') == false OR
                 $this->registerHook('top') == false OR 
@@ -572,6 +577,14 @@ class News extends Module {
                 $obj->title = $trads[$id_lang]['title'];
                 $obj->rewrite = Tools::str2url($trads[$id_lang]['title']);
                 $obj->autor = $new['autor']; 
+				/*
+				$date['year'] = date('Y',$new['date']);
+				$date['month'] = date('M',$new['date']);
+				$date['day'] = date('d',$new['date']);
+						
+				$obj->date = '<span>'.$date['day'].'</span><p>'.$date['month'].'</p><p>'.$date['year'].'</p>';
+				*/
+				
                 $obj->date = ($new['date'] != 0 ? ( $this->_months[date('n', $new['date'])] . ' ' . date('j', $new['date']) . ', ' . date('Y', $new['date']) ) : '');
                 $obj->new = strip_tags($trads[$id_lang]['new']);
                 $obj->img = '';
@@ -3536,6 +3549,28 @@ class News extends Module {
             $news_fb_comments_langs = unserialize(Configuration::get('NEWS_FB_COMMENTS_LANGS'));
         }
 
+		//(isset($news[0]['date']) ? ( $this->_months[date('n', $news[0]['date'])] . ' ' . date('j', $news[0]['date']) . ',' . date('Y', $news[0]['date']) ) : '');
+		if($news[0]['date'])
+		{
+			switch(date('m', $news[0]['date']))
+			{
+				case '01': $month = $this->l('Enero'); break;
+				case '02': $month = $this->l('Febrero'); break;
+				case '03': $month = $this->l('Marzo'); break;
+				case '04': $month = $this->l('Abril'); break;
+				case '05': $month = $this->l('Mayo'); break;
+				case '06': $month = $this->l('Junio'); break;
+				case '07': $month = $this->l('Julio'); break;
+				case '08': $month = $this->l('Agosto'); break;
+				case '09': $month = $this->l('Septiembre'); break;
+				case '10': $month = $this->l('Octubre'); break;
+				case '11': $month = $this->l('Noviembre'); break;
+				case '12': $month = $this->l('Diciembre'); break;
+
+			}
+		
+			$date = $month.' '. date('j', $news[0]['date']) . ',' . date('Y', $news[0]['date']);
+		}
         $this->smarty->assign(array(
             'imgsObj' => $imgsObj,
             'tagsObj' => $this->getTags($id_news, $id_lang),
@@ -3543,7 +3578,7 @@ class News extends Module {
             'relNewsObj' => (intval(Configuration::get('NEWS_REL')) > 0 ? $this->getRelNews($id_news, $id_lang) : 0),
             'id_news' => $id_news,
             'autor' => (isset($news[0]['autor']) ? $news[0]['autor'] : ''),
-            'date' => (isset($news[0]['date']) ? ( $this->_months[date('n', $news[0]['date'])] . ' ' . date('j', $news[0]['date']) . ',' . date('Y', $news[0]['date']) ) : ''), //May 30, 2012
+            'date' => $date, //May 30, 2012
             'title' => $title,
             'url_to_module' => $this->url_to_module,
             'new' => $new,
@@ -3561,7 +3596,8 @@ class News extends Module {
             'news_slideshow_width' => intval(Configuration::get('NEWS_SLIDESHOW_WIDTH')),
             'news_slideshow_height' => intval(Configuration::get('NEWS_SLIDESHOW_HEIGHT')),
             'prev_id_news' => $prev_id_news,
-            'next_id_news' => $next_id_news
+            'next_id_news' => $next_id_news,
+
         ));
 
         return $this->display(__FILE__, 'tpl/themes/' . Configuration::get('NEWS_THEME') . '/new_item.tpl');

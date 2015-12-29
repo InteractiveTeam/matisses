@@ -26,67 +26,67 @@
 {capture name=path}{l s='Our stores'}{/capture}
 
 <h1 class="page-heading">
-	{l s='Our stores'}
+    {l s='Our stores'}
 </h1>
 
 {if $simplifiedStoresDiplay}
-	{if $stores|@count}
-		<p class="store-title">
-			<strong class="dark">
-				{l s='Here you can find our store locations. Please feel free to contact us:'}
-			</strong>
-		</p>
-	    <table class="table table-bordered">
-	    	<thead>
-            	<tr>
-                	<th class="logo">{l s='Logo'}</th>
+    {if $stores|@count}
+        <p class="store-title">
+            <strong class="dark">
+                {l s='Here you can find our store locations. Please feel free to contact us:'}
+            </strong>
+        </p>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="logo">{l s='Logo'}</th>
                     <th class="name">{l s='Store name'}</th>
                     <th class="address">{l s='Store address'}</th>
                     <th class="store-hours">{l s='Working hours'}</th>
                 </tr>
             </thead>
-			{foreach $stores as $store}
-				<tr class="store-small">
-					<td class="logo">
-						{if $store.has_picture}
-							<div class="store-image">
-								<img src="{$img_store_dir}{$store.id_store}.jpg" alt="" />
-							</div>
-						{/if}
-					</td>
-					<td class="name">
-						{$store.name|escape:'html':'UTF-8'}
-					</td>
-		            <td class="address">
-		            {assign value=$store.id_store var="id_store"}
-		            {foreach from=$addresses_formated.$id_store.ordered name=adr_loop item=pattern}
-	                    {assign var=addressKey value=" "|explode:$pattern}
-	                    {foreach from=$addressKey item=key name="word_loop"}
-	                        <span {if isset($addresses_style[$key])} class="{$addresses_style[$key]}"{/if}>
-	                            {$addresses_formated.$id_store.formated[$key|replace:',':'']|escape:'html':'UTF-8'}
-	                        </span>
-	                    {/foreach}
-	                {/foreach}
-	                	<br/>
-						{if $store.phone}<br/>{l s='Phone:'} {$store.phone|escape:'html':'UTF-8'}{/if}
-						{if $store.fax}<br/>{l s='Fax:'} {$store.fax|escape:'html':'UTF-8'}{/if}
-						{if $store.email}<br/>{l s='Email:'} {$store.email|escape:'html':'UTF-8'}{/if}
-						{if $store.note}<br/><br/>{$store.note|escape:'html':'UTF-8'|nl2br}{/if}
-					</td>
-		            <td class="store-hours">
-						{if isset($store.working_hours)}{$store.working_hours}{/if}
-		            </td>
-				</tr>
-			{/foreach}
-	    </table>
-	{/if}
+            {foreach $stores as $store}
+                <tr class="store-small">
+                    <td class="logo">
+                        {if $store.has_picture}
+                            <div class="store-image">
+                                <img src="{$img_store_dir}{$store.id_store}.jpg" alt="" />
+                            </div>
+                        {/if}
+                    </td>
+                    <td class="name">
+                        {$store.name|escape:'html':'UTF-8'}
+                    </td>
+                    <td class="address">
+                    {assign value=$store.id_store var="id_store"}
+                    {foreach from=$addresses_formated.$id_store.ordered name=adr_loop item=pattern}
+                        {assign var=addressKey value=" "|explode:$pattern}
+                        {foreach from=$addressKey item=key name="word_loop"}
+                            <span {if isset($addresses_style[$key])} class="{$addresses_style[$key]}"{/if}>
+                                {$addresses_formated.$id_store.formated[$key|replace:',':'']|escape:'html':'UTF-8'}
+                            </span>
+                        {/foreach}
+                    {/foreach}
+                        <br/>
+                        {if $store.phone}<br/>{l s='Phone:'} {$store.phone|escape:'html':'UTF-8'}{/if}
+                        {if $store.fax}<br/>{l s='Fax:'} {$store.fax|escape:'html':'UTF-8'}{/if}
+                        {if $store.email}<br/>{l s='Email:'} {$store.email|escape:'html':'UTF-8'}{/if}
+                        {if $store.note}<br/><br/>{$store.note|escape:'html':'UTF-8'|nl2br}{/if}
+                    </td>
+                    <td class="store-hours">
+                        {if isset($store.working_hours)}{$store.working_hours}{/if}
+                    </td>
+                </tr>
+            {/foreach}
+        </table>
+    {/if}
 {else}
-	<div id="map"></div>
-	<div class="txt-intro">
-		<p>
-			{l s='Enter a location (e.g. zip/postal code, address, city or country) in order to find the nearest stores.'}
-		</p>
-	</div>
+    <div id="map"></div>
+    <div class="txt-intro">
+        <p>
+            {l s='Enter a location (e.g. zip/postal code, address, city or country) in order to find the nearest stores.'}
+        </p>
+    </div>
     <div class="store-content cf grid_12 alpha omega">
         <div class="address-input grid_6 alpha">
             <label for="addressInput">{l s='Your location:'}</label>
@@ -104,19 +104,19 @@
         </div>
 		<div class="store-content-select selector3 grid_6 alpha">
 	    	<select id="locationSelect" class="form-control">
-	    		<option>-</option>
-	    	</select>
-	    </div>
+                <option>-</option>
+            </select>
+        </div>
     </div>
 
 	<div class="grid_12 alpha omega">
-		<button name="search_locations" class="button btn btn-default btn-red">
-			{l s='Search'}
-		</button>
-	</div>
-	<table id="stores-table" class="table table-bordered">
-		<thead>
-			<tr>
+        <button name="search_locations" class="button btn btn-default btn-red">
+            {l s='Search'}
+        </button>
+    </div>
+    <table id="stores-table" class="table table-bordered">
+        <thead>
+            <tr>
                 <th class="num">#</th>
                 <th>{l s='Store'}</th>
                 <th>{l s='Address'}</th>
@@ -126,7 +126,7 @@
         <tbody>
 
         </tbody>
-	</table>
+    </table>
 {strip}
 {addJsDef map=''}
 {addJsDef markers=array()}

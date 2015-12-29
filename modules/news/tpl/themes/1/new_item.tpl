@@ -1,4 +1,4 @@
-
+{if false}
 <div class="breadcrumb newsBreadcrumb iconNewsList ">
     <a href="{$link->getPageLink('index.php',true)}" >{l s='Home' mod='news'}</a>
     <span class="navigation-pipe">&gt;</span>
@@ -17,6 +17,11 @@
 
     <a class="newsRss" href="{$link->getModuleLink('news', 'rss', ['rss_news'=>1] ,false)}" target="_blank"></a>
 </div>
+{/if}
+
+
+
+
 <div class="newsMenuCats">
 
         <form action="{$link->getModuleLink('news', 'news', [] ,false)}" method="post" class="fromNewsSearch" name="fromNewsSearch">
@@ -95,14 +100,13 @@
             </script>
         <div class="newImgsContent grid_12 alpha omega" >
             <div class="newSlideshow" id="newSlideshow" >
-                {foreach from=$imgsObj item='img' name=myLoop}
-                    <a href="{$img->img}" title="{$title|escape:html:'UTF-8'|truncate:220:'...'} -  {$date}">
-                        <img src="{$img->img_slider}"  alt="" width="{$news_slideshow_width}"  height="{$news_slideshow_height}"  />
+
+            	<a href="{$imgsObj[0]->img}" title="{$title|escape:html:'UTF-8'|truncate:220:'...'} -  {$date}">
+                        <img src="{$imgsObj[0]->img_slider}"  alt="" width="{$news_slideshow_width}"  height="{$news_slideshow_height}"  />
                     </a>
-                {/foreach}
             </div>
 
-			{if count($imgsObj)>1}
+			{if count($imgsObj)>1 && false}
 				<div class="newGallery" id="newGallery">
 					{foreach from=$imgsObj item='img' name=myLoop}
 						<a href="{$img->img}" title="{$title|escape:html:'UTF-8'|truncate:220:'...'} -  {$date}"><img src="{$img->img_thumbnail}"  alt="" width="70" height="30"  /></a>
@@ -369,7 +373,7 @@
             </div>
         {/if}
 
-        {if $prev_id_news||$next_id_news}
+        {if ($prev_id_news||$next_id_news) && false }
             <div class="newPrevNext">
                 {if $prev_id_news}
                     <a class="button" style="float: left"

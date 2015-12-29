@@ -72,12 +72,37 @@
                     </label>
                     <input class="is_required validate form-control" data-validate="isName" type="text" id="firstname" name="firstname" value="{$smarty.post.firstname}" />
                 </div>
+                
+                <div class="required form-group">
+                    <label for="secondname" class="required">
+                        {l s='Second name'}
+                    </label>
+                    <input class="is_required validate form-control" data-validate="isName" type="text" name="secondname" id="secondname" value="{$smarty.post.secondname}" />
+                </div>
+                
                 <div class="required form-group">
                     <label for="lastname" class="required">
                         {l s='Last name'} 
                     </label>
                     <input class="is_required validate form-control" data-validate="isName" type="text" name="lastname" id="lastname" value="{$smarty.post.lastname}" />
                 </div>
+                
+                
+                 <div class="required form-group">
+                    <label for="surname" class="required">
+                        {l s='Second Lastname'}
+                    </label>
+                    <input class="is_required validate form-control" data-validate="isName" type="text" name="surname" id="surname" value="{$smarty.post.surname}" />
+                </div>
+                
+                 <div class="required form-group">
+                    <label for="surname" class="required">
+                        {l s='Cédula'}
+                    </label>
+                    <input class="is_required validate form-control" data-validate="isName" type="text" max="11" maxlength="11" name="charter" id="charter" value="{$smarty.post.charter}" />
+                </div> 
+ 
+                
                 <div class="required form-group">
                     <label for="email" class="required">
                         {l s='E-mail address'} 

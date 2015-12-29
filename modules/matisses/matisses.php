@@ -72,7 +72,8 @@ class matisses extends Module
 				  `top` int(4) NOT NULL,
 				  `left` int(4) NOT NULL,
 				  PRIMARY KEY (`id_experience`,`id_product`)
-				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;					
+				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+									
 		';
 		
 		if(!file_exists(_PS_IMG_DIR_.'highlights'))
