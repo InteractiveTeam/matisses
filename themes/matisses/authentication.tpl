@@ -280,7 +280,7 @@
 					<div id="opc_invoice_address"  class="unvisible">
 						{assign var=stateExist value=false}
 						{assign var=postCodeExist value=false}
-						<h3 class="page-subheading top-indent">{l s='Invoice address'}</h3>
+						<h2 class="page-subheading top-indent">{l s='Invoice address'}</h2>
 						{foreach from=$inv_all_fields item=field_name}
 						{if $field_name eq "company" && $b2b_enable}
 						<div class="form-group">
@@ -416,7 +416,7 @@
 	{/if}-->
 	<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="account-creation_form" class="std box account-creation_form">
 		{$HOOK_CREATE_ACCOUNT_TOP}
-		<h3 class="page-subheading">{l s='Your personal information'}</h3>
+		<h2 class="page-subheading">{l s='Your personal information'}</h2>
 		<h4>Información personal</h4>
 		<div class="account_creation grid_12 omega alpha">
 			<div class="form-group grid_12 ">
@@ -525,7 +525,7 @@
 		</div>
 		{if $b2b_enable}
 			<div class="account_creation">
-				<h3 class="page-subheading">{l s='Your company information'}</h3>
+				<h2 class="page-subheading">{l s='Your company information'}</h2>
 				<p class="form-group">
 					<label for="">{l s='Company'}</label>
 					<input type="text" class="form-control" id="company" name="company" value="{if isset($smarty.post.company)}{$smarty.post.company}{/if}" />
@@ -546,7 +546,7 @@
 		{/if}
 		{if isset($PS_REGISTRATION_PROCESS_TYPE) && $PS_REGISTRATION_PROCESS_TYPE}
 			<div class="account_creation">
-				<h3 class="page-subheading">{l s='Your address'}</h3>
+				<h2 class="page-subheading">{l s='Your address'}</h2>
 				{foreach from=$dlv_all_fields item=field_name}
 					{if $field_name eq "company"}
 						{if !$b2b_enable}
@@ -651,7 +651,7 @@
 				</p>
 			</div>
 			<div class="account_creation dni">
-				<h3 class="page-subheading">{l s='Tax identification'}</h3>
+				<h2 class="page-subheading">{l s='Tax identification'}</h2>
 				<p class="required form-group">
 					<label for="dni">{l s='Identification number'} <sup>*</sup></label>
 					<input type="text" class="form-control" name="dni" id="dni" value="{if isset($smarty.post.dni)}{$smarty.post.dni}{/if}" />

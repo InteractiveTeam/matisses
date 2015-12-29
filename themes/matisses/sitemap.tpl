@@ -30,7 +30,7 @@
         <div id="sitemap_content" class="cf">
         	<div class="grid_6 alpha">
         		<div class="sitemap_block box">
-            		<h3 class="page-subheading">{l s='Our offers'}</h3>
+            		<h2 class="page-subheading">{l s='Our offers'}</h2>
             		<ul>
             			<li>
                             <a
@@ -81,9 +81,9 @@
 
             <div class="grid_6 omega">
         		<div class="sitemap_block box">
-            		<h3 class="page-subheading">
+            		<h2 class="page-subheading">
                         {l s='Your Account'}
-                    </h3>
+                    </h2>
             		<ul>
                 		{if $is_logged}
                 			<li>
@@ -163,7 +163,7 @@
         <div id="listpage_content" class="cf">
         	<div class="grid_6 alpha">
         		<div class="categTree box">
-                    <h3 class="page-subheading">{l s='Categories'}</h3>
+                    <h2 class="page-subheading">{l s='Categories'}</h2>
                     <div class="tree_top">
                         <a href="{$base_dir_ssl}" title="{$categoriesTree.name|escape:'html':'UTF-8'}"></a>
                     </div>
@@ -182,7 +182,7 @@
             </div>
             <div class="grid_6 omega">
         		<div class="sitemap_block box">
-                    <h3 class="page-subheading">{l s='Pages'}</h3>
+                    <h2 class="page-subheading">{l s='Pages'}</h2>
                     <ul>
                     	<li>
                             <a href="{$categoriescmsTree.link|escape:'html':'UTF-8'}" title="{$categoriescmsTree.name|escape:'html':'UTF-8'}">

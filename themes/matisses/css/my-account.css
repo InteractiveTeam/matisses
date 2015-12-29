@@ -1,5 +1,6 @@
     .addresses-lists {
-    margin-bottom: 30px; }
+    margin: 1.875rem 0;
+    }
     .myaccount-link-list li {
     overflow: hidden;
     padding-bottom: 10px; }

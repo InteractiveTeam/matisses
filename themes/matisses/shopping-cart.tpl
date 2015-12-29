@@ -84,7 +84,7 @@
 				<tr>
 					<th class="cart_product first_item" colspan="2">{l s='Product'}</th>
 					{if $PS_STOCK_MANAGEMENT}
-                    	
+
 						{assign var='col_span_subtotal' value='2'}
 						{if false}
                         <th class="cart_avail item">{l s='Avail.'}</th>
@@ -223,7 +223,7 @@
 						{/if}
 					</td>
 				</tr>
-				
+
 				<tr class="cart_total_voucher" {if $total_discounts == 0}style="display:none"{/if}>
 					<td colspan="{$col_span_subtotal}" class="text-right">
 						{if $display_tax_label}
@@ -245,7 +245,7 @@
 						{displayPrice price=$total_discounts_negative}
 					</td>
 				</tr>
-                
+
 				{if $use_taxes && $show_taxes}
                 	{if false}
 					<tr class="cart_total_price">
@@ -283,8 +283,8 @@
 							<td colspan="2" class="price" id="total_shipping" >{displayPrice price=$total_shipping_tax_exc}</td>
 						</tr>
 					{/if}
-				{/if}                
-                
+				{/if}
+
 				<tr class="cart_total_price">
 					<td colspan="{$col_span_subtotal}" class="total_price_container text-right">
 						<span>{l s='Total'}</span>
@@ -479,9 +479,9 @@
 					<div class="grid_6"{if !$have_non_virtual_products} style="display: none;"{/if}>
 						<ul id="delivery_address" class="address item box">
 							<li>
-								<h3 class="page-subheading">{l s='Delivery address'}&nbsp;
+								<h2 class="page-subheading">{l s='Delivery address'}&nbsp;
 								<span class="address_alias">({$delivery->alias})</span>
-								</h3>
+							</h2>
 							</li>
 							{if $delivery->company}<li class="address_company">{$delivery->company|escape:'html':'UTF-8'}</li>{/if}
 							<li class="address_name">{$delivery->firstname|escape:'html':'UTF-8'} {$delivery->lastname|escape:'html':'UTF-8'}</li>
@@ -495,7 +495,7 @@
 				{if $invoice->id}
 					<div class="grid_6">
 						<ul id="invoice_address" class="address alternate_item box">
-							<li><h3 class="page-subheading">{l s='Invoice address'}&nbsp;<span class="address_alias">({$invoice->alias})</span></h3></li>
+							<li><h2 class="page-subheading">{l s='Invoice address'}&nbsp;<span class="address_alias">({$invoice->alias})</span></h2></li>
 							{if $invoice->company}<li class="address_company">{$invoice->company|escape:'html':'UTF-8'}</li>{/if}
 							<li class="address_name">{$invoice->firstname|escape:'html':'UTF-8'} {$invoice->lastname|escape:'html':'UTF-8'}</li>
 							<li class="address_address1">{$invoice->address1|escape:'html':'UTF-8'}</li>
@@ -510,7 +510,7 @@
 					<div class="grid_6"{if $k == 'delivery' && !$have_non_virtual_products} style="display: none;"{/if}>
 						<ul class="address {if $address@last}last_item{elseif $address@first}first_item{/if} {if $address@index % 2}alternate_item{else}item{/if} box">
 							<li>
-								<h3 class="page-subheading">
+								<h2 class="page-subheading">
 									{if $k eq 'invoice'}
 										{l s='Invoice address'}
 									{elseif $k eq 'delivery' && $delivery->id}
@@ -519,7 +519,7 @@
 									{if isset($address.object.alias)}
 										<span class="address_alias">({$address.object.alias})</span>
 									{/if}
-								</h3>
+								</h2>
 							</li>
 							{foreach $address.ordered as $pattern}
 								{assign var=addressKey value=" "|explode:$pattern}

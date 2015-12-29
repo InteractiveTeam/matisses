@@ -144,7 +144,7 @@
 					</div>
 
 				</div>
-				<div class="wrap_view wrap_visible_hover"> veme ak
+				<div class="wrap_view wrap_visible_hover"> 
 							<a itemprop="url" class="scale_hover_in lnk_view" href="{$product.link|escape:'html':'UTF-8'}" title="{l s='View'}">
 								<i class="fa fa-search"></i>
 								<span>{l s='More'}</span>

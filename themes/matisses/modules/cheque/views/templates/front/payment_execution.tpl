@@ -33,10 +33,10 @@
 {if isset($nbProducts) && $nbProducts <= 0}
 	<p class="alert alert-warning">{l s='Your shopping cart is empty.' mod='cheque'}</p>
 {else}
-   
+
 	<form action="{$link->getModuleLink('cheque', 'validation', [], true)|escape:'html':'UTF-8'}" method="post">
 		<div class="box cheque-box">
-			<h3 class="page-subheading">{l s='Check payment' mod='cheque'}</h3>
+			<h2 class="page-subheading">{l s='Check payment' mod='cheque'}</h2>
 			<p class="cheque-indent">
 				<strong class="dark">
 					{l s='You have chosen to pay by check.' mod='cheque'} {l s='Here is a short summary of your order:' mod='cheque'}

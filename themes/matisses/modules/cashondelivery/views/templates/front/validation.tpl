@@ -33,7 +33,7 @@
 <form action="{$link->getModuleLink('cashondelivery', 'validation', [], true)|escape:'html'}" method="post">
 	<div class="box">
         <input type="hidden" name="confirm" value="1" />
-        <h3 class="page-subheading">{l s='Cash on delivery (COD) payment' mod='cashondelivery'}</h3>
+        <h2 class="page-subheading">{l s='Cash on delivery (COD) payment' mod='cashondelivery'}</h2>
         <p>
             - {l s='You have chosen the Cash on Delivery method.' mod='cashondelivery'}
             <br/>
@@ -45,7 +45,7 @@
         </p>
         <p>
             <b>{l s='Please confirm your order by clicking \'I confirm my order\'.' mod='cashondelivery'}.</b>
-        </p>        
+        </p>
     </div>
     <p class="cart_navigation" id="cart_navigation">
         <a href="{$link->getPageLink('order', true)}?step=3" class="button-exclusive btn btn-default"><i class="icon-chevron-left"></i>{l s='Other payment methods' mod='cashondelivery'}</a>

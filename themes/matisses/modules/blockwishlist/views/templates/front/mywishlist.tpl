@@ -32,18 +32,18 @@
 			{$navigationPipe}
 		</span>
 		<span class="navigation_page">
-			{l s='My wishlists' mod='blockwishlist'}
+			{l s='Lista de deseos' mod='blockwishlist'}
 		</span>
 	{/capture}
 
-	<h1 class="page-heading">{l s='My wishlists' mod='blockwishlist'}</h1>
+	<h1 class="page-headings">{l s='Lista de deseos' mod='blockwishlist'}</h1>
 
 	{include file="$tpl_dir./errors.tpl"}
 
 	{if $id_customer|intval neq 0}
 		<form method="post" class="std box" id="form_wishlist">
 			<fieldset>
-				<h3 class="page-subheading">{l s='New wishlist' mod='blockwishlist'}</h3>
+				<h2 class="page-subheading">{l s='New wishlist' mod='blockwishlist'}</h2>
 				<div class="form-group">
 					<input type="hidden" name="token" value="{$token|escape:'html':'UTF-8'}" />
 					<label class="align_right" for="name">
@@ -52,10 +52,10 @@
 					<input type="text" id="name" name="name" class="inputTxt form-control" value="{if isset($smarty.post.name) and $errors|@count > 0}{$smarty.post.name|escape:'html':'UTF-8'}{/if}" />
 				</div>
 				<p class="submit">
-                    <button 
-                    id="submitWishlist" 
-                    class="btn btn-default button button-medium" 
-                    type="submit" 
+                    <button
+                    id="submitWishlist"
+                    class="btn btn-default button button-medium"
+                    type="submit"
                     name="submitWishlist">
                     	<span>{l s='Save' mod='blockwishlist'}<i class="icon-chevron-right right"></i></span>
                     </button>
@@ -104,9 +104,9 @@
 									</a>
 								</td>
 								<td class="wishlist_delete">
-									<a 
-									class="icon" 
-									href="javascript:;" 
+									<a
+									class="icon"
+									href="javascript:;"
 									onclick="return (WishlistDelete('wishlist_{$wishlists[i].id_wishlist|intval}', '{$wishlists[i].id_wishlist|intval}', '{l s='Do you really want to delete this wishlist ?' mod='blockwishlist' js=1}'));">
 										<i class="fa fa-trash-o"></i>
 									</a>

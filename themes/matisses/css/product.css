@@ -220,10 +220,11 @@ a.fancybox-nav {
 	width: 33.3333%;
 	border: 1px solid #dbdbdb;
 	margin: 20px 15px 0 0;
+	background: #f8f8f8;
 }
 .elem_butt a{
 	text-align: center;
-	padding: 15px 5px;
+	padding: 10px 5px;
 	color: #F00;
 	display: block;
 }
@@ -477,8 +478,8 @@ a.fancybox-nav {
 #short_description_block {
 	padding-top: 0.625rem;
 	border-bottom: 1px solid #ccc;
-	padding-bottom: 1.875rem;
-	margin-bottom: 1.875rem;
+	padding-bottom: 1.5rem;
+	margin-bottom: 1.5rem;
 	}
 .pb-right-column #short_description_block .buttons_bottom_block {
 	display: none;
@@ -605,7 +606,7 @@ a.fancybox-nav {
 
 	.wrap_attr li:before{
 	content: '';
-	display: block;
+	display: none;
 	width: 4px;
 	height: 4px;
 	position: absolute;
@@ -635,7 +636,6 @@ a.fancybox-nav {
 	display: inline-block;
 	position: relative;
 	margin-bottom: 0;
-	line-height: 0.9;
 	}
 	#reduction_percent span,
 	#reduction_amount span {
@@ -812,27 +812,31 @@ a.fancybox-nav {
 	font-family: "condensed";
 	text-transform: uppercase;
     margin-bottom: 0.625rem;
+    display: none;
 	}
 .price span {
     color: #231f20;
-	font-family: "condensed";
-	font-size: 2.25rem;
+    font-family: "condensed";
+    font-size: 2.25rem;
+    line-height: 0;
+    margin: 1.5rem 0 0;
+    display: block !important;
 	}
 .product_attributes {
     border-bottom: 1px solid #ccc;
-    padding-bottom: 1.875rem;
-    margin-bottom: 1.875rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
 	}
 .content_prices {
     border-bottom: 1px solid #ccc;
-    padding-bottom: 1.875rem;
-    margin-bottom: 1.875rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .wrap_quan {
     border-bottom: 1px solid #ccc;
-    padding-bottom: 1.875rem;
-    margin-bottom: 1.875rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 /*15-12-2015*/
@@ -840,6 +844,7 @@ a.fancybox-nav {
     width: 24.6875rem;
     font-size: 1.5rem;
     padding:0.3125rem;
+	font-family: 'gothic';
 	color: #fff;
 }
 .add_to_cart button:hover{
@@ -888,7 +893,7 @@ body.content_only {
 		padding-right: 5px;
 	}
 	.elem_butt .hidden-xxs{
-		font-size: 0;
+		font-size: 0.8em;
 	}
 }
 @media (max-width: 1199px) {

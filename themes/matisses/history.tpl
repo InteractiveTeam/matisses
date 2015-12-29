@@ -110,17 +110,15 @@
 		<p class="alert alert-warning">{l s='You have not placed any orders.'}</p>
 	{/if}
 </div>
-<ul class="footer_links clearfix">
-	<li>
-		<a class="btn btn-default button button-small" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
-			<span>
-				<i class="icon-chevron-left"></i> {l s='Back to Your Account'}
-			</span>
+<div class="footer_links cf grid_12 omega alpha">
+	<div class="grid_4 alpha">
+		<a class="btn btn-default button btn-red" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
+			{l s='Back to Your Account'}
 		</a>
-	</li>
-	<li>
-		<a class="btn btn-default button button-small" href="{$base_dir}">
-			<span><i class="icon-chevron-left"></i> {l s='Home'}</span>
+	</div>
+	<div class="grid_4 omega">
+		<a class="btn btn-default button btn-red" href="{$base_dir}">
+			{l s='Home'}
 		</a>
-	</li>
-</ul>
+	</div>
+</div>

@@ -3,7 +3,7 @@
 	<h1 class="page-heading step-num"><span>1</span> {l s='Account'}</h1>
 	<form action="{$link->getPageLink('authentication', true, NULL, "back=order-opc")|escape:'html':'UTF-8'}" method="post" id="login_form" class="box">
 		<fieldset>
-			<h3 class="page-subheading">{l s='Already registered?'}</h3>
+			<h2 class="page-subheading">{l s='Already registered?'}</h2>
 			<p><a href="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" id="openLoginFormBlock">&raquo; {l s='Click here'}</a></p>
 			<div id="login_form_content" style="display:none;">
 				<!-- Error return block -->
@@ -28,7 +28,7 @@
 	<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="new_account_form" class="std" autocomplete="on" autofill="on">
 		<fieldset>
         	<div class="box">
-                <h3 id="new_account_title" class="page-subheading">{l s='New Customer'}</h3>
+                <h2 id="new_account_title" class="page-subheading">{l s='New Customer'}</h2>
                 <div id="opc_account_choice" class="row">
                     <div class="col-xs-12 col-md-6">
                         <p class="title_block">{l s='Instant Checkout'}</p>
@@ -36,7 +36,7 @@
                             <button type="submit" class="btn btn-default button button-medium exclusive" id="opc_guestCheckout"><span>{l s='Guest checkout'}</span></button>
                         </p>
                     </div>
-    
+
                     <div class="col-xs-12 col-md-6">
                         <p class="title_block">{l s='Create your account today and enjoy:'}</p>
                         <ul class="bullet">
@@ -70,7 +70,7 @@
 				</div>
 				<div class="required clearfix gender-line">
 					<label class="hidden-xs">{l s='Social title'}</label>
-					{foreach from=$genders key=k item=gender}	
+					{foreach from=$genders key=k item=gender}
                     	<div class="radio-inline">
                     	<label for="id_gender{$gender->id_gender}" class="top">
 						<input type="radio" name="id_gender" id="id_gender{$gender->id_gender}" value="{$gender->id_gender}"{if isset($smarty.post.id_gender) && $smarty.post.id_gender == $gender->id_gender || (isset($guestInformations) && $guestInformations.id_gender == $gender->id_gender)} checked="checked"{/if} />
@@ -140,7 +140,7 @@
 					{l s='Receive special offers from our partners!'}</label>
 				</div>
 				{/if}
-				<h3 class="page-subheading top-indent">{l s='Delivery address'}</h3>
+				<h2 class="page-subheading top-indent">{l s='Delivery address'}</h2>
 				{$stateExist = false}
 				{$postCodeExist = false}
 				{$dniExist = false}
@@ -150,7 +150,7 @@
 						<label for="company">{l s='Company'}</label>
 						<input type="text" class="text form-control validate" id="company" name="company" data-validate="isName" value="{if isset($guestInformations) && isset($guestInformations.company) && $guestInformations.company}{$guestInformations.company}{/if}" />
 					</div>
-				{elseif $field_name eq "vat_number"}	
+				{elseif $field_name eq "vat_number"}
 				<div id="vat_number_block" style="display:none;">
 					<div class="form-group">
 						<label for="vat_number">{l s='VAT number'}</label>
@@ -219,7 +219,7 @@
 					<label for="postcode">{l s='Zip/Postal code'} <sup>*</sup></label>
 					<input type="text" class="text form-control validate" name="postcode" id="postcode" data-validate="isPostCode" value="{if isset($guestInformations) && isset($guestInformations.postcode) && $guestInformations.postcode}{$guestInformations.postcode}{/if}" onkeyup="$('#postcode').val($('#postcode').val().toUpperCase());" />
 				</div>
-				{/if}				
+				{/if}
 				{if !$stateExist}
 				<div class="required id_state form-group unvisible">
 					<label for="id_state">{l s='State'} <sup>*</sup></label>
@@ -241,7 +241,7 @@
 				</div>
 				{if isset($one_phone_at_least) && $one_phone_at_least}
 					<p class="inline-infos required is_customer_param">{l s='You must register at least one phone number.'}</p>
-				{/if}								
+				{/if}
 				<div class="form-group is_customer_param">
 					<label for="phone">{l s='Home phone'}</label>
 					<input type="text" class="text form-control validate" name="phone" id="phone"  data-validate="isPhoneNumber" value="{if isset($guestInformations) && isset($guestInformations.phone) && $guestInformations.phone}{$guestInformations.phone}{/if}" />
@@ -262,7 +262,7 @@
 					{assign var=stateExist value=false}
 					{assign var=postCodeExist value=false}
 					{assign var='dniExist' value=false}
-					<h3 class="page-subheading top-indent">{l s='Invoice address'}</h3>
+					<h2 class="page-subheading top-indent">{l s='Invoice address'}</h2>
 					{foreach from=$inv_all_fields item=field_name}
 					{if $field_name eq "company" && $b2b_enable}
 					<div class="form-group">
@@ -339,7 +339,7 @@
 						<label for="postcode_invoice">{l s='Zip/Postal Code'} <sup>*</sup></label>
 						<input type="text" class="form-control validate" name="postcode_invoice" id="postcode_invoice" data-validate="isPostCode" value="" onkeyup="$('#postcode').val($('#postcode').val().toUpperCase());" />
 					</div>
-					{/if}					
+					{/if}
 					{if !$stateExist}
 					<div class="required id_state_invoice form-group unvisible">
 						<label for="id_state_invoice">{l s='State'} <sup>*</sup></label>
@@ -361,7 +361,7 @@
 					</div>
 					{if isset($one_phone_at_least) && $one_phone_at_least}
 						<p class="inline-infos required is_customer_param">{l s='You must register at least one phone number.'}</p>
-					{/if}					
+					{/if}
 					<div class="form-group is_customer_param">
 						<label for="phone_invoice">{l s='Home phone'}</label>
 						<input type="text" class="form-control validate" name="phone_invoice" id="phone_invoice" data-validate="isPhoneNumber" value="{if isset($guestInformations) && isset($guestInformations.phone_invoice) && $guestInformations.phone_invoice}{$guestInformations.phone_invoice}{/if}" />
@@ -378,7 +378,7 @@
                             <sup>*</sup>{l s='Required field'}
                         </p>
                     <button type="submit" name="submitAccount" id="submitAccount" class="btn btn-default button button-medium"><span>{l s='Save'}<i class="icon-chevron-right right"></i></span></button>
-                    
+
 				</div>
 				<div style="display: none;" id="opc_account_saved" class="alert alert-success">
 					{l s='Account information saved successfully'}

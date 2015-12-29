@@ -48,7 +48,7 @@
 	{include file="$tpl_dir./errors.tpl"}
 	<form action="{$request_uri|escape:'html':'UTF-8'}" method="post" class="contact-form-box" enctype="multipart/form-data">
 		<fieldset>
-        <h3 class="page-subheading">{l s='send a message'}</h3>
+        <h2 class="page-subheading">{l s='send a message'}</h2>
         <div class="cf grid_12 alpha omega">
             <div class="grid_6 alpha">
                 <div class="form-group selector1">

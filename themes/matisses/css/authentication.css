@@ -1,6 +1,4 @@
-/**********************************************************
-				Authentication Styles
-**********************************************************/
+/*	Authentication Styles */
     #account-creation_form .id_state,
     #account-creation_form .dni,
     #account-creation_form .postcode {
@@ -29,7 +27,6 @@
     }
 
     /**/
-
     .account-creation_form h4{
     font-family: 'condensed';
     font-size: 1.125rem;
@@ -93,7 +90,8 @@
     font-family: 'gothic';
     color: #4b4b4b;
     font-size: 1.0625rem;
-    padding-left: 15px;
+    padding-left: 1.5625rem;
+    text-transform: capitalize;
     }
     .account_creation .submit{
     margin-top: 1.875rem;
@@ -125,6 +123,7 @@
     font-family: 'gothic';
     font-size: 1.125rem;
     color:#4b4b4b;
+    text-transform: capitalize;
     }
     .account_creation div.checker span{
     border-width: 3px;
@@ -149,7 +148,17 @@
     color: #4b4b4b;
     }
 
+    .account_creation div.radio span{
+    border: 3px solid #d7162f;
+    width: 0.9375rem;
+    height: 0.9375rem;
+    }
 
+    .account_creation div.radio span.checked:before{
+    width: 9px;
+    height: 9px;
+    background: #d7162f;
+    }
 
 @media (max-width: 480px){
     .id_state div.selector,#authentication div.selector,#authentication div.selector select{

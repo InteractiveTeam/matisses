@@ -32,7 +32,7 @@
        {if $catsObj}
                  {assign var='menu_position' value=1}
                  {foreach from=$catsObj item='cats' name=myLoop}
-                        <div class="{if $smarty.foreach.myLoop.last}news_last_item{else}news_first_item{/if}"><a
+                        <div class="{if $smarty.foreach.myLoop.last}news_last_item{else}news_first_item{/if}"><h1><a
                                 class="{if $cat==$cats->id} newsMenuHover_{$menu_position}_selected{/if} newsItemMenu newsMenuHover_{$menu_position}"
                                href="{$link->getModuleLink('news', 'list',
                                                             [
@@ -44,7 +44,7 @@
                                                             ,false)}"
                                 title="{$cats->title|truncate:50:'...'|escape:html:'UTF-8'}">
                                 {$cats->title|escape:html:'UTF-8'}
-                            </a></div>
+                            </a></h1></div>
                         {assign var='menu_position' value=$menu_position+1}
                  {/foreach}
         {/if}

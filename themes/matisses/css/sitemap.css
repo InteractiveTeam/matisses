@@ -1,6 +1,11 @@
-    #sitemap .sitemap_block .page-subheading {
-    margin-bottom: 0.9375rem;
+    .sitemap .center_column{
+    max-width: 75rem;
+    margin: 0 auto;
+    float: none;
+    padding: 0 0.9375rem;
+    width: 100%;
     }
+
     #sitemap .sitemap_block li {
     padding-bottom: 0.625rem;
     }
@@ -48,6 +53,9 @@
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 1.125rem;
     color: #777676;
+    }
+    .sitemap-page li a:hover{
+    color:#d7162f;
     }
     #listpage_content {
     margin-top: 1.875rem;

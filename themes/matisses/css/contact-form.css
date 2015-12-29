@@ -26,6 +26,7 @@
 
     /**/
     .contact .center_column{
+    float: none;
     max-width: 75rem;
     margin: 0 auto;
     padding: 0 0.9375rem;
@@ -37,13 +38,4 @@
     font-family: 'gothic';
     font-size: 1rem;
     color: #757373;
-    }
-    .contact label{
-    color: #4b4b4b;
-    font-family: 'condensed';
-    font-size: 1rem;
-    display: block;
-    text-transform: uppercase;
-    padding-bottom: 0.625rem;
-    padding-left: 0.3125rem;
     }

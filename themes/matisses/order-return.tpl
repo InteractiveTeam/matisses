@@ -93,7 +93,7 @@
 
 	{if $orderRet->state == 2}
 	<div class="box">
-    	<h3 class="page-subheading">{l s='Reminder'}</h3>
+    	<h2 class="page-subheading">{l s='Reminder'}</h2>
 		<ul>
 			<li>{l s='All merchandise must be returned in its original packaging and in its original state.'}</li>
 			<li>{l s='Please print out the'} <a href="{$link->getPageLink('pdf-order-return', true, NULL, "id_order_return={$orderRet->id|intval}")|escape:'html':'UTF-8'}">{l s='PDF return slip'}</a> {l s='and include it with your package.'}</li>
@@ -108,4 +108,3 @@
 		<p class="bold">{l s='You must wait for confirmation before returning any merchandise.'}</p>
 	{/if}
 {/if}
-

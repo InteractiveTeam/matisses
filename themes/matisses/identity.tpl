@@ -38,9 +38,9 @@
     <h1 class="page-subheading">
         {l s='Your personal information'}
     </h1>
-    
+
     {include file="$tpl_dir./errors.tpl"}
-    
+
     {if isset($confirmation) && $confirmation}
         <p class="alert alert-success">
             {l s='Your personal information has been successfully updated.'}
@@ -68,44 +68,44 @@
                 </div>
                 <div class="required form-group">
                     <label for="firstname" class="required">
-                        {l s='First name'} 
+                        {l s='First name'}
                     </label>
                     <input class="is_required validate form-control" data-validate="isName" type="text" id="firstname" name="firstname" value="{$smarty.post.firstname}" />
                 </div>
-                
+
                 <div class="required form-group">
                     <label for="secondname" class="required">
                         {l s='Second name'}
                     </label>
                     <input class="is_required validate form-control" data-validate="isName" type="text" name="secondname" id="secondname" value="{$smarty.post.secondname}" />
                 </div>
-                
+
                 <div class="required form-group">
                     <label for="lastname" class="required">
-                        {l s='Last name'} 
+                        {l s='Last name'}
                     </label>
                     <input class="is_required validate form-control" data-validate="isName" type="text" name="lastname" id="lastname" value="{$smarty.post.lastname}" />
                 </div>
-                
-                
+
+
                  <div class="required form-group">
                     <label for="surname" class="required">
                         {l s='Second Lastname'}
                     </label>
                     <input class="is_required validate form-control" data-validate="isName" type="text" name="surname" id="surname" value="{$smarty.post.surname}" />
                 </div>
-                
+
                  <div class="required form-group">
                     <label for="surname" class="required">
                         {l s='Cédula'}
                     </label>
                     <input class="is_required validate form-control" data-validate="isName" type="text" max="11" maxlength="11" name="charter" id="charter" value="{$smarty.post.charter}" />
-                </div> 
- 
-                
+                </div>
+
+
                 <div class="required form-group">
                     <label for="email" class="required">
-                        {l s='E-mail address'} 
+                        {l s='E-mail address'}
                     </label>
                     <input class="is_required validate form-control" data-validate="isEmail" type="email" name="email" id="email" value="{$smarty.post.email}" />
                 </div>
@@ -143,7 +143,7 @@
                 </div>
                 <div class="required form-group">
                     <label for="old_passwd" class="required">
-                        {l s='Current Password'} 
+                        {l s='Current Password'}
                     </label>
                     <input class="is_required validate form-control" type="password" data-validate="isPasswd" name="old_passwd" id="old_passwd" />
                 </div>
@@ -174,9 +174,9 @@
                     </div>
                 {/if}
 			{if $b2b_enable}
-				<h1 class="page-subheading">
+				<h2 class="page-subheading">
 					{l s='Your company information'}
-				</h1>
+				</h2>
 				<div class="form-group">
 					<label for="">{l s='Company'}</label>
 					<input type="text" class="form-control" id="company" name="company" value="{if isset($smarty.post.company)}{$smarty.post.company}{/if}" />

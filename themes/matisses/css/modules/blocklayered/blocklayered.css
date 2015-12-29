@@ -21,6 +21,9 @@
   float: left;
   font-size: 1rem;
 }
+.chosen-container-single .chosen-single{
+  height: 43px;
+}
 .content_sortPagiBar .sortPagiBar .nbrItemPage .chosen-container {
   width: auto !important;
 }
@@ -412,12 +415,14 @@
     font-family: "gothic";
     color: #d9282e;
     text-transform: uppercase;
-    border-bottom: 1px solid #d5d5d5;
     font-weight: bold;
-    padding-bottom: 2px;
+    padding: 0 0 2px 0;
     margin-bottom: 10px;
     width: 90%;
     margin-left: 5%;
+    border: none;
+    background: none;
+    border-bottom: 1px solid #d5d5d5 !important;
 }
 .category_list .product-container .right-block .wrap_content_price .content_price {
     width: 90%;
