@@ -153,7 +153,6 @@
 
   {include file="$tpl_dir./breadcrumb.tpl"}
   {if $page_name =='product'  || $page_name == 'module-guestbookwithavatars-guestbook'}
-
 {/if}
 					{/if}
 {if $page_name =='index' && false}
@@ -175,11 +174,14 @@
 </div>
 {/if}
 <div class="{if $page_name !='index' && $page_name !='pagenotfound'}row{/if}">
+
 {if isset($left_column_size) && !empty($left_column_size) && ($page_name != 'module-news-new')}
 	<div class="container">
+
 		<div id="left_column" class="column grid_{$left_column_size|intval}">{$HOOK_LEFT_COLUMN}</div>
 {/if}
 		{if isset($left_column_size) && isset($right_column_size)}{assign var='cols' value=(12 - $left_column_size - $right_column_size)}{else}{assign var='cols' value=12}{/if}
+
         <div id="center_column" class="center_column  grid_{$cols|intval}">
         
 		{/if}
