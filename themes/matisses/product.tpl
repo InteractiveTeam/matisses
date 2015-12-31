@@ -162,7 +162,12 @@
 				<p class="online_only">{l s='Online only'}</p>
 			{/if}
 			<h1 itemprop="name">{$product->name|escape:'html':'UTF-8'}</h1>
+            <li id="product_reference"{if empty($product->reference) || !$product->reference} style="display: none;"{/if}>
+				<label>{l s='Referencia:'} </label>
+				<span class="editable" itemprop="sku">{if !isset($groups)}{$product->reference|escape:'html':'UTF-8'}{/if}</span>
+			</li>
 			<div class="rate_wrap"></div>
+
 			{if !$content_only}
 				<a class="print_prod" href="javascript:print();">
 					<i class="fa fa-file-o"></i>{l s='Print'}
@@ -175,10 +180,7 @@
 					{$product->manufacturer_name}</span>
 			</li>
 			{/if}
-			<li id="product_reference"{if empty($product->reference) || !$product->reference} style="display: none;"{/if}>
-				<label>{l s='Model:'} </label>
-				<span class="editable" itemprop="sku">{if !isset($groups)}{$product->reference|escape:'html':'UTF-8'}{/if}</span>
-			</li>
+
 				{if $PS_STOCK_MANAGEMENT}
 				<!-- availability -->
 				<li id="availability_statut"{if ($product->quantity <= 0 && !$product->available_later && $allow_oosp) || ($product->quantity > 0 && !$product->available_now) || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
@@ -658,7 +660,7 @@
 			</section>
 		{/if}
 
-					{if isset($HOOK_PRODUCT_TAB_CONTENT) && $HOOK_PRODUCT_TAB_CONTENT}{$HOOK_PRODUCT_TAB_CONTENT}{/if}
+		{if isset($HOOK_PRODUCT_TAB_CONTENT) && $HOOK_PRODUCT_TAB_CONTENT}{$HOOK_PRODUCT_TAB_CONTENT}{/if}
 			</div><!-- end container -->
 		</div>
 			</div>

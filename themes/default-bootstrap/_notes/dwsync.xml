@@ -65,4 +65,5 @@
 <file name="stores.tpl" server="192.168.3.45" local="130922745794537684" remote="130700916000000000" Dst="0" />
 <file name="supplier-list.tpl" server="192.168.3.45" local="130922745796765009" remote="130700916000000000" Dst="0" />
 <file name="supplier.tpl" server="192.168.3.45" local="130922745798191274" remote="130700916000000000" Dst="0" />
+<file name="authentication.tpl" server="C:/xampp/htdocs/matisses/" local="130960485004867490" remote="130960485000000000" Dst="0" />
 </dwsync>
