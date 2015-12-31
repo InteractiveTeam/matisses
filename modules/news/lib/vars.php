@@ -5,18 +5,18 @@
  * 
  */
 $_months = Array(
-    1 => $this->l('January'),
-    2 => $this->l('February'),
-    3 => $this->l('March'),
-    4 => $this->l('April'),
-    5 => $this->l('May'),
-    6 => $this->l('June'),
-    7 => $this->l('July'),
-    8 => $this->l('August'),
-    9 => $this->l('September'),
-    10 => $this->l('October'),
-    11 => $this->l('November'),
-    12 => $this->l('December')
+    1 => $this->l('Enero'),
+    2 => $this->l('Febrero'),
+    3 => $this->l('Marzo'),
+    4 => $this->l('Abril'),
+    5 => $this->l('Mayo'),
+    6 => $this->l('Junio'),
+    7 => $this->l('Julio'),
+    8 => $this->l('Agosto'),
+    9 => $this->l('Septiembre'),
+    10 => $this->l('Octubre'),
+    11 => $this->l('Noviembre'),
+    12 => $this->l('Diciembre')
 );
 
 

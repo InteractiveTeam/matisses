@@ -124,6 +124,7 @@
 			                var lhnWindowN = 0;
 			                var lhnDepartmentN = 0;
 			                var lhnChatPositionYVal = 150;
+							var comparedProductsIds = 0;
 			            	</script>
 	            			<a href="http://www.livehelpnow.net/products/live-chat-system" target="_blank" id="lhnHelp">{l s='Chat'}</a>
 	            			<script src="//www.livehelpnow.net/lhn/widgets/chatbutton/lhnchatbutton-current.min.js" type="text/javascript" id="lhnscript"></script>
@@ -134,6 +135,9 @@
 		            	<li id="search" class="search">
 		                  	<a href="javascript:void(0)">{l s='Buscar'}</a>
 						</li>
+                        <li id="cart">{hook h='displayMatCart'}</li>
+                        <li id="user">{hook h='displayMatUser'}</li>
+                        
 	        		</ul>
 	        	</div>
 	        </div>

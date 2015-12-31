@@ -84,7 +84,20 @@ $(document).ready(function(){
 		navigationText:['<i class="font-left-open-big"></i>','<i class="font-right-open-big"></i>'],
 		addClassActive:true
 	});
-		$('#new-products_block_right .products,#best-sellers_block_right .products,.twitter_carousel').owlCarousel({
+	
+	
+	$('#new-products_block_right .products,#best-sellers_block_right .products,.twitter_carousel').bxSlider({
+	  minSlides: 1,
+	  maxSlides: 4,
+	  slideWidth: 390,
+	  slideMargin: 10,
+	  infiniteLoop: false,
+	  hideControlOnEnd: true,
+	  controls: false,
+	});
+	
+/*
+	$('#new-products_block_right .products,#best-sellers_block_right .products,.twitter_carousel').owlCarousel({
 		singleItem:true,
 		pagination:false,
 		navigation:true,
@@ -93,6 +106,9 @@ $(document).ready(function(){
 		mouseDrag:false,
 		touchDrag:false
 	});
+	
+	*/
+
 		$('.twits_cont .owl-prev,.twits_cont .owl-next').click(function(){
 			addClassOnSlide();
 		});

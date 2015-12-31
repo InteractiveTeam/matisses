@@ -143,8 +143,12 @@ class BlockViewed extends Module
 			if (!count($productsViewedObj))
 				return;
 
+			
 
-			$npro= 4;
+			$First = $productsViewedObj[0];
+			unset($productsViewedObj[0]);
+			
+			$npro= 3;
 			$nli = ceil(count($productsViewedObj)/$npro);
 			for($i=0; $i<=$nli; $i++)
 			{
@@ -154,7 +158,9 @@ class BlockViewed extends Module
 			$viewed = array_filter($viewed);
 			$this->smarty->assign(array(
 				'viewed' => $viewed,
-				'mediumSize' => Image::getSize('medium')));
+				'mediumSize' => Image::getSize('medium'),
+				'First' => $First,
+				));
 
 			return $this->display(__FILE__, 'blockviewed.tpl');
 		}
