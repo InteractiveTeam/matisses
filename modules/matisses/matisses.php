@@ -224,12 +224,14 @@ class matisses extends Module
 	public function hookHeader($params)
 	{
 		$this->context->controller->addJS($this->_path.'js/fblogin.js');
-		$this->context->controller->addJS($this->_path.'js/producttabs.js');
+		//echo "<pre>"; print_r($params); echo "</pre>";
 	}
 	
 	public function hookdisplayFooterProduct($params)
 	{
+		
 		$this->context->controller->addJqueryUI('ui.tabs');
+		$this->context->controller->addJS($this->_path.'js/producttabs.js');
 				$this->context->smarty->assign(array(
 											'product' => $params['product'],
 											));

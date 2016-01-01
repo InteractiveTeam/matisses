@@ -29,7 +29,3 @@ themes/foxlore/*
 
 # Exluir la htaccess
 *.htaccess
-
-# Exluir la fans.tpl
-*fans.tpl
-

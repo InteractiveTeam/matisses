@@ -23,22 +23,19 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 $(document).ready(function(){
-	
-	$('.open-comment-form').fancybox({
-		'autoSize' : false,
-		'width' : 600,
-		'height' : 'auto',
-		'hideOnContentClick': false
-	});
-	
 	$('input.star').rating();
 	$('.auto-submit-star').rating();
 
-
-
+	if (!!$.prototype.fancybox)
+		$('.open-comment-form').fancybox({
+			'autoSize' : false,
+			'width' : 600,
+			'height' : 'auto',
+			'hideOnContentClick': false
+		});
 
 	$(document).on('click', '#id_new_comment_form .closefb', function(e){
-
+		e.preventDefault();
 		$.fancybox.close();
 	});
 
@@ -97,7 +94,7 @@ $(document).ready(function(){
 
 	$(document).on('click', '#submitNewMessage', function(e){
 		// Kill default behaviour
-
+		e.preventDefault();
 
 		// Form element
 
