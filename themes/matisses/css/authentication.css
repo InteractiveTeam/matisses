@@ -147,18 +147,59 @@
     .create-account div.radio span.checked:before{
     color: #4b4b4b;
     }
-
     .account_creation div.radio span{
     border: 3px solid #d7162f;
     width: 0.9375rem;
     height: 0.9375rem;
     }
-
     .account_creation div.radio span.checked:before{
     width: 9px;
     height: 9px;
     background: #d7162f;
     }
+    /*Plugin Facebook*/
+    .header-facebook {
+    position: relative;
+    }
+    .icon-facebook {
+    background: url("../img/icon-facebook.png") 0 0 no-repeat;
+    height: 71px;
+    width: 68px;
+    position: absolute;
+    top: -15px;
+    left: 15px;
+    }
+    .title-facebook {
+    margin-bottom: 25px;
+    display: block;
+    background: #3b549d;
+    }
+
+    .facebook-login h2 {
+    font-family: 'condensed';
+    color: #fff;
+    font-size: 1.375rem;
+    padding: 10px 0 10px 100px;
+    text-transform: uppercase;
+    }
+    .content-facebook {
+    margin-bottom: 20px;
+    }
+    .btn-facebook a {
+    background: #3b549d;
+    font-family: 'condensed';
+    font-size: 1.125rem;
+    color: #fff;
+    padding: 10px 20px;
+    display: block;
+    min-width: 140px;
+    float: right;
+    text-align: center;
+    text-transform: uppercase;
+    }
+
+
+
 
 @media (max-width: 480px){
     .id_state div.selector,#authentication div.selector,#authentication div.selector select{
