@@ -223,13 +223,21 @@ class matisses extends Module
 	
 	public function hookHeader($params)
 	{
+		$this->page_name = Dispatcher::getInstance()->getController();
 		$this->context->controller->addJS($this->_path.'js/fblogin.js');
-		$this->context->controller->addJS($this->_path.'js/producttabs.js');
+		if(in_array($this->page_name, array('product')))
+		{
+			$this->context->controller->addJqueryUI('ui.tabs');
+			$this->context->controller->addJS($this->_path.'js/producttabs.js');
+		}
+		//echo "<pre>"; print_r($params); echo "</pre>";
 	}
 	
 	public function hookdisplayFooterProduct($params)
 	{
-		$this->context->controller->addJqueryUI('ui.tabs');
+		
+
+		
 				$this->context->smarty->assign(array(
 											'product' => $params['product'],
 											));
