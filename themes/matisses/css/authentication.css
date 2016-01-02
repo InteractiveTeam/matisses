@@ -163,14 +163,14 @@
     }
     .icon-facebook {
     background: url("../img/icon-facebook.png") 0 0 no-repeat;
-    height: 71px;
-    width: 68px;
+    height:4.4375rem;
+    width: 4.25rem;
     position: absolute;
-    top: -15px;
-    left: 15px;
+    top: -0.9375rem;
+    left: 0.9375rem;
     }
     .title-facebook {
-    margin-bottom: 25px;
+    margin-bottom: 1.5625rem;
     display: block;
     background: #3b549d;
     }
@@ -179,27 +179,33 @@
     font-family: 'condensed';
     color: #fff;
     font-size: 1.375rem;
-    padding: 10px 0 10px 100px;
+    padding:0.625rem 0 0.625rem 6.25rem;
     text-transform: uppercase;
     }
     .content-facebook {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     }
     .btn-facebook a {
     background: #3b549d;
     font-family: 'condensed';
     font-size: 1.125rem;
     color: #fff;
-    padding: 10px 20px;
+    padding: 0.625rem 1.25rem;
     display: block;
-    min-width: 140px;
+    min-width: 8.75rem;
     float: right;
     text-align: center;
     text-transform: uppercase;
     }
-
-
-
+    .btn-facebook a:hover{
+    background-color: #263D81;
+    }
+    .fa-facebook:before {
+    content: "\f09a";
+    color: #fff;
+    font-size: 1.25rem;
+    padding-right: 0.625rem;
+    }
 
 @media (max-width: 480px){
     .id_state div.selector,#authentication div.selector,#authentication div.selector select{
