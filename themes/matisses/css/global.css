@@ -2184,9 +2184,7 @@ box-sizing: border-box;
 	font-weight: bold;
 	color: #333333;
 	}
-	#cart_summary tfoot td.price {
-	text-align: right;
-	}
+
 	#cart_summary tfoot td.total_price_container span {
 	color: #555454;
 	text-transform: uppercase;
@@ -3504,6 +3502,7 @@ box-sizing: border-box;
 	text-transform: uppercase;
 	font-size: 1.25rem;
 	border: 1px solid #dbdbdb;
+	padding: 0.3125rem 0.9375rem;
 	}
 	.order-detail .product-name a{
 	font-family: 'condensed';
@@ -3534,6 +3533,7 @@ box-sizing: border-box;
 	.order-detail .price {
 	font-family: 'condensed';
 	color: #272727;
+	text-align: center;
 	}
 	.fa-trash-o:before{
 	color: #d7162f;
@@ -3592,7 +3592,24 @@ box-sizing: border-box;
 	color: #272727;
 	font-size: 1.25rem;
 	}
-
+	.order-detail td.cart_total {
+    width: 11.25rem;
+	text-align: center;
+	}
+	.order-detail tr.cart_total_tax {
+    border-bottom: none;
+	}
+	.order-detail #total_shipping {
+    color: #d7162f;
+	}
+	.order-detail #total_tax {
+    color: #d7162f;
+	}
+	.order-detail .quantity_item {
+    width: 70%;
+    border: none;
+	}
+	
 	/*Historial de pedidos*/
 	.history .center_column{
 	width: 100%;
