@@ -1,6 +1,4 @@
-/*******************************************************************
-		  Cart Block Styles
-********************************************************************/
+/* Cart Block Styles */
 #header .wrap_cart{
 	float: right;
 	height: 37px;
@@ -25,7 +23,6 @@
 	-moz-transition:all .3s ease;
 	transition:all .3s ease;
 }
-
 .cart_block .cart_block_list .remove_link {
 	position: absolute;
 	right: 4px;
@@ -127,11 +124,12 @@
 	font-size: 15px;
 	font-family: 'gothic';
 	}
-	.cart_block .cart-buttons a#button_order_cart {
+	#cart .cart_block_list.expanded .cart-buttons a{
 	margin-right: 0;
 	text-align: center;
 	padding-left: 15px;
 	padding-right: 15px;
+	color: #d7162f;
 	}
 
 #header .cart_block {
