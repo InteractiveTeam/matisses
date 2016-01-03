@@ -2,6 +2,61 @@ var ps_force_friendly_product =1;
 var PS_ALLOW_ACCENTED_CHARS_URL =0;
 
 $(document).ready(function(e) {
+	
+	  // load products
+	  var products = $('.adminexperiences #products').val()
+	  if(products)
+	  {
+		  products = JSON.parse(products)
+		  $(products).each(function(index, element) {
+           	$('#image-images-thumbnails').prepend('<div class="experience-pointer '+element.market+'" style="left:'+element.left+'%; top:'+element.top+'%;"></div>');
+          });
+	  }
+	
+	
+	 $('#experience-productadd').live('click',function(){
+		 $('#experiences-points .error').remove();
+		var url_experience = currentIndex;
+			url_experience += '&token='+token;
+			
+		var data = {
+					'left': $('#experiences-points #coordinates-left').val(),
+					'top': $('#experiences-points #coordinates-top').val(),
+					'market': $('#experiences-points #market').val(),
+					'status': $('#experiences-points #status').val(),
+					'product': $('#experiences-points #product').val(),
+					'poid': $('#experiences-points #poid').val(),
+					'pointers': $('#products').val(),
+					'id_experience': $('#id_experience').val(),
+					}
+			
+			$.ajax({
+					url: url_experience,
+					data:{
+							'ajax': true,
+							'action': 'experienceAddProduct',
+							'data': data,
+							
+						 },
+						 success: function(data){
+						 	data = JSON.parse(data);
+							console.log(data);
+							if(data.haserror==true)
+							{
+								$('#experiences-points').prepend(data.message);
+							}else{
+									console.log(data.pointer);
+									$('#products').val(data.configurations);
+									$('#image-images-thumbnails').prepend(data.pointer);
+									$.fancybox.close();
+								 }
+							
+						 }
+				   })		
+		
+			
+	 })
+	
     $('.adminexperiences #image-images-thumbnails img').on('click', function(e){
 		var sp	= 6.25;
 		var Px	= ((e.pageX-sp) - $(this).offset().left);
@@ -34,8 +89,13 @@ $(document).ready(function(e) {
 			$.ajax({
 					url: url_experience,
 					data:{
-							ajax: true,
-							action: 'experienceAssociations'
+							'ajax': true,
+							'action': 'experienceAssociations',
+							'left': left,
+							'top': top,
+							'poid': poid,
+							
+							
 						 },
 						 success: function(data){
 						 	$.fancybox(data)

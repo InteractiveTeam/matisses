@@ -218,6 +218,7 @@ class AdminExperiencesController extends ModuleAdminController
 					'required' => true,
 					'hint' => $this->l('Selecione una imagen formato jpg:'),
 					'display_image' => true,
+					'class'		=> 'experiences-pointer',
 					'image' => $image_url ? $image_url : false,
 				),
 				
@@ -266,6 +267,16 @@ class AdminExperiencesController extends ModuleAdminController
 					'required' => true,
 					'hint' => $this->l('Only letters, numbers, underscore (_) and the minus (-) character are allowed.')
 				),
+				
+				array(
+					'type' => 'textarea',
+					'label' => $this->l('configuracion'),
+					'name' => 'products',
+					'lang' => false,
+					'required' => true,
+					'class'	=> 'experience_product',
+					'hint' => $this->l('Only letters, numbers, underscore (_) and the minus (-) character are allowed.')
+				),
 								
 				array(
 					'type' => 'switch',
@@ -311,8 +322,88 @@ class AdminExperiencesController extends ModuleAdminController
 	
 	public function ajaxProcessexperienceAssociations()
 	{
+		$this->context->smarty->assign(array(
+											'left' => $_REQUEST['left'],
+											'top' => $_REQUEST['top'],	
+											'poid' => $_REQUEST['poid'],	
+											 ));											 
 		$this->context->smarty->display(dirname(__FILE__).'/../../views/templates/admin/experiences_products.tpl');
 	}
+	
+	
+	public function ajaxProcessexperienceAddProduct()
+	{
+		if(!$_REQUEST['data']['product'])
+			$this->errors[] = Module::displayError('Add a valid product');
+			
+		if(!$_REQUEST['data']['left'])
+			$this->errors[] = Module::displayError('Add a valid product');	
+			
+		if(!$_REQUEST['data']['top'] || $_REQUEST['data']['top']<0 || $_REQUEST['data']['top']>100)
+			$this->errors[] = Module::displayError('Add a valid top coordinate');		
+		
+		if(!$_REQUEST['data']['left'] || $_REQUEST['data']['left']<0 || $_REQUEST['data']['left']>100)
+			$this->errors[] = Module::displayError('Add a valid left coordinate');	
+		
+		if(!$_REQUEST['data']['market'])
+			$this->errors[] = Module::displayError('Choose a market');
+			
+		if($_REQUEST['data']['product'])
+		{
+			$sql = "SELECT
+						*
+					FROM "._DB_PREFIX_."product as a 
+						INNER JOIN "._DB_PREFIX_."product_attribute as b
+					on a.id_product = b.id_product
+					WHERE a.reference = '".$_REQUEST['data']['product']."'
+						or b.reference = '".$_REQUEST['data']['product']."'
+						or a.id_product = '".$_REQUEST['data']['product']."' 	
+					";
+			$product = Db::getInstance()->getRow($sql);
+			//print_r($product);
+			if($product)
+			{
+				$poid = $_REQUEST['data']['poid'];
+				$response[$poid]['product'] 		= $product;
+				$response[$poid]['left'] 			= $_REQUEST['data']['left'];
+				$response[$poid]['top'] 			= $_REQUEST['data']['top']; 
+				$response[$poid]['market'] 			= $_REQUEST['data']['market']; 	
+				$response[$poid]['status'] 			= $_REQUEST['data']['status']; 	
+					
+				if($_REQUEST['data']['pointers'])
+					$pointers = json_decode($_REQUEST['data']['pointers'],true);	
+		
+				$key = sizeof($pointers);
+
+				$pointers[$key]['market'] 		= $response[$poid]['market'];
+				$pointers[$key]['left'] 		= $response[$poid]['left'];
+				$pointers[$key]['top'] 			= $response[$poid]['top'];
+				$pointers[$key]['id_product'] 	= $product['id_product'];
+				$pointers[$key]['id_product_attribute'] 	= $product['id_product_attribute'];
+				$pointers[$key]['id_product_attribute'] 	= $product['id_product_attribute'];
+				$pointers[$key]['status'] 		= $_REQUEST['data']['status'];
+
+				$response['pointer'] = '<div class="experience-pointer '.$response[$poid]['market'].'" style="left:'.$response[$poid]['left'].'%; top:'.$response[$poid]['top'].'%;"></div>';	 
+				$response['configurations'] = json_encode($pointers);	 
+				$response['update'] = $response;
+			}else{
+					$this->errors[] = Module::displayError('The product does not exists');
+				 }
+			
+		}
+			
+			
+		if(sizeof($this->errors)==0)
+		{
+			$response['haserror'] = false; 
+
+		}else{
+				 $response['haserror'] 	= true;
+				 $response['message']	= '<div class="error">'.implode('',$this->errors).'</div>';
+			 }
+		
+		die(Tools::jsonEncode($response));
+	}	
 	
 
 	public function ajaxProcessStatusHighlights()

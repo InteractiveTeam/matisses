@@ -107,6 +107,7 @@
 				</div>
 				</div>
 			</div> <!-- end image-block -->
+            {hook h="displaySchemesProduct" product=$product}
 			{if isset($images) && count($images) > 0}
 				<!-- thumbnails -->
 				<div id="views_block" class="clearfix {if isset($images) && count($images) < 2}hidden{/if}">
@@ -377,6 +378,9 @@
 							</div>
 							<span class="clearfix"></span>
 						</div>
+                        
+                        {hook h='displayAvailableProduct' product=$product}
+                        
 						{/if}
 						<!-- minimal quantity wanted -->
 						<p id="minimal_quantity_wanted_p"{if $product->minimal_quantity <= 1 || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>

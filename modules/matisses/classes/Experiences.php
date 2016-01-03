@@ -7,6 +7,7 @@
 		public $active = 1;
 		public $position;
 		public $description;
+		public $products;
 		public $link_rewrite;
 		public $meta_title;
 		public $meta_keywords;
@@ -25,6 +26,7 @@
 				'active' => 			array('type' => self::TYPE_BOOL, 'validate' => 'isBool', 'required' => true),
 				'id_shop_default' => 	array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
 				'position' => 			array('type' => self::TYPE_INT),
+				'products' => 			array('type' => self::TYPE_HTML),
 				// Lang fields
 				'name' => 				array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isCatalogName', 'required' => true, 'size' => 128),
 				'link_rewrite' => 		array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isLinkRewrite', 'required' => true, 'size' => 128),
@@ -42,6 +44,11 @@
 			parent::__construct($id_experience, $id_lang, $id_shop);
 			$this->id_image = ($this->id && file_exists(_PS_IMG_DIR_.'experiences/'.(int)$this->id.'.jpg')) ? (int)$this->id : false;
 			$this->image_dir = _PS_IMG_DIR_.'experiences/';
+		}
+		
+		public function getPointers($id_experience)
+		{
+			return Db::getInstance()->getValue('SELECT products FROM '._DB_PREFIX_.'experiences WHERE id_experience = "'.$id_experience.'" ');
 		}
 		
 		public function add($autodate = true, $null_values = false)
