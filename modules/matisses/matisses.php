@@ -47,6 +47,7 @@ class matisses extends Module
 				  `id_experience` int(11) NOT NULL AUTO_INCREMENT,
 				  `id_shop_default` int(2) NOT NULL,
 				  `position` int(3) NOT NULL,
+				  `products` text,
 				  `active` int(1) NOT NULL,
 				  PRIMARY KEY (`id_experience`),
 				  KEY `active` (`active`),
@@ -73,6 +74,18 @@ class matisses extends Module
 				  `left` int(4) NOT NULL,
 				  PRIMARY KEY (`id_experience`,`id_product`)
 				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+				
+				CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'product_store_available` (
+				  `id_product` int(11) NOT NULL,
+				  `id_store` int(11) NOT NULL,
+				  PRIMARY KEY (`id_product`,`id_store`)
+				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1;
+				
+				CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'category_homologation` (
+				  `id_category` int(11) NOT NULL,
+				  `id_matisses` int(11) NOT NULL,
+				  PRIMARY KEY (`id_category`,`id_matisses`)
+				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1;				
 									
 		';
 		
@@ -82,15 +95,14 @@ class matisses extends Module
 		if(!file_exists(_PS_IMG_DIR_.'experiences'))
 			mkdir(_PS_IMG_DIR_.'experiences',755);	
 		
-
-		
-		
 		if (!parent::install() 
 			|| in_array(0,$install) 
 			|| !Db::getInstance()->Execute($sql)
 			|| !$this->registerHook('displayFacebookLogin')
 			|| !$this->registerHook('header')
 			|| !$this->registerHook('displayFooterProduct')
+			|| !$this->registerHook('displayAvailableProduct')
+			|| !$this->registerHook('displaySchemesProduct')
 			)
 			return false;
 		return true;
@@ -153,6 +165,8 @@ class matisses extends Module
 				DROP TABLE IF EXISTS `'._DB_PREFIX_.'experiences`;
 				DROP TABLE IF EXISTS `'._DB_PREFIX_.'experiences_lang`;
 				DROP TABLE IF EXISTS `'._DB_PREFIX_.'experiences_product`;
+				DROP TABLE IF EXISTS `'._DB_PREFIX_.'product_store_available`;
+				DROP TABLE IF EXISTS `'._DB_PREFIX_.'category_homologation`;
 		';
 		
 		if(file_exists(_PS_IMG_DIR_.'highlights'))
@@ -215,6 +229,16 @@ class matisses extends Module
 			return false;
 		}
 	}
+
+	/*********************************************
+	* WEB SERVICES
+	*********************************************/
+	public function loadProducts()
+	{
+		require_once dirname(__FILE__).'/webservice/wsproduct.php';
+		$ws = new wsproduct;
+		$ws->init();
+	}
 	
 	
 	/*********************************************
@@ -235,10 +259,7 @@ class matisses extends Module
 	
 	public function hookdisplayFooterProduct($params)
 	{
-		
-
-		
-				$this->context->smarty->assign(array(
+		$this->context->smarty->assign(array(
 											'product' => $params['product'],
 											));
 		return $this->display(__FILE__, 'views/templates/hook/product_tabs.tpl');
@@ -248,13 +269,19 @@ class matisses extends Module
 	public function hookdisplayFacebookLogin($params)
 	{
 		$this->context->controller->addJS($this->_path.'js/fblogin.js');
-		/*
-		$this->context->smarty->assign(array(
-											'ajaxurl' => Link::getModuleLink('matisses'),
-											));
-											*/
 		return $this->display(__FILE__, 'views/templates/hook/facebook_login.tpl');
 	}
+	
+	public function hookdisplayAvailableProduct($params)
+	{
+		return $this->display(__FILE__, 'views/templates/hook/product_available.tpl');
+	}
+	
+	public function hookdisplaySchemesProduct($params)
+	{
+		return $this->display(__FILE__, 'views/templates/hook/product_schemes.tpl');
+	}
+	
 	
 	/*********************************************
 	* AJAX 
