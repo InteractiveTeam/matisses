@@ -1530,6 +1530,7 @@ box-sizing: border-box;
 	.block .products-block .item .products-block-image img {
 	margin: 0 auto;
 	display: block;
+	width: 100%;
 	}
 	.products_block {
 	position: relative;

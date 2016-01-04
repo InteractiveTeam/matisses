@@ -1,4 +1,4 @@
-/** Se ocultan porque no se han terminado de desarrollar **/
+/** Se ocultan porque no se han terminado de desarrollar 
 .sf-menu.menu-content > li > ul,
 #special_block_right,
 #viewed-products_block_left,
@@ -6,6 +6,7 @@
 #news_block_sides{
   display: none;
 }
+**/
 
 /* lnk on detail product page */
 #wishlist_button {}
