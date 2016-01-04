@@ -372,7 +372,7 @@ class AuthControllerCore extends FrontController
 		Hook::exec('actionBeforeSubmitAccount');
 		$this->create_account = true;
 		
-		if ((Tools::getValue('passwd') != Tools::getValue('passwd2')) || (empty(Tools::getValue('passwd')) || empty(Tools::getValue('passwd2'))))
+		if ((Tools::getValue('passwd') != Tools::getValue('passwd2')) || (!(Tools::getValue('passwd')) || !(Tools::getValue('passwd2'))))
 			$this->errors[] = sprintf(Tools::displayError('The %s do not match'),'<b>'.Tools::displayError('Passwords').'</b>');
 
 		if(!is_numeric(Tools::getValue('charter')))
