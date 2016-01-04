@@ -948,10 +948,13 @@ ul.wrap_attr li label {
 	background: none;
     border-radius: 0;
 	border: 1px solid  #dbdbdb;
-	padding: 1.5625rem 0.625rem;
+	padding: 1.5625rem 1.25rem;
 	}
 	.product-tabs {
     margin: 3.125rem 0 1.875rem 0;
+	}
+	.product-tabs h1 {
+    font-size: 1.25rem;
 	}
 
 /*15-12-2015*/
