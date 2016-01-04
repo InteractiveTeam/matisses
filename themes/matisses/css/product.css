@@ -139,8 +139,9 @@ a.fancybox-nav {
 	padding: 0 25px;
 	border-style: solid;
 	border-width: 1px;
-	border-top-width:0;
+	border-top-width: 0;
 	position: relative;
+	min-height: 95px;
 }
 #thumbs_list {
 	overflow: hidden;
