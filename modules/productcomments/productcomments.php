@@ -81,6 +81,7 @@ class ProductComments extends Module
 			!$this->registerHook('header') ||
 			!$this->registerHook('displayRightColumnProduct') ||
 			!$this->registerHook('displayProductListReviews') ||
+			!$this->registerHook('displayProductComments') ||
 			!Configuration::updateValue('PRODUCT_COMMENTS_MINIMAL_TIME', 30) ||
 			!Configuration::updateValue('PRODUCT_COMMENTS_ALLOW_GUESTS', 0) ||
 			!Configuration::updateValue('PRODUCT_COMMENTS_MODERATE', 1))
@@ -736,6 +737,12 @@ class ProductComments extends Module
 
 		return $this->display(__FILE__, 'views/templates/admin/list_action_noabuse.tpl');
 	}
+	
+	public function hookdisplayProductComments($params)
+	{
+		return $this->hookDisplayRightColumnProduct($params).$this->hookProductTabContent($params);
+	}
+	
 
 	public function hookProductTab($params)
 	{

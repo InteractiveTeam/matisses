@@ -39,13 +39,46 @@
 		</div>
 	</div>
 	<div class="block_content products-block">
-		<ul class="viewedslider">
+    	{if $First}
+        <ul class="col-md-3">
+       
+		<li class="item clearfix first_item item">
+
+                    <a
+					class="wrap_scale products-block-image"
+					href="{$First->product_link|escape:'html':'UTF-8'}"
+					title="{l s='More about %s' mod='blockviewed' sprintf=[$First->name|escape:'html':'UTF-8']}" >
+						<img class="img-responsive"
+						src="{if isset($First->id_image) && $First->id_image}{$link->getImageLink($First->link_rewrite, $First->cover, 'home_default')}{else}{$img_prod_dir}{$lang_iso}-default-medium_default.jpg{/if}"
+						alt="{$First->legend|escape:'html':'UTF-8'}" />
+					</a>
+					<div class="product-content-view">
+						<div class="header-products cf">
+							<h2>
+								<a class="product-name"
+								href="{$First->product_link|escape:'html':'UTF-8'}"
+								title="{l s='More about %s' mod='blockviewed' sprintf=[$First->name|escape:'html':'UTF-8']}">
+									{$First->name|truncate:25:'...'|escape:'html':'UTF-8'}
+								</a>
+							</h2>
+	                        <div class="colors">{if $First->colors|count ==1} {$First->colors|count} {l s='Color'} {else} {$First->colors|count} {l s='Colores'} {/if}</div>
+						</div>
+
+                        <div class="price">{convertPrice price=$First->price}</div>
+
+						<!-- <p class="product-description">{$viewedProduct->description_short|strip_tags:'UTF-8'|truncate:60}</p> -->
+					</div>
+				</li>
+         </ul>               
+        {/if}
+        <div class="col-md-9 slide-container">
+		<ul class="viewedslider" >
         {foreach from=$viewed item=productsViewedObj name=myLoop2}
         <li>
         <ul>
 			{foreach from=$productsViewedObj item=viewedProduct name=myLoop}
 			{if $smarty.foreach.myLoop.iteration <= Configuration::get('PRODUCTS_VIEWED_NBR')}
-				<li class="item clearfix{if $smarty.foreach.myLoop.last} last_item{elseif $smarty.foreach.myLoop.first} first_item{else} item{/if}">
+				<li class="item clearfix{if $smarty.foreach.myLoop.last} last_item{elseif $smarty.foreach.myLoop.first} {else} item{/if}">
 
                     <a
 					class="wrap_scale products-block-image"
@@ -78,5 +111,7 @@
           {/foreach}
 
 		</ul>
+        </div>
+        
 	</div>
 </div>

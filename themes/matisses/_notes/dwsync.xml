@@ -68,11 +68,12 @@
 <file name="index.tpl" server="C:/xampp/htdocs/matisses/" local="130933848349740552" remote="130933848340000000" Dst="0" />
 <file name="product-list.tpl" server="C:/xampp/htdocs/matisses/" local="130942727203762357" remote="130942727200000000" Dst="0" />
 <file name="footer.tpl" server="C:/xampp/htdocs/matisses/" local="130957907984397656" remote="130957907980000000" Dst="0" />
-<file name="header.tpl" server="C:/xampp/htdocs/matisses/" local="130958160386568401" remote="130958160380000000" Dst="0" />
+<file name="header.tpl" server="C:/xampp/htdocs/matisses/" local="130959804081609265" remote="130959804080000000" Dst="0" />
 <file name="breadcrumb.tpl" server="C:/xampp/htdocs/matisses/" local="130957933345615768" remote="130957933340000000" Dst="0" />
-<file name="authentication.tpl" server="C:/xampp/htdocs/matisses/" local="130958053619000956" remote="130958053610000000" Dst="0" />
+<file name="authentication.tpl" server="C:/xampp/htdocs/matisses/" local="130960485717583402" remote="130960485710000000" Dst="0" />
 <file name="identity.tpl" server="C:/xampp/htdocs/matisses/" local="130958067825155407" remote="130958067820000000" Dst="0" />
 <file name="stores.tpl" server="C:/xampp/htdocs/matisses/" local="130958104874803608" remote="130958104870000000" Dst="0" />
 <file name="shopping-cart-product-line.tpl" server="C:/xampp/htdocs/matisses/" local="130958129342197959" remote="130958129340000000" Dst="0" />
 <file name="shopping-cart.tpl" server="C:/xampp/htdocs/matisses/" local="130958155604254515" remote="130958155600000000" Dst="0" />
+<file name="product.tpl" server="C:/xampp/htdocs/matisses/" local="130962259424164288" remote="130962259420000000" Dst="0" />
 </dwsync>

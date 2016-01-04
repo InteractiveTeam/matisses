@@ -4,24 +4,12 @@
 <div class="blog-list">
     <div class="newsMenuCats">
         <h1>Blog</h1>
-
-        <div class="breadcrumb newsBreadcrumb iconNewsList ">
-            <a href="{$link->getPageLink('index')}" >{l s='Home' mod='news'}</a>
-            <span class="navigation-pipe">&gt;</span>
-            <span class="navigation_page">
-                <a href="{$link->getModuleLink('news', 'news', [] ,false)}" >{l s='news' mod='news'}</a>
-            </span>
-
-            <a class="newsRss" href="{$link->getModuleLink('news', 'rss', ['rss_news'=>1] ,false)}" target="_blank"></a>
-        </div>
-
-
         <form action="{$link->getModuleLink('news', 'news', [] ,false)}" method="post" class="fromNewsSearch" name="fromNewsSearch">
             <input type="text" name="search_news" value="{$search_news}" class="newsSearch"></input>
             <input type="submit" name="searchnewshidden" style="visibility: hidden"></input>
         </form>
 
-      {if $catsObj}
+      {if $catsObj && false}
                  {assign var='menu_position' value=1}
                  {foreach from=$catsObj item='cats' name=myLoop}
                         <div class="{if $smarty.foreach.myLoop.last}news_last_item{else}news_first_item{/if}">

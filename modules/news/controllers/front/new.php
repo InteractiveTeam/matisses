@@ -20,7 +20,7 @@ class newsnewModuleFrontController extends ModuleFrontController
 		$id_news = (Tools::getValue('id_news') ? intval(Tools::getValue('id_news')) : 0);
 		$new	 = str_replace('-',' ',Tools::getValue('rewrite'));
 		
-		$breadcrum[] = '<a href="/'.Tools::getValue('cat_rewrite').'">Blog</a>';
+		$breadcrum[] = '<a href="/blog">Blog</a>';
 		$breadcrum[] = '<span class="navigation-pipe">/</span>';
 		$breadcrum[] = $new;
 		

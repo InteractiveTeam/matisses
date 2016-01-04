@@ -7,6 +7,7 @@ $(document).ready(function(e) {
 				  	prevSelector: '#slider-next',
 				  	nextText: '→',
 				  	prevText: '←'
+					
 				});
 				
 	$('#reload-slider').click(function(e){

@@ -3549,28 +3549,8 @@ class News extends Module {
             $news_fb_comments_langs = unserialize(Configuration::get('NEWS_FB_COMMENTS_LANGS'));
         }
 
-		//(isset($news[0]['date']) ? ( $this->_months[date('n', $news[0]['date'])] . ' ' . date('j', $news[0]['date']) . ',' . date('Y', $news[0]['date']) ) : '');
-		if($news[0]['date'])
-		{
-			switch(date('m', $news[0]['date']))
-			{
-				case '01': $month = $this->l('Enero'); break;
-				case '02': $month = $this->l('Febrero'); break;
-				case '03': $month = $this->l('Marzo'); break;
-				case '04': $month = $this->l('Abril'); break;
-				case '05': $month = $this->l('Mayo'); break;
-				case '06': $month = $this->l('Junio'); break;
-				case '07': $month = $this->l('Julio'); break;
-				case '08': $month = $this->l('Agosto'); break;
-				case '09': $month = $this->l('Septiembre'); break;
-				case '10': $month = $this->l('Octubre'); break;
-				case '11': $month = $this->l('Noviembre'); break;
-				case '12': $month = $this->l('Diciembre'); break;
+		$date = (isset($news[0]['date']) ? ( $this->_months[date('n', $news[0]['date'])] . ' ' . date('j', $news[0]['date']) . ',' . date('Y', $news[0]['date']) ) : '');
 
-			}
-		
-			$date = $month.' '. date('j', $news[0]['date']) . ',' . date('Y', $news[0]['date']);
-		}
         $this->smarty->assign(array(
             'imgsObj' => $imgsObj,
             'tagsObj' => $this->getTags($id_news, $id_lang),

@@ -47,6 +47,7 @@ class matisses extends Module
 				  `id_experience` int(11) NOT NULL AUTO_INCREMENT,
 				  `id_shop_default` int(2) NOT NULL,
 				  `position` int(3) NOT NULL,
+				  `products` text,
 				  `active` int(1) NOT NULL,
 				  PRIMARY KEY (`id_experience`),
 				  KEY `active` (`active`),
@@ -73,6 +74,18 @@ class matisses extends Module
 				  `left` int(4) NOT NULL,
 				  PRIMARY KEY (`id_experience`,`id_product`)
 				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+				
+				CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'product_store_available` (
+				  `id_product` int(11) NOT NULL,
+				  `id_store` int(11) NOT NULL,
+				  PRIMARY KEY (`id_product`,`id_store`)
+				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1;
+				
+				CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'category_homologation` (
+				  `id_category` int(11) NOT NULL,
+				  `id_matisses` int(11) NOT NULL,
+				  PRIMARY KEY (`id_category`,`id_matisses`)
+				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1;				
 									
 		';
 		
@@ -82,10 +95,15 @@ class matisses extends Module
 		if(!file_exists(_PS_IMG_DIR_.'experiences'))
 			mkdir(_PS_IMG_DIR_.'experiences',755);	
 		
-
-		
-		
-		if (!parent::install() || in_array(0,$install) || !Db::getInstance()->Execute($sql))
+		if (!parent::install() 
+			|| in_array(0,$install) 
+			|| !Db::getInstance()->Execute($sql)
+			|| !$this->registerHook('displayFacebookLogin')
+			|| !$this->registerHook('header')
+			|| !$this->registerHook('displayFooterProduct')
+			|| !$this->registerHook('displayAvailableProduct')
+			|| !$this->registerHook('displaySchemesProduct')
+			)
 			return false;
 		return true;
 	}
@@ -147,6 +165,8 @@ class matisses extends Module
 				DROP TABLE IF EXISTS `'._DB_PREFIX_.'experiences`;
 				DROP TABLE IF EXISTS `'._DB_PREFIX_.'experiences_lang`;
 				DROP TABLE IF EXISTS `'._DB_PREFIX_.'experiences_product`;
+				DROP TABLE IF EXISTS `'._DB_PREFIX_.'product_store_available`;
+				DROP TABLE IF EXISTS `'._DB_PREFIX_.'category_homologation`;
 		';
 		
 		if(file_exists(_PS_IMG_DIR_.'highlights'))
@@ -156,7 +176,10 @@ class matisses extends Module
 			Tools::deleteDirectory(_PS_IMG_DIR_.'experiences');	
 
 		
-		if (!parent::uninstall() || in_array(0,$uninstall) || !Db::getInstance()->Execute($sql))
+		if (!parent::uninstall() 
+			|| in_array(0,$uninstall) 
+			|| !Db::getInstance()->Execute($sql)
+			)
 			return false;
 		return true;
 	}
@@ -205,6 +228,150 @@ class matisses extends Module
 		}catch (Exception $e) {
 			return false;
 		}
+	}
+
+	/*********************************************
+	* WEB SERVICES
+	*********************************************/
+	public function loadProducts()
+	{
+		require_once dirname(__FILE__).'/webservice/wsproduct.php';
+		$ws = new wsproduct;
+		$ws->init();
+	}
+	
+	
+	/*********************************************
+	* HOOKS
+	*********************************************/
+	
+	public function hookHeader($params)
+	{
+		$this->page_name = Dispatcher::getInstance()->getController();
+		$this->context->controller->addJS($this->_path.'js/fblogin.js');
+		if(in_array($this->page_name, array('product')))
+		{
+			$this->context->controller->addJqueryUI('ui.tabs');
+			$this->context->controller->addJS($this->_path.'js/producttabs.js');
+		}
+		//echo "<pre>"; print_r($params); echo "</pre>";
+	}
+	
+	public function hookdisplayFooterProduct($params)
+	{
+		$this->context->smarty->assign(array(
+											'product' => $params['product'],
+											));
+		return $this->display(__FILE__, 'views/templates/hook/product_tabs.tpl');
+	}
+	
+	
+	public function hookdisplayFacebookLogin($params)
+	{
+		$this->context->controller->addJS($this->_path.'js/fblogin.js');
+		return $this->display(__FILE__, 'views/templates/hook/facebook_login.tpl');
+	}
+	
+	public function hookdisplayAvailableProduct($params)
+	{
+		return $this->display(__FILE__, 'views/templates/hook/product_available.tpl');
+	}
+	
+	public function hookdisplaySchemesProduct($params)
+	{
+		return $this->display(__FILE__, 'views/templates/hook/product_schemes.tpl');
+	}
+	
+	
+	/*********************************************
+	* AJAX 
+	*********************************************/
+	
+	public function processAjaxCallback()
+	{
+		$option 	= $_REQUEST['option'];
+		$request 	= $_REQUEST['request'];
+		switch($option)
+		{
+			case 'fblogin': 
+				
+				$Customer = Customer::getCustomersByEmail($_REQUEST['request']['email']);
+				if(sizeof($Customer)>0)
+				{
+					
+					$response['haserror'] 	= false;
+					$response['action']		= 'reload';
+					$response['url']		= $this->createFacebookLogin($Customer);
+					
+				}else{
+						$response['haserror'] 	= false;
+						$response['action']		= 'create';
+						$response['data']		= $request;
+					 }
+				
+			
+			break;
+			default:
+				$response['haserror'] 	= true;
+				$response['message']	= $this->l('No data sending');
+		}
+		
+		return json_encode($response);
+	}
+	
+	private function createFacebookLogin($CurrentCustomer)
+	{
+		$customer = new Customer($CurrentCustomer[0]['id_customer']);
+		$this->context->cookie->id_compare = isset($this->context->cookie->id_compare) ? $this->context->cookie->id_compare: CompareProduct::getIdCompareByIdCustomer($customer->id);
+		$this->context->cookie->id_customer = (int)($customer->id);
+		$this->context->cookie->customer_lastname = $customer->lastname;
+		$this->context->cookie->customer_firstname = $customer->firstname;
+		
+		$this->context->cookie->customer_secondname = $customer->secondname;
+		$this->context->cookie->customer_surname = $customer->surname;
+		$this->context->cookie->customer_charter = $customer->charter;
+		
+		
+		$this->context->cookie->logged = 1;
+		$customer->logged = 1;
+		$this->context->cookie->is_guest = $customer->isGuest();
+		$this->context->cookie->passwd = $customer->passwd;
+		$this->context->cookie->email = $customer->email;
+
+		// Add customer to the context
+		$this->context->customer = $customer;
+		
+		if(empty($this->context->cart))
+		{
+			$this->context->cart = new Cart($id_cart);
+			$this->context->cart->id_currency = 1;
+		}
+
+		$id_carrier = (int)$this->context->cart->id_carrier;
+		$this->context->cart->id_carrier = 0;
+		$this->context->cart->setDeliveryOption(null);
+		$this->context->cart->id_address_delivery = (int)Address::getFirstCustomerAddressId((int)($customer->id));
+		$this->context->cart->id_address_invoice = (int)Address::getFirstCustomerAddressId((int)($customer->id));
+
+		$this->context->cart->id_customer = (int)$customer->id;
+		$this->context->cart->secure_key = $customer->secure_key;
+
+		if ($this->ajax && isset($id_carrier) && $id_carrier && Configuration::get('PS_ORDER_PROCESS_TYPE'))
+		{
+			$delivery_option = array($this->context->cart->id_address_delivery => $id_carrier.',');
+			$this->context->cart->setDeliveryOption($delivery_option);
+		}
+
+		$this->context->cart->save();
+		$this->context->cookie->id_cart = (int)$this->context->cart->id;
+		$this->context->cookie->write();
+		$this->context->cart->autosetProductAddress();
+
+		// Login information have changed, so we check if the cart rules still apply
+		CartRule::autoRemoveFromCart($this->context);
+		CartRule::autoAddToCart($this->context);
+
+		return 'index.php?controller='.(($this->authRedirection !== false) ? urlencode($this->authRedirection) : $back);
 	}
 	
 }	
