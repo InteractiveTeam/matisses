@@ -34,9 +34,10 @@ $(document).ready(function(){
 		homeslider_loop = true;
     if (typeof(homeslider_width) == 'undefined')
         homeslider_width = 779;
+	if (typeof(homeslider_width) == 'undefined')
+        homeslider_width = 320;
 
 
-	if (!!$.prototype.bxSlider)
 		$('#homeslider').bxSlider({
 			useCSS: false,
 			maxSlides: 1,

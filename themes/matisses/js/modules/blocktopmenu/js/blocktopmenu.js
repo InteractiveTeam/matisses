@@ -41,8 +41,8 @@ $(document).ready(function(){
 	paddingMenu();
 	$(window).resize(paddingMenu);
 	function paddingMenu(){
-		var paddingSubmenu = $('.main_panel .container').offset().left;
-		$(".sf-menu .submenu-container").css({paddingLeft:paddingSubmenu +15+ 'px',paddingRight:paddingSubmenu +15+ 'px'});
+		//var paddingSubmenu = $('.main_panel .container').offset().left;
+		//$(".sf-menu .submenu-container").css({paddingLeft:paddingSubmenu +15+ 'px',paddingRight:paddingSubmenu +15+ 'px'});
 	}
 });
 

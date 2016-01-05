@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-{if isset($wishlists) && count($wishlists) > 1}
+
 <div class="wishlist">
 	{foreach name=wl from=$wishlists item=wishlist}
 		{if $smarty.foreach.wl.first}
@@ -48,10 +48,9 @@
 		</a>
 	{/foreach}
 	</div>
-{else}
+
 <div class="wishlist">
 	<a class="addToWishlist wishlistProd_{$product.id_product|intval}" href="#" rel="{$product.id_product|intval}" onclick="WishlistCart('wishlist_block_list', 'add', '{$product.id_product|intval}', false, 1); return false;">
 		{l s="Add to Wishlist" mod='blockwishlist'}
 	</a>
 </div>
-{/if}

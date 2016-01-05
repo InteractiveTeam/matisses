@@ -102,7 +102,7 @@
                         </div>
                     {/if}
                     {if isset($is_logged) && $is_logged}
-                        <div class="form-group selector1 show_selector">
+                        <div class="form-group selector1 show_selector hide">
                             <label class="unvisible">{l s='Product'}</label>
                             {if !isset($customerThread.id_product)}
                                 {foreach from=$orderedProductList key=id_order item=products name=products}
