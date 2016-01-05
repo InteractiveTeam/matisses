@@ -509,7 +509,7 @@ box-sizing: border-box;
 	width: 15.9375rem;
 	margin-right: 2.625rem;
 	}
-	.viewed-products ul li.item:first-child {
+	.viewed-products ul li.first_item {
 	width: 17.1875rem;
 	border: 1px solid #ccc;
 	margin-left: 0;
