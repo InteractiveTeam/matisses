@@ -1,4 +1,4 @@
-/** Se ocultan porque no se han terminado de desarrollar 
+/** Se ocultan porque no se han terminado de desarrollar
 .sf-menu.menu-content > li > ul,
 #special_block_right,
 #viewed-products_block_left,
@@ -145,10 +145,10 @@ ul.wlp_bought_list li .lnkdel {
 	content: "\f004";
 }
 
-.page-subheading, .cms h2{
+/*.page-subheading, .cms h2{
 	font-weight: bold;
 	padding: 20px 20px 5px;
-}
+}*/
 
 #mywishlist .table-bordered {
     margin: 30px 0;
@@ -166,7 +166,6 @@ ul.wlp_bought_list li .lnkdel {
 #mywishlist button, #mywishlist a.btn-default {
     background: #d7162f;
     color: #FFF;
-    padding: 10px 20px 0;
 }
 #mywishlist button:hover, #mywishlist a.btn-default:hover{
 	background-color: #FFF;

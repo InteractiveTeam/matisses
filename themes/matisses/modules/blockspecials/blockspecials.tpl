@@ -29,16 +29,16 @@
             {l s='Specials' mod='blockspecials'}
         </a>
     </p>
-	<div class="block_content products-block">
+	<div class="block_content products-block grid_12 alpha omega">
     {if $special}
 		<ul>
         	<li class="clearfix item">
                 <div class="wrap_image_left">
             	<a class="wrap_scale products-block-image" href="{$special.link|escape:'html':'UTF-8'}">
-                    <img 
-                    class="replace-2x img-responsive" 
-                    src="{$link->getImageLink($special.link_rewrite, $special.id_image, 'home_default')|escape:'html':'UTF-8'}" 
-                    alt="{$special.legend|escape:'html':'UTF-8'}" 
+                    <img
+                    class="replace-2x img-responsive"
+                    src="{$link->getImageLink($special.link_rewrite, $special.id_image, 'home_default')|escape:'html':'UTF-8'}"
+                    alt="{$special.legend|escape:'html':'UTF-8'}"
                     title="{$special.name|escape:'html':'UTF-8'}" />
                 </a>
                 {if isset($special.new) && $special.new == 1}
@@ -70,30 +70,30 @@
                                 {if !$priceDisplay}
                                     {displayWtPrice p=$special.price_without_reduction}{else}{displayWtPrice p=$priceWithoutReduction_tax_excl}
                                 {/if}
-                          
+
                             </span>
                         	<span class="price product-price special-price">
                                {if !$priceDisplay}
                                     {displayWtPrice p=$special.price}{else}{displayWtPrice p=$special.price_tax_exc}
                                 {/if}
                                   </span>
-                              
+
                              {if $special.specific_prices}
                                 {assign var='specific_prices' value=$special.specific_prices}
                                 {if $specific_prices.reduction_type == 'percentage' && ($specific_prices.from == $specific_prices.to OR ($smarty.now|date_format:'%Y-%m-%d %H:%M:%S' <= $specific_prices.to && $smarty.now|date_format:'%Y-%m-%d %H:%M:%S' >= $specific_prices.from))}
                                     <span class="price-percent-reduction">-{$specific_prices.reduction*100|floatval}%</span>
                                 {/if}
                             {/if}
-                             
+
                         {/if}
                     </div>
                 </div>
             </li>
 		</ul>
 		<div>
-			<a 
-            class="btn btn-default button button-small" 
-            href="{$link->getPageLink('prices-drop')|escape:'html':'UTF-8'}" 
+			<a
+            class="btn btn-default button button-small"
+            href="{$link->getPageLink('prices-drop')|escape:'html':'UTF-8'}"
             title="{l s='All specials' mod='blockspecials'}">
                 <span>{l s='All specials' mod='blockspecials'}<i class="icon-chevron-right right"></i></span>
             </a>

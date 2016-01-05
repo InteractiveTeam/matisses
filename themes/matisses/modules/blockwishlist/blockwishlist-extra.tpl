@@ -28,4 +28,3 @@
 		<span class="hidden-xxs">{l s='Add to wishlist' mod='blockwishlist'}</span>
 	</a>
 </div>
-

@@ -22,7 +22,7 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-
+<div class="container">
 <div id="mywishlist">
 	{capture name=path}
 		<a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
@@ -135,4 +135,5 @@
 			</a>
 		</li>
 	</ul>
+</div>
 </div>
