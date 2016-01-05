@@ -34,8 +34,10 @@ $(document).ready(function(){
 		homeslider_loop = true;
 	if (typeof(homeslider_width) == 'undefined')
 		homeslider_width = 779;
+	if (typeof(homeslider_width) == 'undefined')
+		homeslider_width = 320;	
 
-
+		
 	$('.homeslider-description').click(function () {
 		window.location.href = $(this).prev('a').prop('href');
 	});

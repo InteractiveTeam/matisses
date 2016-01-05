@@ -582,8 +582,7 @@ class HomeSlider extends Module
 				return false;
 
 			$this->smarty->assign(array('homeslider_slides' => $slides));
-		}
-
+		} 
 		return true;
 	}
 
@@ -624,10 +623,11 @@ class HomeSlider extends Module
 
 	public function hookDisplayHome()
 	{
+
 		if (!$this->_prepareHook())
 			return false;
 
-		return $this->display(__FILE__, 'homeslider.tpl', $this->getCacheId());
+		return $this->display(__FILE__, 'homeslider.tpl');
 	}
 
 	public function clearCache()
