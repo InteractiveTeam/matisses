@@ -106,7 +106,7 @@ box-sizing: border-box;
 
 	/*Header*/
 	.header-container {
-	min-height: 6.125rem;
+	min-height: 8.125rem;
 	position: relative;
 	}
 	h1{
@@ -128,7 +128,6 @@ box-sizing: border-box;
 	}
 	.header-container .main_panel.cf {
 	box-shadow: 0px 4px 9px 0px rgba(50, 50, 50, 0.37);
-	/*height: 8.75rem;*/
 	z-index: 10;
 	}
 	#header_logo {
@@ -270,7 +269,7 @@ box-sizing: border-box;
 	}
 	.menu-left li a{
 	font-size:1.0625rem;
-	font-family: "condensed";
+	font-family: 'condensed';
 	color: #000;
 	padding:0 1.25rem 0 1.5625rem;
 	text-transform: uppercase;
@@ -339,7 +338,7 @@ box-sizing: border-box;
 
 	.right-down-menu li a {
 	color: #000;
-	font-family: "condensed";
+	font-family: 'condensed';
 	font-size: 1.0625rem;
 	padding: 0 1.25rem 0 1.5625rem;
 	text-transform: uppercase;
@@ -384,7 +383,7 @@ box-sizing: border-box;
 	width: 1.25rem;
 	height: 1.25rem;
 	color: #fff;
-	font-family: "condensed";
+	font-family: 'condensed';
 	position: absolute;
 	display: block;
 	bottom: 1.5625rem;
@@ -419,15 +418,14 @@ box-sizing: border-box;
 
 	#user .header_user_info a span {
 	color: #fff;
-	font-family: "condensed";
+	font-family: 'condensed';
 	text-transform: uppercase;
 	}
 
 	#user .header_user_info a {
 	display: inline-block;
 	vertical-align: top;
-	padding-top: 1.125rem;
-	padding-right: 0.625rem;
+	padding: 1.125rem 0.625rem 0 0;
 	}
 
 	#user .header_user_info a span:hover{
@@ -510,7 +508,7 @@ box-sizing: border-box;
 	width: 15.9375rem;
 	margin-right: 2.625rem;
 	}
-	.viewed-products ul li.item:first-child {
+	.viewed-products ul li.first_item {
 	width: 17.1875rem;
 	border: 1px solid #ccc;
 	margin-left: 0;
@@ -1531,6 +1529,7 @@ box-sizing: border-box;
 	.block .products-block .item .products-block-image img {
 	margin: 0 auto;
 	display: block;
+	width: 100%;
 	}
 	.products_block {
 	position: relative;
@@ -3503,6 +3502,7 @@ box-sizing: border-box;
 	width: 75rem;
 	padding: 0 0.9375rem;
 	margin: 0 auto;
+	float: none;
 	}
 
 /*Pag buscador*/
@@ -3510,6 +3510,7 @@ box-sizing: border-box;
 	width: 75rem;
 	padding: 0 0.9375rem;
 	margin: 0 auto;
+	float: none;
 	}
 
 /*Pag Mi Carrito*/

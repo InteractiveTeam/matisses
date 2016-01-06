@@ -35,7 +35,7 @@ $(function(){
 });
 </script>
  {if (!$content_only && (($nbComments == 0 && $too_early == false && ($logged || $allow_guests)) || ($nbComments != 0)))}
-<div id="product_comments_block_extra">
+<div id="product_comments_block_extra" >
 	{if $nbComments != 0}
 	<div class="comments_note">
 		<span>{l s='Average grade' mod='productcomments'}&nbsp</span>

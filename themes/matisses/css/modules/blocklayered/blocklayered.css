@@ -1,4 +1,4 @@
-/** Se ocultan porque no se han terminado de desarrollar **/
+/** Se ocultan porque no se han terminado de desarrollar 
 .sf-menu.menu-content > li > ul,
 #special_block_right,
 #viewed-products_block_left,
@@ -6,9 +6,8 @@
 #news_block_sides{
   display: none;
 }
-
-.content_sortPagiBar .sortPagiBar .productsSortForm:before {
-  content: "Organizar por";
+**/
+.content_sortPagiBar .sortPagiBar .productsSortForm label {
   display: inline-block;
   font-family: "gothic";
   border-left: 1px solid #ddd;
@@ -20,6 +19,7 @@
   vertical-align: initial;
   float: left;
   font-size: 1rem;
+  text-transform: capitalize;
 }
 .chosen-container-single .chosen-single{
   height: 43px;
@@ -27,8 +27,7 @@
 .content_sortPagiBar .sortPagiBar .nbrItemPage .chosen-container {
   width: auto !important;
 }
-.content_sortPagiBar .sortPagiBar .nbrItemPage .chosen-container:before{
-  content: "Mostrar";
+.content_sortPagiBar .sortPagiBar .nbrItemPage label {
   display: inline-block;
   font-family: 'gothic';
   border-left: 1px solid #ddd;
@@ -40,6 +39,7 @@
   vertical-align: initial;
   float: left;
   font-size: 1rem;
+  text-transform: capitalize;
 }
 .content_sortPagiBar .sortPagiBar .selector1,
 .content_sortPagiBar .sortPagiBar .nbrItemPage .chosen-container{

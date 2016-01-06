@@ -419,6 +419,7 @@ class DispatcherCore
 						if (array_key_exists('controller', $route_details) && array_key_exists('rule', $route_details)
 							&& array_key_exists('keywords', $route_details) && array_key_exists('params', $route_details))
 						{
+							
 							if (!isset($this->default_routes[$route]))
 							$this->default_routes[$route] = array();
 							$this->default_routes[$route] = array_merge($this->default_routes[$route], $route_details);
@@ -510,10 +511,14 @@ class DispatcherCore
 			$id_shop = (int)Context::getContext()->shop->id;
 
 		$regexp = preg_quote($rule, '#');
+		
 		if ($keywords)
 		{
 			$transform_keywords = array();
 			preg_match_all('#\\\{(([^{}]*)\\\:)?('.implode('|', array_keys($keywords)).')(\\\:([^{}]*))?\\\}#', $regexp, $m);
+			
+			
+			
 			for ($i = 0, $total = count($m[0]); $i < $total; $i++)
 			{
 				$prepend = $m[2][$i];
@@ -531,7 +536,7 @@ class DispatcherCore
 					$prepend_regexp = '('.preg_quote($prepend);
 					$append_regexp = preg_quote($append).')?';
 				}
-
+				
 				if (isset($keywords[$keyword]['param']))
 					$regexp = str_replace($m[0][$i], $prepend_regexp.'(?P<'.$keywords[$keyword]['param'].'>'.$keywords[$keyword]['regexp'].')'.$append_regexp, $regexp);
 				else
@@ -539,6 +544,7 @@ class DispatcherCore
 
 			}
 			$keywords = $transform_keywords;
+		
 		}
 
 		$regexp = '#^/'.$regexp.'$#u';
@@ -546,6 +552,8 @@ class DispatcherCore
 			$this->routes[$id_shop] = array();
 		if (!isset($this->routes[$id_shop][$id_lang]))
 			$this->routes[$id_shop][$id_lang] = array();
+			
+		//echo "2 $route_id - <pre>"; print_r($keywords); echo "</pre>";	
 
 		$this->routes[$id_shop][$id_lang][$route_id] = array(
 			'rule' =>		$rule,
@@ -628,13 +636,19 @@ class DispatcherCore
 	 */
 	public function createUrl($route_id, $id_lang = null, array $params = array(), $force_routes = false, $anchor = '', $id_shop = null)
 	{
+
+			
 		if ($id_lang === null)
 			$id_lang = (int)Context::getContext()->language->id;
 		if ($id_shop === null)
 			$id_shop = (int)Context::getContext()->shop->id;
 
+	
+
 		if (!isset($this->routes[$id_shop]))
 			$this->loadRoutes($id_shop);
+			
+		
 
 		if (!isset($this->routes[$id_shop][$id_lang][$route_id]))
 		{
@@ -644,9 +658,18 @@ class DispatcherCore
 		}
 		$route = $this->routes[$id_shop][$id_lang][$route_id];
 		// Check required fields
+		
+
+		
 		$query_params = isset($route['params']) ? $route['params'] : array();
+		
+		//echo "$route_id <pre>"; print_r($route); echo "</pre>";
+		
 		foreach ($route['keywords'] as $key => $data)
 		{
+			
+			
+			
 			if (!$data['required'])
 				continue;
 
@@ -655,11 +678,14 @@ class DispatcherCore
 			if (isset($this->default_routes[$route_id]))
 				$query_params[$this->default_routes[$route_id]['keywords'][$key]['param']] = $params[$key];
 		}
+		
+		//echo "<br><br><br><br><br><br><br><pre>"; print_r($query_params); echo "</pre>";
 
 		// Build an url which match a route
 		if ($this->use_routes || $force_routes)
 		{
 
+			//echo "$route_id - <pre> "; print_r($route['keywords']); echo "</pre>";
 			$url = $route['rule'];
 			$add_param = array();
 
@@ -700,6 +726,7 @@ class DispatcherCore
 
 		}
 
+		
 		return $url.$anchor;
 	}
 

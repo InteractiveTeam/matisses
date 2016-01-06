@@ -39,7 +39,7 @@ var moderation_active = {$moderation_active};
 	{if $comments}
 		{foreach from=$comments item=comment}
 			{if $comment.content}
-			<div class="comment clearfix">
+			<div class="comment cf">
 				<div class="comment_author">
 					<span>{l s='Grade' mod='productcomments'}&nbsp</span>
 					<div class="star_content clearfix">
@@ -89,7 +89,7 @@ var moderation_active = {$moderation_active};
 		{else}
 		<p class="align_center">{l s='No customer reviews for the moment.' mod='productcomments'}</p>
 		{/if}
-	{/if}	
+	{/if}
 	</div>
 </div>
 

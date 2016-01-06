@@ -1,3 +1,13 @@
+/** Se ocultan porque no se han terminado de desarrollar
+.sf-menu.menu-content > li > ul,
+#special_block_right,
+#viewed-products_block_left,
+#new-products_block_right,
+#news_block_sides{
+  display: none;
+}
+**/
+
 /* lnk on detail product page */
 #wishlist_button {}
 #wishlist_button:before {
@@ -135,6 +145,43 @@ ul.wlp_bought_list li .lnkdel {
 	content: "\f004";
 }
 
+/*.page-subheading, .cms h2{
+	font-weight: bold;
+	padding: 20px 20px 5px;
+}*/
+
+#mywishlist .table-bordered {
+    margin: 30px 0;
+    border: none;
+}
+#mywishlist .table-bordered thead th {
+    border: #FFF !important;
+}
+#mywishlist .table-bordered td {
+    background: #f8f8f8;
+    font-family: 'gothic';
+    font-size: 0.9em;
+}
+
+#mywishlist button, #mywishlist a.btn-default {
+    background: #d7162f;
+    color: #FFF;
+}
+#mywishlist button:hover, #mywishlist a.btn-default:hover{
+	background-color: #FFF;
+	color: #d7162f;
+}
+
+#mywishlist .display_list {
+    font-family: 'gothic';
+}
+#mywishlist table td.wishlist_delete {
+    text-align: center;
+}
+#mywishlist ul.footer_links li {
+    float: left;
+    margin: 0 20px 0 0;
+}
 @media (max-width: 480px){
 #mywishlist table thead,#mywishlist table tbody{
 	display: block;

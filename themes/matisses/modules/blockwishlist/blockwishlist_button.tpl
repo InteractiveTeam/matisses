@@ -23,6 +23,23 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
+{if isset($wishlists) && count($wishlists) > 1}
+    <a class="addToWishlist scale_hover_in lnk_view" tabindex="0" data-toggle="popover" data-trigger="focus" title="{l s='Wishlist' mod='blockwishlist'}" data-placement="bottom">
+        <i class="fa fa-heart-o"></i><span>{l s='To wishlist'}</span>
+        <div class="popover-content">
+         <ul>                
+        {foreach name=wl from=$wishlists item=wishlist}
+        <li>
+            <a href="#" title="{$wishlist.name}" value="{$wishlist.id_wishlist}" onclick="WishlistCart('wishlist_block_list', 'add', '{$product.id_product|intval}', false, 1, '{$wishlist.id_wishlist}');">
+                {l s='Add to %s' sprintf=[$wishlist.name] mod='blockwishlist'}
+             </a>       
+         </li>  
+        {/foreach}
+            </ul>
+        </div>
+    </a> 
+{else}
 	<a class="addToWishlist wishlistProd_{$product.id_product|intval}" href="#" {*rel="{$product.id_product|intval}"*} onclick="WishlistCart('wishlist_block_list', 'add', '{$product.id_product|intval}', false, 1); return false;">
 		<i class="fa fa-heart-o"></i><span>{l s='To wishlist'}</span>
 	</a>
+{/if}

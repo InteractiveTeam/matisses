@@ -38,12 +38,11 @@
 		    </div>
 		</div>
 	</div>
-	<div class="block_content products-block">
+	<div class="block_content products-block grid_12 alpha omega">
     	{if $First}
-        <ul class="col-md-3">
-       
-		<li class="item clearfix first_item item">
+        <ul class="grid_3 alpha">
 
+		<li class="item cf first_item item">
                     <a
 					class="wrap_scale products-block-image"
 					href="{$First->product_link|escape:'html':'UTF-8'}"
@@ -69,9 +68,9 @@
 						<!-- <p class="product-description">{$viewedProduct->description_short|strip_tags:'UTF-8'|truncate:60}</p> -->
 					</div>
 				</li>
-         </ul>               
+         </ul>
         {/if}
-        <div class="col-md-9 slide-container">
+        <div class="grid_9 slide-container omega">
 		<ul class="viewedslider" >
         {foreach from=$viewed item=productsViewedObj name=myLoop2}
         <li>
@@ -112,6 +111,6 @@
 
 		</ul>
         </div>
-        
+
 	</div>
 </div>

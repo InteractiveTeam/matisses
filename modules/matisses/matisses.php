@@ -3,6 +3,23 @@ class matisses extends Module
 {
 	
 	private $_uploadfile = 'matisses';
+    public static $moduleRoutes =array(
+             'module-matisses-experiences' => array(
+                    'controller' => 'experiences',
+                    'rule' =>  'experiencias/{id_experience}-{link_rewrite}.html',
+                  	'keywords' => array(
+						'id_experience'  => array('regexp' => '[0-9]*', 'param' => 'id_experience'),
+                        'link_rewrite'   => array('regexp' => '[_a-zA-Z0-9-\pL]*',   'param' => 'link_rewrite'),
+                        
+                    ),
+                    'params' => array(
+			            'fc' => 'module',
+                        'module' => 'matisses',
+                        'controller' => 'experiences'
+                    )
+                ),
+				 
+    );	
 	
 	public function __construct()
 	{
@@ -11,6 +28,7 @@ class matisses extends Module
 		$this->version 			= '1.0'; 
 		$this->author 			= 'Arkix';
 		$this->token 			= Tools::getAdminTokenLite('AdminModules');
+		$this->ht_file			= _PS_ROOT_DIR_.'/.htaccess';
 		parent::__construct();
 		$this->displayName 		= $this->l('Matisses');
 		$this->description 		= $this->l('Instalador componentes matisses');
@@ -32,9 +50,12 @@ class matisses extends Module
 		//$install[] = $this->__installTabs('adminWebservices','Webservices',$parent);
 		//$install[] = $this->__installTabs('adminHighlights','Destacados',$parent);
 		$install[] = $this->__installTabs('adminExperiences','Experiencias',$parent);
-		
 		//images types
 		$install[] = $this->__installImageTypes('experiences-home',570,145);
+		
+		$install[] = $this->__installPage('module-matisses-experiences','experiencias');
+
+		
 		
 		$sql = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'highlights` (
 				  `id_highlight` int(11) NOT NULL AUTO_INCREMENT,
@@ -103,10 +124,53 @@ class matisses extends Module
 			|| !$this->registerHook('displayFooterProduct')
 			|| !$this->registerHook('displayAvailableProduct')
 			|| !$this->registerHook('displaySchemesProduct')
+			|| !$this->registerHook('moduleRoutes')
 			)
 			return false;
+			
+		Tools::generateHtaccess($this->ht_file, null, null, '', Tools::getValue('PS_HTACCESS_DISABLE_MULTIVIEWS'), false, Tools::getValue('PS_HTACCESS_DISABLE_MODSEC'));	
 		return true;
 	}
+	
+
+	
+	private function __installPage($page=NULL,$title=NULL, $url_rewrite=NULL, $description=NULL)
+	{
+		try{
+			
+			if($page && $title)
+			{
+				$meta = new Meta();
+				$meta->page 		= $page;
+				$meta->title 		= $title;
+				
+				if($description)
+					$meta->description	= $description;
+					
+				$meta->url_rewrite	= $url_rewrite ? $url_rewrite : Tools::link_rewrite($title);
+				$meta->add();
+				return true; 
+			}
+		}catch (Exception $e) {
+			return false;
+		}				
+	}
+	
+	private function __uninstallPage($page=NULL)
+	{
+		try{
+			if($page)
+			{
+				$page = Meta::getMetaByPage($page, $this->context->language->id);
+				if($page['id_meta'])
+					Db::getInstance()->delete('ps_meta', 'id_meta='.$page['id_meta']);
+
+				return true; 
+			}
+		}catch (Exception $e) {
+			return false;
+		}				
+	}	
 	
 	private function __installTabs($class_name,$name,$parent=0,$page=NULL,$title=NULL,$description=NULL, $url_rewrite=NULL)
 	{
@@ -160,6 +224,8 @@ class matisses extends Module
 		$uninstall[] = $this->__uninstallTabs('adminWebservices');
 		$uninstall[] = $this->__uninstallTabs('adminMatisses');
 		$uninstall[] = $this->__uninstallImageTypes('experiences-home');
+		// pages
+		$uninstall[] = $this->__uninstallPage('module-matisses-experiences');
 		
 		$sql = 'DROP TABLE IF EXISTS `'._DB_PREFIX_.'highlights`;
 				DROP TABLE IF EXISTS `'._DB_PREFIX_.'experiences`;
@@ -244,6 +310,10 @@ class matisses extends Module
 	/*********************************************
 	* HOOKS
 	*********************************************/
+	
+	public function hookmoduleRoutes() {
+        return self::$moduleRoutes;
+    }	
 	
 	public function hookHeader($params)
 	{

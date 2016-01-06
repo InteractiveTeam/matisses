@@ -22,7 +22,7 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-<ul class="color_to_pick_list clearfix">
+<ul class="color_to_pick_list cf">
 	{foreach from=$colors_list item='color'}
 		{assign var='img_color_exists' value=file_exists($col_img_dir|cat:$color.id_attribute|cat:'.jpg')}
 		<li>

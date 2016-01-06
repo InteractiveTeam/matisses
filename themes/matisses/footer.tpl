@@ -51,7 +51,7 @@
           <ul class="column-3 column grid_4 omega">
             <li><a href="{$link->getCMSLink(7)}">{l s='Trabaja con nosotros'}</a></li>
             <li><a href="{$link->getCMSLink(8)}">{l s='Financiación'}</a></li>
-            <li><a href="{$link->getCMSLink(10)}">{l s='Preguntas Frecuentes'}</a></li>
+            <li><a href="{$link->getCMSLink(10)}">{l s='Preguntas Frecuentes'}</a></li> 
           </ul>
         </div>
         <div class="footer-share">
@@ -77,8 +77,8 @@
       <div class="menu-copyright">
         <ul>
           <li><a href="{$link->getCMSLink(11)}">{l s='Términos y condiciones'}</a></li>
-          <li><a href="$link->getCMSLink(12)">{l s='Política de Manejo de Datos'}</a></li>
-          <li><a href="$link->getCMSLink(13)">{l s='Política de Privacidad'}</a></li>
+          <li><a href="{$link->getCMSLink(12)}">{l s='Política de Manejo de Datos'}</a></li>
+          <li><a href="{$link->getCMSLink(13)}">{l s='Política de Privacidad'}</a></li>
           <li id="copyright"> <a class="copyright" href="{$base_url}" title="{l s='Matisses'}">© {l s='Todos los derechos reservados'} {l s='Matisses'} {$smarty.now|date_format:"%Y"}</a></li>
         </ul>
       </div>

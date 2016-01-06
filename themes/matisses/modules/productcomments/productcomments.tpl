@@ -22,14 +22,14 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-<div id="idTab5" class="panel-collapse">
+<div id="idTab5" class="panel-collapse info-opinion">
 	<div id="product_comments_block_tab">
 		{if $comments}
 			{foreach from=$comments item=comment}
 				{if $comment.content}
 				<div class="comment row" itemprop="review" itemscope itemtype="http://schema.org/Review">
-					<div class="comment_author col-md-2 col-xs-3 ">
-					
+					<div class="comment_author ">
+
 						<div class="star_content clearfix"  itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
 							{section name="i" start=0 loop=5 step=1}
 								{if $comment.grade le $smarty.section.i.index}
@@ -49,7 +49,7 @@
 						</div>
 					</div> <!-- .comment_author -->
 
-					<div class="comment_details col-md-10 col-xs-9">
+					<div class="comment_details ">
 						<p itemprop="name" class="title_block">
 							<strong>{$comment.title}</strong>
 						</p>
@@ -116,7 +116,7 @@
 			</h2>
 			<div class="row">
 				{if isset($product) && $product}
-					<div class="product clearfix  col-xs-12">
+					<div class="product cf  grid_12 alpha omega">
 						<img src="{$productcomment_cover_image}" height="{$mediumSize.height}" width="{$mediumSize.width}" alt="{$product->name|escape:'html':'UTF-8'}" />
 						<div class="product_desc">
 							<p class="product_name">
@@ -126,7 +126,7 @@
 						</div>
 					</div>
 				{/if}
-				<div class="new_comment_form_content col-xs-12">
+				<div class="new_comment_form_content grid_12 alpha omega">
 					<div id="new_comment_form_error" class="error alert alert-danger" style="display: none;">
 						<ul></ul>
 					</div>
@@ -172,7 +172,7 @@
 									<span>{l s='Send' mod='productcomments'}</span>
 								</button>
 						</div>
-						<div class="clearfix"></div>
+						<div class="cf"></div>
 				</div> <!-- #new_comment_form_footer -->
 			</div>
 		</form><!-- /end new_comment_form_content -->

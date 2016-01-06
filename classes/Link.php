@@ -350,6 +350,7 @@ class LinkCore
 		$params['controller'] = $controller ? $controller : 'default';
 
 		// If the module has its own route ... just use it !
+
 		if (Dispatcher::getInstance()->hasRoute('module-'.$module.'-'.$controller, $id_lang, $id_shop))
 			return $this->getPageLink('module-'.$module.'-'.$controller, $ssl, $id_lang, $params);
 		else
@@ -460,8 +461,11 @@ class LinkCore
 				$request = urlencode($request);
 			parse_str($request, $request);
 		}
+		//print_r($request);
 
 		$uri_path = Dispatcher::getInstance()->createUrl($controller, $id_lang, $request, false, '', $id_shop);
+		
+		//echo $uri_path;
 
 		return $this->getBaseLink($id_shop, $ssl, $relative_protocol).$this->getLangLink($id_lang, null, $id_shop).ltrim($uri_path, '/');
 	}

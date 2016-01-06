@@ -55,7 +55,7 @@
 		<!-- left infos-->
 		<div class="pb-left-column grid_6 alpha">
 			<!-- product img-->
-			<div id="image-block" class="cf">
+			<div id="image-block" class="cf grid_12 alpha omega">
 				<div class="wrap_image_block">
 				{if $have_image}
 					<span id="view_full_size">
@@ -110,7 +110,7 @@
             {hook h="displaySchemesProduct" product=$product}
 			{if isset($images) && count($images) > 0}
 				<!-- thumbnails -->
-				<div id="views_block" class="clearfix {if isset($images) && count($images) < 2}hidden{/if}">
+				<div id="views_block" class="cf grid_6 alpha omega {if isset($images) && count($images) < 2}hidden{/if}">
 					{if isset($images) && count($images) > 3}
 						<span class="view_scroll_spacer">
 							<a id="view_scroll_left" class="" title="{l s='Other views'}" href="javascript:{ldelim}{rdelim}">
@@ -277,6 +277,7 @@
 														{/foreach}
 													</select>
 												{elseif ($group.group_type == 'color')}
+
 													<ul id="color_to_pick_list" class="cf">
 														{assign var="default_colorpicker" value=""}
 														{foreach from=$group.attributes key=id_attribute item=group_attribute}
@@ -312,7 +313,7 @@
 						{/if}
 					</div> <!-- end product_attributes -->
 					<div class="wrap_bottom grid_12 alpha omega">
-						<div class="content_prices cf">
+						<div class="content_prices cf grid_12 alpha omega">
 						{if $product->show_price && !isset($restricted_country_mode) && !$PS_CATALOG_MODE}
 							<!-- prices -->
 							<div class="price">
@@ -361,12 +362,12 @@
 						{hook h="displayProductPriceBlock" product=$product type="weight"}
 						<div class="clear"></div>
 					</div> <!-- end content_prices -->
-					<div class="wrap_quan">
+					<div class="wrap_quan grid_12 alpha omega">
 						<label class="">{l s='QTY'}</label>
 						<!-- quantity wanted -->
 						{if !$PS_CATALOG_MODE}
-						<div id="quantity_wanted_p"{if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
-							<h3>Cantidad</h3>
+						<div id="quantity_wanted_p" class="grid_3 alpha"{if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
+							<h2>Cantidad</h2>
 							<input type="text" name="qty" id="quantity_wanted" class="text" value="{if isset($quantityBackup)}{$quantityBackup|intval}{else}{if $product->minimal_quantity > 1}{$product->minimal_quantity}{else}1{/if}{/if}" />
 							<div class="wrap_up_down">
 							<a href="#" data-field-qty="qty" class="button-plus product_quantity_up">
@@ -376,11 +377,11 @@
 								<i class="icon-minus">-</i>
 							</a>
 							</div>
-							<span class="clearfix"></span>
+							<span class="cf"></span>
 						</div>
-                        
+
                         {hook h='displayAvailableProduct' product=$product}
-                        
+
 						{/if}
 						<!-- minimal quantity wanted -->
 						<p id="minimal_quantity_wanted_p"{if $product->minimal_quantity <= 1 || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>

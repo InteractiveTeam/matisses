@@ -1,5 +1,5 @@
 <!-- Module matisses -->
-<div class="product_schemes">
+<div class="product_schemes grid_6 alpha omega">
     <ul id="product_schemes">
     	<li id="product-360">
         	<a href="#" data-option="360">

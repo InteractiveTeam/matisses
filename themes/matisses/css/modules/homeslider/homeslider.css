@@ -226,7 +226,7 @@
     text-align: center;
     padding: 21.25rem 0.625rem;
     left: 0;
-    background: url("http://localhost/matisses/themes/matisses/img/icon-scroll.png") center 770px no-repeat;
+    background: url("/themes/matisses/img/icon-scroll.png") center 770px no-repeat;
     }
 
     #homepage-slider .homeslider-description h2 {

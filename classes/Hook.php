@@ -467,6 +467,7 @@ class HookCore extends ObjectModel
 			if ($check_exceptions)
 			{
 				$exceptions = Module::getExceptionsStatic($array['id_module'], $array['id_hook']);
+				
 
 				$controller = Dispatcher::getInstance()->getController();
 				$controller_obj = Context::getContext()->controller;
