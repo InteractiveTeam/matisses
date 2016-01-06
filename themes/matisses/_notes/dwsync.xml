@@ -67,7 +67,7 @@
 <file name="supplier.tpl" server="192.168.3.45" local="130922749093539103" remote="130895995200000000" Dst="0" />
 <file name="index.tpl" server="C:/xampp/htdocs/matisses/" local="130964220457442987" remote="130964220450000000" Dst="0" />
 <file name="product-list.tpl" server="C:/xampp/htdocs/matisses/" local="130942727203762357" remote="130942727200000000" Dst="0" />
-<file name="footer.tpl" server="C:/xampp/htdocs/matisses/" local="130957907984397656" remote="130957907980000000" Dst="0" />
+<file name="footer.tpl" server="C:/xampp/htdocs/matisses/" local="130964843466571842" remote="130964843460000000" Dst="0" />
 <file name="header.tpl" server="C:/xampp/htdocs/matisses/" local="130959804081609265" remote="130959804080000000" Dst="0" />
 <file name="breadcrumb.tpl" server="C:/xampp/htdocs/matisses/" local="130957933345615768" remote="130957933340000000" Dst="0" />
 <file name="authentication.tpl" server="C:/xampp/htdocs/matisses/" local="130960485717583402" remote="130960485710000000" Dst="0" />

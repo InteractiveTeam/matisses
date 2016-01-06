@@ -26,6 +26,7 @@
 $(document).ready(function(){
 	$('button.social-sharing').on('click', function(){
 		type = $(this).attr('data-type');
+		console.log(type);
 		if (type.length)
 		{
 			switch(type)

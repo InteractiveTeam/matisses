@@ -2046,7 +2046,7 @@ class ProductCore extends ObjectModel
 			LEFT JOIN `'._DB_PREFIX_.'image` i ON (i.`id_image` = pai.`id_image`)
 			WHERE pai.`id_product_attribute` = '.(int)$id_product_attribute.' AND il.`id_lang` = '.(int)$id_lang.' ORDER by i.`position` LIMIT 1'
 		);
-
+		
 		if (!$result)
 			return false;
 
