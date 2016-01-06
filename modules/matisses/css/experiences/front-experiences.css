@@ -1,0 +1,36 @@
+/* CSS Document */
+.module-matisses-experiences #experience{
+	position: relative;
+	display: table;
+	padding:0px;
+}
+
+.module-matisses-experiences .pointer{
+	position:absolute;
+	width: 50px;
+	height: 33px;
+	cursor:pointer;
+	background-position: top;
+	background-size:100%;
+	background-repeat:no-repeat;
+}
+
+.module-matisses-experiences .pointer:hover > .pointer-detail{
+	display:block;
+}
+
+.module-matisses-experiences div.white{
+	background-image:url(../../img/experience-white.png);
+}
+
+.module-matisses-experiences div.black{
+	background-image:url(../../img/experience-black.png);
+}
+
+.module-matisses-experiences .pointer > .pointer-detail{
+	display:none;
+	background:#FFF;
+	width:300px;
+}
+
+
