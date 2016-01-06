@@ -196,6 +196,15 @@ class AdminStoresControllerCore extends AdminController
 						$this->l('Allowed characters: letters, spaces and %s')
 					)
 				),
+				
+				array(
+					'type' => 'text',
+					'label' => $this->l('Codigo tienda matisses'),
+					'name' => 'codmatisses',
+					'required' => true,
+					'hint' =>$this->l('Codigo de la tienda matisses'),
+				),
+				
 				array(
 					'type' => 'text',
 					'label' => $this->l('Address'),

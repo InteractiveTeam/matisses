@@ -61,9 +61,21 @@ class ProductCore extends ObjectModel
 
 	/** @var string Name */
 	public $name;
+	
+	/** @var string video */
+	public $video;
+	
+	/** @var string sketch */
+	public $sketch;
+	
+	/** @var string itemname */
+	public $itemname;
 
 	/** @var string Long description */
 	public $description;
+	
+	/** @var string Long description */
+	public $cuidados;
 
 	/** @var string Short description */
 	public $description_short;
@@ -77,6 +89,9 @@ class ProductCore extends ObjectModel
 	/** @var string available_now */
 	public $available_now;
 
+	/** @var string stores */
+	public $stores;
+	
 	/** @var string available_later */
 	public $available_later;
 
@@ -109,6 +124,9 @@ class ProductCore extends ObjectModel
 
 	/** @var string Reference */
 	public $reference;
+	
+	/** @var string Reference */
+	public $model;
 
 	/** @var string Supplier Reference */
 	public $supplier_reference;
@@ -261,6 +279,8 @@ class ProductCore extends ObjectModel
 			'id_manufacturer' => 			array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
 			'id_supplier' => 				array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
 			'reference' => 					array('type' => self::TYPE_STRING, 'validate' => 'isReference', 'size' => 32),
+			'model' => 						array('type' => self::TYPE_STRING, 'validate' => 'isReference', 'size' => 32),
+			'stores' => 					array('type' => self::TYPE_STRING, 'size' => 64),
 			'supplier_reference' => 		array('type' => self::TYPE_STRING, 'validate' => 'isReference', 'size' => 32),
 			'location' => 					array('type' => self::TYPE_STRING, 'validate' => 'isReference', 'size' => 64),
 			'width' => 						array('type' => self::TYPE_FLOAT, 'validate' => 'isUnsignedFloat'),
@@ -320,7 +340,12 @@ class ProductCore extends ObjectModel
 				)
 			),
 			'name' => 						array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isCatalogName', 'required' => true, 'size' => 128),
+			'itemname' => 					array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isCatalogName', 'size' => 128),
+			'video' => 						array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isCatalogName', 'size' => 128),
+			'sketch' => 					array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isCatalogName', 'size' => 128),
+			'three_sixty' => 				array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isCatalogName', 'size' => 128),
 			'description' => 				array('type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isCleanHtml'),
+			'cuidados' => 					array('type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isCleanHtml'),
 			'description_short' => 			array('type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isCleanHtml'),
 			'available_now' => 				array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName', 'size' => 255),
 			'available_later' => 			array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'IsGenericName', 'size' => 255),
@@ -1450,7 +1475,7 @@ class ProductCore extends ObjectModel
 	* @return array Update result
 	*/
 	public function updateAttribute($id_product_attribute, $wholesale_price, $price, $weight, $unit, $ecotax,
-		$id_images, $reference, $ean13, $default, $location = null, $upc = null, $minimal_quantity = null, $available_date = null, $update_all_fields = true, array $id_shop_list = array())
+		$id_images, $reference, $ean13, $default, $location = null, $upc = null, $minimal_quantity = null, $available_date = null, $update_all_fields = true, array $id_shop_list = array(), $itemName= null , $short_description = null)
 	{
 		$combination = new Combination($id_product_attribute);
 
@@ -1481,6 +1506,13 @@ class ProductCore extends ObjectModel
 		$combination->default_on = (int)$default;
 		$combination->minimal_quantity = (int)$minimal_quantity;
 		$combination->available_date = $available_date ? pSQL($available_date) : '0000-00-00';
+		
+		if($itemName)
+			$combination->itemname = $itemname;
+			
+		if($shortDescription)
+			$combination->short_description = $shortDescription;	
+		
 
 		if (count($id_shop_list))
 			$combination->id_shop_list = $id_shop_list;
@@ -1516,7 +1548,7 @@ class ProductCore extends ObjectModel
 	 * @return mixed $id_product_attribute or false
 	 */
 	public function addAttribute($price, $weight, $unit_impact, $ecotax, $id_images, $reference, $ean13,
-								 $default, $location = null, $upc = null, $minimal_quantity = 1, array $id_shop_list = array(), $available_date = null)
+								 $default, $location = null, $upc = null, $minimal_quantity = 1, array $id_shop_list = array(), $available_date = null, $itemName = null, $shortDescription = null)
 	{
 		if (!$this->id)
 			return;
@@ -1538,6 +1570,13 @@ class ProductCore extends ObjectModel
 		$combination->default_on = (int)$default;
 		$combination->minimal_quantity = (int)$minimal_quantity;
 		$combination->available_date = $available_date;
+		
+		if($itemName)
+			$combination->itemname = $itemname;
+			
+		if($shortDescription)
+			$combination->short_description = $shortDescription;	
+		
 
 		if (count($id_shop_list))
 			$combination->id_shop_list = array_unique($id_shop_list);

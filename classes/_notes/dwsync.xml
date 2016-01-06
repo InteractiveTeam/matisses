@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
 <file name="Link.php" server="192.168.3.45" local="130700916000000000" remote="130700916000000000" Dst="0" />
-<file name="Product.php" server="C:/xampp/htdocs/matisses/" local="130965024878419030" remote="130965024870000000" Dst="0" />
+<file name="Product.php" server="C:/xampp/htdocs/matisses/" local="130965779042520927" remote="130965779040000000" Dst="0" />
 <file name="Customer.php" server="C:/xampp/htdocs/matisses/" local="130958032450869301" remote="130958032450000000" Dst="0" />
 <file name="Hook.php" server="C:/xampp/htdocs/matisses/" local="130964252751973326" remote="130964252750000000" Dst="0" />
 <file name="Link.php" server="C:/xampp/htdocs/matisses/" local="130965193811610343" remote="130965193810000000" Dst="0" />
 <file name="Dispatcher.php" server="C:/xampp/htdocs/matisses/" local="130965193020663806" remote="130965193020000000" Dst="0" />
+<file name="Combination.php" server="C:/xampp/htdocs/matisses/" local="130965749224811766" remote="130965749220000000" Dst="0" />
+<file name="Attribute.php" server="C:/xampp/htdocs/matisses/" local="130965752303673176" remote="130965752300000000" Dst="0" />
+<file name="Store.php" server="C:/xampp/htdocs/matisses/" local="130965782704375336" remote="130965782700000000" Dst="0" />
 </dwsync>
