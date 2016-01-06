@@ -269,7 +269,7 @@ box-sizing: border-box;
 	}
 	.menu-left li a{
 	font-size:1.0625rem;
-	font-family: "condensed";
+	font-family: 'condensed';
 	color: #000;
 	padding:0 1.25rem 0 1.5625rem;
 	text-transform: uppercase;
@@ -338,7 +338,7 @@ box-sizing: border-box;
 
 	.right-down-menu li a {
 	color: #000;
-	font-family: "condensed";
+	font-family: 'condensed';
 	font-size: 1.0625rem;
 	padding: 0 1.25rem 0 1.5625rem;
 	text-transform: uppercase;
@@ -383,7 +383,7 @@ box-sizing: border-box;
 	width: 1.25rem;
 	height: 1.25rem;
 	color: #fff;
-	font-family: "condensed";
+	font-family: 'condensed';
 	position: absolute;
 	display: block;
 	bottom: 1.5625rem;
@@ -418,15 +418,14 @@ box-sizing: border-box;
 
 	#user .header_user_info a span {
 	color: #fff;
-	font-family: "condensed";
+	font-family: 'condensed';
 	text-transform: uppercase;
 	}
 
 	#user .header_user_info a {
 	display: inline-block;
 	vertical-align: top;
-	padding-top: 1.125rem;
-	padding-right: 0.625rem;
+	padding: 1.125rem 0.625rem 0 0;
 	}
 
 	#user .header_user_info a span:hover{
@@ -3503,6 +3502,7 @@ box-sizing: border-box;
 	width: 75rem;
 	padding: 0 0.9375rem;
 	margin: 0 auto;
+	float: none;
 	}
 
 /*Pag buscador*/
@@ -3510,6 +3510,7 @@ box-sizing: border-box;
 	width: 75rem;
 	padding: 0 0.9375rem;
 	margin: 0 auto;
+	float: none;
 	}
 
 /*Pag Mi Carrito*/

@@ -24,14 +24,14 @@
 	text-transform: uppercase;
 	font-weight: 700;
 	font-family: 'MuseoSansCyrl700','Open Sans';
-	line-height: 40px;
-	height: 40px;
+	line-height: 2.5rem;
+	height: 2.5rem;
 	border-style: solid;
 	border-width: 1px;
 	border-color: transparent;
 	border-bottom-width: 0;
 	position: relative;
-	padding: 0 40px;
+	padding: 0 2.5rem;
 	}
 #more_info_tabs li a.selected:before {
 	content: '';
@@ -224,10 +224,7 @@ a.fancybox-nav {
 	margin: 0 -7px;
 }
 .elem_butt {
-	float: left;
-	width: 33.3333%;
 	border: 1px solid #dbdbdb;
-	margin: 1.25rem 0.9375rem 0 0;
 	background: #f8f8f8;
 }
 .elem_butt a{
@@ -247,6 +244,11 @@ a.fancybox-nav {
 .elem_butt #wishlist_button:before {
     font-size: 0.8125rem;
     padding-right: 0.125rem;
+}
+.box-info-product .elem_butt {
+    width: 33%;
+    display: inline-block;
+	margin: 1.25rem 0.9375rem 0 0;
 }
 
 #usefull_link_block li a:before {
@@ -367,9 +369,12 @@ a.fancybox-nav {
 	}
 #attributes .attribute_list #color_to_pick_list li a.color_pick {
 	display: block;
-	height: 40px;
-	width: 40px;
+	height: 2.5rem;
+	width: 2.5rem;
 	cursor: pointer;
+}
+#color_8 {
+    border: 1px solid #DFDEDE;
 }
 #attributes .attribute_list #color_to_pick_list li a.color_pick img {
 	display: block;
@@ -824,16 +829,13 @@ ul.wrap_attr li label {
 	font-family: "condensed";
 	text-transform: uppercase;
     margin-bottom: 0.625rem;
-    display: none;
+	padding: 0;
 	}
 .price span {
     color: #231f20;
     font-family: "condensed";
     font-size: 2.25rem;
-    /*line-height: 0;
-    margin: 1.5rem 0 0;
-    display: block !important;*/
-	}
+    	}
 .product_attributes {
     border-bottom: 1px solid #ccc;
     padding-bottom: 1.5rem;
@@ -956,7 +958,47 @@ ul.wrap_attr li label {
 	.product-tabs h1 {
     font-size: 1.25rem;
 	}
-
+	.btn-opinion {
+	border: none;
+    display: inline-block;
+    vertical-align: top;
+    width: 20.9375rem;
+    margin-right: 1.875rem;
+	}
+	.info-opinion {
+	display: inline-block;
+    margin-left: -0.25rem;
+    width: 45.625rem;
+    border-left: 1px dotted #ccc;
+    padding-left: 1.5625rem;
+	}
+	.comment_author_infos strong {
+	font-family: 'condensed';
+	font-size: 1.25rem;
+	display: block;
+	color: #333;
+	padding-bottom: 0.3125rem;
+	border-bottom: 1px solid #dbdbdb;
+	margin-bottom: 0.3125rem;
+	}
+	.comment_author_infos em{
+	color: #adadad;
+    font-family: 'condensed';
+    font-size: 1rem;
+	}
+	.comment_details ul li{
+	font-family: 'Open Sans Condensed', sans-serif;
+	display: block;
+	}
+	.comments_advices a.open-comment-form {
+    background: #D7162F;
+    color: #fff;
+	}
+	.comments_advices a.open-comment-form:hover{
+	color: #fff;
+	background-color: #000;
+	}
+	
 /*15-12-2015*/
 .add_to_cart button {
     width: 24.6875rem;
@@ -997,7 +1039,7 @@ body.content_only {
 	text-transform: uppercase;
 }
 .page-product-box.blockproductscategory{
-	padding-top: 40px;
+	padding-top: 2.5rem;
 }
 @media (min-width: 768px) {
 	.page-product-box.blockproductscategory{

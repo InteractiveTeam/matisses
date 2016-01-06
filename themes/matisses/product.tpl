@@ -277,7 +277,7 @@
 														{/foreach}
 													</select>
 												{elseif ($group.group_type == 'color')}
-													<h2>Colores</h2>
+
 													<ul id="color_to_pick_list" class="cf">
 														{assign var="default_colorpicker" value=""}
 														{foreach from=$group.attributes key=id_attribute item=group_attribute}
