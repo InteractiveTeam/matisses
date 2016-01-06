@@ -1,4 +1,29 @@
 $(document).ready(function(e) {
+	
+	$('.product-360').on('click',function(e){
+		e.preventDefault();
+		url = $(this).attr('data-url');
+		if(url)
+			$.fancybox('<iframe src="'+window.location.origin+url+'"></iframe>');
+	})
+	
+	$('.product-wow').on('click',function(e){
+		e.preventDefault();
+		url = $(this).attr('data-url');
+		if(url)
+			$.fancybox('<iframe width="420" height="315" src="'+url+'"></iframe>');
+	})
+	
+	
+	$('.product-scheme').on('click',function(e){
+		e.preventDefault();
+		url = $(this).attr('data-url');
+		if(url)
+			$.fancybox('<img src="'+window.location.origin+url+'">');
+	})
+	
+	
+	
     $( "#tabs" ).tabs();
 	$('.open-comment-form').fancybox({
 		'autoSize' : false,

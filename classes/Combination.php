@@ -55,6 +55,10 @@ class CombinationCore extends ObjectModel
 	public $default_on;
 
 	public $available_date = '0000-00-00';
+	
+	public $itemname;
+
+	public $short_description;
 
 	/**
 	 * @see ObjectModel::$definition
@@ -65,6 +69,8 @@ class CombinationCore extends ObjectModel
 		'fields' => array(
 			'id_product' => 		array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId', 'required' => true),
 			'location' => 			array('type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'size' => 64),
+			'itemname' => 			array('type' => self::TYPE_STRING, 'validate' => 'isCatalogName', 'size' => 128),
+			'short_description' => 	array('type' => self::TYPE_STRING, 'validate' => 'isCleanHtml'),
 			'ean13' => 				array('type' => self::TYPE_STRING, 'validate' => 'isEan13', 'size' => 13),
 			'upc' => 				array('type' => self::TYPE_STRING, 'validate' => 'isUpc', 'size' => 12),
 			'quantity' => 			array('type' => self::TYPE_INT, 'validate' => 'isInt', 'size' => 10),
