@@ -34,6 +34,9 @@ class StoreCore extends ObjectModel
 
 	/** @var string Store name */
 	public $name;
+	
+	/** @var string Store name */
+	public $codmatisses;
 
 	/** @var string Address first line */
 	public $address1;
@@ -87,6 +90,7 @@ class StoreCore extends ObjectModel
 			'id_country' => 	array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId', 'required' => true),
 			'id_state' => 		array('type' => self::TYPE_INT, 'validate' => 'isNullOrUnsignedId'),
 			'name' => 			array('type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'required' => true, 'size' => 128),
+			'codmatisses' => 	array('type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'required' => true, 'size' => 128),
 			'address1' => 		array('type' => self::TYPE_STRING, 'validate' => 'isAddress', 'required' => true, 'size' => 128),
 			'address2' => 		array('type' => self::TYPE_STRING, 'validate' => 'isAddress', 'size' => 128),
 			'postcode' => 		array('type' => self::TYPE_STRING, 'size' => 12),

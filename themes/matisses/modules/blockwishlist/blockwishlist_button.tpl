@@ -31,7 +31,7 @@
         {foreach name=wl from=$wishlists item=wishlist}
         <li>
             <a href="#" title="{$wishlist.name}" value="{$wishlist.id_wishlist}" onclick="WishlistCart('wishlist_block_list', 'add', '{$product.id_product|intval}', false, 1, '{$wishlist.id_wishlist}');">
-                {l s='Add to %s' sprintf=[$wishlist.name] mod='blockwishlist'}
+                {l s='%s Adicionar' sprintf=[$wishlist.name] mod='blockwishlist'}
              </a>       
          </li>  
         {/foreach}
