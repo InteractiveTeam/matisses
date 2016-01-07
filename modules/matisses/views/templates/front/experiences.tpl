@@ -1,7 +1,7 @@
 <div class="container">
 
 {if $experience->id}
-<h1>{l s='Experiences' mod='experiencia'}</h1>
+<h1>{l s='Experiencias' mod='experiencia'}</h1>
 <div class="row">
     <div class="col-md-12" id="experience">
         <img src="{$link->getImageLink($experience->id_image,'img/experiences')}" class="img-responsive">
@@ -13,8 +13,8 @@
                         <div class="pointer-detail-left">
                             <h3>{$pointer.name}</h3>
                             <p class="price">{convertPrice price=$pointer.price}</p>
-                            <a class="btn btn_border ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, 'add=1&amp;id_product={$pointerid_product|intval}', false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$accessory.id_product|intval}">
-                                <span>{l s='Buy now'}</span>
+                            <a class="btn btn_border ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, 'add=1&amp;id_product={$pointer.id_product}&amp;id_product_attribute={$pointer.id_product_attribute}', false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$accessory.id_product|intval}">
+                                <span>{l s='Comprar'}</span>
                             </a>
                         </div>
                         <div class="pointer-detail-right">

@@ -114,6 +114,7 @@ class matisses extends Module
 				
 				CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'experiences` (
 				  `id_experience` int(11) NOT NULL AUTO_INCREMENT,
+				  `parent` int(11) NOT NULL,
 				  `id_shop_default` int(2) NOT NULL,
 				  `position` int(3) NOT NULL,
 				  `products` text,

@@ -47,12 +47,6 @@ class AdminExperiencesController extends ModuleAdminController
 				'title' => $this->l('Experiencia')
 			),
 			
-			'position' => array(
-				'title' => $this->l('Posición'),
-				'filter_key' => 'a!position',
-				'position' => 'position',
-				'align' => 'center'
-			),
 			'active' => array(
 				'title' => $this->l('Activo'),
 				'active' => 'status',
@@ -105,7 +99,10 @@ class AdminExperiencesController extends ModuleAdminController
 			if($this->display=='add')
 			{
 				if(!$_FILES['image']['name'] || mb_strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION)) != 'jpg' )
-					$this->errors[] = Tools::displayError('Seleccione una imagen formato jpg');
+					$this->errors[] = Tools::displayError('Seleccione una imagen interactiva formato jpg');
+					
+				if(!$_FILES['image2']['name'] || mb_strtolower(pathinfo($_FILES['image2']['name'], PATHINFO_EXTENSION)) != 'jpg' )
+					$this->errors[] = Tools::displayError('Seleccione una imagen home formato jpg');	
 			}
 			
 			$this->display = 'add';	
@@ -161,22 +158,46 @@ class AdminExperiencesController extends ModuleAdminController
 	
 	protected function postImage($id)
 	{
+		if(!file_exists($this->upload))
+			mkdir($this->upload,0755);
+
 		$ret = parent::postImage($id);
-		if (($id_highlights = (int)Tools::getValue('id_experience')) &&
+		if (($id_experiencia = (int)Tools::getValue('id_experience')) &&
 			isset($_FILES) && count($_FILES) && $_FILES['image']['name'] != null &&
-		file_exists($this->upload.$id_highlights.'.jpg'))
+		file_exists($this->upload.$id_experiencia.'.jpg'))
 		{
 			$images_types = ImageType::getImagesTypes('categories');
 			foreach ($images_types as $k => $image_type)
 			{
 				ImageManager::resize(
-					$this->upload.$id_highlights.'.jpg',
-					$this->upload.$id_highlights.'-'.stripslashes($image_type['name']).'.jpg',
+					$this->upload.$id_experiencia.'.jpg',
+					$this->upload.$id_experiencia.'-'.stripslashes($image_type['name']).'.jpg',
 					(int)$image_type['width'], (int)$image_type['height']
 				);
 			}
 		}
-
+		
+		
+		if($_FILES['image2']['tmp_name'])
+		{
+			if(file_exists($this->upload.$id_experiencia.'-home.jpg'))
+				unlink($this->upload.$id_experiencia.'-home.jpg');
+				
+			move_uploaded_file($_FILES['image2']['tmp_name'],$this->upload.$id_experiencia.'-home.jpg');	
+			
+			if(file_exists($this->upload.$id_experiencia.'-home.jpg'))
+			{
+				$images_types = ImageType::getImagesTypes('experiences-home');
+				foreach ($images_types as $k => $image_type)
+				{
+					ImageManager::resize(
+						$this->upload.$id_experiencia.'-home.jpg',
+						$this->upload.$id_experiencia.'-home.jpg',
+						(int)$image_type['width'], (int)$image_type['height']
+					);
+				}
+			}		
+		}
 		return $ret;
 	}
 	 
@@ -203,28 +224,24 @@ class AdminExperiencesController extends ModuleAdminController
 		$image_url = ImageManager::thumbnail($image, $this->table.'_'.(int)$obj->id.'.'.$this->imageType, 800,$this->imageType, true, true);
 		$image_size = file_exists($image) ? filesize($image) / 1000 : false;
 		
+		
+		$image2 = $this->upload.$obj->id.'-home.jpg';
+		$image_url2 = ImageManager::thumbnail($image2, $this->table.'_'.(int)$obj->id.'-home.'.$this->imageType, 150,$this->imageType, true, true);
+		$image_size2 = file_exists($image2) ? filesize($image2) / 1000 : false;
+		
+
 		$this->fields_form = array(
 			'tinymce' => true,
 			'legend' => array(
-				'title' => $this->l('Nueva Experiencia'),
+				'title' => $this->display=='add' ? $this->l('Nueva Experiencia') : $this->l('Editar Experiencia'),
 				'icon' => 'icon-tags',
 				'hint' => 'selecciona la image'
 			),
 			'input' => array(
-				array(
-					'type' => 'file',
-					'label' => $this->l('Imagen'),
-					'name' => 'image',
-					'required' => true,
-					'hint' => $this->l('Selecione una imagen formato jpg:'),
-					'display_image' => true,
-					'class'		=> 'experiences-pointer',
-					'image' => $image_url ? $image_url : false,
-				),
-				
+
 				array(
 					'type' => 'text',
-					'label' => $this->l('Nombre de la experiencia'),
+					'label' => $this->l('Título'),
 					'name' => 'name',
 					'lang' => true,
 					'required' => true,
@@ -240,24 +257,28 @@ class AdminExperiencesController extends ModuleAdminController
 					'lang' => true,
 					'hint' => $this->l('Invalid characters:').' <>;=#{}'
 				),
-				
+							
 				array(
-					'type' => 'textarea',
-					'label' => $this->l('Meta titulo'),
-					'name' => 'meta_title',
-					'lang' => true,
-					'rows' => 5,
-					'cols' => 100,
-					'hint' => $this->l('Forbidden characters:').' <>;=#{}'
+					'type' => 'file',
+					'label' => $this->l('Imagen interactiva'),
+					'name' => 'image',
+					'required' => true,
+					'hint' => $this->l('Selecione una imagen formato jpg:'),
+					'display_image' => true,
+					'class'		=> 'experiences-pointer',
+					'image' => $image_url ? $image_url : false,
 				),
 				
 				array(
-					'type' => 'tags',
-					'label' => $this->l('Meta keywords'),
-					'name' => 'meta_keywords',
-					'lang' => true,
-					'hint' => $this->l('To add "tags," click in the field, write something, and then press "Enter."').'&nbsp;'.$this->l('Forbidden characters:').' <>;=#{}'
-				),								
+					'type' => 'file',
+					'label' => $this->l('Imagen home'),
+					'name' => 'image2',
+					'required' => true,
+					'hint' => $this->l('Selecione una imagen formato jpg:'),
+					'display_image' => true,
+					'class'		=> 'experiences-pointer',
+					'image' => $image_url2 ? $image_url2 : false,
+				),						
 				
 				array(
 					'type' => 'text',
@@ -269,7 +290,7 @@ class AdminExperiencesController extends ModuleAdminController
 				),
 				
 				array(
-					'type' => 'textarea',
+					'type' => 'hidden',
 					'label' => $this->l('configuracion'),
 					'name' => 'products',
 					'lang' => false,
@@ -280,7 +301,7 @@ class AdminExperiencesController extends ModuleAdminController
 								
 				array(
 					'type' => 'switch',
-					'label' => $this->l('Displayed'),
+					'label' => $this->l('Estado'),
 					'name' => 'active',
 					'required' => false,
 					'is_bool' => true,
@@ -298,6 +319,19 @@ class AdminExperiencesController extends ModuleAdminController
 					)
 				),
 				
+				array(
+					'type' => 'select',
+					'label' => $this->l('Experiencia principal'),
+					'name' => 'parent',
+					'lang' => false,
+					'required' => false,
+					'options' => array(
+						'query' => Db::getInstance()->ExecuteS('select 	id_experience, name from '._DB_PREFIX_.'experiences_lang WHERE id_experience != "'.Tools::getvalue('id_experience').'" '),
+						'id' => '	id_experience',
+						'name' => 'name',
+					),
+                           
+				),
 			),
 			'submit' => array(
 				'title' => $this->l('Save'),
@@ -315,7 +349,13 @@ class AdminExperiencesController extends ModuleAdminController
 		$this->fields_value['image'] = array(
 			'image' => $image ? $image : false,
 			'size' => $image ? filesize($this->upload.$obj->id.'.jpg') / 1024 : false
+		);
+		//$image2 = ImageManager::thumbnail($this->upload.$obj->id.'-home.jpg', $this->table.'_'.(int)$obj->id.'-home.'.$this->imageType, 350, $this->imageType, true);
+		$this->fields_value['image2'] = array(
+			'image' => $this->upload.$obj->id.'-home.jpg',
+			'size' => $image2 ? filesize($this->upload.$obj->id.'-home.jpg') / 1024 : false
 		);	
+		
 	return parent::renderForm(); 
 	}
 	
