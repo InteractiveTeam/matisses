@@ -3,6 +3,7 @@
 	{
 		public $id;
 		public $id_experience;
+		public $parent = 0;
 		public $name;
 		public $active = 1;
 		public $position;
@@ -25,6 +26,7 @@
 			'fields' => array(
 				'active' => 			array('type' => self::TYPE_BOOL, 'validate' => 'isBool', 'required' => true),
 				'id_shop_default' => 	array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
+				'parent' => 			array('type' => self::TYPE_INT),
 				'position' => 			array('type' => self::TYPE_INT),
 				'products' => 			array('type' => self::TYPE_HTML),
 				// Lang fields

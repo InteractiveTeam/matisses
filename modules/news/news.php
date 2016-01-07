@@ -397,7 +397,10 @@ class News extends Module {
         $this->context->controller->addJS(($this->_path) . 'js/lightbox/js/jquery.lightbox-0.5.min.js', 'all');
         $this->context->controller->addJS(($this->_path) . 'js/cycle/jquery.cycle.all.js', 'all');
         $this->context->controller->addJS(($this->_path) . 'js/cycle/jquery.easing.1.3.js', 'all');
-        $this->context->controller->addJS(($this->_path) . 'js/jquery/ui/jquery.ui.widget.js', 'all');
+		
+		if(in_array($this->page_name, array('product')))
+			$this->context->controller->addJS(($this->_path) . 'js/jquery/ui/jquery.ui.widget.js', 'all');
+
         if (!Tools::getValue('live_edit')) {
             $this->context->controller->addJS(($this->_path) . 'js/jquery/ui/jquery.ui.tabs.js', 'all');
         }
