@@ -2,7 +2,7 @@
 
 class matissesexperiencesModuleFrontController extends ModuleFrontController
 {
-
+	//public $php_self = "experiences";  
 	protected $experience;
 	
 	public function init()

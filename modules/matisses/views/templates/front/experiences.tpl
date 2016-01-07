@@ -43,7 +43,8 @@
 	<ul class="bxslider experiences-list">
     {foreach from=$experiences item=exp}
 		<li class="col-md-4">
-        	<a href="{$link->getModuleLink('matisses','experiences',['id_experience' => "{$exp.id_experience}",'link_rewrite'  => "{$exp.link_rewrite}"],false)}">
+        	{assign var=params value=['id_experiencia' => $exp.id_experience]}
+        	<a href="{$link->getModuleLink('matisses','experiences',$params,true)}">
             <img src="{$link->getImageLink($exp.id_experience,'img/experiences')}" class="img-responsive"> 
         	<h3>{$exp.name}</h3>
         	</a>

@@ -56,52 +56,8 @@
 		</div>
     </div>
 
-    <div class="experiences">
-		<div class="container">
-			<div class="btn-title cf">
-				<h1><a href="#">{l s='Experiencias'}</a></h1>
-				<div class="btn-view-products">
-					<a href="#" title="Ver todos los destacados" class="btn btn-default button button-small">Ver todos</a>
-				</div>
-			</div>
-			<div class="slide-experiencias cf">
-				<ul class="grid_12 alpha omega">
-					<li>
-						<div class="slide-left grid_4 ">
-							<figure>
-								<img src="../../themes/matisses/img/exp-01.jpg" alt="">
-								<figcaption class="cf">
-									<h2>Sky soul</h2>
-									<p>Maecenas convallis auge, id ornare odio temporsed. Donec porttitor quam eget eros sollicitudín gravida.</p>
-
-								</figcaption>
-							</figure>
-						</div>
-						<div class="slide-right grid_4 ">
-							<figure>
-								<img src="../../themes/matisses/img/exp-02.jpg" alt="">
-								<figcaption class="cf">
-									<h2>Atmosphere</h2>
-									<p>Cras vestibulum mauris et urna aliquam, sed ultricies eros condimentum. Mauris lacus arcu, pharetra sagittis quis sapien.</p>
-								</figcaption>
-							</figure>
-						</div>
-
-						<div class="slide-right grid_4">
-							<figure>
-								<img src="../../themes/matisses/img/exp-03.jpg" alt="">
-								<figcaption class="cf">
-									<h2>Cold mountain</h2>
-									<p>Suspendisse in finibus tellus. In quis rhoncus diam. Donec nec euismod tortor, eu placerat  malesuadaat lorem agittis.</p>
-								</figcaption>
-							</figure>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-    </div>
-
+	{hook h="displayExperiencesHome"}
+    
     <div class="zona-blog">
 		<div class="container">
 			{hook h="displayMatBlog"}
