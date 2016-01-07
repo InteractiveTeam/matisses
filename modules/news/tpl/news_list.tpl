@@ -1,14 +1,17 @@
 {if !$ajax}
-
-
+<!-- 
+<pre>
+{print_r($newsObj)}
+</pre>
+ -->
 <div class="blog-list">
     <div class="newsMenuCats">
-        <h1>Blog</h1>
+        <h1>{l s='Blog' mod='news'}</h1>
         <form action="{$link->getModuleLink('news', 'news', [] ,false)}" method="post" class="fromNewsSearch" name="fromNewsSearch">
             <input type="text" name="search_news" value="{$search_news}" class="newsSearch"></input>
             <input type="submit" name="searchnewshidden" style="visibility: hidden"></input>
         </form>
-
+ 
       {if $catsObj && false}
                  {assign var='menu_position' value=1}
                  {foreach from=$catsObj item='cats' name=myLoop}
@@ -45,29 +48,17 @@
         <p class="warning">{l s='No news found' mod='news'} </p>
         {/if}
     {/if}
+
 	{foreach from=$newsObj item='news' name=myLoop}
-
-
-    <a onclick="document.location = '{$link->getModuleLink('news', 'new',
-                                                            [
-                                                                'id_news'  => "{$news->id_news}",
-                                                                'cat_news' => "{if $cat}{$cat}{/if}",
-                                                                'page_cat'     => "{$page}",
-                                                                'rewrite'  => "{$news->rewrite}",
-                                                                'cat_rewrite'  => "{$cat_rewrite}"
-                                                             ]
-
-                                                            ,false)}'"
-        href="{$link->getModuleLink('news', 'new',
-                                                            [
-                                                                'id_news'  => "{$news->id_news}",
-                                                                'cat_news' => "{if $cat}{$cat}{/if}",
-                                                                'page_cat'     => "{$page}",
-                                                                'rewrite'  => "{$news->rewrite}",
-                                                                'cat_rewrite'  => "{$cat_rewrite}"
-                                                             ]
-
-                                                            ,false)}"
+    <a href="{$link->getModuleLink('news', 'new',
+        [
+            'id_news'  => "{$news->id_news}",
+            'cat_news' => "{if $cat}{$cat}{/if}",
+            'page_cat'     => "{$page}",
+            'rewrite'  => "{$news->rewrite}",
+            'cat_rewrite'  => "{$cat_rewrite}"
+         ]
+         ,false)}"
        alt="{$news->title|escape:html:'UTF-8'}" class="newsListItem">
         <table cellpadding="0" cellspacing="0" width="100%">
             <tr>
