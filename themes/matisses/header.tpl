@@ -44,6 +44,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="{$favicon_url}?{$img_update_time}" />
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,600' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="{$css_dir}bootstrap.min.css" type="text/css" media="all" />
 <link rel="stylesheet" href="{$css_dir}grid.css" type="text/css" media="all" />
 
@@ -89,7 +90,7 @@
 
             	<div class="left-down-menu cf"> {hook h="displayMatMegamenu"}
 	              <ul id="menu" class="grid_10 menu-experiencias" style="color:black">
-                    <li id="experiencias"><a href="#">{l s='Experiencias'}</a></li>
+                    <li id="experiencias"><a href="{$link->getModuleLink('matisses','experiences')}">{l s='Experiencias'}</a></li>
 	                <li id="wishlist">{hook h="displayMatWishlist"}</li>
 	                <li id="giftlist"><a href="#"><span></span>{l s='Lista de regalos'}</a></li>
 	              </ul>
@@ -137,7 +138,7 @@
 						</li>
                         <li id="cart">{hook h='displayMatCart'}</li>
                         <li id="user">{hook h='displayMatUser'}</li>
-                        
+
 	        		</ul>
 	        	</div>
 	        </div>

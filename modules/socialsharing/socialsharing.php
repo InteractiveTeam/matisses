@@ -79,6 +79,7 @@ class SocialSharing extends Module
 		// The module will then be hooked on the product and comparison pages
 		$this->registerHook('displayRightColumnProduct');
 		$this->registerHook('displayCompareExtraInformation');
+		$this->registerHook('displayExperiencias');
 
 		return true;
 	}
@@ -170,6 +171,8 @@ class SocialSharing extends Module
 
 		return $this->display(__FILE__, 'socialsharing_header.tpl', $this->getCacheId('socialsharing_header|'.(isset($product->id) && $product->id ? (int)$product->id : '')));
 	}
+	
+	
 
 	protected function displaySocialSharing()
 	{
@@ -234,6 +237,28 @@ class SocialSharing extends Module
 	public function hookDisplayRightColumnProduct($params)
 	{
 		return $this->displaySocialSharing();
+	}
+	
+	public function hookDisplayExperiencias($params)
+	{
+		//echo "<pre>"; print_r($params); echo "</pre>";
+	
+		Media::addJsDef(array(
+			'sharing_name' => addcslashes($params['experience']->name, "'"),
+			'sharing_url' => addcslashes('http://local.matisses.com/experiencias', "'"),
+			'sharing_img' => addcslashes($this->context->link->getPageLink($params['experience']->id_image, 'img/experiences'), "'")
+		));
+
+		$this->context->smarty->assign(array(
+			'product' => $params['experience'],
+			'PS_SC_TWITTER' => Configuration::get('PS_SC_TWITTER'),
+			'PS_SC_GOOGLE' => Configuration::get('PS_SC_GOOGLE'),
+			'PS_SC_FACEBOOK' => Configuration::get('PS_SC_FACEBOOK'),
+			'PS_SC_PINTEREST' => Configuration::get('PS_SC_PINTEREST')
+		));
+
+		return $this->display(__FILE__, 'socialsharingexperiences.tpl');
+
 	}
 
 	public function hookExtraleft($params)

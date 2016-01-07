@@ -215,6 +215,11 @@ class AdminProductsControllerCore extends AdminController
 			'title' => $this->l('Reference'),
 			'align' => 'left',
 		);
+		
+		$this->fields_list['model'] = array(
+			'title' => $this->l('Model'),
+			'align' => 'center',
+		);
 
 		if (Shop::isFeatureActive() && Shop::getContext() != Shop::CONTEXT_SHOP)
 			$this->fields_list['shopname'] = array(

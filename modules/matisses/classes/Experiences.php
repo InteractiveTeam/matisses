@@ -3,6 +3,7 @@
 	{
 		public $id;
 		public $id_experience;
+		public $parent = 0;
 		public $name;
 		public $active = 1;
 		public $position;
@@ -25,6 +26,7 @@
 			'fields' => array(
 				'active' => 			array('type' => self::TYPE_BOOL, 'validate' => 'isBool', 'required' => true),
 				'id_shop_default' => 	array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
+				'parent' => 			array('type' => self::TYPE_INT),
 				'position' => 			array('type' => self::TYPE_INT),
 				'products' => 			array('type' => self::TYPE_HTML),
 				// Lang fields
@@ -61,6 +63,23 @@
 		{
 			$ret = parent::update($null_values);
 			return $ret;
+		}
+		
+		public function GetFirstExperience()
+		{
+			return Db::getInstance()->getValue('SELECT id_experience FROM '._DB_PREFIX_.'experiences');
+		}
+		
+		public function getExperiences($only_active = true)
+		{
+			$sql = '
+					SELECT * 
+					FROM  '._DB_PREFIX_.'experiences AS a
+						INNER JOIN  '._DB_PREFIX_.'experiences_lang AS b
+							on a.id_experience = b.id_experience
+					WHERE 1 = 1 '.($only_active ? ' and a.active = 1' : NULL).'	
+				   ';
+			return Db::getInstance()->ExecuteS($sql);
 		}
 		
 		public function delete()

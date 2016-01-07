@@ -652,7 +652,7 @@ function updatePrice()
 
 	// If the calculated price (after all discounts) is different than the base price
 	// we show the old price striked through
-	if (priceWithDiscountsDisplay.toFixed(2) != basePriceDisplay.toFixed(2))
+	if (parseFloat(priceWithDiscountsDisplay).toFixed(2) != parseFloat(basePriceDisplay).toFixed(2))
 	{
 		$('#old_price_display').text(formatCurrency(basePriceDisplay * currencyRate, currencyFormat, currencySign, currencyBlank));
 		$('#old_price,#old_price_display,#old_price_display_taxes').show();

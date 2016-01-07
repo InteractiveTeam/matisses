@@ -34,6 +34,7 @@ class AttributeCore extends ObjectModel
 	public $color;
 	public $position;
 	public $default;
+	public $id_sap;
 
 	/**
 	 * @see ObjectModel::$definition
@@ -46,6 +47,7 @@ class AttributeCore extends ObjectModel
 			'id_attribute_group' => array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId', 'required' => true),
 			'color' => 				array('type' => self::TYPE_STRING, 'validate' => 'isColor'),
 			'position' => 			array('type' => self::TYPE_INT, 'validate' => 'isInt'),
+			'id_sap' => 			array('type' => self::TYPE_INT),
 
 			// Lang fields
 			'name' => 				array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName', 'required' => true, 'size' => 128),

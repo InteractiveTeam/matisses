@@ -78,7 +78,7 @@
 	{assign var='total_wrapping_taxes_num' value="{if $total_wrapping != 0}1{else}0{/if}"}
 	{* eu-legal *}
 	{hook h="displayBeforeShoppingCartBlock"}
-	<div id="order-detail-content" class="order-detail table_block table-responsive">
+	<div id="order-detail-content" class="order-detail table_block table-responsive grid_12">
 		<table id="cart_summary" border="0" class="table table-bordered {if $PS_STOCK_MANAGEMENT}stock-management-on{else}stock-management-off{/if}">
 			<thead>
 				<tr>

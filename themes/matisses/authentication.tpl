@@ -52,20 +52,20 @@
 	<div class="alert alert-danger " id="create_account_error" style="display:none"></div>
 	<div class="row">
 
-		<div class="create-account">
-		<div class="pull-right required grid_12">
+		<div class="create-account grid_12">
+		<!-- <div class="pull-right required grid_12">
 			<p><span><sup>*</sup>{l s='Required field'}</span></p>
-		</div>
+		</div> -->
 		<div class="grid_6 alpha">
 			<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="create-account_form" class="box">
 				<h2 class="page-subheading">{l s='Create an account'}</h2>
-				<div class="form_content clearfix">
+				<div class="form_content cf">
 					<p>{l s='Please enter your email address to create an account.'}</p>
 					<div class="form-group">
 						<!-- <label for="email_create">{l s='Email address'}</label> -->
 						<input type="text" class="is_required validate account_input form-control" data-validate="isEmail" id="email_create" name="email_create" placeholder="{l s='Correo electrónico'}" value="{if isset($smarty.post.email_create)}{$smarty.post.email_create|stripslashes}{/if}" />
 					</div>
-					<div class="submit">
+					<div class="submit cf">
 						{if isset($back)}<input type="hidden" class="hidden" name="back" value="{$back|escape:'html':'UTF-8'}" />{/if}
 						<button class="btn btn-default button btn-red" type="submit" id="SubmitCreate" name="SubmitCreate">
 								{l s='Crear cuenta'}
@@ -78,7 +78,7 @@
 		<div class="grid_6 omega">
 			<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="login_form" class="box">
 				<h2 class="page-subheading">{l s='Already registered?'}</h2>
-				<div class="form_content clearfix">
+				<div class="form_content cf">
 					<div class="form-group">
 						<!-- <label for="email">{l s='Email address'}</label> -->
 						<input class="is_required validate account_input form-control" data-validate="isEmail" type="text" id="email" name="email" placeholder="{l s='Correo electrónico'}" value="{if isset($smarty.post.email)}{$smarty.post.email|stripslashes}{/if}" />
@@ -88,12 +88,12 @@
 						<input class="is_required validate account_input form-control" type="password" data-validate="isPasswd" id="passwd" name="passwd" placeholder="{l s='Contraseña'}" value="{if isset($smarty.post.passwd)}{$smarty.post.passwd|stripslashes}{/if}" />
 					</div>
 					<p class="lost_password form-group"><a href="{$link->getPageLink('password')|escape:'html':'UTF-8'}" title="{l s='Recover your forgotten password'}" rel="nofollow">{l s='Forgot your password?'}</a></p>
-					<p class="submit">
+					<div class="submit">
 						{if isset($back)}<input type="hidden" class="hidden" name="back" value="{$back|escape:'html':'UTF-8'}" />{/if}
 						<button type="submit" id="SubmitLogin" name="SubmitLogin" class="button btn btn-default  btn-red">
 							{l s='Ingresar'}
 						</button>
-					</p>
+					</div>
 				</div>
 			</form>
 		</div>
@@ -388,7 +388,7 @@
 				</div>
 				{$HOOK_CREATE_ACCOUNT_FORM}
 			</div>
-			<p class="cart_navigation required submit clearfix">
+			<p class="cart_navigation required submit cf">
 				<span><sup>*</sup>{l s='Required field'}</span>
 				<input type="hidden" name="display_guest_checkout" value="1" />
 				<button type="submit" class="button btn btn-default button-medium" name="submitGuestAccount" id="submitGuestAccount">
@@ -415,7 +415,7 @@
 		</ol>
 	</div>
 	{/if}-->
-	<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="account-creation_form" class="std box account-creation_form">
+	<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="account-creation_form" class="std box account-creation_form grid_12">
 		{$HOOK_CREATE_ACCOUNT_TOP}
 		<h2 class="page-subheading">{l s='Your personal information'}</h2>
 		<h4>Información personal</h4>

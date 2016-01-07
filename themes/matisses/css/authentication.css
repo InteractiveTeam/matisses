@@ -5,23 +5,16 @@
     display: none; }
     .account_creation{padding-top: 1.875rem;  }
 
-    #create-account_form {
-    min-height: 297px; }
-
     #create-account_form .form-group {
     margin: 0 0 20px 0; }
 
-    #login_form {
-    min-height: 297px; }
     #login_form .form-group {
     margin: 0 0 3px 0; }
     #login_form .form-group.lost_password {
     margin: 14px 0 15px 0; }
     #login_form .form-group.lost_password a {
     text-decoration: underline; }
-    #create-account_form,#login_form{
-    min-height: 320px;
-    }
+    #create-account_form,#login_form{ }
     #id_country_chosen {
     display: block;
     }
@@ -55,7 +48,7 @@
     }
     .create-account button.button {
     font-size: 1.125rem;
-    font-family: 'gothic';
+    font-family: 'condensed';
     padding: 0.3125rem 1.875rem;
     float: right;
     }
@@ -84,7 +77,7 @@
     padding-left: 0.3125rem;
     }
     .account_creation .checkbox{
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.625rem;
     }
     .account_creation .checkbox label{
     font-family: 'gothic';
@@ -117,7 +110,7 @@
     }
     #submitAccount {
     padding: 0.3125rem 1.875rem;
-    font-family: 'gothic';
+    font-family: 'condensed';
     }
     .account_creation .top {
     font-family: 'gothic';
@@ -134,8 +127,8 @@
     .checker .checked:before {
     color: #d7162f;
     }
-    .authentication .submit {
-    margin: 3.75rem 0 5.625rem;
+    .account-creation_form .submit {
+    margin: 3.75rem 0 1.25rem;
     }
     .create-account .pull-right.required span{color: #d7162f;}
     .create_account div.radio span {

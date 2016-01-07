@@ -429,7 +429,7 @@
 @media (min-width: 992px) {
 	ul.step li a:after,
 	ul.step li span:after, ul.step li.step_current span:after, ul.step li.step_current_end span:after {
-	content: "";
+	/*content: "";
 	position: absolute;
 	top: 0;
 	right: -31px;
@@ -438,23 +438,9 @@
 	display: block;
 	width: 31px;
 	height: 52px;
-	margin-top: -2px;
+	margin-top: -2px;*/
 	}
-	ul.step li.step_current span:after{
-	border-color: #ffffff;
-	border-image: none;
-	border-style: solid solid none none;
-	border-width: 1px 1px medium medium;
-	height: 40px;
-	right: -21px;
-	top: 6px;
-	-webkit-transform: rotate(45deg);
-	-moz-transform: rotate(45deg);
-	-o-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	transform: rotate(45deg);
-	width: 40px;
-	}
+
 	ul.step li.step_done a {
 	padding-left: 38px;
 	}
@@ -481,9 +467,7 @@
 	ul.step li#step_end span:after {
 	display: none;
 	}
-	ul.step li.step_todo span,ul.step li.step_current {
-	padding-left: 60px;
-	}
+	
 }
 @media (max-width: 991px) {
 	.page-subheading{

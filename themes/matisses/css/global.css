@@ -101,8 +101,7 @@ box-sizing: border-box;
 	.btn.btn-default.btn-red:after{ background-color: #d7162f; }
 	.btn.btn-default.btn-red{color: #fff; border-color: #d7162f;}
 	.btn.btn-default.btn-red:hover{color: #d7162f;}
-
-	/*end general styles*/
+/*end general styles*/
 
 	/*Header*/
 	.header-container {
@@ -197,9 +196,7 @@ box-sizing: border-box;
 	.fixedHeader .logo-desktop{
 	display: none;
 	}
-	.fixedHeader .menu-experiencias {
-    padding: 1.25rem 0 0 1.25rem;
-	}
+
 	.fixedHeader .right-down-menu li#chat,
 	.fixedHeader .right-down-menu li#blog {
     padding-top: 1.25rem;
@@ -326,7 +323,6 @@ box-sizing: border-box;
 	img#lhnchatimg {
 	display: none;
 	}
-
 	#menu-right {
 	padding: 0;
 	text-align: right;
@@ -452,9 +448,9 @@ box-sizing: border-box;
 
 	/*content page*/
 	p {
-	font-family: 'Open Sans Condensed', sans-serif;
-	font-size: 1.125rem;
-	color:#777676;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1rem;
+	color: #777676;
 	line-height: 1.5;
 	}
 
@@ -789,13 +785,18 @@ box-sizing: border-box;
 	}
 	.slide-experiencias img{
 	display: block;
+	width: 100%;
 	}
 	.slide-experiencias h2{
-	float: left;
-	text-transform: uppercase;
-	font-size: 2.25rem;
-	font-family: "gothic";
+	font-size: 2.5rem;
+	font-family: "condensed";
 	color: #231f20;
+	padding-bottom: 20px;
+	}
+	.slide-experiencias p{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1rem;
+	color: #777676;
 	}
 	.slide-experiencias .btn.btn-default{
 	float: right;
@@ -1956,7 +1957,7 @@ box-sizing: border-box;
 	display: none !important;
 	}
 	ul.step {
-	margin: 3.4375rem 0 1.875rem 0;
+	margin: 3.4375rem 0;
 	overflow: hidden;
 	clear: both;
 	}
@@ -1971,8 +1972,7 @@ box-sizing: border-box;
 	ul.step li.step_current span,
 	ul.step li.step_current_end span {
 	display: block;
-	padding: 15px 5px 15px 5px;
-	line-height: 20px;
+	padding: 0.9375rem;
 	position: relative;
 	}
 	ul.step li.first {
@@ -2009,7 +2009,7 @@ box-sizing: border-box;
 	ul.step li.step_current_end {
 	font-weight: bold; }
 	ul.step li.step_todo {
-	background: #f1f1f1;
+	background: #f3f3f3;
 	}
 	ul.step li.step_todo span {
 	display: block;
@@ -2027,6 +2027,9 @@ box-sizing: border-box;
 	}
 	ul.step li em {
 	font-style: normal;
+	}
+	ul.step li.step_todo span,ul.step li.step_current {
+	padding-left: 2.5rem;
 	}
 	.rating {
 	clear: both;
@@ -3515,7 +3518,7 @@ box-sizing: border-box;
 
 /*Pag Mi Carrito*/
 	.order-detail thead tr th{
-	background-color: #e1e1e1;
+	background-color: #f3f3f3;
 	text-transform: uppercase;
 	font-size: 1.25rem;
 	border: 1px solid #dbdbdb;
@@ -3536,6 +3539,11 @@ box-sizing: border-box;
 	}
 	.order-detail .table td {
 	border: none;
+	}
+	.order-detail td.cart_description{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 0.9375rem;
+	color: #777676;
 	}
 	.order-detail .table tr {
 	border-bottom: 1px solid #dbdbdb;
