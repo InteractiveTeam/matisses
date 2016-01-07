@@ -101,8 +101,7 @@ box-sizing: border-box;
 	.btn.btn-default.btn-red:after{ background-color: #d7162f; }
 	.btn.btn-default.btn-red{color: #fff; border-color: #d7162f;}
 	.btn.btn-default.btn-red:hover{color: #d7162f;}
-
-	/*end general styles*/
+/*end general styles*/
 
 	/*Header*/
 	.header-container {
@@ -324,7 +323,6 @@ box-sizing: border-box;
 	img#lhnchatimg {
 	display: none;
 	}
-
 	#menu-right {
 	padding: 0;
 	text-align: right;
@@ -450,9 +448,9 @@ box-sizing: border-box;
 
 	/*content page*/
 	p {
-	font-family: 'Open Sans Condensed', sans-serif;
-	font-size: 1.125rem;
-	color:#777676;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1rem;
+	color: #777676;
 	line-height: 1.5;
 	}
 
