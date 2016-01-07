@@ -65,41 +65,34 @@
 				</div>
 			</div>
 			<div class="slide-experiencias cf">
-				<ul>
+				<ul class="grid_12 alpha omega">
 					<li>
-						<div class="slide-left grid_6 alpha">
+						<div class="slide-left grid_4 ">
 							<figure>
 								<img src="../../themes/matisses/img/exp-01.jpg" alt="">
 								<figcaption class="cf">
 									<h2>Sky soul</h2>
-									<button class="btn btn-default buy">Ver más</button>
+									<p>Maecenas convallis auge, id ornare odio temporsed. Donec porttitor quam eget eros sollicitudín gravida.</p>
+
 								</figcaption>
 							</figure>
 						</div>
-						<div class="slide-right grid_6 omega">
+						<div class="slide-right grid_4 ">
 							<figure>
 								<img src="../../themes/matisses/img/exp-02.jpg" alt="">
 								<figcaption class="cf">
-									<h2>Over view</h2>
-									<button class="btn btn-default buy">Ver más</button>
+									<h2>Atmosphere</h2>
+									<p>Cras vestibulum mauris et urna aliquam, sed ultricies eros condimentum. Mauris lacus arcu, pharetra sagittis quis sapien.</p>
 								</figcaption>
 							</figure>
 						</div>
-						<div class="slide-right grid_6 alpha">
+
+						<div class="slide-right grid_4">
 							<figure>
 								<img src="../../themes/matisses/img/exp-03.jpg" alt="">
 								<figcaption class="cf">
 									<h2>Cold mountain</h2>
-									<button class="btn btn-default buy">Ver más</button>
-								</figcaption>
-							</figure>
-						</div>
-						<div class="slide-right grid_6 omega">
-							<figure>
-								<img src="../../themes/matisses/img/exp-04.jpg" alt="">
-								<figcaption class="cf">
-									<h2>Gold line</h2>
-									<button class="btn btn-default buy">Ver más</button>
+									<p>Suspendisse in finibus tellus. In quis rhoncus diam. Donec nec euismod tortor, eu placerat  malesuadaat lorem agittis.</p>
 								</figcaption>
 							</figure>
 						</div>
