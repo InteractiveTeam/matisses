@@ -1,7 +1,7 @@
 <div class="container">
 
 {if $experience->id}
-<h1>{l s='Experiences' mod='experiencia'}</h1>
+<h1>{l s='Experiencias' mod='experiencia'}</h1>
 <div class="row">
     <div class="col-md-12" id="experience">
         <img src="{$link->getImageLink($experience->id_image,'img/experiences')}" class="img-responsive">
@@ -13,8 +13,8 @@
                         <div class="pointer-detail-left">
                             <h3>{$pointer.name}</h3>
                             <p class="price">{convertPrice price=$pointer.price}</p>
-                            <a class="btn btn_border ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, 'add=1&amp;id_product={$pointerid_product|intval}', false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$accessory.id_product|intval}">
-                                <span>{l s='Buy now'}</span>
+                            <a class="btn btn_border ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, 'add=1&amp;id_product={$pointer.id_product}&amp;id_product_attribute={$pointer.id_product_attribute}', false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$accessory.id_product|intval}">
+                                <span>{l s='Comprar'}</span>
                             </a>
                         </div>
                         <div class="pointer-detail-right">
@@ -43,7 +43,8 @@
 	<ul class="bxslider experiences-list">
     {foreach from=$experiences item=exp}
 		<li class="col-md-4">
-        	<a href="{$link->getModuleLink('matisses','experiences',['id_experience' => "{$exp.id_experience}",'link_rewrite'  => "{$exp.link_rewrite}"],false)}">
+        	{assign var=params value=['id_experiencia' => $exp.id_experience]}
+        	<a href="{$link->getModuleLink('matisses','experiences',$params,true)}">
             <img src="{$link->getImageLink($exp.id_experience,'img/experiences')}" class="img-responsive"> 
         	<h3>{$exp.name}</h3>
         	</a>

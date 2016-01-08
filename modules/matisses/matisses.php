@@ -3,23 +3,7 @@ class matisses extends Module
 {
 	
 	private $_uploadfile = 'matisses';
-    public static $moduleRoutes =array(
-             'module-matisses-experiences' => array(
-                    'controller' => 'experiences',
-                    'rule' =>  'experiencias/{id_experience}-{link_rewrite}.html',
-                  	'keywords' => array(
-						'id_experience'  => array('regexp' => '[0-9]*', 'param' => 'id_experience'),
-                        'link_rewrite'   => array('regexp' => '[_a-zA-Z0-9-\pL]*',   'param' => 'link_rewrite'),
-                        
-                    ),
-                    'params' => array(
-			            'fc' => 'module',
-                        'module' => 'matisses',
-                        'controller' => 'experiences'
-                    )
-                ),
-				 
-    );	
+
 	
 	public function __construct()
 	{
@@ -37,6 +21,7 @@ class matisses extends Module
 		$this->confirmUninstall = $this->l('Si desinstala este modulo el sitio puede no funcionar correctamente, ¿Esta seguro de continuar?');
 		//Db::getInstance()->execute("UPDATE ps_category_lang SET name = 'Menu' where id_category = 2");
 		//$this->registerHook('actionProductCartSave');
+		
 	}
 	
 	/***********************************************
@@ -45,7 +30,8 @@ class matisses extends Module
 	public function getContent()
 	{	
 		//$this->registerHook('actionProductCartSave');
-		$this->registerHook('actionCustomerAccountAdd');
+		//$this->registerHook('actionCustomerAccountAdd');
+		//$this->registerHook('displayExperiencesHome');
 		self::hookactionListInvoice();
 		if (Tools::isSubmit('updateApyKey'))
 		{
@@ -95,8 +81,6 @@ class matisses extends Module
 		// install controllers
 		$install[] = $this->__installTabs('adminMatisses','Matisses',0);
 		$parent = (int)Tab::getIdFromClassName('adminMatisses');
-		//$install[] = $this->__installTabs('adminWebservices','Webservices',$parent);
-		//$install[] = $this->__installTabs('adminHighlights','Destacados',$parent);
 		$install[] = $this->__installTabs('adminExperiences','Experiencias',$parent);
 		//images types
 		$install[] = $this->__installImageTypes('experiences-home',570,145);
@@ -114,6 +98,7 @@ class matisses extends Module
 				
 				CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'experiences` (
 				  `id_experience` int(11) NOT NULL AUTO_INCREMENT,
+				  `parent` int(11) NOT NULL,
 				  `id_shop_default` int(2) NOT NULL,
 				  `position` int(3) NOT NULL,
 				  `products` text,
@@ -223,6 +208,7 @@ class matisses extends Module
 			|| !$this->registerHook('displayFooterProduct')
 			|| !$this->registerHook('displayAvailableProduct')
 			|| !$this->registerHook('displaySchemesProduct')
+			|| !$this->registerHook('displayExperiencesHome')
 			|| !$this->registerHook('moduleRoutes')
 			
 			|| $this->registerHook('actionCustomerAccountUpdate')
@@ -428,8 +414,44 @@ class matisses extends Module
 	* HOOKS
 	*********************************************/
 	
+	public function hookdisplayExperiencesHome($params)
+	{
+		require_once dirname(__FILE__)."/classes/Experiences.php";
+		$Experiences = new Experiences();
+
+		$list = $Experiences->getExperiences();
+		foreach($list as $k => $exp)
+		{
+			$list[$k]['image'] = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/img/experiences/'.$exp['id_experience'].'-home.jpg';
+		}
+		$this->context->smarty->assign('experiences', $list);
+		return $this->display(__FILE__, 'views/templates/hook/experiences_home.tpl');
+		
+	}
+	
+	
 	public function hookmoduleRoutes() {
-        return self::$moduleRoutes;
+	/*
+		return array(
+				'module-maticces-experiences' => array(
+                    'controller' => 'new',
+                    'rule' =>  'news/new/{id_news}-{cat_news}-{page_cat}/{cat_rewrite}/{rewrite}.html',
+                    'keywords' => array(
+                        'id_news'   => array('regexp' => '[0-9]+',   'param' => 'id_news'),
+                        'cat_news'  => array('regexp' => '[0-9]*',   'param' => 'cat_news'),
+                        'cat_rewrite'  => array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'cat_rewrite'),
+                        'page_cat'      => array('regexp' => '[0-9]*',   'param' => 'page_cat'),
+                        'rewrite'   => array('regexp' => '[_a-zA-Z0-9-\pL]*',   'param' => 'rewrite'),
+                    ),
+                    'params' => array(
+						'fc' => 'module',
+                        'module' => 'news',
+                        'controller' => 'new'
+                    )
+                )
+				 
+    	);	
+*/
     }	
 	
 	public function hookHeader($params)
@@ -440,6 +462,12 @@ class matisses extends Module
 		{
 			$this->context->controller->addJqueryUI('ui.tabs');
 			$this->context->controller->addJS($this->_path.'js/producttabs.js');
+		}
+		
+		if(in_array($this->page_name, array('index')))
+		{
+			$this->context->controller->addJqueryPlugin('bxslider');
+			$this->context->controller->addJS($this->_path.'js/experiences_home.js');
 		}
 		//echo "<pre>"; print_r($params); echo "</pre>";
 	}
