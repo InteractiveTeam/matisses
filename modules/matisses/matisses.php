@@ -32,6 +32,8 @@ class matisses extends Module
 		//$this->registerHook('actionProductCartSave');
 		//$this->registerHook('actionCustomerAccountAdd');
 		//$this->registerHook('displayExperiencesHome');
+		//$this->registerHook('displayCustomerAccount');
+		//$install[] = $this->__installPage('module-matisses-garantias','garantias');
 		self::hookactionListInvoice();
 		if (Tools::isSubmit('updateApyKey'))
 		{
@@ -209,6 +211,7 @@ class matisses extends Module
 			|| !$this->registerHook('displayAvailableProduct')
 			|| !$this->registerHook('displaySchemesProduct')
 			|| !$this->registerHook('displayExperiencesHome')
+			|| !$this->registerHook('displayCustomerAccount')
 			|| !$this->registerHook('moduleRoutes')
 			
 			|| $this->registerHook('actionCustomerAccountUpdate')
@@ -413,6 +416,13 @@ class matisses extends Module
 	/*********************************************
 	* HOOKS
 	*********************************************/
+	
+	public function hookdisplayCustomerAccount($params)
+	{
+		
+		return $this->display(__FILE__, 'views/templates/hook/garantias.tpl');
+	}
+	
 	
 	public function hookdisplayExperiencesHome($params)
 	{

@@ -12,8 +12,6 @@
              <a href="{$link->getModuleLink('news', 'news', [] ,false)}" >{l s='News' mod='news'}</a>
              <a class="newsRss newsRssHome " href="{$link->getModuleLink('news', 'rss', ['rss_news'=>1] ,false)}" target="_blank"></a>
         </div> -->
-
-
            {assign var='cats_position' value=1}
                 <div class="btn-title cf grid_12 alpha omega">
                 {foreach from=$catsObj item='cats' name=myLoop}

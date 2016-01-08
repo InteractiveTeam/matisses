@@ -49,13 +49,8 @@ class matissesexperiencesModuleFrontController extends ModuleFrontController
 		parent::setMedia();	
 		$this->addJqueryPlugin('bxslider');
 		
-		$this->addCss(array(
-			_MODULE_DIR_.'matisses/css/experiences/front-experiences.css'
-		));
-		
 		$this->addJS(array(
-			_MODULE_DIR_.'socialsharing/js/socialsharing.js',
-			_MODULE_DIR_.'matisses/js/experiences/front-experiences.js'
+			_MODULE_DIR_.'matisses/js/garantias/garantias.js'
 		));
 
 		
