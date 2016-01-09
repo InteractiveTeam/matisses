@@ -45,7 +45,7 @@
 		<li class="col-md-4">
         	{assign var=params value=['id_experiencia' => $exp.id_experience]}
         	<a href="{$link->getModuleLink('matisses','experiences',$params,true)}">
-            <img src="{$link->getImageLink($exp.id_experience,'img/experiences')}" class="img-responsive"> 
+            <img src="{$link->getImageLink($exp.id_experience,'img/experiences','slider')}" class="img-responsive"> 
         	<h3>{$exp.name}</h3>
         	</a>
         </li>

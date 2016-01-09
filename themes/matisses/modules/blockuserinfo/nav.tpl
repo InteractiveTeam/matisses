@@ -6,6 +6,11 @@
             <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}" title="{l s='View my customer account' mod='blockuserinfo'}" class="account" rel="nofollow">
                 <span>{l s='My account' mod='blockuserinfo'}</span>
             </a>
+            
+            <a href="{$link->getPageLink('index', true, NULL, "mylogout")|escape:'html'}" title="{l s='Log me out' mod='blockuserinfo'}" class="logout" rel="nofollow">
+                {l s='Sign out' mod='blockuserinfo'}
+           </a>
+            
 		{else}
 			<a class="login" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Log in to your customer account' mod='blockuserinfo'}">
 				<span>{l s='Login' mod='blockuserinfo'}</span>

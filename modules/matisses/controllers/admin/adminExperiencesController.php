@@ -198,6 +198,30 @@ class AdminExperiencesController extends ModuleAdminController
 				}
 			}		
 		}
+		
+		
+		if($_FILES['image3']['tmp_name'])
+		{
+			if(file_exists($this->upload.$id_experiencia.'-slider.jpg'))
+				unlink($this->upload.$id_experiencia.'-slider.jpg');
+				
+			move_uploaded_file($_FILES['image3']['tmp_name'],$this->upload.$id_experiencia.'-slider.jpg');	
+			
+			if(file_exists($this->upload.$id_experiencia.'-slider.jpg'))
+			{
+				$images_types = ImageType::getImagesTypes('experiences-home');
+				foreach ($images_types as $k => $image_type)
+				{
+					ImageManager::resize(
+						$this->upload.$id_experiencia.'-slider.jpg',
+						$this->upload.$id_experiencia.'-slider.jpg',
+						(int)$image_type['width'], (int)$image_type['height']
+					);
+				}
+			}		
+		}
+		
+		
 		return $ret;
 	}
 	 
@@ -228,6 +252,10 @@ class AdminExperiencesController extends ModuleAdminController
 		$image2 = $this->upload.$obj->id.'-home.jpg';
 		$image_url2 = ImageManager::thumbnail($image2, $this->table.'_'.(int)$obj->id.'-home.'.$this->imageType, 150,$this->imageType, true, true);
 		$image_size2 = file_exists($image2) ? filesize($image2) / 1000 : false;
+		
+		$image3 = $this->upload.$obj->id.'-slider.jpg';
+		$image_url3 = ImageManager::thumbnail($image3, $this->table.'_'.(int)$obj->id.'-slider.'.$this->imageType, 150,$this->imageType, true, true);
+		$image_size3 = file_exists($image3) ? filesize($image3) / 1000 : false;
 		
 
 		$this->fields_form = array(
@@ -276,9 +304,18 @@ class AdminExperiencesController extends ModuleAdminController
 					'required' => true,
 					'hint' => $this->l('Selecione una imagen formato jpg:'),
 					'display_image' => true,
-					'class'		=> 'experiences-pointer',
 					'image' => $image_url2 ? $image_url2 : false,
 				),						
+				
+				array(
+					'type' => 'file',
+					'label' => $this->l('Imagen slider'),
+					'name' => 'image3',
+					'required' => true,
+					'hint' => $this->l('Selecione una imagen formato jpg:'),
+					'display_image' => true,
+					'image' => $image_url3 ? $image_url3 : false,
+				),	
 				
 				array(
 					'type' => 'text',
@@ -354,6 +391,11 @@ class AdminExperiencesController extends ModuleAdminController
 		$this->fields_value['image2'] = array(
 			'image' => $this->upload.$obj->id.'-home.jpg',
 			'size' => $image2 ? filesize($this->upload.$obj->id.'-home.jpg') / 1024 : false
+		);	
+		
+		$this->fields_value['image3'] = array(
+			'image' => $this->upload.$obj->id.'-slider.jpg',
+			'size' => $image3 ? filesize($this->upload.$obj->id.'-slider.jpg') / 1024 : false
 		);	
 		
 	return parent::renderForm(); 

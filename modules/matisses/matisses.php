@@ -419,7 +419,6 @@ class matisses extends Module
 	
 	public function hookdisplayCustomerAccount($params)
 	{
-		
 		return $this->display(__FILE__, 'views/templates/hook/garantias.tpl');
 	}
 	
