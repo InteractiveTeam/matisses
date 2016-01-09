@@ -16,7 +16,7 @@ class AdminExperiencesController extends ModuleAdminController
 		$this->explicitSelect 	= true;
 		$this->_defaultOrderBy 	= 'position';
 		$this->allow_export 	= false;
-		$this->token 			= Tools::getAdminTokenLite(Tools::getValue('controller'));
+		$this->token 			= Tools::getAdminTokenLite('adminExperiences');
 		$this->imageType 		= 'jpg';
 		$this->upload			= _PS_IMG_DIR_.'experiences/';
 		

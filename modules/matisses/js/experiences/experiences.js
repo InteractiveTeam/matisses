@@ -23,6 +23,7 @@ $(document).ready(function(e) {
 					'left': $('#experiences-points #coordinates-left').val(),
 					'top': $('#experiences-points #coordinates-top').val(),
 					'market': $('#experiences-points #market').val(),
+					'orientation': $('#experiences-points #orientation').val(),
 					'status': $('#experiences-points #status').val(),
 					'product': $('#experiences-points #product').val(),
 					'poid': $('#experiences-points #poid').val(),
