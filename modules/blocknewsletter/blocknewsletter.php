@@ -695,7 +695,9 @@ class Blocknewsletter extends Module
 
 	protected function _prepareHook($params)
 	{
-		if (Tools::isSubmit('submitNewsletter'))
+		
+
+		if (Tools::getValue('email'))
 		{
 			$this->newsletterRegistration();
 			if ($this->error)
@@ -703,7 +705,7 @@ class Blocknewsletter extends Module
 				$this->smarty->assign(
 					array(
 						'color' => 'red',
-						'msg' => $this->error,
+						'msgerror' => $this->error,
 						'nw_value' => isset($_POST['email']) ? pSQL($_POST['email']) : false,
 						'nw_error' => true,
 						'action' => $_POST['action']

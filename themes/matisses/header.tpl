@@ -182,6 +182,28 @@
 
 {if isset($left_column_size) && !empty($left_column_size) && ($page_name != 'module-news-new')}
 	<div class="container">
+    
+    {if $page_name =='category'}
+    <div class="row">
+    <div id="offers" class="offers-products">
+		<div class="container">
+			<div class="btn-title cf">
+				<h1><a href="#">{l s='Usted ha visitado'}</a></h1>
+				<div class="btn-view-products">
+					<a href="#" title="Ver todos los destacados" class="btn btn-default button button-small">Ver todos</a>
+				</div>
+			</div>
+			<div class="info">
+				<img src="../../themes/matisses/img/destacados.jpg" alt="destacados">
+				<div class="mask">
+					<h1>Espacio para Chaordic</h1>
+				</div>
+			</div>
+		</div>
+    </div> 
+    </div>
+    {/if}
+    
 
 		<div id="left_column" class="column grid_{$left_column_size|intval}">{$HOOK_LEFT_COLUMN}</div>
 {/if}

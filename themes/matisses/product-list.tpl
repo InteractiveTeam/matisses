@@ -40,13 +40,14 @@
 	<!-- Products list -->
 	<div{if isset($id) && $id} id="{$id}"{/if} class="{if $page_name != 'index'}category_list {/if} product_list grid row{if isset($class) && $class} {$class}{/if}">
 	<div class="inner-product-list" itemscope itemtype="http://schema.org/ItemList">
-	{foreach from=$products item=product name=products}
+    {foreach from=$products item=product name=products}
 		{math equation="(total%perLine)" total=$smarty.foreach.products.total perLine=$nbItemsPerLine assign=totModulo}
 		{math equation="(total%perLineT)" total=$smarty.foreach.products.total perLineT=$nbItemsPerLineTablet assign=totModuloTablet}
 		{math equation="(total%perLineT)" total=$smarty.foreach.products.total perLineT=$nbItemsPerLineMobile assign=totModuloMobile}
 		{if $totModulo == 0}{assign var='totModulo' value=$nbItemsPerLine}{/if}
 		{if $totModuloTablet == 0}{assign var='totModuloTablet' value=$nbItemsPerLineTablet}{/if}
 		{if $totModuloMobile == 0}{assign var='totModuloMobile' value=$nbItemsPerLineMobile}{/if}
+        
 		<div itemscope itemprop="itemListElement" itemtype="http://schema.org/Product" class="ajax_block_product{if $page_name == 'index' || $page_name == 'product'} col-xs-12 col-sm-4 col-md-3{else} col-xs-6 col-sm-6 col-lg-4 {/if}{if $smarty.foreach.products.iteration%$nbItemsPerLine == 0} last-in-line{elseif $smarty.foreach.products.iteration%$nbItemsPerLine == 1} first-in-line{/if}{if $smarty.foreach.products.iteration > ($smarty.foreach.products.total - $totModulo)} last-line{/if}{if $smarty.foreach.products.iteration%$nbItemsPerLineTablet == 0} last-item-of-tablet-line{elseif $smarty.foreach.products.iteration%$nbItemsPerLineTablet == 1} first-item-of-tablet-line{/if}{if $smarty.foreach.products.iteration%$nbItemsPerLineMobile == 0} last-item-of-mobile-line{elseif $smarty.foreach.products.iteration%$nbItemsPerLineMobile == 1} first-item-of-mobile-line{/if}{if $smarty.foreach.products.iteration > ($smarty.foreach.products.total - $totModuloMobile)} last-mobile-line{/if}">
 			<div class="product-container">
 				<div class="left-block">
@@ -128,9 +129,7 @@
 							</div>
 						{/if}
 					</div>
-					{if isset($product.color_list)}
-						<div class="color-list-container">{$product.color_list}</div>
-					{/if}
+
 					<div class="product-flags">
 						{if (!$PS_CATALOG_MODE AND ((isset($product.show_price) && $product.show_price) || (isset($product.available_for_order) && $product.available_for_order)))}
 							{if isset($product.online_only) && $product.online_only}
@@ -162,11 +161,16 @@
 								{/if}
 						{/if}
 						<div class="button-container clearfix">
+                        	<a class="btn btn-default showmore" href="{$product.link|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Descubre más'}" data-id-product="{$product.id_product|intval}">
+								<span>{l s='Descubre más'}</span>
+							</a>
+                        
 							{if ($product.id_product_attribute == 0 || (isset($add_prod_display) && ($add_prod_display == 1))) && $product.available_for_order && !isset($restricted_country_mode) && $product.minimal_quantity <= 1 && $product.customizable != 2 && !$PS_CATALOG_MODE}
 								{if (!isset($product.customization_required) || !$product.customization_required) && ($product.allow_oosp || $product.quantity > 0)}
 									{if isset($static_token)}
-										<a class=" btn btn_border ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, "add=1&amp;id_product={$product.id_product|intval}&amp;token={$static_token}", false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}">
-											<span>{l s='Add to cart'}</span>
+										<a class=" btn btn-default
+buy-now ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, "add=1&amp;id_product={$product.id_product|intval}&amp;token={$static_token}", false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}">
+											<span>{l s='Comprar ahora'}</span>
 										</a>
 									{else}
 										<a class=" btn btn_border ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, 'add=1&amp;id_product={$product.id_product|intval}', false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}">
@@ -180,12 +184,17 @@
 								{/if}
 							{/if}
 						</div>
+                        {if isset($product.color_list)}
+                            <div class="color-list-container">{$product.color_list}</div>
+                        {/if}
+                        {if false}
 						<div class="share_product">
 							<a data-target="https://plus.google.com/share?url=[{$product.link|escape:'html':'UTF-8'}]" class="btn_google" target="_blank"><i class="fa fa-google-plus"></i></a>
 							<a data-target="http://www.linkedin.com/shareArticle?mini=true&amp;url={$product.link|escape:'html':'UTF-8'}&amp;title={$product.name|escape:'html':'UTF-8'}&amp;source={$base_dir}" class="btn_in" target="_blank"> <i class="fa fa-linkedin" ></i></a>
 							<a data-target="http://twitter.com/home?status={$product.name|escape:'html':'UTF-8'} + {$product.link|escape:'html':'UTF-8'}" class="btn_twitter" target="_blank"><i class="fa fa-twitter"></i></a>
 							<a data-target="http://www.facebook.com/sharer.php?u={$product.link|escape:'html':'UTF-8'}&amp;t={$product.name|escape:'html':'UTF-8'}" class="btn_facebook" target="_blank"><i class="fa fa-facebook"></i></a>
 						</div>
+                        {/if}
 					</div>
 			</div><!-- .product-container> -->
 

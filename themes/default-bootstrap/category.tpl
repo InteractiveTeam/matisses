@@ -24,6 +24,22 @@
 *}
 {include file="$tpl_dir./errors.tpl"}
 {if isset($category)}
+    <div id="offers" class="offers-products">
+		<div class="container">
+			<div class="btn-title cf">
+				<h1><a href="#">{l s='Usted ha visitado'}</a></h1>
+				<div class="btn-view-products">
+					<a href="#" title="Ver todos los destacados" class="btn btn-default button button-small">Ver todos</a>
+				</div>
+			</div>
+			<div class="info">
+				<img src="../../themes/matisses/img/destacados.jpg" alt="destacados">
+				<div class="mask">
+					<h1>Espacio para Chaordic</h1>
+				</div>
+			</div>
+		</div>
+    </div> 
 	{if $category->id AND $category->active}
     	{if $scenes || $category->description || $category->id_image}
 			<div class="content_scene_cat">
@@ -119,4 +135,7 @@
 	{elseif $category->id}
 		<p class="alert alert-warning">{l s='This category is currently unavailable.'}</p>
 	{/if}
+
+
+    
 {/if}

@@ -667,9 +667,12 @@ class News extends Module {
 			//echo "<pre>"; print_r( $news); echo "</pre>";
 
                 if ($news) {
+					$cont = 0;
                     foreach ($news AS $new) {
                         $obj = (object) 'News';
                         $obj->id_cat = (int) ($catObj->id);
+						$cat = current($this->getCats((int) ($catObj->id), $id_lang));
+						$obj->cat_name = $cat->title;
                         $obj->cat_rewrite = $this->getCatRewrite((int) ($catObj->id), $id_lang);
                         $obj->id_news = (int) ($new['id_news']);
 						$obj->autor = $new['autor'];
@@ -677,13 +680,15 @@ class News extends Module {
                         $obj->title = $trads[$id_lang]['title'];
                         $obj->rewrite = Tools::str2url($trads[$id_lang]['title']);
                         $obj->new = strip_tags($trads[$id_lang]['new']);
-                       // $obj->date = ($new['date'] > 0 ? ( $this->_months[date('n', $new['date'])] . ' ' . date('j', $new['date']) . ', ' . date('Y', $new['date']) ) : '');
+                        $obj->date = ($new['date'] > 0 ? ( $this->_months[date('n', $new['date'])] . ' ' . date('j', $new['date']) . ', ' . date('Y', $new['date']) ) : '');
+						/*
 						$date['year'] = date('Y',$new['date']);
 						$date['month'] = date('M',$new['date']);
 						$date['day'] = date('d',$new['date']);
 						
 						$obj->date = '<span>'.$date['day'].'</span><p>'.$date['month'].'</p><p>'.$date['year'].'</p>';
-                        $obj->img = '';
+                        */
+						$obj->img = '';
                         // get images
                         $img = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS('
                         SELECT * FROM ' . _DB_PREFIX_ . 'news_imgs a
@@ -696,12 +701,20 @@ class News extends Module {
 						
                         if (isset($img[0]['id_img'])) {
                             if (intval($img[0]['id_img']) > 0) {
-                                if (file_exists($this->path_to_module . '/imgs/' . $img[0]['id_img'] . '-home.' . $this->_imageType)) {
-                                    $obj->img = $this->url_to_module . '/imgs/' . $img[0]['id_img'] . '-home.' . $this->_imageType;
-                                }
+								if($cont==0)
+								{
+										if (file_exists($this->path_to_module . '/imgs/' . $img[0]['id_img'] . '-home-destacado.' . $this->_imageType)) {
+											$obj->img = $this->url_to_module . '/imgs/' . $img[0]['id_img'] . '-home-destacado.' . $this->_imageType;
+										}                                
+								}else{
+										if (file_exists($this->path_to_module . '/imgs/' . $img[0]['id_img'] . '-home.' . $this->_imageType)) {
+											$obj->img = $this->url_to_module . '/imgs/' . $img[0]['id_img'] . '-home.' . $this->_imageType;
+										}
+									 }
                             }
                         }
                         $newsObj[] = $obj;
+						$cont++;
                     }
                 }
                 $obj = '';

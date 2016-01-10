@@ -12,16 +12,13 @@
              <a href="{$link->getModuleLink('news', 'news', [] ,false)}" >{l s='News' mod='news'}</a>
              <a class="newsRss newsRssHome " href="{$link->getModuleLink('news', 'rss', ['rss_news'=>1] ,false)}" target="_blank"></a>
         </div> -->
-
-        <pre>{print_r($catsProductsObj[0][0])}</pre>
-
         <!--Inicio titulo sección-->
         {assign var='cats_position' value=1}
         <div class="btn-title cf grid_12 alpha omega">
-        {foreach from=$catsObj item='cats' name=myLoop}
+
             <h1>
                 <a href="#tabs-{$cats_position}">
-                 {$cats->title|truncate:50:'...'|escape:html:'UTF-8'}
+                 {$catsObj[0]->title|truncate:50:'...'|escape:html:'UTF-8'}
                 </a>
             </h1>
             <a class="blog-view-all button" href="{$link->getModuleLink('news', 'list',
@@ -33,8 +30,6 @@
                 ,false)}" alt="{l s='More' mod='news'}" class="newsHomeMore">
                 {l s='Ver todos los artículos' mod='news'}
             </a>
-        {assign var='cats_position' value=$cats_position+1}
-         {/foreach}
         </div>
         <!--Fin titulo sección-->
 
@@ -45,47 +40,75 @@
             <!--Columna izquierdo-->
             <div class="newsLeft news-home grid_5 alpha omega" >
                 <div class="img-article">
-                    <a href="#"><img src="#" ></a>
+                    <a href="{$link->getModuleLink('news', 'new',
+                     [
+                         'id_news'  => "{$catsProductsObj[0][0]->id_news}",
+                         'cat_news' => "{$catsProductsObj[0][0]->id_cat}",
+                         'page_cat'     => 0,
+                         'rewrite'  => "{$catsProductsObj[0][0]->rewrite}",
+                         'cat_rewrite'  => "{$catsProductsObj[0][0]->rewrite}"
+                     ]
+                     ,false)}"
+                     alt="{$catsProducts->title|escape:html:'UTF-8'}" class="newsHomeItem"  >
+                                             <img src="{$catsProductsObj[0][0]->img}" title="{$catsProductsObj[0][0]->title}" alt="{$catsProductsObj[0][0]->title}" ></a>
                 </div>
                 <div class="category">
-                    <span>Categoria 1</span>
+                    <span>{$catsProductsObj[0][0]->cat_name}</span>
                 </div>
                 <div class="newsHomeTitle">
-                    <h2>Titulo 1</h2>
+                    <h2>{$catsProductsObj[0][0]->title}</h2>
                 </div>
                 <div class="date-author cf">
-                    <span class="newsHomeDate">Fecha</span>
-                    <p class="newsHomeAutor">Autor</p>
+                    <span class="newsHomeDate">{$catsProductsObj[0][0]->date}</span>
+                    <p class="newsHomeAutor">{$catsProductsObj[0][0]->autor}</p>
                 </div>
                 <div class="newsHomeDescription">
-                    <p>Descripción</p>
+                    <p>{$catsProductsObj[0][0]->new|truncate:150:'...'|escape:html:'UTF-8'}</p>
                 </div>
 
             </div>
             <!--Fin columna izquierdo-->
-
+			
             <!--Columna derecha-->
             <div class="newsRight news-home grid_5 alpha omega">
+                {foreach from=$catsProductsObj[0] item='catsProducts' name=myLoop}
+ 				{$myLoop}
                 <div class="newsHomeContent grid_12 alpha omega">
+                {if $smarty.foreach.myLoop.first}
+                {else}
                     <div class="left-article grid_6 alpha">
-                        <a href="#"><img src="#" ></a>
+                        <a href="{$link->getModuleLink('news', 'new',
+                                             [
+                                                 'id_news'  => "{$catsProducts->id_news}",
+                                                 'cat_news' => "{$catsProducts->id_cat}",
+                                                 'page_cat'     => 0,
+                                                 'rewrite'  => "{$catsProducts->rewrite}",
+                                                 'cat_rewrite'  => "{$cat_rewrite}"
+                                             ]
+                                             ,false)}"
+                                             alt="{$catsProducts->title|escape:html:'UTF-8'}" class="newsHomeItem"  >
+                        
+                        
+                        <img src="{$catsProducts->img}" title="{$catsProducts->title}" alt="{$catsProducts->title}"></a>
                     </div>
                     <div class="right-article grid_6 omega">
                         <div class="category">
-                            <span>Categoria 1</span>
+                            <span>{$catsProducts->cat_name}</span>
                         </div>
                         <div class="newsHomeTitle">
-                            <h2>Titulo 2</h2>
+                            <h2>{$catsProducts->title|escape:html:'UTF-8'}</h2>
                         </div>
                         <div class="date-author cf">
-                            <span class="newsHomeDate">Fecha</span>
-                            <p class="newsHomeAutor">Autor</p>
+                            <span class="newsHomeDate">{$catsProducts->date}</span>
+                            <p class="newsHomeAutor">{$catsProducts->autor}</p>
                         </div>
                         <div class="newsHomeDescription">
-                            <p>Descripción</p>
+                            <p>{$catsProducts->new|truncate:250:'...'|escape:html:'UTF-8'}</p>
                         </div>
                     </div>
                 </div>
+                {/if}
+                {/foreach}
             </div>
             <!--Columna derecha-->
 

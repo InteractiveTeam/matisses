@@ -117,7 +117,11 @@ buy-now ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, "
 								{/if}
 							{/if}
 						</div>
+                        <div class="product-colors">
+                        	{include file="$tpl_dir./product-list-colors.tpl"}
+                        </div>
                         {if false}
+                        
 						<div class="share_product">
 							<a data-target="https://plus.google.com/share?url=[{$product.link|escape:'html':'UTF-8'}]" class="btn_google" target="_blank"><i class="fa fa-google-plus"></i></a>
 							<a data-target="http://www.linkedin.com/shareArticle?mini=true&amp;url={$product.link|escape:'html':'UTF-8'}&amp;title={$product.name|escape:'html':'UTF-8'}&amp;source={$base_dir}" class="btn_in" target="_blank"> <i class="fa fa-linkedin" ></i></a>

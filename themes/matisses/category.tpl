@@ -24,6 +24,7 @@
 *}
 {include file="$tpl_dir./errors.tpl"}
 {if isset($category)}
+
 	{if $category->id AND $category->active}
 		{if $scenes || $category->description || $category->id_image}
 			<div class="content_scene_cat">
@@ -100,7 +101,7 @@
 		<div class="slider_container clearfix">
 		{hook h="underList"}
 		</div>
-		{if $products}
+		{if $products && !$subcategories}
 			<div class="content_sortPagiBar clearfix">
 				<div class="sortPagiBar clearfix">
 					{include file="./product-compare.tpl"}
@@ -126,4 +127,7 @@
 	{elseif $category->id}
 		<p class="alert alert-warning">{l s='This category is currently unavailable.'}</p>
 	{/if}
+
+
+    
 {/if}
