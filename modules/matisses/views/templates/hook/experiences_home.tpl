@@ -17,7 +17,7 @@
                            {assign var=params value=['id_experiencia' => $experience.id_experience]}
                            <div class="img-container">
         						<a href="{$link->getModuleLink('matisses','experiences',$params,true)}">
-								    <img src="{$base_url}{$experience.image}" alt="">
+								    <img src="{$link->getImageLink($experience.id_experience|cat:'-home','img/experiences')}" alt="">
                                 </a>
                             </div>
 								<figcaption class="cf">

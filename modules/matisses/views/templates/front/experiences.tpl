@@ -8,7 +8,7 @@
         {if $experience->products}
         
         	{foreach from=$experience->products item=pointer}
-            	<div class="pointer {$pointer.market}" style="top:{$pointer.top}%;left:{$pointer.left}%">
+            	<div class="pointer {$pointer.market}-{$pointer.orientation}" style="top:{$pointer.top}%;left:{$pointer.left}%">
                 	<div class="pointer-detail">
                         <div class="pointer-detail-left">
                             <h3>{$pointer.name}</h3>
@@ -45,8 +45,8 @@
 		<li class="col-md-4">
         	{assign var=params value=['id_experiencia' => $exp.id_experience]}
         	<a href="{$link->getModuleLink('matisses','experiences',$params,true)}">
-            <img src="{$link->getImageLink($exp.id_experience,'img/experiences','slider')}" class="img-responsive"> 
-        	<h3>{$exp.name}</h3>
+            <img src="{$link->getImageLink($exp.id_experience|cat:'-slider','img/experiences')}" class="img-responsive"> 
+        	<h3>{$exp.name}</h3> 
         	</a>
         </li>
      {/foreach}   

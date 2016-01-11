@@ -21,13 +21,23 @@
 	background-repeat:no-repeat;
 }
 
-div.white{
+
+div.black-left {
+	background-image:url(../../img/experience-black-left.png);
+}
+
+div.black-right {
+	background-image:url(../../img/experience-black.png);
+}
+
+div.white-left {
+	background-image:url(../../img/experience-white-left.png);
+}
+
+div.white-right {
 	background-image:url(../../img/experience-white.png);
 }
 
-div.black{
-	background-image:url(../../img/experience-black.png);
-}
 
 .fancybox-inner{
 	overflow:hidden !important;

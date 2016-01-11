@@ -415,6 +415,7 @@ class AdminExperiencesController extends ModuleAdminController
 	
 	public function ajaxProcessexperienceAddProduct()
 	{
+
 		if(!$_REQUEST['data']['product'])
 			$this->errors[] = Module::displayError('Add a valid product');
 			
@@ -449,7 +450,8 @@ class AdminExperiencesController extends ModuleAdminController
 				$response[$poid]['product'] 		= $product;
 				$response[$poid]['left'] 			= $_REQUEST['data']['left'];
 				$response[$poid]['top'] 			= $_REQUEST['data']['top']; 
-				$response[$poid]['market'] 			= $_REQUEST['data']['market']; 	
+				$response[$poid]['market'] 			= $_REQUEST['data']['market'];
+				$response[$poid]['orientation'] 		= $_REQUEST['data']['orientation']; 	
 				$response[$poid]['status'] 			= $_REQUEST['data']['status']; 	
 					
 				if($_REQUEST['data']['pointers'])
@@ -458,6 +460,7 @@ class AdminExperiencesController extends ModuleAdminController
 				$key = sizeof($pointers);
 
 				$pointers[$key]['market'] 		= $response[$poid]['market'];
+				$pointers[$key]['orientation'] 	= $response[$poid]['orientation'];
 				$pointers[$key]['left'] 		= $response[$poid]['left'];
 				$pointers[$key]['top'] 			= $response[$poid]['top'];
 				$pointers[$key]['id_product'] 	= $product['id_product'];
@@ -465,7 +468,7 @@ class AdminExperiencesController extends ModuleAdminController
 				$pointers[$key]['id_product_attribute'] 	= $product['id_product_attribute'];
 				$pointers[$key]['status'] 		= $_REQUEST['data']['status'];
 
-				$response['pointer'] = '<div class="experience-pointer '.$response[$poid]['market'].'" style="left:'.$response[$poid]['left'].'%; top:'.$response[$poid]['top'].'%;"></div>';	 
+				$response['pointer'] = '<div class="experience-pointer '.$response[$poid]['market'].'-'.$response[$poid]['orientation'].'" style="left:'.$response[$poid]['left'].'%; top:'.$response[$poid]['top'].'%;"></div>';	 
 				$response['configurations'] = json_encode($pointers);	 
 				$response['update'] = $response;
 			}else{

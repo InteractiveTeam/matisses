@@ -9,7 +9,7 @@ $(document).ready(function(e) {
 	  {
 		  products = JSON.parse(products)
 		  $(products).each(function(index, element) {
-           	$('#image-images-thumbnails').prepend('<div class="experience-pointer '+element.market+'" style="left:'+element.left+'%; top:'+element.top+'%;"></div>');
+           	$('#image-images-thumbnails').prepend('<div class="experience-pointer '+element.market+'-'+element.orientation+'" style="left:'+element.left+'%; top:'+element.top+'%;"></div>');
           });
 	  }
 	
