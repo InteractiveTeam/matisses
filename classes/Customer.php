@@ -143,6 +143,11 @@ class CustomerCore extends ObjectModel
 	public $id_guest;
 
 	public $groupBox;
+	
+	public $medio;
+	public $terms;
+	public $tratamiento;
+	
 
 	protected $webserviceParameters = array(
 		'fields' => array(
@@ -202,6 +207,10 @@ class CustomerCore extends ObjectModel
 			'id_lang' => 					array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId', 'copy_post' => false),
 			'date_add' => 					array('type' => self::TYPE_DATE, 'validate' => 'isDate', 'copy_post' => false),
 			'date_upd' => 					array('type' => self::TYPE_DATE, 'validate' => 'isDate', 'copy_post' => false),
+			
+			'medio' => 					array('type' => self::TYPE_STRING, 'validate' => 'isGenericName'),
+			'terms' => 					array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
+			'tratamiento' => 			array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
 		),
 	);
 

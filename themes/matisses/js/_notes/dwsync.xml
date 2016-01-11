@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="authentication.js" server="192.168.3.45" local="130922747375821436" remote="130895995200000000" Dst="0" />
-<file name="bootstrap.min.js" server="192.168.3.45" local="130922747396512098" remote="130895995200000000" Dst="0" />
-<file name="cart-summary.js" server="192.168.3.45" local="130922747402021822" remote="130895995200000000" Dst="0" />
-<file name="category.js" server="192.168.3.45" local="130922747402070671" remote="130895995200000000" Dst="0" />
-<file name="cms.js" server="192.168.3.45" local="130922747402637267" remote="130895995200000000" Dst="0" />
-<file name="contact-form.js" server="192.168.3.45" local="130922747410598974" remote="130895995200000000" Dst="0" />
-<file name="global.js" server="192.168.3.45" local="130922747424676056" remote="130895995200000000" Dst="0" />
-<file name="history.js" server="192.168.3.45" local="130922747426160935" remote="130895995200000000" Dst="0" />
-<file name="index.js" server="192.168.3.45" local="130922747427342995" remote="130895995200000000" Dst="0" />
-<file name="index.php" server="192.168.3.45" local="130922747435490307" remote="130895995200000000" Dst="0" />
-<file name="order-address.js" server="192.168.3.45" local="130922747620094655" remote="130895995200000000" Dst="0" />
-<file name="order-carrier.js" server="192.168.3.45" local="130922747620807785" remote="130895995200000000" Dst="0" />
-<file name="order-opc.js" server="192.168.3.45" local="130922747628662047" remote="130895995200000000" Dst="0" />
-<file name="product.js" server="192.168.3.45" local="130922747628662047" remote="130895995200000000" Dst="0" />
-<file name="products-comparison.js" server="192.168.3.45" local="130922747633126453" remote="130895995200000000" Dst="0" />
-<file name="scenes.js" server="192.168.3.45" local="130922747642690280" remote="130895995200000000" Dst="0" />
-<file name="stores.js" server="192.168.3.45" local="130922747642700054" remote="130895995200000000" Dst="0" />
+<file name="authentication.js" server="192.168.3.45" local="130964112121252565" remote="130968973200000000" Dst="0" />
+<file name="bootstrap.min.js" server="192.168.3.45" local="130964112122112831" remote="130968973200000000" Dst="0" />
+<file name="cart-summary.js" server="192.168.3.45" local="130964112122232840" remote="130968973200000000" Dst="0" />
+<file name="category.js" server="192.168.3.45" local="130964112122282834" remote="130968973200000000" Dst="0" />
+<file name="cms.js" server="192.168.3.45" local="130964112122342824" remote="130968973200000000" Dst="0" />
+<file name="contact-form.js" server="192.168.3.45" local="130964112122402853" remote="130968973200000000" Dst="0" />
+<file name="global.js" server="192.168.3.45" local="130964112122703045" remote="130968973200000000" Dst="0" />
+<file name="history.js" server="192.168.3.45" local="130964112122772994" remote="130968973200000000" Dst="0" />
+<file name="index.js" server="192.168.3.45" local="130964112122812973" remote="130968973200000000" Dst="0" />
+<file name="index.php" server="192.168.3.45" local="130964112122832991" remote="130968973200000000" Dst="0" />
+<file name="order-address.js" server="192.168.3.45" local="130964112128664350" remote="130968973200000000" Dst="0" />
+<file name="order-carrier.js" server="192.168.3.45" local="130964112128714350" remote="130968973200000000" Dst="0" />
+<file name="order-opc.js" server="192.168.3.45" local="130964112128834346" remote="130968973200000000" Dst="0" />
+<file name="product.js" server="192.168.3.45" local="130965885807090588" remote="130968973200000000" Dst="0" />
+<file name="products-comparison.js" server="192.168.3.45" local="130964112129034362" remote="130968973200000000" Dst="0" />
+<file name="scenes.js" server="192.168.3.45" local="130964112129094349" remote="130968973200000000" Dst="0" />
+<file name="stores.js" server="192.168.3.45" local="130964112129164426" remote="130968973200000000" Dst="0" />
 <file name="global.js" server="C:/xampp/htdocs/matisses/" local="130933849046010723" remote="130933849040000000" Dst="0" />
 <file name="product.js" server="C:/xampp/htdocs/matisses/" local="130965777504919910" remote="130965777500000000" Dst="0" />
 </dwsync>

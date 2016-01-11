@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="addresses.scss" server="192.168.3.45" local="130922745443724019" remote="130700916000000000" Dst="0" />
-<file name="authentication.scss" server="192.168.3.45" local="130922745446478859" remote="130700916000000000" Dst="0" />
-<file name="_bootstrap.scss" server="192.168.3.45" local="130922745561147043" remote="130700916000000000" Dst="0" />
-<file name="category.scss" server="192.168.3.45" local="130922745562973836" remote="130700916000000000" Dst="0" />
-<file name="cms.scss" server="192.168.3.45" local="130922745562973836" remote="130700916000000000" Dst="0" />
-<file name="comparator.scss" server="192.168.3.45" local="130922745567037751" remote="130700916000000000" Dst="0" />
-<file name="contact-form.scss" server="192.168.3.45" local="130922745567047501" remote="130700916000000000" Dst="0" />
-<file name="history.scss" server="192.168.3.45" local="130922745591440698" remote="130700916000000000" Dst="0" />
-<file name="global.scss" server="192.168.3.45" local="130922745592095219" remote="130700916000000000" Dst="0" />
-<file name="_icons.sass" server="192.168.3.45" local="130922745594566783" remote="130700916000000000" Dst="0" />
-<file name="index.php" server="192.168.3.45" local="130922745595856278" remote="130700916000000000" Dst="0" />
-<file name="maintenance.scss" server="192.168.3.45" local="130922745596452190" remote="130700916000000000" Dst="0" />
-<file name="my-account.scss" server="192.168.3.45" local="130922745771521903" remote="130700916000000000" Dst="0" />
-<file name="order-opc.scss" server="192.168.3.45" local="130922745771766132" remote="130700916000000000" Dst="0" />
-<file name="print.scss" server="192.168.3.45" local="130922745775957016" remote="130700916000000000" Dst="0" />
-<file name="product_list.scss" server="192.168.3.45" local="130922745776670155" remote="130700916000000000" Dst="0" />
-<file name="product.scss" server="192.168.3.45" local="130922745777217213" remote="130700916000000000" Dst="0" />
-<file name="rtl.scss" server="192.168.3.45" local="130922745780157673" remote="130700916000000000" Dst="0" />
-<file name="scenes.scss" server="192.168.3.45" local="130922745781144368" remote="130700916000000000" Dst="0" />
-<file name="sitemap.scss" server="192.168.3.45" local="130922745781163920" remote="130700916000000000" Dst="0" />
-<file name="stores.scss" server="192.168.3.45" local="130922745784827251" remote="130700916000000000" Dst="0" />
-<file name="_theme_variables.scss" server="192.168.3.45" local="130922745785374318" remote="130700916000000000" Dst="0" />
+<file name="addresses.scss" server="192.168.3.45" local="130964112084284508" remote="130968967200000000" Dst="0" />
+<file name="authentication.scss" server="192.168.3.45" local="130964112084324510" remote="130968967200000000" Dst="0" />
+<file name="_bootstrap.scss" server="192.168.3.45" local="130964112084094497" remote="130968967200000000" Dst="0" />
+<file name="category.scss" server="192.168.3.45" local="130964112086890052" remote="130968967200000000" Dst="0" />
+<file name="cms.scss" server="192.168.3.45" local="130964112086940136" remote="130968967200000000" Dst="0" />
+<file name="comparator.scss" server="192.168.3.45" local="130964112086985132" remote="130968967200000000" Dst="0" />
+<file name="contact-form.scss" server="192.168.3.45" local="130964112087035182" remote="130968967200000000" Dst="0" />
+<file name="history.scss" server="192.168.3.45" local="130964112087775145" remote="130968967200000000" Dst="0" />
+<file name="global.scss" server="192.168.3.45" local="130964112087735159" remote="130968967200000000" Dst="0" />
+<file name="_icons.sass" server="192.168.3.45" local="130964112084144498" remote="130968967200000000" Dst="0" />
+<file name="index.php" server="192.168.3.45" local="130964112087785163" remote="130968967200000000" Dst="0" />
+<file name="maintenance.scss" server="192.168.3.45" local="130964112087840225" remote="130968967200000000" Dst="0" />
+<file name="my-account.scss" server="192.168.3.45" local="130964112090755802" remote="130968967200000000" Dst="0" />
+<file name="order-opc.scss" server="192.168.3.45" local="130964112090805872" remote="130968967200000000" Dst="0" />
+<file name="print.scss" server="192.168.3.45" local="130964112090860867" remote="130968967200000000" Dst="0" />
+<file name="product_list.scss" server="192.168.3.45" local="130964112090985953" remote="130968967200000000" Dst="0" />
+<file name="product.scss" server="192.168.3.45" local="130964112090915889" remote="130968967200000000" Dst="0" />
+<file name="rtl.scss" server="192.168.3.45" local="130964112091025945" remote="130968967200000000" Dst="0" />
+<file name="scenes.scss" server="192.168.3.45" local="130964112091065947" remote="130968967200000000" Dst="0" />
+<file name="sitemap.scss" server="192.168.3.45" local="130964112091115954" remote="130968967200000000" Dst="0" />
+<file name="stores.scss" server="192.168.3.45" local="130964112091155979" remote="130968967200000000" Dst="0" />
+<file name="_theme_variables.scss" server="192.168.3.45" local="130964112084244509" remote="130968967200000000" Dst="0" />
 </dwsync>

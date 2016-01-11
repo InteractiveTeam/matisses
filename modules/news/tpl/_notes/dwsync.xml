@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="news_sides.tpl" server="192.168.3.45" local="130896873000000000" remote="130896873000000000" Dst="0" />
-<file name="news_home.tpl" server="192.168.3.45" local="130896873000000000" remote="130896873000000000" Dst="0" />
+<file name="news_sides.tpl" server="192.168.3.45" local="130964111997854775" remote="130968964200000000" Dst="0" />
+<file name="news_home.tpl" server="192.168.3.45" local="130968754259006057" remote="130968964200000000" Dst="0" />
 <file name="news_home.tpl" server="C:/xampp/htdocs/matisses/" local="130966832568590111" remote="130966832560000000" Dst="0" />
 <file name="news_list.tpl" server="C:/xampp/htdocs/matisses/" local="130959786149955010" remote="130959786140000000" Dst="0" />
+<file name="news_list.tpl" server="192.168.3.45" local="130967396217475277" remote="130968963600000000" Dst="0" />
 </dwsync>

@@ -97,6 +97,7 @@ class AdminCustomersControllerCore extends AdminController
 			'firstname' => array(
 				'title' => $this->l('First name')
 			),
+			
 			'lastname' => array(
 				'title' => $this->l('Last name')
 			),
@@ -362,6 +363,8 @@ class AdminCustomersControllerCore extends AdminController
 					'required' => true,
 					'autocomplete' => false
 				),
+				
+				
 				array(
 					'type' => 'password',
 					'label' => $this->l('Password'),
@@ -381,6 +384,70 @@ class AdminCustomersControllerCore extends AdminController
 						'years' => $years
 					)
 				),
+				
+				array(
+					'type' => 'text',
+					'label' => $this->l('Cedula'),
+					'name' => 'charter',
+					'col' => '4',
+					'required' => true,
+					'autocomplete' => false
+				),
+				
+				array(
+					'type' => 'text',
+					'label' => $this->l('Medio de contacto'),
+					'name' => 'medio',
+					'col' => '4',
+					'required' => true,
+					'autocomplete' => false
+				),				
+				
+				array(
+					'type' => 'switch',
+					'label' => $this->l('Politicas de tratamiento'),
+					'name' => 'tratamiento',
+					'required' => false,
+					'class' => 't',
+					'is_bool' => true,
+					'values' => array(
+						array(
+							'id' => 'active_on',
+							'value' => 1,
+							'label' => $this->l('Enabled')
+						),
+						array(
+							'id' => 'active_off',
+							'value' => 0,
+							'label' => $this->l('Disabled')
+						)
+					),
+					'hint' => $this->l('Enable or disable customer login.')
+				),				
+				
+				array(
+					'type' => 'switch',
+					'label' => $this->l('Terminos y condiciones'),
+					'name' => 'terms',
+					'required' => false,
+					'class' => 't',
+					'is_bool' => true,
+					'values' => array(
+						array(
+							'id' => 'active_on',
+							'value' => 1,
+							'label' => $this->l('Enabled')
+						),
+						array(
+							'id' => 'active_off',
+							'value' => 0,
+							'label' => $this->l('Disabled')
+						)
+					),
+					'hint' => $this->l('Enable or disable customer login.')
+				),
+				
+				
 				array(
 					'type' => 'switch',
 					'label' => $this->l('Enabled'),

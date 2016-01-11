@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="index.php" server="192.168.3.45" local="130922748211351865" remote="130895995200000000" Dst="0" />
-<file name="infos.tpl" server="192.168.3.45" local="130922748212035693" remote="130895995200000000" Dst="0" />
-<file name="payment_return.tpl" server="192.168.3.45" local="130922748216539198" remote="130895995200000000" Dst="0" />
-<file name="payment.tpl" server="192.168.3.45" local="130922748216627114" remote="130895995200000000" Dst="0" />
+<file name="index.php" server="192.168.3.45" local="130964112175007565" remote="130968974400000000" Dst="0" />
+<file name="infos.tpl" server="192.168.3.45" local="130964112175067568" remote="130968974400000000" Dst="0" />
+<file name="payment_return.tpl" server="192.168.3.45" local="130964112175177584" remote="130968974400000000" Dst="0" />
+<file name="payment.tpl" server="192.168.3.45" local="130964112175117578" remote="130968974400000000" Dst="0" />
 </dwsync>

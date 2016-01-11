@@ -372,12 +372,36 @@ class AuthControllerCore extends FrontController
 		Hook::exec('actionBeforeSubmitAccount');
 		$this->create_account = true;
 		
-		if ((Tools::getValue('passwd') != Tools::getValue('passwd2')) || (!(Tools::getValue('passwd')) || !(Tools::getValue('passwd2'))))
-			$this->errors[] = sprintf(Tools::displayError('The %s do not match'),'<b>'.Tools::displayError('Passwords').'</b>');
+
+		if (!Tools::getValue('medio'))
+			$this->errors[] = Tools::displayError('Debes seleccionar el medio por el cual deseas ser contactado');
+			
+		if (!Tools::getValue('terms'))
+			$this->errors[] = sprintf(Tools::displayError('Debes aceptar nuestros %s'),'<b>'.Tools::displayError('terminos y condiciones').'</b>');	
+		
+		if (!Tools::getValue('tratamiento'))
+			$this->errors[] = sprintf(Tools::displayError('Debes aceptar nuestros %s'),'<b>'.Tools::displayError('terminos y políticas de tratamiento de datos').'</b>');		
+		
+		
+		if(Tools::getValue('passwd') && !Tools::getValue('passwd2'))
+			$this->errors[] = sprintf(Tools::displayError('Debes confirmar tu %s'),'<b>'.Tools::displayError('Contraseña').'</b>');
+		
+		
+		if(Tools::getValue('passwd') && Tools::getValue('passwd2'))
+		{
+			if (Tools::getValue('passwd') != Tools::getValue('passwd2'))
+				$this->errors[] = sprintf(Tools::displayError('The %s do not match'),'<b>'.Tools::displayError('Passwords').'</b>');
+		}
 
 		if(!is_numeric(Tools::getValue('charter')))
 			$this->errors[] = sprintf(Tools::displayError('The %s is not valid'),'<b>'.Tools::displayError('Charter').'</b>');
 		
+		if(Tools::getValue('charter'))
+		{
+			$exists = Db::getInstance()->getValue('SELECT count(*) FROM '._DB_PREFIX_.'customer WHERE charter = "'.Tools::getValue('charter').'"');
+			if($exists)
+				$this->errors[] = sprintf(Tools::displayError('La %s ya se encuentra registrada'),'<b>'.Tools::displayError('Charter').' </b>');
+		}
 		
 		if (Tools::isSubmit('submitAccount'))
 			$this->context->smarty->assign('email_create', 1);

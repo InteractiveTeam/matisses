@@ -173,16 +173,39 @@
 						</div>
 					</div>
 					{if isset($newsletter) && $newsletter}
-						<div class="checkbox">
+						<!--
+                        <div class="checkbox">
 							<label for="newsletter">
 							<input type="checkbox" name="newsletter" id="newsletter" value="1" {if isset($smarty.post.newsletter) && $smarty.post.newsletter == '1'}checked="checked"{/if} />
 							{l s='Sign up for our newsletter!'}</label>
 						</div>
-						<div class="checkbox">
+                        -->
+                        <div class="checkbox">
+							<label for="medio">{l s='Medio por el cual desea ser contactado'}</label>
+                            	<select id="medio" name="medio" class="form-control">
+                                	<option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='SMS'}"} selected {/if} value="{l s='SMS'}">{l s='SMS'}</option>
+                                    <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Email'}"} selected {/if} value="{l s='Email'}">{l s='Email'}</option>
+                                    <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Telefónico'}"} selected {/if} value="{l s='Telefónico'}">{l s='Telefónico'}</option>
+                                    <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Correo físico)'}"} selected {/if} value="{l s='Correo físico)'}">{l s='Correo físico)'}</option>
+                                </select>
+						</div>
+                        <div class="checkbox">
+							<label for="terms">
+							<input type="checkbox" name="terms" id="terms" value="1" {if isset($smarty.post.terms) && $smarty.post.terms == '1'}checked="checked"{/if} />
+							{l s='Aceptar términos y condiciones'}</label>
+						</div>
+                        <div class="checkbox">
+							<label for="tratamiento">
+							<input type="checkbox" name="tratamiento" id="tratamiento" value="1" {if isset($smarty.post.tratamiento) && $smarty.post.tratamiento == '1'}checked="checked"{/if} />
+							{l s='Aceptar uso, tratamiento de mis datos y políticas de privacidad'}</label>
+						</div>                        
+						<!--
+                        <div class="checkbox">
 							<label for="optin">
 							<input type="checkbox" name="optin" id="optin" value="1" {if isset($smarty.post.optin) && $smarty.post.optin == '1'}checked="checked"{/if} />
 							{l s='Receive special offers from our partners!'}</label>
 						</div>
+                        -->
 					{/if}
 					<h3 class="page-heading bottom-indent top-indent">{l s='Delivery address'}</h3>
 					{foreach from=$dlv_all_fields item=field_name}
@@ -449,8 +472,8 @@
 					<label for="customer_surname">{l s='Second Lastname'} </label>
 					<input onkeyup="$('#surname').val(this.value);" type="text" class="is_required validate form-control" data-validate="isName" id="customer_surname" name="surname" value="{if isset($smarty.post.surname)}{$smarty.post.surname}{/if}" />
 				</div>
-				<div class="form-group grid_6">
-					<label for="customer_charter">{l s='Cédula'} </label>
+				<div class="form-group required grid_6">
+					<label for="customer_charter">{l s='Cédula'}  <sup>*</sup></label>
 					<input onkeyup="$('#charter').val(this.value);" type="text" class="is_required validate form-control" data-validate="isName" id="customer_charter" max="11" maxlength="11" name="charter" value="{if isset($smarty.post.charter)}{$smarty.post.charter}{/if}" />
 				</div>
 				<div class="required form-group grid_6">
@@ -509,11 +532,11 @@
 						</div>
 					</div>
 				</div>
-			</div>
+                
 
-			{if $newsletter}
-			<div class="grid_12">
-				<div class="checkbox grid_12">
+			<div class="form-group required grid_6">
+				<!--
+                <div class="checkbox grid_12">
 					<input type="checkbox" name="newsletter" id="newsletter" value="1" {if isset($smarty.post.newsletter) AND $smarty.post.newsletter == 1} checked="checked"{/if} />
 					<label for="newsletter">{l s='Sign up for our newsletter!'}</label>
 				</div>
@@ -521,8 +544,29 @@
 					<input type="checkbox" name="optin" id="optin" value="1" {if isset($smarty.post.optin) AND $smarty.post.optin == 1} checked="checked"{/if} />
 					<label for="optin">{l s='Receive special offers from our partners!'}</label>
 				</div>
+                -->
+                    <label for="medio">{l s='Medio por el cual desea ser contactado'}  <sup>*</sup></label>
+                        <select id="medio" name="medio" class="form-control">
+                            <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='SMS'}"} selected {/if} value="{l s='SMS'}">{l s='SMS'}</option>
+                            <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Email'}"} selected {/if} value="{l s='Email'}">{l s='Email'}</option>
+                            <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Telefónico'}"} selected {/if} value="{l s='Telefónico'}">{l s='Telefónico'}</option>
+                            <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Correo físico)'}"} selected {/if} value="{l s='Correo físico)'}">{l s='Correo físico)'}</option>
+                        </select>
 			</div>
-			{/if}
+            <div class="required form-group grid_6">
+                 <div class="checkbox">
+                    
+                    <input type="checkbox" name="terms" id="terms" value="1" {if isset($smarty.post.terms) && $smarty.post.terms == '1'}checked="checked"{/if} />
+                    <label for="terms">{l s='Aceptar términos y condiciones'}</label>
+                </div>
+                <div class="checkbox">
+                    
+                    <input type="checkbox" name="tratamiento" id="tratamiento" value="1" {if isset($smarty.post.tratamiento) && $smarty.post.tratamiento == '1'}checked="checked"{/if} />
+                    <label for="tratamiento">{l s='Aceptar uso, tratamiento de mis datos y políticas de privacidad'}</label>
+                </div>                     	
+            </div>    
+
+			
 		</div>
 		{if $b2b_enable}
 			<div class="account_creation">

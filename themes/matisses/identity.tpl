@@ -159,6 +159,26 @@
                     </label>
                     <input class="is_required validate form-control" type="password" data-validate="isPasswd" name="confirmation" id="confirmation" />
                 </div>
+                
+                <div class="form-group required">
+                    <!--
+                    <div class="checkbox grid_12">
+                        <input type="checkbox" name="newsletter" id="newsletter" value="1" {if isset($smarty.post.newsletter) AND $smarty.post.newsletter == 1} checked="checked"{/if} />
+                        <label for="newsletter">{l s='Sign up for our newsletter!'}</label>
+                    </div>
+                    <div class="checkbox grid_12">
+                        <input type="checkbox" name="optin" id="optin" value="1" {if isset($smarty.post.optin) AND $smarty.post.optin == 1} checked="checked"{/if} />
+                        <label for="optin">{l s='Receive special offers from our partners!'}</label>
+                    </div>
+                    -->
+                        <label for="medio">{l s='Medio por el cual desea ser contactado'}  <sup>*</sup></label>
+                            <select id="medio" name="medio" class="form-control">
+                                <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='SMS'}"} selected {/if} value="{l s='SMS'}">{l s='SMS'}</option>
+                                <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Email'}"} selected {/if} value="{l s='Email'}">{l s='Email'}</option>
+                                <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Telefónico'}"} selected {/if} value="{l s='Telefónico'}">{l s='Telefónico'}</option>
+                                <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Correo físico)'}"} selected {/if} value="{l s='Correo físico)'}">{l s='Correo físico)'}</option>
+                            </select>
+                </div>                
                 {if $newsletter}
                     <div class="checkbox">
                         <label for="newsletter">

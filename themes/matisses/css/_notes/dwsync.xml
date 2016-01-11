@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="global.css" server="192.168.3.45" local="130922745908521973" remote="130922903400000000" Dst="0" />
-<file name="addresses.css" server="192.168.3.45" local="130922745842395793" remote="130895995200000000" Dst="0" />
-<file name="authentication.css" server="192.168.3.45" local="130922745843489937" remote="130895995200000000" Dst="0" />
-<file name="category.css" server="192.168.3.45" local="130922745884783373" remote="130895995200000000" Dst="0" />
-<file name="bootstrap.min.css" server="192.168.3.45" local="130922745885437899" remote="130922657400000000" Dst="0" />
-<file name="cms.css" server="192.168.3.45" local="130922745892246862" remote="130895995200000000" Dst="0" />
-<file name="comparator.css" server="192.168.3.45" local="130922745893848974" remote="130895995200000000" Dst="0" />
-<file name="contact-form.css" server="192.168.3.45" local="130922745894513269" remote="130895995200000000" Dst="0" />
-<file name="history.css" server="192.168.3.45" local="130922745906519329" remote="130895995200000000" Dst="0" />
-<file name="identity.css" server="192.168.3.45" local="130922745903901245" remote="130895995200000000" Dst="0" />
-<file name="index.php" server="192.168.3.45" local="130922745910143627" remote="130895995200000000" Dst="0" />
-<file name="maintenance.css" server="192.168.3.45" local="130922745913005926" remote="130895995200000000" Dst="0" />
-<file name="my-account.css" server="192.168.3.45" local="130922746478971289" remote="130895995200000000" Dst="0" />
-<file name="order-opc.css" server="192.168.3.45" local="130922746479997022" remote="130895995200000000" Dst="0" />
-<file name="print.css" server="192.168.3.45" local="130922746480006795" remote="130895995200000000" Dst="0" />
-<file name="product_list.css" server="192.168.3.45" local="130922746480143556" remote="130895995200000000" Dst="0" />
-<file name="rtl.css" server="192.168.3.45" local="130922746485565335" remote="130895995200000000" Dst="0" />
-<file name="product.css" server="192.168.3.45" local="130922746486161252" remote="130895995200000000" Dst="0" />
-<file name="scenes.css" server="192.168.3.45" local="130922746489697615" remote="130895995200000000" Dst="0" />
-<file name="sitemap.css" server="192.168.3.45" local="130922746490752659" remote="130895995200000000" Dst="0" />
-<file name="stores.css" server="192.168.3.45" local="130922746490762437" remote="130895995200000000" Dst="0" />
-<file name="global.css" server="C:/xampp/htdocs/matisses/" local="130928738618143269" remote="130928738610000000" Dst="0" /></dwsync>
+<file name="global.css" server="192.168.3.45" local="130967396217560347" remote="130968968400000000" Dst="0" />
+<file name="addresses.css" server="192.168.3.45" local="130964112093006327" remote="130968968400000000" Dst="0" />
+<file name="authentication.css" server="192.168.3.45" local="130966037980090333" remote="130968968400000000" Dst="0" />
+<file name="category.css" server="192.168.3.45" local="130964112094026742" remote="130968968400000000" Dst="0" />
+<file name="bootstrap.min.css" server="192.168.3.45" local="130966037980400366" remote="130968968400000000" Dst="0" />
+<file name="cms.css" server="192.168.3.45" local="130964112094076743" remote="130968968400000000" Dst="0" />
+<file name="comparator.css" server="192.168.3.45" local="130964112094116744" remote="130968968400000000" Dst="0" />
+<file name="contact-form.css" server="192.168.3.45" local="130964112094166679" remote="130968968400000000" Dst="0" />
+<file name="history.css" server="192.168.3.45" local="130964112094466690" remote="130968968400000000" Dst="0" />
+<file name="identity.css" server="192.168.3.45" local="130964112094466690" remote="130968968400000000" Dst="0" />
+<file name="index.php" server="192.168.3.45" local="130964112094496716" remote="130968968400000000" Dst="0" />
+<file name="maintenance.css" server="192.168.3.45" local="130964112094546704" remote="130968968400000000" Dst="0" />
+<file name="my-account.css" server="192.168.3.45" local="130964112104388747" remote="130968968400000000" Dst="0" />
+<file name="order-opc.css" server="192.168.3.45" local="130964112104438768" remote="130968968400000000" Dst="0" />
+<file name="print.css" server="192.168.3.45" local="130964112104478757" remote="130968968400000000" Dst="0" />
+<file name="product_list.css" server="192.168.3.45" local="130964112104548781" remote="130968968400000000" Dst="0" />
+<file name="rtl.css" server="192.168.3.45" local="130964112104588787" remote="130968968400000000" Dst="0" />
+<file name="product.css" server="192.168.3.45" local="130966037980780416" remote="130968968400000000" Dst="0" />
+<file name="scenes.css" server="192.168.3.45" local="130964112104628785" remote="130968968400000000" Dst="0" />
+<file name="sitemap.css" server="192.168.3.45" local="130964112104678799" remote="130968968400000000" Dst="0" />
+<file name="stores.css" server="192.168.3.45" local="130964112104728767" remote="130968968400000000" Dst="0" />
+<file name="global.css" server="C:/xampp/htdocs/matisses/" local="130928738618143269" remote="130928738610000000" Dst="0" />
+</dwsync>

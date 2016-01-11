@@ -49,11 +49,33 @@ class IdentityControllerCore extends FrontController
 		{
 			$email = trim(Tools::getValue('email'));
 
-			if ((Tools::getValue('passwd') != Tools::getValue('passwd2')) || (empty(Tools::getValue('passwd')) || empty(Tools::getValue('passwd2'))))
-				$this->errors[] = sprintf(Tools::displayError('The %s do not match'),'<b>'.Tools::displayError('Passwords').'</b>');
+			if(Tools::getValue('confirmation'))
+				$_POST[passwd2] = Tools::getValue('confirmation');
+			
+			
+			if (!Tools::getValue('medio'))
+				$this->errors[] = Tools::displayError('Debes seleccionar el medio por el cual deseas ser contactado');
 
+			
+			if(Tools::getValue('passwd') && !Tools::getValue('passwd2'))
+				$this->errors[] = sprintf(Tools::displayError('Debes confirmar tu %s'),'<b>'.Tools::displayError('Contraseña').'</b>');
+			
+			
+			if(Tools::getValue('passwd') && Tools::getValue('passwd2'))
+			{
+				if (Tools::getValue('passwd') != Tools::getValue('passwd2'))
+					$this->errors[] = sprintf(Tools::displayError('The %s do not match'),'<b>'.Tools::displayError('Passwords').'</b>');
+			}
+	
 			if(!is_numeric(Tools::getValue('charter')))
 				$this->errors[] = sprintf(Tools::displayError('The %s is not valid'),'<b>'.Tools::displayError('Charter').'</b>');
+			
+			if(Tools::getValue('charter'))
+			{
+				$exists = Db::getInstance()->getValue('SELECT count(*) FROM '._DB_PREFIX_.'customer WHERE charter = "'.Tools::getValue('charter').'" and id_customer!= '.$this->context->customer->id);
+				if($exists)
+					$this->errors[] = sprintf(Tools::displayError('La %s ya se encuentra registrada'),'<b>'.Tools::displayError('Charter').' </b>');
+			}
 		
 			
 
