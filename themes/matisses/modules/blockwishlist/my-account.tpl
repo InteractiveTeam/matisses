@@ -24,10 +24,28 @@
 *}
 
 <!-- MODULE WishList -->
-<li class="lnk_wishlist">
-	<a 	href="{$link->getModuleLink('blockwishlist', 'mywishlist', array(), true)|escape:'html':'UTF-8'}" title="{l s='My wishlists' mod='blockwishlist'}">
-		<i class="fa fa-heart"></i>
-		<span>{l s='My wishlists' mod='blockwishlist'}</span>
-	</a>
+<li class="lnk_wishlist grid_12 alpha omega">
+	<div class="header-account">
+		<h2>
+			<a 	href="{$link->getModuleLink('blockwishlist', 'mywishlist', array(), true)|escape:'html':'UTF-8'}" title="{l s='My wishlists' mod='blockwishlist'}">
+				<span>{l s='Mi lista de deseos' mod='blockwishlist'}</span>
+			</a>
+		</h2>
+	</div>
+	<div class="content-account grid_12">
+		<div class="grid_2">
+			<img src="{$base_dir}img/mi-lista-deseos.png" class="img-responsive"/>
+		</div>
+		<div class="grid_5">
+			<h3>Administrar</h3>
+			<p>Ver, editar o añadir una lista existente</p>
+			<a class="btn btn-default btn-red" href="#" title="Inicio"> {l s='ingresar' mod='matisses'}</a>
+		</div>
+		<div class="grid_5">
+			<h3>Titulo 2</h3>
+			<p>Descripción 2</p>
+		</div>
+	</div>
+
 </li>
 <!-- END : MODULE WishList -->

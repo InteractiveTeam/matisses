@@ -25,46 +25,148 @@
 
 {capture name=path}{l s='My account'}{/capture}
 
-<h1 class="page-heading">{l s='My account'}</h1>
-{if isset($account_created)}
+	<h1 class="page-heading">{l s='My account'}</h1>
+	{if isset($account_created)}
 	<p class="alert alert-success">
 		{l s='Your account has been created.'}
 	</p>
-{/if}
-<p class="info-account">{l s='Welcome to your account. Here you can manage all of your personal information and orders.'}</p>
-<div class="row addresses-lists">
-	<div class="grid_12 alpha omega">
-		<ul class="myaccount-link-list">
-			{if $has_customer_an_address}
-			<li><a href="{$link->getPageLink('address', true)|escape:'html':'UTF-8'}" title="{l s='Add my first address'}"><i class="fa fa-truck"></i><span>{l s='Add my first address'}</span></a></li>
-			{/if}
-			<li><a href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}" title="{l s='Orders'}"><i class="fa fa-shopping-cart"></i><span>{l s='Order history and details'}</span></a></li>
-			{if $returnAllowed}
-				<li><a href="{$link->getPageLink('order-follow', true)|escape:'html':'UTF-8'}" title="{l s='Merchandise returns'}"><i class="fa fa-refresh"></i><span>{l s='My merchandise returns'}</span></a></li>
-			{/if}
-			<li><a href="{$link->getPageLink('order-slip', true)|escape:'html':'UTF-8'}" title="{l s='Credit slips'}"><i class="fa fa-credit-card"></i><span>{l s='My credit slips'}</span></a></li>
-		</ul>
-	</div>
-	<div class="grid_12 alpha omega">
-		<ul class="myaccount-link-list">
-			 <li><a href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}" title="{l s='Addresses'}"><i class="fa fa-truck"></i><span>{l s='My addresses'}</span></a></li>
-			<li><a href="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}" title="{l s='Information'}"><i class="fa fa-user"></i><span>{l s='My personal information'}</span></a></li>
-		</ul>
-	</div>
-{if $voucherAllowed || isset($HOOK_CUSTOMER_ACCOUNT) && $HOOK_CUSTOMER_ACCOUNT !=''}
-	<div class="grid_12 alpha omega">
-		<ul class="myaccount-link-list">
-			{if $voucherAllowed}
-				<li><a href="{$link->getPageLink('discount', true)|escape:'html':'UTF-8'}" title="{l s='Vouchers'}"><i class="fa fa-barcode"></i><span>{l s='My vouchers'}</span></a></li>
-			{/if}
+	{/if}
 
-			{$HOOK_CUSTOMER_ACCOUNT}
-		</ul>
-	</div>
-{/if}
+
+<div class="my-account-list">
+	<ul>
+		<li class="my-shopping grid_12 alpha omega">
+			<div class="header-account">
+				<a href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}" title="{l s='Mis compras'}">
+				<h2>{l s='Mis compras'}</h2></a>
+			</div>
+			<div class="content-account grid_12">
+				<div class="grid_2">
+		            <img src="{$base_dir}img/mis-compras.png"/>
+		        </div>
+				<div class="grid_4">
+					<h3>Estado del pedido</h3>
+					<p>Introduce tu número de pedido para </p>
+					<div class="footer-account">
+						<input type="text">
+						<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
+					</div>
+				</div>
+				<div class="grid_3">
+					<h3>Historial de compras</h3>
+					<p>Revisa que has comprado</p>
+					<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
+				</div>
+				<div class="grid_3">
+					<h3>Más acciones</h3>
+					<p><a href="#">Contactar un asesor</a></p>
+					<p><a href="#">Contactar un asesor</a></p>
+				</div>
+			</div>
+		</li>
+
+		<li class="my-list-gift grid_12 alpha omega">
+			<div class="header-account">
+				<a href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}" title="{l s='Mis compras'}">
+				<h2>{l s='Mi lista de regalos'}</h2></a>
+			</div>
+			<div class="content-account grid_12">
+				<div class="grid_2">
+		            <img src="{$base_dir}img/mi-lista-regalos.png"/>
+		        </div>
+				<div class="grid_4">
+					<h3>Buscar</h3>
+					<p>Busca un alista de regalos existente</p>
+					<div class="footer-account">
+						<input type="text">
+						<input type="text">
+						<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
+						<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
+					</div>
+				</div>
+				<div class="grid_3">
+					<h3>Crear</h3>
+					<p>Piensa en grande y cra la lista de regalos.</p>
+					<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
+				</div>
+				<div class="grid_3">
+					<h3>Administrar</h3>
+					<p>Ver, editar o añadir una lista</p>
+					<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
+				</div>
+			</div>
+		</li>
+	   	<li class="my-personal-information grid_12 alpha omega">
+			<div class="header-account">
+			   	<a href="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}" title="{l s='Information'}">
+				  <h2>{l s='Ajustes de mi perfil'}</h2>
+			  	</a>
+			</div>
+			<div class="content-account grid_12">
+				<div class="grid_2">
+		            <img src="{$base_dir}img/ajustes-perfil.png"/>
+		        </div>
+				<div class="grid_5">
+					<h3>Ajustes de cuenta</h3>
+					<p><a href="#">Cambiar la configuración de cuenta</a></p>
+					<p><a href="#">E-mail, contraseña, nombre y teléfono móvil</a></p>
+				</div>
+				<div class="grid_5">
+					<h3>Libreta de direcciones</h3>
+					<p><a href="#">Gestionar libreta de direcciones</a></p>
+					<p><a href="#">Añadir nueva dirección</a></p>
+				</div>
+			</div>
+		</li>
+
+		<!-- {if $voucherAllowed}
+		<li>
+			<div class="header-account">
+				<a href="{$link->getPageLink('discount', true)|escape:'html':'UTF-8'}" title="{l s='Vouchers'}">
+					<h2>{l s='My vouchers'}</h2>
+				</a>
+			</div>
+			<div class="content-account grid_12">
+				<div class="grid_2">
+		            <img src="{$module_dir}/img/account-garantias.png" class="img-responsive"/>
+		        </div>
+				<div class="grid_5">
+					<h3>Titulo 1</h3>
+					<p>Descripción 1</p>
+				</div>
+				<div class="grid_5">
+					<h3>Titulo 2</h3>
+					<p>Descripción 2</p>
+				</div>
+			</div>
+		</li>
+		{/if}-->
+		{$HOOK_CUSTOMER_ACCOUNT}
+
+	   <!-- <li><a href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}" title="{l s='Addresses'}"><i class="fa fa-truck"></i><span>{l s='My addresses'}</span></a></li> -->
+
+		<!-- {if $has_customer_an_address}
+		<li>
+			<a href="{$link->getPageLink('address', true)|escape:'html':'UTF-8'}" title="{l s='Add my first address'}"><span>{l s='Add my first address'}</span></a>
+		</li>
+		{/if} -->
+
+		<!-- {if $returnAllowed}
+		<li>
+			<a href="{$link->getPageLink('order-follow', true)|escape:'html':'UTF-8'}" title="{l s='Merchandise returns'}">
+			<span>{l s='My merchandise returns'}</span></a>
+		</li>
+		{/if} -->
+		<!-- <li><a href="{$link->getPageLink('order-slip', true)|escape:'html':'UTF-8'}" title="{l s='Credit slips'}">
+			<span>{l s='My credit slips'}</span></a>
+		</li> -->
+	</ul>
+
+	{if $voucherAllowed || isset($HOOK_CUSTOMER_ACCOUNT) && $HOOK_CUSTOMER_ACCOUNT !=''}
+	{/if}
+
 </div>
-<ul class="footer_links cf">
-	<li>
+
+	<div class="footer_links cf">
 		<a class="btn btn-default button " href="{$base_dir}" title="{l s='Home'}"> {l s='Home'}</a>
-	</li>
-</ul>
+	</div>

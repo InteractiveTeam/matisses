@@ -10,85 +10,72 @@
     float: none;
     }
 
-    /*blog home*/
-    .newsHomeDate,
-    .newsHomeDate p {
-    display:inline-block;
-    color:#818181;
-    font-family: 'condensed';
-    font-size: 1rem;
-    /*background: #eeeeee;
-    width: 5.3125rem;
-    vertical-align: top;
-    text-align: center;
-    padding: 0.625rem;*/
-    }
-    .newsHomeContent {
-    position: relative;
-    /*display: inline-block;
-    width: 30rem;
-    margin-left: -0.25rem;
-    border-left: 1px solid #dddddd;
-    padding-left: 1.25rem;*/
-    }
-    .newsHomeImg img{
-    width: 100%;
-    }
-    .newsLeft .newsHomeImg img {
-    height: 400px;
-    }
-    .newsHomeTitle{
-    margin-bottom: 0.3125rem;
-    }
-    .newsRight .newsHomeContent:first-child {
-    background: #f2f2f2;
-    padding: 30px;
-    }
-
-    .newsHomeDate span{
-    /*font-family: 'extended';
-    font-size:3rem;
-    text-transform: uppercase;
-    color: #7b7b7b;*/
-    }
-
-    .newsHomeDescription {
-    margin-bottom: 15px;
-    }
-
-    .newsHomeDate p{
-    /*color: #231f20;
-    font-size: 1.875rem;
-    font-family: 'gothic';
-    text-transform: uppercase;
-    line-height: 25px;*/
-    }
-    .date-author {
-    margin: 0.625rem 0;
+    /*Blog home*/
+    .zona-blog{
+	padding: 4.0625rem 0;
+	}
+    .zona-blog .btn-title .button{
+	margin-top: 0.3125rem
+	}
+    .title-destacado{
+	background: url('/themes/matisses/img/ticket-destacado.jpg') right 0 no-repeat;
+	height: 21.125rem;
+    margin-top: 1.25rem;
+	}
+    .img-article a{
     display: block;
     }
-
-    .index .newsHomeTitle h2{
+    .category span{
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    color: #d7162f;
+    font-family: 'condensed';
+    }
+    .newsHomeTitle h2{
     font-family: 'condensed';
     color: #231f20;
     font-size: 1.75rem;
     }
-    .newsHomeTitle span {
-    text-transform: uppercase;
-    font-size: 0.875rem;
+    .date-author span,
+    .date-author p {
+    display:inline-block;
+    color:#acacac;
     font-family: 'condensed';
-    color: #d7162f;
-    margin: 1.25rem 0 1.25rem;
-    display: block;
+    font-size: 1rem;
     }
-    .newsHomeContent .button {
-    border: 1px solid;
-    padding-right: 1.875rem;
-    padding-left: 1.875rem;
+
+    /*Columna izquierda*/
+    .img-article img {
+    width: 100%;
     }
-    .newsHomeAutor p {
-    font-weight: bold;
-    color: #a7a6a6;
+    .info-article {
+    padding: 1.25rem 0.9375rem;
+    }
+    .newsLeft  .category {
+    margin-bottom: 0.9375rem;
+    }
+    .newsLeft .date-author {
+    margin: 0.625rem 0 0.9375rem;
+    }
+    /****/
+
+
+    /*Columna derecha*/
+    .newsRight .newsHomeContent{
+    padding: 1.875rem;
+    }
+    .newsRight .first {
+    background: #f2f2f2;
+    margin-top: 1.25rem;
+    }
+    .newsRight img{
+    width: 100%;
+    }
+    .right-article .category {
+    padding: 0.3125rem 0;
+    }
+    .right-article .date-author {
+    margin: 0.625rem 0;
     }
     /**********/
     .newsListTop{
@@ -467,13 +454,12 @@
     margin: 0.625rem 0;
     }
 
-    .blog-list  h1{
-    color: #231f20;
+    .blog-list h3 {
+    color: #777676;
     font-family: 'condensed';
-    font-size: 3rem;
-    border-bottom: 1px solid #dbdbdb;
-    padding-bottom: 0.625rem;
-    margin-bottom: 1.25rem;
+    font-size: 2.125rem;
+    padding: 0.625rem 1.25rem;
+    background: #f2f2f2;
     }
 
     /*Detalle noticias*/
@@ -503,4 +489,9 @@
     .newContentTopRigthSocial div {
     display: inline-block;
     vertical-align: top;
+    }
+
+/*Listado srticulos Blog*/
+    .content-destacados {
+    margin: 2.5rem 0;
     }

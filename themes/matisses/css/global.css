@@ -384,6 +384,7 @@ box-sizing: border-box;
 	display: block;
 	bottom: 1.5625rem;
 	right: 0.9375rem;
+	text-align: center;
 	}
 	div.shopping_cart > a:hover{
 	color: #fff;
@@ -856,22 +857,6 @@ box-sizing: border-box;
 	.slide-experiencias .bx-wrapper .bx-pager.bx-default-pager a.active{
 	background-color: #d7162f;
 	border-color: #d7162f;
-	}
-
-	/*Blog*/
-	.zona-blog{
-	padding: 4.0625rem 0;
-	}
-	.zona-blog .btn-title .button{
-	margin-top: 0.3125rem
-	}
-	.title-destacado{
-	background: url('/themes/matisses/img/ticket-destacado.jpg');
-	width: 76px;
-	height: 338px;
-	}
-	.newsHomeAutor {
-    display: inline-block;
 	}
 
 	/*Buscador*/
@@ -3235,13 +3220,13 @@ box-sizing: border-box;
 
 /* footer */
 	.footer  p{
-	color: #fff;
+	color: #bcbcbc;
+	font-size: 0.875rem;
 	}
 	.footer .checker {
 	display: inline-block;
 	}
 	.footer .habeas p {
-    color: #fff;
     display: inline-block;
     vertical-align: top;
     margin-left: 0.625rem;
@@ -3261,9 +3246,8 @@ box-sizing: border-box;
 	}
 	.newsletter-footer .newsletter-input{
 	background: transparent;
-	font-size: 1.125rem;
-	font-family: 'Open Sans Condensed', sans-serif;
-	font-style: italic;
+	font-size: 0.9375rem;
+	font-family: 'Open Sans', sans-serif;
 	color: #fff;
 	border-top: none;
 	border-right: none;
@@ -3298,10 +3282,9 @@ box-sizing: border-box;
 	margin-bottom: 1.25rem;
 	}
 	.menu-footer li a{
-	color: #a5a5a5;
+	color: #dfdfdf;
 	font-family: 'gothic';
-	font-size: 1rem;
-	text-transform: uppercase;
+	font-size: 1.125rem;
 	display: block;
 	padding: 0 0 1.875rem 0;
 	}
@@ -3327,7 +3310,6 @@ box-sizing: border-box;
 	}
 	.logo-copyright{
 	display: inline-block;
-    width: 26.875rem;
     margin-right: 0.625rem;
 	vertical-align: top;
 	}
@@ -3353,9 +3335,9 @@ box-sizing: border-box;
 	}
 	.menu-copyright ul li a{
 	display: block;
-	font-family: 'Open Sans Condensed', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	color: #a5a5a5;
-	font-size: 1rem;
+	font-size: 0.875rem;
 	}
 	.menu-copyright ul li a:hover{
 	color: #fff;

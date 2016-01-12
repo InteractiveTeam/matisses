@@ -84,7 +84,11 @@
     color: #4b4b4b;
     font-size: 1.0625rem;
     padding-left: 1.5625rem;
-    text-transform: capitalize;
+    text-transform: none;
+    line-height: normal;
+    }
+    .account_creation .checkbox label a{
+    text-decoration: underline;
     }
     .account_creation .submit{
     margin-top: 1.875rem;

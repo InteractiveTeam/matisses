@@ -192,13 +192,13 @@
                         <div class="checkbox">
 							<label for="terms">
 							<input type="checkbox" name="terms" id="terms" value="1" {if isset($smarty.post.terms) && $smarty.post.terms == '1'}checked="checked"{/if} />
-							{l s='Aceptar términos y condiciones'}</label>
+							{l s='Acepto términos y condiciones'}</label>
 						</div>
                         <div class="checkbox">
 							<label for="tratamiento">
 							<input type="checkbox" name="tratamiento" id="tratamiento" value="1" {if isset($smarty.post.tratamiento) && $smarty.post.tratamiento == '1'}checked="checked"{/if} />
 							{l s='Aceptar uso, tratamiento de mis datos y políticas de privacidad'}</label>
-						</div>                        
+						</div>
 						<!--
                         <div class="checkbox">
 							<label for="optin">
@@ -532,7 +532,7 @@
 						</div>
 					</div>
 				</div>
-                
+
 
 			<div class="form-group required grid_6">
 				<!--
@@ -555,18 +555,18 @@
 			</div>
             <div class="required form-group grid_6">
                  <div class="checkbox">
-                    
+
                     <input type="checkbox" name="terms" id="terms" value="1" {if isset($smarty.post.terms) && $smarty.post.terms == '1'}checked="checked"{/if} />
-                    <label for="terms">{l s='Aceptar términos y condiciones'}</label>
+                    <label for="terms">{l s='Acepto Términos y condiciones'}</label>
                 </div>
                 <div class="checkbox">
-                    
+
                     <input type="checkbox" name="tratamiento" id="tratamiento" value="1" {if isset($smarty.post.tratamiento) && $smarty.post.tratamiento == '1'}checked="checked"{/if} />
                     <label for="tratamiento">{l s='Aceptar uso, tratamiento de mis datos y políticas de privacidad'}</label>
-                </div>                     	
-            </div>    
+                </div>
+            </div>
 
-			
+
 		</div>
 		{if $b2b_enable}
 			<div class="account_creation">
