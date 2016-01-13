@@ -43,16 +43,16 @@
                 </div>
                 <div class="info-article">
                     <div class="category">
-                        <span>Categoria 1</span>
+                        <a href="#"><span>Categoria 1</span></a>
                     </div>
-                    <div class="newsHomeTitle">
-                        <h2>{$catsProductsObj[0][0]->title}</h2>
+                    <div class="newsTitle">
+                        <a href="#"><h2>{$catsProductsObj[0][0]->title}</h2></a>
                     </div>
                     <div class="date-author cf">
-                        <span class="newsHomeDate">{$catsProductsObj[0][0]->date}</span>
-                        <p class="newsHomeAutor">{$catsProductsObj[0][0]->autor}</p>
+                        <span class="newsDate">{$catsProductsObj[0][0]->date}</span> -
+                        <p class="newsAutor">{$catsProductsObj[0][0]->autor}</p>
                     </div>
-                    <div class="newsHomeDescription">
+                    <div class="newsDescription">
                         <p>{$catsProductsObj[0][0]->new|truncate:250:'...'|escape:html:'UTF-8'}</p>
                     </div>
                 </div>
@@ -67,16 +67,16 @@
                     </div>
                     <div class="right-article grid_6 omega">
                         <div class="category">
-                            <span>Categoria 2</span>
+                            <a href="#"></a><span>Categoria 2</span></a>
                         </div>
-                        <div class="newsHomeTitle">
+                        <div class="newsTitle">
                             <h2>{$catsProductsObj[0][1]->title}</h2>
                         </div>
                         <div class="date-author cf">
-                            <span class="newsHomeDate">{$catsProductsObj[0][1]->date}</span>
-                            <p class="newsHomeAutor">{$catsProductsObj[0][1]->autor}</p>
+                            <span class="newsDate">{$catsProductsObj[0][1]->date}</span>
+                            <p class="newsAutor">{$catsProductsObj[0][1]->autor}</p>
                         </div>
-                        <div class="newsHomeDescription">
+                        <div class="newsDescription">
                             <p>{$catsProductsObj[0][1]->new|truncate:140:'...'|escape:html:'UTF-8'}</p>
                         </div>
                     </div>
@@ -87,21 +87,22 @@
                     </div>
                     <div class="right-article grid_6 omega">
                         <div class="category">
-                            <span>Categoria 3</span>
+                            <a href="#"><span>Categoria 3</span></a>
                         </div>
-                        <div class="newsHomeTitle">
+                        <div class="newsTitle">
                             <h2>{$catsProductsObj[0][2]->title}</h2>
                         </div>
                         <div class="date-author cf">
-                            <span class="newsHomeDate">{$catsProductsObj[0][2]->date}</span>
-                            <p class="newsHomeAutor">{$catsProductsObj[0][2]->autor}</p>
+                            <span class="newsDate">{$catsProductsObj[0][2]->date}</span>
+                            <p class="newsAutor">{$catsProductsObj[0][2]->autor}</p>
                         </div>
-                        <div class="newsHomeDescription">
+                        <div class="newsDescription">
                             <p>{$catsProductsObj[0][2]->new|truncate:140:'...'|escape:html:'UTF-8'}</p>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
             <!--Columna derecha-->
 
         <!--Fin contenido articulos-->
