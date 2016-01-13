@@ -184,27 +184,10 @@
     a.newsListItem:active,
     a.newsListItem:visited{
     display: block;
-    cursor: pointer;
-    margin: 5px 0;
     }
 
     a.newsListItem:hover{
     background: #fff url(../img/bg_hover_list.png) left bottom repeat-x;
-    }
-
-    .newsListImg{
-    display: inline-block;
-    width: 175px;
-    height: 85px;
-    overflow: hidden;
-    cursor: pointer;
-    background-color: #000;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    background-color:#FCF5ED;
     }
 
     a.page_more,
