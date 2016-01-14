@@ -272,6 +272,70 @@
                         <li><a href="#">Decorar con tapetes</a></li>
                     </ul>
                 </div>
+                <div class="commented-popular grid_12 omega">
+                    <div id="tabs-news" class="news-tabs">
+                      <ul>
+                        <li><a href="#tabs-1">Comentados</a></li>
+                        <li><a href="#tabs-2">Populares</a></li>
+                      </ul>
+                      <div id="tabs-1">
+                        <ul>
+                            <li>
+                                <div class="category">
+                                    <span>Categoria 1</span>
+                                </div>
+                                <div class="newsTitle">
+                                    <h2>La iluminación perfecta para los hogares</h2>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="category">
+                                    <span>Categoria 1</span>
+                                </div>
+                                <div class="newsTitle">
+                                    <h2>La iluminación perfecta para los hogares</h2>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="category">
+                                    <span>Categoria 2</span>
+                                </div>
+                                <div class="newsTitle">
+                                    <h2>La iluminación perfecta para los hogares</h2>
+                                </div>
+                            </li>
+                        </ul>
+                      </div>
+                      <div id="tabs-2">
+                        <ul>
+                            <li>
+                                <div class="category">
+                                    <span>Categoria 1</span>
+                                </div>
+                                <div class="newsTitle">
+                                    <h2>La iluminación perfecta para los hogares</h2>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="category">
+                                    <span>Categoria 1</span>
+                                </div>
+                                <div class="newsTitle">
+                                    <h2>La iluminación perfecta para los hogares</h2>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="category">
+                                    <span>Categoria 1</span>
+                                </div>
+                                <div class="newsTitle">
+                                    <h2>La iluminación perfecta para los hogares</h2>
+                                </div>
+                            </li>
+                        </ul>
+                      </div>
+                    </div>
+                </div>
             </div>
         </div>
 
