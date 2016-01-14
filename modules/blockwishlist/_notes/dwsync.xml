@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="blockwishlist.tpl" server="192.168.3.45" local="130964111902109528" remote="130968964200000000" Dst="0" />
-<file name="WishList.php" server="192.168.3.45" local="130964111901719365" remote="130968964200000000" Dst="0" />
-<file name="blockwishlist.php" server="192.168.3.45" local="130964111902059600" remote="130968964200000000" Dst="0" />
-<file name="blockwishlist_top.tpl" server="192.168.3.45" local="130964111902199613" remote="130968964200000000" Dst="0" />
+<file name="blockwishlist.tpl" server="192.168.3.45" local="130972072556485011" remote="130972719000000000" Dst="0" />
+<file name="WishList.php" server="192.168.3.45" local="130972072556107365" remote="130972719000000000" Dst="0" />
+<file name="blockwishlist.php" server="192.168.3.45" local="130972072556485011" remote="130972719000000000" Dst="0" />
+<file name="blockwishlist_top.tpl" server="192.168.3.45" local="130972072556641256" remote="130972719000000000" Dst="0" />
 <file name="blockwishlist_button.tpl" server="C:/xampp/htdocs/matisses/" local="130964280842468980" remote="130964280840000000" Dst="0" />
+<file name="blockwishlist-ajax.tpl" server="192.168.3.45" local="130972072556323692" remote="130972719000000000" Dst="0" />
+<file name="blockwishlist-extra.tpl" server="192.168.3.45" local="130972072556328696" remote="130972719000000000" Dst="0" />
+<file name="blockwishlist.css" server="192.168.3.45" local="130972072556328696" remote="130972719000000000" Dst="0" />
+<file name="blockwishlist_button.tpl" server="192.168.3.45" local="130972072556641256" remote="130972719000000000" Dst="0" />
+<file name="buywishlistproduct.php" server="192.168.3.45" local="130972072556641256" remote="130972719000000000" Dst="0" />
+<file name="cart.php" server="192.168.3.45" local="130972072557110001" remote="130972719000000000" Dst="0" />
+<file name="CHANGELOG.txt" server="192.168.3.45" local="130972072555794861" remote="130972719000000000" Dst="0" />
+<file name="config.xml" server="192.168.3.45" local="130972072557110001" remote="130972719000000000" Dst="0" />
+<file name="config_es.xml" server="192.168.3.45" local="130972072557110001" remote="130972719000000000" Dst="0" />
+<file name="index.php" server="192.168.3.45" local="130972072557643915" remote="130972719000000000" Dst="0" />
+<file name="install.sql" server="192.168.3.45" local="130972072557643915" remote="130972719000000000" Dst="0" />
+<file name="logo.gif" server="192.168.3.45" local="130972072557643915" remote="130972719000000000" Dst="0" />
+<file name="logo.png" server="192.168.3.45" local="130972072557806810" remote="130972719000000000" Dst="0" />
+<file name="managewishlist.php" server="192.168.3.45" local="130972072558266005" remote="130972719000000000" Dst="0" />
+<file name="my-account.tpl" server="192.168.3.45" local="130972518964183031" remote="130972719000000000" Dst="0" />
+<file name="Readme.md" server="192.168.3.45" local="130972072555794861" remote="130972719000000000" Dst="0" />
+<file name="sendwishlist.php" server="192.168.3.45" local="130972072558331009" remote="130972719000000000" Dst="0" />
 </dwsync>

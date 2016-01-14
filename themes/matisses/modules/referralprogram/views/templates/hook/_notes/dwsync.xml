@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="authentication.tpl" server="192.168.3.45" local="130964112190736468" remote="130968975600000000" Dst="0" />
-<file name="index.php" server="192.168.3.45" local="130964112190756469" remote="130968975600000000" Dst="0" />
-<file name="my-account.tpl" server="192.168.3.45" local="130964112190811484" remote="130968975600000000" Dst="0" />
-<file name="order-confirmation.tpl" server="192.168.3.45" local="130964112190861485" remote="130968975600000000" Dst="0" />
-<file name="shopping-cart.tpl" server="192.168.3.45" local="130964112190926495" remote="130968975600000000" Dst="0" />
+<file name="authentication.tpl" server="192.168.3.45" local="130972072934566110" remote="130972729200000000" Dst="0" />
+<file name="index.php" server="192.168.3.45" local="130972072934581123" remote="130972729200000000" Dst="0" />
+<file name="my-account.tpl" server="192.168.3.45" local="130972072934621129" remote="130972729200000000" Dst="0" />
+<file name="order-confirmation.tpl" server="192.168.3.45" local="130972072934731125" remote="130972729200000000" Dst="0" />
+<file name="shopping-cart.tpl" server="192.168.3.45" local="130972072934771137" remote="130972729200000000" Dst="0" />
 </dwsync>

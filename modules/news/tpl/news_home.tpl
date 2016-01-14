@@ -1,14 +1,31 @@
 
 {if $catsObj}
-    <script  type="text/javascript" >
-        jQuery(function() {ldelim}
-           jQuery( "#tabsNews" ).tabs();
-        {rdelim});
-    </script>
-
-
     <div id="news-home" class="newsHome grid_12 alpha omega cf">
-
+		
+        <div class="btn-title cf grid_12 alpha omega">
+        	<h1>
+            	<a href="{$link->getModuleLink('news', 'list',
+                [
+                'cat_news' => "{$cat_produto}",
+                'page_cat' => 0,
+                'rewrite'  => "blog"
+                ]
+                ,false)}" alt="{l s='More' mod='news'}">
+                 {l s='Blog' mod='news'}
+                </a>
+            </h1>
+            <a class="blog-view-all button" href="{$link->getModuleLink('news', 'list',
+                [
+                'cat_news' => "{$cat_produto}",
+                'page_cat' => 0,
+                'rewrite'  => "{$cat_rewrite}"
+                ]
+                ,false)}" alt="{l s='More' mod='news'}" class="newsHomeMore">
+                {l s='Ver todos los artículos' mod='news'}
+            </a>
+            
+        </div>
+       {if false}
         <!--Inicio titulo sección-->
         {assign var='cats_position' value=1}
         <div class="btn-title cf grid_12 alpha omega">
@@ -30,6 +47,7 @@
         {assign var='cats_position' value=$cats_position+1}
          {/foreach}
         </div>
+        {/if}
         <!--Fin titulo sección-->
 
         <!--Inicio contenido articulos-->
@@ -39,14 +57,46 @@
             <!--Columna izquierdo-->
             <div class="newsLeft news-home grid_5 alpha omega" >
                 <div class="img-article">
-                    <a href="#"><img src="{$catsProductsObj[0][0]->img}" ></a>
+                     <a href="{$link->getModuleLink('news', 'new',
+                            [
+                                'id_news'  => "{$catsProductsObj[0][0]->id_news}",
+                                'cat_news' => "{$catsProductsObj[0][0]->id_cat}",
+                                'page_cat'     => "{$page}",
+                                'rewrite'  => "{$catsProductsObj[0][0]->rewrite}",
+                                'cat_rewrite'  => "{$catsProductsObj[0][0]->cat_rewrite}"
+                             ]
+                             ,false)}"
+                           alt="{$catsProductsObj[0][0]->title}" >
+                    
+                    
+                    <img src="{$catsProductsObj[0][0]->img}" title="{$catsProductsObj[0][0]->title}" alt="{$catsProductsObj[0][0]->title}" ></a>
                 </div>
                 <div class="info-article">
                     <div class="category">
-                        <a href="#"><span>Categoria 1</span></a>
+                        <a href="{$link->getModuleLink('news', 'new',
+                            [
+                                'id_news'  => "{$catsProductsObj[0][0]->id_news}",
+                                'cat_news' => "{$catsProductsObj[0][0]->id_cat}",
+                                'page_cat'     => "{$page}",
+                                'rewrite'  => "{$catsProductsObj[0][0]->rewrite}",
+                                'cat_rewrite'  => "{$catsProductsObj[0][0]->cat_rewrite}"
+                             ]
+                             ,false)}"
+                           alt="{$catsProductsObj[0][0]->title}" >
+                        <span>{$catsProductsObj[0][0]->cat_name}</span></a>
                     </div>
                     <div class="newsTitle">
-                        <a href="#"><h2>{$catsProductsObj[0][0]->title}</h2></a>
+                        <a href="{$link->getModuleLink('news', 'new',
+                            [
+                                'id_news'  => "{$catsProductsObj[0][0]->id_news}",
+                                'cat_news' => "{$catsProductsObj[0][0]->id_cat}",
+                                'page_cat'     => "{$page}",
+                                'rewrite'  => "{$catsProductsObj[0][0]->rewrite}",
+                                'cat_rewrite'  => "{$catsProductsObj[0][0]->cat_rewrite}"
+                             ]
+                             ,false)}"
+                           alt="{$catsProductsObj[0][0]->title}" >
+                        <h2>{$catsProductsObj[0][0]->title}</h2></a>
                     </div>
                     <div class="date-author cf">
                         <span class="newsDate">{$catsProductsObj[0][0]->date}</span> -
@@ -63,11 +113,31 @@
             <div class="newsRight news-home grid_6 alpha omega">
                 <div class="newsHomeContent grid_12 alpha omega first">
                     <div class="left-article grid_6 alpha">
-                        <a href="#"><img src="{$catsProductsObj[0][1]->img}" ></a>
+                       <a href="{$link->getModuleLink('news', 'new',
+                            [
+                                'id_news'  => "{$catsProductsObj[0][1]->id_news}",
+                                'cat_news' => "{$catsProductsObj[0][1]->id_cat}",
+                                'page_cat'     => "{$page}",
+                                'rewrite'  => "{$catsProductsObj[0][1]->rewrite}",
+                                'cat_rewrite'  => "{$catsProductsObj[0][1]->cat_rewrite}"
+                             ]
+                             ,false)}"
+                           alt="{$catsProductsObj[0][1]->title}" >
+                           <img src="{$catsProductsObj[0][1]->img}"  title="{$catsProductsObj[0][1]->title}" alt="{$catsProductsObj[0][1]->title}"  >
+                           </a>
                     </div>
                     <div class="right-article grid_6 omega">
                         <div class="category">
-                            <a href="#"></a><span>Categoria 2</span></a>
+                           <a href="{$link->getModuleLink('news', 'new',
+                            [
+                                'id_news'  => "{$catsProductsObj[0][1]->id_news}",
+                                'cat_news' => "{$catsProductsObj[0][1]->id_cat}",
+                                'page_cat'     => "{$page}",
+                                'rewrite'  => "{$catsProductsObj[0][1]->rewrite}",
+                                'cat_rewrite'  => "{$catsProductsObj[0][1]->cat_rewrite}"
+                             ]
+                             ,false)}"
+                           alt="{$catsProductsObj[0][1]->title}" ><span>{$catsProductsObj[0][1]->cat_name}</span></a>
                         </div>
                         <div class="newsTitle">
                             <h2>{$catsProductsObj[0][1]->title}</h2>
@@ -83,11 +153,31 @@
                 </div>
                 <div class="newsHomeContent grid_12 alpha omega second">
                     <div class="left-article grid_6 alpha">
-                        <a href="#"><img src="{$catsProductsObj[0][2]->img}" ></a>
+                        <a href="{$link->getModuleLink('news', 'new',
+                            [
+                                'id_news'  => "{$catsProductsObj[0][2]->id_news}",
+                                'cat_news' => "{$catsProductsObj[0][2]->id_cat}",
+                                'page_cat'     => "{$page}",
+                                'rewrite'  => "{$catsProductsObj[0][2]->rewrite}",
+                                'cat_rewrite'  => "{$catsProductsObj[0][2]->cat_rewrite}"
+                             ]
+                             ,false)}"
+                           alt="{$catsProductsObj[0][2]->title}" >
+                           <img src="{$catsProductsObj[0][2]->img}" title="{$catsProductsObj[0][1]->title}" alt="{$catsProductsObj[0][1]->title}" ></a>
                     </div>
                     <div class="right-article grid_6 omega">
                         <div class="category">
-                            <a href="#"><span>Categoria 3</span></a>
+                            <a href="{$link->getModuleLink('news', 'new',
+                            [
+                                'id_news'  => "{$catsProductsObj[0][2]->id_news}",
+                                'cat_news' => "{$catsProductsObj[0][2]->id_cat}",
+                                'page_cat'     => "{$page}",
+                                'rewrite'  => "{$catsProductsObj[0][2]->rewrite}",
+                                'cat_rewrite'  => "{$catsProductsObj[0][2]->cat_rewrite}"
+                             ]
+                             ,false)}"
+                           alt="{$catsProductsObj[0][2]->title}" >
+                           <span>{$catsProductsObj[0][2]->cat_name}</span></a>
                         </div>
                         <div class="newsTitle">
                             <h2>{$catsProductsObj[0][2]->title}</h2>

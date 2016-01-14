@@ -565,12 +565,14 @@ class News extends Module {
 			SELECT * FROM ' . _DB_PREFIX_ . 'news  WHERE
                  active="1" ' . $extraQuery . '
             ORDER by pos ASC LIMIT ' . (($n_per_page * $page)) . ',' . $n_per_page . ' ');
-
-        $total_news = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS('
+		
+		echo "<pre>"; print_r($news); echo "</pre>";
+        
+		$total_news = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS('
 			SELECT count(id_news) AS total  FROM ' . _DB_PREFIX_ . 'news  WHERE
                 active="1" ' . $extraQuery . ' ');
         $total_news = intval($total_news[0]['total']);
-
+		
         $newsObj = array();
         if ($news) {
             foreach ($news AS $new) {
@@ -579,6 +581,7 @@ class News extends Module {
                 $trads = $this->getTranslations((int) ($new['id_news']));
                 $obj->title = $trads[$id_lang]['title'];
                 $obj->rewrite = Tools::str2url($trads[$id_lang]['title']);
+				$obj->cat_name = $this->getCatName((int) ($catObj->id), $id_lang);
                 $obj->autor = $new['autor']; 
 				/*
 				$date['year'] = date('Y',$new['date']);
@@ -670,10 +673,12 @@ class News extends Module {
 					$cont = 0;
                     foreach ($news AS $new) {
                         $obj = (object) 'News';
+						$obj->post = (int) ($new['pos']);
                         $obj->id_cat = (int) ($catObj->id);
 						$cat = current($this->getCats((int) ($catObj->id), $id_lang));
-						$obj->cat_name = $cat->title;
+						
                         $obj->cat_rewrite = $this->getCatRewrite((int) ($catObj->id), $id_lang);
+						$obj->cat_name = $this->getCatName((int) ($catObj->id), $id_lang);
                         $obj->id_news = (int) ($new['id_news']);
 						$obj->autor = $new['autor'];
                         $trads = $this->getTranslations((int) ($new['id_news']));
@@ -722,7 +727,20 @@ class News extends Module {
                 $count++;
             }
         }
-		
+		$realproducts = array();
+		//echo "<pre>"; print_r($catsProducts); echo "</pre>-----------------------------";
+		foreach($catsProducts as $cat => $products)
+		{
+			foreach($products as $kprod => $producto)
+			{
+				$realproducts[$producto->post] = $producto;
+				//echo "producto <pre>"; print_r($producto); echo "</pre>";
+			}
+			
+		}
+		sort($realproducts);
+		$catsProducts[0] = $realproducts;
+		//echo "<pre>";print_r($catsProducts);echo "</pre>"; 
         $this->smarty->assign(array(
             'catsProductsObj' => $catsProducts,
             'catsObj' => $cats_list
@@ -3673,6 +3691,17 @@ class News extends Module {
      *
      *
      */
+	 
+	private function getCatName($id_cat = 0, $id_lang = 1) {
+
+
+        $trads = $this->getTranslationsCat($id_cat);
+        if (isset($trads[$id_lang]['title']) && !empty($trads[$id_lang]['title'])) {
+            return $trads[$id_lang]['title'];
+        }
+
+        return '';
+    } 
 
     private function getCatRewrite($id_cat = 0, $id_lang = 1) {
 
