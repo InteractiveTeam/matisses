@@ -278,7 +278,7 @@
                         <li><a href="#tabs-1">Comentados</a></li>
                         <li><a href="#tabs-2">Populares</a></li>
                       </ul>
-                      <div id="tabs-1">
+                      <div id="tabs-1" class="content-tabs">
                         <ul>
                             <li>
                                 <div class="category">
@@ -306,16 +306,8 @@
                             </li>
                         </ul>
                       </div>
-                      <div id="tabs-2">
+                      <div id="tabs-2" class="content-tabs">
                         <ul>
-                            <li>
-                                <div class="category">
-                                    <span>Categoria 1</span>
-                                </div>
-                                <div class="newsTitle">
-                                    <h2>La iluminación perfecta para los hogares</h2>
-                                </div>
-                            </li>
                             <li>
                                 <div class="category">
                                     <span>Categoria 1</span>

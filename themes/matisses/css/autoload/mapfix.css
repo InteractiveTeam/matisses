@@ -1,7 +1,3 @@
 .disable-hover {
   pointer-events: none;
 }
-
-b, strong {
-font-weight: 700;
-}

@@ -29,9 +29,9 @@
     	{hook h="displayMatSlider"}
         {hook h="displayMatAdvertisingHome"}
     </div>
-    
 
-    
+
+
     <div id="viewed-products" class="viewed-products">
 		<div class="container">
     		{hook h="displayMatShowesProducts"}
@@ -42,59 +42,41 @@
     		{hook h="displayMatNewProducts"}
 		</div>
 	</div>
-	<div class="destacados">
+	<div id="highlights" class="highlights">
 		<div class="container">
-			<div class="btn-title cf">
-				<h1><a href="#">{l s='Destacados'}</a></h1>
-				<div class="btn-view-products">
-					<a href="#" title="Ver todos los destacados" class="btn btn-default button button-small">Ver todos</a>
-				</div>
-			</div>
-			<div class="info">
-				<img src="../../themes/matisses/img/destacados.jpg" alt="destacados">
+			<div class="info-chaordic">
+				<img src="../../themes/matisses/img/highlights.jpg" alt="Destacados">
 				<div class="mask">
 					<h1>Espacio para Chaordic</h1>
 				</div>
 			</div>
 		</div>
     </div>
-    
+
     <div id="offers" class="offers-products">
 		<div class="container">
-			<div class="btn-title cf">
-				<h1><a href="#">{l s='Ofertas de productos'}</a></h1>
-				<div class="btn-view-products">
-					<a href="#" title="Ver todos los destacados" class="btn btn-default button button-small">Ver todos</a>
-				</div>
-			</div>
-			<div class="info">
-				<img src="../../themes/matisses/img/destacados.jpg" alt="destacados">
+			<div class="info-chaordic">
+				<img src="../../themes/matisses/img/offers-products.jpg" alt="Oferta de productos">
 				<div class="mask">
 					<h1>Espacio para Chaordic</h1>
 				</div>
 			</div>
 		</div>
-    </div>  
-    
-    <div id="offers" class="offers-products">
+    </div>
+
+    <div id="popular" class="popular">
 		<div class="container">
-			<div class="btn-title cf">
-				<h1><a href="#">{l s='Mas populares'}</a></h1>
-				<div class="btn-view-products">
-					<a href="#" title="Ver todos los destacados" class="btn btn-default button button-small">Ver todos</a>
-				</div>
-			</div>
-			<div class="info">
-				<img src="../../themes/matisses/img/destacados.jpg" alt="destacados">
+			<div class="info-chaordic">
+				<img src="../../themes/matisses/img/popular.jpg" alt="Más populares">
 				<div class="mask">
 					<h1>Espacio para Chaordic</h1>
 				</div>
 			</div>
 		</div>
-    </div> 
+    </div>
 
 	{hook h="displayExperiencesHome"}
-    
+
     <div class="zona-blog">
 		<div class="container">
 			{hook h="displayMatBlog"}
@@ -128,26 +110,26 @@
 		    	<h3 class="undertitle_main">
 		    		{l s='Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '}
 		    	</h3>
-		<div class="tabs_main clearfix">
+		<div class="tabs_main cf">
 			{if isset($HOOK_HOME_TAB) && $HOOK_HOME_TAB|trim}
 
-			        <ul id="home-page-tabs" class="tabs_carousel nav nav-tabs clearfix">
+			        <ul id="home-page-tabs" class="tabs_carousel nav nav-tabs cf">
 						{$HOOK_HOME_TAB}
 					</ul>
 			{/if}
-			<div class="tab-content clearfix">
+			<div class="tab-content cf">
 				{$HOOK_HOME_TAB_CONTENT}
 			</div>
 	    </div>
 	</div>
 {/if}
 {if isset($HOOK_HOME) && $HOOK_HOME|trim}
-	<div class="clearfix">
+	<div class="cf">
 		{$HOOK_HOME}
 	</div>
 {/if}
 	<!-- hook displayHomeCustom -->
-	<div class="clearfix">
+	<div class="cf">
 		{hook h='displayHomeCustom'}
 	</div>
 <!-- end hook displayHomeCustom -->

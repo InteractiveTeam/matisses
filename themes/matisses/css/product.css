@@ -796,9 +796,7 @@ a.fancybox-nav {
     padding-bottom: 0;
     border: none;
 	}
-.product p{
-	font-family: 'Open Sans Condensed', sans-serif;
-	}
+
 .product h2{
 	color: #231f20;
 	font-size: 1.125rem;
@@ -813,8 +811,8 @@ ul.wrap_attr li label {
 	padding: 0;
 }
 .product ul.wrap_attr li{
-	font-family: 'Open Sans Condensed', sans-serif;
-	font-size: 1.125rem;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1rem;
 	color: #777676;
 	list-style: none;
 	line-height: 1.5;
