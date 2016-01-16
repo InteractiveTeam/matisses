@@ -18,7 +18,7 @@ $_MODULE['<{blockuserinfo}prestashop>blockuserinfo_c87aacf5673fada1108c9f809d354
 $_MODULE['<{blockuserinfo}prestashop>blockuserinfo_d4151a9a3959bdd43690735737034f27'] = 'Entrar a tu cuenta de cliente';
 $_MODULE['<{blockuserinfo}prestashop>blockuserinfo_b6d4223e60986fa4c9af77ee5f7149c5'] = 'Iniciar sesión';
 $_MODULE['<{blockuserinfo}prestashop>nav_2cbfb6731610056e1d0aaacde07096c1'] = 'Ver mi cuenta de cliente';
-$_MODULE['<{blockuserinfo}prestashop>nav_4b877ba8588b19f1b278510bf2b57ebb'] = 'Cerrer sesión';
+$_MODULE['<{blockuserinfo}prestashop>nav_4b877ba8588b19f1b278510bf2b57ebb'] = 'Cerrar sesión';
 $_MODULE['<{blockuserinfo}prestashop>nav_c87aacf5673fada1108c9f809d354311'] = 'Cerrar sesión';
 $_MODULE['<{blockuserinfo}prestashop>nav_d4151a9a3959bdd43690735737034f27'] = 'Entrar a tu cuenta de cliente';
 $_MODULE['<{blockuserinfo}prestashop>nav_b6d4223e60986fa4c9af77ee5f7149c5'] = 'Iniciar sesión';

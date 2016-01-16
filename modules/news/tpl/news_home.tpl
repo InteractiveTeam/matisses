@@ -42,7 +42,7 @@
                     <a href="#"><img src="{$catsProductsObj[0][0]->img}" ></a>
                 </div>
                 <div class="info-article">
-                    <div class="category">
+                    <div class="category-news">
                         <a href="#"><span>Categoria 1</span></a>
                     </div>
                     <div class="newsTitle">
@@ -66,7 +66,7 @@
                         <a href="#"><img src="{$catsProductsObj[0][1]->img}" ></a>
                     </div>
                     <div class="right-article grid_6 omega">
-                        <div class="category">
+                        <div class="category-news">
                             <a href="#"></a><span>Categoria 2</span></a>
                         </div>
                         <div class="newsTitle">
@@ -86,7 +86,7 @@
                         <a href="#"><img src="{$catsProductsObj[0][2]->img}" ></a>
                     </div>
                     <div class="right-article grid_6 omega">
-                        <div class="category">
+                        <div class="category-news">
                             <a href="#"><span>Categoria 3</span></a>
                         </div>
                         <div class="newsTitle">

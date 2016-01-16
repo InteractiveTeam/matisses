@@ -440,7 +440,7 @@
 	{/if}-->
 	<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="account-creation_form" class="std box account-creation_form grid_12">
 		{$HOOK_CREATE_ACCOUNT_TOP}
-		<h2 class="page-subheading">{l s='Your personal information'}</h2>
+		<h2 class="page-subheading">{l s='Crear cuenta'}</h2>
 		<h4>Información personal</h4>
 		<div class="account_creation grid_12 omega alpha">
 			<div class="form-group grid_12 ">
@@ -562,7 +562,7 @@
                 <div class="checkbox">
 
                     <input type="checkbox" name="tratamiento" id="tratamiento" value="1" {if isset($smarty.post.tratamiento) && $smarty.post.tratamiento == '1'}checked="checked"{/if} />
-                    <label for="tratamiento">{l s='Aceptar uso, tratamiento de mis datos y políticas de privacidad'}</label>
+                    <label for="tratamiento">{l s='Acepto el uso, tratamiento de mis datos y política de privacidad'}</label>
                 </div>
             </div>
 

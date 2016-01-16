@@ -28,12 +28,12 @@
 <h1 class="page-heading product-listing">{l s='Suppliers:'}
 	{strip}
 		<span class="heading-counter">
-			{if $nbSuppliers == 0}{l s='There are no suppliers.'}
+			{if $nbSuppliers == 0}{l s='There are no suppliers'}
 			{else}
 				{if $nbSuppliers == 1}
 					{l s='There is %d supplier.' sprintf=$nbSuppliers}
 				{else}
-					{l s='There are %d suppliers.' sprintf=$nbSuppliers}
+					{l s='There are %d suppliers' sprintf=$nbSuppliers}
 				{/if}
 			{/if}
 		</span>
@@ -43,7 +43,7 @@
 {if isset($errors) AND $errors}
 	{include file="$tpl_dir./errors.tpl"}
 {else}
-	
+
 {if $nbSuppliers > 0}
 	<div class="content_sortPagiBar">
         <div class="sortPagiBar clearfix">
@@ -69,7 +69,7 @@
         <div class="top-pagination-content clearfix bottom-line">
             {include file="$tpl_dir./pagination.tpl"}
         </div>
-    </div> <!-- .content_sortPagiBar --> 
+    </div> <!-- .content_sortPagiBar -->
 
     {assign var='nbItemsPerLine' value=3}
     {assign var='nbItemsPerLineTablet' value=2}
@@ -85,7 +85,7 @@
 	        {if $totModuloTablet == 0}{assign var='totModuloTablet' value=$nbItemsPerLineTablet}{/if}
 			<li class="{if $smarty.foreach.supplier.iteration%$nbItemsPerLine == 0} last-in-line{elseif $smarty.foreach.supplier.iteration%$nbItemsPerLine == 1} first-in-line{/if} {if $smarty.foreach.supplier.iteration > ($smarty.foreach.supplier.total - $totModulo)}last-line{/if} {if $smarty.foreach.supplier.iteration%$nbItemsPerLineTablet == 0}last-item-of-tablet-line{elseif $smarty.foreach.supplier.iteration%$nbItemsPerLineTablet == 1}first-item-of-tablet-line{/if} {if $smarty.foreach.supplier.iteration > ($smarty.foreach.supplier.total - $totModuloTablet)}last-tablet-line{/if}col-xs-12">
 				<div class="mansup-container">
-					<div class="row"> 
+					<div class="row">
 		            	<div class="left-side col-xs-12 col-sm-3">
 							<!-- logo -->
 							<div class="logo">
@@ -99,7 +99,7 @@
 							</div> <!-- .logo -->
 						</div> <!-- .left-side -->
 
-						<div class="middle-side col-xs-12 col-sm-5">	
+						<div class="middle-side col-xs-12 col-sm-5">
 							<h3>
 								{if $supplier.nb_products > 0}
 									<a class="product-name" href="{$link->getsupplierLink($supplier.id_supplier, $supplier.link_rewrite)|escape:'html':'UTF-8'}">

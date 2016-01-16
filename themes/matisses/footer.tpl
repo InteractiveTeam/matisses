@@ -117,17 +117,17 @@
         <div id="menu-footer" class="menu-footer cf">
           <ul class="column-1 column grid_4">
             <li><a href="{$link->getCMSLink(6)}">{l s='Matisses'}</a></li>
-            <li><a href="{$link->getPageLink('sitemap')}">{l s='Mapa del sitio'}</a></li>
-            <li><a href="{$link->getCMSLink(9)}">{l s='Métodos de envio'}</a></li>
+            <li><a href="{$link->getPageLink('stores')}">{l s='Tiendas'}</a></li>
+            <li><a href="{$link->getCMSLink(7)}">{l s='Trabaja con nosotros'}</a></li>
           </ul>
           <ul class="column-2 column grid_4">
-            <li><a href="{$link->getPageLink('stores')}">{l s='Tiendas'}</a></li>
+            <li><a href="{$link->getPageLink('sitemap')}">{l s='Mapa del sitio'}</a></li>
             <li><a  href="{$link->getPageLink('contact')}">{l s='Contáctanos'}</a></li>
-            <li><a href="">{l s='Garantías'}</a></li>
+            <li><a href="{$link->getCMSLink(8)}">{l s='Financiación'}</a></li>
           </ul>
           <ul class="column-3 column grid_4 omega">
-            <li><a href="{$link->getCMSLink(7)}">{l s='Trabaja con nosotros'}</a></li>
-            <li><a href="{$link->getCMSLink(8)}">{l s='Financiación'}</a></li>
+            <li><a href="{$link->getCMSLink(9)}">{l s='Métodos de envio'}</a></li>
+            <li><a href="">{l s='Garantías'}</a></li>
             <li><a href="{$link->getCMSLink(10)}">{l s='Preguntas Frecuentes'}</a></li>
           </ul>
         </div>
@@ -141,7 +141,7 @@
               fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>
           <div class="share cf">
-            <p>{l s='Siguenos en nuestras redes'}</p>
+            <p>{l s='Síguenos en nuestras redes sociales'}</p>
             <div class="fb-like" data-href="http://www.matisses.com/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
           </div>
         </div>

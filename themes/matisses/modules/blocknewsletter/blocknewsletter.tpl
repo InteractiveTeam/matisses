@@ -24,7 +24,7 @@
 *}
 <!-- Block Newsletter module-->
 <div id="newsletter_block_left" class="block newsletter-footer">
-	<p>{l s='Sé el primero en descubrir las ofertas exclusivas, Las ultimas lookbooks y tendencias principales.' mod='blocknewsletter'}</p>
+	<p>{l s='Sé el primero en descubrir las ofertas exclusivas, los últimos lookbooks y tendencias principales.' mod='blocknewsletter'}</p>
 	<div class="block_content">
 
 		{if $msg}
@@ -35,7 +35,7 @@
 		<form action="{$link->getPageLink('index')|escape:'html':'UTF-8'}" id="newsletter" name="submitNewsletter" method="post">
 			<div class="form-group{if isset($msg) && $msg } {if $nw_error}form-error{else}form-ok{/if}{/if}" >
 				<div class="cf">
-					<input class="inputNew form-control grey newsletter-input" id="newsletter-input" type="text" name="email" size="18" placeholder="{l s='Escriba su correo electronico' mod='blocknewsletter'}" value="{$value}" />
+					<input class="inputNew form-control grey newsletter-input" id="newsletter-input" type="text" name="email" size="18" placeholder="{l s='Escriba su correo electrónico' mod='blocknewsletter'}" value="{$value}" />
 
 	                <button type="submit" id="submitNewsletter" class="btn btn-default button button-small btn-enviar">
 	                    <span>{l s='Enviar' mod='blocknewsletter'}</span>

@@ -36,11 +36,9 @@
         {if $new_products !== false}
             <div class="products product_list grid">
                 {foreach from=$new_products item=product name=myLoop}
-                    <div class="clearfix item product-container">
+                    <div class="cf item product-container">
 						<div class="product-content">
-
                             <div class="rate_left_product">{hook h='displayProductListReviews' product=$product}</div>
-
 								<h2>
 	                            	<a class="product-name" href="{$product.link|escape:'html'}" title="{$product.name|escape:html:'UTF-8'}">{$product.name|strip_tags|escape:html:'UTF-8'}</a>
 	                            </h2>
@@ -121,7 +119,7 @@ buy-now ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, "
                         	{include file="$tpl_dir./product-list-colors.tpl"}
                         </div>
                         {if false}
-                        
+
 						<div class="share_product">
 							<a data-target="https://plus.google.com/share?url=[{$product.link|escape:'html':'UTF-8'}]" class="btn_google" target="_blank"><i class="fa fa-google-plus"></i></a>
 							<a data-target="http://www.linkedin.com/shareArticle?mini=true&amp;url={$product.link|escape:'html':'UTF-8'}&amp;title={$product.name|escape:'html':'UTF-8'}&amp;source={$base_dir}" class="btn_in" target="_blank"> <i class="fa fa-linkedin" ></i></a>

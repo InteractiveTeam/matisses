@@ -33,15 +33,17 @@
 		</h2>
 	</div>
 	<div class="content-account grid_12">
-		<div class="grid_2">
+		<div class="grid_2 dates-account">
 			<img src="{$base_dir}img/mi-lista-deseos.png" class="img-responsive"/>
 		</div>
-		<div class="grid_5">
+		<div class="grid_5 dates-account">
 			<h3>Administrar</h3>
 			<p>Ver, editar o añadir una lista existente</p>
-			<a class="btn btn-default btn-red" href="#" title="Inicio"> {l s='ingresar' mod='matisses'}</a>
+			<div class="footer-account">
+				<a class="btn btn-default btn-red" href="#" title="Inicio"> {l s='ingresar' mod='matisses'}</a>
+			</div>
 		</div>
-		<div class="grid_5">
+		<div class="grid_5 dates-account">
 			<h3>Titulo 2</h3>
 			<p>Descripción 2</p>
 		</div>

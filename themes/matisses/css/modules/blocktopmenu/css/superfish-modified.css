@@ -77,7 +77,6 @@
     position: relative;
     padding: 0;
     width: 100%;
-    background: #f6f6f6;
 	}
 	.sf-menu > li > a {
 	background: url("../../../../img/icon-nav.png") 0 center no-repeat;
