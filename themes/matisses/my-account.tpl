@@ -41,23 +41,25 @@
 				<h2>{l s='Mis compras'}</h2></a>
 			</div>
 			<div class="content-account grid_12">
-				<div class="grid_2">
+				<div class="grid_2 img-account">
 		            <img src="{$base_dir}img/mis-compras.png"/>
 		        </div>
-				<div class="grid_4">
+				<div class="grid_4 dates-account">
 					<h3>Estado del pedido</h3>
-					<p>Introduce tu número de pedido para </p>
+					<p>Introduce tu número de pedido.</p>
 					<div class="footer-account">
 						<input type="text">
 						<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
 					</div>
 				</div>
-				<div class="grid_3">
+				<div class="grid_3 dates-account">
 					<h3>Historial de compras</h3>
-					<p>Revisa que has comprado</p>
-					<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
+					<p>Revisa que has comprado.</p>
+					<div class="footer-account">
+						<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Ingresar' mod='matisses'}</a>
+					</div>
 				</div>
-				<div class="grid_3">
+				<div class="grid_3 dates-account">
 					<h3>Más acciones</h3>
 					<p><a href="#">Contactar un asesor</a></p>
 					<p><a href="#">Contactar un asesor</a></p>
@@ -87,12 +89,16 @@
 				<div class="grid_3">
 					<h3>Crear</h3>
 					<p>Piensa en grande y cra la lista de regalos.</p>
-					<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
+					<div class="footer-account">
+						<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
+					</div>
 				</div>
 				<div class="grid_3">
 					<h3>Administrar</h3>
 					<p>Ver, editar o añadir una lista</p>
-					<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
+					<div class="footer-account">
+						<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
+					</div>
 				</div>
 			</div>
 		</li>

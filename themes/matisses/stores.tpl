@@ -81,12 +81,13 @@
         </table>
     {/if}
 {else}
+
     <div id="map"></div>
-    <div class="txt-intro">
+    <!-- <div class="txt-intro">
         <p>
             {l s='Enter a location (e.g. zip/postal code, address, city or country) in order to find the nearest stores.'}
         </p>
-    </div>
+    </div> -->
     <div class="store-content cf grid_12 alpha omega">
         <div class="address-input grid_6 alpha">
             <label for="addressInput">{l s='Your location:'}</label>

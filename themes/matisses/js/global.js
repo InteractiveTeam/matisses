@@ -70,7 +70,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		history.back();
 	});
-	
+
 	jQuery.curCSS = jQuery.css;
 	if (!!$.prototype.cluetip)
 		$('a.cluetip').cluetip({
@@ -82,7 +82,7 @@ $(document).ready(function(){
 			tracking: true,
 			sticky: false,
 			mouseOutClose: true,
-			fx: {             
+			fx: {
 		    	open:       'fadeIn',
 		    	openSpeed:  'fast'
 			}
@@ -93,25 +93,25 @@ $(document).ready(function(){
 			closeBtn : '<a title="' + FancyboxI18nClose + '" class="fancybox-item fancybox-close" href="javascript:;"></a>',
 			next     : '<a title="' + FancyboxI18nNext + '" class="fancybox-nav fancybox-next" href="javascript:;"><span></span></a>',
 			prev     : '<a title="' + FancyboxI18nPrev + '" class="fancybox-nav fancybox-prev" href="javascript:;"><span></span></a>'
-		});	
-		
+		});
+
 	if($('.owl-item').size()<=3)
 	{
 		$('.owl-controls').addClass('hidden')
-	} 	
+	}
 });
 
 function highdpiInit()
 {
 	if($('.replace-2x').css('font-size') == "1px")
-	{		
+	{
 		var els = $("img.replace-2x").get();
 		for(var i = 0; i < els.length; i++)
 		{
 			src = els[i].src;
 			extension = src.substr( (src.lastIndexOf('.') +1) );
 			src = src.replace("." + extension, "2x." + extension);
-			
+
 			var img = new Image();
 			img.src = src;
 			img.height != 0 ? els[i].src = src : els[i].src = els[i].src;
@@ -121,7 +121,7 @@ function highdpiInit()
 
 
 // Used to compensante Chrome/Safari bug (they don't care about scroll bar for width)
-function scrollCompensate() 
+function scrollCompensate()
 {
     var inner = document.createElement('p');
     inner.style.width = "100%";
@@ -155,7 +155,7 @@ function responsiveResize()
 	{
 		accordion('enable');
 	    accordionFooter('enable');
-		responsiveflag = true;	
+		responsiveflag = true;
 	}
 	else if (($(window).width()+scrollCompensate()) >= 768)
 	{
@@ -187,7 +187,7 @@ function blockHover(status)
 
 function quick_view()
 {
-	$(document).on('click', '.quick-view:visible, .quick-view-mobile:visible', function(e) 
+	$(document).on('click', '.quick-view:visible, .quick-view-mobile:visible', function(e)
 	{
 		e.preventDefault();
 		var url = this.rel;
@@ -210,7 +210,7 @@ function quick_view()
 function bindGrid()
 {
 	var view = $.totalStorage('display');
-	
+
 	if (!view && (typeof displayList != 'undefined') && displayList)
 		view = 'list';
 
@@ -218,7 +218,7 @@ function bindGrid()
 		display(view);
 	else
 		$('.display').find('li.grid').addClass('selected');
-	
+
 	$(document).on('click', '.display .grid-btn', function(e){
 		e.preventDefault();
 		display('grid');
@@ -248,23 +248,23 @@ function display(view)
 					if (colorList != null) {
 						html += '<div class="color-list-container">'+ colorList +'</div>';
 					}
-				html += '</div>';	
+				html += '</div>';
 					html += '<div class="right-block col-xs-4"><div class="right-block-content row">';
 					html += '<div class="col-xs-12 comments_note  clearfix">'+ $(element).find('.comments_note').html() + '</div>';
 					var price = $(element).find('.content_price').html();       // check : catalog mode is enabled
-					if (price != null) { 
+					if (price != null) {
 						html += '<div class="content_price col-xs-12">'+ price + '</div>';
 					}
 					html += '<div class="wrap_view col-xs-12">'+ $(element).find('.wrap_view ').html() +'</div>';
 				html += '</div>';
 			html += '</div></div>';
 		$(element).html(html);
-		});		
+		});
 		$('.display').find('li.list').addClass('selected');
 		$('.display').find('li.grid').removeAttr('class');
 		$.totalStorage('display', 'list');
 	}
-	else 
+	else
 	{
 		$('.product_list').removeClass('list').addClass('grid row');
 		$('.product_list .ajax_block_product').removeClass('col-xs-12').addClass('col-xs-6 col-sm-6 col-lg-4');
@@ -275,11 +275,11 @@ function display(view)
 			html += '<div class="right-block"><div class="wrap_content_price">';
 				html += '<div class="comments_note  clearfix">'+ $(element).find('.comments_note').html() + '</div>';
 				html += '<div class="product-flags">'+ $(element).find('.product-flags').html() + '</div>';
-				
+
 				html += '<h5 itemprop="name">'+ $(element).find('h5').html() + '</h5>';
 				html += '<p itemprop="description" class="product-desc">'+ $(element).find('.product-desc').html() + '</p>';
 				var price = $(element).find('.content_price').html(); // check : catalog mode is enabled
-					if (price != null) { 
+					if (price != null) {
 						html += '<div class="content_price">'+ price + '</div>';
 					}
 				var colorList = $(element).find('.color-list-container').html();
@@ -294,14 +294,14 @@ function display(view)
 		$('.display').find('li.grid').addClass('selected');
 		$('.display').find('li.list').removeAttr('class');
 		$.totalStorage('display', 'grid');
-	}	
+	}
 }
 
-function dropDown() 
+function dropDown()
 {
 	elementClick = '#header .current';
-	elementSlide =  'ul.toogle_content';       
-	activeClass = 'active';			 
+	elementSlide =  'ul.toogle_content';
+	activeClass = 'active';
 
 	$(elementClick).on('click', function(e){
 		e.stopPropagation();
@@ -309,7 +309,7 @@ function dropDown()
 		if(subUl.is(':hidden'))
 		{
 			subUl.slideDown();
-			$(this).addClass(activeClass);	
+			$(this).addClass(activeClass);
 		}
 		else
 		{
@@ -381,3 +381,11 @@ function resizeCatimg()
 		image.src = div.css('background-image').replace(/url\("?|"?\)$/ig, '');
 }
 
+
+//Ancho menú
+$(document).ready(function(){
+
+	var ancho = $(window).width();
+	//alert(ancho);
+	$(".sf-menu > li > ul").width(ancho);
+})

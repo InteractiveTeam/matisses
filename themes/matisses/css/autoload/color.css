@@ -437,7 +437,7 @@ input.exclusive_large_disabled:hover{
 .tp-bullets.simplebullets.round .bullet{
 	border-color: #fff;
 }
-.main_panel,#currencies-block-top,#languages-block-top,#header .wrap_cart,.header_user_info #drop_content_user a  {
+.main_panel,#currencies-block-top,#languages-block-top,#header .wrap_cart {
 	border-color: #fff;
 	border-color: rgba(255,255,255,0.3);
 }

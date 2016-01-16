@@ -26,7 +26,7 @@
 var instantSearchQueries = [];
 $(document).ready(function()
 {	if(window.blocksearch_type){
-	if (typeof instantsearch != 'undefined' && instantsearch)		
+	if (typeof instantsearch != 'undefined' && instantsearch)
 		$("#search_query_" + blocksearch_type).keyup(function(){
 			if($(this).val().length > 4){
 				stopInstantSearchQueries();
@@ -75,7 +75,8 @@ $(document).ready(function()
 			{
 				minChars: 3,
 				max: 10,
-				width: (width_ac_results > 0 ? width_ac_results : 500),
+				width: (width_
+					 > 0 ? width_ac_results : 100%),
 				selectFirst: false,
 				scroll: false,
 				dataType: "json",
@@ -101,7 +102,7 @@ $(document).ready(function()
 }
 
 	$('#search a').on('click',function(){
-		$('header .search-container').slideToggle(500);	
+		$('header .search-container').slideToggle(500);
 	})
 
 });

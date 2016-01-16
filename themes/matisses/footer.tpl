@@ -49,10 +49,10 @@
 				</div>
 			</div>
 		</div>
-    </div> 
-</div>    
-    
-<div class="row">    
+    </div>
+</div>
+
+<div class="row">
     <div id="popular" class="popular-products">
 		<div class="container">
 			<div class="btn-title cf">
@@ -68,9 +68,9 @@
 				</div>
 			</div>
 		</div>
-    </div> 
+    </div>
 </div>
-<div class="row">    
+<div class="row">
     <div id="offers" class="offers-products">
 		<div class="container">
 			<div class="btn-title cf">
@@ -86,9 +86,9 @@
 				</div>
 			</div>
 		</div>
-    </div> 
+    </div>
 </div>
-<div class="row">    
+<div class="row">
     <div id="visited" class="visited-products">
 		<div class="container">
 			<div class="btn-title cf">
@@ -104,7 +104,7 @@
 				</div>
 			</div>
 		</div>
-    </div>     
+    </div>
 </div>
 {/if}
 
@@ -117,18 +117,18 @@
         <div id="menu-footer" class="menu-footer cf">
           <ul class="column-1 column grid_4">
             <li><a href="{$link->getCMSLink(6)}">{l s='Matisses'}</a></li>
-            <li><a href="{$link->getPageLink('sitemap')}">{l s='Mapa del sitio'}</a></li>
-            <li><a href="{$link->getCMSLink(9)}">{l s='Métodos de envio'}</a></li>
+            <li><a href="{$link->getPageLink('stores')}">{l s='Tiendas'}</a></li>
+            <li><a href="{$link->getCMSLink(7)}">{l s='Trabaja con nosotros'}</a></li>
           </ul>
           <ul class="column-2 column grid_4">
-            <li><a href="{$link->getPageLink('stores')}">{l s='Tiendas'}</a></li>
+            <li><a href="{$link->getPageLink('sitemap')}">{l s='Mapa del sitio'}</a></li>
             <li><a  href="{$link->getPageLink('contact')}">{l s='Contáctanos'}</a></li>
-            <li><a href="">{l s='Garantías'}</a></li>
+            <li><a href="{$link->getCMSLink(8)}">{l s='Financiación'}</a></li>
           </ul>
           <ul class="column-3 column grid_4 omega">
-            <li><a href="{$link->getCMSLink(7)}">{l s='Trabaja con nosotros'}</a></li>
-            <li><a href="{$link->getCMSLink(8)}">{l s='Financiación'}</a></li>
-            <li><a href="{$link->getCMSLink(10)}">{l s='Preguntas Frecuentes'}</a></li> 
+            <li><a href="{$link->getCMSLink(9)}">{l s='Métodos de envio'}</a></li>
+            <li><a href="">{l s='Garantías'}</a></li>
+            <li><a href="{$link->getCMSLink(10)}">{l s='Preguntas Frecuentes'}</a></li>
           </ul>
         </div>
         <div class="footer-share">
@@ -141,7 +141,7 @@
               fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>
           <div class="share cf">
-            <p>{l s='Siguenos en nuestras redes'}</p>
+            <p>{l s='Síguenos en nuestras redes sociales'}</p>
             <div class="fb-like" data-href="http://www.matisses.com/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
           </div>
         </div>
@@ -154,8 +154,8 @@
       <div class="menu-copyright">
         <ul>
           <li><a href="{$link->getCMSLink(11)}">{l s='Términos y condiciones'}</a></li>
-          <li><a href="{$link->getCMSLink(12)}">{l s='Política de Manejo de Datos'}</a></li>
-          <li><a href="{$link->getCMSLink(13)}">{l s='Política de Privacidad'}</a></li>
+          <li><a href="{$link->getCMSLink(12)}">{l s='Política de manejo de datos'}</a></li>
+          <li><a href="{$link->getCMSLink(13)}">{l s='Política de privacidad'}</a></li>
           <li id="copyright"> <a class="copyright" href="{$base_url}" title="{l s='Matisses'}">© {l s='Todos los derechos reservados'} {l s='Matisses'} {$smarty.now|date_format:"%Y"}</a></li>
         </ul>
       </div>

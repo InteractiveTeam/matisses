@@ -40,7 +40,7 @@ class="page-heading {if !isset($instant_search) || (isset($instant_search) && !$
         </a>
     {else}
         <span class="heading-counter">
-            {if $nbProducts == 1}{l s='%d result has been found.' sprintf=$nbProducts|intval}{else}{l s='%d results have been found.' sprintf=$nbProducts|intval}{/if}
+            {if $nbProducts == 1}{l s='%d result has been found.' sprintf=$nbProducts|intval}{else}{l s='%d results have been found' sprintf=$nbProducts|intval}{/if}
         </span>
     {/if}
 </h1>

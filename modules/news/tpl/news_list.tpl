@@ -22,7 +22,7 @@
                     </a>
                 </div>
                 <div class="info-article">
-                    <div class="category">
+                    <div class="category-news">
                         <a href="#"><span>Categoria 1</span></a>
                     </div>
                     <div class="newsTitle">
@@ -46,7 +46,7 @@
                         <a href="#"><img src="/modules/news/imgs/14-home.jpg" ></a>
                     </div>
                     <div class="right-article grid_6 omega">
-                        <div class="category">
+                        <div class="category-news">
                             <a href="#"><span>Categoria 2</span></a>
                         </div>
                         <div class="newsTitle">
@@ -68,7 +68,7 @@
                         </a>
                     </div>
                     <div class="right-article grid_6 omega">
-                        <div class="category">
+                        <div class="category-news">
                             <a href="#">
                                 <span>Categoria 3</span>
                             </a>
@@ -147,7 +147,7 @@
                                    {else}
                                    {/if}
                                     <div class="newsListContent right-article grid_8 alpha omega">
-                                        <div class="category">
+                                        <div class="category-news">
                                             <span>Categoria 1</span>
                                         </div>
                                         <div class="newsTitle">
@@ -264,7 +264,7 @@
                         <input type="submit" name="searchnewshidden"></input>
                     </form>
                 </div>
-                <div class="category-news grid_12 omega">
+                <div class="category-filter grid_12 omega">
                     <h4>Categorías</h4>
                     <ul>
                         <li><a href="#">Mobiliario y accesorios</a></li>
@@ -280,10 +280,10 @@
                         <li><a href="#tabs-1">Comentados</a></li>
                         <li><a href="#tabs-2">Populares</a></li>
                       </ul>
-                      <div id="tabs-1">
+                      <div id="tabs-1" class="content-tabs">
                         <ul>
                             <li>
-                                <div class="category">
+                                <div class="category-news">
                                     <span>Categoria 1</span>
                                 </div>
                                 <div class="newsTitle">
@@ -291,7 +291,7 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="category">
+                                <div class="category-news">
                                     <span>Categoria 1</span>
                                 </div>
                                 <div class="newsTitle">
@@ -299,7 +299,7 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="category">
+                                <div class="category-news">
                                     <span>Categoria 2</span>
                                 </div>
                                 <div class="newsTitle">
@@ -308,10 +308,10 @@
                             </li>
                         </ul>
                       </div>
-                      <div id="tabs-2">
+                      <div id="tabs-2" class="content-tabs">
                         <ul>
                             <li>
-                                <div class="category">
+                                <div class="category-news">
                                     <span>Categoria 1</span>
                                 </div>
                                 <div class="newsTitle">
@@ -319,15 +319,7 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="category">
-                                    <span>Categoria 1</span>
-                                </div>
-                                <div class="newsTitle">
-                                    <h2>La iluminación perfecta para los hogares</h2>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category">
+                                <div class="category-news">
                                     <span>Categoria 1</span>
                                 </div>
                                 <div class="newsTitle">

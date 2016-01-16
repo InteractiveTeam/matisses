@@ -72,7 +72,7 @@
                     <img src="{$catsProductsObj[0][0]->img}" title="{$catsProductsObj[0][0]->title}" alt="{$catsProductsObj[0][0]->title}" ></a>
                 </div>
                 <div class="info-article">
-                    <div class="category">
+                    <div class="category-news">
                         <a href="{$link->getModuleLink('news', 'new',
                             [
                                 'id_news'  => "{$catsProductsObj[0][0]->id_news}",
@@ -127,7 +127,7 @@
                            </a>
                     </div>
                     <div class="right-article grid_6 omega">
-                        <div class="category">
+                        <div class="category-news">
                            <a href="{$link->getModuleLink('news', 'new',
                             [
                                 'id_news'  => "{$catsProductsObj[0][1]->id_news}",
@@ -166,7 +166,7 @@
                            <img src="{$catsProductsObj[0][2]->img}" title="{$catsProductsObj[0][1]->title}" alt="{$catsProductsObj[0][1]->title}" ></a>
                     </div>
                     <div class="right-article grid_6 omega">
-                        <div class="category">
+                        <div class="category-news">
                             <a href="{$link->getModuleLink('news', 'new',
                             [
                                 'id_news'  => "{$catsProductsObj[0][2]->id_news}",

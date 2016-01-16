@@ -4,7 +4,7 @@
 				<h1><a href="{$link->getModuleLink('matisses','experiences')}">{l s='Experiencias' mod='matisses'}</a></h1>
 				<div class="btn-view-products">
 
-					<a href="{$link->getModuleLink('matisses','experiences')}" title="{l s='Ver todos los destacados' mod='matisses'}" class="btn btn-default button button-small">{l s='Ver todos' mod='matisses'}</a>
+					<a href="{$link->getModuleLink('matisses','experiences')}" title="{l s='Ver todos los destacados' mod='matisses'}" class="btn btn-default button button-small">{l s='Ver todas' mod='matisses'}</a>
 				</div>
 			</div>
 			<div class="slide-experiencias cf">

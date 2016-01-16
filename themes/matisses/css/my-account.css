@@ -24,11 +24,10 @@
 /***/
 
 /*Pag Mi cuenta*/
-.my-account-list ul li {
+    .my-account-list ul li {
     margin: 0 0 1.25rem;
-}
-
-.header-account h2 {
+    }
+    .header-account h2 {
     background: #e1e1e1;
     display: block;
     clear: both;
@@ -36,9 +35,44 @@
     font-family: 'condensed';
     text-transform: uppercase;
     font-size: 1.25rem;
-}
-.content-account {
+    }
+    .content-account {
     padding: 2.5rem 0;
     border: 1px solid #dbdbdb;
     border-top: none;
-}
+    }
+    .content-account .img-account {
+    margin: 0 auto;
+    display: block;
+    }
+    .content-account h3{
+    font-size: 1rem;
+    color: #231f20;
+    text-transform: uppercase;
+    margin-bottom: 0.3125rem;
+    }
+    .content-account p{
+    color:#777676;
+    font-size: 0.9375rem;
+    }
+    .dates-account a{
+    text-decoration: underline;
+    }
+    .footer-account {
+    margin-top: 1.5625rem;
+    }
+    .footer-account a{
+    text-decoration: none;
+    }
+    .footer-account .btn {
+    padding: 0.3125rem 1.5625rem;
+    }
+    .footer-account input[type="text"] {
+    height: 2.375rem;
+    display: inline-block;
+    vertical-align: top;
+    padding: 0.3125rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.875rem;
+    color: #777676;
+    }
