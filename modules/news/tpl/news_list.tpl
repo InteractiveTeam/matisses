@@ -4,9 +4,9 @@
 {print_r($newsObj)}
 </pre>
  -->
- 
- <pre>{print_r($newsObj)}</pre>
- 
+ <!--
+ <pre>{print_r($newsObj)}</pre>  
+  -->
 <div class="blog-list">
     <div class="newsMenuCats">
         <h1>{l s='Blog' mod='news'}</h1>

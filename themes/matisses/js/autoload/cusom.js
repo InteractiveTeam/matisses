@@ -59,9 +59,9 @@ $(document).ready(function(){
 		}
 		videoPlay.onclick = playPause;
 	}
-
-	$('.breadcrumb .navigation-pipe').html('/');
-
+	/*
+	$('.breadcrumb .navigation-pipe').html('/'); 
+*/
 	$('body:not(#order-opc)').find('select:not(#id_state,.layered_select,.none-chosen)').chosen();
 
 	$('#product_comments_block_extra .comments_note').prependTo($('.rate_wrap'));

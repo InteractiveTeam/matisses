@@ -1053,6 +1053,7 @@ class ToolsCore
 			return '<span class="navigation_end">'.$path.'</span>';
 
 		$pipe = Configuration::get('PS_NAVIGATION_PIPE');
+		//die($pipe);
 		if (empty($pipe))
 			$pipe = '>';
 

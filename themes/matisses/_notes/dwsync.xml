@@ -8,7 +8,7 @@
 <file name="404.tpl" server="192.168.3.45" local="130972072818152636" remote="130972723200000000" Dst="0" />
 <file name="addresses.tpl" server="192.168.3.45" local="130972072818308887" remote="130972723200000000" Dst="0" />
 <file name="address.tpl" server="192.168.3.45" local="130972072818308887" remote="130972723200000000" Dst="0" />
-<file name="authentication.tpl" server="192.168.3.45" local="130972518969854426" remote="130972723200000000" Dst="0" />
+<file name="authentication.tpl" server="192.168.3.45" local="130974396517631433" remote="130974576600000000" Dst="0" />
 <file name="best-sales.tpl" server="192.168.3.45" local="130972072818465139" remote="130972723200000000" Dst="0" />
 <file name="breadcrumb.tpl" server="192.168.3.45" local="130972072818465139" remote="130972723200000000" Dst="0" />
 <file name="category-cms-tree-branch.tpl" server="192.168.3.45" local="130972072818999202" remote="130972723200000000" Dst="0" />
@@ -21,14 +21,14 @@
 <file name="errors.tpl" server="192.168.3.45" local="130972072841440108" remote="130972726200000000" Dst="0" />
 <file name="global.tpl" server="192.168.3.45" local="130972072848771290" remote="130972726800000000" Dst="0" />
 <file name="guest-tracking.tpl" server="192.168.3.45" local="130972072848771290" remote="130972726800000000" Dst="0" />
-<file name="history.tpl" server="192.168.3.45" local="130972072848927542" remote="130972726800000000" Dst="0" />
+<file name="history.tpl" server="192.168.3.45" local="130974370613999053" remote="130974550200000000" Dst="0" />
 <file name="identity.tpl" server="192.168.3.45" local="130972072848927542" remote="130972726800000000" Dst="0" />
 <file name="index.php" server="192.168.3.45" local="130972072858808280" remote="130972726800000000" Dst="0" />
 <file name="layout.tpl" server="192.168.3.45" local="130972072873337895" remote="130972727400000000" Dst="0" />
 <file name="maintenance.tpl" server="192.168.3.45" local="130972072873387895" remote="130972727400000000" Dst="0" />
 <file name="manufacturer-list.tpl" server="192.168.3.45" local="130972072873442907" remote="130972727400000000" Dst="0" />
 <file name="manufacturer.tpl" server="192.168.3.45" local="130972072873487900" remote="130972727400000000" Dst="0" />
-<file name="my-account.tpl" server="192.168.3.45" local="130972518970194614" remote="130972729800000000" Dst="0" />
+<file name="my-account.tpl" server="192.168.3.45" local="130974390755423468" remote="130974570600000000" Dst="0" />
 <file name="nbr-product-page.tpl" server="192.168.3.45" local="130972072945301510" remote="130972729800000000" Dst="0" />
 <file name="new-products.tpl" server="192.168.3.45" local="130972072945301510" remote="130972729800000000" Dst="0" />
 <file name="order-address-multishipping-products.tpl" server="192.168.3.45" local="130972072945457762" remote="130972729800000000" Dst="0" />

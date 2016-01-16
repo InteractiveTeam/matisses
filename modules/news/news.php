@@ -566,7 +566,7 @@ class News extends Module {
                  active="1" ' . $extraQuery . '
             ORDER by pos ASC LIMIT ' . (($n_per_page * $page)) . ',' . $n_per_page . ' ');
 		
-		echo "<pre>"; print_r($news); echo "</pre>";
+		//echo "<pre>"; print_r($news); echo "</pre>";
         
 		$total_news = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS('
 			SELECT count(id_news) AS total  FROM ' . _DB_PREFIX_ . 'news  WHERE

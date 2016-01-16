@@ -45,24 +45,26 @@
 		            <img src="{$base_dir}img/mis-compras.png"/>
 		        </div>
 				<div class="grid_4 dates-account">
-					<h3>Estado del pedido</h3>
-					<p>Introduce tu número de pedido.</p>
+					<h3>{l s='Estado del pedido'}</h3>
+					<p>{l s='Introduce tu número de pedido.'}</p>
 					<div class="footer-account">
-						<input type="text">
-						<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
+                    <form id="getPedido" method="get" action="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}">
+						<input type="text" name="pedidonro">
+						<a class="btn btn-default btn-red" href="#" onclick="$('#getPedido').submit()" title="{l s='Buscar'}"> {l s='Buscar' mod='matisses'}</a>
+                    </form>    
 					</div>
 				</div>
 				<div class="grid_3 dates-account">
-					<h3>Historial de compras</h3>
-					<p>Revisa que has comprado.</p>
+					<h3>{l s='Historial de compras'}</h3>
+					<p>{l s='Revisa que has comprado.'}</p>
 					<div class="footer-account">
-						<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Ingresar' mod='matisses'}</a>
+						<a class="btn btn-default btn-red" href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}" title="Buscar"> {l s='Ingresar' mod='matisses'}</a>
 					</div>
 				</div>
 				<div class="grid_3 dates-account">
-					<h3>Más acciones</h3>
+					<h3>{l s='Más acciones'}</h3>
 					<p><a href="#">Contactar un asesor</a></p>
-					<p><a href="#">Contactar un asesor</a></p>
+					<p><a href="{$link->getPageLink('store', true)|escape:'html':'UTF-8'}">{l s='Encuentra la tienda mas cercana'}</a></p>
 				</div>
 			</div>
 		</li>
@@ -77,8 +79,8 @@
 		            <img src="{$base_dir}img/mi-lista-regalos.png"/>
 		        </div>
 				<div class="grid_4">
-					<h3>Buscar</h3>
-					<p>Busca un alista de regalos existente</p>
+					<h3>{l s='Buscar'}</h3>
+					<p>{l s='Busca un alista de regalos existente'}</p>
 					<div class="footer-account">
 						<input type="text">
 						<input type="text">
@@ -87,15 +89,15 @@
 					</div>
 				</div>
 				<div class="grid_3">
-					<h3>Crear</h3>
-					<p>Piensa en grande y cra la lista de regalos.</p>
+					<h3>{l s='Crear'}</h3>
+					<p>{l s='Piensa en grande y cra la lista de regalos.'}</p>
 					<div class="footer-account">
 						<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
 					</div>
 				</div>
 				<div class="grid_3">
-					<h3>Administrar</h3>
-					<p>Ver, editar o añadir una lista</p>
+					<h3>{l s='Administrar'}</h3>
+					<p>{l s='Ver, editar o añadir una lista'}</p>
 					<div class="footer-account">
 						<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
 					</div>
@@ -114,13 +116,13 @@
 		        </div>
 				<div class="grid_5">
 					<h3>Ajustes de cuenta</h3>
-					<p><a href="#">Cambiar la configuración de cuenta</a></p>
-					<p><a href="#">E-mail, contraseña, nombre y teléfono móvil</a></p>
+					<p><a href="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}">{l s='Cambiar la configuración de cuenta'}</a></p>
+					<p><a href="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}">{l s='E-mail, contraseña, nombre y teléfono móvil'}</a></p>
 				</div>
 				<div class="grid_5">
-					<h3>Libreta de direcciones</h3>
-					<p><a href="#">Gestionar libreta de direcciones</a></p>
-					<p><a href="#">Añadir nueva dirección</a></p>
+					<h3>{l s='Libreta de direcciones'}</h3>
+					<p><a href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}">{l s='Gestionar libreta de direcciones'}</a></p>
+					<p><a href="{$link->getPageLink('address', true)|escape:'html':'UTF-8'}" title="{l s='Add my first address'}">{l s='Añadir nueva dirección'}</a></p>
 				</div>
 			</div>
 		</li>
