@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 <div class="container">
-<div id="mywishlist">
+<div id="mywishlist" class="mywishlist">
 	{capture name=path}
 		<a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
 			{l s='My account' mod='blockwishlist'}
@@ -51,19 +51,15 @@
 					</label>
 					<input type="text" id="name" name="name" class="inputTxt form-control" value="{if isset($smarty.post.name) and $errors|@count > 0}{$smarty.post.name|escape:'html':'UTF-8'}{/if}" />
 				</div>
-				<p class="submit">
-                    <button
-                    id="submitWishlist"
-                    class="btn btn-default button button-medium"
-                    type="submit"
-                    name="submitWishlist">
-                    	<span>{l s='Save' mod='blockwishlist'}<i class="icon-chevron-right right"></i></span>
+				<div class="submit">
+                    <button id="submitWishlist" class="btn btn-default btn-red" type="submit" name="submitWishlist">
+                    	{l s='Save' mod='blockwishlist'}
                     </button>
-				</p>
+				</div>
 			</fieldset>
 		</form>
 		{if $wishlists}
-			<div id="block-history" class="block-center">
+			<div id="block-history" class="block-history">
 				<table class="table table-bordered">
 					<thead>
 						<tr>
@@ -119,7 +115,7 @@
 			<div id="block-order-detail">&nbsp;</div>
 		{/if}
 	{/if}
-	<ul class="footer_links clearfix">
+	<ul class="footer_links cf">
 		<li>
 			<a class="btn btn-default button button-small" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
 				<span>

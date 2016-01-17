@@ -2081,9 +2081,6 @@ box-sizing: border-box;
 	border-color: transparent;
 	}
 	ul.step li.step_done a {
-	border: 1px solid;
-	border-color: transparent;
-	position: relative;
 	text-shadow:none;
 	}
 	ul.step li em {
