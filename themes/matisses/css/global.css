@@ -3262,7 +3262,7 @@ box-sizing: border-box;
 	padding: 4.0625rem 0;
 	}
 	.habeas{
-	font-family: "gothic";
+	font-family: 'gothic';
 	font-size: 1rem;
 	margin-top: 3.125rem;
 	}
@@ -3478,7 +3478,7 @@ box-sizing: border-box;
 	}
 .step span,
 .step a {
-	font-family: "condensed";
+	font-family: 'condensed';
 	color: #231f20;
 	font-size: 1.125rem;
 	text-transform: uppercase;

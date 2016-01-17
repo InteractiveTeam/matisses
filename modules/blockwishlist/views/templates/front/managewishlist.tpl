@@ -27,7 +27,7 @@
 	{if !$refresh}
 	<div class="wishlistLinkTop">
 		<a href="#" id="hideWishlist" class="button_account" onclick="WishlistVisibility('wishlistLinkTop', 'Wishlist'); return false;" title="{l s='Close this wishlist' mod='blockwishlist'}" rel="nofollow">{l s='Close this wishlist' mod='blockwishlist'}</a>
-		<ul class="clearfix display_list">
+		<ul class="cf display_list">
 			<li>
 				<a href="#" id="hideBoughtProducts" class="button_account"  onclick="WishlistVisibility('wlp_bought', 'BoughtProducts'); return false;" title="{l s='Hide products' mod='blockwishlist'}">{l s='Hide products' mod='blockwishlist'}</a>
 				<a href="#" id="showBoughtProducts" class="button_account"  onclick="WishlistVisibility('wlp_bought', 'BoughtProducts'); return false;" title="{l s='Show products' mod='blockwishlist'}">{l s='Show products' mod='blockwishlist'}</a>

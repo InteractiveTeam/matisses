@@ -11,7 +11,7 @@
 
 /* wishlist block */
 	#wishlist_block #wishlist_block_list {
-	margin: 0 0 20px 0; }
+	margin: 0 0 1.25rem 0; }
 	#wishlist_block #wishlist_block_list dl {
 	font-weight: 400; }
 	#wishlist_block #wishlist_block_list dl.products.no-products {
@@ -26,10 +26,10 @@
 	#wishlist_block #wishlist_block_list dl.products {
 	border-bottom: 1px solid #d6d4d4; }
 	#wishlist_block #wishlist_block_list dl.products dt {
-	padding: 20px 0 0;
+	padding: 1.25rem 0 0;
 	border-top: 1px solid #d6d4d4; }
 	#wishlist_block #wishlist_block_list dl.products dd {
-	padding: 0 0 20px 0; }
+	padding: 0 0 1.25rem 0; }
 	#wishlist_block #wishlist_block_list dl.products dt.first_item {
 	padding: 0;
 	border-top: none; }
@@ -39,7 +39,7 @@
 	#wishlist_block #wishlist_block_list dl dd {
 	margin: 0 0 0 24px; }
 	#wishlist_block .lnk .form-group {
-	margin: 0 0 20px 0; }
+	margin: 0 0 1.25rem 0; }
 	#wishlist_block .lnk .form-group select {
 	max-width: 192px; }
 	#wishlist_block .ajax_cart_block_remove_link {
@@ -68,37 +68,18 @@
   font-size: 15px; }
 
 /* wishlistLinkTop */
-	#module-blockwishlist-mywishlist #block-order-detail #hideSendWishlist {
-	display: inline-block; }
-	#module-blockwishlist-mywishlist .wishlistLinkTop ul.display_list {
-	border-bottom: 1px solid #d6d4d4;
-	margin-bottom: 20px; }
-	#module-blockwishlist-mywishlist .wishlistLinkTop ul.display_list a {
-	display: inline-block;
-	color: #333333;
-	margin: 10px 10px 10px 0px;
-	font-weight: bold; }
-	#module-blockwishlist-mywishlist .wishlistLinkTop ul.display_list a:hover {
-	color: #515151; }
-	#module-blockwishlist-mywishlist .wishlistLinkTop li {
-	float: left; }
-	#module-blockwishlist-mywishlist .wishlistLinkTop #hideSendWishlist {
-	float: right; }
+
 	#module-blockwishlist-mywishlist .wishlistLinkTop #showBoughtProducts,
 	#module-blockwishlist-mywishlist .wishlistLinkTop #hideBoughtProductsInfos {
 	display: none; }
 
-	ul.wlp_bought_list li {
-	margin: 0 0 30px 0;
-	}
+
 	ul.wlp_bought_list li .product_image {
 	padding: 9px;
 	border: 1px solid #d6d4d4;
-	margin: 0 0 20px 0;
+	margin: 0 0 1.25rem 0;
 	max-width: 270px; }
-	ul.wlp_bought_list li .product-name {
-	margin: 0 0 10px 0;
-	padding: 0 20px 0 0; }
+
 	ul.wlp_bought_list li .product-name small {
 	display: block;
 	font-size: 11px; }
@@ -131,25 +112,23 @@
 	background-color: #FFF;
 	color: #d7162f;
 	}
-	#mywishlist .display_list {
-	font-family: 'gothic';
-	}
 	#mywishlist table td.wishlist_delete {
 	text-align: center;
 	}
 	#mywishlist ul.footer_links li {
 	float: left;
-	margin: 0 20px 0 0;
+	margin: 0 1.25rem 0 0;
 	}
 
 	/*Estilos pagina*/
 	.mywishlist label,
 	.mywishlist table.table th{
 	color: #272727;
-	font-family: "Open Sans", sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 0.875rem;
 	text-transform: uppercase;
 	font-weight: bold;
+	padding: 0.3125rem 0;
 	}
 	.mywishlist table.table th{
 	background: transparent;
@@ -169,7 +148,7 @@
 	border-bottom: 1px solid #fdfdfd;
 	}
 	.mywishlist table.table td{
-	font-family: "Open Sans", sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	color: #777676;
 	font-size: 0.9375rem;
 	border: none;
@@ -180,4 +159,68 @@
 	}
 	.mywishlist table td a:hover{
 	color: #000;
+	}
+
+	/*detalle orden*/
+
+	.order-close {
+    text-align: right;
+    display: block;
+    background: #d7162f;
+    width: 1.25rem;
+    padding: 0.3125rem;
+    color: #fff;
+    float: right;
+	}
+	.display_list ul li {
+    background: #f4f4f4;
+    margin: 1.25rem 0;
+	}
+	.display_list ul li a {
+    font-family: 'condensed';
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    padding: 0.9375rem;
+    display: block;
+	}
+	.display_list ul li a i {
+    float: right;
+	}
+	.display_list ul li a i.fa-sort-desc {
+    margin-top: -0.3125rem;
+	}
+	.display_list ul li a i.fa-sort-asc {
+    margin-top: 0.3125rem;
+	}
+	.block-order-detail .alert {
+    font-family: 'condensed';
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+	}
+	.wishlisturl {
+    margin-bottom: 25px;
+	}
+	#showSendWishlist {
+    width: 11.25rem;
+	}
+	input.form-control[readonly] {
+    font-family: 'Open Sans', sans-serif;;
+    border: none;
+    background: none;
+    height: auto;
+    color: #d7162f;
+    padding: 0;
+	}
+	input.form-control[readonly]:hover{
+	color: #000;
+	}
+	.product_infos .product-name{
+	font-family: 'condensed';
+	font-size: 1.5rem;
+	color: #d7162f;
+	text-transform: uppercase;
+	border-bottom: 1px solid #d5d5d5;
+	padding-bottom: 0.625rem;
+	margin-bottom: 0.625rem;
+	padding-right: 1.25rem;
 	}
