@@ -164,13 +164,17 @@
 	/*detalle orden*/
 
 	.order-close {
-    text-align: right;
-    display: block;
     background: #d7162f;
     width: 1.25rem;
     padding: 0.3125rem;
     color: #fff;
     float: right;
+	}
+	.order-close:hover{
+	background: #000;
+	}
+	.order-close a:hover{
+	color: #fff;
 	}
 	.display_list ul li {
     background: #f4f4f4;
@@ -223,4 +227,21 @@
 	padding-bottom: 0.625rem;
 	margin-bottom: 0.625rem;
 	padding-right: 1.25rem;
+	}
+	.wishlist_product_detail input {
+    width: 25%;
+    height: 2.5rem;
+    font-family: 'condensed';
+	}
+	.wishlist_product_detail select{
+	height: 2.5rem;
+    font-family: 'condensed';
+	font-size: 1rem;
+	}
+	.product_infos .btn_action {
+    margin-top: 1.25rem;
+	}
+	ul.row.wlp_bought_list li {
+    min-height: 37.5rem;
+    margin-bottom: 1.875rem;
 	}
