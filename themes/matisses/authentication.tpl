@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 {capture name=path}
-	{if !isset($email_create)}{l s='income users'}{else}
+	{if !isset($email_create)}{l s='Crear cuenta'}{else}
 		<a href="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Authentication'}">{l s='Authentication'}</a>
 		<span class="navigation-pipe">{$navigationPipe}</span>{l s='Create your account'}
 	{/if}

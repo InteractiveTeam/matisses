@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="blockcart.php" server="192.168.3.45" local="130964111854946541" remote="130968963600000000" Dst="0" />
+<file name="blockcart.php" server="192.168.3.45" local="130972072509528521" remote="130972717800000000" Dst="0" />
+<file name="ajax-cart.js" server="192.168.3.45" local="130972072509216021" remote="130972717800000000" Dst="0" />
+<file name="blockcart-ajax.php" server="192.168.3.45" local="130972072509216021" remote="130972717800000000" Dst="0" />
+<file name="blockcart-json.tpl" server="192.168.3.45" local="130972072509372276" remote="130972717800000000" Dst="0" />
+<file name="blockcart-set-collapse.php" server="192.168.3.45" local="130972072509372276" remote="130972717800000000" Dst="0" />
+<file name="blockcart.css" server="192.168.3.45" local="130972072509372276" remote="130972717800000000" Dst="0" />
+<file name="blockcart.tpl" server="192.168.3.45" local="130972072509684767" remote="130972717800000000" Dst="0" />
+<file name="CHANGELOG.txt" server="192.168.3.45" local="130972072509059763" remote="130972717800000000" Dst="0" />
+<file name="config.xml" server="192.168.3.45" local="130972072509684767" remote="130972717800000000" Dst="0" />
+<file name="config_es.xml" server="192.168.3.45" local="130972072509851215" remote="130972717800000000" Dst="0" />
+<file name="crossselling.tpl" server="192.168.3.45" local="130972072509896221" remote="130972717800000000" Dst="0" />
+<file name="index.php" server="192.168.3.45" local="130972072510218750" remote="130972717800000000" Dst="0" />
+<file name="logo.gif" server="192.168.3.45" local="130972072510218750" remote="130972717800000000" Dst="0" />
+<file name="logo.png" server="192.168.3.45" local="130972072510218750" remote="130972717800000000" Dst="0" />
+<file name="Readme.md" server="192.168.3.45" local="130972072509059763" remote="130972717800000000" Dst="0" />
 </dwsync>

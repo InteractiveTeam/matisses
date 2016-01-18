@@ -53,8 +53,8 @@
 			</fieldset>
 		</form>
 		{if $wishlists}
-		<div id="block-history" class="block-center">
-			<table class="std">
+		<div id="block-history" class="block-history">
+			<table>
 				<thead>
 					<tr>
 						<th class="first_item">{l s='Name' mod='blockwishlist'}</th>

@@ -4,10 +4,12 @@
 {print_r($newsObj)}
 </pre>
  -->
+ <!--
+ <pre>{print_r($newsObj)}</pre>  
+  -->
 <div class="blog-list">
     <div class="newsMenuCats">
         <h1>{l s='Blog' mod='news'}</h1>
-
         <!--Inicio contenido articulos-->
         <div class="content-destacados grid_12 alpha omega">
             <div class="title-destacado grid_1 alpha omega">

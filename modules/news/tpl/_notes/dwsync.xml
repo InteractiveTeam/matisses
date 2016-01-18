@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="news_sides.tpl" server="192.168.3.45" local="130964111997854775" remote="130968964200000000" Dst="0" />
-<file name="news_home.tpl" server="192.168.3.45" local="130968754259006057" remote="130968964200000000" Dst="0" />
+<file name="news_sides.tpl" server="192.168.3.45" local="130972072678020600" remote="130972721400000000" Dst="0" />
+<file name="news_home.tpl" server="192.168.3.45" local="130972525618196394" remote="130972721400000000" Dst="0" />
 <file name="news_home.tpl" server="C:/xampp/htdocs/matisses/" local="130966832568590111" remote="130966832560000000" Dst="0" />
 <file name="news_list.tpl" server="C:/xampp/htdocs/matisses/" local="130959786149955010" remote="130959786140000000" Dst="0" />
-<file name="news_list.tpl" server="192.168.3.45" local="130967396217475277" remote="130968963600000000" Dst="0" />
+<file name="news_list.tpl" server="192.168.3.45" local="130974440924946010" remote="130974621000000000" Dst="0" />
+<file name="index.php" server="192.168.3.45" local="130972072677174116" remote="130972721400000000" Dst="0" />
+<file name="news_rss.tpl" server="192.168.3.45" local="130972072677486610" remote="130972721400000000" Dst="0" />
+<file name="news_rss_header.tpl" server="192.168.3.45" local="130972072677486610" remote="130972721400000000" Dst="0" />
 </dwsync>
