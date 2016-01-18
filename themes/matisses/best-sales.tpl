@@ -28,24 +28,24 @@
 <h1 class="page-heading product-listing">{l s='Top sellers'}</h1>
 
 {if $products}
-			<div class="content_sortPagiBar clearfix">
-				<div class="sortPagiBar clearfix">
+			<div class="content_sortPagiBar cf">
+				<div class="sortPagiBar cf">
 					{include file="./product-compare.tpl"}
 					{include file="./product-sort.tpl"}
 					{include file="./nbr-product-page.tpl"}
 				</div>
-				<div class="top-pagination-content clearfix">
+				<div class="top-pagination-content cf">
 					{include file="$tpl_dir./pagination.tpl"}
 				</div>
 			</div>
 			{include file="./product-list.tpl" products=$products}
-			<div class="content_sortPagiBar clearfix bottom_pagi">
+			<div class="content_sortPagiBar cf bottom_pagi">
 				<div class="sortPagiBar clearfix">
 					{include file="./product-compare.tpl" paginationId='bottom'}
 					{include file="./product-sort.tpl"}
 					{include file="./nbr-product-page.tpl"}
 				</div>
-				<div class="bottom-pagination-content clearfix">
+				<div class="bottom-pagination-content cf">
 					{include file="./pagination.tpl" paginationId='bottom'}
 				</div>
 			</div>

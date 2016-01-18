@@ -52,7 +52,7 @@
         </p>
     {/if}
 
-    <div class="wlp_bought">
+    <div class="wlp_bought grid_12 alpha omega">
         {assign var='nbItemsPerLine' value=3}
         {assign var='nbItemsPerLineTablet' value=2}
         {assign var='nbLi' value=$products|@count}

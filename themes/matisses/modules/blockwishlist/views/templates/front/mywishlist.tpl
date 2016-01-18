@@ -115,7 +115,7 @@
 			<div id="block-order-detail" class="block-order-detail">&nbsp;</div>
 		{/if}
 	{/if}
-	<ul class="footer_links cf">
+	<!-- <ul class="footer_links cf">
 		<li>
 			<a class="btn btn-default button button-small" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
 				<span>
@@ -130,6 +130,6 @@
 				</span>
 			</a>
 		</li>
-	</ul>
+	</ul> -->
 </div>
 </div>

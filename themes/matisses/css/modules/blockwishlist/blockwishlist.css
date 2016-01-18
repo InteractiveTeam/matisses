@@ -144,8 +144,8 @@
 	}
 	.mywishlist table tr:nth-child(even) {
     background: #fdfdfd;
-	border-top: 1px solid #fdfdfd;
-	border-bottom: 1px solid #fdfdfd;
+	border-top: 1px solid #EEE;
+	border-bottom: 1px solid #EEE;
 	}
 	.mywishlist table.table td{
 	font-family: 'Open Sans', sans-serif;
@@ -160,9 +160,12 @@
 	.mywishlist table td a:hover{
 	color: #000;
 	}
+	.mywishlist input.inputTxt {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+	}
 
 	/*detalle orden*/
-
 	.order-close {
     background: #d7162f;
     width: 1.25rem;

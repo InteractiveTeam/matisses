@@ -24,7 +24,7 @@
 *}
 {if isset($htmlitems) && $htmlitems}
 <div id="htmlcontent_{$hook|escape:'htmlall':'UTF-8'}">
-	<ul class="htmlcontent-home clearfix row">
+	<ul class="htmlcontent-home cf row">
 		{foreach name=items from=$htmlitems item=hItem}
 			{if $hook == 'left' || $hook == 'right'}
 				<li class="htmlcontent-item-{$smarty.foreach.items.iteration|escape:'htmlall':'UTF-8'} col-xs-12">

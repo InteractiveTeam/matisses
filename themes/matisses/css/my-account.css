@@ -76,3 +76,9 @@
     font-size: 0.875rem;
     color: #777676;
     }
+    .income-gifts input {
+    margin-right: 0.625rem;
+    }
+    .income-gifts a.btn {
+    margin-right: 0.625rem;
+    }

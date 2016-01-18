@@ -65,7 +65,7 @@
                 </a>
             </div>
         {/if}
-    <div class="wlp_bought">
+    <div class="wlp_bought grid_12 alpha omega">
         {assign var='nbItemsPerLine' value=4}
         {assign var='nbItemsPerLineTablet' value=3}
         {assign var='nbLi' value=$products|@count}
@@ -139,7 +139,7 @@
         </ul>
     </div>
     {if !$refresh}
-        <form method="post" class="wl_send box unvisible" onsubmit="return (false);">
+        <form method="post" class="wl_send box unvisible grid_12 " onsubmit="return (false);">
             <fieldset>
                 <div class="required form-group">
                     <label for="email1">{l s='Email' mod='blockwishlist'}1 <sup>*</sup></label>

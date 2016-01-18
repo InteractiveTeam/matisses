@@ -148,8 +148,9 @@
 </div>
 
 <div class="main-container">
+
 {if $page_name !='index' && $page_name !='pagenotfound'}
-<div class="top_banner_wrap"> {*hook h="displayBanner"*} </div>
+	<div class="top_banner_wrap"> {*hook h="displayBanner"*} </div>
 {/if}
 <div id="columns" class="cf {if $page_name !='index' && $page_name !='product' && $page_name != 'module-guestbookwithavatars-guestbook'}{/if}">
 {if $page_name !='index' && $page_name !='pagenotfound'}
@@ -178,37 +179,32 @@
 	  </div>
 </div>
 {/if}
-<div class="{if $page_name !='index' && $page_name !='pagenotfound'}row{/if}">
+<div class="{if $page_name !='index' && $page_name !='pagenotfound'}{/if}">
 
 {if isset($left_column_size) && !empty($left_column_size) && ($page_name != 'module-news-new')}
-	<div class="container">
-    
+
     {if $page_name =='category'}
-    <div class="row">
-    <div id="offers" class="offers-products">
-		<div class="container">
-			<div class="btn-title cf">
-				<h1><a href="#">{l s='Usted ha visitado'}</a></h1>
-				<div class="btn-view-products">
-					<a href="#" title="Ver todos los destacados" class="btn btn-default button button-small">Ver todos</a>
+		<!--Bloque1 Visualizados-->
+	    <div id="displayed-category" class="displayed-category">
+			<div class="container">
+				<div class="info-chaordic">
+					<img src="../../themes/matisses/img/displayed-category.jpg" alt="productos visualizados">
+					<div class="mask">
+						<h1>Espacio para Chaordic</h1>
+					</div>
 				</div>
 			</div>
-			<div class="info">
-				<img src="../../themes/matisses/img/destacados.jpg" alt="destacados">
-				<div class="mask">
-					<h1>Espacio para Chaordic</h1>
-				</div>
-			</div>
-		</div>
-    </div> 
-    </div>
+	    </div>
+		<!--Fin Bloque1 Visualizados-->
     {/if}
-    
 
-		<div id="left_column" class="column grid_{$left_column_size|intval}">{$HOOK_LEFT_COLUMN}</div>
-{/if}
-		{if isset($left_column_size) && isset($right_column_size)}{assign var='cols' value=(12 - $left_column_size - $right_column_size)}{else}{assign var='cols' value=12}{/if}
+		<!--Bloque2 Parrilla Productos-->
+		<div class="parrilla-productos">
+			<div class="container">
+				<div id="left_column" class="column grid_{$left_column_size|intval} alpha ">{$HOOK_LEFT_COLUMN}</div>
+				{/if}
+				{if isset($left_column_size) && isset($right_column_size)}{assign var='cols' value=(12 - $left_column_size - $right_column_size)}{else}{assign var='cols' value=12}{/if}
 
-        <div id="center_column" class="center_column  grid_{$cols|intval} alpha omega">
+        		<div id="center_column" class="center_column  grid_{$cols|intval} omega alpha">
 
 		{/if}

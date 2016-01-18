@@ -22,10 +22,15 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 {if !isset($content_only) || !$content_only}
+
+</div><!--Fin center-column-->
 </div>
-<!-- #center_column -->
+</div><!--Bloque2 Parrilla Productos-->
+
+
+
 {if isset($right_column_size) && !empty($right_column_size) && ($page_name != 'module-news-new')}
-<div id="right_column" class="col-xs-12 col-sm-{$right_column_size|intval} column">{$HOOK_RIGHT_COLUMN}</div>
+<div id="right_column" class="col-sm-{$right_column_size|intval} column">{$HOOK_RIGHT_COLUMN}</div>
 {/if}
 </div>
 </div>
@@ -33,79 +38,54 @@
 </div>
 
 {if $page_name=='category'}
-<div class="row">
-    <div id="buyed" class="buyed-products">
-		<div class="container">
-			<div class="btn-title cf">
-				<h1><a href="#">{l s='Usted ha comprado'}</a></h1>
-				<div class="btn-view-products">
-					<a href="#" title="Ver todos los destacados" class="btn btn-default button button-small">Ver todos</a>
-				</div>
-			</div>
-			<div class="info">
-				<img src="../../themes/matisses/img/destacados.jpg" alt="destacados">
-				<div class="mask">
-					<h1>Espacio para Chaordic</h1>
-				</div>
+
+<div id="purchased-block" class="purchased-block">
+	<div class="container">
+		<div class="info-chaordic">
+			<img src="../../themes/matisses/img/purchased-block.jpg" alt="comprados">
+			<div class="mask">
+				<h1>Espacio para Chaordic</h1>
 			</div>
 		</div>
+	</div>
+</div>
+
+<div id="popular" class="popular">
+    <div class="container">
+        <div class="info-chaordic">
+            <img src="../../themes/matisses/img/popular.jpg" alt="Más populares">
+            <div class="mask">
+                <h1>Espacio para Chaordic</h1>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="row">
-    <div id="popular" class="popular-products">
-		<div class="container">
-			<div class="btn-title cf">
-				<h1><a href="#">{l s='Mas populares'}</a></h1>
-				<div class="btn-view-products">
-					<a href="#" title="Ver todos los destacados" class="btn btn-default button button-small">Ver todos</a>
-				</div>
+<div id="offers" class="offers-products">
+	<div class="container">
+		<div class="info-chaordic">
+			<img src="../../themes/matisses/img/offers-products-2.jpg" alt="Oferta de productos">
+			<div class="mask">
+				<h1>Espacio para Chaordic</h1>
 			</div>
-			<div class="info">
-				<img src="../../themes/matisses/img/destacados.jpg" alt="destacados">
+		</div>
+	</div>
+</div>
+
+
+
+    <div id="historical-block" class="historical-block">
+		<div class="container">
+
+			<div class="info-chaordic">
+				<img src="../../themes/matisses/img/historical-block.jpg" alt="Histórico">
 				<div class="mask">
 					<h1>Espacio para Chaordic</h1>
 				</div>
 			</div>
 		</div>
     </div>
-</div>
-<div class="row">
-    <div id="offers" class="offers-products">
-		<div class="container">
-			<div class="btn-title cf">
-				<h1><a href="#">{l s='Ofertas de productos'}</a></h1>
-				<div class="btn-view-products">
-					<a href="#" title="Ver todos los destacados" class="btn btn-default button button-small">Ver todos</a>
-				</div>
-			</div>
-			<div class="info">
-				<img src="../../themes/matisses/img/destacados.jpg" alt="destacados">
-				<div class="mask">
-					<h1>Espacio para Chaordic</h1>
-				</div>
-			</div>
-		</div>
-    </div>
-</div>
-<div class="row">
-    <div id="visited" class="visited-products">
-		<div class="container">
-			<div class="btn-title cf">
-				<h1><a href="#">{l s='Usted ha visitado'}</a></h1>
-				<div class="btn-view-products">
-					<a href="#" title="Ver todos los destacados" class="btn btn-default button button-small">Ver todos</a>
-				</div>
-			</div>
-			<div class="info">
-				<img src="../../themes/matisses/img/destacados.jpg" alt="destacados">
-				<div class="mask">
-					<h1>Espacio para Chaordic</h1>
-				</div>
-			</div>
-		</div>
-    </div>
-</div>
+
 {/if}
 
 {if isset($HOOK_FOOTER)}

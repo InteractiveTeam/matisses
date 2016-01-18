@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 {if isset($orderby) AND isset($orderway)}
-<ul class="view display hidden-xs">
+<ul class="view display grid_2 alpha">
     <li class="grid-btn"><a rel="nofollow" href="#" title="{l s='Grid'}"><span></span></a></li>
     <li class="list-btn"><a rel="nofollow" href="#" title="{l s='List'}"><span></span></a></li>
 </ul>
@@ -40,9 +40,11 @@
 		{assign var='request' value=$link->getPaginationLink(false, false, false, true)}
 	{/if}
 {/if}
-<form id="productsSortForm{if isset($paginationId)}_{$paginationId}{/if}" action="{$request|escape:'html':'UTF-8'}" class="productsSortForm">
+<form class="grid_6 alpha" id="productsSortForm{if isset($paginationId)}_{$paginationId}{/if}" action="{$request|escape:'html':'UTF-8'}" class="productsSortForm">
 	<div class="select selector1">
-		<label for="selectProductSort{if isset($paginationId)}_{$paginationId}{/if}"><span>{l s='Sort by'}</span></label>
+		<div class="chosen-container">
+            <label for="selectProductSort{if isset($paginationId)}_{$paginationId}{/if}">{l s='Organizar por'}</label>
+        </div>
 		<select id="selectProductSort{if isset($paginationId)}_{$paginationId}{/if}" class="selectProductSort form-control">
 			<option value="{$orderbydefault|escape:'html':'UTF-8'}:{$orderwaydefault|escape:'html':'UTF-8'}" {if $orderby eq $orderbydefault}selected="selected"{/if}>--</option>
 			{if !$PS_CATALOG_MODE}

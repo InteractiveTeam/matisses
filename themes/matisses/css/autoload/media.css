@@ -269,11 +269,7 @@
 	}
 }
 /* media */
-@media (min-width: 579px){
-	.content_sortPagiBar{
-	height: 94px;
-	}
-}
+
 @media (max-width: 1199px) {
 	#cart_summary tbody td.cart_description small{
 	font-size: 11px;
@@ -467,7 +463,7 @@
 	ul.step li#step_end span:after {
 	display: none;
 	}
-	
+
 }
 @media (max-width: 991px) {
 	.page-subheading{

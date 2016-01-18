@@ -98,22 +98,22 @@
 		</div>
 		{/if}
 		{/if}
-		<div class="slider_container clearfix">
+		<div class="slider_container cf grid_12 alpha omega">
 		{hook h="underList"}
 		</div>
 		{if $products && !$subcategories}
-			<div class="content_sortPagiBar clearfix">
-				<div class="sortPagiBar clearfix">
-					{include file="./product-compare.tpl"}
-					{include file="./product-sort.tpl"}
-					{include file="./nbr-product-page.tpl"}
-				</div>
-				<div class="top-pagination-content clearfix">
-					{include file="$tpl_dir./pagination.tpl"}
-				</div>
+		<div class="content_sortPagiBar cf grid_12 alpha omega">
+			<div class="sortPagiBar grid_9 alpha omega">
+				{include file="./product-compare.tpl"}
+				{include file="./product-sort.tpl"}
+				{include file="./nbr-product-page.tpl"}
 			</div>
+			<div class="top-pagination-content grid_3 alpha omega">
+				{include file="$tpl_dir./pagination.tpl"}
+			</div>
+		</div>
 			{include file="./product-list.tpl" products=$products}
-			<div class="content_sortPagiBar clearfix bottom_pagi">
+			<div class="content_sortPagiBar cf bottom_pagi">
 				<div class="sortPagiBar clearfix">
 					{include file="./product-compare.tpl" paginationId='bottom'}
 					{include file="./product-sort.tpl" paginationId='bottom'}
@@ -129,5 +129,5 @@
 	{/if}
 
 
-    
+
 {/if}

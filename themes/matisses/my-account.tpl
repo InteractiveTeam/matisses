@@ -78,20 +78,17 @@
 				<div class="grid_2 dates-account">
 		            <img src="{$base_dir}img/mi-lista-regalos.png"/>
 		        </div>
-				<div class="grid_5 dates-account">
+				<div class="grid_6 dates-account">
 					<h3>{l s='Buscar'}</h3>
 					<p>{l s='Busca un alista de regalos existente, ingresando tu nombre o código.'}</p>
-					<div class="footer-account grid_12 alpha omega">
-						<input type="text" placeholder="Nombre" class="grid_4">
-						<input type="text" placeholder="Apellido" class="grid_4">
-						<input type="text" placeholder="Código" class="grid_4">
-						<div class="footer-account grid_12 alpha omega">
-							<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
-							<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
-						</div>
+					<div class="footer-account income-gifts grid_12 alpha omega">
+						<input type="text" placeholder="Nombre" class="grid_3">
+						<input type="text" placeholder="Apellido" class="grid_3">
+						<a class="btn btn-default btn-red grid_2" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
+						<a class="btn btn-default btn-red grid_2" href="#" title="Volver"> {l s='Volver' mod='matisses'}</a>
 					</div>
 				</div>
-				<div class="grid_3 dates-account">
+				<div class="grid_2 dates-account">
 					<h3>{l s='Crear'}</h3>
 					<p>{l s='Piensa en grande y crea la lista de regalos.'}</p>
 					<div class="footer-account">
@@ -178,6 +175,6 @@
 
 </div>
 
-	<div class="footer_links cf">
+	<!-- <div class="footer_links cf">
 		<a class="btn btn-default button " href="{$base_dir}" title="{l s='Home'}"> {l s='Home'}</a>
-	</div>
+	</div> -->
