@@ -310,7 +310,7 @@ class HomeSlider extends Module
 	private function _postValidation()
 	{
 		$errors = array();
-
+		
 		/* Validation for Slider configuration */
 		if (Tools::isSubmit('submitSlider'))
 		{
@@ -393,12 +393,14 @@ class HomeSlider extends Module
 
 	private function _postProcess()
 	{
+		
 		$errors = array();
 		$shop_context = Shop::getContext();
 
 		/* Processes Slider */
 		if (Tools::isSubmit('submitSlider'))
 		{
+
 			$shop_groups_list = array();
 			$shops = Shop::getContextListShopID();
 
@@ -485,7 +487,8 @@ class HomeSlider extends Module
 			$slide->position = (int)Tools::getValue('position');
 			/* Sets active */
 			$slide->active = (int)Tools::getValue('active_slide');
-
+			$slide->videoid = Tools::getValue('videoid');
+		
 			/* Sets each langue fields */
 			$languages = Language::getLanguages(false);
 
@@ -593,6 +596,7 @@ class HomeSlider extends Module
 		$this->context->controller->addCSS($this->_path.'homeslider.css');
 		$this->context->controller->addJS($this->_path.'js/homeslider.js');
 		$this->context->controller->addJqueryPlugin(array('bxslider'));
+		$this->context->controller->addJS($this->_path.'js/jquery.fitvids.js');
 
 		$slider = array(
 			'width' => Configuration::get('HOMESLIDER_WIDTH'),
@@ -694,7 +698,7 @@ class HomeSlider extends Module
 		$id_lang = $this->context->language->id;
 
 		return Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('
-			SELECT hs.`id_homeslider_slides` as id_slide, hssl.`image`, hss.`position`, hss.`active`, hssl.`title`,
+			SELECT hs.`id_homeslider_slides` as id_slide, hss.`videoid`, hssl.`image`, hss.`position`, hss.`active`, hssl.`title`,
 			hssl.`url`, hssl.`legend`, hssl.`description`, hssl.`image`
 			FROM '._DB_PREFIX_.'homeslider hs
 			LEFT JOIN '._DB_PREFIX_.'homeslider_slides hss ON (hs.id_homeslider_slides = hss.id_homeslider_slides)
@@ -792,6 +796,14 @@ class HomeSlider extends Module
 						'lang' => true,
 						'desc' => $this->l(sprintf('Maximum image size: %s.', ini_get('upload_max_filesize')))
 					),
+					
+					array(
+						'type' => 'text',
+						'label' => $this->l('video'),
+						'name' => 'videoid',
+						'desc' => $this->l('Ingrese el código del video de youtube')
+					),
+					
 					array(
 						'type' => 'text',
 						'label' => $this->l('Slide title'),
@@ -847,7 +859,6 @@ class HomeSlider extends Module
 			$slide = new HomeSlide((int)Tools::getValue('id_slide'));
 			$fields_form['form']['input'][] = array('type' => 'hidden', 'name' => 'id_slide');
 			$fields_form['form']['images'] = $slide->image;
-
 			$has_picture = true;
 
 			foreach (Language::getLanguages(false) as $lang)
@@ -994,6 +1005,7 @@ class HomeSlider extends Module
 
 		$fields['active_slide'] = Tools::getValue('active_slide', $slide->active);
 		$fields['has_picture'] = true;
+		$fields['videoid'] = Tools::getValue('videoid', $slide->videoid);
 
 		$languages = Language::getLanguages(false);
 
@@ -1002,6 +1014,7 @@ class HomeSlider extends Module
 			$fields['image'][$lang['id_lang']] = Tools::getValue('image_'.(int)$lang['id_lang']);
 			$fields['title'][$lang['id_lang']] = Tools::getValue('title_'.(int)$lang['id_lang'], $slide->title[$lang['id_lang']]);
 			$fields['url'][$lang['id_lang']] = Tools::getValue('url_'.(int)$lang['id_lang'], $slide->url[$lang['id_lang']]);
+			
 			$fields['legend'][$lang['id_lang']] = Tools::getValue('legend_'.(int)$lang['id_lang'], $slide->legend[$lang['id_lang']]);
 			$fields['description'][$lang['id_lang']] = Tools::getValue('description_'.(int)$lang['id_lang'], $slide->description[$lang['id_lang']]);
 		}

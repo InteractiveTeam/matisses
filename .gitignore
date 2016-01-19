@@ -5,27 +5,27 @@
 *.xml
 
 # Exluir carpetas
-/administracion/*
-/cache/*
-/docs/*
-/download/*
-/log/*
-/pdf/*
-/tests/*
-/tools/*
-/webservices/*
-/upload/*
-/themes/default-bootstrap/*
-/themes/foxlore/*
+administracion/*
+cache/*
+docs/*
+download/*
+log/*
+pdf/*
+tests/*
+tools/*
+webservices/*
+upload/*
+themes/default-bootstrap/*
+themes/foxlore/*
 
 # Exluir la fans.tpl
-/*fans.tpl
+*fans.tpl
 
 # Exluir la notes.tpl
-/_notes/
+_notes/
 
 # Exluir la html
-/*.html
+*.html
 
 # Exluir la htaccess
-/*.htaccess
+*.htaccess

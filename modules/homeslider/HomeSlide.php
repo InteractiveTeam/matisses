@@ -28,10 +28,11 @@ class HomeSlide extends ObjectModel
 {
 	public $title;
 	public $description;
+	public $videoid;
 	public $url;
 	public $legend;
 	public $image;
-	public $active;
+	public $active; 
 	public $position;
 	public $id_shop;
 
@@ -45,6 +46,7 @@ class HomeSlide extends ObjectModel
 		'fields' => array(
 			'active' =>			array('type' => self::TYPE_BOOL, 'validate' => 'isBool', 'required' => true),
 			'position' =>		array('type' => self::TYPE_INT, 'validate' => 'isunsignedInt', 'required' => true),
+			'videoid' =>		array('type' => self::TYPE_STRING, 'required' => false),
 
 			// Lang fields
 			'description' =>	array('type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isCleanHtml', 'size' => 4000),
