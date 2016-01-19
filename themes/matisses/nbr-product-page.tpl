@@ -38,9 +38,9 @@
 		{assign var='requestNb' value=$link->getPaginationLink(false, false, true, false, false, true)}
 	{/if}
 	<!-- nbr product/page -->
-	
-		<form action="{if !is_array($requestNb)}{$requestNb|escape:'html':'UTF-8'}{else}{$requestNb.requestUrl|escape:'html':'UTF-8'}{/if}" method="get" class="nbrItemPage" {if $nb_products > $nArray[0]}{else}style="display:none;"{/if}>
-			<div class="clearfix selector1">
+
+		<form action="{if !is_array($requestNb)}{$requestNb|escape:'html':'UTF-8'}{else}{$requestNb.requestUrl|escape:'html':'UTF-8'}{/if}" method="get" class="nbrItemPage category-right grid_4 alpha" {if $nb_products > $nArray[0]}{else}style="display:none;"{/if}>
+			<div class="cf selector1">
 				{if isset($search_query) AND $search_query}
 					<input type="hidden" name="search_query" value="{$search_query|escape:'html':'UTF-8'}" />
 				{/if}
@@ -69,6 +69,6 @@
 				<span>{l s='per page'}</span>
 			</div>
 		</form>
-	
+
 	<!-- /nbr product/page -->
 {/if}

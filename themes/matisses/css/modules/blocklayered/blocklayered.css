@@ -12,26 +12,7 @@
     font-size: 1rem;
     text-transform: capitalize;
     }
-    .chosen-container-single .chosen-single{
-    height: 43px;
-    }
-    .content_sortPagiBar .sortPagiBar .nbrItemPage .chosen-container {
-    width: auto !important;
-    }
-    .content_sortPagiBar .sortPagiBar .nbrItemPage label {
-    display: inline-block;
-    font-family: 'gothic';
-    border-left: 1px solid #ddd;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    height: 43px;
-    padding: 15px 30px 15px 15px;
-    line-height: 100%;
-    vertical-align: initial;
-    float: left;
-    font-size: 1rem;
-    text-transform: capitalize;
-    }
+
     .content_sortPagiBar .sortPagiBar .selector1,
     .content_sortPagiBar .sortPagiBar .nbrItemPage .chosen-container{
     display: inline-block;
@@ -43,13 +24,7 @@
     .pagination>li {
     padding: 0 !important;
     }
-    .pagination>li>a, .pagination>li>span {
-    border: none;
-    font-family: "gothic";
-    padding: 9px 15px !important;
-    font-weight: bold;
-    font-size: 1rem;
-    }
+
     .bottom-pagination-content ul.pagination li > a, .bottom-pagination-content ul.pagination li > span{
     line-height: 130%;
     }
@@ -224,7 +199,7 @@
 
     .category_list .product-container{
     border: none !important;
-    margin:  0 0 50px 0;
+    margin:  00;
     }
     .category_list .product-container .left-block .product-image-container .wrap_image_list {
     text-align: center;
@@ -237,35 +212,13 @@
     display: inline-block;
     font-family: "gothic";
     font-weight: bold;
-    padding: 4px 5px 1px;
+    padding: 0.3125rem 0.9375rem;
     }
     .category_list .product-container .right-block .wrap_content_price .comments_note{
     display: none;
     }
-    .category_list .product-container .right-block .wrap_content_price h2.product-name {
-    font-size: 1.3rem;
-    font-family: "gothic";
-    color: #d9282e;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: 0 0 2px 0;
-    margin-bottom: 10px;
-    width: 90%;
-    margin-left: 5%;
-    border: none;
-    background: none;
-    border-bottom: 1px solid #d5d5d5 !important;
-    }
-    .category_list .product-container .right-block .wrap_content_price .content_price {
-    width: 90%;
-    margin-left: 5%;
-    }
-    .category_list .product-container .right-block .wrap_content_price .product-price {
-    font-family: 'gothic';
-    color: #231f20;
-    font-size: 1.2rem;
-    font-weight: bold;
-    }
+
+
     .product_list.grid .product-container:before, .product_list.grid .product-container:after, .c_item .product-container:before, .c_item .product-container:after{
     height: 50% !important;
     }
@@ -419,7 +372,7 @@
     .layered-left ul li.color-item {
     width: auto;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 0.3125rem;
     padding: 0;
     -webkit-border-radius:0;
     -moz-border-radius:0;
@@ -443,8 +396,59 @@
 
     /*Columna derecha parrilla*/
     .content_sortPagiBar{
-    background: #ccc;
 	position: relative;
 	padding: 0;
-	margin-bottom: 40px;
+	margin-bottom: 2.5rem;
 	}
+    .chosen-container-single .chosen-single{
+    height: 2.8125rem;
+    }
+    .parrilla-productos .sortPagiBar form label {
+    font-family: 'gothic';
+    color: #4b4b4b;
+    border-left: 1px solid #dbdbdb;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    display: inline-block;
+    height: 2.8125rem;
+    padding: 0.9375rem;
+    font-size: 1rem;
+    text-transform: none;
+    vertical-align: top;
+    }
+    .parrilla-productos #selectProductSort_chosen {
+    width: 12.8125rem !important;
+    display: inline-block;
+	}
+    .content_sortPagiBar .top-pagination-content ul{
+    height: 45px;
+    }
+    .pagination > li > a,
+    .pagination > li > span {
+    border: none;
+    font-family: 'gothic';
+    padding: 0.625rem 0.9375rem;
+    font-weight: bold;
+    }
+    .parrilla-productos div.pagination {
+    float: right;
+    }
+    .parrilla-productos h2.product-name {
+    font-size: 1.5rem;
+    font-family: 'condensed';
+    color: #d7162f;
+    text-transform: uppercase;
+    padding: 0 0 0.3125rem 0;
+    margin-bottom: 0.625rem;
+    border: none;
+    background: none;
+    border-bottom: 1px solid #d5d5d5 !important;
+    }
+    .parrilla-productos .product-price {
+    font-family: 'gothic';
+    color: #231f20;
+    font-size: 1.375rem;
+    }
+    .parrilla-productos .wrap_content_price {
+    padding: 0 0.625rem 0.625rem;
+    }

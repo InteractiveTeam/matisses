@@ -47,8 +47,8 @@
 		{if $totModulo == 0}{assign var='totModulo' value=$nbItemsPerLine}{/if}
 		{if $totModuloTablet == 0}{assign var='totModuloTablet' value=$nbItemsPerLineTablet}{/if}
 		{if $totModuloMobile == 0}{assign var='totModuloMobile' value=$nbItemsPerLineMobile}{/if}
-        
-		<div itemscope itemprop="itemListElement" itemtype="http://schema.org/Product" class="ajax_block_product{if $page_name == 'index' || $page_name == 'product'} col-xs-12 col-sm-4 col-md-3{else} col-xs-6 col-sm-6 col-lg-4 {/if}{if $smarty.foreach.products.iteration%$nbItemsPerLine == 0} last-in-line{elseif $smarty.foreach.products.iteration%$nbItemsPerLine == 1} first-in-line{/if}{if $smarty.foreach.products.iteration > ($smarty.foreach.products.total - $totModulo)} last-line{/if}{if $smarty.foreach.products.iteration%$nbItemsPerLineTablet == 0} last-item-of-tablet-line{elseif $smarty.foreach.products.iteration%$nbItemsPerLineTablet == 1} first-item-of-tablet-line{/if}{if $smarty.foreach.products.iteration%$nbItemsPerLineMobile == 0} last-item-of-mobile-line{elseif $smarty.foreach.products.iteration%$nbItemsPerLineMobile == 1} first-item-of-mobile-line{/if}{if $smarty.foreach.products.iteration > ($smarty.foreach.products.total - $totModuloMobile)} last-mobile-line{/if}">
+
+		<div itemscope itemprop="itemListElement" itemtype="http://schema.org/Product" class="ajax_block_product{if $page_name == 'index' || $page_name == 'product'} col-xs-12 col-sm-4 col-md-3{else} grid_4 {/if}{if $smarty.foreach.products.iteration%$nbItemsPerLine == 0} last-in-line{elseif $smarty.foreach.products.iteration%$nbItemsPerLine == 1} first-in-line{/if}{if $smarty.foreach.products.iteration > ($smarty.foreach.products.total - $totModulo)} last-line{/if}{if $smarty.foreach.products.iteration%$nbItemsPerLineTablet == 0} last-item-of-tablet-line{elseif $smarty.foreach.products.iteration%$nbItemsPerLineTablet == 1} first-item-of-tablet-line{/if}{if $smarty.foreach.products.iteration%$nbItemsPerLineMobile == 0} last-item-of-mobile-line{elseif $smarty.foreach.products.iteration%$nbItemsPerLineMobile == 1} first-item-of-mobile-line{/if}{if $smarty.foreach.products.iteration > ($smarty.foreach.products.total - $totModuloMobile)} last-mobile-line{/if}">
 			<div class="product-container">
 				<div class="left-block">
 					<div class="product-image-container">
@@ -143,7 +143,7 @@
 					</div>
 
 				</div>
-				<div class="wrap_view wrap_visible_hover"> 
+				<div class="wrap_view wrap_visible_hover">
 							<a itemprop="url" class="scale_hover_in lnk_view" href="{$product.link|escape:'html':'UTF-8'}" title="{l s='View'}">
 								<i class="fa fa-search"></i>
 								<span>{l s='More'}</span>
@@ -164,7 +164,7 @@
                         	<a class="btn btn-default showmore" href="{$product.link|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Descubre más'}" data-id-product="{$product.id_product|intval}">
 								<span>{l s='Descubre más'}</span>
 							</a>
-                        
+
 							{if ($product.id_product_attribute == 0 || (isset($add_prod_display) && ($add_prod_display == 1))) && $product.available_for_order && !isset($restricted_country_mode) && $product.minimal_quantity <= 1 && $product.customizable != 2 && !$PS_CATALOG_MODE}
 								{if (!isset($product.customization_required) || !$product.customization_required) && ($product.allow_oosp || $product.quantity > 0)}
 									{if isset($static_token)}
