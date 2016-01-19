@@ -28,7 +28,7 @@
 <file name="maintenance.tpl" server="192.168.3.45" local="130972072873387895" remote="130972727400000000" Dst="0" />
 <file name="manufacturer-list.tpl" server="192.168.3.45" local="130972072873442907" remote="130972727400000000" Dst="0" />
 <file name="manufacturer.tpl" server="192.168.3.45" local="130972072873487900" remote="130972727400000000" Dst="0" />
-<file name="my-account.tpl" server="192.168.3.45" local="130975650620997182" remote="130975830600000000" Dst="0" />
+<file name="my-account.tpl" server="192.168.3.45" local="130976419949179868" remote="130976599800000000" Dst="0" />
 <file name="nbr-product-page.tpl" server="192.168.3.45" local="130972072945301510" remote="130972729800000000" Dst="0" />
 <file name="new-products.tpl" server="192.168.3.45" local="130972072945301510" remote="130972729800000000" Dst="0" />
 <file name="order-address-multishipping-products.tpl" server="192.168.3.45" local="130972072945457762" remote="130972729800000000" Dst="0" />
