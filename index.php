@@ -26,6 +26,6 @@ ejemplo
 ejemplo 
 ejemplo
 */
-
+header("Access-Control-Allow-Origin: *");
 require(dirname(__FILE__).'/config/config.inc.php');
 Dispatcher::getInstance()->dispatch();

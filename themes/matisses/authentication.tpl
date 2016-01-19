@@ -23,12 +23,12 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 {capture name=path}
-	{if !isset($email_create)}{l s='Crear cuenta'}{else}
+	{if !isset($email_create)}{l s='Registro'}{else}
 		<a href="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Authentication'}">{l s='Authentication'}</a>
 		<span class="navigation-pipe">{$navigationPipe}</span>{l s='Create your account'}
 	{/if}
 {/capture}
-<h1 class="page-heading">{if !isset($email_create)}{l s='Authentication'}{else}{l s='Create an account'}{/if}</h1>
+<h1 class="page-heading">{if !isset($email_create)}{l s='Authentication'}{else}{l s='Registro'}{/if}</h1>
 {if isset($back) && preg_match("/^http/", $back)}{assign var='current_step' value='login'}{include file="$tpl_dir./order-steps.tpl"}{/if}
 {include file="$tpl_dir./errors.tpl"}
 {assign var='stateExist' value=false}
@@ -58,7 +58,7 @@
 		</div> -->
 		<div class="grid_6 alpha">
 			<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="create-account_form" class="box">
-				<h2 class="page-subheading">{l s='Create an account'}</h2>
+				<h2 class="page-subheading">{l s='Registro'}</h2>
 				<div class="form_content cf">
 					<p>{l s='Please enter your email address to create an account.'}</p>
 					<div class="form-group">
@@ -186,18 +186,18 @@
                                 	<option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='SMS'}"} selected {/if} value="{l s='SMS'}">{l s='SMS'}</option>
                                     <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Email'}"} selected {/if} value="{l s='Email'}">{l s='Email'}</option>
                                     <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Telefónico'}"} selected {/if} value="{l s='Telefónico'}">{l s='Telefónico'}</option>
-                                    <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Correo físico)'}"} selected {/if} value="{l s='Correo físico)'}">{l s='Correo físico)'}</option>
+                                    <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Correo físico'}"} selected {/if} value="{l s='Correo físico'}">{l s='Correo físico'}</option>
                                 </select>
 						</div>
                         <div class="checkbox">
 							<label for="terms">
 							<input type="checkbox" name="terms" id="terms" value="1" {if isset($smarty.post.terms) && $smarty.post.terms == '1'}checked="checked"{/if} />
-							{l s='Acepto términos y condiciones'}</label>
+							{l s='Acepto'} <a href="{$link->getCMSLink(11)}" target="_blank">{l s='Términos y condiciones'}</a></label>
 						</div>
                         <div class="checkbox">
 							<label for="tratamiento">
 							<input type="checkbox" name="tratamiento" id="tratamiento" value="1" {if isset($smarty.post.tratamiento) && $smarty.post.tratamiento == '1'}checked="checked"{/if} />
-							{l s='Aceptar uso, tratamiento de mis datos y políticas de privacidad'}</label>
+							{l s='Aceptar uso,'} <a href="{$link->getCMSLink(12)}" target="_blank">{l s='tratamiento de mis datos'}</a> {l s='y'} <a href="{$link->getCMSLink(13)}" target="_blank">{l s='políticas de privacidad'}</a></label>
 						</div>
 						<!--
                         <div class="checkbox">
@@ -441,7 +441,7 @@
 	<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="account-creation_form" class="std box account-creation_form grid_12">
 		{$HOOK_CREATE_ACCOUNT_TOP}
 		<h2 class="page-subheading">{l s='Crear cuenta'}</h2>
-		<h4>Información personal</h4>
+		<h4>{l s='Información personal'}</h4>
 		<div class="account_creation grid_12 omega alpha">
 			<div class="form-group grid_12 ">
 				<label class="hidden-xs">{l s='Género'}</label>
@@ -550,19 +550,19 @@
                             <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='SMS'}"} selected {/if} value="{l s='SMS'}">{l s='SMS'}</option>
                             <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Email'}"} selected {/if} value="{l s='Email'}">{l s='Email'}</option>
                             <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Telefónico'}"} selected {/if} value="{l s='Telefónico'}">{l s='Telefónico'}</option>
-                            <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Correo físico)'}"} selected {/if} value="{l s='Correo físico)'}">{l s='Correo físico)'}</option>
+                            <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Correo físico'}"} selected {/if} value="{l s='Correo físico'}">{l s='Correo físico'}</option>
                         </select>
 			</div>
             <div class="required form-group grid_6">
                  <div class="checkbox">
 
                     <input type="checkbox" name="terms" id="terms" value="1" {if isset($smarty.post.terms) && $smarty.post.terms == '1'}checked="checked"{/if} />
-                    <label for="terms">{l s='Acepto Términos y condiciones'}</label>
+                    <label for="terms">{l s='Acepto'} <a href="{$link->getCMSLink(11)}" target="_blank">{l s='Términos y condiciones'}</a></label>
                 </div>
                 <div class="checkbox">
 
                     <input type="checkbox" name="tratamiento" id="tratamiento" value="1" {if isset($smarty.post.tratamiento) && $smarty.post.tratamiento == '1'}checked="checked"{/if} />
-                    <label for="tratamiento">{l s='Acepto el uso, tratamiento de mis datos y política de privacidad'}</label>
+                    <label for="tratamiento">{l s='Aceptar uso,'} <a href="{$link->getCMSLink(12)}" target="_blank">{l s='tratamiento de mis datos'}</a> {l s='y'} <a href="{$link->getCMSLink(13)}" target="_blank">{l s='políticas de privacidad'}</a></label>
                 </div>
             </div>
 

@@ -176,7 +176,7 @@
                                 <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='SMS'}"} selected {/if} value="{l s='SMS'}">{l s='SMS'}</option>
                                 <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Email'}"} selected {/if} value="{l s='Email'}">{l s='Email'}</option>
                                 <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Telefónico'}"} selected {/if} value="{l s='Telefónico'}">{l s='Telefónico'}</option>
-                                <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Correo físico)'}"} selected {/if} value="{l s='Correo físico)'}">{l s='Correo físico)'}</option>
+                                <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Correo físico'}"} selected {/if} value="{l s='Correo físico'}">{l s='Correo físico'}</option>
                             </select>
                 </div>                
                 {if $newsletter}

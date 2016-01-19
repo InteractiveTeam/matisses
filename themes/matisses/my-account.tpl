@@ -52,7 +52,7 @@
 						<input type="text" name="pedidonro">
 						<a class="btn btn-default btn-red" href="#" onclick="$('#getPedido').submit()" title="{l s='Buscar'}"> {l s='Buscar' mod='matisses'}</a>
                     </form>    
-					</div>
+					</div> 
 				</div>
 				<div class="grid_3 dates-account">
 					<h3>{l s='Historial de compras'}</h3>
