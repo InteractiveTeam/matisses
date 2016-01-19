@@ -12,7 +12,6 @@
     font-size: 1rem;
     text-transform: capitalize;
     }
-
     .content_sortPagiBar .sortPagiBar .selector1,
     .content_sortPagiBar .sortPagiBar .nbrItemPage .chosen-container{
     display: inline-block;
@@ -24,11 +23,9 @@
     .pagination>li {
     padding: 0 !important;
     }
-
     .bottom-pagination-content ul.pagination li > a, .bottom-pagination-content ul.pagination li > span{
     line-height: 130%;
     }
-
 
     #enabled_filters .layered_subtitle {
     font-weight: bold;
@@ -416,7 +413,8 @@
     text-transform: none;
     vertical-align: top;
     }
-    .parrilla-productos #selectProductSort_chosen {
+    .parrilla-productos #selectProductSort_chosen,
+    .parrilla-productos #selectProductSort_bottom_chosen {
     width: 12.8125rem !important;
     display: inline-block;
 	}

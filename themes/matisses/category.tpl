@@ -113,13 +113,13 @@
 			</div>
 		</div>
 			{include file="./product-list.tpl" products=$products}
-			<div class="content_sortPagiBar cf bottom_pagi">
-				<div class="sortPagiBar cf">
+			<div class="content_sortPagiBar cf grid_12 alpha omega">
+				<div class="sortPagiBar grid_9 alpha omega">
 					{include file="./product-compare.tpl" paginationId='bottom'}
 					{include file="./product-sort.tpl" paginationId='bottom'}
 					{include file="./nbr-product-page.tpl" paginationId='bottom'}
 				</div>
-				<div class="bottom-pagination-content cf">
+				<div class="bottom-pagination-content grid_3 alpha omega">
 					{include file="./pagination.tpl" paginationId='bottom'}
 				</div>
 			</div>
