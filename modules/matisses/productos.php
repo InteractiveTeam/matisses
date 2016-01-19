@@ -41,7 +41,6 @@
 */
 	$_References    = __getReferences($_Modelos);	 
 
-	//echo "<pre>"; print_r($_References); echo "</pre>";
 
 
 	if(Configuration::get('ax_simpleproduct_data')=='')
@@ -243,7 +242,7 @@
 	
 	function __setImages($_Images,$_Product)
 	{
-		echo "<pre>"; print_r($_Images); echo "</pre>";
+		//echo "<pre>"; print_r($_Images); echo "</pre>";
 		if(sizeof($_Images)>0)
 		{
 			foreach($_Images as $d => $v)
@@ -298,7 +297,8 @@
 			
 			// extraigo la informacion necesaria de todas las combinaciones
 	
-	
+			unset($featuresmaterials);
+			$featuresmaterials = array();
 			foreach($_Combinations as $k => $_Combination)
 			{
 				$_Quantity 			+= $_Combination['stock']['quantity'];
@@ -315,7 +315,14 @@
 				
 				if($_Combination['processImages']==1)
 					$_processImages = true;
+				
+				
+				
+				foreach($_Combination['arraymaterials'] as $km => $material)
+					$featuresmaterials[$km] = 	$material;
+
 			}
+			// cargo las caracteristicas
 			
 	
 			
@@ -372,7 +379,48 @@
 					$_Product->deleteCategories(true);
 					$_Product->addToCategories(array_unique(array_filter($_Categories)));
 				}
-				
+				// proceso las featurematerial
+				if(sizeof($featuresmaterials)>0)
+				{
+					foreach($featuresmaterials as $fk => $material)
+					{
+						unset($featurename);
+						$featurename = 'material_'.$fk;
+						$id_feature = Db::getInstance()->getValue('SELECT id_feature FROM '._DB_PREFIX_.'feature_lang WHERE name ="'.$featurename.'"');
+						$Feature = new Feature(($id_feature ? $id_feature : 1));
+						if($id_feature)
+						{
+							$Feature->name[(int)Configuration::get('PS_LANG_DEFAULT')] =  $featurename;
+							$Feature->update();
+						}else{
+								$Feature->name[(int)Configuration::get('PS_LANG_DEFAULT')] =  $featurename;
+								$Feature->add();
+							 }
+						$id_feature = Db::getInstance()->getValue('SELECT id_feature FROM '._DB_PREFIX_.'feature_lang WHERE name ="'.$featurename.'"');
+						$FeatureValues = FeatureValue::getFeatureValues($id_feature);
+						if(sizeof($FeatureValues)==0)
+						{
+
+							$FeatureVal = new FeatureValue(1);
+							$FeatureVal->id_feature = $id_feature;
+							$FeatureVal->value[(int)Configuration::get('PS_LANG_DEFAULT')] = $material; 
+							$FeatureVal->add();
+						}else{
+
+								$FeatureVal = new FeatureValue(1);
+								$FeatureVal->id_feature = $id_feature;
+								$FeatureVal->value[(int)Configuration::get('PS_LANG_DEFAULT')] = $material; 
+								$FeatureVal->update();
+							 }
+						Db::getInstance()->Execute('DELETE FROM '._DB_PREFIX_.'feature_value_lang WHERE id_feature_value = 0');
+						$id_feature = Db::getInstance()->getValue('SELECT id_feature FROM '._DB_PREFIX_.'feature_lang WHERE name ="'.$featurename.'"');
+						$FeatureValues = FeatureValue::getFeatureValues($id_feature);
+						$_Product->addFeatureProductImport($_Product->id,$FeatureValues[0]['id_feature'],$FeatureValues[0]['id_feature_value']);
+						
+							 
+					}
+				}
+
 				if($_processImages==true)
 					$_Product->deleteImages();
 			}
@@ -526,15 +574,21 @@
 				
 			if(sizeof($_data['materials'])>0)
 			{
+				
+				
 				$cares = "";
+				unset($arraymaterials);
+				$arraymaterials = array();
 				foreach($_data['materials'] as $d => $v)
 				{
+					$arraymaterials[$v['code']] =  $v['name'];
 					if($_data['materials'][$d]['name'])
-						$cares.= '<h1>'.$_data['materials'][$d]['name'].'</h1>';
+						$cares.= '<h3>'.$_data['materials'][$d]['name'].'</h3>';
 						
 					$cares.= '<p>'.$_data['materials'][$d]['cares'].'</p><br>';
 				}
 				$_data['materials'] = $cares;
+				$_data['arraymaterials'] = $arraymaterials;
 			}
 			
 			$stock = $_data['stock'];
