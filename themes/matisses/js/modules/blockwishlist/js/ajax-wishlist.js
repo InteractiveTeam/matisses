@@ -38,8 +38,11 @@ $(document).ready(function(){
 	});
 });
 
-function WishlistCart(id, action, id_product, id_product_attribute, quantity)
+function WishlistCart(id, action, id_product, id_product_attribute, quantity, id_wishlist)
 {
+	if(id_wishlist)
+		WishlistChangeDefault(0, id_wishlist);
+		
 	$.ajax({
 		type: 'GET',
 		url: baseDir + 'modules/blockwishlist/cart.php?rand=' + new Date().getTime(),

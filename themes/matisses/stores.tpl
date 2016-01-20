@@ -29,60 +29,57 @@
     {l s='Our stores'}
 </h1>
 
+
+
 {if $simplifiedStoresDiplay}
     {if $stores|@count}
-        <p class="store-title">
-            <strong class="dark">
-                {l s='Here you can find our store locations. Please feel free to contact us:'}
-            </strong>
-        </p>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th class="logo">{l s='Logo'}</th>
-                    <th class="name">{l s='Store name'}</th>
-                    <th class="address">{l s='Store address'}</th>
-                    <th class="store-hours">{l s='Working hours'}</th>
-                </tr>
-            </thead>
-            {foreach $stores as $store}
-                <tr class="store-small">
-                    <td class="logo">
-                        {if $store.has_picture}
+    
+    	<div id="map"></div>
+    
+        <div id="accordion-resizer" class="ui-widget-content">
+          <div id="accordion-stores">
+          	{foreach $stores as $store}
+            <h3>{$store.name|escape:'html':'UTF-8'}</h3>
+            <div>
+				<ul>
+                	<li>
+                       {if $store.has_picture}
                             <div class="store-image">
                                 <img src="{$img_store_dir}{$store.id_store}.jpg" alt="" />
                             </div>
                         {/if}
-                    </td>
-                    <td class="name">
-                        {$store.name|escape:'html':'UTF-8'}
-                    </td>
-                    <td class="address">
-                    {assign value=$store.id_store var="id_store"}
-                    {foreach from=$addresses_formated.$id_store.ordered name=adr_loop item=pattern}
-                        {assign var=addressKey value=" "|explode:$pattern}
-                        {foreach from=$addressKey item=key name="word_loop"}
-                            <span {if isset($addresses_style[$key])} class="{$addresses_style[$key]}"{/if}>
-                                {$addresses_formated.$id_store.formated[$key|replace:',':'']|escape:'html':'UTF-8'}
-                            </span>
+                    </li>
+                	<li><b>{l s='Nombre:'} {$store.name|escape:'html':'UTF-8'}</b></li>
+                    <li><b>{l s='Ciudad:'} {$store.city|escape:'html':'UTF-8'}</b></li>
+                    <li>
+                    	<b>{l s='Horario de atención:'} </b>
+                    	{if isset($store.working_hours)}{$store.working_hours}{/if}
+                    </li>
+                    <li>
+                    	<b>{l s='Dirección:'} </b>
+                        {assign value=$store.id_store var="id_store"}
+                        {foreach from=$addresses_formated.$id_store.ordered name=adr_loop item=pattern}
+                            {assign var=addressKey value=" "|explode:$pattern}
+                            {foreach from=$addressKey item=key name="word_loop"}
+                                <span {if isset($addresses_style[$key])} class="{$addresses_style[$key]}"{/if}>
+                                    {$addresses_formated.$id_store.formated[$key|replace:',':'']|escape:'html':'UTF-8'}
+                                </span>
+                            {/foreach}
                         {/foreach}
-                    {/foreach}
-                        <br/>
-                        {if $store.phone}<br/>{l s='Phone:'} {$store.phone|escape:'html':'UTF-8'}{/if}
-                        {if $store.fax}<br/>{l s='Fax:'} {$store.fax|escape:'html':'UTF-8'}{/if}
-                        {if $store.email}<br/>{l s='Email:'} {$store.email|escape:'html':'UTF-8'}{/if}
-                        {if $store.note}<br/><br/>{$store.note|escape:'html':'UTF-8'|nl2br}{/if}
-                    </td>
-                    <td class="store-hours">
-                        {if isset($store.working_hours)}{$store.working_hours}{/if}
-                    </td>
-                </tr>
+                    
+                    </li>
+                    <li><b>{l s='Teléfono:'} </b>{$store.phone}</li>
+                </ul>
+            </div>
             {/foreach}
-        </table>
+            
+            
+           
+          </div>
+        </div>    
     {/if}
 {else}
 
-    <div id="map"></div>
     <!-- <div class="txt-intro">
         <p>
             {l s='Enter a location (e.g. zip/postal code, address, city or country) in order to find the nearest stores.'}
@@ -128,6 +125,8 @@
 
         </tbody>
     </table>
+
+{/if}
 {strip}
 {addJsDef map=''}
 {addJsDef markers=array()}
@@ -148,4 +147,3 @@
 {addJsDefL name=translation_5}{l s='Get directions' js=1}{/addJsDefL}
 {addJsDefL name=translation_6}{l s='Not found' js=1}{/addJsDefL}
 {/strip}
-{/if}

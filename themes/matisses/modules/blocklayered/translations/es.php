@@ -25,7 +25,7 @@ $_MODULE['<{blocklayered}matisses>blocklayered_9e2941b3c81256fac10392aaca4ccfde'
 $_MODULE['<{blocklayered}matisses>blocklayered_2d25c72c1b18e562f6654fff8e11711e'] = 'No disponible';
 $_MODULE['<{blocklayered}matisses>blocklayered_fcebe56087b9373f15514831184fa572'] = 'En inventario primero';
 $_MODULE['<{blocklayered}matisses>blocklayered_faeaec9eda6bc4c8cb6e1a9156a858be'] = 'Disponibilidad';
-$_MODULE['<{blocklayered}matisses>blocklayered_c0bd7654d5b278e65f21cf4e9153fdb4'] = 'Fabricante';
+$_MODULE['<{blocklayered}matisses>blocklayered_c0bd7654d5b278e65f21cf4e9153fdb4'] = 'Marca';
 $_MODULE['<{blocklayered}matisses>blocklayered_af1b98adf7f686b84cd0b443e022b7a0'] = 'Categorías';
 $_MODULE['<{blocklayered}matisses>blocklayered_78a5eb43deef9a7b5b9ce157b9d52ac4'] = 'precio';
 $_MODULE['<{blocklayered}matisses>blocklayered_7edabf994b76a00cbc60c95af337db8f'] = 'peso';

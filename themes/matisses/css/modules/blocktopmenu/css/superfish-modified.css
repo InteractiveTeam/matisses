@@ -91,6 +91,7 @@
 	padding: 0 0 1.25rem 0;
     width: 1663px;
     background: #fafafa;
+	display: none;
 	}
 	.sf-menu ul li {
     display: inline-block;

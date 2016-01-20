@@ -16,7 +16,8 @@
 <file name="product.js" server="192.168.3.45" local="130972072868565316" remote="130972727400000000" Dst="0" />
 <file name="products-comparison.js" server="192.168.3.45" local="130972072868565316" remote="130972727400000000" Dst="0" />
 <file name="scenes.js" server="192.168.3.45" local="130972072868565316" remote="130972727400000000" Dst="0" />
-<file name="stores.js" server="192.168.3.45" local="130972072868721561" remote="130972727400000000" Dst="0" />
+<file name="stores.js" server="192.168.3.45" local="130977235606281453" remote="130977415200000000" Dst="0" />
 <file name="global.js" server="C:/xampp/htdocs/matisses/" local="130933849046010723" remote="130933849040000000" Dst="0" />
 <file name="product.js" server="C:/xampp/htdocs/matisses/" local="130965777504919910" remote="130965777500000000" Dst="0" />
+<file name="stores_simple.js" server="192.168.3.45" local="130977234890047074" remote="130977414600000000" Dst="0" />
 </dwsync>
