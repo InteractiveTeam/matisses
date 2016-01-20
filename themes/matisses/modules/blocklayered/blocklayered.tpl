@@ -116,9 +116,9 @@ param_product_url = '';
                                                 <li>
                                                     <a href="#" data-rel="layered_{$s_filter.type}_slider" title="{l s='Cancel' mod='blocklayered'}"></a>
                                                     {if $s_filter.format == 1}
-                                                        {l s='%1$s %2$s - %3$s'|sprintf:'':{displayPrice price=$s_filter.values[0]}:{displayPrice price=$s_filter.values[1]}|escape:html:'UTF-8' mod='blocklayered'} 2
+                                                        {l s='%1$s %2$s - %3$s'|sprintf:'':{displayPrice price=$s_filter.values[0]}:{displayPrice price=$s_filter.values[1]}|escape:html:'UTF-8' mod='blocklayered'}
                                                     {else}
-                                                        {l s='%1$s %2$s %4$s - %3$s %4$s'|sprintf:'':$s_filter.values[0]:$s_filter.values[1]:$s_filter.unit|escape:html:'UTF-8' mod='blocklayered'} 1
+                                                        {l s='%1$s %2$s %4$s - %3$s %4$s'|sprintf:'':$s_filter.values[0]:$s_filter.values[1]:$s_filter.unit|escape:html:'UTF-8' mod='blocklayered'}
                                                     {/if}
                                                 </li>
                                              </ul>
