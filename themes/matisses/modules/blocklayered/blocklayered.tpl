@@ -103,36 +103,44 @@ param_product_url = '';
 
 					{foreach from=$selected_filters key=s_filter_type item=s_filter_values}
 						{foreach from=$s_filter_values key=s_filter_key item=s_filter_value name=s_f_values}
-							{foreach from=$filters item=s_filter}
+							{assign var='out' value=array()}
+                            {foreach from=$filters item=s_filter}
                             
                             	{if $filter.name == $s_filter.name}
-                                				
+                                		
                                     {if $s_filter.type == $s_filter_type && isset($s_filter.values)}
-                                    <div id="enabled_filters" class="enabled-filters">
-									<ul>
+                                    
                                         {if isset($s_filter.slider)}
                                             {if $smarty.foreach.s_f_values.first}
+                                            <div id="enabled_filters" class="enabled-filters">
+											<ul>
                                                 <li>
                                                     <a href="#" data-rel="layered_{$s_filter.type}_slider" title="{l s='Cancel' mod='blocklayered'}"></a>
                                                     {if $s_filter.format == 1}
-                                                        {l s='%1$s: %2$s - %3$s'|sprintf:$filter.name:{displayPrice price=$s_filter.values[0]}:{displayPrice price=$s_filter.values[1]}|escape:html:'UTF-8' mod='blocklayered'} 2
+                                                        {l s='%1$s %2$s - %3$s'|sprintf:'':{displayPrice price=$s_filter.values[0]}:{displayPrice price=$s_filter.values[1]}|escape:html:'UTF-8' mod='blocklayered'} 2
                                                     {else}
-                                                        {l s='%1$s: %2$s %4$s - %3$s %4$s'|sprintf:$s_filter.name:$s_filter.values[0]:$s_filter.values[1]:$s_filter.unit|escape:html:'UTF-8' mod='blocklayered'} 1
+                                                        {l s='%1$s %2$s %4$s - %3$s %4$s'|sprintf:'':$s_filter.values[0]:$s_filter.values[1]:$s_filter.unit|escape:html:'UTF-8' mod='blocklayered'}
                                                     {/if}
                                                 </li>
+                                              </ul>
+											</div>  
                                             {/if}
                                         {else}
                                             {foreach from=$s_filter.values key=id_value item=value}
                                                 {if $id_value == $s_filter_key && !is_numeric($s_filter_value) && ($s_filter.type eq 'id_attribute_group' || $s_filter.type eq 'id_feature') || $id_value == $s_filter_value && $s_filter.type neq 'id_attribute_group' && $s_filter.type neq 'id_feature'}
-                                                    <li>
-                                                        <a href="#" data-rel="layered_{$s_filter.type_lite}_{$id_value}" title="{l s='Cancel' mod='blocklayered'}"></a>
-                                                        {l s='%1$s' mod='blocklayered' sprintf=[$value.name]}
-                                                    </li>
+                                                    <div id="enabled_filters" class="enabled-filters">
+														<ul>
+                                                   			<li>
+                                                                {$out|array_push:$id_value}
+                                                                <a href="#" data-rel="layered_{$s_filter.type_lite}_{$id_value}" title="{l s='Cancel' mod='blocklayered'}"></a>
+                                                                {l s='%1$s' mod='blocklayered' sprintf=[$value.name]}
+                                                    		</li>
+                                                        </ul>
+                                                	</div>
                                                 {/if}
                                             {/foreach}
                                         {/if}
-                                         </ul>
-										</div>   
+                                            
                                     {/if}
 
                                 {/if}
@@ -145,13 +153,12 @@ param_product_url = '';
        {/if}                 
                         
                         <span class="layered_close"><a href="#" data-rel="ul_layered_{$filter.type}_{$filter.id_key}">v</a></span>
-						
-						<ul id="ul_layered_{$filter.type}_{$filter.id_key}">
+						<ul id="ul_layered_{$filter.type}_{$filter.id_key}" class="{Tools::link_rewrite($filter.name)}">
 						{if !isset($filter.slider)}
 							{if $filter.filter_type == 0}
 								{foreach from=$filter.values key=id_value item=value name=fe}
 									{if $value.nbr || !$hide_0_values}
-									<li class="nomargin {if $smarty.foreach.fe.index >= $filter.filter_show_limit}hiddable{/if} {if isset($filter.is_color_group) && $filter.is_color_group}color-item{/if}">
+									<li class="nomargin {if $filter_selected==$id_value} active {/if}{if $smarty.foreach.fe.index >= $filter.filter_show_limit}hiddable{/if} {if isset($filter.is_color_group) && $filter.is_color_group}color-item{/if}">
 										{if isset($filter.is_color_group) && $filter.is_color_group}
 											<input class="color-option {if isset($value.checked) && $value.checked}on{/if} {if !$value.nbr}disable{/if}" type="button" name="layered_{$filter.type_lite}_{$id_value}" data-rel="{$id_value}_{$filter.id_key}" id="layered_id_attribute_group_{$id_value}" {if !$value.nbr}disabled="disabled"{/if} style="background: {if isset($value.color)}{if file_exists($col_img_dir|cat:$id_value|cat:'.jpg')}url({$img_col_dir}{$id_value}.jpg){else}{$value.color}{/if}{else}#CCC{/if};" title="{$value.name|escape:html:'UTF-8'}" value="{$value.name|escape:html:'UTF-8'}"/>
 											{if isset($value.checked) && $value.checked}<input type="hidden" name="layered_{$filter.type_lite}_{$id_value}" value="{$id_value}" />{/if}
