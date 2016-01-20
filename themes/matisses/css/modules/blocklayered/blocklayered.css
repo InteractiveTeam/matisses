@@ -267,6 +267,7 @@
     }
     .layered-left .enabled-filters ul li {
     padding: 0;
+    margin-bottom: 0;
     }
     .layered-left ul li:last-child{
     padding-bottom: 0;
