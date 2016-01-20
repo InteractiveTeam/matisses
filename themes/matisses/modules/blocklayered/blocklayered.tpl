@@ -74,40 +74,39 @@ param_product_url = '';
 					</ul>
 				</div>
 				{/if}
-                
-               
+
+
                {$filter2 = Hook::exec('actionSortFilters', ['filters' => $filters], null, true)}
                 {assign var='filters' value=$filter2.matisses}
-                
-                
+
+
 				{foreach from=$filters item=filter}
-                	
+
 					{if isset($filter.values)}
 						{if isset($filter.slider)}
 						<div class="layered_{$filter.type}" style="display: none;">
 						{else}
-						<div>
+						<div class="layer-material">
 						{/if}
-                        
-                        {if $filter.name|strstr:"material"} 
+
+                        {if $filter.name|strstr:"material"}
                         	{if $cont==0}
                             <h2 class="layered_subtitle"> {l s='Material'}</h2>
                             {$cont = $cont + 1}
                         	{/if}
                         {else}
-                        
+
 						<h2 class="layered_subtitle"> {$filter.name|escape:html:'UTF-8'}</h2>
-						
+
                         {/if}
       {if isset($selected_filters) && $n_filters > 0}                  
 
 					{foreach from=$selected_filters key=s_filter_type item=s_filter_values}
 						{foreach from=$s_filter_values key=s_filter_key item=s_filter_value name=s_f_values}
-							{assign var='out' value=array()}
-                            {foreach from=$filters item=s_filter}
+							{foreach from=$filters item=s_filter}
                             
                             	{if $filter.name == $s_filter.name}
-                                		
+                                				
                                     {if $s_filter.type == $s_filter_type && isset($s_filter.values)}
                                     
                                         {if isset($s_filter.slider)}
@@ -119,11 +118,11 @@ param_product_url = '';
                                                     {if $s_filter.format == 1}
                                                         {l s='%1$s %2$s - %3$s'|sprintf:'':{displayPrice price=$s_filter.values[0]}:{displayPrice price=$s_filter.values[1]}|escape:html:'UTF-8' mod='blocklayered'} 2
                                                     {else}
-                                                        {l s='%1$s %2$s %4$s - %3$s %4$s'|sprintf:'':$s_filter.values[0]:$s_filter.values[1]:$s_filter.unit|escape:html:'UTF-8' mod='blocklayered'}
+                                                        {l s='%1$s %2$s %4$s - %3$s %4$s'|sprintf:'':$s_filter.values[0]:$s_filter.values[1]:$s_filter.unit|escape:html:'UTF-8' mod='blocklayered'} 1
                                                     {/if}
                                                 </li>
-                                              </ul>
-											</div>  
+                                             </ul>
+											</div>    
                                             {/if}
                                         {else}
                                             {foreach from=$s_filter.values key=id_value item=value}
@@ -131,16 +130,15 @@ param_product_url = '';
                                                     <div id="enabled_filters" class="enabled-filters">
 														<ul>
                                                    			<li>
-                                                                {$out|array_push:$id_value}
-                                                                <a href="#" data-rel="layered_{$s_filter.type_lite}_{$id_value}" title="{l s='Cancel' mod='blocklayered'}"></a>
-                                                                {l s='%1$s' mod='blocklayered' sprintf=[$value.name]}
+                                                        		<a href="#" data-rel="layered_{$s_filter.type_lite}_{$id_value}" title="{l s='Cancel' mod='blocklayered'}"></a>
+                                                        		{l s='%1$s' mod='blocklayered' sprintf=[$value.name]}
                                                     		</li>
                                                         </ul>
                                                 	</div>
                                                 {/if}
                                             {/foreach}
                                         {/if}
-                                            
+
                                     {/if}
 
                                 {/if}
@@ -158,7 +156,7 @@ param_product_url = '';
 							{if $filter.filter_type == 0}
 								{foreach from=$filter.values key=id_value item=value name=fe}
 									{if $value.nbr || !$hide_0_values}
-									<li class="nomargin {if $filter_selected==$id_value} active {/if}{if $smarty.foreach.fe.index >= $filter.filter_show_limit}hiddable{/if} {if isset($filter.is_color_group) && $filter.is_color_group}color-item{/if}">
+						  <li class="nomargin {if $filter_selected==$id_value} active {/if}{if $smarty.foreach.fe.index >= $filter.filter_show_limit}hiddable{/if} {if isset($filter.is_color_group) && $filter.is_color_group}color-item{/if}">
 										{if isset($filter.is_color_group) && $filter.is_color_group}
 											<input class="color-option {if isset($value.checked) && $value.checked}on{/if} {if !$value.nbr}disable{/if}" type="button" name="layered_{$filter.type_lite}_{$id_value}" data-rel="{$id_value}_{$filter.id_key}" id="layered_id_attribute_group_{$id_value}" {if !$value.nbr}disabled="disabled"{/if} style="background: {if isset($value.color)}{if file_exists($col_img_dir|cat:$id_value|cat:'.jpg')}url({$img_col_dir}{$id_value}.jpg){else}{$value.color}{/if}{else}#CCC{/if};" title="{$value.name|escape:html:'UTF-8'}" value="{$value.name|escape:html:'UTF-8'}"/>
 											{if isset($value.checked) && $value.checked}<input type="hidden" name="layered_{$filter.type_lite}_{$id_value}" value="{$id_value}" />{/if}
@@ -263,7 +261,7 @@ param_product_url = '';
 									{l s='to' mod='blocklayered'} <input class="layered_{$filter.type}_range layered_input_range_max layered_input_range" id="layered_{$filter.type}_range_max" type="text" value="{$filter.values[1]}"/>
 									<span class="layered_{$filter.type}_range_unit">{$filter.unit}</span>
 									<span class="layered_{$filter.type}_format" style="display:none;">{$filter.format}</span>
-									<script type="text/javascript">
+								  	<script type="text/javascript">
 									{literal}
 										$('#layered_{/literal}{$filter.type}{literal}_range_min').attr('limitValue', {/literal}{$filter.min}{literal});
 										$('#layered_{/literal}{$filter.type}{literal}_range_max').attr('limitValue', {/literal}{$filter.max}{literal});

@@ -1,6 +1,6 @@
     .content_sortPagiBar .sortPagiBar .productsSortForm label {
     display: inline-block;
-    font-family: "gothic";
+    font-family: 'gothic';
     border-left: 1px solid #ddd;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -31,77 +31,18 @@
     font-weight: bold;
     font-size: 12px; }
 
-
-
-
-
-    #layered_block_left .block_content form#layered_form label {
-    margin-left: 5px;
-    }
-
-    #layered_block_left .block_content form#layered_form .checker span {
-    border: 3px solid #7b7b7b;
-    }
-    #layered_block_left .block_content form#layered_form .checker span:before {
-    color: red;
-    position: absolute;
-    left: 4px;
-    top: 3px;
-    font-size: 0.7em;
-    }
-
     #layered_block_left #enabled_filters .layered_subtitle{
     font-size: 16px;
     margin-bottom: 15px;
     }
     #layered_block_left ul {
-    clear: both;
-    padding: 0; }
-
-    #layered_form div.checker,#layered_form div.radio {
-    position: absolute;
-    top: 3px;
-    left: 0;
-    }
-    #layered_block_left ul li label {
-    cursor: pointer;
-    color: #4b4b4b;
-    display: block; }
-    #layered_block_left ul li label.layered_color{
-    display: inline-block;
-    }
-    #layered_block_left ul {
     padding-left: 0; }
 
-    #layered_block_left ul li {
-    list-style-type: none;
-    width: 100%;
-    position: relative;
-    }
-
-
 /* Style moved form the template to the css  */
-    #layered_block_left ul li input.checkbox {
-    vertical-align: middle;
-    margin-left: 2px; }
-
-    #layered_block_left ul li .disabled {
-    color: #666; }
-
-    #layered_block_left .color-option {
-    border: 1px solid #666666;
-    height: 16px;
-    margin-left: 0;
-    padding: 0;
-    width: 16px; }
-
     #layered_block_left .color-option.disable {
     opacity: 0.5;
     filter: alpha(opacity=50);
     -moz-opacity: 0.5; }
-
-    #layered_block_left .nomargin a {
-    display: inline; }
 
     #layered_block_left .nomargin a span{
     font-size: 12px;
@@ -146,7 +87,6 @@
     .hide-action:hover {
     font-weight: bold; }
 
-
     #layered_form>div>div:after,#layered_form>div>div:before,
     .layered_weight:before,.layered_price:before,
     .layered_weight:after,.layered_price:after{
@@ -177,23 +117,12 @@
     }
 
 /*fix*/
-
-    #layered_block_left ul li label.layered_color{
-    display: none!important;
-    }
-
-
-
-
-
-
     .display li.grid-btn a:after, .display_m li.grid-btn a:after, .display li.grid-btn a:before, .display_m li.grid-btn a:before, .display li.grid-btn a span:after, .display_m li.grid-btn a span:after, .display li.grid-btn a span:before, .display_m li.grid-btn a span:before, .display li.grid-btn a:after, .display_m li.grid-btn a:after, .display li.grid-btn a:before, .display_m li.grid-btn a:before, .display li.grid-btn a span:after, .display_m li.grid-btn a span:after, .display li.grid-btn a span:before, .display_m li.grid-btn a span:before, .display li.list-btn a:after, .display_m li.list-btn a:after, .display li.list-btn a:before, .display_m li.list-btn a:before, .display li.list-btn a span:after, .display_m li.list-btn a span:after{
     background: #dbdbdb;
     border-color: #dbdbdb !important;
     }
 
 /** Product Container **/
-
     .category_list .product-container{
     border: none !important;
     margin:  00;
@@ -207,7 +136,7 @@
     }
     .category_list .product-container .left-block .wrap_features .tag span {
     display: inline-block;
-    font-family: "gothic";
+    font-family: 'gothic';
     font-weight: bold;
     padding: 0.3125rem 0.9375rem;
     }
@@ -215,14 +144,12 @@
     display: none;
     }
 
-
     .product_list.grid .product-container:before, .product_list.grid .product-container:after, .c_item .product-container:before, .c_item .product-container:after{
     height: 50% !important;
     }
-
     .product_list.grid .button-container .btn_border {
     background: #FFF;
-    font-family: "condensed";
+    font-family: 'condensed';
     font-size: 1.1rem;
     border-radius: inherit;
     line-height: 100%;
@@ -272,6 +199,7 @@
     .layered-left {
     padding-top: 1.25rem;
     background: #f1f1f1;
+    margin-bottom: 4.375rem;
     }
     #layered_block_left h2.layered_subtitle{
     color: #231f20;
@@ -326,11 +254,11 @@
     font-family: 'condensed';
     }
     .layered_weight,
-    .layered_price{
+    .layered_price,
+    .layer-material{
     margin-bottom: 2.1875rem;
     padding-bottom: 2.1875rem;
-    border-bottom-style:solid;
-    border-bottom-width:1px;
+    border-bottom: 1px solid #dbdbdb;
     }
     .layered-left .enabled-filters {
     background: #6b6b6b;
@@ -366,31 +294,52 @@
     }
 
     /*Filtro Color*/
-    .layered-left ul li.color-item {
-    width: auto;
-    display: block;
-    margin-bottom: 0.3125rem;
-    padding: 0;
-    -webkit-border-radius:0;
-    -moz-border-radius:0;
-    border-radius: 0;
-    -webkit-transition: all .4s ease;
-    -moz-transition: all .4s ease;
-    -o-transition: all .4s ease;
-    transition: all .4s ease;
-    border: none;
-    }
-    #layered_form .color-option {
+    .layered-left .color-option {
+    display: inline-block;
     width: 1.875rem;
     height: 1.875rem;
     margin: 0;
     padding: 0;
     border: none;
     }
-    .layered-left ul li.color-item:hover {
-    background: #ddd;
+
+    /*Filtro Material*/
+    .layered-left ul li label  {
+    display: inline-block;
+    text-transform: none;
+    padding: 0 0 0 0.3125rem;
+    width: 85%;
+    vertical-align: top;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    color: #777676;
+    line-height: normal;
     }
 
+    .layered-left ul li .disabled {
+    color: #BCBCBC;
+    }
+    .layered-left .checker {
+    display: inline-block;
+    }
+    .layered-left .checker span {
+    border: 3px solid #7b7b7b;
+    position: relative;
+    }
+    .layered-left .checker.disabled span {
+    border-color: #BCBCBC;
+    }
+
+    .layered-left ul li {
+    margin-bottom: 1.25rem;
+    }
+    .layered-left .checker span:before {
+    color: red;
+    position: absolute;
+    left: -0.0625rem;
+    bottom: -0.125rem;
+    font-size: 0.9375rem;
+    }
     /*Columna derecha parrilla*/
     .content_sortPagiBar{
 	position: relative;
@@ -449,4 +398,10 @@
     }
     .parrilla-productos .wrap_content_price {
     padding: 0 0.625rem 0.625rem;
+    }
+    .parrilla-productos .inner-product-list {
+    padding-bottom: 3.125rem;
+    }
+    .parrilla-productos li.list-btn {
+    margin-left: -0.25rem;
     }
