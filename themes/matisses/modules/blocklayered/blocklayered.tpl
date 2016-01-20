@@ -95,7 +95,6 @@ param_product_url = '';
 						<div class="layer-material">
 						{/if}
                         
-                        {if $filter.name|strstr:"material"} 
 
                         {if $filter.name|strstr:"material"}
                         	{if $cont==0}
