@@ -33,6 +33,7 @@ class matisses extends Module
 		//$this->registerHook('actionCustomerAccountAdd');
 		//$this->registerHook('displayExperiencesHome');
 		//$this->registerHook('displayCustomerAccount');
+		//$this->registerHook('actionSortFilters');
 		//$install[] = $this->__installPage('module-matisses-garantias','garantias');
 		self::hookactionListInvoice();
 		if (Tools::isSubmit('updateApyKey'))
@@ -212,6 +213,7 @@ class matisses extends Module
 			|| !$this->registerHook('displaySchemesProduct')
 			|| !$this->registerHook('displayExperiencesHome')
 			|| !$this->registerHook('displayCustomerAccount')
+			|| !$this->registerHook('actionSortFilters')
 			|| !$this->registerHook('moduleRoutes')
 			
 			|| $this->registerHook('actionCustomerAccountUpdate')
@@ -416,6 +418,44 @@ class matisses extends Module
 	/*********************************************
 	* HOOKS
 	*********************************************/
+	
+	public function hookactionSortFilters($params)
+	{
+
+		$filters = $params['filters'];
+		
+		unset($keyfilter);
+		foreach($filters as $k => $filter)
+		{
+			if(!$keyfilter)
+			{
+				if(strstr($filter['name'],'material_'))
+				{
+					$keyfilter = $k;
+					$filters[$k]['name'] = $this->l('Material');
+				}
+			}else{
+				if(strstr($filter['name'],'material_'))
+				{
+					unset($values);
+					$values = $filter['values'];
+					if(sizeof($values))
+					{
+						unset($keymat);
+						$keymat = key($values);
+						$filters[$keyfilter]['values'][$keymat]['nbr'] = $values[$keymat]['nbr'];
+						$filters[$keyfilter]['values'][$keymat]['name'] = $values[$keymat]['name'];
+						$filters[$keyfilter]['values'][$keymat]['url_name'] = $values[$keymat]['url_name'];
+						$filters[$keyfilter]['values'][$keymat]['meta_title'] = $values[$keymat]['meta_title'];
+						$filters[$keyfilter]['values'][$keymat]['link'] = $values[$keymat]['link'];
+						$filters[$keyfilter]['values'][$keymat]['rel'] = $values[$keymat]['rel'];
+						unset($filters[$k]); 
+					}
+				}
+			}
+		}
+		return $filters;
+	}
 	
 	public function hookdisplayCustomerAccount($params)
 	{

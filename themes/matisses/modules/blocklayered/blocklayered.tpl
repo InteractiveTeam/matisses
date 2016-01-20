@@ -51,9 +51,9 @@ param_product_url = '';
 											<li>
 												<a href="#" data-rel="layered_{$filter.type}_slider" title="{l s='Cancel' mod='blocklayered'}"></a>
 												{if $filter.format == 1}
-													{l s='%1$s: %2$s - %3$s'|sprintf:$filter.name:{displayPrice price=$filter.values[0]}:{displayPrice price=$filter.values[1]}|escape:html:'UTF-8' mod='blocklayered'}
+													{l s='%1$s: %2$s - %3$s'|sprintf:$filter.name:{displayPrice price=$filter.values[0]}:{displayPrice price=$filter.values[1]}|escape:html:'UTF-8' mod='blocklayered'} 2
 												{else}
-													{l s='%1$s: %2$s %4$s - %3$s %4$s'|sprintf:$filter.name:$filter.values[0]:$filter.values[1]:$filter.unit|escape:html:'UTF-8' mod='blocklayered'}
+													{l s='%1$s: %2$s %4$s - %3$s %4$s'|sprintf:$filter.name:$filter.values[0]:$filter.values[1]:$filter.unit|escape:html:'UTF-8' mod='blocklayered'} 1
 												{/if}
 											</li>
 										{/if}
@@ -62,7 +62,7 @@ param_product_url = '';
 											{if $id_value == $filter_key && !is_numeric($filter_value) && ($filter.type eq 'id_attribute_group' || $filter.type eq 'id_feature') || $id_value == $filter_value && $filter.type neq 'id_attribute_group' && $filter.type neq 'id_feature'}
 												<li>
 													<a href="#" data-rel="layered_{$filter.type_lite}_{$id_value}" title="{l s='Cancel' mod='blocklayered'}"></a>
-													{l s='%1$s: %2$s' mod='blocklayered' sprintf=[$filter.name, $value.name]}
+													{l s='%1$s: %2$s' mod='blocklayered' sprintf=[$filter.name, $value.name]} 3
 												</li>
 											{/if}
 										{/foreach}
@@ -74,6 +74,12 @@ param_product_url = '';
 					</ul>
 				</div>
 				{/if}
+                
+               
+               {$filter2 = Hook::exec('actionSortFilters', ['filters' => $filters], null, true)}
+                {assign var='filters' value=$filter2.matisses}
+                
+                
 				{foreach from=$filters item=filter}
                 	
 					{if isset($filter.values)}
@@ -95,7 +101,7 @@ param_product_url = '';
                         {/if}
                         
                         <span class="layered_close"><a href="#" data-rel="ul_layered_{$filter.type}_{$filter.id_key}">v</a></span>
-
+						
 						<ul id="ul_layered_{$filter.type}_{$filter.id_key}">
 						{if !isset($filter.slider)}
 							{if $filter.filter_type == 0}

@@ -1714,16 +1714,23 @@ class BlockLayered extends Module
 				$url = preg_replace('/\/(?:\w*)\/(?:[0-9]+[-\w]*)([^\?]*)\??.*/', '$1', Tools::safeOutput($_SERVER['REQUEST_URI'], true));
 			
 			$url_attributes = explode('/', ltrim($url, '/'));
+			
 			$selected_filters = array('category' => array());
 			if (!empty($url_attributes))
 			{
 				foreach ($url_attributes as $url_attribute)
 				{
+					
 					/* Pagination uses - as separator, can be different from $this->getAnchor()*/
 					if (strpos($url_attribute, 'page-') === 0)
 						$url_attribute = str_replace('-', $this->getAnchor(), $url_attribute);
 					$url_parameters = explode($this->getAnchor(), $url_attribute);
+					
+					
+					
 					$attribute_name  = array_shift($url_parameters);
+					$attribute_name = str_replace('material','material_',$attribute_name);
+					
 					if ($attribute_name == 'page')
 						$this->page = (int)$url_parameters[0];
 					else if (in_array($attribute_name, array('price', 'weight')))
@@ -1748,6 +1755,7 @@ class BlockLayered extends Module
 						}
 					}
 				}
+
 				return $selected_filters;
 			}
 		}
@@ -2860,6 +2868,8 @@ class BlockLayered extends Module
 		global $smarty;
 		if ($filter_block = $this->getFilterBlock($selected_filters))
 		{
+			
+			
 			if ($filter_block['nbr_filterBlocks'] == 0)
 				return false;
 
@@ -3086,6 +3096,8 @@ class BlockLayered extends Module
 			$product_list = $this->display(__FILE__, 'blocklayered-no-products.tpl');
 		else
 			$product_list = $smarty->fetch(_PS_THEME_DIR_.'product-list.tpl');
+
+
 
 		$vars = array(
 			'filtersBlock' => utf8_encode($this->generateFiltersBlock($selected_filters)),

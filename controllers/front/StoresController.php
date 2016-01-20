@@ -96,7 +96,7 @@ class StoresControllerCore extends FrontController
 		WHERE s.active = 1 AND cl.id_lang = '.(int)$this->context->language->id);
 
 		$addresses_formated = array();
-
+		
 		foreach ($stores as &$store)
 		{
 			$address = new Address();
@@ -284,13 +284,16 @@ class StoresControllerCore extends FrontController
 	public function setMedia()
 	{
 		parent::setMedia();
+		$this->addJqueryUI('ui.accordion');
 		$this->addCSS(_THEME_CSS_DIR_.'stores.css');
-
+		$this->addJS('http'.((Configuration::get('PS_SSL_ENABLED') && Configuration::get('PS_SSL_ENABLED_EVERYWHERE')) ? 's' : '').'://maps.google.com/maps/api/js?sensor=true&region='.substr($default_country->iso_code, 0, 2));
+		$default_country = new Country((int)Tools::getCountry());
+			
 		if (!Configuration::get('PS_STORES_SIMPLIFIED'))
 		{
-			$default_country = new Country((int)Tools::getCountry());
-			$this->addJS('http'.((Configuration::get('PS_SSL_ENABLED') && Configuration::get('PS_SSL_ENABLED_EVERYWHERE')) ? 's' : '').'://maps.google.com/maps/api/js?sensor=true&region='.substr($default_country->iso_code, 0, 2));
 			$this->addJS(_THEME_JS_DIR_.'stores.js');
-		}
+		}else{
+				$this->addJS(_THEME_JS_DIR_.'stores.js');
+			 }
 	}
 }

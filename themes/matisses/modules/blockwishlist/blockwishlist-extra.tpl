@@ -22,9 +22,32 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-
+{if sizeof($wishlists)<=1}
 <div class="elem_butt">
 	<a id="wishlist_button" href="#" onclick="WishlistCart('wishlist_block_list', 'add', '{$id_product|intval}', $('#idCombination').val(), document.getElementById('quantity_wanted').value); return false;" rel="nofollow"  title="{l s='Add to my wishlist' mod='blockwishlist'}">
 		<span class="hidden-xxs">{l s='Add to wishlist' mod='blockwishlist'}</span>
 	</a>
 </div>
+{else}
+<div class="elem_butt">
+	<a id="wishlist_button" href="#" onclick="$.fancybox($('.fanbcybox-wishlist').html())" rel="nofollow"  title="{l s='Add to my wishlist' mod='blockwishlist'}">
+		<span class="hidden-xxs">{l s='Add to wishlist' mod='blockwishlist'}</span>
+	</a>
+</div>	
+
+<div class="fanbcybox-wishlist" style="display:none">
+    <h3>{l s='Seleccione su lista de regalos' mod='blockwishlist'}</h3>
+    <ul>
+        {foreach from=$wishlists item=wishlist}
+        <li>
+            <a href="#" title="{$wishlist.name}" value="{$wishlist.id_wishlist}" onclick="WishlistCart('wishlist_block_list', 'add', '{$id_product|intval}', false, 1, '{$wishlist.id_wishlist}');">
+                {l s='%s Adicionar' sprintf=[$wishlist.name] mod='blockwishlist'}
+             </a>
+        </li>
+        {/foreach}
+    </ul>
+</div>
+
+{/if}
+
+
