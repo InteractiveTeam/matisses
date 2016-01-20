@@ -403,13 +403,13 @@
 
 							$FeatureVal = new FeatureValue(1);
 							$FeatureVal->id_feature = $id_feature;
-							$FeatureVal->value[(int)Configuration::get('PS_LANG_DEFAULT')] = $material; 
+							$FeatureVal->value[(int)Configuration::get('PS_LANG_DEFAULT')] = mb_strtoupper(substr($material,0,1)).mb_strtolower(substr($material,1,strlen($material))); 
 							$FeatureVal->add();
 						}else{
 
 								$FeatureVal = new FeatureValue(1);
 								$FeatureVal->id_feature = $id_feature;
-								$FeatureVal->value[(int)Configuration::get('PS_LANG_DEFAULT')] = $material; 
+								$FeatureVal->value[(int)Configuration::get('PS_LANG_DEFAULT')] = mb_strtoupper(substr($material,0,1)).mb_strtolower(substr($material,1,strlen($material))); ; 
 								$FeatureVal->update();
 							 }
 						Db::getInstance()->Execute('DELETE FROM '._DB_PREFIX_.'feature_value_lang WHERE id_feature_value = 0');

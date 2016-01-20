@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="index.php" server="192.168.3.45" local="130972072923887965" remote="130972729200000000" Dst="0" />
-<file name="list_action_enable.tpl" server="192.168.3.45" local="130972072924044289" remote="130972729200000000" Dst="0" />
-<file name="list_action_unsubscribe.tpl" server="192.168.3.45" local="130972072924875723" remote="130972729200000000" Dst="0" />
-<file name="list_action_viewcustomer.tpl" server="192.168.3.45" local="130972072924890727" remote="130972729200000000" Dst="0" />
+<file name="index.php" server="192.168.3.45" local="130974342326464810" remote="130977918000000000" Dst="0" />
+<file name="list_action_enable.tpl" server="192.168.3.45" local="130974342326509850" remote="130977918000000000" Dst="0" />
+<file name="list_action_unsubscribe.tpl" server="192.168.3.45" local="130974342326559784" remote="130977918000000000" Dst="0" />
+<file name="list_action_viewcustomer.tpl" server="192.168.3.45" local="130974342326604800" remote="130977918000000000" Dst="0" />
 </dwsync>

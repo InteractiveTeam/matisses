@@ -38,7 +38,7 @@ param_product_url = '';
 	<div class="block_content">
 		<form action="#" id="layered_form">
 			<div>
-				{if isset($selected_filters) && $n_filters > 0}
+				{if isset($selected_filters) && $n_filters > 0 && false}
 				<div id="enabled_filters" class="enabled-filters">
 
 					<ul>
@@ -62,7 +62,7 @@ param_product_url = '';
 											{if $id_value == $filter_key && !is_numeric($filter_value) && ($filter.type eq 'id_attribute_group' || $filter.type eq 'id_feature') || $id_value == $filter_value && $filter.type neq 'id_attribute_group' && $filter.type neq 'id_feature'}
 												<li>
 													<a href="#" data-rel="layered_{$filter.type_lite}_{$id_value}" title="{l s='Cancel' mod='blocklayered'}"></a>
-													{l s='%1$s: %2$s' mod='blocklayered' sprintf=[$filter.name, $value.name]} 3
+													{l s='%1$s' mod='blocklayered' sprintf=[$value.name]}
 												</li>
 											{/if}
 										{/foreach}
@@ -99,6 +99,50 @@ param_product_url = '';
 						<h2 class="layered_subtitle"> {$filter.name|escape:html:'UTF-8'}</h2>
 						
                         {/if}
+      {if isset($selected_filters) && $n_filters > 0}                  
+
+					{foreach from=$selected_filters key=s_filter_type item=s_filter_values}
+						{foreach from=$s_filter_values key=s_filter_key item=s_filter_value name=s_f_values}
+							{foreach from=$filters item=s_filter}
+                            
+                            	{if $filter.name == $s_filter.name}
+                                				
+                                    {if $s_filter.type == $s_filter_type && isset($s_filter.values)}
+                                    <div id="enabled_filters" class="enabled-filters">
+									<ul>
+                                        {if isset($s_filter.slider)}
+                                            {if $smarty.foreach.s_f_values.first}
+                                                <li>
+                                                    <a href="#" data-rel="layered_{$s_filter.type}_slider" title="{l s='Cancel' mod='blocklayered'}"></a>
+                                                    {if $s_filter.format == 1}
+                                                        {l s='%1$s: %2$s - %3$s'|sprintf:$filter.name:{displayPrice price=$s_filter.values[0]}:{displayPrice price=$s_filter.values[1]}|escape:html:'UTF-8' mod='blocklayered'} 2
+                                                    {else}
+                                                        {l s='%1$s: %2$s %4$s - %3$s %4$s'|sprintf:$s_filter.name:$s_filter.values[0]:$s_filter.values[1]:$s_filter.unit|escape:html:'UTF-8' mod='blocklayered'} 1
+                                                    {/if}
+                                                </li>
+                                            {/if}
+                                        {else}
+                                            {foreach from=$s_filter.values key=id_value item=value}
+                                                {if $id_value == $s_filter_key && !is_numeric($s_filter_value) && ($s_filter.type eq 'id_attribute_group' || $s_filter.type eq 'id_feature') || $id_value == $s_filter_value && $s_filter.type neq 'id_attribute_group' && $s_filter.type neq 'id_feature'}
+                                                    <li>
+                                                        <a href="#" data-rel="layered_{$s_filter.type_lite}_{$id_value}" title="{l s='Cancel' mod='blocklayered'}"></a>
+                                                        {l s='%1$s' mod='blocklayered' sprintf=[$value.name]}
+                                                    </li>
+                                                {/if}
+                                            {/foreach}
+                                        {/if}
+                                         </ul>
+										</div>   
+                                    {/if}
+
+                                {/if}
+                                
+                                
+							{/foreach}
+						{/foreach}
+					{/foreach}
+				                     
+       {/if}                 
                         
                         <span class="layered_close"><a href="#" data-rel="ul_layered_{$filter.type}_{$filter.id_key}">v</a></span>
 						
