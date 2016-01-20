@@ -33,6 +33,7 @@ $(document).ready(function()
 	cancelFilter();
 	openCloseFilter();
 
+
 	// Click on color
 	$(document).on('click', '#layered_form input[type=button], #layered_form label.layered_color', function(e) {
 		if (!$('input[name='+$(this).attr('name')+'][type=hidden]').length)
