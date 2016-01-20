@@ -429,13 +429,13 @@ class matisses extends Module
 		{
 			if(!$keyfilter)
 			{
-				if(strstr($filter['name'],'material_'))
+				if(strstr($filter['name'],'material'))
 				{
 					$keyfilter = $k;
-					$filters[$k]['name'] = $this->l('Material');
+					$filters[$k]['name'] = $this->l('material');
 				}
 			}else{
-				if(strstr($filter['name'],'material_'))
+				if(strstr($filter['name'],'material'))
 				{
 					unset($values);
 					$values = $filter['values'];
@@ -444,7 +444,7 @@ class matisses extends Module
 						unset($keymat);
 						$keymat = key($values);
 						$filters[$keyfilter]['values'][$keymat]['nbr'] = $values[$keymat]['nbr'];
-						$filters[$keyfilter]['values'][$keymat]['name'] = $values[$keymat]['name'];
+						$filters[$keyfilter]['values'][$keymat]['name'] =$values[$keymat]['name'];
 						$filters[$keyfilter]['values'][$keymat]['url_name'] = $values[$keymat]['url_name'];
 						$filters[$keyfilter]['values'][$keymat]['meta_title'] = $values[$keymat]['meta_title'];
 						$filters[$keyfilter]['values'][$keymat]['link'] = $values[$keymat]['link'];

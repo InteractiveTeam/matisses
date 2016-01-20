@@ -2866,10 +2866,22 @@ class BlockLayered extends Module
 	public function generateFiltersBlock($selected_filters)
 	{
 		global $smarty;
+		
+		
+		
 		if ($filter_block = $this->getFilterBlock($selected_filters))
 		{
+			/*
+			foreach($filter_block['filters'] as $k => $value)
+			{
+				if(strstr($filter_block['filters'][$k]['name'],'material_'))
+				{
+					$filter_block['filters'][$k]['name'] = 'material';
+				}
+			}
 			
-			
+			print_r($filter_block);
+			*/
 			if ($filter_block['nbr_filterBlocks'] == 0)
 				return false;
 
