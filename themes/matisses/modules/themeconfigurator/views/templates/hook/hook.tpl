@@ -27,7 +27,7 @@
 	{if $hook == 'left' || $hook == 'right' || $hook == 'top' || $hook == 'footer'}
     	<ul class="htmlcontent-home cf row">
         	{foreach name=items from=$htmlitems item=hItem}
-            <li class="htmlcontent-item-{$smarty.foreach.items.iteration|escape:'htmlall':'UTF-8'} col-xs-12">
+            <li class="htmlcontent-item-{$smarty.foreach.items.iteration|escape:'htmlall':'UTF-8'} ">
             {if $hItem.url}
                 <a href="{$hItem.url|escape:'htmlall':'UTF-8'}" class="item-link"{if $hItem.target == 1} onclick="return !window.open(this.href);"{/if} title="{$hItem.title|escape:'htmlall':'UTF-8'}">
             {/if}

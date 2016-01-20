@@ -237,9 +237,6 @@ div.uploader {
     min-height: 15px;
     }
 
-    #layered_block_left ul li input.checkbox {
-    vertical-align: top;
-    }
     .checker .checked:before,.radio .checked:before {
     display: inline-block;
     line-height: 1;
@@ -252,10 +249,7 @@ div.uploader {
     text-align: center;
     }
 
-    #layered_form div.checker {
-    display: inline-block;
-    vertical-align: bottom;
-    }
+
 
 /* Radio */
     div.radio {

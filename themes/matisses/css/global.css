@@ -470,7 +470,6 @@ box-sizing: border-box;
 	padding-right: 1.25rem;
 	}
 	.coleccion img {
-	margin-left: -0.25rem;
 	display: table-cell;
 	vertical-align: top;
 	}
@@ -481,7 +480,7 @@ box-sizing: border-box;
 	padding-bottom: 0.3125rem;
 	}
 	.coleccion p {
-	color: #fff;
+	color: #bcbcbc;
 	}
 
 	/*Chaordic*/
@@ -3697,4 +3696,3 @@ box-sizing: border-box;
 	margin: 0 auto;
 	float: none;
 	}
-	

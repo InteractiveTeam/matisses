@@ -74,34 +74,34 @@ param_product_url = '';
 					</ul>
 				</div>
 				{/if}
-                
-               
+
+
                {$filter2 = Hook::exec('actionSortFilters', ['filters' => $filters], null, true)}
                 {assign var='filters' value=$filter2.matisses}
-                
-                
+
+
 				{foreach from=$filters item=filter}
-                	
+
 					{if isset($filter.values)}
 						{if isset($filter.slider)}
 						<div class="layered_{$filter.type}" style="display: none;">
 						{else}
-						<div>
+						<div class="layer-material">
 						{/if}
-                        
-                        {if $filter.name|strstr:"material"} 
+
+                        {if $filter.name|strstr:"material"}
                         	{if $cont==0}
                             <h2 class="layered_subtitle"> {l s='Material'}</h2>
                             {$cont = $cont + 1}
                         	{/if}
                         {else}
-                        
+
 						<h2 class="layered_subtitle"> {$filter.name|escape:html:'UTF-8'}</h2>
-						
+
                         {/if}
-                        
+
                         <span class="layered_close"><a href="#" data-rel="ul_layered_{$filter.type}_{$filter.id_key}">v</a></span>
-						
+
 						<ul id="ul_layered_{$filter.type}_{$filter.id_key}">
 						{if !isset($filter.slider)}
 							{if $filter.filter_type == 0}

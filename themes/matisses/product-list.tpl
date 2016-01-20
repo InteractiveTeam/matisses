@@ -39,7 +39,7 @@
 	{math equation="nbLi/nbItemsPerLineTablet" nbLi=$nbLi nbItemsPerLineTablet=$nbItemsPerLineTablet assign=nbLinesTablet}
 	<!-- Products list -->
 	<div{if isset($id) && $id} id="{$id}"{/if} class="{if $page_name != 'index'}category_list {/if} product_list grid row{if isset($class) && $class} {$class}{/if}">
-	<div class="inner-product-list" itemscope itemtype="http://schema.org/ItemList">
+	<div class="inner-product-list cf" itemscope itemtype="http://schema.org/ItemList">
     {foreach from=$products item=product name=products}
 		{math equation="(total%perLine)" total=$smarty.foreach.products.total perLine=$nbItemsPerLine assign=totModulo}
 		{math equation="(total%perLineT)" total=$smarty.foreach.products.total perLineT=$nbItemsPerLineTablet assign=totModuloTablet}
@@ -144,46 +144,50 @@
 
 				</div>
 				<div class="wrap_view wrap_visible_hover">
-							<a itemprop="url" class="scale_hover_in lnk_view" href="{$product.link|escape:'html':'UTF-8'}" title="{l s='View'}">
-								<i class="fa fa-search"></i>
-								<span>{l s='More'}</span>
-							</a>
-							{hook h='displayProductListFunctionalButtons' product=$product}
-							{if isset($quick_view) && $quick_view}
-								<a class="scale_hover_in quick-view" href="{$product.link|escape:'html':'UTF-8'}" rel="{$product.link|escape:'html':'UTF-8'}">
-									<i class="font-eye"></i><span>{l s='Quick view'}</span>
-								</a>
-							{/if}
-							{if $page_name != 'index'}
-								{if isset($comparator_max_item) && $comparator_max_item}
-										<a class="add_to_compare" href="{$product.link|escape:'html':'UTF-8'}" data-id-product="{$product.id_product}">
-											<span>{l s='Add to Compare'}</span></a>
-								{/if}
-						{/if}
-						<div class="button-container clearfix">
-                        	<a class="btn btn-default showmore" href="{$product.link|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Descubre más'}" data-id-product="{$product.id_product|intval}">
-								<span>{l s='Descubre más'}</span>
-							</a>
 
-							{if ($product.id_product_attribute == 0 || (isset($add_prod_display) && ($add_prod_display == 1))) && $product.available_for_order && !isset($restricted_country_mode) && $product.minimal_quantity <= 1 && $product.customizable != 2 && !$PS_CATALOG_MODE}
-								{if (!isset($product.customization_required) || !$product.customization_required) && ($product.allow_oosp || $product.quantity > 0)}
-									{if isset($static_token)}
-										<a class=" btn btn-default
+
+					{if isset($quick_view) && $quick_view}
+					<a class="scale_hover_in quick-view" href="{$product.link|escape:'html':'UTF-8'}" rel="{$product.link|escape:'html':'UTF-8'}">
+						<i class="font-eye"></i><span>{l s='Quick view'}</span>
+					</a>
+					{/if}
+					{hook h='displayProductListFunctionalButtons' product=$product}
+					<a itemprop="url" class="scale_hover_in lnk_view" href="{$product.link|escape:'html':'UTF-8'}" title="{l s='View'}">
+						<i class="fa fa-search"></i>
+						<span>{l s='More'}</span>
+					</a>
+
+					{if $page_name != 'index'}
+						{if isset($comparator_max_item) && $comparator_max_item}
+							<a class="add_to_compare" href="{$product.link|escape:'html':'UTF-8'}" data-id-product="{$product.id_product}">
+							<span>{l s='Add to Compare'}</span></a>
+						{/if}
+					{/if}
+
+					<div class="button-container cf">
+                    	<a class="btn btn-default showmore" href="{$product.link|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Descubre más'}" data-id-product="{$product.id_product|intval}">
+							<span>{l s='Descubre más'}</span>
+						</a>
+
+						{if ($product.id_product_attribute == 0 || (isset($add_prod_display) && ($add_prod_display == 1))) && $product.available_for_order && !isset($restricted_country_mode) && $product.minimal_quantity <= 1 && $product.customizable != 2 && !$PS_CATALOG_MODE}
+							{if (!isset($product.customization_required) || !$product.customization_required) && ($product.allow_oosp || $product.quantity > 0)}
+								{if isset($static_token)}
+									<a class=" btn btn-default
 buy-now ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, "add=1&amp;id_product={$product.id_product|intval}&amp;token={$static_token}", false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}">
-											<span>{l s='Comprar ahora'}</span>
-										</a>
-									{else}
-										<a class=" btn btn_border ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, 'add=1&amp;id_product={$product.id_product|intval}', false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}">
-											<span>{l s='Add to cart'}</span>
-										</a>
-									{/if}
+										<span>{l s='Comprar ahora'}</span>
+									</a>
 								{else}
-									<span class=" btn btn_border ajax_add_to_cart_button disabled">
+									<a class=" btn btn_border ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, 'add=1&amp;id_product={$product.id_product|intval}', false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}">
 										<span>{l s='Add to cart'}</span>
-									</span>
+									</a>
 								{/if}
+							{else}
+								<span class=" btn btn_border ajax_add_to_cart_button disabled">
+									<span>{l s='Add to cart'}</span>
+								</span>
 							{/if}
-						</div>
+						{/if}
+					</div>
                         {if isset($product.color_list)}
                             <div class="color-list-container">{$product.color_list}</div>
                         {/if}
