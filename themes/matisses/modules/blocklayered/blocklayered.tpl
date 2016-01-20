@@ -100,7 +100,7 @@ param_product_url = '';
 
                         {/if}
       {if isset($selected_filters) && $n_filters > 0}                  
-
+					
 					{foreach from=$selected_filters key=s_filter_type item=s_filter_values}
 						{foreach from=$s_filter_values key=s_filter_key item=s_filter_value name=s_f_values}
 							{foreach from=$filters item=s_filter}
@@ -130,6 +130,7 @@ param_product_url = '';
                                                     <div id="enabled_filters" class="enabled-filters">
 														<ul>
                                                    			<li>
+                                                            	{$filterssel[$id_value] = $id_value}
                                                         		<a href="#" data-rel="layered_{$s_filter.type_lite}_{$id_value}" title="{l s='Cancel' mod='blocklayered'}"></a>
                                                         		{l s='%1$s' mod='blocklayered' sprintf=[$value.name]}
                                                     		</li>
@@ -149,14 +150,13 @@ param_product_url = '';
 					{/foreach}
 				                     
        {/if}                 
-                        
                         <span class="layered_close"><a href="#" data-rel="ul_layered_{$filter.type}_{$filter.id_key}">v</a></span>
 						<ul id="ul_layered_{$filter.type}_{$filter.id_key}" class="{Tools::link_rewrite($filter.name)}">
 						{if !isset($filter.slider)}
 							{if $filter.filter_type == 0}
 								{foreach from=$filter.values key=id_value item=value name=fe}
 									{if $value.nbr || !$hide_0_values}
-						  <li class="nomargin {if $filter_selected==$id_value} active {/if}{if $smarty.foreach.fe.index >= $filter.filter_show_limit}hiddable{/if} {if isset($filter.is_color_group) && $filter.is_color_group}color-item{/if}">
+						  <li class="nomargin {if in_array($id_value, $filterssel)} active {/if} {if $filter_selected==$id_value} active {/if}{if $smarty.foreach.fe.index >= $filter.filter_show_limit}hiddable{/if} {if isset($filter.is_color_group) && $filter.is_color_group}color-item{/if}">
 										{if isset($filter.is_color_group) && $filter.is_color_group}
 											<input class="color-option {if isset($value.checked) && $value.checked}on{/if} {if !$value.nbr}disable{/if}" type="button" name="layered_{$filter.type_lite}_{$id_value}" data-rel="{$id_value}_{$filter.id_key}" id="layered_id_attribute_group_{$id_value}" {if !$value.nbr}disabled="disabled"{/if} style="background: {if isset($value.color)}{if file_exists($col_img_dir|cat:$id_value|cat:'.jpg')}url({$img_col_dir}{$id_value}.jpg){else}{$value.color}{/if}{else}#CCC{/if};" title="{$value.name|escape:html:'UTF-8'}" value="{$value.name|escape:html:'UTF-8'}"/>
 											{if isset($value.checked) && $value.checked}<input type="hidden" name="layered_{$filter.type_lite}_{$id_value}" value="{$id_value}" />{/if}

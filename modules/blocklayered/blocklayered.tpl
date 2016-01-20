@@ -42,6 +42,7 @@ param_product_url = '';
 				<div id="enabled_filters">
 					<span class="layered_subtitle" style="float: none;">{l s='Enabled filters:' mod='blocklayered'}</span>
 					<ul>
+                    
 					{foreach from=$selected_filters key=filter_type item=filter_values}
 						{foreach from=$filter_values key=filter_key item=filter_value name=f_values}
 							{foreach from=$filters item=filter}
@@ -60,7 +61,9 @@ param_product_url = '';
 									{else}
 										{foreach from=$filter.values key=id_value item=value}
 											{if $id_value == $filter_key && !is_numeric($filter_value) && ($filter.type eq 'id_attribute_group' || $filter.type eq 'id_feature') || $id_value == $filter_value && $filter.type neq 'id_attribute_group' && $filter.type neq 'id_feature'}
-												<li>
+												{$sizearr[] = $id_value}
+                                                <li>
+                                                
 													<a href="#" data-rel="layered_{$filter.type_lite}_{$id_value}" title="{l s='Cancel' mod='blocklayered'}">x</a>
 													{l s='%1$s: %2$s' mod='blocklayered' sprintf=[$filter.name, $value.name]}
 												</li>
@@ -74,6 +77,7 @@ param_product_url = '';
 					</ul>
 				</div>
 				{/if}
+                
 				{foreach from=$filters item=filter}
 					{if isset($filter.values)}
 						{if isset($filter.slider)}
