@@ -39,11 +39,10 @@ class="page-heading {if !isset($instant_search) || (isset($instant_search) && !$
             {l s='Return to the previous page'}
         </a>
     {else}
-    	{if false}
+
         <span class="heading-counter">
-            {if $nbProducts == 1}{l s='%d result has been found.' sprintf=$nbProducts|intval}{else}{l s='%d results have been found' sprintf=$nbProducts|intval}{/if}
+            {if $nbProducts == 1}{l s='%d Resultado encontrado' sprintf=$nbProducts|intval}{else}{l s='%d Resultados encontrados' sprintf=$nbProducts|intval}{/if}
         </span>
-        {/if}
     {/if}
 </h1>
 

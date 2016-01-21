@@ -78,7 +78,7 @@
           </div> 
           
         <div class="btn-group btn-group-lg" style="float: right" role="group" aria-label="Large button group">
-          <button type="button" class="btn btn-default" id="experience-productadd">{l s='Save product' mod='matisses'}</button>
+          <button type="button" class="btn btn-default" id="experience-productadd">{l s='Guardar producto' mod='matisses'}</button>
           <button type="button" class="btn btn-default">{l s='Cancel' mod='matisses'}</button>
         </div>
                    

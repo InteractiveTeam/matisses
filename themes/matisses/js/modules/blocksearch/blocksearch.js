@@ -75,8 +75,7 @@ $(document).ready(function()
 			{
 				minChars: 3,
 				max: 10,
-				width: (width_
-					 > 0 ? width_ac_results : 100%),
+				width: (width_ac_results > 0 ? width_ac_results : '100%'),
 				selectFirst: false,
 				scroll: false,
 				dataType: "json",

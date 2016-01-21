@@ -145,12 +145,23 @@
                     <label for="email1">{l s='Email' mod='blockwishlist'}1 <sup>*</sup></label>
                     <input type="text" name="email1" id="email1" class="form-control"/>
                 </div>
-                {section name=i loop=11 start=2}
+                {section name=i loop=1 start=2}
+                <div class="grid_10">
                     <div class="form-group">
                         <label for="email{$smarty.section.i.index}">{l s='Email' mod='blockwishlist'}{$smarty.section.i.index}</label>
                         <input type="text" name="email{$smarty.section.i.index}" id="email{$smarty.section.i.index}"
                                class="form-control"/>
                     </div>
+                </div>
+                <div class="grid_2">
+                	<button class="btn btn-default btn-red" type="submit" name="submitAdd" onclick="WishlistSend('wl_send', '{$id_wishlist}', 'email');">
+                        {l s='Send' mod='blockwishlist'}
+                    </button>
+                </div>
+                <div id="mailsadded" class="emails">
+                	
+                </div>
+                    
                 {/section}
                 <div class="submit">
                     <button class="btn btn-default btn-red" type="submit" name="submitWishlist"
@@ -163,7 +174,7 @@
                 </p>
             </fieldset>
         </form>
-        {if count($productsBoughts)}
+        {if count($productsBoughts) && false}
             <table class="wlp_bought_infos unvisible table table-bordered table-responsive">
                 <thead>
                 <tr>

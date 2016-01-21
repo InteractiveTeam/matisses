@@ -24,20 +24,26 @@
 *}
 
 {if isset($wishlists) && count($wishlists) > 1}
-    <a class="addToWishlist scale_hover_in lnk_view" tabindex="0" data-toggle="popover" data-trigger="focus" title="{l s='Wishlist' mod='blockwishlist'}" data-placement="bottom">
+    <a class="addToWishlist scale_hover_in lnk_view choseWishlist" data-div="wishlist_{$product.id_product}" tabindex="0" data-toggle="popover"  data-trigger="focus" title="{l s='Wishlist' mod='blockwishlist'}" data-placement="bottom">
         <i class="fa fa-heart-o"></i><span>{l s='To wishlist'}</span>
-        <div class="popover-content">
-         <ul>                
-        {foreach name=wl from=$wishlists item=wishlist}
-        <li>
-            <a href="#" title="{$wishlist.name}" value="{$wishlist.id_wishlist}" onclick="WishlistCart('wishlist_block_list', 'add', '{$product.id_product|intval}', false, 1, '{$wishlist.id_wishlist}');">
-                {l s='%s Adicionar' sprintf=[$wishlist.name] mod='blockwishlist'}
-             </a>       
-         </li>  
-        {/foreach}
-            </ul>
+    </a>     
+        <div id="wishlist_{$product.id_product}" class="popover-content" style="display: none">
+        <h2>{l s='Seleccione la lista de deseos' mod='blockwishlist'}</h2>
+          <div class="col-xs-4">
+                <select id="wishlist_{$product.id_product}" class="form-control">
+                    <option value="">-</option>
+                    {foreach name=wl from=$wishlists item=wishlist}
+                        <option value="{$wishlist.id_wishlist}">{$wishlist.name}&nbsp;</option>
+                    {/foreach}
+                </select>
+            </div>
+         <div class="row">
+            <a href="#" title="Adicionar" value="{$wishlist.id_wishlist}" onclick="WishlistCart('wishlist_block_list', 'add', '{$product.id_product|intval}', false, 1, $('#wishlist_{$product.id_product}').val());">
+                {l s='Adicionar'}
+             </a>
+         </div>           
         </div>
-    </a> 
+    
 {else}
 	<a class="addToWishlist wishlistProd_{$product.id_product|intval}" href="#" {*rel="{$product.id_product|intval}"*} onclick="WishlistCart('wishlist_block_list', 'add', '{$product.id_product|intval}', false, 1); return false;">
 		<i class="fa fa-heart-o"></i><span>{l s='To wishlist'}</span>
