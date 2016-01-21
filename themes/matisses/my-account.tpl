@@ -34,10 +34,9 @@
 
 
 <div class="my-account-list">
-	<ul>
+	<ul class="cf">
 		<li class="my-shopping grid_12 alpha omega">
 			<div class="header-account">
-				
 				<h2>{l s='Mis compras'}</h2>
 			</div>
 			<div class="content-account grid_12">
@@ -51,8 +50,8 @@
                     <form id="getPedido" method="get" action="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}">
 						<input type="text" name="pedidonro">
 						<a class="btn btn-default btn-red" href="#" onclick="$('#getPedido').submit()" title="{l s='Buscar'}"> {l s='Buscar' mod='matisses'}</a>
-                    </form>    
-					</div> 
+                    </form>
+					</div>
 				</div>
 				<div class="grid_3 dates-account">
 					<h3>{l s='Historial de compras'}</h3>
@@ -67,19 +66,19 @@
 					<p><a href="{$link->getPageLink('store', true)|escape:'html':'UTF-8'}">{l s='Encuentra la tienda mas cercana'}</a></p>
 				</div>
 			</div>
-		</li> 
+		</li>
 
- 
-		<li class="my-list-gift grid_12 alpha omega">
+		<!-- Lista de regalos oculta temporalmente -->
+		<!-- <li class="my-list-gift grid_12 alpha omega">
 			<div class="header-account">
-				
+
 				<h2>{l s='Mi lista de regalos'}</h2>
 			</div>
 			<div class="content-account grid_12">
 				<div class="grid_2">
 		            <img src="{$base_dir}img/mi-lista-regalos.png"/>
 		        </div>
-				<div class="grid_4">
+				<div class="grid_4 dates-account">
 					<h3>{l s='Buscar'}</h3>
 					<p>{l s='Busca un alista de regalos existente'}</p>
 					<div class="footer-account">
@@ -89,14 +88,14 @@
 						<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
 					</div>
 				</div>
-				<div class="grid_3">
+				<div class="grid_3 dates-account">
 					<h3>{l s='Crear'}</h3>
 					<p>{l s='Piensa en grande y cra la lista de regalos.'}</p>
 					<div class="footer-account">
 						<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
 					</div>
 				</div>
-				<div class="grid_3">
+				<div class="grid_3 dates-account">
 					<h3>{l s='Administrar'}</h3>
 					<p>{l s='Ver, editar o añadir una lista'}</p>
 					<div class="footer-account">
@@ -104,24 +103,24 @@
 					</div>
 				</div>
 			</div>
-		</li>
+		</li> -->
         {$HOOK_CUSTOMER_ACCOUNT}
 	   	<li class="my-personal-information grid_12 alpha omega">
 			<div class="header-account">
-			   	
+
 				  <h2>{l s='Ajustes de mi perfil'}</h2>
-			  	
+
 			</div>
 			<div class="content-account grid_12">
 				<div class="grid_2">
 		            <img src="{$base_dir}img/ajustes-perfil.png"/>
 		        </div>
-				<div class="grid_5">
+				<div class="grid_5 dates-account">
 					<h3>Ajustes de cuenta</h3>
 					<p><a href="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}">{l s='Cambiar la configuración de cuenta'}</a></p>
 					<p><a href="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}">{l s='E-mail, contraseña, nombre y teléfono móvil'}</a></p>
 				</div>
-				<div class="grid_5">
+				<div class="grid_5 dates-account">
 					<h3>{l s='Libreta de direcciones'}</h3>
 					<p><a href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}">{l s='Gestionar libreta de direcciones'}</a></p>
 					<p><a href="{$link->getPageLink('address', true)|escape:'html':'UTF-8'}" title="{l s='Add my first address'}">{l s='Añadir nueva dirección'}</a></p>
@@ -151,7 +150,7 @@
 			</div>
 		</li>
 		{/if}-->
-		
+
 
 	   <!-- <li><a href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}" title="{l s='Addresses'}"><i class="fa fa-truck"></i><span>{l s='My addresses'}</span></a></li> -->
 
@@ -176,7 +175,3 @@
 	{/if}
 
 </div>
-
-	<div class="footer_links cf">
-		<a class="btn btn-default button " href="{$base_dir}" title="{l s='Home'}"> {l s='Home'}</a>
-	</div>

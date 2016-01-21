@@ -86,43 +86,45 @@ param_product_url = '';
 						{if isset($filter.slider)}
 						<div class="layered_{$filter.type}" style="display: none;">
 						{else}
-						<div class="layer-material">
+						<div class="layer-attributes">
+
 						{/if}
 
-                        {if $filter.name|strstr:"material"}
+                        	{if $filter.name|strstr:"material"}
                         	{if $cont==0}
                             <h2 class="layered_subtitle"> {l s='Material'}</h2>
                             {$cont = $cont + 1}
                         	{/if}
-                        {else}
+                        	{else}
 
-						<h2 class="layered_subtitle"> {$filter.name|escape:html:'UTF-8'}</h2>
+							<h2 class="layered_subtitle"> {$filter.name|escape:html:'UTF-8'}</h2>
 
                         {/if}
-      {if isset($selected_filters) && $n_filters > 0}                  
-					
+      {if isset($selected_filters) && $n_filters > 0}
+
 					{foreach from=$selected_filters key=s_filter_type item=s_filter_values}
 						{foreach from=$s_filter_values key=s_filter_key item=s_filter_value name=s_f_values}
 							{foreach from=$filters item=s_filter}
-                            
+
                             	{if $filter.name == $s_filter.name}
-                                				
+
                                     {if $s_filter.type == $s_filter_type && isset($s_filter.values)}
-                                    
+
                                         {if isset($s_filter.slider)}
                                             {if $smarty.foreach.s_f_values.first}
                                             <div id="enabled_filters" class="enabled-filters">
-											<ul>
-                                                <li>
-                                                    <a href="#" data-rel="layered_{$s_filter.type}_slider" title="{l s='Cancel' mod='blocklayered'}"></a>
-                                                    {if $s_filter.format == 1}
-                                                        {l s='%1$s %2$s - %3$s'|sprintf:'':{displayPrice price=$s_filter.values[0]}:{displayPrice price=$s_filter.values[1]}|escape:html:'UTF-8' mod='blocklayered'}
-                                                    {else}
-                                                        {l s='%1$s %2$s %4$s - %3$s %4$s'|sprintf:'':$s_filter.values[0]:$s_filter.values[1]:$s_filter.unit|escape:html:'UTF-8' mod='blocklayered'}
-                                                    {/if}
-                                                </li>
-                                             </ul>
-											</div>    
+
+													<ul>
+		                                                <li>
+		                                                    <a href="#" data-rel="layered_{$s_filter.type}_slider" title="{l s='Cancel' mod='blocklayered'}"></a>
+		                                                    {if $s_filter.format == 1}
+		                                                        {l s='%1$s %2$s - %3$s'|sprintf:'':{displayPrice price=$s_filter.values[0]}:{displayPrice price=$s_filter.values[1]}|escape:html:'UTF-8' mod='blocklayered'}
+		                                                    {else}
+		                                                        {l s='%1$s %2$s %4$s - %3$s %4$s'|sprintf:'':$s_filter.values[0]:$s_filter.values[1]:$s_filter.unit|escape:html:'UTF-8' mod='blocklayered'}
+		                                                    {/if}
+		                                                </li>
+		                                             </ul>
+											</div>
                                             {/if}
                                         {else}
                                             {foreach from=$s_filter.values key=id_value item=value}
@@ -143,14 +145,15 @@ param_product_url = '';
                                     {/if}
 
                                 {/if}
-                                
-                                
+
+
 							{/foreach}
 						{/foreach}
 					{/foreach}
-				                     
-       {/if}                 
+
+       {/if}
                         <span class="layered_close"><a href="#" data-rel="ul_layered_{$filter.type}_{$filter.id_key}">v</a></span>
+						<div class="scroll-left scroll-pane">
 						<ul id="ul_layered_{$filter.type}_{$filter.id_key}" class="{Tools::link_rewrite($filter.name)}">
 						{if !isset($filter.slider)}
 							{if $filter.filter_type == 0}
@@ -286,7 +289,9 @@ param_product_url = '';
 							<span class="hide-action less">{l s='Show less' mod='blocklayered'}</span>
 						{/if}
 						</ul>
+						</div>
 					</div>
+
 					<script type="text/javascript">
 					{literal}
 						$('.layered_{/literal}{$filter.type}{literal}').show();
@@ -294,6 +299,7 @@ param_product_url = '';
 					</script>
 					{/if}
 				{/foreach}
+
 			</div>
 			<input type="hidden" name="id_category_layered" value="{$id_category_layered}" />
 			{foreach from=$filters item=filter}

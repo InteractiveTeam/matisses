@@ -761,7 +761,7 @@ box-sizing: border-box;
 	font-size: 1.125rem;
 	}
 	.button-container .btn-default.buy-now:hover{
-	color: #fff;
+	color: #d7162f;
 	border-color: #d7162f;
 	}
 	.button-container .btn-default.buy-now:after{background: #d7162f;}

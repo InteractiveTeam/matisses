@@ -38,7 +38,7 @@
 		</div>
 		<div class="grid_10 dates-account">
 			<h3>Administrar</h3>
-			<p>Ver, editar o añadir una lista existente</p>
+			<p>Ver, editar o añadir una lista existente.</p>
 			<div class="footer-account">
 				<a class="btn btn-default btn-red" href="#" title="Inicio"> {l s='ingresar' mod='matisses'}</a>
 			</div>

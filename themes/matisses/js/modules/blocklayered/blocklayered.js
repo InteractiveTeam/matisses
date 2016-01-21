@@ -28,8 +28,7 @@ var ajaxLoaderOn = 0;
 var sliderList = new Array();
 var slidersInit = false;
 
-$(document).ready(function()
-{
+$(document).ready(function(){
 	cancelFilter();
 	openCloseFilter();
 
@@ -81,7 +80,7 @@ $(document).ready(function()
 		}, 500, this));
 	});
 
-	$(document).on('click', '#layered_block_left .radio', function(e) 
+	$(document).on('click', '#layered_block_left .radio', function(e)
 	{
 		var name = $(this).attr('name');
 		$.each($(this).parent().parent().find('input[type=button]'), function (it, item) {
@@ -131,7 +130,7 @@ $(document).ready(function()
 			reloadContent(true);
 	});
 
-	$(document).off('change').on('change', 'select[name=n]', function(e) 
+	$(document).off('change').on('change', 'select[name=n]', function(e)
 	{
 		$('select[name=n]').val($(this).val());
 		reloadContent(true);
@@ -139,7 +138,11 @@ $(document).ready(function()
 
 	paginationButton(false);
 	initLayered();
+
+	//Custom scroll
+	$(".scroll-pane").mCustomScrollbar();
 });
+
 
 function initFilters()
 {
@@ -193,7 +196,7 @@ function initFilters()
 				$('#layered_' + filter.type + '_range_min').attr('limitValue', filter.min);
 				$('#layered_' + filter.type + '_range_max').attr('limitValue', filter.max);
 			}
-			
+
 			$('.layered_' + filter.type).show();
 		}
 
@@ -558,7 +561,7 @@ function reloadContent(params_plus)
 			{
 				e.preventDefault();
 				val = $('div.pagination select[name=n]').val();
-			
+
 				$('div.pagination select[name=n]').children().each(function(it, option) {
 					if (option.value == val)
 						$(option).attr('selected', true);
@@ -608,7 +611,7 @@ function reloadContent(params_plus)
 
 			if (current_friendly_url != '#/show-all')
 				$('div.clearfix.selector1').show();
-			
+
 			lockLocationChecking = true;
 
 			if(slideUp)

@@ -33,30 +33,28 @@
 
 {if $simplifiedStoresDiplay}
     {if $stores|@count}
-    
+
     	<div id="map"></div>
-    
+
         <div id="accordion-resizer" class="ui-widget-content">
           <div id="accordion-stores">
           	{foreach $stores as $store}
-            <h3>{$store.name|escape:'html':'UTF-8'}</h3>
+            <h2>{$store.name|escape:'html':'UTF-8'}</h2>
             <div>
-				<ul>
-                	<li>
-                       {if $store.has_picture}
-                            <div class="store-image">
-                                <img src="{$img_store_dir}{$store.id_store}.jpg" alt="" />
-                            </div>
-                        {/if}
-                    </li>
-                	<li><b>{l s='Nombre:'} {$store.name|escape:'html':'UTF-8'}</b></li>
-                    <li><b>{l s='Ciudad:'} {$store.city|escape:'html':'UTF-8'}</b></li>
-                    <li>
-                    	<b>{l s='Horario de atención:'} </b>
-                    	{if isset($store.working_hours)}{$store.working_hours}{/if}
-                    </li>
-                    <li>
-                    	<b>{l s='Dirección:'} </b>
+
+               {if $store.has_picture}
+                <div class="store-image grid_4 alpha">
+                    <img src="{$img_store_dir}{$store.id_store}.jpg" alt="" />
+                </div>
+                {/if}
+                <div class="content-seccion grid_8 omega">
+                	<h3>{l s='Nombre:'} {$store.name|escape:'html':'UTF-8'}</h3>
+                    <span>{l s='Ciudad:'} {$store.city|escape:'html':'UTF-8'}</span>
+
+                    	<span>{l s='Horario de atención:'} </span>
+                    	<p>{if isset($store.working_hours)}{$store.working_hours}{/if}</p>
+
+                    	<span>{l s='Dirección:'}</span>
                         {assign value=$store.id_store var="id_store"}
                         {foreach from=$addresses_formated.$id_store.ordered name=adr_loop item=pattern}
                             {assign var=addressKey value=" "|explode:$pattern}
@@ -66,17 +64,17 @@
                                 </span>
                             {/foreach}
                         {/foreach}
-                    
-                    </li>
-                    <li><b>{l s='Teléfono:'} </b>{$store.phone}</li>
-                </ul>
+
+                    <span>{l s='Teléfono:'} </span>
+                    <p>{$store.phone}</p>
+                </div>
             </div>
             {/foreach}
-            
-            
-           
+
+
+
           </div>
-        </div>    
+        </div>
     {/if}
 {else}
 

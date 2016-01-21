@@ -389,9 +389,3 @@ $(document).ready(function(){
 	//alert(ancho);
 	$(".sf-menu > li > ul").width(ancho);
 })
-
-
-//Custom scroll
-$(document).ready$ (function () {
-	$ ('. scroll-panel') JScrollPane ().;
- });
