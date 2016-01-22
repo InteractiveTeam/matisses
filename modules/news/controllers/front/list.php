@@ -27,6 +27,7 @@ class newslistModuleFrontController extends ModuleFrontController
 		$breadcrum = implode('',$breadcrum);
 		
 		$this->context->smarty->assign('HOOK_HOME', Hook::exec('news'));
+		$this->context->smarty->assign(array('meta_title' => 'Blog'));
 		$this->context->smarty->assign('path',$breadcrum);
 		$this->setTemplate('index.tpl');
 

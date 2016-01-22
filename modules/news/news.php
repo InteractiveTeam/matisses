@@ -200,6 +200,7 @@ class News extends Module {
                 !Configuration::updateValue('NEWS_SLIDESHOW_HEIGHT', 346) OR 
                 $this->registerHook('moduleRoutes') == false OR
                 $this->registerHook('news') == false OR
+				$this->registerHook('newscategory') == false OR
                 $this->registerHook('top') == false OR 
                 $this->registerHook('leftColumn') == false OR 
                 $this->registerHook('header') == false OR 
@@ -282,7 +283,7 @@ class News extends Module {
      */
 
     public function getContent() {
-
+//$this->registerHook('newscategory');
         if (isset($_POST['submitUpdateNews'])) {
             $this->updateNews(intval($_REQUEST['id_new']));
         } else if (isset($_POST['submitUpdateConfigurationsNews'])) {
@@ -529,6 +530,9 @@ class News extends Module {
         $id_lang = (int) ($params['cookie']->id_lang);
 
         $page = intval(Tools::getValue('page_cat'));
+		if(empty($page))
+			$page = 1;
+		
         $tag = intval(Tools::getValue('tag_news'));
         $cat = intval(Tools::getValue('cat_news'));
         $search_news = trim(Tools::getValue('search_news'));
@@ -539,8 +543,7 @@ class News extends Module {
         $search_news = str_replace('_', '\\_', $search_news);
 
         if ($cat > 0) {
-            $extraQuery = ' AND id_news IN (
-                           SELECT DISTINCT(id_new) AS id_news FROM ' . _DB_PREFIX_ . 'news_cats_rel  WHERE id_cat ="' . $cat . '" ) ';
+            $extraQuery = ' AND id_parent_category = "' . $cat . '" ';
         } else if ($tag > 0) {
             $extraQuery = ' AND id_news IN (
                            SELECT DISTINCT(id_new) AS id_news FROM ' . _DB_PREFIX_ . 'news_tag_rel  WHERE id_tag ="' . $tag . '" ) ';
@@ -554,7 +557,11 @@ class News extends Module {
                             id_lang = ' . (int) ($params['cookie']->id_lang) . ' )';
         }
 
-
+		if($search_news)
+			 $extraQuery = ' AND id_news IN (
+                           SELECT id_news FROM ' . _DB_PREFIX_ . 'news_langs  WHERE (title like "%' . Search::sanitize($search_news, (int) $id_lang) . '%"
+                           OR new like "%' . Search::sanitize($search_news, (int) $id_lang) . '%")  AND
+                            id_lang = ' . (int) ($params['cookie']->id_lang) . ' )';
         // article page
         if (intval(Tools::getValue('id_news')) > 0) {
             return $this->newsItem($params);
@@ -564,7 +571,7 @@ class News extends Module {
         $news = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS('
 			SELECT * FROM ' . _DB_PREFIX_ . 'news  WHERE
                  active="1" ' . $extraQuery . '
-            ORDER by pos ASC LIMIT ' . (($n_per_page * $page)) . ',' . $n_per_page . ' ');
+            ORDER by pos ASC LIMIT ' . (($n_per_page * ($page-1))) . ',' . $n_per_page . ' ');
 		
 		//echo "<pre>"; print_r($news); echo "</pre>";
         
@@ -581,8 +588,10 @@ class News extends Module {
                 $trads = $this->getTranslations((int) ($new['id_news']));
                 $obj->title = $trads[$id_lang]['title'];
                 $obj->rewrite = Tools::str2url($trads[$id_lang]['title']);
-				$obj->cat_name = $this->getCatName((int) ($catObj->id), $id_lang);
-                $obj->autor = $new['autor']; 
+				$obj->cat_name = $this->getCatName((int) ($new['id_parent_category']), $id_lang);
+				$obj->cat_link = '/blog/categoria/'.$new['id_parent_category'].'-'.$this->getCatRewrite($new['id_parent_category'], $id_lang);
+				
+                $obj->autor = $new['autor'] ? $new['autor'] : $this->l('Matisses'); 
 				/*
 				$date['year'] = date('Y',$new['date']);
 				$date['month'] = date('M',$new['date']);
@@ -617,7 +626,16 @@ class News extends Module {
         if (count($news) > $n_per_page) {
             unset($newsObj[(count($news) - 1)]);
         }
+		
+		$categorias = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'news_cats_lang WHERE id_lang = '.$this->context->language->id);
+		foreach($categorias as $k => $category)
+		{
+			//$categorias[$k]['link'] = $this->getCatRewrite($category['id_cat'], $category['id_lang']);
+			$categorias[$k]['link'] = 'blog/categoria/'.$category['id_cat'].'-'.$this->getCatRewrite($category['id_cat'], $category['id_lang']);
+		}
         $this->smarty->assign(array(
+			'destacados' => $this->hookHome($params,true),
+			'categorias' => $categorias,
             'newsObj' => $newsObj,
             'catsObj' => $this->getCats(0, $id_lang),
             'notFoundResults' => (intval($total_news) == '0' ? true : false),
@@ -637,6 +655,143 @@ class News extends Module {
 
         return $this->display(__FILE__, 'tpl/news_list.tpl');
     }
+	
+	public function hooknewscategory($params) 
+	{
+        global $cookie;
+        $defaultLanguage = (int) (Configuration::get('PS_LANG_DEFAULT'));
+        $id_lang = (int) ($params['cookie']->id_lang);
+
+        $page = intval(Tools::getValue('page_cat'));
+		if(empty($page))
+			$page = 1;
+			
+        $tag = intval(Tools::getValue('tag_news'));
+        $cat = intval(Tools::getValue('cat_news'));
+        $search_news = trim(Tools::getValue('search_news'));
+
+
+        $n_per_page = (int) Configuration::get('NEWS_N_PAGE');
+        $search_news = str_replace('%', '\\%', $search_news);
+        $search_news = str_replace('_', '\\_', $search_news);
+
+        if ($cat > 0) {
+            $extraQuery = ' AND id_parent_category = "' . $cat . '" ';
+        } else if ($tag > 0) {
+            $extraQuery = ' AND id_news IN (
+                           SELECT DISTINCT(id_new) AS id_news FROM ' . _DB_PREFIX_ . 'news_tag_rel  WHERE id_tag ="' . $tag . '" ) ';
+        } else if (strlen(str_replace(' ', '', $search_news)) <= 2) {
+
+            $extraQuery = ' AND id_news IN ( SELECT id_news FROM ' . _DB_PREFIX_ . 'news_langs WHERE id_lang=' . $id_lang . ' ) ';
+        } else {
+            $extraQuery = ' AND id_news IN (
+                           SELECT id_news FROM ' . _DB_PREFIX_ . 'news_langs  WHERE (title like "%' . Search::sanitize($search_news, (int) $id_lang) . '%"
+                           OR new like "%' . Search::sanitize($search_news, (int) $id_lang) . '%")  AND
+                            id_lang = ' . (int) ($params['cookie']->id_lang) . ' )';
+        }
+
+		if($search_news)
+			 $extraQuery = ' AND id_news IN (
+                           SELECT id_news FROM ' . _DB_PREFIX_ . 'news_langs  WHERE (title like "%' . Search::sanitize($search_news, (int) $id_lang) . '%"
+                           OR new like "%' . Search::sanitize($search_news, (int) $id_lang) . '%")  AND
+                            id_lang = ' . (int) ($params['cookie']->id_lang) . ' )';
+        // article page
+        if (intval(Tools::getValue('id_news')) > 0) {
+            return $this->newsItem($params);
+        }
+
+
+        // list articles
+        $news = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS('
+			SELECT * FROM ' . _DB_PREFIX_ . 'news  WHERE
+                 active="1" ' . $extraQuery . '
+            ORDER by pos ASC LIMIT ' . (($n_per_page * ($page-1))) . ',' . $n_per_page . ' ');
+		
+		
+        
+		$total_news = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS('
+			SELECT count(id_news) AS total  FROM ' . _DB_PREFIX_ . 'news  WHERE
+                active="1" ' . $extraQuery . ' ');
+        $total_news = intval($total_news[0]['total']);
+		
+        $newsObj = array();
+        if ($news) {
+            foreach ($news AS $new) {
+                $obj = (object) 'News';
+                $obj->id_news = (int) ($new['id_news']);
+                $trads = $this->getTranslations((int) ($new['id_news']));
+                $obj->title = $trads[$id_lang]['title'];
+                $obj->rewrite = Tools::str2url($trads[$id_lang]['title']);
+				$obj->cat_name = $this->getCatName((int) ($new['id_parent_category']), $id_lang);
+				$obj->cat_link = '/blog/categoria/'.$new['id_parent_category'].'-'.$this->getCatRewrite($new['id_parent_category'], $id_lang);
+                $obj->autor = $new['autor'] ? $new['autor'] : $this->l('Matisses'); 
+				
+
+				
+				/*
+				$date['year'] = date('Y',$new['date']);
+				$date['month'] = date('M',$new['date']);
+				$date['day'] = date('d',$new['date']);
+						
+				$obj->date = '<span>'.$date['day'].'</span><p>'.$date['month'].'</p><p>'.$date['year'].'</p>';
+				*/
+				
+                $obj->date = ($new['date'] != 0 ? ( $this->_months[date('n', $new['date'])] . ' ' . date('j', $new['date']) . ', ' . date('Y', $new['date']) ) : '');
+                $obj->new = strip_tags($trads[$id_lang]['new']);
+                $obj->img = '';
+                // get images
+                $img = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS('
+                    SELECT a.id_img  FROM ' . _DB_PREFIX_ . 'news_imgs a
+                        LEFT JOIN `' . _DB_PREFIX_ . 'news_imgs_rel` b ON (a.`id_img` = b.`id_img`)
+                    WHERE a.id_img IN ( SELECT id_img FROM ' . _DB_PREFIX_ . 'news_imgs_rel WHERE
+                                              id_news = ' . (int) ($new['id_news']) . ' ORDER BY pos DESC)
+                    ORDER BY b.pos ASC LIMIT 1 ;  ');
+
+                if (isset($img[0]['id_img'])) {
+                    if (intval($img[0]['id_img']) > 0) {
+                        if (file_exists($this->path_to_module . '/imgs/' . $img[0]['id_img'] . '-list.' . $this->_imageType)) {
+                            $obj->img = $this->url_to_module . '/imgs/' . $img[0]['id_img'] . '-list.' . $this->_imageType;
+                        }
+                    }
+                }
+                $newsObj[] = $obj;
+            }
+        }
+
+        // remove the last
+        if (count($news) > $n_per_page) {
+            unset($newsObj[(count($news) - 1)]);
+        }
+		
+		$categorias = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'news_cats_lang WHERE id_lang = '.$this->context->language->id);
+		foreach($categorias as $k => $category)
+		{
+			//$categorias[$k]['link'] = $this->getCatRewrite($category['id_cat'], $category['id_lang']);
+			$categorias[$k]['link'] = 'blog/categoria/'.$category['id_cat'].'-'.$this->getCatRewrite($category['id_cat'], $category['id_lang']);
+		}
+        $this->smarty->assign(array(
+			'destacados' => $this->hookHome($params,true),
+			'categorias' => $categorias,
+            'newsObj' => $newsObj,
+            'catsObj' => $this->getCats(0, $id_lang),
+            'notFoundResults' => (intval($total_news) == '0' ? true : false),
+            'ajax' => (Tools::getValue('ajaxnewslist') ? true : false),
+            'pages' => intval(($total_news - 1) / $n_per_page),
+            'start' => (($page + 1) > 5 ? (($page + 1) - 2) : 1),
+            'stop' => (($page + 1) > 5 && ((intval(($total_news - 1) / $n_per_page) + 1) < (($page + 1) - 2)) ? (($page + 1) + 2) : ((intval(($total_news - 1) / $n_per_page) + 1) > 1 ? (intval(($total_news - 1) / $n_per_page) + 1) : 0) ),
+            'ajaxPager' => (((int) Configuration::get('NEWS_AJAXPAGER') == 1) ? true : false),
+            'pager' => (intval(($total_news + 1) / $n_per_page) >= 1 ? true : false),
+            'showPagerAjax' => ( intval((($total_news - 1) / $n_per_page) + 1) == ($page + 1) ? false : true),
+            'search_news' => $search_news,
+            'tag' => $tag,
+            'cat' => $cat,
+			'catname' => $this->getCatName((int) ($cat), $id_lang),
+            'cat_rewrite' => $this->getCatRewrite($cat, $id_lang),
+            'page' => $page
+        ));
+
+        return $this->display(__FILE__, 'tpl/news_list_category.tpl');
+    }
 
     /*
      *
@@ -645,7 +800,7 @@ class News extends Module {
      *
      */
 
-    public function hookHome($params) {
+    public function hookHome($params,$array=false) {
 
         if (intval(Configuration::get('NEWS_N_HOME')) <= 0) {
             return 'dre';
@@ -662,25 +817,27 @@ class News extends Module {
                 $news = Array();
                 $newsObj = Array();
                 $news = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS('
-			SELECT * FROM ' . _DB_PREFIX_ . 'news  WHERE active ="1"
+			SELECT * FROM ' . _DB_PREFIX_ . 'news  WHERE active ="1" and destacado = "1"
                 AND id_news IN ( SELECT id_news FROM ' . _DB_PREFIX_ . 'news_langs WHERE id_lang=' . $id_lang . ' )
                 AND id_news IN ( SELECT id_new AS id_news FROM ' . _DB_PREFIX_ . 'news_cats_rel WHERE id_cat=' . $catObj->id . ' )
             ORDER by pos ASC LIMIT ' . ((int) Configuration::get('NEWS_N_HOME')) . ' ');
 
-			//echo "<pre>"; print_r( $news); echo "</pre>";
+			
 
                 if ($news) {
 					$cont = 0;
                     foreach ($news AS $new) {
                         $obj = (object) 'News';
 						$obj->post = (int) ($new['pos']);
-                        $obj->id_cat = (int) ($catObj->id);
-						$cat = current($this->getCats((int) ($catObj->id), $id_lang));
+                        					
+						$obj->id_cat = $new['id_parent_category'];
 						
-                        $obj->cat_rewrite = $this->getCatRewrite((int) ($catObj->id), $id_lang);
-						$obj->cat_name = $this->getCatName((int) ($catObj->id), $id_lang);
+						$cat = current($this->getCats((int) ($obj->id_cat), $id_lang));						
+                        $obj->cat_rewrite = $this->getCatRewrite((int) $new['id_parent_category'], $id_lang);
+						$obj->cat_name = $this->getCatName((int) $new['id_parent_category'], $id_lang);
+						$obj->cat_link = 'blog/categoria/'.$new['id_parent_category'].'-'.$obj->cat_rewrite;
                         $obj->id_news = (int) ($new['id_news']);
-						$obj->autor = $new['autor'];
+						$obj->autor = $new['autor'] ? $new['autor'] : $this->l('Matisses'); 
                         $trads = $this->getTranslations((int) ($new['id_news']));
                         $obj->title = $trads[$id_lang]['title'];
                         $obj->rewrite = Tools::str2url($trads[$id_lang]['title']);
@@ -740,12 +897,17 @@ class News extends Module {
 		}
 		sort($realproducts);
 		$catsProducts[0] = $realproducts;
-		//echo "<pre>";print_r($catsProducts);echo "</pre>"; 
+		 
+		if($array)
+			return $realproducts;
+
         $this->smarty->assign(array(
             'catsProductsObj' => $catsProducts,
             'catsObj' => $cats_list
         ));
-
+		
+		
+		
         return $this->display(__FILE__, 'tpl/news_home.tpl');
     }
 
@@ -986,10 +1148,11 @@ class News extends Module {
         }
 
         $this->active(intval($_REQUEST['news_active']), $id_new);
-
         Db::getInstance()->Execute('  UPDATE `' . _DB_PREFIX_ . 'news`
             SET
-                   `autor`= "' . pSQL($_POST['news_autor']) . '"
+                   `autor`= "' . pSQL($_POST['news_autor']) . '",
+				   `destacado`= "' . pSQL($_POST['news_destacado']) . '",
+				   `id_parent_category`= "' . pSQL($_POST['id_parent_category']) . '"
                 WHERE  id_news="' . $id_new . '" ');
 
         $this->_html .= '
@@ -1015,6 +1178,7 @@ class News extends Module {
         Configuration::updateValue('NEWS_N_HOME', intval($_POST['news_n_home']));
         Configuration::updateValue('NEWS_WIDTH', intval($_POST['news_width']));
         Configuration::updateValue('NEWS_RSS_N', intval($_POST['news_rss_n']));
+		Configuration::updateValue('NEWS_DESTACADO_N', intval($_POST['news_destacado_n']));
         Configuration::updateValue('NEWS_N_PAGE', intval($_POST['news_n_page']));
         Configuration::updateValue('NEWS_SIDE_CATEGORIES', intval($_POST['news_side_categories']) == '1' ? 1 : 0);
         Configuration::updateValue('NEWS_AJAXPAGER', intval($_POST['news_ajaxpager']) == '1' ? 1 : 0);
@@ -1095,10 +1259,11 @@ class News extends Module {
                                         <th class="left" width="5%"></th>
                                         <th class=" center" width="5%">' . $this->l('ID') . '</th>
                                         <th class=" center"  width="5%"></th>
-                                        <th class=" center"  width="10%">' . $this->l('Date') . '</th>
-                                        <th >' . $this->l('Title') . '</th>
-                                        <th class=" center" width="5%">' . $this->l('Displayed') . '</th>
-                                        <th class="center"  width="10%">' . $this->l('Actions') . '</th>
+                                        <th class=" center"  width="10%">' . $this->l('Fecha') . '</th>
+                                        <th >' . $this->l('Título') . '</th>
+										<th class=" center" width="5%">' . $this->l('Destacado') . '</th>
+                                        <th class=" center" width="5%">' . $this->l('Visible') . '</th>
+                                        <th class="center"  width="10%">' . $this->l('Opciones') . '</th>
                                     </tr>
                                 </thead>
                                 <tbody>';
@@ -1127,10 +1292,17 @@ class News extends Module {
                                         <td class=" center">' . date('Y-m-d', $rs[$i]['date']) . '</td>
                                         <td class="pointer" onclick="document.location = \'?tab=AdminModules&configure=' . $this->name . '&id_news=' . $rs[$i]['id_news'] . '&token=' . $_REQUEST['token'] . '&news_edit=1\'"
                                         >' . Tools::truncate($trads[$defaultLanguage]['title'], 100) . '</td>
-                                        <td class="center">
+                                        
+										<td class="center">
                                             <a href="?tab=AdminModules&configure=' . $this->name . '&token=' . $_REQUEST['token'] . '&news_active=' . ($rs[$i]['active'] != '1' ? 1 : 0) . '&id_news=' . $rs[$i]['id_news'] . '&list_n=' . $list_n . '">
-                                                <img src="../img/admin/' . ( $rs[$i]['active'] != '0' ? 'enabled' : 'disabled') . '.gif" >
+                                                <img src="../img/admin/' . ( $rs[$i]['destacado'] != '0' ? 'enabled' : 'disabled') . '.gif" >
                                             </a>
+                                        </td>
+										
+										<td class="center">
+                                            
+                                                <img src="../img/admin/' . ( $rs[$i]['active'] != '0' ? 'enabled' : 'disabled') . '.gif" >
+                                            
                                         </td>
                                         
                                       
@@ -1202,6 +1374,7 @@ class News extends Module {
                             'NEWS_N_PAGE',
                             'NEWS_AJAXPAGER',
                             'NEWS_RSS_N',
+							'NEWS_DESTACADO_N',
                             'NEWS_THEME',
                             'NEWS_WIDTH',
                             'NEWS_REL',
@@ -1338,7 +1511,7 @@ class News extends Module {
 									  
 
 							</fieldset>
-							
+
 							<div class="clear"></div>
                             <br />
 							
@@ -1694,7 +1867,7 @@ class News extends Module {
         $this->_html .= $this->displayFlags($languages, $defaultLanguage, $divLangName, 'keywords', true);
         $this->_html .= ' </div>';
 
-
+	$categories = Db::getInstance()->ExecuteS('SELECT id_cat, title FROM '._DB_PREFIX_.'news_cats_lang WHERE id_lang ='.$this->context->language->id.'');
         $this->_html .= '
 								<div style="padding-bottom:15px;display:inline-block;" class="translatable">' . $this->l('Autor') . '<br>
 									<div  style="display: float: left;" >
@@ -1710,12 +1883,31 @@ class News extends Module {
 											<input type="radio" value="0" id="news_active_off" name="news_active" ' . ($new[0]['active'] == '0' ? 'checked="checked"' : '') . '>
 											<img title="' . $this->l('Disabled') . '" alt="' . $this->l('Disabled') . '" src="../img/admin/disabled.gif">
 									</div>
+									
+									<div style="width:100%;padding:10px 0;" >
+											' . $this->l(' Destacado') . ':
+											<input type="radio" value="1" id="news_destacado_on" name="news_destacado" ' . ($new[0]['destacado'] == '1' ? 'checked="checked"' : '') . '>
+											<img title="' . $this->l('Yes') . '" alt="' . $this->l('Yes') . '" src="../img/admin/enabled.gif">
+											<input type="radio" value="0" id="news_destacado_off" name="news_destacado" ' . ($new[0]['destacado'] == '0' ? 'checked="checked"' : '') . '>
+											<img title="' . $this->l('No') . '" alt="' . $this->l('No') . '" src="../img/admin/disabled.gif">
+									</div>	
+									
+									<div style="width:100%;padding:10px 0;" >
+											' . $this->l(' Categoria principal') . ':
+											<select id="id_parent_category" name="id_parent_category">';
+									foreach($categories as $k => $category)		
+										$this->_html .='<option value="'.$category['id_cat'].'" '.($new[0]['id_parent_category'] == $category['id_cat'] ? 'selected' : '').'> '.$category['title'].' </option>';
+										
+						$this->_html .='</select>
+									</div>									
 
 						</div>
 			
 					
 
                 </form>';
+
+
 
 
         $this->_html .=' <div style="float:right;display:inline-block;width:220px;" >

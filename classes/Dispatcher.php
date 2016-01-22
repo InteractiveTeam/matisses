@@ -261,6 +261,42 @@ class DispatcherCore
 		$this->getController();
 		if (!$this->controller)
 			$this->controller = $this->useDefaultController();
+		
+		
+		$url = array_filter(explode('/',$_SERVER['REQUEST_URI']));
+
+		switch(mb_strtolower($url[1]))
+		{
+			case 'blog':
+				
+				if(strstr($url[2],'page-'))
+				{
+					$oldpage = $url[2];
+					$url[2] = 'page';
+				}
+				
+				switch(mb_strtolower($url[2]))
+				{
+					case 'categoria': 
+						$_POST['module']  = 'news';
+						$this->controller = 'catg'; 
+						$category = explode('-',$url[3]);
+						$_POST['cat_news'] = $category[0];
+						$_POST['rewrite']  = $category[1]; 
+						$_POST['page_cat']  = str_replace('page-','',$url[4]);
+						$this->front_controller = self::FC_MODULE;
+					break;
+					case 'page':
+						$_POST['module']  = 'news';
+						$this->controller = 'list';
+						$_POST['page_cat'] = str_replace('page-','',$oldpage);
+						$this->front_controller = self::FC_MODULE;
+					break;
+				}
+			break;
+		}
+
+
 		// Dispatch with right front controller
 		switch ($this->front_controller)
 		{
@@ -283,6 +319,7 @@ class DispatcherCore
 
 			// Dispatch module controller for front office
 			case self::FC_MODULE :
+				
 				$module_name = Validate::isModuleName(Tools::getValue('module')) ? Tools::getValue('module') : '';
 				$module = Module::getInstanceByName($module_name);
 				$controller_class = 'PageNotFoundController';

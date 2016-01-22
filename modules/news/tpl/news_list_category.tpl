@@ -1,15 +1,9 @@
-{if !$ajax}
-<!--
-<pre>
-{print_r($newsObj)}
-</pre>
- --> 
-  
 
 <div class="blog-list">
     <div class="newsMenuCats">
-        <h1>{l s='Blog' mod='news'}</h1>
+        <h1>{$catname}</h1>
         <!--Inicio contenido articulos-->
+        {if false}
         <div class="content-destacados grid_12 alpha omega">
             <div class="title-destacado grid_1 alpha omega">
             </div>
@@ -31,7 +25,15 @@
                 </div>
                 <div class="info-article">
                     <div class="category-news">
-                        <a href="/{$destacados[0]->cat_link}"  title="{$destacados[0]->cat_name|truncate:50:'...'|escape:html:'UTF-8'}">
+                        <a href="{$link->getModuleLink('news', 'list',
+                                              [
+                                                  'cat_news' => "{$destacados[0]->id_cat}",
+                                                  'page_cat' => 0,
+                                                  'rewrite'  => "{$destacados[0]->cat_rewrite}"
+                                               ]
+
+                                              ,false)}"
+                                          title="{$destacados[1]->cat_name|truncate:50:'...'|escape:html:'UTF-8'}">
                         <span>{$destacados[0]->cat_name}</span></a>
                     </div>
                     <div class="newsTitle">
@@ -65,7 +67,15 @@
                     </div>
                     <div class="right-article grid_6 omega">
                         <div class="category-news">
-                            <a href="/{$destacados[1]->cat_link}"  title="{$destacados[1]->cat_name|truncate:50:'...'|escape:html:'UTF-8'}">
+                            <a href="{$link->getModuleLink('news', 'list',
+                                              [
+                                                  'cat_news' => "{$destacados[1]->id_cat}",
+                                                  'page_cat' => 0,
+                                                  'rewrite'  => "{$destacados[1]->cat_rewrite}"
+                                               ]
+
+                                              ,false)}"
+                                          title="{$destacados[1]->cat_name|truncate:50:'...'|escape:html:'UTF-8'}">
                             <span>{$destacados[1]->cat_name}</span></a>
                         </div>
                         <div class="newsTitle">
@@ -96,7 +106,14 @@
                     </div>
                     <div class="right-article grid_6 omega">
                         <div class="category-news">
-                            <a href="/{$destacados[2]->cat_link}"
+                            <a href="{$link->getModuleLink('news', 'list',
+                                              [
+                                                  'cat_news' => "{$destacados[2]->id_cat}",
+                                                  'page_cat' => 0,
+                                                  'rewrite'  => "{$destacados[2]->cat_rewrite}"
+                                               ]
+
+                                              ,false)}"
                                           title="{$destacados[2]->cat_name|truncate:50:'...'|escape:html:'UTF-8'}">
                                 <span>{$destacados[2]->cat_name}</span>
                             </a>
@@ -116,6 +133,7 @@
             </div>
             <!--Columna derecha-->
         </div>
+        {/if}
         <!--Fin contenido articulos-->
 
         <!--Inicio listado últimos articulos-->
@@ -153,8 +171,8 @@
                         <p class="warning">{l s='No news found' mod='news'} </p>
                         {/if}
                       {/if}
-
                       {foreach from=$newsObj item='news' name=myLoop}
+                      
                            <ul>
                                <li class="grid_12">
                                    {if $news->img}
@@ -193,6 +211,7 @@
                                     </div>
                                </li>
                            </ul>
+        
                       {/foreach}
 
                   </div>
@@ -232,7 +251,7 @@
                                             {assign var='p_previous' value=$page-1}
                                 <li id="newsPagination_previous">
                                 
-                                    <a  href="/blog/page-{$page-1}">&laquo;&nbsp;</a></li>
+                                    <a  href="/blog/categoria/{$cat}-{$cat_rewrite}/page-{$page-1}">&laquo;&nbsp;</a></li>
                                         {/if}
 
                                         {section name=pagination start=$start loop=$stop+1 step=1}   
@@ -241,19 +260,16 @@
                                 <li class="current"><span>{$page|escape:'htmlall':'UTF-8'}</span></li>
                                  {else}
                                 <li>
-                                {if (!$cat_rewrite)}
-                                	<a href="/blog/page-{$smarty.section.pagination.index}" title="page-{$smarty.section.pagination.index}">
+                                	<a href="/blog/categoria/{$cat}-{$cat_rewrite}/page-{$smarty.section.pagination.index}" title="page-{$smarty.section.pagination.index}">
                                     {$smarty.section.pagination.index|escape:'htmlall':'UTF-8'}</a>
-                                {else}
-                                
-                                {/if}                                          
+                                         
                                </li>
                                {/if}
                                 {/section}
 
                                         {if $pages > 0 AND $page-1 != $pages}
                                             {assign var='p_next' value=$page+1}
-                                <li id="newsPagination_next"><a href="/blog/page-{$smarty.section.pagination.index-1}">&nbsp;&raquo;</a></li>
+                                <li id="newsPagination_next"><a href="/blog/categoria/{$cat}-{$cat_rewrite}/page-{$smarty.section.pagination.index-1}">&nbsp;&raquo;</a></li>
                                         {/if}
                             </ul>
                             <form action="{$link->getPageLink('news')}" method="post" name="fromNewsSearch">
@@ -269,7 +285,7 @@
 
             <div class="right-news grid_3 alpha omega">
                 <div class="search-news grid_12 omega">
-                    <form action="/blog" method="post" class="fromNewsSearch" name="fromNewsSearch">
+                    <form action="" method="post" class="fromNewsSearch" name="fromNewsSearch">
                         <input type="text" name="search_news" value="{$search_news}" class="newsSearch" placeholder="Buscar"></input>
                         <input type="submit" name="searchnewshidden"></input>
                     </form>
@@ -280,7 +296,7 @@
                     <ul>
                    {foreach from=$categorias item='cats' name=myLoop}
                         <li>
-                        	<a href="{$base_url}{$cats.link}" title="{$cats.title|truncate:50:'...'|escape:html:'UTF-8'}">
+                        	<a href="/{$cats.link}" title="{$cats.title|truncate:50:'...'|escape:html:'UTF-8'}">
                                  {$cats.title|escape:html:'UTF-8'}
                            	</a>
                         </li>
@@ -346,10 +362,5 @@
                 </div>
             </div>
         </div>
-
-        {else}
-            <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
-        {/if}
-
     </div>
 </div>
