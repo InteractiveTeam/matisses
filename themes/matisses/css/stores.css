@@ -40,12 +40,12 @@
     }
 
     @media (max-width: 767px) {
-        #stores #stores-table tbody td.name img {
-        display: none; }
-        #stores .address-input {
-        width: 100%;
-        margin: 0 0 20px 0;
-        }
+    #stores #stores-table tbody td.name img {
+    display: none; }
+    #stores .address-input {
+    width: 100%;
+    margin: 0 0 20px 0;
+    }
     }
 
     .txt-intro {
@@ -68,7 +68,22 @@
     color: #757373;
     margin-bottom: 1.25rem;
     }
-
     .store-image img {
     width: 100%;
     min-width: 100px; }
+
+    /*Accordion content*/
+    .stores .ui-widget-content {
+    border: none;
+    }
+    .stores .ui-accordion-header {
+    border-radius: 0;
+    border-color: #dbdbdb;
+    margin-bottom: 0;
+    }
+    .stores .ui-accordion-content {
+    padding: 1.25rem;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-radius: 0;
+    }

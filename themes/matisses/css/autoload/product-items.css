@@ -70,7 +70,7 @@
 	.product_list.grid .product-desc{
 	display: none;
 	}
-	.product_list .color-list-container,.product_list .product-flags {
+	/*.product_list .color-list-container,*/.product_list .product-flags {
 	display: none;
 	}
 	.product_list .product-image-container,.c_item .product-image-container {
@@ -126,12 +126,12 @@
 	top: 30%;
 	width: 100%;
 	}
-	.product_list.grid .right-block,.c_item .right-block{
+	.product_list.grid .right-block{
 	position: relative;
 	z-index: 3;
 	padding-top: 10px;
 	}
-	.product_list.grid .button-container,.c_item .button-container{
+	.product_list.grid .button-container{
 	margin-top: 8%;
 	}
 	.product_list  .wrap_view>a,.c_item .wrap_view>a{
@@ -175,7 +175,7 @@
 	top: 100%;
 	}
 	.product_list.category_list .ajax_block_product{
-	margin-bottom: 70px;
+	/*margin-bottom: 70px;*/
 	}
 	.product_list.category_list.grid .product-container{
 	cursor: pointer;
@@ -274,12 +274,4 @@
 	.category_list.product_list.grid .ajax_block_product{
 	width: 100%;
 	}
-	}
-
-/*Parrilla productos*/
-	.parrilla-productos {
-	margin: 2.5rem 0;
-	}
-	.historical-block{
-	padding: 4.0625rem 0;
 	}

@@ -24,6 +24,10 @@
 /***/
 
 /*Pag Mi cuenta*/
+    .my-account-list ul {
+    margin-bottom: 4.375rem;
+    }
+
     .my-account-list ul li {
     margin: 0 0 1.25rem;
     }

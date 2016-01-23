@@ -35,8 +35,6 @@
     font-size: 16px;
     margin-bottom: 15px;
     }
-    #layered_block_left ul {
-    padding-left: 0; }
 
 /* Style moved form the template to the css  */
     #layered_block_left .color-option.disable {
@@ -74,7 +72,6 @@
     cursor: pointer; }
     .layered_list:hover {
     font-weight: bold; }
-
     .layered_ajax_loader p {
     margin: 20px 0;
     text-align: center; }
@@ -188,14 +185,29 @@
     font-size: 14px;
     }
     }
-
     @media (max-width: 480px){
     #layered_block_left .layered_subtitle{
     font-size: 16px;
     }
     }
 
+/*Página parrilla productos*/
+	.parrilla-productos {
+	margin: 2.5rem 0;
+	}
+	.historical-block{
+	padding: 4.0625rem 0;
+	}
+/*Oferta de productos*/
+    .category .offers-products{
+    background: #fff;
+    }
+
 /*Filtros Parrilla productos*/
+    .scroll-left{
+    height: 235px;
+    }
+
     .layered-left {
     padding-top: 1.25rem;
     background: #f1f1f1;
@@ -255,7 +267,7 @@
     }
     .layered_weight,
     .layered_price,
-    .layer-material{
+    .layer-attributes{
     margin-bottom: 2.1875rem;
     padding-bottom: 2.1875rem;
     border-bottom: 1px solid #dbdbdb;
@@ -271,6 +283,7 @@
     }
     .layered-left ul li:last-child{
     padding-bottom: 0;
+    margin-bottom: 0;
     }
     .enabled-filters ul li{
     font-family:'Open Sans', sans-serif;
@@ -293,6 +306,9 @@
     font-family: 'Open Sans', sans-serif;
     line-height: 0.9375rem;
     }
+    .layered-left .precio li {
+    margin-bottom: 0;
+    }
 
     /*Filtro Color*/
     .layered-left .color-option {
@@ -309,7 +325,7 @@
     display: inline-block;
     text-transform: none;
     padding: 0 0 0 0.3125rem;
-    width: 85%;
+    width: 82%;
     vertical-align: top;
     font-family: 'Open Sans', sans-serif;
     font-size: 1rem;
@@ -330,9 +346,8 @@
     .layered-left .checker.disabled span {
     border-color: #BCBCBC;
     }
-
     .layered-left ul li {
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.9375rem;
     }
     .layered-left .checker span:before {
     color: red;
@@ -345,7 +360,6 @@
     .content_sortPagiBar{
 	position: relative;
 	padding: 0;
-	margin-bottom: 2.5rem;
 	}
     .chosen-container-single .chosen-single{
     height: 2.8125rem;
@@ -405,4 +419,35 @@
     }
     .parrilla-productos li.list-btn {
     margin-left: -0.25rem;
+    }
+    .parrilla-productos .product_list.grid .wrap_view {
+    top: 18%;
+    }
+    .parrilla-productos .product_list.grid .button-container{
+    margin-top: 0.9375rem;
+    }
+    .color-list-container ul li a {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+    }
+    .parrilla-productos .btn.btn-default {
+    padding: 0.3125rem 0.625rem;
+    margin-bottom: 0.625rem;
+    }
+    .color-list-container {
+    padding: 2.1875rem 0.625rem 0;
+    }
+    .color-list-container  ul{
+    display: table;
+    }
+    .color-list-container  ul li {
+    display: inline-block;
+    margin-right: 0.3125rem;
+    }
+    .color-list-container  ul li:last-child {
+    margin-right: 0;
+    }
+    .parrilla-productos .ajax_block_product {
+    padding-top: 2.5rem;
     }
