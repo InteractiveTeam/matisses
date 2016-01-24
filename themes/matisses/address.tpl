@@ -23,7 +23,8 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 {capture name=path}{l s='Your addresses'}{/capture}
-<div class="box">
+<div class="adress-add grid_12 alpha omega">
+	<h1 class="page-headings">Añadir dirección</h1>
 	<h2 class="page-subheading">{l s='Your addresses'}</h2>
 	<p class="info-title">
 		{if isset($id_address) && (isset($smarty.post.alias) || isset($address->alias))}
@@ -194,26 +195,22 @@
 			<textarea class="validate form-control" data-validate="{$address_validation.other.validate}" id="other" name="other" cols="26" rows="3" >{if isset($smarty.post.other)}{$smarty.post.other}{else}{if isset($address->other)}{$address->other|escape:'html':'UTF-8'}{/if}{/if}</textarea>
 		</div>
 
-		<div class="btns-form grid_12 omega alpha">
-			<div class="submit2 grid_2">
-				{if isset($id_address)}<input type="hidden" name="id_address" value="{$id_address|intval}" />{/if}
-				{if isset($back)}<input type="hidden" name="back" value="{$back}" />{/if}
-				{if isset($mod)}<input type="hidden" name="mod" value="{$mod}" />{/if}
-				{if isset($select_address)}<input type="hidden" name="select_address" value="{$select_address|intval}" />{/if}
-				<input type="hidden" name="token" value="{$token}" />
-				<button type="submit" name="submitAddress" id="submitAddress" class="btn btn-default button btn-red">
-						{l s='Save'}
-				</button>
-			</div>
-			<div class="footer_links cf grid_2">
-				<a class="btn btn-defaul button btn-red" href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}">
-					{l s='Back to your addresses'}
-				</a>
-			</div>
+		<div class="footer-links-address grid_12">
+
+			{if isset($id_address)}<input type="hidden" name="id_address" value="{$id_address|intval}" />{/if}
+			{if isset($back)}<input type="hidden" name="back" value="{$back}" />{/if}
+			{if isset($mod)}<input type="hidden" name="mod" value="{$mod}" />{/if}
+			{if isset($select_address)}<input type="hidden" name="select_address" value="{$select_address|intval}" />{/if}
+			<input type="hidden" name="token" value="{$token}" />
+			<button type="submit" name="submitAddress" id="submitAddress" class="btn btn-default button btn-red">
+			{l s='Save'}
+			</button>
+
+			<a class="btn btn-default button btn-red" href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}"> <i class="fa fa-chevron-left"></i> {l s='Volver a mis direcciones'}
+			</a>
 		</div>
 	</form>
 	</div>
-
 </div>
 
 {strip}

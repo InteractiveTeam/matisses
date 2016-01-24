@@ -1459,7 +1459,7 @@ box-sizing: border-box;
 	.tag:hover {
 	color: #fff;
 	}
-	.box {}
+
 	.box p {
 	margin-bottom: 0;
 	}
@@ -2662,7 +2662,7 @@ box-sizing: border-box;
 	#authentication .form-group {
 	margin-bottom: 15px;
 	}
-	#address .form-group .form-control,
+
 	#identity .form-group .form-control,
 	#new_account_form .form-group .form-control,
 	#opc_account_form .form-group .form-control{
@@ -3471,49 +3471,6 @@ box-sizing: border-box;
 	font-size: 1.375rem;
 	}
 
-/*Pag Direcciones*/
-	#address .center_column{
-	margin: 0 auto;
-	width: 1200px;
-	padding: 0 15px;
-	}
-	.add-address label{
-	color: #4b4b4b;
-    font-family: 'condensed';
-    font-size: 1rem;
-    display: block;
-    text-transform: uppercase;
-    padding-bottom: 0.625rem;
-    padding-left: 0.3125rem;
-	}
-	.add-address input,
-	.add-address .chosen-single,
-	.add-address .selector{
-	background: #f8f8f8;
-    border-color: #dbdbdb;
-    font-family: 'gothic';
-    font-size: 1rem;
-    color: #757373;
-	}
-	.add-address .required sup{
-	color: #d7162f;
-    font-weight: bold;
-    font-size: 1.25rem;
-    line-height: 0;
-	}
-	.chosen-single span,
-	.chosen-container .chosen-results li.active-result	{
-	font-family: 'gothic';
-	font-size: 1rem;
-    color: #757373;
-	}
-	.bloc_adresses ul li span{
-	font-family: 'Open Sans Condensed', sans-serif;
-	font-size: 1.125rem;
-    color: #777676;
-	line-height: 1.5;
-	}
-
 /*Pag Mi cuenta*/
 	.my-account .center_column{
 	width: 75rem;
@@ -3522,14 +3479,54 @@ box-sizing: border-box;
 	float: none;
 	}
 
-/*Pag Mis direcciones*/
-	.addresses .center_column{
+/*Agregar direcciones*/
+	.address .center_column {
 	width: 75rem;
 	padding: 0 0.9375rem;
 	margin: 0 auto;
 	float: none;
 	}
-
+	.add-address label{
+	color: #4b4b4b;
+	font-family: 'condensed';
+	font-size: 1rem;
+	display: block;
+	text-transform: uppercase;
+	padding-bottom: 0.625rem;
+	padding-left: 0.3125rem;
+	}
+	.add-address input,
+	.add-address .chosen-single,
+	.add-address .selector{
+	background: #f8f8f8;
+	border-color: #dbdbdb;
+	font-family: 'gothic';
+	font-size: 1rem;
+	color: #757373;
+	}
+	.add-address .required sup{
+	color: #d7162f;
+	font-weight: bold;
+	font-size: 1.25rem;
+	line-height: 0;
+	}
+	.chosen-single span,
+	.chosen-container .chosen-results li.active-result	{
+	font-family: 'gothic';
+	font-size: 1rem;
+	color: #757373;
+	}
+	.bloc_adresses ul li span{
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 1.125rem;
+	color: #777676;
+	line-height: 1.5;
+	}
+	.footer-links-address {
+    text-align: center;
+    margin: 4.375rem 0;
+    }
+	
 /*Pag buscador*/
 .search .center_column{
 	width: 75rem;

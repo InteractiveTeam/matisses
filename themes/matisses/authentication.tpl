@@ -58,7 +58,7 @@
 		</div> -->
 		<div class="grid_6 alpha">
 			<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="create-account_form" class="box">
-				<h2 class="page-subheading">{l s='Registro'}</h2>
+				<h2 class="page-subheading">{l s='¿Aún no estás registrado?'}</h2>
 				<div class="form_content cf">
 					<p>{l s='Please enter your email address to create an account.'}</p>
 					<div class="form-group">

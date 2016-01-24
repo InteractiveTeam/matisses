@@ -1,27 +1,37 @@
-/*******************************************************
-				Addresses Styles
-********************************************************/
-    #addresses #center_column .page-heading {
-    margin: 0 0 22px; }
-
-    #addresses #center_column p.p-indent {
-    margin: 0 0 27px; }
+/**	Addresses Styles**/
 
     .address li.address_update {
-    margin: 14px 0 6px 0; }
-    .address li.address_update a {
-    margin: 0 10px 0 0; }
-    #addresses .address ul.box{
-    min-height: 320px;
+    margin: 14px 0 6px 0;
     }
-
-.alert-warning{
+    .address li.address_update a {
+    margin: 0 10px 0 0;
+    }
+    .alert-warning{
     color: #d7162f;
     background-color: #F4E4E6;
     border: none;
     margin-top: 1.25rem;
     }
-
-.alert-warning > a {
+    .alert-warning > a {
     display: none;
-}
+    }
+
+/***/
+    .addresses .center_column{
+    width: 75rem;
+    padding: 0 0.9375rem;
+    margin: 0 auto;
+    float: none;
+    }
+    .address-cont {
+    border: 1px solid #dbdbdb;
+    padding: 0.9375rem;
+    margin-bottom: 1.25rem;
+    }
+    .adress_update a.btn {
+    min-width: 32%;
+    }
+    
+    .footer-links-address a.btn i {
+    padding-right: 0.3125rem;
+    }

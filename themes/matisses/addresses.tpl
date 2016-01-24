@@ -23,53 +23,60 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 {capture name=path}<a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">{l s='My account'}</a><span class="navigation-pipe">{$navigationPipe}</span><span class="navigation_page">{l s='My addresses'}</span>{/capture}
-<h1 class="page-heading">{l s='My addresses'}</h1>
-<p>{l s='Please configure your default billing and delivery addresses when placing an order. You may also add additional addresses, which can be useful for sending gifts or receiving an order at your office.'}</p>
-{if isset($multipleAddresses) && $multipleAddresses}
-<div class="addresses">
-	<p><strong class="dark">{l s='Your addresses are listed below.'}</strong></p>
-	<p class="p-indent">{l s='Be sure to update your personal information if it has changed.'}</p>
-	{assign var="adrs_style" value=$addresses_style}
-	<div class="bloc_adresses row">
-	{foreach from=$multipleAddresses item=address name=myLoop}
-    	<div class="grid_12 address alpha omega">
-			<ul class="{if $smarty.foreach.myLoop.last}last_item{elseif $smarty.foreach.myLoop.first}first_item{/if}{if $smarty.foreach.myLoop.index % 2} alternate_item{else} item{/if} box">
-                <li><h2 class="page-subheading">{$address.object.alias}</h2></li>
-                {foreach from=$address.ordered name=adr_loop item=pattern}
-                    {assign var=addressKey value=" "|explode:$pattern}
-                    <li>
-                    {foreach from=$addressKey item=key name="word_loop"}
-                        <span {if isset($addresses_style[$key])} class="{$addresses_style[$key]}"{/if}>
-                            {$address.formated[$key|replace:',':'']|escape:'html':'UTF-8'}
-                        </span>
-                    {/foreach}
-                    </li>
-                {/foreach}
-                <li class="address_update">
-                	<a class="btn btn-default button button-small" href="{$link->getPageLink('address', true, null, "id_address={$address.object.id|intval}")|escape:'html':'UTF-8'}" title="{l s='Update'}">{l s='Update'}</a>
 
-					<a class="btn btn-default button button-small" href="{$link->getPageLink('address', true, null, "id_address={$address.object.id|intval}&delete")|escape:'html':'UTF-8'}" onclick="return confirm('{l s='Are you sure?' js=1}');" title="{l s='Delete'}">{l s='Delete'}</a>
-				</li>
-            </ul>
+	<h1 class="page-heading">{l s='My addresses'}</h1>
+	<div class="txt-address grid_12">
+		<p>{l s='Configure sus datos de pago y envío, estos serán seleccionados por defecto cuando haga su pedido. Puede añadir direcciones adicionales, algo específicamente útil para enviar regalos o recibir pedidos de oficina.'}</p>
+		<br>
+		{if isset($multipleAddresses) && $multipleAddresses}
+		<p>{l s='Sus direcciones se muestran a continuación (Asegúrese de actualizar sus datos si han cambiado).'}</p>
+		<br>
+		{assign var="adrs_style" value=$addresses_style}
+	</div>
+	<div class="block_addresses grid_12 alpha omega">
+	{foreach from=$multipleAddresses item=address name=myLoop}
+    	<div class="grid_4">
+			<div class="address-cont {if $smarty.foreach.myLoop.last}last_item{elseif $smarty.foreach.myLoop.first}first_item{/if}{if $smarty.foreach.myLoop.index % 2} alternate_item{else} item{/if} box ">
+				<h2 class="page-subheading">{$address.object.alias}</h2>
+				{foreach from=$address.ordered name=adr_loop item=pattern}
+			        {assign var=addressKey value=" "|explode:$pattern}
+			        <p>
+			        {foreach from=$addressKey item=key name="word_loop"}
+			            <span {if isset($addresses_style[$key])} class="{$addresses_style[$key]}"{/if}>
+			                {$address.formated[$key|replace:',':'']|escape:'html':'UTF-8'}
+			            </span>
+			        {/foreach}
+					</p>
+	            {/foreach}
+            </div>
+
+			<div class="adress_update grid_12 alpha omega">
+				<a class="btn btn-default btn-red" href="{$link->getPageLink('address', true, null, "id_address={$address.object.id|intval}")|escape:'html':'UTF-8'}" title="{l s='Update'}">{l s='Update'}</a>
+
+				<a class="btn btn-default btn-red" href="#" title="{l s='Update'}">{l s='Modificar'}</a>
+
+				<a class="btn btn-default btn-red" href="{$link->getPageLink('address', true, null, "id_address={$address.object.id|intval}&delete")|escape:'html':'UTF-8'}" onclick="return confirm('{l s='Are you sure?' js=1}');" title="{l s='Delete'}">{l s='Delete'}</a>
+			</div>
         </div>
 	{if $smarty.foreach.myLoop.index % 2 && !$smarty.foreach.myLoop.last}
+
 	</div>
-	<div class="bloc_adresses row">
+	<div class="block_adresses ">
 	{/if}
 	{/foreach}
 	</div>
-</div>
+
 {else}
 	<p class="alert alert-warning">{l s='No addresses are available.'}&nbsp;<a href="{$link->getPageLink('address', true)|escape:'html':'UTF-8'}">{l s='Add a new address'}</a></p>
 {/if}
-<div class="cf main-page-indent">
-	<a href="{$link->getPageLink('address', true)|escape:'html':'UTF-8'}" title="{l s='Add an address'}" class="btn btn-default button btn-red">{l s='Add a new address'}</a>
-</div>
-<div class="footer_links cf">
-	<div class="grid_2 omega alpha">
-		<a class="btn btn-default button btn-red" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}"> {l s='Back to your account'}</a>
-	</div>
-	<div class="grid_2 omega alpha">
-		<a class="btn btn-default button btn-red" href="{$base_dir}"> {l s='Home'}</a>
-	</div>
+
+
+<div class="footer-links-address grid_12">
+
+		<a href="{$link->getPageLink('address', true)|escape:'html':'UTF-8'}" title="{l s='Add an address'}" class="btn btn-default btn-red">{l s='Add a new address'}</a>
+
+		<a class="btn btn-default button btn-red" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}"> <i class="fa fa-chevron-left"></i> {l s='Volver a mi cuenta'}
+
+		</a>
+
 </div>
