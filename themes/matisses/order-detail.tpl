@@ -23,8 +23,17 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 {if isset($order)}
+
 {if isset($reorderingAllowed) && $reorderingAllowed}
 <div class="box box-small clearfix">
+	{if $garantias}
+	<form id="submitReorder" action="{$link->getModuleLink('matisses','garantias')}/paso1" method="get" class="submit">
+			<input type="hidden" value="{$order->id}" name="order"/>
+			<a href="#" onclick="$(this).closest('form').submit(); return false;" class="button btn btn-default button-medium pull-right"><span>{l s='Solicitar garantía'}<i class="icon-chevron-right right"></i></span></a>
+
+
+	</form>    
+    {else}
 	<form id="submitReorder" action="{if isset($opc) && $opc}{$link->getPageLink('order-opc', true)}{else}{$link->getPageLink('order', true)}{/if}" method="post" class="submit">
 			<input type="hidden" value="{$order->id}" name="id_order"/>
 			<input type="hidden" value="" name="submitReorder"/>
@@ -35,6 +44,8 @@
 			</p>
 
 	</form>
+    {/if}
+    
 </div>
 {/if}
 <div class="info-order box">
@@ -442,6 +453,7 @@
 		{l s='Message successfully sent'}
 	</p>
 	{/if}
+    
 	<form action="{$link->getPageLink('order-detail', true)|escape:'html':'UTF-8'}" method="post" class="std" id="sendOrderMessage">
 		<h3 class="page-heading bottom-indent">{l s='Add a message'}</h3>
 		<p>{l s='If you would like to add a comment about your order, please write it in the field below.'}</p>
