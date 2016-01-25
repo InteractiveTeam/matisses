@@ -7,6 +7,11 @@
 #product_comparison #social-share-compare {
 	margin-bottom: 50px;
 }
+
+.socialsharing_product {
+    margin-top: 15px;
+}
+
 .socialsharing_product .btn.btn-default{
 	position: relative;
 	padding: 0;
@@ -21,12 +26,12 @@
 	-moz-border-radius: 0;
 	border-radius: 0;
 	z-index: 0;
-	margin: 15px 4px 0 0;
 }
+
 .socialsharing_product .btn.btn-default:last-child{
 	margin-right: 0;
 }
-#product .socialsharing_product .btn.btn-default:before{
+.socialsharing_product .btn.btn-default:before{
 	content: '';
 	display: block;
 	position: absolute;
@@ -34,10 +39,10 @@
 	height: 0;
 	z-index: -1;
 }
-#product .socialsharing_product .btn.btn-default:hover:before{
+.socialsharing_product .btn.btn-default:hover:before{
 	height: 100%;
 }
-#product  .socialsharing_product .btn.btn-default span {
+.socialsharing_product .btn.btn-default span {
 	display: none;
 }
 .socialsharing_product .btn.btn-default:after{

@@ -1,11 +1,6 @@
 /* CSS Document */
-.module-matisses-experiences #experience{
-	position: relative;
-	display: table;
-	padding:0px;
-}
 
-.module-matisses-experiences .pointer{
+	.module-matisses-experiences .pointer{
 	position:absolute;
 	width: 50px;
 	height: 33px;
@@ -13,38 +8,36 @@
 	background-position: top;
 	background-size:100%;
 	background-repeat:no-repeat;
-}
-
-.module-matisses-experiences .pointer:hover > .pointer-detail{
+	}
+	.module-matisses-experiences .pointer:hover > .pointer-detail{
 	display:block;
-}
-
-.module-matisses-experiences div.black-left {
+	}
+	.module-matisses-experiences div.black-left {
 	background-image:url(../../img/experience-black-left.png);
-}
-
-.module-matisses-experiences div.black-right {
+	}
+	.module-matisses-experiences div.black-right {
 	background-image:url(../../img/experience-black.png);
-}
-
-.module-matisses-experiences div.white-left {
+	}
+	.module-matisses-experiences div.white-left {
 	background-image:url(../../img/experience-white-left.png);
-}
-
-.module-matisses-experiences div.white-right {
+	}
+	.module-matisses-experiences div.white-right {
 	background-image:url(../../img/experience-white.png);
-}
-
-
-
-.module-matisses-experiences .pointer > .pointer-detail{
-	display:none;
-	background:#FFF;
-	width:300px;
-}
+	}
 
 /*Experiences Mask*/
-
+	.block-img-exp{
+	position: relative;
+	display: table;
+	padding:0px;
+	margin-bottom: 3.125rem;
+	}
+	.module-matisses-experiences .pointer > .pointer-detail{
+	display:none;
+	background:#FFF;
+	padding: 0.9375rem 0.3125rem;
+	width:25rem;
+	}
 	.mask-exp{
 	background: rgba(55, 54, 54, 0.6);
 	width: 100%;
@@ -57,4 +50,132 @@
 	}
 	.mask-exp:hover{
 	background: rgba(55, 54, 54, 0.4);
+	}
+	.experience-page h2{
+	color: #d7162f;
+	font-family: 'condensed';
+	font-size: 38px;
+	text-transform: uppercase;
+	}
+	.experience-page h3 {
+    text-transform: uppercase;
+    border-bottom: 1px solid #d5d5d5;
+    padding-bottom: 0.3125rem;
+    font-size: 1.5rem;
+	margin-bottom: 0;
+	}
+	.pointer-detail .price {
+    font-family: 'gothic';
+    color: #231f20;
+    font-size: 1.5625rem;
+	margin-bottom: 0.3125rem;
+	}
+	.experience-page .socialsharing_product {
+    margin: 0;
+    text-align: right;
+	}
+	.exp-slide {
+    margin: 3.75rem 0;
+	}
+	.exp-header {
+    margin-bottom: 1.25rem;
+	}
+	.link-img {
+    float: left;
+    height: 8.625rem;
+    margin: 0 1.25em 0 0;
+    overflow: hidden;
+    width: 24.375rem;
+	}
+
+	.link-img img {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+
+	filter: url('#grayscale'); /* Versión SVG para IE10, Chrome 17, FF3.5, Safari 5.2 and Opera 11.6 */
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	filter: grayscale(100%); /* Para cuando es estándar funcione en todos */
+	filter: Gray(); /* IE4-8 and 9 */
+
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	}
+
+	.block-img-exp img {
+	width: 100%;
+	}
+	.white-right,
+	.white-left{
+	z-index: 10;
+	}
+	/*Control slider*/
+	.left-exp,
+	.right-exp{
+	background: #fff;
+    width: 3.125rem;
+    height: 100%;
+    position: absolute;
+    top: 0;
+	}
+
+	.left-exp {
+	left: 0;
+	}
+	.right-exp{
+	right: 0;
+	}
+	.exp-slide .bx-controls-direction div a{
+	height: 2.1875rem;
+	width: 1.5625rem;
+	}
+
+	/*Prev*/
+	.exp-slide .bx-controls-direction a.bx-prev{
+	background-position: 0 -68px;
+	}
+	.exp-slide .bx-controls-direction a.bx-prev:hover{
+	background-position: 0 -104px;
+	}
+	/*Next*/
+	.exp-slide .bx-controls-direction a.bx-next{
+	background-position: -31px -68px;
+	}
+	.exp-slide .bx-controls-direction a.bx-next:hover{
+	background-position: -31px -103px;
+	}
+	/***/
+	.link-img img{
+	filter: url('#grayscale'); /* Versión SVG para IE10, Chrome 17, FF3.5, Safari 5.2 and Opera 11.6 */
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	filter: grayscale(100%); /* Para cuando es estándar funcione en todos */
+	filter: Gray(); /* IE4-8 and 9 */
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	}
+
+	.link-img img:hover{
+	-webkit-filter: grayscale(0%);
+	-moz-filter: grayscale(0%);
+	-ms-filter: grayscale(0%);
+	-o-filter: grayscale(0%);
+	filter: none;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
 	}
