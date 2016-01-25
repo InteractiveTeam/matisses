@@ -5,8 +5,9 @@
 
     <div id="experience" class="experience-page grid_12" >
         <img src="{$link->getImageLink($experience->id_image,'img/experiences')}" class="img-responsive">
-        {if $experience->products}
+        <div class="mask-exp"></div>
 
+        {if $experience->products}
         	{foreach from=$experience->products item=pointer}
             	<div class="pointer {$pointer.market}-{$pointer.orientation}" style="top:{$pointer.top}%;left:{$pointer.left}%">
                 	<div class="pointer-detail">

@@ -1,17 +1,16 @@
-/* CSS Document */
-#image-images-thumbnails .img-thumbnail {
+	/* CSS Document */
+	#image-images-thumbnails .img-thumbnail {
 	padding: 0px;
 	cursor: crosshair;
-}
-#experiences-points {
+	}
+	#experiences-points {
 	width: 500px;
-}
-#experiences-points .form-group {
+	}
+	#experiences-points .form-group {
 	width: 100%;
 	display: table;
-}
-
-.experience-pointer{
+	}
+	.experience-pointer{
 	position:absolute;
 	width: 50px;
 	height: 33px;
@@ -19,26 +18,22 @@
 	background-position: top;
 	background-size:100%;
 	background-repeat:no-repeat;
-}
-
-
-div.black-left {
+	}
+	div.black-left {
 	background-image:url(../../img/experience-black-left.png);
-}
-
-div.black-right {
+	}
+	div.black-right {
 	background-image:url(../../img/experience-black.png);
-}
-
-div.white-left {
+	}
+	div.white-left {
 	background-image:url(../../img/experience-white-left.png);
-}
-
-div.white-right {
+	}
+	div.white-right {
 	background-image:url(../../img/experience-white.png);
-}
-
-
-.fancybox-inner{
+	}
+	.fancybox-inner{
 	overflow:hidden !important;
-}
+	}
+
+/**/
+	
