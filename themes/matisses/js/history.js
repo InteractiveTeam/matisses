@@ -25,9 +25,10 @@
 //show the order-details with ajax
 function showOrder(mode, var_content, file)
 {
+	var garantias = $('#pagegarantias').val();
 	$.get(
 		file,
-		((mode === 1) ? {'id_order': var_content, 'ajax': true} : {'id_order_return': var_content, 'ajax': true}),
+		((mode === 1) ? {'id_order': var_content, 'ajax': true, 'garantias': garantias} : {'id_order_return': var_content, 'ajax': true, 'garantias': garantias}),
 		function(data)
 		{
 			$('#block-order-detail').fadeOut('slow', function()

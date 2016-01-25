@@ -49,6 +49,7 @@ class OrderDetailControllerCore extends FrontController
 	 */
 	public function postProcess()
 	{
+
 		if (Tools::isSubmit('submitMessage'))
 		{
 			$idOrder = (int)Tools::getValue('id_order');
@@ -123,6 +124,7 @@ class OrderDetailControllerCore extends FrontController
 						Tools::redirect('index.php?controller=order-detail&id_order='.(int)$idOrder);
 
 					$this->context->smarty->assign('message_confirmation', true);
+					
 				}
 				else
 					$this->errors[] = Tools::displayError('Order not found');
@@ -204,7 +206,8 @@ class OrderDetailControllerCore extends FrontController
 					/* DEPRECATED: customizedDatas @since 1.5 */
 					'customizedDatas' => $customizedDatas,
 					/* DEPRECATED: customizedDatas @since 1.5 */
-					'reorderingAllowed' => !(int)Configuration::get('PS_DISALLOW_HISTORY_REORDERING')
+					'reorderingAllowed' => !(int)Configuration::get('PS_DISALLOW_HISTORY_REORDERING'),
+					'garantias' => Tools::getValue('garantias')
 				));
 
 				if ($carrier->url && $order->shipping_number)

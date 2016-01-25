@@ -294,6 +294,14 @@ class DispatcherCore
 					break;
 				}
 			break;
+			
+			case 'garantias':
+				$_POST['module']  = 'matisses';
+				$this->controller = 'garantias';
+				$_POST['step']	  = $url[2];
+				$this->front_controller = self::FC_MODULE;
+
+			break;
 		}
 
 
