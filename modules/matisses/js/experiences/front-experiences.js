@@ -8,4 +8,14 @@ $(document).ready(function(e) {
 	  pager: false,
 	  infiniteLoop: false,
 	});
+
+	$(".module-matisses-experiences .pointer").hover(function(){
+		classes = $(this).attr("class");
+		$("div.pointer-detail",this).prepend("<div class='pointerAdded'></div>");
+		$(".pointerAdded").addClass(classes);
+	},
+	function(){
+		 $(".pointerAdded").remove();
+	});
+
 });

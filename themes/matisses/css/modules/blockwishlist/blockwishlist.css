@@ -248,3 +248,8 @@
     min-height: 37.5rem;
     margin-bottom: 1.875rem;
 	}
+
+	.mywishlist .wl_send input{
+	font-family: 'condensed';
+	font-size: 1rem;
+	}

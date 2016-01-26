@@ -63,30 +63,30 @@ class="page-heading {if !isset($instant_search) || (isset($instant_search) && !$
             {if $nbProducts == 1}{l s='%d result has been found.' sprintf=$nbProducts|intval}{else}{l s='%d results have been found.' sprintf=$nbProducts|intval}{/if}
         </p>
     {/if}
-    <div class="content_sortPagiBar">
-        <div class="sortPagiBar clearfix {if isset($instant_search) && $instant_search} instant_search{/if}">
+    <div class="content_sortPagiBar cf grid_12 alpha omega">
+        <div class="sortPagiBar grid_9 alpha omega {if isset($instant_search) && $instant_search} instant_search{/if}">
             {include file="./product-compare.tpl"}
             {include file="./product-sort.tpl"}
             {if !isset($instant_search) || (isset($instant_search) && !$instant_search)}
                 {include file="./nbr-product-page.tpl"}
             {/if}
         </div>
-    	<div class="top-pagination-content clearfix">
+    	<div class="top-pagination-content grid_3 alpha omega">
             {if !isset($instant_search) || (isset($instant_search) && !$instant_search)}
                 {include file="$tpl_dir./pagination.tpl"}
             {/if}
         </div>
 	</div>
 	{include file="$tpl_dir./product-list.tpl" products=$search_products}
-    <div class="content_sortPagiBar">
-        <div class="sortPagiBar clearfix">
+    <div class="content_sortPagiBar cf grid_12 alpha omega">
+        <div class="sortPagiBar grid_9 alpha omega">
             {include file="./product-compare.tpl"}
             {include file="./product-sort.tpl"}
             {if !isset($instant_search) || (isset($instant_search) && !$instant_search)}
                 {include file="./nbr-product-page.tpl"}
             {/if}
          </div>
-    	<div class="bottom-pagination-content clearfix">
+    	<div class="top-pagination-content grid_3 alpha omega">
         	{if !isset($instant_search) || (isset($instant_search) && !$instant_search)}
                 {include file="$tpl_dir./pagination.tpl" paginationId='bottom'}
             {/if}

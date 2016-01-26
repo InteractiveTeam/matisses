@@ -1,7 +1,7 @@
 
 {if $catsObj}
     <div id="news-home" class="newsHome grid_12 alpha omega cf">
-		
+
         <div class="btn-title cf grid_12 alpha omega">
         	<h1>
             	<a href="{$link->getModuleLink('news', 'list',
@@ -23,7 +23,7 @@
                 ,false)}" alt="{l s='More' mod='news'}" class="newsHomeMore">
                 {l s='Ver todos los artículos' mod='news'}
             </a>
-            
+
         </div>
        {if false}
         <!--Inicio titulo sección-->
@@ -67,8 +67,8 @@
                              ]
                              ,false)}"
                            alt="{$catsProductsObj[0][0]->title}" >
-                    
-                    
+
+
                     <img src="{$catsProductsObj[0][0]->img}" title="{$catsProductsObj[0][0]->title}" alt="{$catsProductsObj[0][0]->title}" ></a>
                 </div>
                 <div class="info-article">
@@ -90,11 +90,11 @@
                         <h2>{$catsProductsObj[0][0]->title}</h2></a>
                     </div>
                     <div class="date-author cf">
-                        <span class="newsDate">{$catsProductsObj[0][0]->date} -</span> 
+                        <span class="newsDate">{$catsProductsObj[0][0]->date} -</span>
                         <p class="newsAutor">{$catsProductsObj[0][0]->autor}</p>
                     </div>
                     <div class="newsDescription">
-                        <p>{$catsProductsObj[0][0]->new|truncate:250:'...'|escape:html:'UTF-8'}</p>
+                        <p>{$catsProductsObj[0][0]->new|truncate:200:'...'|escape:html:'UTF-8'}</p>
                     </div>
                 </div>
             </div>
@@ -162,7 +162,7 @@
                             <p class="newsAutor">{$catsProductsObj[0][2]->autor}</p>
                         </div>
                         <div class="newsDescription">
-                            <p>{$catsProductsObj[0][2]->new|truncate:140:'...'|escape:html:'UTF-8'}</p>
+                            <p>{$catsProductsObj[0][2]->new|truncate:120:'...'|escape:html:'UTF-8'}</p>
                         </div>
                     </div>
                 </div>

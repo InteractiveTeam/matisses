@@ -86,7 +86,7 @@
                             <p class="newsAutor">{$destacados[1]->autor}</p>
                         </div>
                         <div class="newsDescription">
-                            <p>{$destacados[1]->new|truncate:250:'...'|escape:html:'UTF-8'}</p>
+                            <p>{$destacados[1]->new|truncate:150:'...'|escape:html:'UTF-8'}</p>
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                              ]
                              ,false)}"
                            alt="{$destacados[1]->title}" > <img src="{$destacados[2]->img}" title="{$destacados[2]->title}" alt="{$destacados[2]->title}" ></a>
-                        
+
                     </div>
                     <div class="right-article grid_6 omega">
                         <div class="category-news">
@@ -172,7 +172,7 @@
                         {/if}
                       {/if}
                       {foreach from=$newsObj item='news' name=myLoop}
-                      
+
                            <ul>
                                <li class="grid_12">
                                    {if $news->img}
@@ -211,7 +211,7 @@
                                     </div>
                                </li>
                            </ul>
-        
+
                       {/foreach}
 
                   </div>
@@ -250,19 +250,19 @@
                                         {if $page != 1}
                                             {assign var='p_previous' value=$page-1}
                                 <li id="newsPagination_previous">
-                                
+
                                     <a  href="/blog/categoria/{$cat}-{$cat_rewrite}/page-{$page-1}">&laquo;&nbsp;</a></li>
                                         {/if}
 
-                                        {section name=pagination start=$start loop=$stop+1 step=1}   
-  
+                                        {section name=pagination start=$start loop=$stop+1 step=1}
+
                                 {if $page == ($smarty.section.pagination.index)}
                                 <li class="current"><span>{$page|escape:'htmlall':'UTF-8'}</span></li>
                                  {else}
                                 <li>
                                 	<a href="/blog/categoria/{$cat}-{$cat_rewrite}/page-{$smarty.section.pagination.index}" title="page-{$smarty.section.pagination.index}">
                                     {$smarty.section.pagination.index|escape:'htmlall':'UTF-8'}</a>
-                                         
+
                                </li>
                                {/if}
                                 {/section}
@@ -292,7 +292,7 @@
                 </div>
                 <div class="category-filter grid_12 omega">
                     <h4>{l s='Categorías' mod='news'}</h4>
-  
+
                     <ul>
                    {foreach from=$categorias item='cats' name=myLoop}
                         <li>

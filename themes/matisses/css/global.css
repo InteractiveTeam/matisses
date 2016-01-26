@@ -1628,10 +1628,6 @@ box-sizing: border-box;
 	.page-heading.bottom-indent {
 	margin-bottom: 16px;
 	}
-	.page-heading.product-listing {
-	border-bottom: none;
-	margin-bottom: 0;
-	}
 
 	h3.page-product-heading {
 	color: #555454;
