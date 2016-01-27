@@ -132,10 +132,10 @@
     height: 1.25rem;
     }
     .checker .checked:before {
-    color: #d7162f;
+    color: #fff;
     }
     .account-creation_form .submit {
-    margin: 3.75rem 0 1.25rem;
+    margin: 0 0 1.25rem;
     }
     .create-account .pull-right.required span{color: #d7162f;}
     .create_account div.radio span {
@@ -235,3 +235,7 @@
     width: 100%;
     }
 }
+
+    .account_creation .checkbox .checker .checked:before {
+    color: #d7162f;
+    }

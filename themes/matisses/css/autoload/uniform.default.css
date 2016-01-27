@@ -111,16 +111,7 @@ div.uploader {
     position: relative;
     overflow: hidden;
     }
-  div.uploader span.action {
-	/*height: 27px;
-	line-height: 27px;
-	width: 94px;
-	text-align: center;
-	float: left;
-	display: inline;
-	overflow: hidden;
-	cursor: pointer; */
-    }
+
   div.uploader span.filename {
     text-overflow: ellipsis;
     display: block;
@@ -141,18 +132,6 @@ div.uploader {
     float: right;
     opacity: 0;
     cursor: pointer;
-	/*opacity: 0;
-	filter: alpha(opacity=0);
-	-moz-opacity: 0;
-	border: none;
-	background: none;
-	position: absolute;
-	top: 0;
-	right: 0;
-	float: right;
-	cursor: default;
-	width: 100%;
-	height: 100%;*/
     }
 
 /* Buttons */
@@ -220,7 +199,8 @@ div.uploader {
     div.checker {}
 
     .habeas .checker span {
-    background: #F00;
+    background: #d70a2f;
+    color: #fff;
     border-radius: 0;
     width: 1.25rem;
     position: relative;
@@ -418,4 +398,12 @@ div.uploader span.action {
     }
     #layered_block_left div.selector{
     width: 100% !important;
+    }
+
+/*Datos personales*/
+    .identity .center_column{
+    width: 100%;
+    max-width: 75rem;
+    margin: 0 auto;
+    float: none;
     }

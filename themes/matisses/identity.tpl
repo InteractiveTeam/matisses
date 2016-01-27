@@ -34,13 +34,11 @@
         {l s='Your personal information'}
     </span>
 {/capture}
-<div class="box">
-    <h1 class="page-subheading">
-        {l s='Your personal information'}
-    </h1>
+<div class="box personal-data grid_12 alpha omega">
+    <h1 class="page-heading">Ajustes de cuenta</h1>
+    <h2 class="page-subheading"> {l s='Your personal information'} </h2>
 
     {include file="$tpl_dir./errors.tpl"}
-
     {if isset($confirmation) && $confirmation}
         <p class="alert alert-success">
             {l s='Your personal information has been successfully updated.'}
@@ -55,9 +53,10 @@
         </p>
         <form action="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}" method="post" class="std">
             <fieldset>
-                <div class="clearfix">
+
+                <div class="form-group grid_12">
                     <label>{l s='Social title'}</label>
-                    <br />
+                    
                     {foreach from=$genders key=k item=gender}
                         <div class="radio-inline">
                             <label for="id_gender{$gender->id}" class="top">
@@ -66,21 +65,22 @@
                         </div>
                     {/foreach}
                 </div>
-                <div class="required form-group">
+
+                <div class="required form-group grid_6">
                     <label for="firstname" class="required">
                         {l s='First name'}
                     </label>
                     <input class="is_required validate form-control" data-validate="isName" type="text" id="firstname" name="firstname" value="{$smarty.post.firstname}" />
                 </div>
 
-                <div class="required form-group">
+                <div class="required form-group grid_6">
                     <label for="secondname" class="required">
                         {l s='Second name'}
                     </label>
                     <input class="is_required validate form-control" data-validate="isName" type="text" name="secondname" id="secondname" value="{$smarty.post.secondname}" />
                 </div>
 
-                <div class="required form-group">
+                <div class="required form-group grid_6">
                     <label for="lastname" class="required">
                         {l s='Last name'}
                     </label>
@@ -88,14 +88,14 @@
                 </div>
 
 
-                 <div class="required form-group">
+                 <div class="required form-group grid_6">
                     <label for="surname" class="required">
                         {l s='Second Lastname'}
                     </label>
                     <input class="is_required validate form-control" data-validate="isName" type="text" name="surname" id="surname" value="{$smarty.post.surname}" />
                 </div>
 
-                 <div class="required form-group">
+                 <div class="required form-group grid_6">
                     <label for="surname" class="required">
                         {l s='Cédula'}
                     </label>
@@ -103,12 +103,13 @@
                 </div>
 
 
-                <div class="required form-group">
+                <div class="required form-group grid_6">
                     <label for="email" class="required">
                         {l s='E-mail address'}
                     </label>
                     <input class="is_required validate form-control" data-validate="isEmail" type="email" name="email" id="email" value="{$smarty.post.email}" />
                 </div>
+
                 <div class="form-group">
                     <label>
                         {l s='Date of Birth'}
@@ -141,26 +142,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="required form-group">
+                <div class="required form-group grid_6">
                     <label for="old_passwd" class="required">
                         {l s='Current Password'}
                     </label>
                     <input class="is_required validate form-control" type="password" data-validate="isPasswd" name="old_passwd" id="old_passwd" />
                 </div>
-                <div class="password form-group">
+                <div class="password form-group grid_6">
                     <label for="passwd">
                         {l s='New Password'}
                     </label>
                     <input class="is_required validate form-control" type="password" data-validate="isPasswd" name="passwd" id="passwd" />
                 </div>
-                <div class="password form-group">
+                <div class="password form-group grid_6">
                     <label for="confirmation">
                         {l s='Confirmation'}
                     </label>
                     <input class="is_required validate form-control" type="password" data-validate="isPasswd" name="confirmation" id="confirmation" />
                 </div>
-                
-                <div class="form-group required">
+
+                <div class="form-group required grid_6">
                     <!--
                     <div class="checkbox grid_12">
                         <input type="checkbox" name="newsletter" id="newsletter" value="1" {if isset($smarty.post.newsletter) AND $smarty.post.newsletter == 1} checked="checked"{/if} />
@@ -178,15 +179,15 @@
                                 <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Telefónico'}"} selected {/if} value="{l s='Telefónico'}">{l s='Telefónico'}</option>
                                 <option {if isset($smarty.post.medio) && $smarty.post.medio == "{l s='Correo físico'}"} selected {/if} value="{l s='Correo físico'}">{l s='Correo físico'}</option>
                             </select>
-                </div>                
+                </div>
                 {if $newsletter}
-                    <div class="checkbox">
+                    <div class="checkbox grid_12">
                         <label for="newsletter">
                             <input type="checkbox" id="newsletter" name="newsletter" value="1" {if isset($smarty.post.newsletter) && $smarty.post.newsletter == 1} checked="checked"{/if}/>
                             {l s='Sign up for our newsletter!'}
                         </label>
                     </div>
-                    <div class="checkbox">
+                    <div class="checkbox grid_12">
                         <label for="optin">
                             <input type="checkbox" name="optin" id="optin" value="1" {if isset($smarty.post.optin) && $smarty.post.optin == 1} checked="checked"{/if}/>
                             {l s='Receive special offers from our partners!'}
@@ -197,48 +198,44 @@
 				<h2 class="page-subheading">
 					{l s='Your company information'}
 				</h2>
-				<div class="form-group">
+				<div class="form-group grid_12">
 					<label for="">{l s='Company'}</label>
 					<input type="text" class="form-control" id="company" name="company" value="{if isset($smarty.post.company)}{$smarty.post.company}{/if}" />
 				</div>
-				<div class="form-group">
+				<div class="form-group grid_12">
 					<label for="siret">{l s='SIRET'}</label>
 					<input type="text" class="form-control" id="siret" name="siret" value="{if isset($smarty.post.siret)}{$smarty.post.siret}{/if}" />
 				</div>
-				<div class="form-group">
+				<div class="form-group grid_12">
 					<label for="ape">{l s='APE'}</label>
 					<input type="text" class="form-control" id="ape" name="ape" value="{if isset($smarty.post.ape)}{$smarty.post.ape}{/if}" />
 				</div>
-				<div class="form-group">
+				<div class="form-group grid_12">
 					<label for="website">{l s='Website'}</label>
 					<input type="text" class="form-control" id="website" name="website" value="{if isset($smarty.post.website)}{$smarty.post.website}{/if}" />
 				</div>
 			{/if}
-                <div class="form-group">
-                    <button type="submit" name="submitIdentity" class="btn btn-default button button-medium">
-                        <span>{l s='Save'}<i class="icon-chevron-right right"></i></span>
-                    </button>
-                </div>
-                <p id="security_informations" class="text-right">
-                    <i>{l s='[Insert customer data privacy clause here, if applicable]'}</i>
-                </p>
             </fieldset>
         </form> <!-- .std -->
     {/if}
 </div>
-<ul class="footer_links clearfix">
-	<li>
-        <a class="btn btn-default button button-small" href="{$link->getPageLink('my-account', true)}">
-            <span>
-                <i class="icon-chevron-left"></i>{l s='Back to your account'}
-            </span>
-        </a>
-    </li>
-	<li>
-        <a class="btn btn-default button button-small" href="{$base_dir}">
-            <span>
-                <i class="icon-chevron-left"></i>{l s='Home'}
-            </span>
-        </a>
-    </li>
-</ul>
+
+    <div class="grid_12 alpha omega">
+        <p id="security_informations">
+        {l s='[Insert customer data privacy clause here, if applicable]'}
+        </p>
+    </div>
+    <div class="footer_links grid_12 alpha omega">
+        <ul class="cf">
+            <li>
+                <button type="submit" name="submitIdentity" class="btn btn-default btn-red">
+                    {l s='Save'}
+                </button>
+            </li>
+        	<li>
+                <a class="btn btn-default btn-red" href="{$link->getPageLink('my-account', true)}">
+                    <i class="fa fa-chevron-left"></i>{l s='Back to your account'}
+                </a>
+            </li>
+        </ul>
+    </div>
