@@ -17,7 +17,9 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 	public function setMedia()
 	{
 		parent::setMedia();	
-		
+		$this->addCSS(array(_PS_MODULE_DIR_.'matisses/css/garantias/garantias.css'));
+		$this->addJS(array(_PS_MODULE_DIR_.'matisses/js/garantias/garantias.js'));
+		$this->addJqueryPlugin(array('bxslider','scrollTo', 'footable','footable-sort'));
 		if(Tools::getValue('step')=='nueva')
 		{
 			$this->addCSS(array(
@@ -28,22 +30,10 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 				_THEME_JS_DIR_.'history.js',
 				_THEME_JS_DIR_.'tools.js' // retro compat themes 1.5
 			));
-			$this->addJqueryPlugin(array('scrollTo', 'footable','footable-sort'));
+			
 		}
-		/*
 		
-		$this->addJqueryPlugin('bxslider');
-		$this->addCss(array(
-			_MODULE_DIR_.'matisses/css/experiences/front-experiences.css'
-		));
-		
-		$this->addJS(array(
-			_MODULE_DIR_.'socialsharing/js/socialsharing.js',
-			_MODULE_DIR_.'matisses/js/experiences/front-experiences.js'
-		));
-		*/
 
-		
 	}
 	
 	public function initContent()
@@ -61,7 +51,11 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 			case 'nueva':
 				$this->nueva();
 			break;
+			case 'estado':
+				$this->estado();
+			break;
 			
+			case 'modificar':
 			case 'step2':
 				$this->step2();
 			break;
@@ -70,6 +64,12 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 			default:
 				$this->step1();
 		}
+	}
+	
+	
+	public function estado()
+	{
+		$this->setTemplate('garantias_estado.tpl');
 	}
 	
 	public function nueva()

@@ -1,0 +1,16 @@
+.details{
+    display:none;
+}
+
+#closedetail {
+    display:none;
+}
+
+.captions li{
+	float: left;
+	max-width:100px;
+}
+
+.active{
+	display:block;
+}
