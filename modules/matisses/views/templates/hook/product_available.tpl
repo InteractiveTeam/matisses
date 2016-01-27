@@ -6,5 +6,5 @@
         <option value="{$store.id_store}">{$store.name}</option>
         {/foreach}
     </select>
-    <i class="glyphicon glyphicon-question-sign"></i>
+    <i class="fa fa-question-circle"></i>
 </div>

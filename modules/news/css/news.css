@@ -475,7 +475,7 @@
     border-bottom: 1px solid #eaeaea;
     margin-bottom: 0.625rem;
     }
-    .category-news ul li a:hover{
+    .category-filter ul li a:hover{
     color: #d7162f;
     }
 
@@ -542,4 +542,12 @@
     .newContentTopRigthSocial div {
     display: inline-block;
     vertical-align: top;
+    }
+
+    /*Listado categorías*/
+    .module-news-catg .center_column{
+    width: 75rem;
+    padding: 0 0.9375rem;
+    margin: 0 auto;
+    float: none;
     }

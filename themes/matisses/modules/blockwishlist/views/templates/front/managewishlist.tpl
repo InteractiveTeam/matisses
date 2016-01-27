@@ -159,9 +159,9 @@
                     </button>
                 </div>
                 <div id="mailsadded" class="emails">
-                	
+
                 </div>
-                    
+
                 {/section}
                 <div class="submit">
                     <button class="btn btn-default btn-red" type="submit" name="submitWishlist"
@@ -169,9 +169,9 @@
                         {l s='Send' mod='blockwishlist'}
                     </button>
                 </div>
-                <p class="required">
+                <!-- <p class="required">
                     <sup>*</sup> {l s='Required field' mod='blockwishlist'}
-                </p>
+                </p> -->
             </fieldset>
         </form>
         {if count($productsBoughts) && false}

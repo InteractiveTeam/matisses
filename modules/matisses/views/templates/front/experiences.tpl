@@ -12,7 +12,7 @@
                 	<div class="pointer {$pointer.market}-{$pointer.orientation}" style="top:{$pointer.top}%;left:{$pointer.left}%">
                     	<div class="pointer-detail grid_12 alpha omega">
                             <div class="pointer-detail-left grid_8">
-                                <h3>{$pointer.name}</h3>
+                                <h4>{$pointer.name}</h4>
                                 <p class="price">{convertPrice price=$pointer.price}</p>
                                 <a class="btn btn-default btn-red ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, 'add=1&amp;id_product={$pointer.id_product}&amp;id_product_attribute={$pointer.id_product_attribute}', false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$accessory.id_product|intval}">
                                     {l s='Comprar ahora'}
@@ -36,14 +36,15 @@
                 {$experience->description}
             </div>
             <div class="exp-slide grid_12 alpha omega">
+            <h3>Más experiencias</h3>
             {if $experiences}
-            	<ul class="bxslider experiences-list">
+            	<ul class="cf bxslider experiences-list">
                 {foreach from=$experiences item=exp}
             		<li class="grid_4 alpha omega">
                     	{assign var=params value=['id_experiencia' => $exp.id_experience]}
                     	<a class="link-img" href="{$link->getModuleLink('matisses','experiences',$params,true)}">
                             <img src="{$link->getImageLink($exp.id_experience|cat:'-slider','img/experiences')}" class="img-responsive">
-                    	<!-- <h3>{$exp.name}</h3> -->
+                        	<h5>{$exp.name}</h5>
                     	</a>
                     </li>
                  {/foreach}
