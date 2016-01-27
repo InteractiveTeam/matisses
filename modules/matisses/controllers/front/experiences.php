@@ -69,7 +69,7 @@ class matissesexperiencesModuleFrontController extends ModuleFrontController
 		
 		
 		$path[] = '<span class="navigation"><a href="/experiencias">Experiencias</a></span>';
-		$path[] = '<span class="navigation-pipe">/</span>';
+		$path[] = '<span class="navigation-pipe"> > </span>';
 		$path[] = '<span class="navigation">'.$this->experience->name.'</span>';
 		
 		$experiences =  $this->experience->getExperiences();

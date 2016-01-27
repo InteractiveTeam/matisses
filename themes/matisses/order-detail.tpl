@@ -26,14 +26,7 @@
 
 {if isset($reorderingAllowed) && $reorderingAllowed}
 <div class="box box-small clearfix">
-	{if $garantias}
-	<form id="submitReorder" action="{$link->getModuleLink('matisses','garantias')}/paso1" method="get" class="submit">
-			<input type="hidden" value="{$order->id}" name="order"/>
-			<a href="#" onclick="$(this).closest('form').submit(); return false;" class="button btn btn-default button-medium pull-right"><span>{l s='Solicitar garantía'}<i class="icon-chevron-right right"></i></span></a>
-
-
-	</form>    
-    {else}
+	
 	<form id="submitReorder" action="{if isset($opc) && $opc}{$link->getPageLink('order-opc', true)}{else}{$link->getPageLink('order', true)}{/if}" method="post" class="submit">
 			<input type="hidden" value="{$order->id}" name="id_order"/>
 			<input type="hidden" value="" name="submitReorder"/>
@@ -44,7 +37,7 @@
 			</p>
 
 	</form>
-    {/if}
+
     
 </div>
 {/if}
@@ -140,6 +133,7 @@
 				{/if}
 				<th class="item">{l s='Unit price'}</th>
 				<th class="last_item">{l s='Total price'}</th>
+                 {if $garantias}<th class="last_item"></th>{/if}
 			</tr>
 		</thead>
 		<tfoot>
@@ -148,7 +142,7 @@
 					<td colspan="{if $return_allowed}2{else}1{/if}">
 						<strong>{l s='Items (tax excl.)'}</strong>
 					</td>
-					<td colspan="{if $order->hasProductReturned()}5{else}4{/if}">
+					<td colspan="{if $order->hasProductReturned()}5{else}{if $garantias}5{else}4{/if}{/if}">
 						<span class="price">{displayWtPriceWithCurrency price=$order->getTotalProductsWithoutTaxes() currency=$currency}</span>
 					</td>
 				</tr>
@@ -157,7 +151,7 @@
 				<td colspan="{if $return_allowed}2{else}1{/if}">
 					<strong>{l s='Items'} {if $use_tax}{l s='(tax incl.)'}{/if} </strong>
 				</td>
-				<td colspan="{if $order->hasProductReturned()}5{else}4{/if}">
+				<td colspan="{if $order->hasProductReturned()}5{else}{if $garantias}5{else}4{/if}{/if}">
 					<span class="price">{displayWtPriceWithCurrency price=$order->getTotalProductsWithTaxes() currency=$currency}</span>
 				</td>
 			</tr>
@@ -166,7 +160,7 @@
 				<td colspan="{if $return_allowed}2{else}1{/if}">
 					<strong>{l s='Total vouchers'}</strong>
 				</td>
-				<td colspan="{if $order->hasProductReturned()}5{else}4{/if}">
+				<td colspan="{if $order->hasProductReturned()}5{else}{if $garantias}5{else}4{/if}{/if}">
 					<span class="price-discount">{displayWtPriceWithCurrency price=$order->total_discounts currency=$currency convert=1}</span>
 				</td>
 			</tr>
@@ -176,7 +170,7 @@
 				<td colspan="{if $return_allowed}2{else}1{/if}">
 					<strong>{l s='Total gift wrapping cost'}</strong>
 				</td>
-				<td colspan="{if $order->hasProductReturned()}5{else}4{/if}">
+				<td colspan="{if $order->hasProductReturned()}5{else}{if $garantias}5{else}4{/if}{/if}">
 					<span class="price-wrapping">{displayWtPriceWithCurrency price=$order->total_wrapping currency=$currency}</span>
 				</td>
 			</tr>
@@ -185,7 +179,7 @@
 				<td colspan="{if $return_allowed}2{else}1{/if}">
 					<strong>{l s='Shipping & handling'} {if $use_tax}{l s='(tax incl.)'}{/if} </strong>
 				</td>
-				<td colspan="{if $order->hasProductReturned()}5{else}4{/if}">
+				<td colspan="{if $order->hasProductReturned()}5{else}{if $garantias}5{else}4{/if}{/if}">
 					<span class="price-shipping">{displayWtPriceWithCurrency price=$order->total_shipping currency=$currency}</span>
 				</td>
 			</tr>
@@ -193,10 +187,13 @@
 				<td colspan="{if $return_allowed}2{else}1{/if}">
 					<strong>{l s='Total'}</strong>
 				</td>
-				<td colspan="{if $order->hasProductReturned()}5{else}4{/if}">
+				<td colspan="{if $order->hasProductReturned()}5{else}{if $garantias}5{else}4{/if}{/if}">
 					<span class="price">{displayWtPriceWithCurrency price=$order->total_paid currency=$currency}</span>
 				</td>
 			</tr>
+            
+            
+            
 		</tfoot>
 		<tbody>
 		{foreach from=$products item=product name=products}
@@ -345,6 +342,14 @@
 							{/if}
 							</label>
 						</td>
+                        {if $garantias}
+                        <td class="price">
+                            <a href="{$link->getModuleLink('matisses','garantias')}/paso1/producto/{$order->id}-{$productId}-{$productAttributeId}" class="button btn btn-default button-medium pull-right"><span>{l s='Solicitar garantía'}<i class="icon-chevron-right right"></i></span></a>
+                        </td>    
+                        {/if}        
+
+                        
+                        
 					</tr>
 				{/if}
 			{/if}
