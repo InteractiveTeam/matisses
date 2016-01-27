@@ -407,3 +407,55 @@ div.uploader span.action {
     margin: 0 auto;
     float: none;
     }
+    .personal-data input,
+    .personal-data .chosen-container {
+    background: #f8f8f8;
+    border-color: #dbdbdb;
+    font-family: 'gothic';
+    font-size: 1rem;
+    color: #757373;
+    }
+    .radio-inline,
+    .checkbox-inline {
+    padding-left: 0;
+    }
+    .personal-data .radio span {
+    border: 3px solid #d7162f;
+    width: 0.9375rem;
+    height: 0.9375rem;
+    }
+    .personal-data div.radio span.checked:before {
+    width: 0.5625rem;
+    height: 0.5625rem;
+    background: #d7162f;
+    }
+    .personal-data .form-group {
+    margin-bottom: 1.875rem;
+    }
+    .personal-data .checkbox label {
+    font-family: 'gothic';
+    color: #4b4b4b;
+    font-size: 1.0625rem;
+    text-transform: none;
+    line-height: normal;
+    padding-left: 1.875rem;
+    }
+    .personal-data div.checker span {
+    border-width: 3px;
+    border-color: #7b7b7b;
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    }
+    .personal-data .checkbox .checker .checked:before {
+    color: #d7162f;
+    position: absolute;
+    left: 1px;
+    }
+    .identity .footer_links {
+    margin: 3.75rem 0;
+    text-align: center;
+    }
+    .identity .footer_links li {
+    display: inline-block;
+    }

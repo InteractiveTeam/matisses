@@ -56,7 +56,7 @@
 
                 <div class="form-group grid_12">
                     <label>{l s='Social title'}</label>
-                    
+
                     {foreach from=$genders key=k item=gender}
                         <div class="radio-inline">
                             <label for="id_gender{$gender->id}" class="top">
@@ -75,7 +75,7 @@
 
                 <div class="required form-group grid_6">
                     <label for="secondname" class="required">
-                        {l s='Second name'}
+                        {l s='Segundo nombre'}
                     </label>
                     <input class="is_required validate form-control" data-validate="isName" type="text" name="secondname" id="secondname" value="{$smarty.post.secondname}" />
                 </div>
@@ -90,7 +90,7 @@
 
                  <div class="required form-group grid_6">
                     <label for="surname" class="required">
-                        {l s='Second Lastname'}
+                        {l s='Segundo apellido'}
                     </label>
                     <input class="is_required validate form-control" data-validate="isName" type="text" name="surname" id="surname" value="{$smarty.post.surname}" />
                 </div>
@@ -110,38 +110,36 @@
                     <input class="is_required validate form-control" data-validate="isEmail" type="email" name="email" id="email" value="{$smarty.post.email}" />
                 </div>
 
-                <div class="form-group">
+                <div class="form-group grid_6">
                     <label>
                         {l s='Date of Birth'}
                     </label>
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <select name="days" id="days" class="form-control">
-                                <option value="">-</option>
-                                {foreach from=$days item=v}
-                                    <option value="{$v}" {if ($sl_day == $v)}selected="selected"{/if}>{$v}&nbsp;&nbsp;</option>
-                                {/foreach}
-                            </select>
-
-                        </div>
-                        <div class="col-xs-4">
-                            <select id="months" name="months" class="form-control">
-                                <option value="">-</option>
-                                {foreach from=$months key=k item=v}
-                                    <option value="{$k}" {if ($sl_month == $k)}selected="selected"{/if}>{l s=$v}&nbsp;</option>
-                                {/foreach}
-                            </select>
-                        </div>
-                        <div class="col-xs-4">
-                            <select id="years" name="years" class="form-control">
-                                <option value="">-</option>
-                                {foreach from=$years item=v}
-                                    <option value="{$v}" {if ($sl_year == $v)}selected="selected"{/if}>{$v}&nbsp;&nbsp;</option>
-                                {/foreach}
-                            </select>
-                        </div>
+                    <div class="grid_4 alpha">
+                        <select name="days" id="days" class="form-control">
+                            <option value="">-</option>
+                            {foreach from=$days item=v}
+                                <option value="{$v}" {if ($sl_day == $v)}selected="selected"{/if}>{$v}&nbsp;&nbsp;</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <div class="grid_4">
+                        <select id="months" name="months" class="form-control">
+                            <option value="">-</option>
+                            {foreach from=$months key=k item=v}
+                                <option value="{$k}" {if ($sl_month == $k)}selected="selected"{/if}>{l s=$v}&nbsp;</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <div class="grid_4 omega">
+                        <select id="years" name="years" class="form-control">
+                            <option value="">-</option>
+                            {foreach from=$years item=v}
+                                <option value="{$v}" {if ($sl_year == $v)}selected="selected"{/if}>{$v}&nbsp;&nbsp;</option>
+                            {/foreach}
+                        </select>
                     </div>
                 </div>
+
                 <div class="required form-group grid_6">
                     <label for="old_passwd" class="required">
                         {l s='Current Password'}
@@ -182,16 +180,14 @@
                 </div>
                 {if $newsletter}
                     <div class="checkbox grid_12">
-                        <label for="newsletter">
-                            <input type="checkbox" id="newsletter" name="newsletter" value="1" {if isset($smarty.post.newsletter) && $smarty.post.newsletter == 1} checked="checked"{/if}/>
-                            {l s='Sign up for our newsletter!'}
+                        <input type="checkbox" id="newsletter" name="newsletter" value="1" {if isset($smarty.post.newsletter) && $smarty.post.newsletter == 1} checked="checked"{/if}/>
+
+                        <label for="newsletter">  {l s='Sign up for our newsletter!'}
                         </label>
                     </div>
                     <div class="checkbox grid_12">
-                        <label for="optin">
-                            <input type="checkbox" name="optin" id="optin" value="1" {if isset($smarty.post.optin) && $smarty.post.optin == 1} checked="checked"{/if}/>
-                            {l s='Receive special offers from our partners!'}
-                        </label>
+                        <input type="checkbox" name="optin" id="optin" value="1" {if isset($smarty.post.optin) && $smarty.post.optin == 1} checked="checked"{/if}/>
+                        <label for="optin">{l s='Receive special offers from our partners!'}</label>
                     </div>
                 {/if}
 			{if $b2b_enable}
