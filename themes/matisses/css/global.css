@@ -2660,7 +2660,6 @@ box-sizing: border-box;
 	margin-bottom: 15px;
 	}
 
-	#identity .form-group .form-control,
 	#new_account_form .form-group .form-control,
 	#opc_account_form .form-group .form-control{
 	display: block;
@@ -2711,7 +2710,7 @@ box-sizing: border-box;
 	#authentication #center_column form.std .row .col-xs-4 .form-control,
 	#order-opc #center_column form.std .row .col-xs-4 .form-control {
 	max-width: 84px; }
-	
+
 	#authentication #center_column .footer_links,
 	#order-opc #center_column .footer_links {
 	border: none;

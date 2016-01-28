@@ -76,14 +76,50 @@
     .stores .ui-widget-content {
     border: none;
     }
-    .stores .ui-accordion-header {
+    .stores .ui-accordion-header.ui-helper-reset.ui-state-default {
+    background: none;
+    border-left: none;
+    border-right: none;
     border-radius: 0;
-    border-color: #dbdbdb;
-    margin-bottom: 0;
     }
     .stores .ui-accordion-content {
     padding: 1.25rem;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
+    border:none;
     border-radius: 0;
+    height: auto !important;
+    }
+    .stores .ui-accordion-header.ui-helper-reset.ui-state-default {
+    background: #F1F1F1;
+    border-radius: 0;
+    border: none;
+    font-family: 'condensed';
+    font-size: 18px;
+    color: #d7162f;
+    text-transform: uppercase;
+    }
+    .content-section h3 {
+    border-bottom: 2px solid;
+    padding-bottom: 5px;
+    }
+    .content-section h4 {
+    font-family: 'condensed';
+    color: #666;
+    margin: 10px 0 5px 0;
+    }
+
+    /*tabla horarios*/
+    .time-table {
+    width: 100%;
+    }
+    .time-table thead {
+    background: #EEE;
+    color: #666;
+    }
+    .time-table thead tr td {
+    padding: 5px 10px;
+    }
+    .time-table tr td {
+    border: 1px solid #ccc;
+    font-family: 'gothic';
+    font-size: 1rem;
     }

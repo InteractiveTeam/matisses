@@ -459,3 +459,15 @@ div.uploader span.action {
     .identity .footer_links li {
     display: inline-block;
     }
+    .identity .fa-chevron-left{
+    padding-right: 0.625rem;
+    }
+    .personal-data .form-group:first-child {
+    margin-bottom: 10px;
+    }
+    .personal-data .radio-inline label {
+    font-family: 'gothic';
+    font-size: 1.125rem;
+    color: #4b4b4b;
+    text-transform: capitalize;
+    }

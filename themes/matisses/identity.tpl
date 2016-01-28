@@ -45,13 +45,15 @@
             {if isset($pwd_changed)}<br />{l s='Your password has been sent to your email:'} {$email}{/if}
         </p>
     {else}
-        <p class="info-title">
+        <p class="info-title grid_12">
             {l s='Please be sure to update your personal information if it has changed.'}
         </p>
-        <p class="required">
+        <p class="required grid_12">
             <sup>*</sup>{l s='Required field'}
         </p>
-        <form action="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}" method="post" class="std">
+        <div class="grid_12 alpha omega">
+            <form action="{$link
+            ->getPageLink('identity', true)|escape:'html':'UTF-8'}" method="post" class="std">
             <fieldset>
 
                 <div class="form-group grid_12">
@@ -213,6 +215,7 @@
 			{/if}
             </fieldset>
         </form> <!-- .std -->
+        </div>
     {/if}
 </div>
 

@@ -47,26 +47,23 @@
                     <img src="{$img_store_dir}{$store.id_store}.jpg" alt="" />
                 </div>
                 {/if}
-                <div class="content-seccion grid_8 omega">
+                <div class="content-section grid_8 omega">
                 	<h3>{l s='Nombre:'} {$store.name|escape:'html':'UTF-8'}</h3>
-                    <span>{l s='Ciudad:'} {$store.city|escape:'html':'UTF-8'}</span>
-
-                    	<span>{l s='Horario de atención:'} </span>
-                    	<p>{if isset($store.working_hours)}{$store.working_hours}{/if}</p>
-
-                    	<span>{l s='Dirección:'}</span>
-                        {assign value=$store.id_store var="id_store"}
-                        {foreach from=$addresses_formated.$id_store.ordered name=adr_loop item=pattern}
-                            {assign var=addressKey value=" "|explode:$pattern}
-                            {foreach from=$addressKey item=key name="word_loop"}
-                                <span {if isset($addresses_style[$key])} class="{$addresses_style[$key]}"{/if}>
-                                    {$addresses_formated.$id_store.formated[$key|replace:',':'']|escape:'html':'UTF-8'}
-                                </span>
-                            {/foreach}
+                    <p>{l s='Ciudad:'} {$store.city|escape:'html':'UTF-8'}</p>
+                    <p>{l s='Teléfono:'}</p>
+                    </p> {$store.phone}</p>
+                    <p>{l s='Dirección:'}
+                    {assign value=$store.id_store var="id_store"}
+                    {foreach from=$addresses_formated.$id_store.ordered name=adr_loop item=pattern}
+                        {assign var=addressKey value=" "|explode:$pattern}
+                        {foreach from=$addressKey item=key name="word_loop"}
+                             {if isset($addresses_style[$key])} class="{$addresses_style[$key]}"{/if}
+                                {$addresses_formated.$id_store.formated[$key|replace:',':'']|escape:'html':'UTF-8'}
                         {/foreach}
-
-                    <span>{l s='Teléfono:'} </span>
-                    <p>{$store.phone}</p>
+                    {/foreach}
+                    </p>
+                    <h4>{l s='Horario de atención'} </h4>
+                    {if isset($store.working_hours)}{$store.working_hours}{/if}
                 </div>
             </div>
             {/foreach}
