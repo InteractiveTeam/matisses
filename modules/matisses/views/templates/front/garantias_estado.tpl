@@ -11,130 +11,60 @@
           <th scope="col">{l s='ESTADO' mod='matisses'}</th>
           <th scope="col">{l s='VER' mod='matisses'}</th>
         </tr>
+        
+        {foreach from=$garantias item=garantia}
         <tr>
-          <td>55</td>
-          <td>2014/12/19 - 13:20:28</td>
-          <td>PENDIENTE</td>
+          <td>{$garantia.id_garantia}</td>
+          <td>{$garantia.fecha}</td>
+          <td>{$garantia.status}</td>
           <td>
           <div class="options">
-          	<a href="#" id="showdetail" data-id="55">{l s='Ver detalle'}</a> 
-          	<a href="#" id="closedetail" data-id="55">{l s='Cerrar detalle'}</a></td>
+          	<a href="#" id="showdetail" data-id="{$garantia.id_garantia}">{l s='Ver detalle'}</a> 
+          	<a href="#" id="closedetail" data-id="{$garantia.id_garantia}">{l s='Cerrar detalle'}</a></td>
           </div>
         </tr>
         <tr>
         <tr>
-          <td id="55" class="details" colspan="4"><div class="grid_6">
-              <h3>{l s="TICKET DE LA GARANTIA"} #55</h3>
+          <td id="{$garantia.id_garantia}" class="details" colspan="4"><div class="grid_6">
+              <h3>{l s="TICKET DE LA GARANTIA"} #{$garantia.id_garantia}</h3>
               <ul class="slider">
-                <li><img src="http://www.portobellostreet.es/mercurio_imagenes/MUEBLE-TV-NATURAL-30954.jpg" /></li>
-                <li><img src="http://www.portobellostreet.es/mercurio_imagenes/MUEBLE-TV-NATURAL-30954.jpg" /></li>
-                <li><img src="http://www.portobellostreet.es/mercurio_imagenes/MUEBLE-TV-NATURAL-30954.jpg" /></li>
-                <li><img src="http://www.portobellostreet.es/mercurio_imagenes/MUEBLE-TV-NATURAL-30954.jpg" /></li>
+              {foreach from=$garantia.imgs item=$img key=kimg}
+                <li><img src="{$link->getImageLink($garantia.imgs[$kimg],'img/garantias')}" /></li>
+              {/foreach}  
               </ul>
               <ul class="captions">
-                  <li><a data-slide-index="0" href=""><img src="http://www.portobellostreet.es/mercurio_imagenes/MUEBLE-TV-NATURAL-30954.jpg" class="img-responsive" /></a></li>
-                  <li><a data-slide-index="1" href=""><img src="http://www.portobellostreet.es/mercurio_imagenes/MUEBLE-TV-NATURAL-30954.jpg" class="img-responsive" /></a></li>
-                  <li><a data-slide-index="2" href=""><img src="http://www.portobellostreet.es/mercurio_imagenes/MUEBLE-TV-NATURAL-30954.jpg" class="img-responsive" /></a></li>
-                  <li><a data-slide-index="3" href=""><img src="http://www.portobellostreet.es/mercurio_imagenes/MUEBLE-TV-NATURAL-30954.jpg" class="img-responsive" /></a></li>
+                {foreach from=$garantia.imgs item=$img key=kimg}
+                    <li><a data-slide-index="{$kimg}" href=""><img src="{$link->getImageLink($garantia.imgs[$kimg],'img/garantias')}" class="img-responsive" /></a></li>
+                {/foreach}    
               </ul>
             </div>
             <div class="grid_6">
               <ul>
-                <li><strong>{l s="Nombre:"}</strong> jkasdj aksdjaks jdasd </li>
-                <li><strong>{l s="Asunto:"}</strong>as dfsd asdfa sdfa sd</li>
-                <li><strong>{l s="Producto:"}</strong>asd fasdf asdfas d</li>
-                <li><strong>{l s="Referencia:"}</strong>sadf asdfa sdfa</li>
-                <li><strong>{l s="Tipo de daño:"}</strong>asd asdf asdfa sdfa</li>
+                <li><strong>{l s="Nombre:"}</strong> {$garantia.firstname} {$garantia.lastname} </li>
+                <li><strong>{l s="Asunto:"}</strong> {$garantia.asunto} </li>
+                <li><strong>{l s="Producto:"}</strong>{$garantia.name}</li>
+                <li><strong>{l s="Referencia:"}</strong>{$garantia.reference}</li>
+                <li><strong>{l s="Tipo de daño:"}</strong>{$garantia.tipo}</li>
                 <li><strong>{l s="Descripcion del daño:"}</strong><br />
-                  as dfas dfasd fasdfa sdsdfg sdfgs dfgs dfgsdf sdfgsd f</li>
+                 {$garantia.resumen}</li>
                 <li><strong>{l s="Historial:"}</strong>
                   <table class="table">
+                    {foreach from=$garantia.history item=history}
                     <tr>
-                      <td><span>12/12/2015</span></td>
-                      <td>Solicitud recibida</td>
+                      <td><span>{$history.fecha}</span></td>
+                      <td>{$history.description}</td>
                     </tr>
-                    <tr>
-                      <td><span>12/12/2015</span></td>
-                      <td>Solicitud recibida</td>
-                    </tr>
-                    <tr>
-                      <td><span>12/12/2015</span></td>
-                      <td>Solicitud recibida</td>
-                    </tr>
-                    <tr>
-                      <td><span>12/12/2015</span></td>
-                      <td>Solicitud recibida</td>
-                    </tr>
+                    {/foreach}
                   </table>
                 </li>
               </ul>
-            </div></td>
-        </tr>
-        
-        
-        <tr>
-          <td>56</td>
-          <td>2014/12/19 - 13:20:28</td>
-          <td>PENDIENTE</td>
-          <td>
-          <div class="options">
-          <a href="#" id="showdetail" data-id="56">{l s='Ver detalle'}</a> <a href="#" id="closedetail" data-id="56">{l s='Cerrar detalle'}</a>
-          </div></td>
-        </tr>
-        <tr>
-          <td id="56" class="details" colspan="4"><div class="grid_6">
-              <h3>{l s="TICKET DE LA GARANTIA"} #55</h3>
-              <ul class="slider">
-                <li><img src="http://www.portobellostreet.es/mercurio_imagenes/MUEBLE-TV-NATURAL-30954.jpg" /></li>
-                <li><img src="http://www.portobellostreet.es/mercurio_imagenes/MUEBLE-TV-NATURAL-30954.jpg" /></li>
-                <li><img src="http://www.portobellostreet.es/mercurio_imagenes/MUEBLE-TV-NATURAL-30954.jpg" /></li>
-                <li><img src="http://www.portobellostreet.es/mercurio_imagenes/MUEBLE-TV-NATURAL-30954.jpg" /></li>
-              </ul>
-              <ul class="captions">
-                  <li><a data-slide-index="0" href=""><img src="http://www.portobellostreet.es/mercurio_imagenes/MUEBLE-TV-NATURAL-30954.jpg" class="img-responsive" /></a></li>
-                  <li><a data-slide-index="1" href=""><img src="http://www.portobellostreet.es/mercurio_imagenes/MUEBLE-TV-NATURAL-30954.jpg" class="img-responsive" /></a></li>
-                  <li><a data-slide-index="2" href=""><img src="http://www.portobellostreet.es/mercurio_imagenes/MUEBLE-TV-NATURAL-30954.jpg" class="img-responsive" /></a></li>
-                  <li><a data-slide-index="3" href=""><img src="http://www.portobellostreet.es/mercurio_imagenes/MUEBLE-TV-NATURAL-30954.jpg" class="img-responsive" /></a></li>
-              </ul>
-            </div>
-            <div class="grid_6">
-              <ul>
-                <li><strong>{l s="Nombre:"}</strong> jkasdj aksdjaks jdasd </li>
-                <li><strong>{l s="Asunto:"}</strong>as dfsd asdfa sdfa sd</li>
-                <li><strong>{l s="Producto:"}</strong>asd fasdf asdfas d</li>
-                <li><strong>{l s="Referencia:"}</strong>sadf asdfa sdfa</li>
-                <li><strong>{l s="Tipo de daño:"}</strong>asd asdf asdfa sdfa</li>
-                <li><strong>{l s="Descripcion del daño:"}</strong><br />
-                  as dfas dfasd fasdfa sdsdfg sdfgs dfgs dfgsdf sdfgsd f</li>
-                <li><strong>{l s="Historial:"}</strong>
-                  <table class="table">
-                    <tr>
-                      <td><span>12/12/2015</span></td>
-                      <td>Solicitud recibida</td>
-                    </tr>
-                    <tr>
-                      <td><span>12/12/2015</span></td>
-                      <td>Solicitud recibida</td>
-                    </tr>
-                    <tr>
-                      <td><span>12/12/2015</span></td>
-                      <td>Solicitud recibida</td>
-                    </tr>
-                    <tr>
-                      <td><span>12/12/2015</span></td>
-                      <td>Solicitud recibida</td>
-                    </tr>
-                  </table>
-                </li>
-              </ul>
-              <a class="btn btn-default button btn-red" href="{$link->getModuleLink('matisses','garantias')}/modificar/order_2">{l s='Modificar'}</a>
-              <a class="btn btn-default button btn-red" href="{$link->getModuleLink('matisses','garantias')}">{l s='Ir a mis garantias'}</a>
               
+              <a class="btn btn-default button btn-red" href="{$link->getModuleLink('matisses','garantias')}/step2/producto/{$garantia.id_order}-{$garantia.id_product}-{$garantia.id_product_attribute}"> {l s='Modificar' mod='matisses'}</a>
+              <a class="btn btn-default button btn-red" href="{$link->getModuleLink('matisses','garantias')}/nueva"> {l s='Ir a mis garantías' mod='matisses'}</a>
               
             </div></td>
         </tr>
-
-
+        {/foreach}
       </table>
     </div>
   </div>

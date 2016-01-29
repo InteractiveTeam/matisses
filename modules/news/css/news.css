@@ -107,6 +107,7 @@
     a.newsSideLink:hover .newsSideTitleActive{
     text-decoration: none;
     }
+
     a.newsSideLinkNoImg .newsSideTitleActive,
     a.newsSideLinkNoImg:link .newsSideTitleActive,
     a.newsSideLinkNoImg:active .newsSideTitleActive,
@@ -115,6 +116,7 @@
     font-size: 11px;
     font-family: Verdana, Arial, Helvetica, Sans-Serif;
     }
+
     .newsSideLinkNoImg{
     display: block;
     cursor: pointer;
@@ -122,14 +124,17 @@
     margin-top: 5px;
     padding: 5px;
     }
+
     .newsSideLinkNoImg .newsSideTitleActive{
     display: inline-block;
     width: 100%;
     text-align: left;
     }
+
     .newsSideLinkNoImg .newsSideTitleHover{
     display: none;
     }
+
     .newsSideLink .newsSideTitleActive{
     display: block;
     width: 100%;
@@ -141,10 +146,12 @@
     color: #FFF;
     padding: 5px 5px 0 5px;
     }
+
     .newsSideLink .newsRmOpacity{
     opacity:0.8;
     filter:alpha(opacity=80);
     }
+
     a.newsSideMore,
     a.newsSideMore:link,
     a.newsSideMore:active,
@@ -172,15 +179,18 @@
     padding: 0px 20px 0px 0px;
     text-decoration: none;
     }
+
     a.newsListItem,
     a.newsListItem:link,
     a.newsListItem:active,
     a.newsListItem:visited{
     display: block;
     }
+
     a.newsListItem:hover{
     background: #fff url(../img/bg_hover_list.png) left bottom repeat-x;
     }
+
     a.page_more,
     a.page_more:link,
     a.page_more:active,
@@ -204,6 +214,7 @@
     font-size: 12px;
     font-weight: bold;
     }
+
     a.page_more:hover{
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -215,10 +226,12 @@
     color: #000;
     background: #fff url(../img/bg_hover_list.png)  bottom left repeat-x;
     }
+
     .newsMoreBtn{
     display: inline-block;
     float: right;
     }
+
     .newsInfBottom{
     display: inline-block;
     float: left;
@@ -229,10 +242,12 @@
     font-family: verdana;
     font-size: 10px;
     }
+
     .fromNewsSearch{
     overflow: hidden;
     position: relative;
     }
+
     .loadingAjax{
     display: block;
     height: 80px;
@@ -243,88 +258,92 @@
     width: 100%;
     }
 
-    /* Paginador */
-    .latest-articles .newsPagination {
-    margin: 0.625rem 0 3.125rem;
+    /* pagination.tpl */
+    div.newsPagination { display: block; text-align: center; padding: 20px 0;}
+    ul.newsPagination {
+    list-style: none;
+    float: left
     }
-    .newsPager .newsPagination {
-    text-align: center;
-    width: 100%;
+    ul.newsPagination li {
+    display: inline;
+    float: left;
+    margin-right: 0.3em
     }
-    .newsPagination li {
-    display: inline-block;
-    padding: 0;
-    margin: 0;
+    ul.newsPagination li, ul.newsPagination a, ul.newsPagination span {
+    font-weight: bold;
+    color: #374853
     }
-    .newsPagination li a,
-    .newsPagination li span {
-    color: #d7162f;
+    ul.newsPagination a, ul.newsPagination span {
+    border: 1px solid #888;
+    padding: 0em 0.4em;
     display: block;
-    font-family: 'condensed';
-    font-weight: normal;
-    font-size: 1.375rem;
-    padding: 0.625rem 0.75rem;
-    background: #f2f2f2;
-    transition: all 0.2s ease-in-out;
+    line-height: 17px;
+    background: #bdc2c9 url('../img/pagination_bg.gif') repeat-x top right
     }
-    .newsPagination li a:hover{
-    color: #d7162f;
-    background: #e5e4e4;
+    ul.newsPagination a { text-decoration: none }
+    ul.newsPagination .current span {
+    background-color: #595a5e;
+    background-image: url('../img/pagination-bg-current.gif');
+    color: white;
+    border: 1px solid #595a5e
     }
-    #newsPagination_previous a,
-    #newsPagination_next a{
-    background: #d7162f;
-    color: #fff;
-    }
-
-    #newsPagination_previous a:hover,
-    #newsPagination_next a:hover{
-    background: #c81129;
-    }
-    .newsPagination .current span {
-    color: #666;
-    }
-    .newsPagination .fa-angle-double-right {
-    line-height: normal;
-    font-size: 1.3125rem;
-    }
-
     ul.newsPagination li.truncate {
     padding: 0.3em;
     background: none
     }
-    #newsPagination_next a,
-    #newsPagination_next span { border-right: none }
+    #newsPagination_previous a, #newsPagination_previous span, #newsPagination_next a, #newsPagination_next span {
+    background-image: url('../img/pagination-prevnext-bg.gif');
+    border: none;
+    line-height: 19px;
+    border-color: #d0d1d5;
+    border-style: solid;
+    border-width: 0 1px
+    }
+    #newsPagination_previous {
+    background: transparent url('../img/pagination-prev-border.gif') no-repeat top left;
+    padding-left: 6px
+    }
+    #newsPagination_previous a, #newsPagination_previous span { border-left: none }
+    #newsPagination_next {
+    background: transparent url('../img/pagination-next-border.gif') no-repeat top right;
+    padding-right: 6px
+    }
+    #newsPagination_next a, #newsPagination_next span { border-right: none }
     li.disabled span {
     color: #888;
     background-color: #f1f2f4
     }
 
-
     a.newsMenuHover_3:hover,
     a.newsMenuHover_3_selected{
     color: yellow;
     }
+
     a.newsMenuHover_4:hover,
     a.newsMenuHover_4_selected{
     color: violet;
     }
+
     a.newsMenuHover_5:hover,
     a.newsMenuHover_5_selected{
     color: orangered;
     }
+
     a.newsMenuHover_6:hover,
     a.newsMenuHover_6_selected{
     color:  brown;
     }
+
     a.newsMenuHover_7:hover,
     a.newsMenuHover_7_selected{
     color:  black;
     }
+
     a.newsMenuHover_8:hover,
     a.newsMenuHover_8_selected{
     color:blue;
     }
+
     a.newsMenuHover_9:hover,
     a.newsMenuHover_9_selected{
     color: #989FA9;
@@ -350,6 +369,7 @@
     opacity:0.70;
     filter:alpha(opacity=70);
     }
+
 
     /* Block CMS links */
     .news_block_sides li {border-bottom:1px dotted #eee}
@@ -401,14 +421,13 @@
     .left-news {
     border-right: 1px solid #eaeaea;
     }
-    .left-news .news_block_list ul li {
+    .left-news ul li {
     margin-bottom: 1.5625rem;
     border-bottom: 1px solid #eaeaea;
     padding-bottom: 1.5625rem;
     }
-    .left-news .news_block_list ul li:last-child{
+    .left-news ul li:last-child{
     border-bottom: none;
-    margin-bottom: 0;
     }
     .newsSearch {
     background: #f2f2f2;

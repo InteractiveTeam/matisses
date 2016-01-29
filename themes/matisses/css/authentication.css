@@ -106,7 +106,7 @@
     line-height: 0;
     }
     #account-creation_form .account_creation .form-group {
-    margin-bottom: 1.875rem;
+    margin-bottom: 30px;
     }
     .account_creation .form-group select{
     font-family: 'gothic';
@@ -132,10 +132,10 @@
     height: 1.25rem;
     }
     .checker .checked:before {
-    color: #fff;
+    color: #d7162f;
     }
     .account-creation_form .submit {
-    margin: 0 0 1.25rem;
+    margin: 3.75rem 0 1.25rem;
     }
     .create-account .pull-right.required span{color: #d7162f;}
     .create_account div.radio span {
@@ -157,10 +157,6 @@
     height: 9px;
     background: #d7162f;
     }
-    .account_creation .checkbox .checker .checked:before {
-    color: #d7162f;
-    }
-
     /*Plugin Facebook*/
     .facebook-login {
     margin-bottom: 4.375rem;
@@ -228,8 +224,7 @@
     color: #3b549d;
     }
 
-
-/*@media (max-width: 480px){
+@media (max-width: 480px){
     .id_state div.selector,#authentication div.selector,#authentication div.selector select{
     width: 100% !important;
     }
@@ -239,4 +234,4 @@
     div.submit button{
     width: 100%;
     }
-}*/
+}

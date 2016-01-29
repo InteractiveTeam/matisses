@@ -2625,24 +2625,22 @@ box-sizing: border-box;
 	display: none;
 	}
 
-	/*#identity .box,
+	#identity .box,
 	#account-creation_form .box,
 	#new_account_form .box,
 	#opc_account_form .box,
 	#authentication .box {
 	padding-bottom: 20px;
 	line-height: 20px;
-	}*/
+	}
 	#address p.required,
 	#identity p.required,
 	#account-creation_form p.required,
 	#new_account_form p.required,
 	#opc_account_form p.required,
 	#authentication p.required {
-	color: #d7162f;
-	margin: 0.625rem 0 0.625rem;
-	font-family: 'condensed';
-	text-transform: uppercase;
+	color: #f13340;
+	margin: 9px 0 16px 0;
 	}
 	#address p.inline-infos,
 	#identity p.inline-infos,
@@ -2653,6 +2651,7 @@ box-sizing: border-box;
 	color: red;
 	}
 	#address .form-group,
+	#identity .form-group,
 	#account-creation_form .form-group,
 	#new_account_form .form-group,
 	#opc_account_form .form-group,
@@ -2710,7 +2709,11 @@ box-sizing: border-box;
 	#authentication #center_column form.std .row .col-xs-4 .form-control,
 	#order-opc #center_column form.std .row .col-xs-4 .form-control {
 	max-width: 84px; }
+<<<<<<< HEAD
 
+=======
+	#identity #center_column .footer_links,
+>>>>>>> d74c6e9d6756679d77aae30ad4cccdc7d3a48411
 	#authentication #center_column .footer_links,
 	#order-opc #center_column .footer_links {
 	border: none;
@@ -3007,8 +3010,8 @@ box-sizing: border-box;
 	.form-group.form-error .form-control, .form-group.form-ok .form-control {
 	padding-right: 30px; }
 
-	/*.radio-inline, .checkbox {
-	padding-left: 0; }*/
+	.radio-inline, .checkbox {
+	padding-left: 0; }
 	.radio-inline .checker, .checkbox .checker {
 	float: left; }
 	.radio-inline .checker span, .checkbox .checker span {
@@ -3422,8 +3425,8 @@ box-sizing: border-box;
 	}
 
 /*Pagina Pedidos - Orden*/
-#order .center_column,
-#authentication .center_column {
+#order #center_column,
+#authentication #center_column {
 	width: 100%;
 	max-width: 75rem;
 	margin: 0 auto;

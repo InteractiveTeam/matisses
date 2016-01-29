@@ -226,13 +226,13 @@
                             </a>
                         {/if}
                       {else}
-                        <div class="newsPager">
+                        <div class="newsPager newsPagination">
                             <ul class="newsPagination">
                                         {if $page != 1}
                                             {assign var='p_previous' value=$page-1}
                                 <li id="newsPagination_previous">
 
-                                    <a  href="/blog/page-{$page-1}"><i class="fa fa-angle-double-left"></i></a></li>
+                                    <a  href="/blog/page-{$page-1}">&laquo;&nbsp;</a></li>
                                         {/if}
 
                                         {section name=pagination start=$start loop=$stop+1 step=1}
@@ -253,14 +253,13 @@
 
                                         {if $pages > 0 AND $page-1 != $pages}
                                             {assign var='p_next' value=$page+1}
-                                <li id="newsPagination_next">
-                                    <a href="/blog/page-{$smarty.section.pagination.index-1}">
-                                        <i class="fa fa-angle-double-right"></i>
-                                    </a>
-                                </li>
+                                <li id="newsPagination_next"><a href="/blog/page-{$smarty.section.pagination.index-1}">&nbsp;&raquo;</a></li>
                                         {/if}
                             </ul>
-                            
+                            <form action="{$link->getPageLink('news')}" method="post" name="fromNewsSearch">
+                                <input type="text" name="search_news" value="{$search_news}" class="newsSearch"></input>
+                                <input type="submit" name="searchnewshidden" style="visibility: hidden"></input>
+                            </form>
                         </div>
                       {/if}
                       {/if}

@@ -110,7 +110,7 @@
 						<label for="guest_email">{l s='Email address'} <sup>*</sup></label>
 						<input type="text" class="is_required validate form-control" data-validate="isEmail" id="guest_email" name="guest_email" value="{if isset($smarty.post.guest_email)}{$smarty.post.guest_email}{/if}" />
 					</div>
-					<div class="cf gender-line">
+					<div class="cleafix gender-line">
 						<label>{l s='Title'}</label>
 						{foreach from=$genders key=k item=gender}
 							<div class="radio-inline">
@@ -126,7 +126,7 @@
 						<input type="text" class="is_required validate form-control" data-validate="isName" id="firstname" name="firstname" value="{if isset($smarty.post.firstname)}{$smarty.post.firstname}{/if}" />
 					</div>
 					<div class="required form-group">
-						<label for="lastname">{l s='Last names'} <sup>*</sup></label>
+						<label for="lastname">{l s='Last name'} <sup>*</sup></label>
 						<input type="text" class="is_required validate form-control" data-validate="isName" id="lastname" name="lastname" value="{if isset($smarty.post.lastname)}{$smarty.post.lastname}{/if}" />
 					</div>
 					<div class="form-group date-select">
@@ -491,43 +491,45 @@
 				</div>
 				<div class="form-group grid_6">
 					<label>{l s='Date of Birth'}</label>
-					<div class="grid_4 alpha">
-						<select id="days" name="days" class="form-control">
-							<option value="">-</option>
-							{foreach from=$days item=day}
-								<option value="{$day}" {if ($sl_day == $day)} selected="selected"{/if}>{$day}&nbsp;&nbsp;</option>
-							{/foreach}
-						</select>
-						{*
-							{l s='January'}
-							{l s='February'}
-							{l s='March'}
-							{l s='April'}
-							{l s='May'}
-							{l s='June'}
-							{l s='July'}
-							{l s='August'}
-							{l s='September'}
-							{l s='October'}
-							{l s='November'}
-							{l s='December'}
-						*}
-					</div>
-					<div class="grid_4">
-						<select id="months" name="months" class="form-control">
-							<option value="">-</option>
-							{foreach from=$months key=k item=month}
-								<option value="{$k}" {if ($sl_month == $k)} selected="selected"{/if}>{l s=$month}&nbsp;</option>
-							{/foreach}
-						</select>
-					</div>
-					<div class="grid_4 omega">
-						<select id="years" name="years" class="form-control">
-							<option value="">-</option>
-							{foreach from=$years item=year}
-								<option value="{$year}" {if ($sl_year == $year)} selected="selected"{/if}>{$year}&nbsp;&nbsp;</option>
-							{/foreach}
-						</select>
+					<div class="row">
+						<div class="grid_4 alpha">
+							<select id="days" name="days" class="form-control">
+								<option value="">-</option>
+								{foreach from=$days item=day}
+									<option value="{$day}" {if ($sl_day == $day)} selected="selected"{/if}>{$day}&nbsp;&nbsp;</option>
+								{/foreach}
+							</select>
+							{*
+								{l s='January'}
+								{l s='February'}
+								{l s='March'}
+								{l s='April'}
+								{l s='May'}
+								{l s='June'}
+								{l s='July'}
+								{l s='August'}
+								{l s='September'}
+								{l s='October'}
+								{l s='November'}
+								{l s='December'}
+							*}
+						</div>
+						<div class="grid_4">
+							<select id="months" name="months" class="form-control">
+								<option value="">-</option>
+								{foreach from=$months key=k item=month}
+									<option value="{$k}" {if ($sl_month == $k)} selected="selected"{/if}>{l s=$month}&nbsp;</option>
+								{/foreach}
+							</select>
+						</div>
+						<div class="grid_4 omega">
+							<select id="years" name="years" class="form-control">
+								<option value="">-</option>
+								{foreach from=$years item=year}
+									<option value="{$year}" {if ($sl_year == $year)} selected="selected"{/if}>{$year}&nbsp;&nbsp;</option>
+								{/foreach}
+							</select>
+						</div>
 					</div>
 				</div>
 
@@ -552,11 +554,13 @@
                         </select>
 			</div>
             <div class="required form-group grid_6">
-                <div class="checkbox">
+                 <div class="checkbox">
+
                     <input type="checkbox" name="terms" id="terms" value="1" {if isset($smarty.post.terms) && $smarty.post.terms == '1'}checked="checked"{/if} />
                     <label for="terms">{l s='Acepto'} <a href="{$link->getCMSLink(11)}" target="_blank">{l s='Términos y condiciones'}</a></label>
                 </div>
                 <div class="checkbox">
+
                     <input type="checkbox" name="tratamiento" id="tratamiento" value="1" {if isset($smarty.post.tratamiento) && $smarty.post.tratamiento == '1'}checked="checked"{/if} />
                     <label for="tratamiento">{l s='Aceptar uso,'} <a href="{$link->getCMSLink(12)}" target="_blank">{l s='tratamiento de mis datos'}</a> {l s='y'} <a href="{$link->getCMSLink(13)}" target="_blank">{l s='políticas de privacidad'}</a></label>
                 </div>

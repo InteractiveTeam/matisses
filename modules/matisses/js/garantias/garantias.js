@@ -1,8 +1,38 @@
 // JavaScript Document
 $(document).ready(function(e) {
 	
+	$('#resumen-garantia .slider').bxSlider({
+					  pagerCustom: '#resumen-garantia .captions'
+				});
+	
+	$('#step2 .slider').bxSlider({
+					  pagerCustom: '#step2 .captions'
+				});
+	
+	
+	setTimeout(function(){
+			$('#form1').append('<input type="file" name="imagen[]" style="display:none" multiple="" data-placeholder="Cargar imagen">');
+		},2000);
+	
+	$('#tipo-dano li').on('click',function(e){
+		e.preventDefault();
+		var tipo = $('#tipo').val();
+		if(tipo.split(',').length < nrodanos)
+		{
+			if(tipo)
+			{
+				var danos = $('#tipo').val()+', '+$(this).attr('data-value');
+			}else{
+					var danos = $(this).attr('data-value');
+				 }
+			$('#tipo').val(danos);	
+		}else{
+				$.fancybox('<div class="error">No puedes seleccionar mas daños</div>')
+			 }
+	})
+	
 	$("label[for=imagen]").click(function(){
-		$("input[name=imagen]").trigger('click');
+		$("input[type=file]").trigger('click');
 	 });
 	
     $('#submitStep1').on('click',function(e){
