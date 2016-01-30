@@ -121,6 +121,9 @@
 	}
 
 	/*Estilos pagina*/
+	.mywishlist {
+    margin-bottom: 3.75rem;
+	}
 	.mywishlist label,
 	.mywishlist table.table th{
 	color: #272727;
@@ -136,7 +139,7 @@
 	text-align: center;
 	}
 	.mywishlist .block-history table {
-	margin: 3.75rem 0;
+	margin: 3.75rem 0 0;
 	border: none;
 	}
 	.mywishlist table tbody {

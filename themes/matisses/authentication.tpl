@@ -77,7 +77,7 @@
 		</div>
 		<div class="grid_6 omega">
 			<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="login_form" class="box">
-				<h2 class="page-subheading">{l s='Already registered?'}</h2>
+				<h2 class="page-subheading">{l s='Ya eres usuario?'}</h2>
 				<div class="form_content cf">
 					<div class="form-group">
 						<!-- <label for="email">{l s='Email address'}</label> -->

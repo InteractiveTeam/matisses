@@ -37,7 +37,7 @@
 			</p>
 		</div>
 	{/if}
-	<div class="rte{if $content_only} content_only{/if}">
+	<div class="container{if $content_only} content_only{/if}">
 		{$cms->content}
 	</div>
 {elseif isset($cms_category)}

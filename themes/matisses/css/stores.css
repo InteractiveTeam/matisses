@@ -73,20 +73,17 @@
     min-width: 100px; }
 
     /*Accordion content*/
+    #accordion-stores {
+    margin: 3.125rem 0 3.75rem;
+    }
     .stores .ui-widget-content {
     border: none;
-    }
-    .stores .ui-accordion-header.ui-helper-reset.ui-state-default {
-    background: none;
-    border-left: none;
-    border-right: none;
-    border-radius: 0;
     }
     .stores .ui-accordion-content {
     padding: 1.25rem;
     border:none;
     border-radius: 0;
-    height: auto !important;
+    overflow: hidden !important;
     }
     .stores .ui-accordion-header.ui-helper-reset.ui-state-default {
     background: #F1F1F1;
@@ -96,6 +93,9 @@
     font-size: 18px;
     color: #d7162f;
     text-transform: uppercase;
+    }
+    .stores .ui-accordion-header.ui-helper-reset.ui-state-default:hover{
+    background: #ebebeb;
     }
     .content-section h3 {
     border-bottom: 2px solid;

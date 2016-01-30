@@ -1,7 +1,7 @@
     /*CMS Pages Styles*/
 
 
-    #cms #center_column .list-1 li {
+    /*#cms #center_column .list-1 li {
     padding: 4px 0 6px 0;
     font-weight: bold;
     color: #46a74e;
@@ -107,4 +107,59 @@
     #cms #center_column #admin-action-cms p .button.lnk_view:hover {
     border-color: #9e9e9e #9e9e9e #c8c8c8 #9e9e9e;
     filter: none;
-    background: #e7e7e7; }
+    background: #e7e7e7; }*/
+
+    .cms .center_column{
+	margin-bottom: 4.375rem;
+	}
+    .cms figure {
+    position: relative;
+    }
+    .cms figcaption {
+    position: absolute;
+    display: block;
+    bottom: 5.9375rem;
+    }
+    .cms figcaption span{
+    color: #FFF;
+    font-family: 'gothic';
+    font-size: 2.5rem;
+    text-align: center;
+    display: block;
+    max-width: 70%;
+    margin: 0 auto;
+    }
+    .cms .main-content {
+    margin-top: -3.75rem;
+    z-index: 10;
+    display: block;
+    position: relative;
+    padding: 0 1.875rem;
+    }
+    .generic-left {
+    background: #FFF;
+    padding: 3.75rem 2.1875rem;
+    }
+    .generic-left p {
+    padding-bottom: 1.25rem;
+    }
+    .generic-right{
+    padding-top: 3.5625rem;
+    }
+    .generic-right span {
+    background: #f2f2f2;
+    display: block;
+    color: #272727;
+    font-size: 1rem;
+    font-family: 'condensed';
+    text-transform: uppercase;
+    padding: 3.125rem 3.125rem 40px 3.125rem;
+    line-height: 1.5;
+    }
+    .generic-right figure{
+    background: #f2f2f2;
+    padding: 0 1.5625rem 1.5625rem;
+    }
+    .generic-right figure img {
+    width: 100%;
+    }

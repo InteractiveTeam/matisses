@@ -43,9 +43,9 @@
 				<div class="grid_2 img-account">
 		            <img src="{$base_dir}img/mis-compras.png"/>
 		        </div>
-				<div class="grid_4 dates-account">
+				<div class="grid_5 dates-account">
 					<h3>{l s='Estado del pedido'}</h3>
-					<p>{l s='Introduce tu número de pedido.'}</p>
+					<p>{l s='Introduce tu número de pedido para comprobar su estado.'}</p>
 					<div class="footer-account">
                     <form id="getPedido" method="get" action="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}">
 						<input type="text" name="pedidonro">
@@ -60,10 +60,10 @@
 						<a class="btn btn-default btn-red" href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}" title="Buscar"> {l s='Ingresar' mod='matisses'}</a>
 					</div>
 				</div>
-				<div class="grid_3 dates-account">
+				<div class="grid_2 dates-account">
 					<h3>{l s='Más acciones'}</h3>
 					<p><a href="#">Contactar un asesor</a></p>
-					<p><a href="{$link->getPageLink('store', true)|escape:'html':'UTF-8'}">{l s='Encuentra la tienda mas cercana'}</a></p>
+					<p><a href="{$link->getPageLink('store', true)|escape:'html':'UTF-8'}">{l s='Encuentra la tienda más cercana'}</a></p>
 				</div>
 			</div>
 		</li>

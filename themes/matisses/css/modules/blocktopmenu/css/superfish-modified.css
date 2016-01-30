@@ -2,26 +2,22 @@
 	.sf-menu{
 	position: static;
 	}
-	.sf-menu,
+	/*.sf-menu,
 	.sf-menu * {
 	margin: 0;
 	list-style: none;
-	}
-
+	}*/
 	.sf-menu li:hover {
 	visibility: inherit;
 	}
-
 	ul.sf-menu li li:hover li ul,
 	ul.sf-menu li li.sfHover li ul {
 	top: -999em;
 	}
-
-
 	ul.sf-menu li li li.sfHover ul {
 	left: 0;
 	top:40px;
-	 }
+	}
 
 	#block_top_menu ul li.category-thumbnail,
 	#block_top_menu ul li#category-thumbnail {
@@ -69,45 +65,36 @@
 
 /*Megamenu*/
 
-	/*15-12-2015*/
-	#block_top_menu {
-    padding: 0;
+	.submenu-container {
+	background: #fafafa;
+	padding: 0;
 	}
-	.sf-menu {
-    position: relative;
-    padding: 0;
-    width: 100%;
+	.submenu-container li {
+    display: table-cell;
 	}
-	.sf-menu > li > a {
+	.submenu-container > li > a {
+    padding: 1.25rem 3.4375rem;
+    display: block;
+    font-size: 1.125rem;
+    color: #414040;
+	}
+
+
+
+
+
+
+
+	.menu-content > li > a {
 	background: url("../../../../img/icon-nav.png") 0 center no-repeat;
     color: #484848;
 	padding: 1.5625rem 0px 1.25rem 1.875rem;
 	margin-left: 1.875rem;
-	text-transform: uppercase;
 	display: block;
 	position: relative;
 	}
-	.sf-menu > li > ul {
-	padding: 0 0 1.25rem 0;
-    width: 1663px;
-    background: #fafafa;
-	display: none;
-	}
-	.sf-menu ul li {
-    display: inline-block;
-	vertical-align: top;
-	}
-	.sf-menu > li > ul > li {
-	background: #fff;
-	vertical-align: top;
-	border-top: 1px solid #dbdbdb;
-	}
-	.sf-menu > li > ul > li a {
-    padding: 1.25rem 3.4375rem;
-    display: block;
-	font-size: 1.125rem;
-	color: #414040;
-	}
+
+
 	.submenu-container li > ul {
     position: absolute;
     min-width: 1663px;
@@ -198,7 +185,9 @@
 	.menu-mobile-grover{
 	cursor: pointer;
 	}
-
+	.menu-mobile-grover{
+	cursor: pointer;
+	}
 }
 
 @media (max-width: 767px) {

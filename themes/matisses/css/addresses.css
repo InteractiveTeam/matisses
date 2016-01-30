@@ -30,8 +30,17 @@
     }
     .adress_update a.btn {
     min-width: 32%;
+    margin-right: 0.125rem;
     }
-    
+    .adress_update a.btn:last-child {
+    margin-right: 0;
+    }
     .footer-links-address a.btn i {
     padding-right: 0.3125rem;
+    }
+    .footer-links-address a {
+    margin-right: 0.3125rem;
+    }
+    .footer-links-address a:last-child{
+    margin-right: 0;
     }

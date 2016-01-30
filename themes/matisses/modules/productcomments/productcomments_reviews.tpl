@@ -25,7 +25,7 @@
 *}
 
 	<div class="comments_note" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-		<div class="star_content clearfix">
+		<div class="star_content cf">
 			{section name="i" start=0 loop=5 step=1}
 				{if $averageTotal le $smarty.section.i.index}
 					<div class="star"></div>
@@ -38,4 +38,3 @@
             <meta itemprop="bestRating" content = "5" />
 		</div>
 	</div>
-

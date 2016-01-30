@@ -27,9 +27,9 @@
 <div id="categories_block_top">
 	<div class="category_top">
 		<div class="list">
-			<ul class="tree {if $isDhtml}dhtml{/if} sf-menu sf-js-enabled clearfix">
+			<ul class="tree {if $isDhtml}dhtml{/if} sf-menu sf-js-enabled cf">
 
-			{foreach from=$blockCategTree.children item=child name=blockCategTree}				
+			{foreach from=$blockCategTree.children item=child name=blockCategTree}
 
 				{if $smarty.foreach.blockCategTree.last}
 					{include file="$branche_tpl_path" node=$child last='true'}
@@ -44,7 +44,7 @@
 					{/foreach}
 					</div>
 				{/if}
-			
+
 				{if ($smarty.foreach.blockCategTree.iteration mod $numberColumn) == 0 AND !$smarty.foreach.blockCategTree.last}
 			</ul>
 		</div>

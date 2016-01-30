@@ -95,7 +95,7 @@ class Blocktopmenu extends Module
 
 		return true;
 	}
-	
+
 	public function hookdisplayMatMegamenu($params)
 	{
 		$this->user_groups =  ($this->context->customer->isLogged() ? $this->context->customer->getGroups() : array(Configuration::get('PS_UNIDENTIFIED_GROUP')));
@@ -114,6 +114,7 @@ class Blocktopmenu extends Module
 		$this->context->controller->addJS($this->_path.'js/hoverIntent.js');
 		$this->context->controller->addJS($this->_path.'js/superfish-modified.js');
 		$this->context->controller->addJS($this->_path.'js/blocktopmenu.js');
+
 		$this->context->controller->addCSS($this->_path.'css/blocktopmenu.css');
 		$this->context->controller->addCSS($this->_path.'css/superfish-modified.css');
 

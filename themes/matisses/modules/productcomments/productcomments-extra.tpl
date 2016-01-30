@@ -26,8 +26,8 @@
 {if (!$content_only && (($nbComments == 0 && $too_early == false && ($is_logged || $allow_guests)) || ($nbComments != 0)))}
 <div id="product_comments_block_extra" class="no-print elem_butt btn-opinion itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
 
-		<div class="comments_note clearfix">
-			<div class="star_content clearfix">
+		<div class="comments_note cf">
+			<div class="star_content cf">
 				{section name="i" start=0 loop=5 step=1}
 					{if $averageTotal le $smarty.section.i.index}
 						<div class="star"></div>

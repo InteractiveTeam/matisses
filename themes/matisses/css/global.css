@@ -385,7 +385,6 @@ box-sizing: border-box;
 	color: #fff;
 	}
 	.shopping_cart > a span {
-	text-align: center;
 	display: block;
 	padding-top: 0.1875rem;
 	}
@@ -3677,18 +3676,4 @@ box-sizing: border-box;
 	float: none;
 	}
 
-/*Pags genericas*/
-	.main-container h3{
-	color: #d7162f;
-	font-size: 1.25rem;
-	font-family: 'condensed';
-	margin-bottom: 0.625rem;
-	}
-
-	/*Pag Metodos envio*/
-	.cms .center_column {
-	width: 100%;
-	max-width: 75rem;
-	margin: 0 auto;
-	float: none;
-	}
+	
