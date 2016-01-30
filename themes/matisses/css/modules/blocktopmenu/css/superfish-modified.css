@@ -272,3 +272,15 @@
 	padding-bottom: 0;
 	}
 }
+
+/*Estilos megamenu*/
+.submenu-container {
+	border-top: #CCC solid 1px;
+	background:#fff;
+}
+
+.submenu-container > li > ul  {
+	background: #ECECEC;
+	border-top: #CCC solid 1px;
+	border-bottom: #D9292E solid 4px;
+}

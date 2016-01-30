@@ -181,4 +181,8 @@ $(document).ready(function(e){
 			$(this).siblings('ul').slideToggle();
 			$(this).toggleClass('rotate-o');
 		})
+
+		var sub = $('li.sfHover');
 })
+
+//Divs a megamenu
