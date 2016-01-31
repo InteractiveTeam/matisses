@@ -23,3 +23,4 @@
 * International Registered Trademark & Property of PrestaShop SA
 *}
 
+<li><span title=Katarzyna><img src="data:image/jpg;base64," alt="" /></span><div class="fb_name">Katarzyna</div></li><li><a href=https://www.facebook.com/su.emily.395 title=SU target="_blank"><img src="data:image/jpg;base64," alt="" /></a><div class="fb_name">SU</div></li><li><a href=https://www.facebook.com/harrisontmode title=Harrison target="_blank"><img src="data:image/jpg;base64," alt="" /></a><div class="fb_name">Harrison</div></li><li><a href=https://www.facebook.com/people/Christina-Cao/100008982973010 title=Christina target="_blank"><img src="data:image/jpg;base64," alt="" /></a><div class="fb_name">Christina</div></li>

@@ -260,9 +260,10 @@ box-sizing: border-box;
 	}
 	.menu-experiencias {
 	padding: 1.5625rem 0 1.25rem 0.625rem;
+	display: table;
 	}
 	.menu-experiencias li {
-	display: inline-block;
+	display: table-cell;
 	}
 	.menu-left li a{
 	font-size:1.0625rem;
@@ -3675,5 +3676,3 @@ box-sizing: border-box;
 	margin: 0 auto;
 	float: none;
 	}
-
-	
