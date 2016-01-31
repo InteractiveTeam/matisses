@@ -64,20 +64,68 @@
 	}
 
 /*Megamenu*/
+	.sf-contener {
+	padding: 0;
+	}
 
 	.submenu-container {
-	background: #fafafa;
+	background: #fff;
+	border-top: #CCC solid 1px;
+	border-bottom: #CCC solid 1px;
 	padding: 0;
 	}
 	.submenu-container li {
     display: table-cell;
 	}
+
 	.submenu-container > li > a {
     padding: 1.25rem 3.4375rem;
     display: block;
     font-size: 1.125rem;
     color: #414040;
 	}
+
+	.submenu-container li > ul  {
+	background: #f7f7f7;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	}
+	.submenu-container li > ul > li a {
+	font-size: 1.25rem;
+    color: #231f20;
+    display: block;
+    text-align: center;
+    padding: 25px 50px 10px;
+	}
+
+	.submenu-container li > ul > li > ul {
+	padding: 0;
+	position: static;
+	display: block !important;
+	background: #808080;
+    width: 240px;
+	}
+	.submenu-container li > ul > li > ul li {
+	display: inline-block;
+	margin-bottom: 20px;
+	width: 50%;
+	background: #FFC0CB;
+	}
+	.submenu-container li > ul > li > ul li a {
+	font-family: 'Open Sans', sans-serif;;
+	font-size: 14px;
+    color: #757575;
+    display: block;
+    padding: 0;
+	text-align: left;
+	}
+
+
+
+
+
+
 
 
 
@@ -95,45 +143,13 @@
 	}
 
 
-	.submenu-container li > ul {
-    position: absolute;
-    min-width: 1663px;
-	margin-top: 0.125rem;
-    left: 0;
-	background: #fff;
-	z-index: 10;
-	}
 
-	.submenu-container li ul li {}
 
-	.submenu-container li > ul > li > ul {
-    background: #fafafa;
-	top: 3.625rem;
-	padding: 0.625rem 3.4375rem;
-	}
 
-	.submenu-container li ul li a {
-	font-size: 1.25rem;
-    color: #231f20;
-    display: block;
-    text-align: center;
-    padding: 1.5625rem 2.5rem 0.9375rem 3.4375rem;
-	}
 
-	.submenu-container li ul li ul li {
-    display: block;
-	margin-bottom: 0.3125rem;
-	}
-	.submenu-container li ul li ul li a {
-	font-family: 'Open Sans Condensed', sans-serif;
-	font-size: 1.125rem;
-    color: #777676;
-    display: block;
-    padding: 0;
-	text-align: left;
-	background: url("/themes/matisses/img/vineta-menu.png") no-repeat 0 center transparent;
-	padding-left: 0.625rem;
-	}
+
+
+
 
 	.submenu-container li.category-thumbnail {
     background: #FFC0CB;
@@ -205,9 +221,7 @@
 	}
 }
 @media (min-width: 768px) {
-	.sf-contener {
-	padding: 0;
-	}
+
 	.sf-menu > li > ul > li.first-in-line-lg {
 	clear: left;
 	}
@@ -263,24 +277,14 @@
 }
 
 @media screen and (max-width: 1024px){
-	.menu-content a.sf-with-ul {
+	/*.menu-content a.sf-with-ul {
     margin-left: 0.9375rem;
 	}
 	.fixedHeader .menu-content a.sf-with-ul {
 	padding-top: 0;
 	margin-left: 0;
 	padding-bottom: 0;
-	}
+	}*/
 }
 
 /*Estilos megamenu*/
-.submenu-container {
-	border-top: #CCC solid 1px;
-	background:#fff;
-}
-
-.submenu-container > li > ul  {
-	background: #ECECEC;
-	border-top: #CCC solid 1px;
-	border-bottom: #D9292E solid 4px;
-}
