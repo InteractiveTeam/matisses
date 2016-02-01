@@ -456,6 +456,8 @@
     width: 24%;
     border: 1px solid #ddd;
     margin-bottom: 5px;
+    vertical-align: top;
+    padding: 10px;
     }
     .subcategory-image a {
     display: block;

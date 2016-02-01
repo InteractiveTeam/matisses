@@ -70,6 +70,24 @@
 	.menu-content > li > ul {
     padding: 0 70px;
 	}
+	.menu-content > li > a:before{
+	content:'\2630';
+	font-size:20px;
+	color: #000;
+	padding-right: 10px;
+	}
+	.menu-content > li > a.active:after{
+	content: '\2715';
+	font-size:20px;
+	color: red;
+	padding-right: 10px;
+	}
+	.menu-content > li > a {
+    padding: 20px 0 1.25rem 0;
+    margin-left: 1.875rem;
+    display: block;
+    position: relative;
+	}
 	.submenu-container {
 	background: #fff;
 	border-top: #CCC solid 1px;
@@ -79,14 +97,15 @@
 	.submenu-container li {
     display: table-cell;
 	}
-
 	.submenu-container > li > a {
     padding: 1.25rem 3.4375rem;
     display: block;
     font-size: 1.125rem;
     color: #414040;
 	}
-
+	.submenu-container > li.sfHover > a{
+	color: #d7162f;
+	}
 	.submenu-container > li > ul  {
 	background: #f7f7f7;
 	position: absolute;
@@ -152,14 +171,6 @@
 
 
 
-	.menu-content > li > a {
-	/*background: url("../../../../img/icon-nav.png") 0 center no-repeat;*/
-    color: #484848;
-	padding: 1.5625rem 0px 1.25rem 1.875rem;
-	margin-left: 1.875rem;
-	display: block;
-	position: relative;
-	}
 
 
 

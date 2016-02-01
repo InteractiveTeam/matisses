@@ -1313,7 +1313,17 @@
 	/*Banner*/
 
 	#slider #homepage-slider .homeslider-description {
-		padding-top: 0 !important;
+		padding-top: 10% !important;
+	}
+
+	#homepage-slider .homeslider-description  h2, #homepage-slider .homeslider-description  h3 {
+		font-size: 1.25rem;
+		line-height: 1.3rem;
+	}
+
+	#homepage-slider .bx-controls.bx-has-pager {
+    bottom: 10px !important;
+    left: 10px !important;
 	}
 
 	.content-user .show-user:before {
