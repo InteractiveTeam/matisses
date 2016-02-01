@@ -85,12 +85,18 @@
     color: #414040;
 	}
 
-	.submenu-container li > ul  {
+	.submenu-container > li > ul  {
 	background: #f7f7f7;
 	position: absolute;
 	width: 100%;
 	left: 0;
+	border-bottom: 5px solid;
 	}
+	.submenu-container > li > ul > li {
+    border-right: 1px solid #e0e0e0;
+	padding: 0 10px;
+	}
+
 	.submenu-container li > ul > li a {
 	font-size: 1.25rem;
     color: #231f20;
@@ -103,14 +109,14 @@
 	padding: 0;
 	position: static;
 	display: block !important;
-	background: #808080;
-    width: 240px;
+	width: 250px;
 	}
+
 	.submenu-container li > ul > li > ul li {
 	display: inline-block;
 	margin-bottom: 20px;
 	width: 50%;
-	background: #FFC0CB;
+
 	}
 	.submenu-container li > ul > li > ul li a {
 	font-family: 'Open Sans', sans-serif;;
@@ -120,7 +126,11 @@
     padding: 0;
 	text-align: left;
 	}
-
+	.category-thumbnail {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 40px 15px;
+	}
 
 
 
