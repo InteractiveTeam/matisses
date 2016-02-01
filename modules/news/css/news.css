@@ -15,7 +15,7 @@
 	padding: 4.0625rem 0;
 	}
     .zona-blog .btn-title .button{
-	margin-top: 0.3125rem
+	margin-top: 0.3125rem;
 	}
     .title-destacado{
 	background: url('/themes/matisses/img/ticket-destacado.jpg') right 0 no-repeat;
@@ -393,6 +393,7 @@
     font-size: 2.125rem;
     padding: 0.625rem 1.25rem;
     background: #f2f2f2;
+    font-family: 'condensed';
     }
     .newsListImg img {
     width: 100%;
