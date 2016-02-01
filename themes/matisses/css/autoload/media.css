@@ -1313,7 +1313,7 @@
 	/*Banner*/
 
 	#slider #homepage-slider .homeslider-description {
-		margin-top: 0 !important;
+		padding-top: 0 !important;
 	}
 
 	.content-user .show-user:before {
