@@ -650,7 +650,7 @@ class Blocktopmenu extends Module
 
 					if (count($files) > 0)
 					{
-						$html .= '<li class="category-thumbnail">';
+						$html .= '<li class="category-thumbnail cf">';
 
 						foreach ($files as $file)
 							if (preg_match('/^'.$category['id_category'].'-([0-9])?_thumb.jpg/i', $file) === 1)
