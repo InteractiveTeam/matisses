@@ -28,6 +28,21 @@ var categoryMenu = $('ul.sf-menu');
 var mCategoryGrover = $('.sf-contener .cat-title');
 
 $(document).ready(function(){
+	
+	$('a.parent-link').on('click',function(e){
+		e.preventDefault();
+		if($(this).parent().hasClass('sfHover'))
+		{
+			$(this).parent().removeClass('sfHover');
+			$(this).parent().removeClass('parent-menu-active');
+			$('.submenu-container').hide();
+		}else{
+				$(this).parent().addClass('sfHover');
+				$(this).parent().addClass('parent-menu-active');
+				$('.submenu-container').show();
+			 }
+	})
+	
 	categoryMenu = $('ul.sf-menu');
 	mCategoryGrover = $('.sf-contener .cat-title');
 	responsiveMenu();

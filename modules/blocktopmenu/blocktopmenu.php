@@ -634,11 +634,17 @@ class Blocktopmenu extends Module
 			}
 			else
 				$link = $this->context->link->getPageLink('index');
-
-			$html .= '<li'.(($this->page_name == 'category'
-				&& (int)Tools::getValue('id_category') == (int)$category['id_category']) ? ' class="sfHoverForce"' : '').'>';
-			$html .= '<a href="'.$link.'" title="'.$category['name'].'">'.$category['name'].'</a>';
-
+		
+			
+			if($category['id_category'] == 3)
+			{	
+				$html .= '<li id="parent-menu">';
+				$html .= '<a class="parent-link" href="#" title="'.$category['name'].'">'.$category['name'].'</a>';	
+			}else{
+					$html .= '<li'.(($this->page_name == 'category'
+					&& (int)Tools::getValue('id_category') == (int)$category['id_category']) ? ' class="sfHoverForce"' : '').'>';
+					$html .= '<a href="'.$link.'" title="'.$category['name'].'">'.$category['name'].'</a>';
+				 }
 			if (isset($category['children']) && !empty($category['children']))
 			{
 				$html .= '<ul>';
@@ -650,7 +656,7 @@ class Blocktopmenu extends Module
 
 					if (count($files) > 0)
 					{
-						$html .= '<li class="category-thumbnail cf">';
+						$html .= '<div class="category-thumbnail cf">';
 
 						foreach ($files as $file)
 							if (preg_match('/^'.$category['id_category'].'-([0-9])?_thumb.jpg/i', $file) === 1)
@@ -658,7 +664,7 @@ class Blocktopmenu extends Module
 								.'" alt="'.Tools::SafeOutput($category['name']).'" title="'
 								.Tools::SafeOutput($category['name']).'" class="imgm" /></div>';
 
-						$html .= '</li>';
+						$html .= '</div>';
 					}
 				}
 
