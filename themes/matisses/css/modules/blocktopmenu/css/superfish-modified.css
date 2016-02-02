@@ -76,11 +76,13 @@
 	color: #000;
 	padding-right: 10px;
 	}
-	.menu-content > li > a.active:after{
-	content: '\2715';
-	font-size:20px;
-	color: red;
-	padding-right: 10px;
+	.menu-content > li.parent-menu-active > a{
+	color:#d7162f;
+	}
+	.menu-content > li.parent-menu-active > a:before {
+    color: #d7162f;
+    content: '\2715';
+	font-size:
 	}
 	.menu-content > li > a {
     padding: 20px 0 1.25rem 0;
@@ -95,7 +97,8 @@
 	padding: 0;
 	}
 	.submenu-container li {
-    display: table-cell;
+    display: inline-block;
+	vertical-align: top;
 	}
 	.submenu-container > li > a {
     padding: 1.25rem 3.4375rem;
@@ -113,7 +116,7 @@
 	left: 0;
 	border-bottom: 5px solid #d7162f;
 	border-top: 1px solid #ccc;
-	padding: 30px 70px 0 70px;
+	padding: 40px 120px;
 	}
 	.submenu-container > li > ul > li:first-child {
     border-left: none;
@@ -121,27 +124,28 @@
 	.submenu-container > li > ul > li {
     border-left: 1px solid #e0e0e0;
 	padding: 0 10px;
+	height: 450px;
 	}
 
 	.submenu-container li > ul > li a {
 	font-size: 1.25rem;
     color: #231f20;
     display: block;
-    text-align: center;
-    padding: 25px 50px 10px;
+    text-align: left;
+    padding: 10px;
 	}
 	.submenu-container li > ul > li > ul {
 	padding: 0 10px;
 	position: static;
 	display: block !important;
-	margin-top: 20px;
-	width: 250px;
+	margin-top: 10px;
+	width: 330px;
 	}
 	.submenu-container li > ul > li > ul li {
 	display: inline-block;
 	vertical-align: top;
-	margin-bottom: 20px;
-	padding: 0 10px;
+	margin-bottom: 10px;
+	padding: 0 15px 0 0;
 	width: 50%;
 	}
 	.submenu-container li > ul > li > ul li a {
@@ -156,7 +160,6 @@
 	.category-thumbnail {
     width: 1200px;
     margin: 0 auto;
-    padding: 40px 15px;
 	}
 	.category-thumbnail:after {clear: both;}
 	.category-thumbnail:before, .category-thumbnail:after {content: ""; display: table;}

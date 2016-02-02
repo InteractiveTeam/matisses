@@ -1166,7 +1166,7 @@
 
 	/*Blog*/
 	div.newsHomeContent{
-	width: 80%;
+	width: 100%;
 	}
 	.newsHomeImg img {
     width: 100%;
@@ -1183,6 +1183,15 @@
 }
 
 @media only screen and (max-width :1024px) and (min-width: 321px) {
+
+	#page .header-container {
+		min-height: 0;
+	height: 119px;
+	}
+
+	.left-down-menu .sf-contener .menu-content > li > a {
+    margin-left: 0;
+	}
 
 	.header-container .main_panel .grid_5 {
 			width: 39.66666%;
@@ -1218,6 +1227,24 @@
     height: 215px;
 	}
 
+	.content-coleccion {
+		padding:25px;
+	}
+
+	.slider .coleccion .rid_6.alpha.omega {
+			overflow: hidden;
+	}
+
+	.coleccion img {
+		height: 145px;
+		width:300px;
+	}
+
+	.coleccion p {
+    font-size: 0.9rem;
+    line-height: 1rem;
+	}
+
 		.header_user_info .content-user > a {
 			display:none;
 			position: absolute;
@@ -1238,6 +1265,22 @@
 	    top: 92px;
 		}
 
+		.products-block .bx-viewport .product_list.grid {
+			width:100% !important;
+		}
+
+		.products-block .bx-viewport .product_list.grid .product-container {
+		    width:32.3% !important;
+		}
+
+		.slide-experiencias li > div.slide-left {
+		    width: 492px !important;
+		}`
+
+		.block_content .bx-wrapper .bx-viewport {
+			height: 565px;
+		}
+
 		.menu-experiencias {
 			padding:0;
 		}
@@ -1256,6 +1299,50 @@
 				position: absolute;
 				left: 20%;
 			}
+
+			.newsletter-footer .newsletter-input {
+			    width: 16.125rem;
+			}
+
+	.header-container .main_panel .menu-left	{
+		padding:0;
+	}
+
+	.fixedHeader #block_top_menu {
+		    padding-top: 5px !important;
+		}
+
+	.fixedHeader .menu-content {
+	    margin-top: 0px;
+	    margin-left: 0px;
+	}
+
+	/*FILTROS*/
+
+	.content_sortPagiBar .sortPagiBar {
+		padding:0
+	}
+
+	#columns .parrilla-productos .sortPagiBar form label{
+		padding: 0 0.9375rem;
+		height: 32px;
+	}
+
+	#category .info-chaordic img {
+		width:100%;
+	}
+
+	#columns .parrilla-productos #selectProductSort_chosen {
+	    width: 9.87rem !important;
+		}
+
+	.content_sortPagiBar .top-pagination-content ul {
+	    height: 33px !important;
+	}
+
+	.top-pagination-content ul li > span, .top-pagination-content ul li > a {
+			padding:0 14px
+		}
 
 }
 
