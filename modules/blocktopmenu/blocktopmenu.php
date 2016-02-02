@@ -650,7 +650,7 @@ class Blocktopmenu extends Module
 				$html .= '<ul>';
 				$html .= $this->generateCategoriesMenu($category['children'], 1);
 
-				if ((int)$category['level_depth'] > 1 && !$is_children)
+				if ((int)$category['level_depth'] > 1)
 				{
 					$files = scandir(_PS_CAT_IMG_DIR_);
 
