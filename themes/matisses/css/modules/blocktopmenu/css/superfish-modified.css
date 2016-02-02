@@ -67,7 +67,27 @@
 	.sf-contener {
 	padding: 0;
 	}
-
+	.menu-content > li > ul {
+    padding: 0 70px;
+	}
+	.menu-content > li > a:before{
+	content:'\2630';
+	font-size:20px;
+	color: #000;
+	padding-right: 10px;
+	}
+	.menu-content > li > a.active:after{
+	content: '\2715';
+	font-size:20px;
+	color: red;
+	padding-right: 10px;
+	}
+	.menu-content > li > a {
+    padding: 20px 0 1.25rem 0;
+    margin-left: 1.875rem;
+    display: block;
+    position: relative;
+	}
 	.submenu-container {
 	background: #fff;
 	border-top: #CCC solid 1px;
@@ -77,23 +97,29 @@
 	.submenu-container li {
     display: table-cell;
 	}
-
 	.submenu-container > li > a {
     padding: 1.25rem 3.4375rem;
     display: block;
     font-size: 1.125rem;
     color: #414040;
 	}
-
+	.submenu-container > li.sfHover > a{
+	color: #d7162f;
+	}
 	.submenu-container > li > ul  {
 	background: #f7f7f7;
 	position: absolute;
 	width: 100%;
 	left: 0;
-	border-bottom: 5px solid;
+	border-bottom: 5px solid #d7162f;
+	border-top: 1px solid #ccc;
+	padding: 30px 70px 0 70px;
+	}
+	.submenu-container > li > ul > li:first-child {
+    border-left: none;
 	}
 	.submenu-container > li > ul > li {
-    border-right: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
 	padding: 0 10px;
 	}
 
@@ -104,19 +130,19 @@
     text-align: center;
     padding: 25px 50px 10px;
 	}
-
 	.submenu-container li > ul > li > ul {
-	padding: 0;
+	padding: 0 10px;
 	position: static;
 	display: block !important;
+	margin-top: 20px;
 	width: 250px;
 	}
-
 	.submenu-container li > ul > li > ul li {
 	display: inline-block;
+	vertical-align: top;
 	margin-bottom: 20px;
+	padding: 0 10px;
 	width: 50%;
-
 	}
 	.submenu-container li > ul > li > ul li a {
 	font-family: 'Open Sans', sans-serif;;
@@ -125,12 +151,15 @@
     display: block;
     padding: 0;
 	text-align: left;
+	line-height: 1.5;
 	}
 	.category-thumbnail {
     width: 1200px;
     margin: 0 auto;
     padding: 40px 15px;
 	}
+	.category-thumbnail:after {clear: both;}
+	.category-thumbnail:before, .category-thumbnail:after {content: ""; display: table;}
 
 
 
@@ -142,15 +171,6 @@
 
 
 
-
-	.menu-content > li > a {
-	background: url("../../../../img/icon-nav.png") 0 center no-repeat;
-    color: #484848;
-	padding: 1.5625rem 0px 1.25rem 1.875rem;
-	margin-left: 1.875rem;
-	display: block;
-	position: relative;
-	}
 
 
 
@@ -162,7 +182,6 @@
 
 
 	.submenu-container li.category-thumbnail {
-    background: #FFC0CB;
     display: block;
 	}
 
@@ -230,13 +249,7 @@
 	text-align: left;
 	}
 }
-@media (min-width: 768px) {
 
-	.sf-menu > li > ul > li.first-in-line-lg {
-	clear: left;
-	}
-	#block_top_menu ul li.category-thumbnail, #block_top_menu ul li#category-thumbnail{	}
-}
 @media (min-width: 480px) and (max-width: 767px) {
 	.sf-menu > li > ul > li.first-in-line-xs {
 	clear: left;

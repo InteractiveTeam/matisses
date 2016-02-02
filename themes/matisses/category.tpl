@@ -74,8 +74,8 @@
 		{if isset($subcategories)}
 		{if (isset($display_subcategories) && $display_subcategories eq 1) || !isset($display_subcategories) }
 		<!-- Subcategories -->
-		<div id="subcategories">
-			<p class="subcategory-heading">{l s='Subcategories'}</p>
+		<div id="subcategories" class="subcategories">
+			<h1 class="subcategory-heading">{l s='Subcategories'}</h1>
 			<ul class="cf">
 			{foreach from=$subcategories item=subcategory}
 				<li>
@@ -86,12 +86,12 @@
 						{else}
 							<img class="replace-2x" src="{$img_cat_dir}default-medium_default.jpg" alt="" width="{$mediumSize.width}" height="{$mediumSize.height}" />
 						{/if}
-					</a>
+						</a>
 					</div>
-					<h5><a class="subcategory-name" href="{$link->getCategoryLink($subcategory.id_category, $subcategory.link_rewrite)|escape:'html':'UTF-8'}">{$subcategory.name|truncate:25:'...'|escape:'html':'UTF-8'|truncate:350}</a></h5>
-					{if $subcategory.description}
-						<div class="cat_desc">{$subcategory.description}</div>
-					{/if}
+						<h2><a class="subcategory-name" href="{$link->getCategoryLink($subcategory.id_category, $subcategory.link_rewrite)|escape:'html':'UTF-8'}">{$subcategory.name|truncate:25:'...'|escape:'html':'UTF-8'|truncate:350}</a></h2>
+						{if $subcategory.description}
+							<div class="cat_desc">{$subcategory.description}</div>
+						{/if}
 				</li>
 			{/foreach}
 			</ul>

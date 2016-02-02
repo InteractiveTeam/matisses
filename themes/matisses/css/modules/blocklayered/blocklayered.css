@@ -449,3 +449,20 @@
 	width: 1.375rem;
 	height: 1.375rem;
 	}
+
+/*Pagina Categorias*/
+    .subcategories ul li {
+    display: inline-block;
+    width: 24%;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    vertical-align: top;
+    padding: 10px;
+    }
+    .subcategory-image a {
+    display: block;
+    }
+    .subcategory-image a img {
+    width: 100%;
+    height: auto;
+    }
