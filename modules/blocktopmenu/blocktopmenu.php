@@ -647,7 +647,7 @@ class Blocktopmenu extends Module
 				 }
 			if (isset($category['children']) && !empty($category['children']))
 			{
-				$html .= '<div class="label-'.$category['level_depth'].'">';
+				
 				$html .= '<ul>';
 				$html .= $this->generateCategoriesMenu($category['children'], 1);
 
@@ -670,7 +670,6 @@ class Blocktopmenu extends Module
 				}
 
 				$html .= '</ul>';
-				$html .= '</div>';
 			}
 
 			$html .= '</li>';
