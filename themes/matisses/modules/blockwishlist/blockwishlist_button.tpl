@@ -24,10 +24,20 @@
 *}
 
 {if isset($wishlists) && count($wishlists) > 1}
-    <a class="addToWishlist scale_hover_in lnk_view choseWishlist" data-div="wishlist_{$product.id_product}" tabindex="0" data-toggle="popover"  data-trigger="focus" title="{l s='Wishlist' mod='blockwishlist'}" data-placement="bottom">
+   
+    <a class="addToWishlist scale_hover_in lnk_view choseWishlist" data-div="wishlist_{$product.id_product}" onclick="$('.wishlist_{$product.id_product}_fancy').click()" tabindex="0" data-toggle="popover"  data-trigger="focus" title="{l s='Wishlist' mod='blockwishlist'}" data-placement="bottom">
         <i class="fa fa-heart-o"></i><span>{l s='To wishlist'}</span>
-    </a>     
-        <div id="wishlist_{$product.id_product}" class="popover-content" style="display: none">
+    </a> 
+    
+        	<script>
+        	$(".wishlist_{$product.id_product}_fancy").fancybox({
+					'afterLoad': function(){
+						$('.fancybox-inner .popover-content').delay(500).removeClass('wishlist_{$product.id_product}_fancy');
+					},
+				});
+        </script>  
+        <div  class="popover-content wishlist_{$product.id_product}_fancy" style="display: none">      
+        <div id="wishlist_{$product.id_product}" class="popover-content">
         <h2>{l s='Seleccione la lista de deseos' mod='blockwishlist'}</h2>
           <div class="col-xs-4">
                 <select id="wishlist_{$product.id_product}" class="form-control">
@@ -43,7 +53,7 @@
              </a>
          </div>           
         </div>
-    
+    	</div>
 {else}
 	<a class="addToWishlist wishlistProd_{$product.id_product|intval}" href="#" {*rel="{$product.id_product|intval}"*} onclick="WishlistCart('wishlist_block_list', 'add', '{$product.id_product|intval}', false, 1); return false;">
 		<i class="fa fa-heart-o"></i><span>{l s='To wishlist'}</span>

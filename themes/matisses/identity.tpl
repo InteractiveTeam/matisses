@@ -221,9 +221,12 @@
                         <span>{l s='Save'}<i class="icon-chevron-right right"></i></span>
                     </button>
                 </div>
+				{if false}
                 <p id="security_informations" class="text-right">
                     <i>{l s='[Insert customer data privacy clause here, if applicable]'}</i>
                 </p>
+                {/if}
+
             </fieldset>
         </form> <!-- .std -->
         </div>
