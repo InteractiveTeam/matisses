@@ -32,16 +32,6 @@
 var wishlistProductsIds = [];
 $(document).ready(function(){
 	
-	$('.choseWishlist').on('click',function(){
-		var div = $(this).attr('data-div');
-		$.fancybox($('#'+div).html(),{
-		'afterLoad':function(){
-				 $('.fancybox-inner').css({'overflow': 'visible !important'});
-			}	
-		});
-		
-	})
-	
 	wishlistRefreshStatus();
 
 	$(document).on('change', 'select[name=wishlists]', function(){

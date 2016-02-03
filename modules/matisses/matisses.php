@@ -811,7 +811,7 @@ class matisses extends Module
 			//print_r($reference);
 			if($reference)
 			{
-				$stock = $response['inventoryItemDTO']['stock'];
+				$stock = $response['inventoryItemDTO']['stock']; 
 				$StockSum=0;
 				foreach($stock as $d => $v)
 				{
@@ -1327,7 +1327,7 @@ class matisses extends Module
 		$customerDTO['customerDTO']['id'] = $cedula.'CL';
 		$customerDTO= self::array_to_xml($customerDTO,false);
 		
-		print_r($customerDTO);
+		//print_r($customerDTO);
 		$s 			= array('genericRequest' => array('data'		=>$customerDTO,
 														'object'	=>'customer',
 														'operation'	=>'get',
