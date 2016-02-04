@@ -470,7 +470,7 @@
 		}
 		__MessaggeLog(' Modelos consultados Fin: '.date('H:i:s')." TOTAL: ".count($_Data)."\n");
 		$_Models 	= array();
-		$_Data = array_slice($_Data, 0 , 10); 
+		//$_Data = array_slice($_Data, 0 , 10); 
 		$_Data2 = $_Data;
 		
 		foreach($_Data2 as $key => $_Model)

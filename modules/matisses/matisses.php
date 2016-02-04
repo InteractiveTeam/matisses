@@ -678,10 +678,10 @@ class matisses extends Module
 		$opt = $_POST['wsactualizar'] ? 'modify' : 'add';
 		$infoxml[0]['operation'] 		= $opt;
 		$infoxml[0]['source'] 			= 'prestashop';
-		$infoxml[0]['id'] 				= $InfCustomer[0]['customer_cedula'].'CL';
+		$infoxml[0]['id'] 				= $InfCustomer[0]['charter'].'CL';
 		$infoxml[0]['lastName1'] 		= strtoupper($InfCustomer[0]['lastname']);
-		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['customer_lastname2']);
-        $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['customer_lastname2'] ? ' '.$InfCustomer[0]['customer_lastname2']: '').' '.$InfCustomer[0]['firstname']);
+		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['secondname']);
+        $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname']);
 		$infoxml[0]['email']			= $InfCustomer[0]['email'];
 		$infoxml[0]['gender']			= 3;
@@ -738,10 +738,10 @@ class matisses extends Module
 		$InfAddresses	= $customer->getAddresses((int)Configuration::get('PS_LANG_DEFAULT'));
 		$infoxml[0]['operation'] 		= 'modify';
 		$infoxml[0]['source'] 			= 'prestashop';
-		$infoxml[0]['id'] 				= $InfCustomer[0]['customer_cedula'].'CL';
+		$infoxml[0]['id'] 				= $InfCustomer[0]['charter'].'CL';
 		$infoxml[0]['lastName1'] 		= strtoupper($InfCustomer[0]['lastname']);
-		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['customer_lastname2']);
-        $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['customer_lastname2'] ? ' '.$InfCustomer[0]['customer_lastname2']: '').' '.$InfCustomer[0]['firstname']);
+		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['secondname']);
+        $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname']);
 		$infoxml[0]['email']			= $InfCustomer[0]['email'];
         $infoxml[0]['salesPersonCode'] 	= ""; // se envia vacio esto se llena por default en sap;
@@ -1320,7 +1320,7 @@ class matisses extends Module
 		}
 	}
 	
-	public function customerExists($cedula)
+	public function customerExists($cedula) 
 	{
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
@@ -1349,7 +1349,7 @@ class matisses extends Module
 			
 		// verifico si el cliente existe
 		/*
-		if(self::customerExists($this->context->customer->customer_cedula))
+		if(self::customerExists($this->context->customer->charter))
 		{
 			$this->hookactionCustomerAccountUpdate(array('email'=>$this->context->cookie->email),true);
 		}else{
@@ -1358,7 +1358,7 @@ class matisses extends Module
 			*/
 		$orderDTO = array();
 		$orderDTO['orderDTO']['header']['prestashopOrderId']= $this->context->cookie->id_cart;
-		$orderDTO['orderDTO']['header']['customerId']		= $this->context->customer->customer_cedula;
+		$orderDTO['orderDTO']['header']['customerId']		= $this->context->customer->charter;
 		foreach($products as $d => $v)
 		{
 			$orderDTO['orderDTO']['detail'][$d]['itemCode'] = $products[$d]['reference'];

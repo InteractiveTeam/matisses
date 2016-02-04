@@ -212,6 +212,9 @@ class AddressControllerCore extends FrontController
 		// Save address
 		if ($result = $address->save())
 		{
+			$params[0]->email 	= $this->context->customer->email; 
+			$params[0]->id 		= $this->context->customer->id; 
+			Hook::exec('actionCustomerAccountUpdate', $params); 
 			// Update id address of the current cart if necessary
 			if (isset($address_old) && $address_old->isUsed())
 				$this->context->cart->updateAddressId($address_old->id, $address->id);

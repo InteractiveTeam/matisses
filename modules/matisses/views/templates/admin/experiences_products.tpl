@@ -11,7 +11,7 @@
           	<input type="hidden" name="poid" id="poid" value="{$poid}"> 
             <label class="control-label col-lg-3 required"> <span >{l s='Producto' mod='matisses'}</span> </label>
             <div class="col-lg-9 ">
-              <input type="text" id="product" name="product" placeholder="{l s='sku or id product' mod='matisses'}">
+              <input type="text" id="product" name="product" placeholder="{l s='sku or id product' mod='matisses'}" value="{$pointer.id_product}">
             </div>
           </div>
           
@@ -52,11 +52,11 @@
             <div class="col-lg-9 ">
                 <table border="0" cellpadding="5" cellspacing="5">
                   <tr>
-                    <td scope="col" width="70px">{l s='Top' mod='matisses'}</td>
-                    <td scope="col"><input type="text" id="coordinates-top" name="top" value="{$top}" readonly></td>
+                    <td scope="col" width="70px">{l s='Ubicación superior' mod='matisses'}</td>
+                    <td scope="col"><input type="text" id="coordinates-top" name="top" value="{if $top} {$top} {else} {$pointer.top} {/if}" readonly></td>
                     </tr><tr>  
-                    <td scope="col">{l s='Left' mod='matisses'}</td>
-                    <td scope="col"><input type="text" id="coordinates-left" value="{$left}" readonly></td>
+                    <td scope="col">{l s='Ubicación izquierda' mod='matisses'}</td>
+                    <td scope="col"><input type="text" id="coordinates-left" value="{if $left} {$left} {else} {$pointer.left} {/if}" readonly></td>
                   </tr>
                 </table>
             </div>
@@ -78,8 +78,14 @@
           </div> 
           
         <div class="btn-group btn-group-lg" style="float: right" role="group" aria-label="Large button group">
-          <button type="button" class="btn btn-default" id="experience-productadd">{l s='Guardar producto' mod='matisses'}</button>
-          <button type="button" class="btn btn-default">{l s='Cancel' mod='matisses'}</button>
+         {if !$pointer}
+          	<button type="button" class="btn btn-default" id="experience-productadd">{l s='Guardar producto' mod='matisses'}</button>
+          	<button type="button" class="btn btn-default">{l s='Cancel' mod='matisses'}</button>
+         {else}
+         	<input type="hidden" name="pointerid" id="pointerid" value="{$pointer.pointer}" />
+         	<button type="button" class="btn btn-default" id="experience-productedit">{l s='Modificar producto' mod='matisses'}</button>
+          	<button type="button" class="btn btn-default" id="experience-productdelete">{l s='Eliminar' mod='matisses'}</button>
+         {/if}
         </div>
                    
           <!-- -->

@@ -8,5 +8,6 @@ $(document).ready(function(e) {
 	  pager: true,
 	  infiniteLoop: false,
 	  controls: false,
+
 	});
 });
