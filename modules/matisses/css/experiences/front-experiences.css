@@ -41,19 +41,17 @@
 	margin: 10px 0 0 30px;
 	}
 	.mask-exp{
-		opacity: 0;
-		background: rgba(55, 54, 54, 0.6);
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		top: 0;
-		cursor: pointer;
-		-webkit-transition: all 0.6s ease;
-		transition: all 0.6s ease;
+	opacity: 0;
+	background: rgba(55, 54, 54, 0.6);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	cursor: pointer;
+	-webkit-transition: all 0.6s ease;
+	transition: all 0.6s ease;
 	}
-	/*.mask-exp:hover{
-		background: rgba(55, 54, 54, 0.4);
-	}*/
+
 	.experience-page h2,
 	.experience-page h3,
 	.experience-page h4,
@@ -85,6 +83,10 @@
 	bottom: 0;
 	padding: 0.625rem 0.9375rem;
 	display: none;
+	}
+
+	.experience-page li.current h5{
+	display: block;
 	}
 	.experience-page li:hover h5 {
     display: block;
@@ -124,22 +126,25 @@
 	.exp-slide {
     margin: 3.75rem 0;
 	}
+	.experiences-list li{
+	margin-left: 10px;
+	}
 	.link-img {
     float: left;
     height: 8.625rem;
-    margin: 0 1.25em 0 0;
+    margin: 0;
     overflow: hidden;
     width: 24.375rem;
 	}
 	.link-img img{
 	position: relative;
-	filter: url('#grayscale'); /* Versión SVG para IE10, Chrome 17, FF3.5, Safari 5.2 and Opera 11.6 */
+	filter: url('#grayscale');
 	-webkit-filter: grayscale(100%);
 	-moz-filter: grayscale(100%);
 	-ms-filter: grayscale(100%);
 	-o-filter: grayscale(100%);
-	filter: grayscale(100%); /* Para cuando es estándar funcione en todos */
-	filter: Gray(); /* IE4-8 and 9 */
+	filter: grayscale(100%);
+	filter: Gray();
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
 	-ms-transition: all 0.5s ease;
@@ -148,6 +153,20 @@
 	}
 
 	.link-img img:hover{
+	-webkit-filter: grayscale(0%);
+	-moz-filter: grayscale(0%);
+	-ms-filter: grayscale(0%);
+	-o-filter: grayscale(0%);
+	filter: none;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	}
+
+	/*activo*/
+	.experiences-list .current img{
 	-webkit-filter: grayscale(0%);
 	-moz-filter: grayscale(0%);
 	-ms-filter: grayscale(0%);
@@ -170,10 +189,10 @@
     top: 0;
 	}
 	.left-exp {
-	left: 0;
+	left: -50px;
 	}
 	.right-exp{
-	right: 0;
+	right: -50px;
 	}
 	.exp-slide .bx-controls-direction div a{
 	height: 2.1875rem;
@@ -196,32 +215,34 @@
 	}
 
 	.pointerAdded{
-	    font-size: 0;
-	    width: 50px;
-	    height: 33px;
-	    background-position: top;
-	    background-size: 100%;
-	    background-repeat: no-repeat;
-	    position: absolute;
-	    top: 0;
+    font-size: 0;
+    width: 50px;
+    height: 33px;
+    background-position: top;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
 	}
 	.pointerAdded.black-left {
-		background-image:url(../../img/experience-black-left.png);
-		left: 350px;
-    	top: -5px;		
+	background-image:url(../../img/experience-black-left.png);
+	left: 350px;
+	top: -5px;
 	}
 	.pointerAdded.black-right {
-		background-image:url(../../img/experience-black.png);
-		left: 0;
+	background-image:url(../../img/experience-black.png);
+	left: 0;
 	}
 	.pointerAdded.white-left {
-		background-image:url(../../img/experience-white-left.png);
-		left: 0;
+	background-image:url(../../img/experience-white-left.png);
+	left: 0;
 	}
 	.pointerAdded.white-right {
-		background-image:url(../../img/experience-white.png);
-		left: 350px;
-    	top: -5px;
+	background-image:url(../../img/experience-white.png);
+	left: 350px;
+	top: -5px;
 	}
 
-
+	.experience-page #directionslider{
+	display: none;
+	}

@@ -356,6 +356,7 @@
     bottom: -0.125rem;
     font-size: 0.9375rem;
     }
+
     /*Columna derecha parrilla*/
     .content_sortPagiBar{
 	position: relative;
@@ -502,5 +503,3 @@
     .subcategory-image:hover img {
     transform: translateX(5%) scale(1.125);
 	}
-
-    
