@@ -1254,6 +1254,11 @@
 	.header-container .main_panel .menu-left {
 		padding: 1.275rem 0 0 0;
 	}
+    
+    .menu-experiencias {
+        padding: 1.27rem 0 1.26rem 0.3rem;
+        display: table;
+    }
 
 	#user {
 		position:relative;
@@ -1405,7 +1410,29 @@
 	container {
 		margin: 0 0 20px 0;
 	}
-
+    
+    div.checker {
+        float: left;
+        margin: 0 15px 0 0;
+    }
+    
+    .newContent .newSlideshow img {
+        WIDTH:100%;
+    }
+    
+    .newContent .news-date, .newContent .newText, .newContent .newSlideshow, .newContent .newTitle {
+        width: 95%;
+        margin: 0 2.5%;
+    }
+    
+    .content-user .show-user:before {
+		content: "\2304";
+		color:#fff;
+		font-size: 2rem;
+		position: absolute;
+		right: -4px;
+		top: 8px;
+	}
 }
 
 @media screen and (max-width :320px) {
@@ -1930,7 +1957,43 @@
 	.product_list.grid .product-container:after, .c_item .product-container:after {
 		top:100% !important;
 	}
+    /*cuenta*/
+    .warranty .content-warranty {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .warranty div.checker {
+        float: left;
+        margin:5px;
+    }
+    
+    .warranty .btn.btn-default.btn-red {
+        width:100%;
+    }
+    
+    div.uploader span.action {
+        line-height: 14px;
+    }
+    
+    .tbl-responsive {
+    overflow-y: hidden;
+    overflow-x: auto;
+    }
+         
+    .newContent .newSlideshow img {
+        WIDTH:100%;
+    }
+    
+    .newContent .news-date, .newContent .newText, .newContent .newSlideshow, .newContent .newTitle {
+        width: 95%;
+        margin: 0 2.5%;
+    }
 }
+
+	#footer {
+		margin:30px 0 0 0;
+	}
 
 .product_list.grid .product-container:before, .c_item .product-container:before {
 	transition: all 0.2s ease;

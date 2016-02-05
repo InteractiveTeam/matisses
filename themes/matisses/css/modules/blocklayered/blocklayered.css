@@ -452,7 +452,12 @@
 	}
 
 /*Pagina Categorias*/
-
+    .category .center_column{
+    width: 100%;
+    max-width: 75rem;
+    margin: 0 auto;
+    float: none;
+    }
     .subcategories ul li {
     float: left;
     width: 23%;

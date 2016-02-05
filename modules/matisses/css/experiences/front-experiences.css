@@ -26,6 +26,9 @@
 	}
 
 /*Experiences Mask*/
+	.experiences-list li a img {
+	width: 100%;
+	}
 	.block-img-exp{
 	position: relative;
 	display: table;

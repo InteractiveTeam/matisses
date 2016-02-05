@@ -233,7 +233,7 @@
             </li>
         	<li>
                 <a class="btn btn-default btn-red" href="{$link->getPageLink('my-account', true)}">
-                    <i class="fa fa-chevron-left"></i>{l s='Back to your account'}
+                    <i class="fa fa-chevron-left"></i>{l s='Volver a mi cuenta'}
                 </a>
             </li>
         </ul>

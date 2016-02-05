@@ -33,22 +33,21 @@
 	{l s='Sunday'}
 *}
 
-<table class="time-table">
-	<thead>
-		<tr>
-        	{foreach from=$days_datas  item=one_day}
-			<td>{l s=$one_day.day}</td>
-            {/foreach}
-		</tr>
-	</thead>
-
-	<tbody>
-		<tr>
-        	{foreach from=$days_datas  item=one_day}
-			<td>{$one_day.hours}</td>
-            {/foreach}
-		</tr>
-	</tbody>
-</table>
-
-
+<div class="tbl-responsive">
+	<table class="time-table">
+		<thead>
+			<tr>
+	        	{foreach from=$days_datas  item=one_day}
+				<td>{l s=$one_day.day}</td>
+	            {/foreach}
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+	        	{foreach from=$days_datas  item=one_day}
+				<td>{$one_day.hours}</td>
+	            {/foreach}
+			</tr>
+		</tbody>
+	</table>
+</div>

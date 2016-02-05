@@ -13,3 +13,73 @@
     }
 
 /*Estilos pagina*/
+
+    /*Step1*/
+    .content-warranty {
+    padding-top: 1.875rem;
+    }
+    .right-w{
+    padding-top: 2.5rem;
+    }
+    .right-w p {
+    padding-bottom: 1.25rem;
+    }
+    .right-w p > strong {
+    font-weight: bold;
+    }
+    .right-w p a {
+    color: #d7162f;
+    font-size: 0.875rem;
+    font-weight: bold;
+    }
+    .right-w a:hover{
+    color: #000;
+    }
+    .right-w form .checker {
+    display: inline-block;
+    margin-top: 5px;
+    margin-right: 10px;
+    }
+    .right-w .checker .checked:before {
+    color: #F00;
+    position: absolute;
+    top: 0;
+    left: 1px;
+    text-align: center;
+    }
+    .right-w span.checked {
+    border: 3px solid #7b7b7b;
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    }
+    .right-w form {
+    border-top: 1px solid #dbdbdb;
+    padding-top: 1.875rem;
+    margin-top: 1.25rem;
+    }
+    .right-w form p {
+    display: inline-block;
+    vertical-align: top;
+    font-family: 'gothic';
+    font-size: 1.125rem;
+    text-decoration: underline;
+    color: #4b4b4b;
+    }
+    .right-w .view-more {
+    text-align: right;
+    color: #D7162F;
+    text-decoration: underline;
+    font-family: 'gothic';
+    font-size: 1.125rem;
+    }
+    .right-w button {
+    float: right;
+    }
+    .content-warranty .footer_links {
+    margin: 4.375rem auto;
+    text-align: center;
+    }
+
+    /*Step2*/
+    
