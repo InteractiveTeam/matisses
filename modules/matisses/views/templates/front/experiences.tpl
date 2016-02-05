@@ -52,7 +52,7 @@
                 </ul>
             {/if}
             </div>
-            <input type="text" value="" id="directionslider"/>
+            <input type="hidden" value="" id="directionslider"/>
             {else}
             	<p class="error">{l s='There are not experiences now' mod='matisses'}</p>
             {/if}

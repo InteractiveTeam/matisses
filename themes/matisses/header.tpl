@@ -181,6 +181,13 @@
 {/if}
 <div class="{if $page_name !='index' && $page_name !='pagenotfound'}{/if}">
 
+{if $page_name =='category'}
+    {assign var="haschildrens" value=Category::getChildren($category->id,$cookie->id_lang,1,$cookie->id_shop)|count}
+    {if $haschildrens>0} 
+        {assign var="left_column_size" value=0}
+    {/if}
+{/if}
+
 {if isset($left_column_size) && !empty($left_column_size) && ($page_name != 'module-news-new')}
 
     {if $page_name =='category'}
@@ -197,14 +204,16 @@
 	    </div>
 		<!--Fin Bloque1 Visualizados-->
     {/if}
-
+		
+        
 		<!--Bloque2 Parrilla Productos-->
 		<div class="parrilla-productos">
 			<div class="container">
+            
+ 
+            
 				<div id="left_column" class="column grid_{$left_column_size|intval} alpha ">{$HOOK_LEFT_COLUMN}</div>
-				{/if}
-				{if isset($left_column_size) && isset($right_column_size)}{assign var='cols' value=(12 - $left_column_size - $right_column_size)}{else}{assign var='cols' value=12}{/if}
-
-        		<div id="center_column" class="center_column  grid_{$cols|intval} omega alpha">
-
-		{/if}
+{/if}
+{if isset($left_column_size) && isset($right_column_size)}{assign var='cols' value=(12 - $left_column_size - $right_column_size)}{else}{assign var='cols' value=12}{/if}
+    <div id="center_column" class="center_column  grid_{$cols|intval} omega alpha">
+{/if}

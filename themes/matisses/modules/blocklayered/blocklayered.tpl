@@ -80,7 +80,12 @@ param_product_url = '';
                         <ul>
                             <li>
                                 <a href="#" data-rel="layered_id_feature_146" title="Cancelar"></a>
-                                {$category->name}
+                                {assign var="categoria" value=Category::getCategorybyId(Tools::getValue('id_category'))}
+                                {if $categoria}
+                                	{$categoria}
+                                {else}
+                                	{$category->name}
+                                {/if}
                             </li>
                         </ul>
                     </div>

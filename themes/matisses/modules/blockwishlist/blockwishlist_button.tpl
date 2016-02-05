@@ -31,8 +31,10 @@
     
         	<script>
         	$(".wishlist_{$product.id_product}_fancy").fancybox({
-					'afterLoad': function(){
-						$('.fancybox-inner .popover-content').delay(500).removeClass('wishlist_{$product.id_product}_fancy');
+					'beforeLoad': function(){
+						setTimeout(function(){
+						$('.fancybox-inner .popover-content').removeClass('wishlist_{$product.id_product}_fancy');
+						},1000);
 					},
 				});
         </script>  
@@ -40,12 +42,11 @@
         <div id="wishlist_{$product.id_product}" class="popover-content">
         <h2>{l s='Seleccione la lista de deseos' mod='blockwishlist'}</h2>
           <div class="col-xs-4">
-                <select id="wishlist_{$product.id_product}" class="form-control">
-                    <option value="">-</option>
+
                     {foreach name=wl from=$wishlists item=wishlist}
-                        <option value="{$wishlist.id_wishlist}">{$wishlist.name}&nbsp;</option>
+                        <input type="radio" name="wishlist_{$product.id_product}" value="{$wishlist.id_wishlist}">{$wishlist.name}</option>
                     {/foreach}
-                </select>
+
             </div>
          <div class="row">
             <a href="#" title="Adicionar" value="{$wishlist.id_wishlist}" onclick="WishlistCart('wishlist_block_list', 'add', '{$product.id_product|intval}', false, 1, $('#wishlist_{$product.id_product}').val());">

@@ -76,13 +76,35 @@ class matissesexperiencesModuleFrontController extends ModuleFrontController
 		$path[] = '<span class="navigation">'.$this->experience->name.'</span>';
 		
 		$experiences =  $this->experience->getExperiences();
-
 		
 		
+		
+		
+		if($this->id_experience)
+		{
+			$realexpereinces = array();
+			$cont=0;
+			foreach($experiences as $k=> $experience)
+			{
+				
+				if($this->id_experience == $experience['id_experience'])
+				{
+					$realexpereinces[1] = $experiences[$k];
+				}else{
+						if($cont==1)
+							$cont++;
+							
+						$realexpereinces[$cont] = $experiences[$k];
+					 }
+				$cont++;	
+			}
+		}
+		
+		ksort($realexpereinces);
 		$this->context->smarty->assign(array(
 			'experience' => $this->experience,
 			'current' => $this->id_experience,
-			'experiences' => $experiences,
+			'experiences' => $realexpereinces,
 			'path' => implode('',$path),
 			'meta_title' => $this->experience->meta_title,
 			'meta_description' => $this->experience->meta_description,
