@@ -102,6 +102,50 @@ function scroll_if_anchor(href) {
 }
 
 $(document).ready(function() {
+	/* cms plantillas */
+	
+	if($('.admincmscontent #template').val()=='standard')
+	{
+		$('#image-name').parent().parent().parent().parent().parent().addClass('hidden');
+		$('#content_1').parent().parent().removeClass('hidden');
+		$('#b1_1').parent().parent().addClass('hidden');
+		$('#b2_1').parent().parent().addClass('hidden');
+		$('#nota_1').parent().parent().removeClass('hidden');
+	}
+	
+	if($('.admincmscontent #template').val()=='modified')
+	{
+		$('#image-name').parent().parent().parent().parent().parent().removeClass('hidden');
+		$('#nota_1').parent().parent().removeClass('hidden');
+		$('#content_1').parent().parent().addClass('hidden');
+		$('#b1_1').parent().parent().removeClass('hidden');
+		$('#b2_1').parent().parent().removeClass('hidden');
+	}
+	
+
+	$('#template').on('change',function(e){
+		e.preventDefault();
+		switch($(this).val())
+		{
+			case 'standard': 
+				$('#image-name').parent().parent().parent().parent().parent().addClass('hidden');
+				$('#nota_1').parent().parent().addClass('hidden');
+				$('#content_1').parent().parent().removeClass('hidden');
+				$('#b1_1').parent().parent().addClass('hidden');
+				$('#b2_1').parent().parent().addClass('hidden');
+			break;
+			case 'modified':
+				$('#image-name').parent().parent().parent().parent().parent().removeClass('hidden');
+				$('#nota_1').parent().parent().removeClass('hidden');
+				$('#content_1').parent().parent().addClass('hidden');
+				$('#b1_1').parent().parent().removeClass('hidden');
+				$('#b2_1').parent().parent().removeClass('hidden');
+			break;
+		}
+		
+	})
+	
+	
 	//set main navigation aside
 	/* global employee_token */
 	function navSidebar(){

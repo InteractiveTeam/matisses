@@ -31,6 +31,10 @@ class CMSCore extends ObjectModel
 	public $meta_description;
 	public $meta_keywords;
 	public $content;
+	public $template;
+	public $b1;
+	public $b2;
+	public $nota;
 	public $link_rewrite;
 	public $id_cms_category;
 	public $position;
@@ -50,6 +54,7 @@ class CMSCore extends ObjectModel
 			'position' => 			array('type' => self::TYPE_INT),
 			'indexation' =>     	array('type' => self::TYPE_BOOL),
 			'active' => 			array('type' => self::TYPE_BOOL),
+			'template' => 			array('type' => self::TYPE_STRING),
 
 			// Lang fields
 			'meta_description' => 	array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName', 'size' => 255),
@@ -57,6 +62,9 @@ class CMSCore extends ObjectModel
 			'meta_title' =>			array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName', 'required' => true, 'size' => 128),
 			'link_rewrite' => 		array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isLinkRewrite', 'required' => true, 'size' => 128),
 			'content' => 			array('type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isCleanHtml', 'size' => 3999999999999),
+			'b1' => 				array('type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isCleanHtml', 'size' => 3999999999999),
+			'b2' => 				array('type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isCleanHtml', 'size' => 3999999999999),
+			'nota' => 				array('type' => self::TYPE_HTML, 'lang' => true),
 		),
 	);
 
