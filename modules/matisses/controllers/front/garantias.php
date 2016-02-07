@@ -43,6 +43,13 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 		$this->info['confgaran_nimages'] = Configuration::get('confgaran_nimages');
 		$this->info['confgaran_nrdanos'] = Configuration::get('confgaran_danos');
 		$this->info['confgaran_terminos'] = Configuration::get('confgaran_terminos');
+		
+		$this->info['confgaran_terminos'] = Db::getInstance()->getValue('SELECT content 
+																		 FROM '._DB_PREFIX_.'cms_lang 
+																		 WHERE id_cms = "'.$this->info['confgaran_terminos'].'" 
+																		 		and id_lang="'.$this->context->language->id.'" 
+																				and id_shop="'.$this->context->shop->id.'"');
+		
 		$this->info['confgaran_imagen'] = Tools::getShopDomain(true).'/img/'.Configuration::get('confgaran_imagen'); 
 		$this->context->smarty->assign('config',$this->info);
 		$step = Tools::getValue('step');
