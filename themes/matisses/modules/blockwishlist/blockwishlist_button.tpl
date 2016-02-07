@@ -41,15 +41,17 @@
         <div  class="popover-content wishlist_{$product.id_product}_fancy" style="display: none">      
         <div id="wishlist_{$product.id_product}" class="popover-content">
         <h2>{l s='Seleccione la lista de deseos' mod='blockwishlist'}</h2>
-          <div class="col-xs-4">
-
-                    {foreach name=wl from=$wishlists item=wishlist}
-                        <input type="radio" name="wishlist_{$product.id_product}" value="{$wishlist.id_wishlist}">{$wishlist.name}</option>
-                    {/foreach}
-
+          <div class="col-md-12">
+                {foreach name=wl from=$wishlists item=wishlist}
+                	{if $smarty.foreach.wl.first}
+                    <input type="radio" name="wishlist_{$product.id_product}" value="{$wishlist.id_wishlist}" checked="checked">{$wishlist.name}<br />
+                	{else}
+                     <input type="radio" name="wishlist_{$product.id_product}" value="{$wishlist.id_wishlist}">{$wishlist.name}<br />
+                    {/if}
+                {/foreach}
             </div>
          <div class="row">
-            <a href="#" title="Adicionar" value="{$wishlist.id_wishlist}" onclick="WishlistCart('wishlist_block_list', 'add', '{$product.id_product|intval}', false, 1, $('#wishlist_{$product.id_product}').val());">
+            <a href="#" title="Adicionar" class="btn btn-default btn-red right" value="{$wishlist.id_wishlist}" onclick="WishlistCart('wishlist_block_list', 'add', '{$product.id_product|intval}', false, 1,$('#wishlist_167 span[class=checked] input').val());">
                 {l s='Adicionar'}
              </a>
          </div>           

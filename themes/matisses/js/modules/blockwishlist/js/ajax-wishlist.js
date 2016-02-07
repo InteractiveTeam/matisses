@@ -42,15 +42,16 @@ $(document).ready(function(){
 function WishlistCart(id, action, id_product, id_product_attribute, quantity, id_wishlist)
 {
 	if(id_wishlist)
+	{
 		WishlistChangeDefault(0, id_wishlist);
-		
+	}
 	$.ajax({
 		type: 'GET',
 		url: baseDir + 'modules/blockwishlist/cart.php?rand=' + new Date().getTime(),
 		headers: { "cache-control": "no-cache" },
 		async: true,
 		cache: false,
-		data: 'action=' + action + '&id_product=' + id_product + '&quantity=' + quantity + '&token=' + static_token + '&id_product_attribute=' + id_product_attribute,
+		data: 'action=' + action + '&id_product=' + id_product + '&quantity=' + quantity + '&token=' + static_token + '&id_product_attribute=' + id_product_attribute+'&id_wishlist='+id_wishlist,
 		success: function(data)
 		{
 			if (action == 'add')

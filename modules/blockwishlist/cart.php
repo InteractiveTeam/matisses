@@ -49,7 +49,7 @@ if (Configuration::get('PS_TOKEN_ENABLE') == 1 &&
 if ($context->customer->isLogged())
 {
 	if ($id_wishlist && WishList::exists($id_wishlist, $context->customer->id) === true)
-		$context->cookie->id_wishlist = (int)$id_wishlist;
+		$context->cookie->id_wishlist = (int)$id_wishlist;	
 
 	if ((int)$context->cookie->id_wishlist > 0 && !WishList::exists($context->cookie->id_wishlist, $context->customer->id))
 		$context->cookie->id_wishlist = '';
