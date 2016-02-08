@@ -303,50 +303,31 @@
                       </ul>
                       <div id="tabs-1" class="content-tabs">
                         <ul>
+                        	{foreach from=$commentados item=articulo}
                             <li>
                                 <div class="category-news">
-                                    <span>Categoria 1</span>
+                                    <span>{$articulo.category}</span>
                                 </div>
                                 <div class="newsTitle">
-                                    <h2>La iluminación perfecta para los hogares</h2>
+                                    <h2>{$articulo.title}</h2>
                                 </div>
                             </li>
-                            <li>
-                                <div class="category-news">
-                                    <span>Categoria 1</span>
-                                </div>
-                                <div class="newsTitle">
-                                    <h2>La iluminación perfecta para los hogares</h2>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-news">
-                                    <span>Categoria 2</span>
-                                </div>
-                                <div class="newsTitle">
-                                    <h2>La iluminación perfecta para los hogares</h2>
-                                </div>
-                            </li>
+                            {/foreach}
                         </ul>
                       </div>
                       <div id="tabs-2" class="content-tabs">
                         <ul>
+                        	{foreach from=$populares item=articulo}
                             <li>
                                 <div class="category-news">
-                                    <span>Categoria 1</span>
+                                    <span>{$articulo.category}</span>
                                 </div>
                                 <div class="newsTitle">
-                                    <h2>La iluminación perfecta para los hogares</h2>
+                                    <h2>{$articulo.title}</h2>
                                 </div>
                             </li>
-                            <li>
-                                <div class="category-news">
-                                    <span>Categoria 1</span>
-                                </div>
-                                <div class="newsTitle">
-                                    <h2>La iluminación perfecta para los hogares</h2>
-                                </div>
-                            </li>
+                            {/foreach}
+
                         </ul>
                       </div>
                     </div>

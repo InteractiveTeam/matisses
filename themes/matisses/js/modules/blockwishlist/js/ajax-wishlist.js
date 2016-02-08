@@ -360,7 +360,7 @@ function WishlistSend(id, id_wishlist, id_email)
 	                ], {
 	                    padding: 0
 	                });
-					WishlistVisibility(id, 'hideSendWishlist');	
+					$('.emails').html('');	
 				}else{
 	                alert(data)
 				};
