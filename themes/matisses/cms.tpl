@@ -37,12 +37,12 @@
 			</p>
 		</div>
 	{/if}
- 
+
     {if $cms->template == 'modified'}
     <div class="container{if $content_only} content_only{/if}">
     <div class="generic-page grid_12 alpha omega">
         <h1>{$cms->meta_title}</h1>
-    
+
         <figure class="main-image grid_12 alpha omega">
             <img src="{$link->getImageLink($cms->id,'img/cms')}" alt="" width="1170" height="380" />
             {if $cms->nota}
@@ -51,7 +51,7 @@
             </figcaption>
         	{/if}
         </figure>
-    
+
         <section class="main-content grid_12 alpha omega">
             <div class="generic-left grid_6 omega">
                 {$cms->b1}
@@ -60,8 +60,8 @@
                 {$cms->b2}
             </div>
         </section>
-    </div> 
-    </div>   
+    </div>
+    </div>
     {else}
 	<div class="container{if $content_only} content_only{/if}">
         {$cms->content}
@@ -69,7 +69,7 @@
     {/if}
 {elseif isset($cms_category)}
 
-	
+
 	<div class="block-cms">
 		<h1><a href="{if $cms_category->id eq 1}{$base_dir}{else}{$link->getCMSCategoryLink($cms_category->id, $cms_category->link_rewrite)}{/if}">{$cms_category->name|escape:'html':'UTF-8'}</a></h1>
 		{if $cms_category->description}
