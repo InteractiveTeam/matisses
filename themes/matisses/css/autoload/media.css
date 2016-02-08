@@ -1190,7 +1190,18 @@
 
 }
 
+@media only screen and (max-width :1366px) {
+   .sf-contener ul.menu-experiencias {
+        padding: 1.5625rem 0 1.0rem 0.625rem;
+   }
+}
+
 @media only screen and (max-width :1366px) and (min-width: 1023px) {
+
+    .menu-left li a {
+        font-size: 0.99rem;
+    }
+
 	/*BUSQUEDA*/
 
 	.search-container form .search_query {
@@ -1214,6 +1225,29 @@
 	.subcategories ul.cf li  {
 		width:31%;
 	}
+
+    /**busqueda*/
+    .sf-contener .menu-content > li > ul {
+        padding: 0;
+    }
+
+    .sf-contener .submenu-container > li > a {
+        padding: 1.25rem 3.391rem;
+    }
+
+    .sf-contener .submenu-container > li > ul {
+        padding: 20px;
+    }
+
+    .sf-contener .submenu-container li > ul > li > ul {
+        width: 257px;
+    }
+
+    .submenu-container ul > li > ul li a {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 13px;
+    }
+
 }
 
 @media only screen and (max-width :1024px) and (min-width: 321px) {
@@ -1254,7 +1288,7 @@
 	.header-container .main_panel .menu-left {
 		padding: 1.275rem 0 0 0;
 	}
-    
+
     .menu-experiencias {
         padding: 1.27rem 0 1.26rem 0.3rem;
         display: table;
@@ -1410,21 +1444,21 @@
 	container {
 		margin: 0 0 20px 0;
 	}
-    
+
     div.checker {
         float: left;
         margin: 0 15px 0 0;
     }
-    
+
     .newContent .newSlideshow img {
         WIDTH:100%;
     }
-    
+
     .newContent .news-date, .newContent .newText, .newContent .newSlideshow, .newContent .newTitle {
         width: 95%;
         margin: 0 2.5%;
     }
-    
+
     .content-user .show-user:before {
 		content: "\2304";
 		color:#fff;
@@ -1433,6 +1467,29 @@
 		right: -4px;
 		top: 8px;
 	}
+
+    /**busqueda*/
+    .sf-contener .menu-content > li > ul {
+        padding: 0;
+    }
+
+    .sf-contener .submenu-container > li > a {
+        padding: 1.3rem 2.1rem;
+    }
+
+    .sf-contener .submenu-container > li > ul {
+        padding: 20px;
+    }
+
+    .sf-contener .submenu-container li > ul > li > ul {
+        width: 257px;
+    }
+
+    .submenu-container ul > li > ul li a {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 13px;
+    }
+
 }
 
 @media screen and (max-width :320px) {
@@ -1962,29 +2019,29 @@
         margin: 0;
         padding: 0;
     }
-    
+
     .warranty div.checker {
         float: left;
         margin:5px;
     }
-    
+
     .warranty .btn.btn-default.btn-red {
         width:100%;
     }
-    
+
     div.uploader span.action {
         line-height: 14px;
     }
-    
+
     .tbl-responsive {
     overflow-y: hidden;
     overflow-x: auto;
     }
-         
+
     .newContent .newSlideshow img {
         WIDTH:100%;
     }
-    
+
     .newContent .news-date, .newContent .newText, .newContent .newSlideshow, .newContent .newTitle {
         width: 95%;
         margin: 0 2.5%;
