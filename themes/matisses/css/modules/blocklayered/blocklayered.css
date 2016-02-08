@@ -452,7 +452,7 @@
 	}
 
 /*Pagina Categorias*/
-    .category .center_column{
+    .center_column .subcategories{
     width: 100%;
     max-width: 75rem;
     margin: 0 auto;
