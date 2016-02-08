@@ -16,11 +16,13 @@
  		<div class="grid_4">
 			<label>{l s='Seleccione el tipo de daño'}</label>
 			<span>{l s='Máximo %s daños' sprintf=[$nrodanos]}</span>
-			<ul id="tipo-dano" class="damage">
-				{foreach from=$danos item=dano}
-				<li id="{$dano.coddano}" data-value="{$dano.dano}">{$dano.dano}</li>
-				{/foreach}
-			</ul>
+			<div class="scroll-left scroll-pane  mCustomScrollbar">
+				<ul id="tipo-dano" class="damage">
+					{foreach from=$danos item=dano}
+					<li id="{$dano.coddano}" data-value="{$dano.dano}">{$dano.dano}</li>
+					{/foreach}
+				</ul>
+			</div>
 			<div class="form-group">
 				<label for="asunto">{l s='Tipo de dano Reportado:'}</label>  <a href="#" onclick="$('#tipo').val('')">{l s='Borrar'}</a>
 				<input type="text" name="tipo" id="tipo" readonly="readonly" class="form-control" value="{$tipo}" />
