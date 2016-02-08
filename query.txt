@@ -13,3 +13,11 @@ CREATE TABLE IF NOT EXISTS `ps_news_comments` (
   PRIMARY KEY (`id_comment`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+truncate ps_category_shop;
+insert into ps_category_shop
+select 
+	id_category,
+	id_shop_default,
+	position
+from ps_category;
+UPDATE  `matissesmaster`.`ps_category` SET  `nleft` =  '3' WHERE  `ps_category`.`id_category` =3;	
