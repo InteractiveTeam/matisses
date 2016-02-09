@@ -624,7 +624,7 @@ class Blocktopmenu extends Module
 	private function generateCategoriesMenu($categories, $is_children = 0)
 	{
 		$html = '';
-
+		$cont = 0;
 		foreach ($categories as $key => $category)
 		{
 			if ($category['level_depth'] > 1)
@@ -641,9 +641,22 @@ class Blocktopmenu extends Module
 				$html .= '<li id="parent-menu">';
 				$html .= '<a class="parent-link" href="#" title="'.$category['name'].'">'.$category['name'].'</a>';	
 			}else{
-					$html .= '<li'.(($this->page_name == 'category'
-					&& (int)Tools::getValue('id_category') == (int)$category['id_category']) ? ' class="sfHoverForce"' : '').'>';
-					$html .= '<a href="'.$link.'" title="'.$category['name'].'">'.$category['name'].'</a>';
+					if($category['level_depth']>=5)
+						$cont++;
+					
+					if($cont<=5)
+					{
+						$html .= '<li'.(($this->page_name == 'category'
+						&& (int)Tools::getValue('id_category') == (int)$category['id_category']) ? ' class="sfHoverForce"' : '').'>';
+						$html .= '<a href="'.$link.'" title="'.$category['name'].'">'.$category['name'].'</a>';
+					}
+					
+					if($cont==6)
+					{
+						$parentCat = new Category($category['id_parent']);
+						$linkparent = Tools::HtmlEntitiesUTF8($parentCat->getLink());
+						$html .= '<div class="view-menu"><a href="'.$linkparent.'" title="">'.$this->l('Ver mas').'</a></div>';
+					}
 				 }
 			if (isset($category['children']) && !empty($category['children']))
 			{
@@ -671,8 +684,10 @@ class Blocktopmenu extends Module
 
 				$html .= '</ul>';
 			}
-
-			$html .= '</li>';
+			if($cont<=5)
+			{
+				$html .= '</li>';
+			}
 		}
 
 		return $html;

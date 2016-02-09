@@ -56,6 +56,7 @@ class HomeSlider extends Module
 		$this->displayName = $this->l('Image slider for your homepage');
 		$this->description = $this->l('Adds an image slider to your homepage.');
 		$this->ps_versions_compliancy = array('min' => '1.6.0.4', 'max' => _PS_VERSION_);
+		$this->context->controller->addJS($this->_path.'js/homeslider_admin.js');
 	}
 
 	/**
@@ -779,6 +780,8 @@ class HomeSlider extends Module
 
 		return $this->display(__FILE__, 'list.tpl');
 	}
+	
+
 
 	public function renderAddForm()
 	{
@@ -793,7 +796,8 @@ class HomeSlider extends Module
 					array(
 						'type' => 'select',
 						'label' => $this->l('Tipo de slide'),
-						'name' => 'tipe',
+						'name' => 'type-slide',
+						'class' => 'type-slide',
 						'options' => array(
 							'query' => array(
 												array('id_type' => 'imagen', 'type' => $this->l('Imagen')),
