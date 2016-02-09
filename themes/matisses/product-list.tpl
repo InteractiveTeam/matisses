@@ -107,7 +107,16 @@
 									{$product.name|truncate:45:'...'|escape:'html':'UTF-8'}
 								</a>
 							</h2>
-							<div class="colors">Cant Color</div>
+
+							<div class="colors">
+                            	{if substr_count($product.color_list,'color_pick') > 1 } 
+                                	{substr_count($product.color_list,'color_pick')} 
+                                   	{l s='Colores'}
+                                {else}
+                                	{substr_count($product.color_list,'color_pick')} 
+                                   	{l s='Color'}
+                                {/if}
+                                </div>
 						</div>
 
 

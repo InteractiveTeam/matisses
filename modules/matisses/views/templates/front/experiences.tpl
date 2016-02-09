@@ -40,7 +40,8 @@
             {if $experiences}
             	<ul class="cf bxslider experiences-list">
                 {foreach from=$experiences item=exp}
-            		<li class="grid_4 alpha omega">
+            		<li class="grid_4 alpha omega {if $exp.id_experience == $current} current {/if}">
+                    	
                     	{assign var=params value=['id_experiencia' => $exp.id_experience]}
                     	<a class="link-img" href="{$link->getModuleLink('matisses','experiences',$params,true)}">
                             <img src="{$link->getImageLink($exp.id_experience|cat:'-slider','img/experiences')}" class="img-responsive">
@@ -51,6 +52,7 @@
                 </ul>
             {/if}
             </div>
+            <input type="hidden" value="" id="directionslider"/>
             {else}
             	<p class="error">{l s='There are not experiences now' mod='matisses'}</p>
             {/if}

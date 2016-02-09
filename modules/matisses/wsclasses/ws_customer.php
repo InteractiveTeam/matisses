@@ -39,9 +39,9 @@ class ws_customer extends matisses
 		}else{
 			$customer = new Customer();
 			$customer->lastname 			= $lastName1;
-			$customer->customer_lastname2 	= $lastName2;
+			$customer->secondname 	= $lastName2;
 			$customer->firstname 			= $names;
-			$customer->customer_cedula 		= $cedula;
+			$customer->charter 				= $cedula;
 			$customer->company				= $legalName;
 			$customer->passwd				= Tools::encrypt($cedula);
 			$customer->email				= $email;
@@ -98,10 +98,10 @@ class ws_customer extends matisses
 		
 		if(!$response['error'])
 		{
-			$array['customerDTO']['id'] 			= $customerinfo->customer_cedula.'CL';
+			$array['customerDTO']['id'] 			= $customerinfo->charter.'CL';
 			$array['customerDTO']['lastName1'] 		= $customerinfo->lastname;
-			$array['customerDTO']['lastName2'] 		= $customerinfo->customer_lastname2;
-			$array['customerDTO']['legalName']		= $customerinfo->company ? $customerinfo->company : $customerinfo->lastname.($customerinfo->customer_lastname2 ? ' '.$customerinfo->customer_lastname2 : NULL).' '.$customerinfo->firstname;
+			$array['customerDTO']['lastName2'] 		= $customerinfo->secondname;
+			$array['customerDTO']['legalName']		= $customerinfo->company ? $customerinfo->company : $customerinfo->lastname.($customerinfo->secondname ? ' '.$customerinfo->secondname : NULL).' '.$customerinfo->firstname;
 			$array['customerDTO']['names']			= $customerinfo->firstname;
 			$array['customerDTO']['email']			= $customerinfo->email;
 			$array['customerDTO']['salesPersonCode']= '';

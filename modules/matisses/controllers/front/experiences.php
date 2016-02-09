@@ -4,6 +4,7 @@ class matissesexperiencesModuleFrontController extends ModuleFrontController
 {
 	//public $php_self = "experiences";  
 	protected $experience;
+	public $id_experience;
 	
 	public function init()
 	{
@@ -14,7 +15,8 @@ class matissesexperiencesModuleFrontController extends ModuleFrontController
 			$context = Context::getContext();
 		
 		$Experiences = new Experiences();
-		$id_experiencia = Tools::getValue('id_experiencia') ? (int)Tools::getValue('id_experiencia') : $Experiences->GetFirstExperience();
+		$id_experiencia = Tools::getValue('id_experiencia') ? (int)Tools::getValue('id_experiencia') : Configuration::get('PS_EXPERIENCIA_PRINCIPAL');
+		$this->id_experience = $id_experiencia;
 		$this->experience = new Experiences($id_experiencia, $this->context->language->id, $this->context->shop->id);
 
 		if($this->experience->products)
@@ -49,6 +51,7 @@ class matissesexperiencesModuleFrontController extends ModuleFrontController
 		parent::setMedia();	
 		$this->addJqueryPlugin('bxslider');
 		
+		
 		$this->addJS(array(
 			_MODULE_DIR_.'matisses/js/experiences/front-experiences.js',
 			
@@ -73,12 +76,35 @@ class matissesexperiencesModuleFrontController extends ModuleFrontController
 		$path[] = '<span class="navigation">'.$this->experience->name.'</span>';
 		
 		$experiences =  $this->experience->getExperiences();
-
 		
 		
+		
+		
+		if($this->id_experience)
+		{
+			$realexpereinces = array();
+			$cont=0;
+			foreach($experiences as $k=> $experience)
+			{
+				
+				if($this->id_experience == $experience['id_experience'])
+				{
+					$realexpereinces[1] = $experiences[$k];
+				}else{
+						if($cont==1)
+							$cont++;
+							
+						$realexpereinces[$cont] = $experiences[$k];
+					 }
+				$cont++;	
+			}
+		}
+		
+		ksort($realexpereinces);
 		$this->context->smarty->assign(array(
 			'experience' => $this->experience,
-			'experiences' => $experiences,
+			'current' => $this->id_experience,
+			'experiences' => $realexpereinces,
 			'path' => implode('',$path),
 			'meta_title' => $this->experience->meta_title,
 			'meta_description' => $this->experience->meta_description,

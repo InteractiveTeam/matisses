@@ -430,7 +430,9 @@ class News extends Module {
 
         $this->smarty->assign(array(
             'meta_title_rss' => $this->l('RSS News'),
-            'feedUrl' => $this->context->link->getPageLink('index', true, NULL, "rss_news=1")
+            'feedUrl' => $this->context->link->getPageLink('index', true, NULL, "rss_news=1"),
+			'id_new' => Tools::getValue('id_news'),
+			'comments' => $this->listComments(Tools::getValue('id_news'),0),
         ));
 
         return $this->display(__FILE__, 'tpl/news_rss_header.tpl');
@@ -650,7 +652,9 @@ class News extends Module {
             'tag' => $tag,
             'cat' => $cat,
             'cat_rewrite' => $this->getCatRewrite($cat, $id_lang),
-            'page' => $page
+            'page' => $page,
+			'populares' => $this->getPopulars(),
+			'commentados' => $this->getCommentados()
         ));
 
         return $this->display(__FILE__, 'tpl/news_list.tpl');
@@ -901,15 +905,48 @@ class News extends Module {
 		if($array)
 			return $realproducts;
 
+
         $this->smarty->assign(array(
             'catsProductsObj' => $catsProducts,
-            'catsObj' => $cats_list
+            'catsObj' => $cats_list,
         ));
 		
 		
 		
         return $this->display(__FILE__, 'tpl/news_home.tpl');
     }
+	
+	
+	
+	public function getPopulars()
+	{
+		return Db::getInstance()->ExecuteS('SELECT b.title, c.title as category, viewed
+											FROM '._DB_PREFIX_.'news as a
+												 INNER JOIN	'._DB_PREFIX_.'news_langs as b
+												 INNER JOIN '._DB_PREFIX_.'news_cats_lang AS c
+												 	on a.id_news = b.id_news
+													and b.id_lang = c.id_lang
+											WHERE viewed !=0
+												and b.id_lang = '.$this->context->language->id.'
+											group by a.id_news  order by viewed desc
+											');
+	}
+	
+	public function getCommentados()
+	{								
+		
+		return Db::getInstance()->ExecuteS('SELECT b.title, c.title as category, (SELECT count(*) FROM '._DB_PREFIX_.'news_comments WHERE id_news = a.id_news) as comentarios
+											FROM '._DB_PREFIX_.'news as a
+												 INNER JOIN	'._DB_PREFIX_.'news_langs as b
+												 INNER JOIN '._DB_PREFIX_.'news_cats_lang AS c
+												 	on a.id_news = b.id_news
+													and b.id_lang = c.id_lang
+											WHERE viewed !=0
+												and b.id_lang = '.$this->context->language->id.'
+											group by a.id_news  order by (SELECT count(*) FROM '._DB_PREFIX_.'news_comments WHERE id_news = a.id_news) desc
+											');
+	}
+	
 
     /*
      *
@@ -4069,6 +4106,80 @@ class News extends Module {
     /*
      *
      */
+	public function listComments($id_news,$page)
+	{
+		$limit = 10;
+		$sql = '
+				SELECT * FROM '._DB_PREFIX_.'news_comments 
+				WHERE id_lang = '.$this->context->language->id.'
+					and id_shop = '.$this->context->shop->id.'
+					and id_news = '.$id_news.'
+				order by date desc
+				limit '.($limit * $page).','.$limit;
+						
+		$comments = Db::getInstance()->executes($sql);
+		foreach($comments as $k => $comment)
+		{
+			$comments[$k]['date'] = ($comment['date'] != 0 ? ( $this->_months[date('n', $comment['date'])] . ' ' . date('j', $comment['date']) . ', ' . date('Y', $comment['date']) ) : '');
+			$user = Db::getInstance()->getRow('SELECT firstname, lastname FROM '._DB_PREFIX.'customer WHERE id_customer ="'.$comment['id_customer'].'"');
+			
+			$comments[$k]['id_customer'] = $user['firstname'].' '.$user['lastname'];
+		}
+		
+		$sql = '
+				SELECT count(*) FROM '._DB_PREFIX_.'news_comments 
+				WHERE id_lang = '.$this->context->language->id.'
+					and id_shop = '.$this->context->shop->id.'
+					and id_news = '.$id_news;
+				
+		$total = ceil(Db::getInstance()->getValue($sql)/$limit);
+		$paginador = array();
+		for($i=0; $i<$total; $i++)
+		{
+			$paginador[$i]['page'] = ($i+1);
+			$paginador[$i]['value'] = ($i);
+			$paginador[$i]['current'] = ($page == $i) ? true : false;
+		}
+		
+		$this->smarty->assign(array('cpage' => $page));
+		
+		if(sizeof($paginador)>1)
+			$this->smarty->assign(array('paginador' => $paginador));
+		
+		$this->smarty->assign(array('comments' => $comments));
+		return $this->display(__FILE__, '/pagination.tpl');
+	}
+
+	public function ajax()
+	{
+		switch(Tools::getValue('option'))
+		{
+			case 'add':
+				if(Tools::getValue('comment'))
+				{
+					$default = Db::getInstance()->insert('news_comments', array(
+						'id_lang' =>	$this->context->language->id,
+						'id_shop' =>	$this->context->shop->id,
+						'id_customer' =>$this->context->customer->id,
+						'id_news' =>Tools::getValue('id_news'),
+						'date' => time(),
+						'comment' => Tools::getValue('comment'),
+					));
+					
+					$response['haserror'] = false;
+					$response['response'] = $this->listComments(Tools::getValue('id_news'),0);
+					return json_encode($response);
+					
+				}
+				
+			break;
+			case 'page':
+				$response['haserror'] = false;
+				$response['response'] = $this->listComments(Tools::getValue('id_news'),Tools::getValue('page'));
+				return json_encode($response);
+			break;
+		}
+	}
 }
 
 ?>

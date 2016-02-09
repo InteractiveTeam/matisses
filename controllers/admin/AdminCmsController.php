@@ -38,6 +38,8 @@ class AdminCmsControllerCore extends AdminController
 		$this->table = 'cms';
 		$this->list_id = 'cms';
 		$this->className = 'CMS';
+		$this->imageType 		= 'jpg';
+		$this->upload			= _PS_IMG_DIR_.'cms/';
 		$this->lang = true;
 		$this->addRowAction('edit');
 		$this->addRowAction('delete');
@@ -107,6 +109,12 @@ class AdminCmsControllerCore extends AdminController
 		$categories = CMSCategory::getCategories($this->context->language->id, false);
 		$html_categories = CMSCategory::recurseCMSCategory($categories, $categories[0][1], 1, $this->getFieldValue($this->object, 'id_cms_category'), 1);
 
+		$obj = $this->loadObject(true);
+		$id_cms = $obj->id ? $obj->id : Tools::getvalue('id_cms'); 
+		$image = $this->upload.$id_cms.'.jpg';
+		$image_url = ImageManager::thumbnail($image, $this->table.'_'.(int)$id_cms.'.'.$this->imageType, 800,$this->imageType, true, true);
+		$image_size = file_exists($image) ? filesize($image) / 1000 : false;
+
 		$this->fields_form = array(
 			'tinymce' => true,
 			'legend' => array(
@@ -115,6 +123,21 @@ class AdminCmsControllerCore extends AdminController
 			),
 			'input' => array(
 				// custom template
+				
+				array(
+					'type' => 'select',
+					'label' => $this->l('Plantilla'),
+					'name' => 'template',
+					'options' => array(
+						'query' => array(
+											array('id_template' => 'standard', 'template' => $this->l('Estandar prestashop')),
+											array('id_template' => 'modified', 'template' => $this->l('Generica matisses')),
+										),
+						'id' => 'id_template',
+						'name' => 'template'
+					),
+				),
+				
 				array(
 					'type' => 'select_category',
 					'label' => $this->l('CMS Category'),
@@ -133,6 +156,14 @@ class AdminCmsControllerCore extends AdminController
 					'class' => 'copyMeta2friendlyURL',
 					'hint' => $this->l('Invalid characters:').' &lt;&gt;;=#{}'
 				),
+				array(
+					'type' => 'text',
+					'label' => $this->l('Nota'),
+					'name' => 'nota',
+					'id' => 'nota', // for copyMeta2friendlyURL compatibility
+					'lang' => true,
+					'hint' => $this->l('Invalid characters:').' &lt;&gt;;=#{}'
+				),				
 				array(
 					'type' => 'text',
 					'label' => $this->l('Meta description'),
@@ -158,8 +189,21 @@ class AdminCmsControllerCore extends AdminController
 					'lang' => true,
 					'hint' => $this->l('Only letters and the hyphen (-) character are allowed.')
 				),
+				
+				array(
+					'type' => 'file',
+					'label' => $this->l('Imagen superior'),
+					'class' => 'imagen',
+					'name' => 'image',
+					'required' => false,
+					'hint' => $this->l('Selecione una imagen formato jpg:'),
+					'display_image' => true,
+					'image' => $image_url ? $image_url : false,
+				),
+				
 				array(
 					'type' => 'textarea',
+					'class' => 'content', 
 					'label' => $this->l('Page content'),
 					'name' => 'content',
 					'autoload_rte' => true,
@@ -168,6 +212,32 @@ class AdminCmsControllerCore extends AdminController
 					'cols' => 40,
 					'hint' => $this->l('Invalid characters:').' <>;=#{}'
 				),
+				
+				array(
+					'type' => 'textarea',
+					'label' => $this->l('Contenido izquierdo'),
+					'class' => 'b1',
+					'name' => 'b1',
+					'autoload_rte' => true,
+					'lang' => true,
+					'rows' => 5,
+					'cols' => 40,
+					'hint' => $this->l('Invalid characters:').' <>;=#{}'
+				),
+				
+				array(
+					'type' => 'textarea',
+					'label' => $this->l('Contenido derecho'),
+					'class' => 'b1',
+					'name' => 'b2',
+					'autoload_rte' => true,
+					'lang' => true,
+					'rows' => 5,
+					'cols' => 40,
+					'hint' => $this->l('Invalid characters:').' <>;=#{}'
+				),
+				
+				
 				array(
 					'type' => 'switch',
 					'label' => $this->l('Indexation by search engines'),
@@ -221,7 +291,12 @@ class AdminCmsControllerCore extends AdminController
 				)
 			)
 		);
-
+		
+		$this->fields_value['image'] = array(
+			'image' => $image ? $image : false,
+			'size' => $image ? filesize($this->upload.$obj->id.'.jpg') / 1024 : false
+		);
+		
 		if (Shop::isFeatureActive())
 		{
 			$this->fields_form['input'][] = array(
@@ -417,4 +492,40 @@ class AdminCmsControllerCore extends AdminController
 
 		return $preview_url;
 	}
+	
+	protected function postImage($id)
+	{
+		if(!file_exists($this->upload))
+			mkdir($this->upload,0755);
+		
+		if($_FILES['image']['tmp_name'])
+		{	
+			if(file_exists($this->upload.$id.'.jpg'))
+				unlink($this->upload.$id.'.jpg');
+				
+			move_uploaded_file($_FILES['image']['tmp_name'],$this->upload.$id.'.jpg');	
+			
+	
+			$ret = parent::postImage($id);
+			if (($id_cms = (int)Tools::getValue('id_cms')) &&
+				isset($_FILES) && count($_FILES) && $_FILES['image']['name'] != null &&
+			file_exists($this->upload.$id_cms.'.jpg'))
+			{
+	
+				
+				$images_types = ImageType::getImagesTypes('categories');
+				foreach ($images_types as $k => $image_type)
+				{
+					ImageManager::resize(
+						$this->upload.$id_cms.'.jpg',
+						$this->upload.$id_cms.'-'.stripslashes($image_type['name']).'.jpg',
+						(int)$image_type['width'], (int)$image_type['height']
+					);
+				}
+			}
+		}
+		return $ret;
+	}	
+	
+	
 }

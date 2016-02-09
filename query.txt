@@ -1,0 +1,23 @@
+ALTER TABLE  `ps_cms_lang` ADD  `b1` LONGTEXT NOT NULL AFTER  `content` ,ADD  `b2` LONGTEXT NOT NULL AFTER  `b1`;
+ALTER TABLE  `ps_cms` ADD  `template` VARCHAR( 30 ) NOT NULL;
+ALTER TABLE  `ps_cms_lang` ADD  `nota` LONGTEXT NOT NULL AFTER  `b2`;
+ALTER TABLE  `ps_news` ADD  `viewed` INT NOT NULL DEFAULT  '0';
+
+CREATE TABLE IF NOT EXISTS `ps_news_comments` (
+  `id_comment` int(11) NOT NULL AUTO_INCREMENT,
+  `id_lang` int(11) NOT NULL,
+  `id_shop` int(11) NOT NULL,
+  `id_customer` int(11) NOT NULL,
+  `date` bigint(20) NOT NULL,
+  `comment` longtext NOT NULL,
+  PRIMARY KEY (`id_comment`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+truncate ps_category_shop;
+insert into ps_category_shop
+select 
+	id_category,
+	id_shop_default,
+	position
+from ps_category;
+UPDATE  `matissesmaster`.`ps_category` SET  `nleft` =  '3' WHERE  `ps_category`.`id_category` =3;	

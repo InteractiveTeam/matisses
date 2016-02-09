@@ -74,7 +74,23 @@ param_product_url = '';
 					</ul>
 				</div>
 				{/if}
-
+                
+                <h2 class="layered_subtitle"> {l s='Categoria'}</h2>
+					<div id="enabled_filters" class="enabled-filters">
+                        <ul>
+                            <li>
+                                <a href="#" data-rel="layered_id_feature_146" title="Cancelar"></a>
+                                {assign var="categoria" value=Category::getCategorybyId(Tools::getValue('id_category'))}
+                                {if $categoria}
+                                	{$categoria}
+                                {else}
+                                	{$category->name}
+                                {/if}
+                            </li>
+                        </ul>
+                    </div>
+                
+                
 
                {$filter2 = Hook::exec('actionSortFilters', ['filters' => $filters], null, true)}
                 {assign var='filters' value=$filter2.matisses}
@@ -153,7 +169,7 @@ param_product_url = '';
 
        {/if}
                         <span class="layered_close"><a href="#" data-rel="ul_layered_{$filter.type}_{$filter.id_key}">v</a></span>
-						<div class="scroll-left scroll-pane">
+						<div class="{if !isset($filter.slider)} scroll-left scroll-pane {/if}">
 						<ul id="ul_layered_{$filter.type}_{$filter.id_key}" class="{Tools::link_rewrite($filter.name)}">
 						{if !isset($filter.slider)}
 							{if $filter.filter_type == 0}

@@ -2896,7 +2896,6 @@ class BlockLayered extends Module
 			$translate = array();
 			$translate['price'] = $this->l('price');
 			$translate['weight'] = $this->l('weight');
-
 			$smarty->assign($filter_block);
 			$smarty->assign(array(
 				'hide_0_values' => Configuration::get('PS_LAYERED_HIDE_0_VALUES'),

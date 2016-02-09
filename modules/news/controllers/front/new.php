@@ -20,8 +20,10 @@ class newsnewModuleFrontController extends ModuleFrontController
 		$id_news = (Tools::getValue('id_news') ? intval(Tools::getValue('id_news')) : 0);
 		$new	 = str_replace('-',' ',Tools::getValue('rewrite'));
 		
+		Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'news SET viewed = (viewed + 1) WHERE id_news = "'.$id_news.'"');
+		
 		$breadcrum[] = '<a href="/blog">Blog</a>';
-		$breadcrum[] = '<span class="navigation-pipe">/</span>';
+		$breadcrum[] = '<span class="navigation-pipe">></span>';
 		$breadcrum[] = $new;
 		
 		$breadcrum = implode('',$breadcrum);
@@ -31,6 +33,7 @@ class newsnewModuleFrontController extends ModuleFrontController
 		
 		$this->context->smarty->assign(array('meta_title' => 'Blog'));
 		$this->context->smarty->assign('path',$breadcrum);
+		$this->context->smarty->assign('id_new',Tools::getValue('id_news'));
 		$this->setTemplate('index.tpl');
 
 

@@ -144,10 +144,17 @@ class AdminGarantiasController extends ModuleAdminController
 				),
 				
 				array(
-					'type' => 'textarea',
+					'type' => 'select',
 					'label' => $this->l('Terminos y condiciones'),
 					'name' => 'terminos',
 					'autoload_rte' => true,
+					'options' => array(
+						'query' => CMS::getCMSPages($this->context->language->id),
+						'id' => 'id_cms',
+						'name' => 'meta_title'
+					),
+					'hint' => $this->l('Seleccione la página que contiene los terminos y condiciones de las garantias'),
+					'desc' => $this->l('Para modificar los terminos y condiciones debe dirigirse a la pestaña Preferencias > CMS y modificar la pagina seleccionada en este combo'),
 					'lang' => false,
 				),					
 				

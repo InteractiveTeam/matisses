@@ -32,14 +32,34 @@
 var wishlistProductsIds = [];
 $(document).ready(function(){
 	
-	$('.choseWishlist').on('click',function(){
-		var div = $(this).attr('data-div');
-		$.fancybox($('#'+div).html(),{
-		'afterLoad':function(){
-				 $('.fancybox-inner').css({'overflow': 'visible !important'});
-			}	
-		});
-		
+	$('#AddEmail').live('click',function(e){
+		e.preventDefault();
+		if($('input#email').val())
+		{
+			var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+			if(!filter.test($('input#email').val()))
+			{
+				$.fancybox('Ingresa un email válido asdas');
+			}else{
+					var html = '<div class="row email'+$('.wl_send input[type=text]').size()+'">';
+							html+= '<div class="col-md-8" >';
+							html+= '<div class="form-group">';
+                        	html+= '<input type="text" value="'+$('input#email').val()+'" readonly name="email'+$('.wl_send input[type=text]').size()+'" id="email'+$('.wl_send input[type=text]').size()+'" class="form-control"/>';
+                       	 	html+= '</div>';
+                    		html+= '</div>';
+                    		html+= '<div class="col-md-4">';
+                    		html+= '<button class="btn btn-default btn-red" type="button" onclick="$(\'.email'+$('.wl_send input[type=text]').size()+'\').remove()">';
+                        	html+= 'Eliminar';
+                     		html+= '</button>';
+                    	html+= '</div></div>'; 
+					
+					$('input#email').val('');
+					$(html).appendTo('.wl_send .emails')
+			     }
+
+		}else{
+			 $.fancybox('Ingresa un email válido')
+		}
 	})
 	
 	wishlistRefreshStatus();
@@ -52,15 +72,16 @@ $(document).ready(function(){
 function WishlistCart(id, action, id_product, id_product_attribute, quantity, id_wishlist)
 {
 	if(id_wishlist)
+	{
 		WishlistChangeDefault(0, id_wishlist);
-		
+	}
 	$.ajax({
 		type: 'GET',
 		url: baseDir + 'modules/blockwishlist/cart.php?rand=' + new Date().getTime(),
 		headers: { "cache-control": "no-cache" },
 		async: true,
 		cache: false,
-		data: 'action=' + action + '&id_product=' + id_product + '&quantity=' + quantity + '&token=' + static_token + '&id_product_attribute=' + id_product_attribute,
+		data: 'action=' + action + '&id_product=' + id_product + '&quantity=' + quantity + '&token=' + static_token + '&id_product_attribute=' + id_product_attribute+'&id_wishlist='+id_wishlist,
 		success: function(data)
 		{
 			if (action == 'add')
@@ -311,27 +332,24 @@ function WishlistVisibility(bought_class, id_button)
 */
 function WishlistSend(id, id_wishlist, id_email)
 {
+	var emails = new Array;
+	$('.emails input[type=text]').each(function(index, element) {
+        emails.push($(element).val())
+    });
+	
 	$.post(
 		baseDir + 'modules/blockwishlist/sendwishlist.php',
 		{
 			token: static_token,
 			id_wishlist: id_wishlist,
-			email1: $('#' + id_email + '1').val(),
-			email2: $('#' + id_email + '2').val(),
-			email3: $('#' + id_email + '3').val(),
-			email4: $('#' + id_email + '4').val(),
-			email5: $('#' + id_email + '5').val(),
-			email6: $('#' + id_email + '6').val(),
-			email7: $('#' + id_email + '7').val(),
-			email8: $('#' + id_email + '8').val(),
-			email9: $('#' + id_email + '9').val(),
-			email10: $('#' + id_email + '10').val()
+			emails: emails,
 		},
 		function(data)
 		{
 			if (data)
 			{
 	            if (!!$.prototype.fancybox)
+				{
 	                $.fancybox.open([
 	                    {
 	                        type: 'inline',
@@ -342,8 +360,10 @@ function WishlistSend(id, id_wishlist, id_email)
 	                ], {
 	                    padding: 0
 	                });
-	            else
-	                alert(data);
+					$('.emails').html('');	
+				}else{
+	                alert(data)
+				};
 			}
 			else
 				WishlistVisibility(id, 'hideSendWishlist');

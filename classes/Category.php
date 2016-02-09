@@ -1416,6 +1416,15 @@ class CategoryCore extends ObjectModel
 
 		return $categories;
 	}
+	
+	public function getCategorybyId($id_category)
+	{
+		return Db::getInstance()->getValue('SELECT name FROM '._DB_PREFIX_.'category_lang 
+											WHERE id_category = "'.$id_category.'" 
+												and id_shop = "'.Context::getContext()->shop->id.'"
+												and id_lang = "'.Context::getContext()->language->id.'"
+												');
+	}
 
 	/**
 	 * @param $id_shop

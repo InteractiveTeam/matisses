@@ -24,26 +24,39 @@
 *}
 
 {if isset($wishlists) && count($wishlists) > 1}
-    <a class="addToWishlist scale_hover_in lnk_view choseWishlist" data-div="wishlist_{$product.id_product}" tabindex="0" data-toggle="popover"  data-trigger="focus" title="{l s='Wishlist' mod='blockwishlist'}" data-placement="bottom">
+   
+    <a class="addToWishlist scale_hover_in lnk_view choseWishlist" data-div="wishlist_{$product.id_product}" onclick="$('.wishlist_{$product.id_product}_fancy').click()" tabindex="0" data-toggle="popover"  data-trigger="focus" title="{l s='Wishlist' mod='blockwishlist'}" data-placement="bottom">
         <i class="fa fa-heart-o"></i><span>{l s='To wishlist'}</span>
-    </a>     
-        <div id="wishlist_{$product.id_product}" class="popover-content" style="display: none">
+    </a> 
+    
+        	<script>
+        	$(".wishlist_{$product.id_product}_fancy").fancybox({
+					'beforeLoad': function(){
+						setTimeout(function(){
+						$('.fancybox-inner .popover-content').removeClass('wishlist_{$product.id_product}_fancy');
+						},1000);
+					},
+				});
+        </script>  
+        <div  class="popover-content wishlist_{$product.id_product}_fancy" style="display: none">      
+        <div id="wishlist_{$product.id_product}" class="popover-content">
         <h2>{l s='Seleccione la lista de deseos' mod='blockwishlist'}</h2>
-          <div class="col-xs-4">
-                <select id="wishlist_{$product.id_product}" class="form-control">
-                    <option value="">-</option>
-                    {foreach name=wl from=$wishlists item=wishlist}
-                        <option value="{$wishlist.id_wishlist}">{$wishlist.name}&nbsp;</option>
-                    {/foreach}
-                </select>
+          <div class="col-md-12">
+                {foreach name=wl from=$wishlists item=wishlist}
+                	{if $smarty.foreach.wl.first}
+                    <input type="radio" name="wishlist_{$product.id_product}" value="{$wishlist.id_wishlist}" checked="checked">{$wishlist.name}<br />
+                	{else}
+                     <input type="radio" name="wishlist_{$product.id_product}" value="{$wishlist.id_wishlist}">{$wishlist.name}<br />
+                    {/if}
+                {/foreach}
             </div>
          <div class="row">
-            <a href="#" title="Adicionar" value="{$wishlist.id_wishlist}" onclick="WishlistCart('wishlist_block_list', 'add', '{$product.id_product|intval}', false, 1, $('#wishlist_{$product.id_product}').val());">
+            <a href="#" title="Adicionar" class="btn btn-default btn-red right" value="{$wishlist.id_wishlist}" onclick="WishlistCart('wishlist_block_list', 'add', '{$product.id_product|intval}', false, 1,$('#wishlist_167 span[class=checked] input').val());">
                 {l s='Adicionar'}
              </a>
          </div>           
         </div>
-    
+    	</div>
 {else}
 	<a class="addToWishlist wishlistProd_{$product.id_product|intval}" href="#" {*rel="{$product.id_product|intval}"*} onclick="WishlistCart('wishlist_block_list', 'add', '{$product.id_product|intval}', false, 1); return false;">
 		<i class="fa fa-heart-o"></i><span>{l s='To wishlist'}</span>

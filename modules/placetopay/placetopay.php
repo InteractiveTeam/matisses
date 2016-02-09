@@ -290,7 +290,7 @@ class PlacetoPay extends PaymentModule
 		$p2p->setOverrideReturn($returnURL);
 		$p2p->setLanguage($language->iso_code);
 		$p2p->setCurrency($currency->iso_code);
-		$p2p->setPayerInfo('CC', $customer->customer_cedula,
+		$p2p->setPayerInfo('CC', $customer->charter,
 			utf8_decode($customer->firstname . ' ' . $customer->lastname),
 			$customer->email,
 			utf8_decode($invoiceAddress->address1 . "\n" . $invoiceAddress->address2),
@@ -723,6 +723,10 @@ class PlacetoPay extends PaymentModule
 		// que tienen una antiguedad superior a n minutos
 		$result = Db::getInstance()->ExecuteS('SELECT * FROM `'._DB_PREFIX_.'payment_placetopay`
 			WHERE `date` < \'' . date('Y-m-d H:i:s', time() - $minutes * 60) . '\' AND `status` = ' . PlacetoPayConnector::P2P_PENDING);
+		
+		if(empty($result))
+			echo "NO encontre pedidos aun<br>";	
+			
 		if (!empty($result)) {
 			foreach($result as $row) {
 				$currency = new Currency((int)$row['id_currency']);
@@ -733,13 +737,26 @@ class PlacetoPay extends PaymentModule
 				if (($rc == PlacetoPayConnector::P2P_ERROR) && ($p2p->getErrorCode() == 'HTTP')) {
 					// no se realiza ninguna actualizacion, debido a que hay un error
 					// en el consumo del webservice
+					$params['status'] 			= 'fail'; 
+					$params['id_order']  		=  $row['id_order'];
+					$params['receipt']   		=  $row['amount'];
+					$params['franchise_name']	=  $row['franchise_name'];
+					Hook::exec('actionPaymentProccess',$params);
 					error_log($p2p->getErrorMessage(), 0);
 				} else {
 					$orderID = Order::getOrderByCartId((int)$row['id_order']);
 					if ($orderID) {
 						$order = new Order($orderID);
 						if (Validate::isLoadedObject($order))
+						{
+							$params['status'] 			= 'ok'; 
+							$params['id_order']  		=  $row['id_order'];
+							$params['receipt']   		=  $row['amount'];
+							$params['franchise_name']	=  $row['franchise_name'];						
+							Hook::exec('actionPaymentProccess',$params);
 							$this->settleTransaction($rc, $order, $p2p);
+							
+						}
 					}
 				}
 			}

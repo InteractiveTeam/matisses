@@ -69,4 +69,5 @@ if ($context->customer->isLogged())
 				$to, $toName, $customer->email, $customer->firstname.' '.$customer->lastname, null, null, dirname(__FILE__).'/mails/'
 			);
 	}
+	echo $module->l('Su lista de deseos se ha enviado');
 }

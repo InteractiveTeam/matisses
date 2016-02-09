@@ -27,9 +27,7 @@
 <li class="lnk_wishlist grid_12 alpha omega">
 	<div class="header-account">
 		<h2>
-			<a 	href="{$link->getModuleLink('blockwishlist', 'mywishlist', array(), true)|escape:'html':'UTF-8'}" title="{l s='My wishlists' mod='blockwishlist'}">
-				<span>{l s='Mi lista de deseos' mod='blockwishlist'}</span>
-			</a>
+			<span>{l s='Mi lista de deseos' mod='blockwishlist'}</span>
 		</h2>
 	</div>
 	<div class="content-account grid_12">
@@ -40,7 +38,7 @@
 			<h3>Administrar</h3>
 			<p>Ver, editar o añadir una lista existente.</p>
 			<div class="footer-account">
-				<a class="btn btn-default btn-red" href="#" title="Inicio"> {l s='ingresar' mod='matisses'}</a>
+				<a class="btn btn-default btn-red" href="{$link->getModuleLink('blockwishlist', 'mywishlist', array(), true)|escape:'html':'UTF-8'}" title="Inicio"> {l s='ingresar' mod='matisses'}</a>
 			</div>
 		</div>
 	</div>

@@ -23,7 +23,7 @@
 
 
 <div class="newsMenuCats">
-
+		<input type="hidden" name="id_new" id="id_new" value="{$id_new}" />
         <form action="{$link->getModuleLink('news', 'news', [] ,false)}" method="post" class="fromNewsSearch" name="fromNewsSearch">
             <input type="text" name="search_news" value="{$search_news}" class="newsSearch"></input>
             <input type="submit" name="searchnewshidden" style="visibility: hidden"></input>
@@ -408,8 +408,30 @@
         {/if}
 
     </div>
+{if $cookie->id_customer}
+<div class="row">
+	<h2>{l s='Comentarios'}</h2>
+	<div class="error" id="error-comment" style="display:none">
+    	{l s='Ingresa un comentario' mod='news'}
+    </div>
+    <form id="form1" name="form1" method="post" action="">
 
-
-
+        <div class="form-group">
+			<label for="asunto">{l s='Comentario:' mod='news'}</label>
+			<textarea class="form-control" max="200" maxlength="200" id="comment"></textarea> 
+		</div>
+        <div class="grid_4">
+        	<button type="button" class="btn btn-default button btn-red right" id="addComment">{l s='Guardar'}</button>
+        </div>
+    </div>
+	</form>
 
 </div>
+
+{if $comments}
+<div class="comments">
+	{$comments}
+</div>
+{/if}
+
+{/if}

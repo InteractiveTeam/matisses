@@ -545,7 +545,7 @@ class FrontControllerCore extends Controller
 			if (Configuration::get('PS_JS_THEME_CACHE') && !$this->useMobileTheme())
 				$this->js_files = Media::cccJs($this->js_files);
 		}
-
+		
 		$this->context->smarty->assign(array(
 			'css_files' => $this->css_files,
 			'js_files' => ($this->getLayout() && (bool)Configuration::get('PS_JS_DEFER')) ? array() : $this->js_files,

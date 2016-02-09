@@ -28,6 +28,24 @@ class AdminExperiencesController extends ModuleAdminController
  			'dir' => 'experiences'
  		);
 
+		$this->fields_options = array(
+			'general' => array(
+				'title' =>	$this->l('Experiencia principal'),
+				'fields' =>	array(
+					'PS_EXPERIENCIA_PRINCIPAL' => array(
+						'title' => $this->l('Experiencia principal'),
+						'desc' => $this->l('Selecciona la experiencia principal'),
+						'validation' => 'isInt',
+						'cast' => 'intval',
+						'type' => 'select',
+						'list' => Db::getInstance()->ExecuteS('select id_experience, name from '._DB_PREFIX_.'experiences_lang WHERE id_experience != "'.Tools::getvalue('id_experience').'" '),
+						'identifier' => 'id_experience'
+					)
+				),
+				'submit' => array('title' => $this->l('Save'))
+			)
+		);
+
 		$this->fields_list = array(
 			'id_experience' => array(
 				'title' => $this->l('ID'),
@@ -69,6 +87,7 @@ class AdminExperiencesController extends ModuleAdminController
     {
         parent::setMedia();
         $this->addJqueryUI('ui.datepicker');
+		$this->addJqueryUI('ui.draggable');
 		$this->addJqueryPlugin('tagify');
 	    $this->addJS(array(
             _MODULE_DIR_.'/matisses/js/experiences/experiences.js',
@@ -355,7 +374,7 @@ class AdminExperiencesController extends ModuleAdminController
 						)
 					)
 				),
-				
+				/*
 				array(
 					'type' => 'select',
 					'label' => $this->l('Experiencia principal'),
@@ -366,9 +385,9 @@ class AdminExperiencesController extends ModuleAdminController
 						'query' => Db::getInstance()->ExecuteS('select 	id_experience, name from '._DB_PREFIX_.'experiences_lang WHERE id_experience != "'.Tools::getvalue('id_experience').'" '),
 						'id' => '	id_experience',
 						'name' => 'name',
-					),
-                           
+					),      
 				),
+				*/	
 			),
 			'submit' => array(
 				'title' => $this->l('Save'),
@@ -404,10 +423,17 @@ class AdminExperiencesController extends ModuleAdminController
 	
 	public function ajaxProcessexperienceAssociations()
 	{
+		if($_REQUEST['data'])
+		{
+			$pointer = json_decode($_REQUEST['data'],true);
+			$pointer = $pointer[$_REQUEST['pointer']];
+		}
+		
 		$this->context->smarty->assign(array(
-											'left' => $_REQUEST['left'],
-											'top' => $_REQUEST['top'],	
-											'poid' => $_REQUEST['poid'],	
+												'left' 		=> $_REQUEST['left'],
+												'top' 		=> $_REQUEST['top'],	
+												'poid' 		=> $_REQUEST['poid'],	
+												'pointer' 	=> $pointer,	
 											 ));											 
 		$this->context->smarty->display(dirname(__FILE__).'/../../views/templates/admin/experiences_products.tpl');
 	}
@@ -417,19 +443,19 @@ class AdminExperiencesController extends ModuleAdminController
 	{
 
 		if(!$_REQUEST['data']['product'])
-			$this->errors[] = Module::displayError('Add a valid product');
+			$this->errors[] = Module::displayError('Ingresa un producto válido');
 			
 		if(!$_REQUEST['data']['left'])
-			$this->errors[] = Module::displayError('Add a valid product');	
+			$this->errors[] = Module::displayError('Ingresa un producto válido');	
 			
 		if(!$_REQUEST['data']['top'] || $_REQUEST['data']['top']<0 || $_REQUEST['data']['top']>100)
-			$this->errors[] = Module::displayError('Add a valid top coordinate');		
+			$this->errors[] = Module::displayError('Ingresa la ubicación superior');		
 		
 		if(!$_REQUEST['data']['left'] || $_REQUEST['data']['left']<0 || $_REQUEST['data']['left']>100)
-			$this->errors[] = Module::displayError('Add a valid left coordinate');	
+			$this->errors[] = Module::displayError('Ingresa la ubicación izquierda');	
 		
 		if(!$_REQUEST['data']['market'])
-			$this->errors[] = Module::displayError('Choose a market');
+			$this->errors[] = Module::displayError('Selecciona una etiqueta');
 			
 		if($_REQUEST['data']['product'])
 		{
@@ -457,7 +483,7 @@ class AdminExperiencesController extends ModuleAdminController
 				if($_REQUEST['data']['pointers'])
 					$pointers = json_decode($_REQUEST['data']['pointers'],true);	
 		
-				$key = sizeof($pointers);
+				$key = 'marker'.sizeof($pointers);
 
 				$pointers[$key]['market'] 		= $response[$poid]['market'];
 				$pointers[$key]['orientation'] 	= $response[$poid]['orientation'];
@@ -467,8 +493,9 @@ class AdminExperiencesController extends ModuleAdminController
 				$pointers[$key]['id_product_attribute'] 	= $product['id_product_attribute'];
 				$pointers[$key]['id_product_attribute'] 	= $product['id_product_attribute'];
 				$pointers[$key]['status'] 		= $_REQUEST['data']['status'];
+				$pointers[$key]['pointer'] 		= $key;
 
-				$response['pointer'] = '<div class="experience-pointer '.$response[$poid]['market'].'-'.$response[$poid]['orientation'].'" style="left:'.$response[$poid]['left'].'%; top:'.$response[$poid]['top'].'%;"></div>';	 
+				$response['pointer'] = '<div title="Modificar | Eliminar" data-pointer="'.$pointers[$key]['pointer'].'" class="experience-pointer '.$response[$poid]['market'].'-'.$response[$poid]['orientation'].'" style="left:'.trim($response[$poid]['left']).'%; top:'.trim($response[$poid]['top']).'%;"></div>';	 
 				$response['configurations'] = json_encode($pointers);	 
 				$response['update'] = $response;
 			}else{
