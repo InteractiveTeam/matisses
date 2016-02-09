@@ -53,7 +53,7 @@
 			</fieldset>
 		</form>
 		{if $wishlists}
-		<div id="block-history" class="block-history">
+		<div id="block-history" class="block-history ">
 			<table>
 				<thead>
 					<tr>
