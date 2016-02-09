@@ -85,7 +85,7 @@
 		</div>
 	</div> <!-- end row -->
 	<p class="address_add submit">
-		<a href="{$link->getPageLink('address', true, NULL, "back={$back_order_page}?step=1{if $back}&mod={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Add'}" class="button button-small btn btn-red">
+		<a href="{$link->getPageLink('address', true, NULL, "back={$back_order_page}?step=1{if $back}&mod={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Add'}" class="btn btn-default btn btn-red">
 			{l s='Add a new address'}
 		</a>
 	</p>
@@ -100,12 +100,12 @@
 			<p class="cart_navigation cf">
 				<input type="hidden" class="hidden" name="step" value="2" />
 				<input type="hidden" name="back" value="{$back}" />
-				<a href="{$link->getPageLink($back_order_page, true, NULL, "step=0{if $back}&back={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-red">
+				<a href="{$link->getPageLink($back_order_page, true, NULL, "step=0{if $back}&back={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-default btn-red">
 					<i class="fa fa-angle-left"></i>
 					{l s='Continuar comprando'}
 				</a>
-				<button type="submit" name="processAddress" class="button btn btn-default button-medium">
-					<span>{l s='Proceed to checkout'}<i class="icon-chevron-right right"></i></span>
+				<button type="submit" name="processAddress" class="button btn btn-default standard-checkout button-medium btn-red">
+					<span>{l s='Proceed to checkout'}<i class="fa fa-angle-right"></i></span>
 				</button>
 			</p>
 		</form>
