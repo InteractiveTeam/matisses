@@ -16,11 +16,13 @@
  		<div class="grid_4">
 			<label>{l s='Seleccione el tipo de daño'}</label>
 			<span>{l s='Máximo %s daños' sprintf=[$nrodanos]}</span>
-			<ul id="tipo-dano" class="damage">
+			<div class="scroll-left scroll-pane">
+            <ul id="tipo-dano" class="damage">
 				{foreach from=$danos item=dano}
 				<li id="{$dano.coddano}" data-value="{$dano.dano}">{$dano.dano}</li>
 				{/foreach}
 			</ul>
+            </div>
 			<div class="form-group">
 				<label for="asunto">{l s='Tipo de dano Reportado:'}</label>  <a href="#" onclick="$('#tipo').val('')">{l s='Borrar'}</a>
 				<input type="text" name="tipo" id="tipo" readonly="readonly" class="form-control" value="{$tipo}" />
@@ -38,16 +40,44 @@
 						<label class="" for="resumen">{l s='Resumen (Detalle del daño)'}</label>
 					</div>
 					<div class="grid_12 alpha omega">
-						<textarea class="grid_6 alpha omega form-control" name="resumen" cols="25" id="resumen" >{$resumen}</textarea>
-						<ul class="captions grid_6 alpha omega">
-						{foreach from=$garantia.imgs item=$img key=kimg}
-							<li>
-								<a data-slide-index="{$kimg}" href="">
-									<img src="{$link->getImageLink($garantia.imgs[$kimg],'img/garantias')}" class="img-responsive" />
-								</a>
-							</li>
-						{/foreach}
-						</ul>
+						
+                        <div class="captions grid_6 alpha omega">
+                            <ul id="image-holder" class="slider">
+                                {foreach from=$garantia.imgs item=$img key=kimg}
+                                 <li><img src="{$link->getImageLink($garantia.imgs[$kimg],'img/garantias')}" class="img-responsive" /></li>
+                                {/foreach}   
+                            </ul>
+                            <ul id="bx-pager" class="captions grid_6 alpha omega">
+                            {foreach from=$garantia.imgs item=$img key=kimg}
+                                <li>
+                                    <a data-slide-index="{$kimg}" href="">
+                                        <img src="{$link->getImageLink($garantia.imgs[$kimg],'img/garantias')}" class="img-responsive" />
+                                    </a>
+                                </li>
+                            {/foreach} 
+                            </ul> 
+                        </div>
+                        
+                        
+                        
+                        
+                        
+						
+
+						
+						
+                        {if ($garantia.imgs|count)>0} 
+                            <script>
+                        	$('#step2 .slider').bxSlider({
+								  pagerCustom: '#step2 .captions'
+							});
+                        	</script>
+                        {/if}
+                        
+                        <textarea class="grid_6 alpha omega form-control" name="resumen" cols="25" id="resumen" >{$resumen}</textarea>
+                        
+
+
 					</div>
 					<div class="grid_12 alpha omega">
 						<div class="grid_6 alpha omega">

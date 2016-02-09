@@ -789,6 +789,21 @@ class HomeSlider extends Module
 					'icon' => 'icon-cogs'
 				),
 				'input' => array(
+				
+					array(
+						'type' => 'select',
+						'label' => $this->l('Tipo de slide'),
+						'name' => 'tipe',
+						'options' => array(
+							'query' => array(
+												array('id_type' => 'imagen', 'type' => $this->l('Imagen')),
+												array('id_type' => 'Video', 'type' => $this->l('Video')),
+											),
+							'id' => 'id_type',
+							'name' => 'type'
+						),
+					),
+				
 					array(
 						'type' => 'file_lang',
 						'label' => $this->l('Select a file'),
@@ -796,11 +811,12 @@ class HomeSlider extends Module
 						'lang' => true,
 						'desc' => $this->l(sprintf('Maximum image size: %s.', ini_get('upload_max_filesize')))
 					),
-					
+
 					array(
 						'type' => 'text',
 						'label' => $this->l('video'),
 						'name' => 'videoid',
+						'calss' => 'video',
 						'desc' => $this->l('Ingrese el código del video de youtube')
 					),
 					
