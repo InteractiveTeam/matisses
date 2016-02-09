@@ -2092,3 +2092,26 @@
 }
 
 /*GARANTIA*/
+.damage {
+	border: #E1E1E1 solid 1px;
+	padding: 15px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1rem;
+	color: #ADADAD;
+	line-height: 1.5;
+}
+
+/*COMPRA*/
+.cart_navigation a:nth-child(1){
+	float:right;
+}
+
+.cart_navigation a:nth-child(2){
+	float:left;
+}
+
+.order_delivery .address li span {
+	font-size: 1.2rem;
+	line-height: 1.5rem;
+	margin-left: 10px;
+}
