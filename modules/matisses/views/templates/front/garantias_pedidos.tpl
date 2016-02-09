@@ -7,16 +7,16 @@
 	<span class="navigation_page">{l s='Garantías'}</span>
 {/capture}
 {include file="$tpl_dir./errors.tpl"}
-<div class="block-center" id="block-history">
+<div class="block-center warranty-order" id="block-history">
 <input type="hidden" id="pagegarantias" value="1" />
-<h1 class="page-heading bottom-indent">{l s='MIS COMPRAS'}</h1>
+<h1>{l s='Mis garantías'}</h1>
 <p class="info-title">{l s='Lista de pedidos desde la creación de su cuenta.'}</p>
 {if $slowValidation}
 	<p class="alert alert-warning">{l s='If you have just placed an order, it may take a few minutes for it to be validated. Please refresh this page if your order is missing.'}</p>
 {/if}
 <div class="block-center" id="block-history">
 	{if $orders && count($orders)}
-		<table id="order-list" class="table table-bordered footab">
+		<table id="order-list" class="table table-bordered footab ">
 			<thead>
 				<tr>
 					<th class="first_item" data-sort-ignore="true">{l s='Referencia De Pedido'}</th>
@@ -65,10 +65,8 @@
 							{/if}
 						</td>
 						<td class="history_detail">
-							<a class="btn btn-default button button-small" href="javascript:showOrder(1, {$order.id_order|intval}, '{$link->getPageLink('order-detail', true)|escape:'html':'UTF-8'}');">
-								<span>
-									{l s='Detalles'}<i class="icon-chevron-right right"></i>
-								</span>
+							<a class="btn btn-default btn-red" href="javascript:showOrder(1, {$order.id_order|intval}, '{$link->getPageLink('order-detail', true)|escape:'html':'UTF-8'}');">
+								{l s='Detalles'}
 							</a>
 							{if isset($opc) && $opc}
 								<a class="link-button" href="{$link->getPageLink('order-opc', true, NULL, "submitReorder&id_order={$order.id_order|intval}")|escape:'html':'UTF-8'}" title="{l s='Pedir de nuevo'}">
@@ -78,7 +76,7 @@
 								{if isset($reorderingAllowed) && $reorderingAllowed}
 									<i class="icon-refresh"></i>{l s='Pedir de nuevo'}
 								{/if}
-                                
+
 							</a>
 						</td>
 					</tr>
@@ -91,15 +89,8 @@
 	{/if}
 </div>
 <div class="footer_links cf grid_12 omega alpha">
-	<div class="grid_4 alpha">
 		<a class="btn btn-default button btn-red" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
-			{l s='Volver a su cuenta'}
+			<i class="fa fa-chevron-left"></i>{l s='Volver a mi cuenta'}
 		</a>
-	</div>
-	<div class="grid_4 omega">
-		<a class="btn btn-default button btn-red" href="{$base_dir}">
-			{l s='Inicio'}
-		</a>
-	</div>
 </div>
 </div>

@@ -25,39 +25,36 @@
 {if isset($order)}
 
 {if isset($reorderingAllowed) && $reorderingAllowed}
-<div class="box box-small clearfix">
-	
+<div class="grid_12 alpha omega">
 	<form id="submitReorder" action="{if isset($opc) && $opc}{$link->getPageLink('order-opc', true)}{else}{$link->getPageLink('order', true)}{/if}" method="post" class="submit">
 			<input type="hidden" value="{$order->id}" name="id_order"/>
 			<input type="hidden" value="" name="submitReorder"/>
-
-				<a href="#" onclick="$(this).closest('form').submit(); return false;" class="button btn btn-default button-medium pull-right"><span>{l s='Reorder'}<i class="icon-chevron-right right"></i></span></a>
-			<p class="dark">
-				<strong>{l s='Order Reference %s - placed on' sprintf=$order->getUniqReference()} {dateFormat date=$order->date_add full=0}</strong>
-			</p>
-
+				<a href="#" onclick="$(this).closest('form').submit(); return false;" class="btn btn-default btn-red">
+					{l s='Reorder'}
+				</a>
+				<p class="dark">
+					<strong>{l s='Order Reference %s - placed on' sprintf=$order->getUniqReference()} {dateFormat date=$order->date_add full=0}</strong>
+				</p>
 	</form>
-
-    
 </div>
 {/if}
-<div class="info-order box">
-	{if $carrier->id}<p><strong class="dark">{l s='Carrier'}</strong> {if $carrier->name == "0"}{$shop_name|escape:'html':'UTF-8'}{else}{$carrier->name|escape:'html':'UTF-8'}{/if}</p>{/if}
-	<p><strong class="dark">{l s='Payment method'}</strong> <span class="color-myaccount">{$order->payment|escape:'html':'UTF-8'}</span></p>
-	{if $invoice AND $invoiceAllowed}
-	<p>
-		<i class="icon-file-text"></i>
-		<a target="_blank" href="{$link->getPageLink('pdf-invoice', true)}?id_order={$order->id|intval}{if $is_guest}&amp;secure_key={$order->secure_key|escape:'html':'UTF-8'}{/if}">{l s='Download your invoice as a PDF file.'}</a>
-	</p>
-	{/if}
-	{if $order->recyclable}
-	<p><i class="icon-repeat"></i>&nbsp;{l s='You have given permission to receive your order in recycled packaging.'}</p>
-	{/if}
-	{if $order->gift}
-		<p><i class="icon-gift"></i>&nbsp;{l s='You have requested gift wrapping for this order.'}</p>
-		<p><strong class="dark">{l s='Message'}</strong> {$order->gift_message|nl2br}</p>
-	{/if}
-</div>
+	<div class="info-order grid_12 alpha omega">
+		{if $carrier->id}<p><strong class="dark">{l s='Carrier'}</strong> {if $carrier->name == "0"}{$shop_name|escape:'html':'UTF-8'}{else}{$carrier->name|escape:'html':'UTF-8'}{/if}</p>{/if}
+		<p><strong class="dark">{l s='Payment method'}</strong> <span class="color-myaccount">{$order->payment|escape:'html':'UTF-8'}</span></p>
+		{if $invoice AND $invoiceAllowed}
+		<p>
+			<i class="icon-file-text"></i>
+			<a target="_blank" href="{$link->getPageLink('pdf-invoice', true)}?id_order={$order->id|intval}{if $is_guest}&amp;secure_key={$order->secure_key|escape:'html':'UTF-8'}{/if}">{l s='Download your invoice as a PDF file.'}</a>
+		</p>
+		{/if}
+		{if $order->recyclable}
+		<p><i class="icon-repeat"></i>&nbsp;{l s='You have given permission to receive your order in recycled packaging.'}</p>
+		{/if}
+		{if $order->gift}
+			<p><i class="icon-gift"></i>&nbsp;{l s='You have requested gift wrapping for this order.'}</p>
+			<p><strong class="dark">{l s='Message'}</strong> {$order->gift_message|nl2br}</p>
+		{/if}
+	</div>
 
 {if count($order_history)}
 <h1 class="page-heading">{l s='Follow your order\'s status step-by-step'}</h1>
@@ -86,9 +83,8 @@
 <a href="{$followup|escape:'html':'UTF-8'}">{$followup|escape:'html':'UTF-8'}</a>
 {/if}
 
-<div class="adresses_bloc">
-	<div class="row">
-		<div class="col-xs-12 col-sm-6"{if $order->isVirtual()} style="display:none;"{/if}>
+<div class="adresses_bloc grid_12 alpha omega">
+		<div class="grid_6"{if $order->isVirtual()} style="display:none;"{/if}>
 			<ul class="address alternate_item box">
 				<li><h3 class="page-subheading">{l s='Delivery address'} ({$address_delivery->alias})</h3></li>
 				{foreach from=$dlv_adr_fields name=dlv_loop item=field_item}
@@ -102,7 +98,7 @@
 				{/foreach}
 			</ul>
 		</div>
-		<div class="col-xs-12 col-sm-6">
+		<div class="grid_6">
 			<ul class="address item {if $order->isVirtual()}full_width{/if} box">
 				<li><h3 class="page-subheading">{l s='Invoice address'} ({$address_invoice->alias})</h3></li>
 				{foreach from=$inv_adr_fields name=inv_loop item=field_item}
@@ -116,7 +112,7 @@
 				{/foreach}
 			</ul>
 		</div>
-	</div>
+
 </div>
 {$HOOK_ORDERDETAILDISPLAYED}
 {if !$is_guest}<form action="{$link->getPageLink('order-follow', true)|escape:'html':'UTF-8'}" method="post">{/if}
@@ -191,9 +187,6 @@
 					<span class="price">{displayWtPriceWithCurrency price=$order->total_paid currency=$currency}</span>
 				</td>
 			</tr>
-            
-            
-            
 		</tfoot>
 		<tbody>
 		{foreach from=$products item=product name=products}
@@ -345,11 +338,11 @@
                         {if $garantias}
                         <td class="price">
                             <a href="{$link->getModuleLink('matisses','garantias')}/paso1/producto/{$order->id}-{$productId}-{$productAttributeId}" class="button btn btn-default button-medium pull-right"><span>{l s='Solicitar garantía'}<i class="icon-chevron-right right"></i></span></a>
-                        </td>    
-                        {/if}        
+                        </td>
+                        {/if}
 
-                        
-                        
+
+
 					</tr>
 				{/if}
 			{/if}
@@ -458,7 +451,7 @@
 		{l s='Message successfully sent'}
 	</p>
 	{/if}
-    
+
 	<form action="{$link->getPageLink('order-detail', true)|escape:'html':'UTF-8'}" method="post" class="std" id="sendOrderMessage">
 		<h3 class="page-heading bottom-indent">{l s='Add a message'}</h3>
 		<p>{l s='If you would like to add a comment about your order, please write it in the field below.'}</p>
