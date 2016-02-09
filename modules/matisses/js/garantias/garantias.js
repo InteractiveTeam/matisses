@@ -4,14 +4,71 @@ $(document).ready(function(e) {
 	$('#resumen-garantia .slider').bxSlider({
 					  pagerCustom: '#resumen-garantia .captions'
 				});
+				
+				
+		$("#fileUpload").live('change', function () {
 	
-	$('#step2 .slider').bxSlider({
-					  pagerCustom: '#step2 .captions'
-				});
+		 //Get count of selected files
+		 var countFiles = $(this)[0].files.length;
+	
+		 var imgPath = $(this)[0].value;
+		 var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+		 var image_holder = $("#image-holder");
+		 var image_captions = $("#bx-pager");
+		 var html = '';
+		 var captions = '';
+		 image_holder.empty();
+	
+		 if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+			 if (typeof (FileReader) != "undefined") {
+	
+				 //loop for each file selected for uploaded.
+				 var cont = 0;
+				 for (var i = 0; i < countFiles; i++) {
+	
+					 var reader = new FileReader();
+					 reader.onload = function (e) {
+						 
+						captions='<li>';
+						captions+='<a data-slide-index="'+cont+'" href="">';
+						captions+='<img  src="'+e.target.result+'" class="img-responsive" />';
+						captions+='</a></li>';
+						$(captions).appendTo(image_captions);
+						
+						html='<li>';
+						html+='<img style="width:100%; height: auto" src="'+e.target.result+'" class="img-responsive" />';
+						html+='</li>';
+						$(html).appendTo(image_holder);
+						
+						cont = cont +1;
+						
+					 }
+
+	
+					 image_holder.show();
+					 reader.readAsDataURL($(this)[0].files[i]);
+				 }
+	
+			 } else {
+				// alert("This browser does not support FileReader.");
+			 }
+		 } else {
+			 //alert("Pls select only images");
+		 }
+		 
+		 setTimeout(function(){
+                        	$('#step2 .slider').bxSlider({
+								  pagerCustom: '#step2 .captions'
+							});
+		 },3020)
+		 
+	 });			
+	
+	$(".scroll-pane").mCustomScrollbar();
 	
 	
 	setTimeout(function(){
-			$('#form1').append('<input type="file" name="imagen[]" style="display:none" multiple="" data-placeholder="Cargar imagen">');
+			$('#form1').append('<input type="file" name="imagen[]" style="display:none" id="fileUpload" multiple="" data-placeholder="Cargar imagen">');
 		},2000);
 	
 	$('#tipo-dano li').on('click',function(e){

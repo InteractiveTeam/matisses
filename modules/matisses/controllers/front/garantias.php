@@ -17,8 +17,11 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 	public function setMedia()
 	{
 		parent::setMedia();	
+		$this->addCSS(array(_PS_MODULE_DIR_.'blocklayered/css/jquery.jscrollpane.css'));
+		$this->addCSS(array(_PS_MODULE_DIR_.'blocklayered/css/jquery.mCustomScrollbar.css'));
 		$this->addCSS(array(_PS_MODULE_DIR_.'matisses/css/garantias/garantias.css'));
 		$this->addJS(array(_PS_MODULE_DIR_.'matisses/js/garantias/garantias.js'));
+		$this->addJS(array(_PS_MODULE_DIR_.'blocklayered/js/jquery.mCustomScrollbar.min.js'));
 		$this->addJqueryPlugin(array('bxslider','scrollTo', 'footable','footable-sort'));
 		if(Tools::getValue('step')=='nueva')
 		{
@@ -172,10 +175,6 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 		$garantia = $this->getGarantia();
 		if(Tools::isSubmit('submitStep2'))
 		{
-			
-			
-			
-			
 			$this->context->smarty->assign(array(
 												'tipo' => Tools::getValue('tipo'),
 												'asunto' => Tools::getValue('asunto'),
@@ -340,6 +339,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 		if($garantia)
 		{
 			//$garantia['imgs'] = explode(',',$garantia['imgs']);
+			$garantia['imgs'] = array_filter(array_unique($garantia['imgs']));
 			$this->context->smarty->assign(array(
 												'tipo' => $garantia['tipo'],
 												'asunto' => $garantia['asunto'],
