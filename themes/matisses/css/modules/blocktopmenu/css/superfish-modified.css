@@ -145,6 +145,15 @@
 	.submenu-container li.category-thumbnail {
     display: block;
 	}
+	.submenu-container .view-menu a {
+    color: #D7162F;
+    text-transform: none;
+    font-family: 'gothic';
+    text-align: right;
+	}
+	.submenu-container .view-menu a:hover{
+	color: #000;
+	}
 
 /*07-12-2015*/
 
