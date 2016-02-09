@@ -81,13 +81,6 @@
 					</div>
 					<div class="grid_12 alpha omega">
 						<div class="grid_6 alpha omega">
-							<ul class="slider">
-								{foreach from=$garantia.imgs item=$img key=kimg}
-								<li><img src="{$link->getImageLink($garantia.imgs[$kimg],'img/garantias')}" /></li>
-								{/foreach}
-							</ul>
-						</div>
-						<div class="grid_6 alpha omega">
 							<label for="imagen" class="btn btn-default button btn-red">{l s='Cargar Imagen'}</label>
 							<button type="submit" name="submitStep2" id="submitStep2" class="btn btn-default button btn-red right"> {l s='Continuar' mod='matisses'}</button>
 						</div>
