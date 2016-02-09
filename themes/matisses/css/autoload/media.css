@@ -1289,9 +1289,17 @@
 		padding: 1.275rem 0 0 0;
 	}
 
+    .header-container .menu-left .menu-experiencias li a {
+        font-size: 0.89rem;
+    }
+
     .menu-experiencias {
         padding: 1.27rem 0 1.26rem 0.3rem;
         display: table;
+    }
+
+    .right-down-menu {
+        padding: 1rem 1.875rem 0 0;
     }
 
 	#user {
@@ -1474,11 +1482,12 @@
     }
 
     .sf-contener .submenu-container > li > a {
-        padding: 1.3rem 2.1rem;
+       padding: 1.3rem 2.05rem;
     }
 
     .sf-contener .submenu-container > li > ul {
         padding: 20px;
+        width: 1024px;
     }
 
     .sf-contener .submenu-container li > ul > li > ul {
@@ -1486,7 +1495,6 @@
     }
 
     .submenu-container ul > li > ul li a {
-        font-family: 'Open Sans', sans-serif;
         font-size: 13px;
     }
 
@@ -2063,3 +2071,24 @@
  #tabs .info-opinion {
     width: auto;
 	}
+
+.experiences-list li {
+    margin: 0px !important;
+}
+
+.experiences-list li {
+    margin: 0px 5px 0 0 !important;
+    width: 370px !important;
+    height:131px;
+}
+
+.experiences-list li img, .experiences-list li a {
+	width:100%;
+}
+
+.exp-slide .bx-wrapper {
+    max-width: 92% !important;
+    margin: 0 4% !important;
+}
+
+/*GARANTIA*/

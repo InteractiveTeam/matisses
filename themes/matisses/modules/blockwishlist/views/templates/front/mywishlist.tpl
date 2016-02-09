@@ -59,7 +59,7 @@
 			</fieldset>
 		</form>
 		{if $wishlists}
-			<div id="block-history" class="block-history">
+			<div id="block-history" class="block-history tbl-responsive">
 				<table class="table table-bordered">
 					<thead>
 						<tr>
