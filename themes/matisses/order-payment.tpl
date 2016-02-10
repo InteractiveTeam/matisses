@@ -323,8 +323,8 @@
 					<p class="alert alert-warning">{l s='No payment modules have been installed.'}</p>
 				{/if}
 				{if !$opc}
-					<p class="cart_navigation clearfix">
-						<a href="{$link->getPageLink('order', true, NULL, "step=2")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-default">
+					<p class="cart_navigation cf">
+						<a href="{$link->getPageLink('order', true, NULL, "step=2")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-default btn-red">
 							<i class="icon-chevron-left"></i>
 							{l s='Continue shopping'}
 						</a>

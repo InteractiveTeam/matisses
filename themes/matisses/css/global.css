@@ -102,6 +102,7 @@ box-sizing: border-box;
 	.btn.btn-default.btn-red{color: #fff; border-color: #d7162f;}
 	.btn.btn-default.btn-red:hover{color: #d7162f;}
 	button.btn.btn-default.btn-red {padding: 0.47rem 1.3rem;}
+	.footer-links-address .btn.btn-default.btn-red:first-child {padding: 0.47rem 1.3rem;}
 /*end general styles*/
 
 	/*Header*/
@@ -2188,12 +2189,17 @@ box-sizing: border-box;
 	}
 	.table tbody > tr > td {
 	vertical-align: middle;
+	font-family: 'Open Sans', sans-serif;
 	}
+		.table tbody > tr > td span {
+		white-space: nowrap;
+		}
 	.table tbody > tr > td.cart_delete, .table tbody > tr > td.price_discount_del {
 	padding: 5px;
 	}
 	.table tfoot > tr > td {
 	vertical-align: middle;
+	font-family: 'Open Sans', sans-serif;
 	}
 
 	#cart_summary tbody td.cart_avail .label{
@@ -3698,22 +3704,33 @@ box-sizing: border-box;
 	float: none;
 	}
 
-	.order_delivery .address li span {
-		font-size: 1.2rem;
-		line-height: 1.5rem;
-		margin-left: 10px;
+	.adresses_bloc {
+		background:#fff;
 	}
 
-	.order_delivery .address li:nth-child(odd), .addresses .address li:nth-child(odd) {
+	.order_delivery .address li span {
+		font-size: 1rem;
+		line-height: 1.2rem;
+		margin-left: 10px;
+		font-family: 'Open Sans', sans-serif;
+		display: inline-block;
+		padding: 0.2rem;
+	}
+
+	.address li:nth-child(odd), .address li:nth-child(odd) {
 		background: #F3F3F3;
 	}
 
-	.addresses .address li:first-child {
-		padding: 0;
+	.adresses_bloc .address li:nth-child(odd) span, .adresses_bloc .address li:nth-child(odd) span {
+		background: #F3F3F3;
 	}
 
-	.addresses .address li:last-child {
-		background:transparent
+	.address li:last-child {
+		background:transparent;
+		font-family: 'Open Sans', sans-serif;
+		font-size: 1rem;
+    line-height: 1rem;
+		padding: 0;
 	}
 
 .addresses .address li {
@@ -3723,20 +3740,64 @@ box-sizing: border-box;
 		padding: 0.5rem;
 }
 
-.addresses li.address_update a {
+.address li span {
+	font-size: 1rem;
+	line-height: 1.2rem;
+	margin-left: 10px;
+	font-family: 'Open Sans', sans-serif;
+	display: inline-block;
+}
+
+.addresses .address li {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1rem;
+	line-height: 1.2rem;
+}
+
+.address li.address_update a {
 		background: #D7162F;
 		color:#fff;
 		line-height:1.4rem;
 		float:right;
+		font-family: 'Open Sans condensed';
 }
 
-.addresses .address li.address_update a {
+.address li.address_update a span {
+	margin:0;
+}
+
+.address li.address_update a {
     margin: 0;
 		transition: all 0.4s ease;
 		-webkit-transition: all 0.4s ease;
 }
 .addresses li.address_update a:hover {
-	background:#fff
+	background:#fff;
+	color:#D7162F;
+}
+	.address li:first-child {
+		padding: 0;
+		background:transparent;
+		margin: 0;
+	}
+
+	#layer_cart .layer_cart_product h2 {
+	    font-size: 18px;
+	    padding-right: 0;
+	    line-height: inherit;
+	}
+
+.main_panel	#cart .cart_block_list.expanded .cart-buttons a {
+    color: #fff;
+}
+
+.main_panel	#cart .cart_block_list.expanded .cart-buttons a:hover {
+    color: #d7162f;
+}
+
+/*NUEVA GARANTIA*/
+#block-order-detail .info-order {
+    padding: 30px 0;
 }
 
 #footer {
@@ -3784,26 +3845,13 @@ color: #ADADAD;
 line-height: 1.5;
 }
 
-/*COMPRA*/
+/*COMPRA
 .cart_navigation a:nth-child(1){
-float:right;
-}
+	float:right;
+}*/
 
-.cart_navigation a:nth-child(2){
-float:left;
-}
-
-.order_delivery .address li span {
-font-size: 1rem;
-line-height: 1.2rem;
-margin-left: 10px;
-font-family: 'Open Sans', sans-serif;
-}
-
-.addresses .address li {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 1rem;
-	line-height: 1.2rem;
+.cart_navigation a:nth-child(2) {
+    float: right;
 }
 
 /*RESUMEN*/

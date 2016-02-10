@@ -190,10 +190,10 @@
 							{/if}
 						</div>
 						<p class="cart-buttons">
-							<a id="button_view_cart" class="white_btn btn btn-default button button-small" href="{$link->getPageLink("$order_process", true)|escape:"html":"UTF-8"}" title="{l s='Check out' mod='blockcart'}" rel="nofollow">
+							<a id="button_view_cart" class="button-exclusive btn btn-default btn-red" href="{$link->getPageLink("$order_process", true)|escape:"html":"UTF-8"}" title="{l s='Check out' mod='blockcart'}" rel="nofollow">
 									{l s='View cart' mod='blockcart'}
 							</a>
-							<a id="button_order_cart" class="white_btn btn btn-default button button-small" href="{$link->getPageLink("$order_process", true)|escape:"html":"UTF-8"}" title="{l s='Check out' mod='blockcart'}" rel="nofollow">
+							<a id="button_order_cart" class="button-exclusive btn btn-default btn-red" href="{$link->getPageLink("$order_process", true)|escape:"html":"UTF-8"}" title="{l s='Check out' mod='blockcart'}" rel="nofollow">
 									{l s='Check out' mod='blockcart'}
 							</a>
 						</p>

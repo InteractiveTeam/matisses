@@ -72,7 +72,7 @@
 	{/if}
 </div>
 {if !$opc}
-			<p class="cart_navigation clearfix">
+			<p class="cart_navigation cf">
 				<input type="hidden" class="hidden" name="step" value="2" />
 				<input type="hidden" name="back" value="{$back}" />
 				{if $back}
