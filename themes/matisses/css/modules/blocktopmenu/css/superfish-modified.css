@@ -104,7 +104,7 @@
 	padding: 0 0.625rem;
 	min-height: 14.375rem;
 	margin-bottom: 1.875rem;
-	width: 29.375rem;
+	width: 14.6875rem;
 	}
 
 	.submenu-container li > ul > li a {
@@ -121,11 +121,9 @@
 	margin-top: 0.625rem;
 	}
 	.submenu-container li > ul > li > ul li {
-	display: inline-block;
+	display: block;
 	vertical-align: top;
 	margin-bottom: 0.625rem;
-	width: 31%;
-	margin-right: 0.625rem;
 	}
 	.submenu-container li > ul > li > ul li a {
 	font-family: 'Open Sans', sans-serif;;
@@ -146,6 +144,15 @@
 
 	.submenu-container li.category-thumbnail {
     display: block;
+	}
+	.submenu-container .view-menu a {
+    color: #D7162F;
+    text-transform: none;
+    font-family: 'gothic';
+    text-align: right;
+	}
+	.submenu-container .view-menu a:hover{
+	color: #000;
 	}
 
 /*07-12-2015*/

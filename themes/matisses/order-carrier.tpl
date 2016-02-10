@@ -337,32 +337,32 @@
 			{/if}
 		</div> <!-- end delivery_options_address -->
 		{if !$opc}
-				<p class="cart_navigation clearfix">
+				<p class="cart_navigation cf">
 					<input type="hidden" name="step" value="3" />
 					<input type="hidden" name="back" value="{$back}" />
 					{if !$is_guest}
 						{if $back}
-							<a href="{$link->getPageLink('order', true, NULL, "step=1&back={$back}&multi-shipping={$multi_shipping}")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-default">
-								<i class="icon-chevron-left"></i>
+							<a href="{$link->getPageLink('order', true, NULL, "step=1&back={$back}&multi-shipping={$multi_shipping}")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-default btn-red">
+								<i class="fa fa-angle-left"></i>
 								{l s='Continue shopping'}
 							</a>
 						{else}
-							<a href="{$link->getPageLink('order', true, NULL, "step=1&multi-shipping={$multi_shipping}")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-default">
-								<i class="icon-chevron-left"></i>
+							<a href="{$link->getPageLink('order', true, NULL, "step=1&multi-shipping={$multi_shipping}")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-default btn-red">
+								<i class="fa fa-angle-left"></i>
 								{l s='Continue shopping'}
 							</a>
 						{/if}
 					{else}
-						<a href="{$link->getPageLink('order', true, NULL, "multi-shipping={$multi_shipping}")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-default">
-							<i class="icon-chevron-left"></i>
+						<a href="{$link->getPageLink('order', true, NULL, "multi-shipping={$multi_shipping}")|escape:'html':'UTF-8'}" title="{l s='Previous'}" class="button-exclusive btn btn-default btn-red">
+							<i class="fa fa-angle-left"></i>
 							{l s='Continue shopping'}
 						</a>
 					{/if}
 					{if isset($virtual_cart) && $virtual_cart || (isset($delivery_option_list) && !empty($delivery_option_list))}
-						<button type="submit" name="processCarrier" class="button btn btn-default standard-checkout button-medium">
+						<button type="submit" name="processCarrier" class="button btn btn-default standard-checkout button-medium btn-red">
 							<span>
 								{l s='Proceed to checkout'}
-								<i class="icon-chevron-right right"></i>
+								<i class="fa fa-angle-right"></i>
 							</span>
 						</button>
 					{/if}

@@ -56,6 +56,7 @@ class HomeSlider extends Module
 		$this->displayName = $this->l('Image slider for your homepage');
 		$this->description = $this->l('Adds an image slider to your homepage.');
 		$this->ps_versions_compliancy = array('min' => '1.6.0.4', 'max' => _PS_VERSION_);
+		$this->context->controller->addJS($this->_path.'js/homeslider_admin.js');
 	}
 
 	/**
@@ -779,6 +780,8 @@ class HomeSlider extends Module
 
 		return $this->display(__FILE__, 'list.tpl');
 	}
+	
+
 
 	public function renderAddForm()
 	{
@@ -789,6 +792,22 @@ class HomeSlider extends Module
 					'icon' => 'icon-cogs'
 				),
 				'input' => array(
+				
+					array(
+						'type' => 'select',
+						'label' => $this->l('Tipo de slide'),
+						'name' => 'type-slide',
+						'class' => 'type-slide',
+						'options' => array(
+							'query' => array(
+												array('id_type' => 'imagen', 'type' => $this->l('Imagen')),
+												array('id_type' => 'Video', 'type' => $this->l('Video')),
+											),
+							'id' => 'id_type',
+							'name' => 'type'
+						),
+					),
+				
 					array(
 						'type' => 'file_lang',
 						'label' => $this->l('Select a file'),
@@ -796,11 +815,12 @@ class HomeSlider extends Module
 						'lang' => true,
 						'desc' => $this->l(sprintf('Maximum image size: %s.', ini_get('upload_max_filesize')))
 					),
-					
+
 					array(
 						'type' => 'text',
 						'label' => $this->l('video'),
 						'name' => 'videoid',
+						'calss' => 'video',
 						'desc' => $this->l('Ingrese el código del video de youtube')
 					),
 					

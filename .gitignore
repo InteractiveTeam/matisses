@@ -1,4 +1,4 @@
-﻿# Excluye todos los ficheros con extensión .log
+# Excluye todos los ficheros con extensión .log
 *.log
 
 # Excluye todos los ficheros con extensión .log
@@ -29,3 +29,4 @@ _notes/
 
 # Exluir la htaccess
 *.htaccess
+modules/blockfacebooklike/views/templates/hook/fans.tpl

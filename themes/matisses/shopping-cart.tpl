@@ -546,6 +546,12 @@
 	{/if}
 	<div id="HOOK_SHOPPING_CART">{$HOOK_SHOPPING_CART}</div>
 	<div class="cart_navigation cf grid_12">
+		<a
+			href="{if (isset($smarty.server.HTTP_REFERER) && strstr($smarty.server.HTTP_REFERER, 'order.php')) || isset($smarty.server.HTTP_REFERER) && strstr($smarty.server.HTTP_REFERER, 'order-opc') || !isset($smarty.server.HTTP_REFERER)}{$link->getPageLink('index')}{else}{$smarty.server.HTTP_REFERER|escape:'html':'UTF-8'|secureReferrer}{/if}"
+			class="button-exclusive btn btn-default btn-red"
+			title="{l s='Continue shopping'}">
+			<i class="fa fa-angle-left"></i>{l s='Continuar comprando'}
+		</a>
 		{if !$opc}
 			<a
 				href="{if $back}{$link->getPageLink('order', true, NULL, 'step=1&amp;back={$back}')|escape:'html':'UTF-8'}{else}{$link->getPageLink('order', true, NULL, 'step=1')|escape:'html':'UTF-8'}{/if}"
@@ -554,12 +560,6 @@
 				<span>{l s='Proceed to checkout'}<i class="icon-chevron-right right"></i></span>
 			</a>
 		{/if}
-		<a
-			href="{if (isset($smarty.server.HTTP_REFERER) && strstr($smarty.server.HTTP_REFERER, 'order.php')) || isset($smarty.server.HTTP_REFERER) && strstr($smarty.server.HTTP_REFERER, 'order-opc') || !isset($smarty.server.HTTP_REFERER)}{$link->getPageLink('index')}{else}{$smarty.server.HTTP_REFERER|escape:'html':'UTF-8'|secureReferrer}{/if}"
-			class="button-exclusive btn btn-default btn-red"
-			title="{l s='Continue shopping'}">
-			<i class="fa fa-angle-left"></i>{l s='Continuar comprando'}
-		</a>
 	</div>
 	{if !empty($HOOK_SHOPPING_CART_EXTRA)}
 		<div class="clear"></div>

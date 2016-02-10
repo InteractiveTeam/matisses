@@ -44,7 +44,6 @@ class OrderConfirmationControllerCore extends FrontController
 
 		$this->id_cart = (int)(Tools::getValue('id_cart', 0));
 		$is_guest = false;
-
 		/* check if the cart has been made by a Guest customer, for redirect link */
 		if (Cart::isGuestCartByCartId($this->id_cart))
 		{

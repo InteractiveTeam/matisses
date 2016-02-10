@@ -37,7 +37,7 @@
 <file name="order-address.tpl" server="192.168.3.45" local="130974342340731631" remote="130977918600000000" Dst="0" />
 <file name="order-carrier.tpl" server="192.168.3.45" local="130974342340786642" remote="130977918600000000" Dst="0" />
 <file name="order-confirmation.tpl" server="192.168.3.45" local="130974342340831589" remote="130977918600000000" Dst="0" />
-<file name="order-detail.tpl" server="192.168.3.45" local="130974342340936591" remote="130977918600000000" Dst="0" />
+<file name="order-detail.tpl" server="192.168.3.45" local="130994568822183848" remote="130994748600000000" Dst="0" />
 <file name="order-follow.tpl" server="192.168.3.45" local="130974342340981591" remote="130977918600000000" Dst="0" />
 <file name="order-opc.tpl" server="192.168.3.45" local="130974342341101679" remote="130977918600000000" Dst="0" />
 <file name="order-opc-new-account.tpl" server="192.168.3.45" local="130974342341051606" remote="130977918600000000" Dst="0" />
