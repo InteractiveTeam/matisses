@@ -27,7 +27,7 @@
         <li><strong>{l s="Asunto:"}</strong>{$garantia.asunto}</li>
         <li><strong>{l s="Producto:"}</strong>{$garantia.name}</li>
         <li><strong>{l s="Referencia:"}</strong>{$garantia.reference}</li>
-        <li><strong>{l s="Tipo de daño:"}</strong>{$garantia.dano}</li>
+        <li><strong>{l s="Tipo de daño:"}</strong>{$garantia.tipo}</li>
         <li><strong>{l s="Descripcion del daño:"}</strong><br />
          {$garantia.description_dano}f</li>
         <li><strong>{l s="Respuesta de matisses:"}</strong>

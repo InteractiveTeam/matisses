@@ -11,7 +11,7 @@
           	<input type="hidden" name="poid" id="poid" value="{$poid}"> 
             <label class="control-label col-lg-3 required"> <span >{l s='Producto' mod='matisses'}</span> </label>
             <div class="col-lg-9 ">
-              <input type="text" id="product" name="product" placeholder="{l s='sku or id product' mod='matisses'}" value="{$pointer.id_product}">
+              <input type="text" id="product" name="product" placeholder="{l s='sku o id del product' mod='matisses'}" value="{$pointer.id_product}">
             </div>
           </div>
           
@@ -48,7 +48,7 @@
           </div>
           
           <div class="form-group">
-            <label class="control-label col-lg-3 required"> <span >{l s='Coordinates' mod='matisses'}</span> </label>
+            <label class="control-label col-lg-3 required"> <span >{l s='Coordenadas' mod='matisses'}</span> </label>
             <div class="col-lg-9 ">
                 <table border="0" cellpadding="5" cellspacing="5">
                   <tr>

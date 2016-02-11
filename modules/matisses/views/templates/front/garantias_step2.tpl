@@ -47,15 +47,6 @@
                                  <li><img src="{$link->getImageLink($garantia.imgs[$kimg],'img/garantias')}" class="img-responsive" /></li>
                                 {/foreach}   
                             </ul>
-                            <ul id="bx-pager" class="captions grid_6 alpha omega">
-                            {foreach from=$garantia.imgs item=$img key=kimg}
-                                <li>
-                                    <a data-slide-index="{$kimg}" href="">
-                                        <img src="{$link->getImageLink($garantia.imgs[$kimg],'img/garantias')}" class="img-responsive" />
-                                    </a>
-                                </li>
-                            {/foreach} 
-                            </ul> 
                         </div>
                         
                         
