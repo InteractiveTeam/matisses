@@ -655,7 +655,8 @@ class Blocktopmenu extends Module
 					{
 						$parentCat = new Category($category['id_parent']);
 						$linkparent = Tools::HtmlEntitiesUTF8($parentCat->getLink());
-						$html .= '<div class="view-menu"><a href="'.$linkparent.'" title="">'.$this->l('Ver mas').'</a></div>';
+						$html .= '<div class="view-menu"><a href="'.$linkparent.'" title="">'.$this->l('Ver mas').'</a>
+								<i class="fa fa-angle-double-right"></i></div>';
 					}
 				 }
 			if (isset($category['children']) && !empty($category['children']))
