@@ -40,33 +40,33 @@
 						<label class="" for="resumen">{l s='Resumen (Detalle del daño)'}</label>
 					</div>
 					<div class="grid_12 alpha omega">
-						
+
                         <div class="captions grid_6 alpha omega">
                             <ul id="image-holder" class="slider">
                                 {foreach from=$garantia.imgs item=$img key=kimg}
                                  <li><img src="{$link->getImageLink($garantia.imgs[$kimg],'img/garantias')}" class="img-responsive" /></li>
-                                {/foreach}   
+                                {/foreach}
                             </ul>
                         </div>
-                        
-                        
-                        
-                        
-                        
-						
 
-						
-						
-                        {if ($garantia.imgs|count)>0} 
+
+
+
+
+
+
+
+
+                        {if ($garantia.imgs|count)>0}
                             <script>
                         	$('#step2 .slider').bxSlider({
 								  pagerCustom: '#step2 .captions'
 							});
                         	</script>
                         {/if}
-                        
+
                         <textarea class="grid_6 alpha omega form-control" name="resumen" cols="25" id="resumen" >{$resumen}</textarea>
-                        
+
 
 
 					</div>
@@ -81,7 +81,7 @@
 
 		</div>
 
-		<div class="footer_links grid_2">
+		<div class="footer_links grid_12">
 			<div class="grid_2 omega alpha">
 				<a class="btn btn-default button btn-red" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
 					<i class="fa fa-chevron-left"></i>

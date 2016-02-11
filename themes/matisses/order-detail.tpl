@@ -337,7 +337,7 @@
 						</td>
                         {if $garantias}
                         <td class="price">
-                            <a href="{$link->getModuleLink('matisses','garantias')}/paso1/producto/{$order->id}-{$productId}-{$productAttributeId}" class="button btn btn-default button-medium pull-right"><span>{l s='Solicitar garantía'}<i class="icon-chevron-right right"></i></span></a>
+                            <a href="{$link->getModuleLink('matisses','garantias')}/paso1/producto/{$order->id}-{$productId}-{$productAttributeId}" class="button btn btn-default button-medium pull-right btn-red"><span>{l s='Solicitar garantía'}<i class="icon-chevron-right right"></i></span></a>
                         </td>
                         {/if}
 
@@ -470,7 +470,7 @@
 		<div class="submit">
 			<input type="hidden" name="id_order" value="{$order->id|intval}" />
 			<input type="submit" class="unvisible" name="submitMessage" value="{l s='Send'}"/>
-			<button type="submit" name="submitMessage" class="button btn btn-default button-medium"><span>{l s='Send'}<i class="icon-chevron-right right"></i></span></button>
+			<button type="submit" name="submitMessage" class="button btn btn-default button-medium btn-red"><span>{l s='Send'}<i class="icon-chevron-right right"></i></span></button>
 		</div>
 	</form>
 {else}

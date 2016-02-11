@@ -126,6 +126,7 @@ box-sizing: border-box;
 	display: inline-block;
 	vertical-align: top;
 	border: none;
+	line-height: 5rem;
 	}
 	.header-container .main_panel.cf {
 	box-shadow: 0px 4px 9px 0px rgba(50, 50, 50, 0.37);
@@ -3721,6 +3722,10 @@ box-sizing: border-box;
 		background: #F3F3F3;
 	}
 
+	.adresses_bloc {
+		margin: 20px 0;
+	}
+
 	.adresses_bloc .address li:nth-child(odd) span, .adresses_bloc .address li:nth-child(odd) span {
 		background: #F3F3F3;
 	}
@@ -3779,6 +3784,14 @@ box-sizing: border-box;
 		padding: 0;
 		background:transparent;
 		margin: 0;
+	}
+
+	.address li.address_phone_mobile {
+		font-size: 1rem;
+		line-height: 1.2rem;
+		padding-left: 10px;
+		font-family: 'Open Sans', sans-serif;
+		display: inline-block;
 	}
 
 	#layer_cart .layer_cart_product h2 {
@@ -3866,4 +3879,141 @@ line-height: 1.5;
 	position: absolute;
   top: 1px;
   left: 3px;
+}
+
+.submenu-container .view-menu a {
+    margin-right: 2rem;
+}
+
+
+.module-matisses-garantias table tr td {
+    vertical-align: baseline;
+}
+
+#order-detail-content table.order_cb tbody tr td label {
+	padding: 0;
+}
+
+#order-detail-content table.order_cb tbody tr td.price .button {
+	width:100%;
+}
+
+/*GARANTIA DE PRODUCTOS*/
+
+.supply-warranty .grid_4 label {
+	padding-bottom: 0;
+}
+
+.supply-warranty .grid_4 span {
+	color: #d7162f;
+	font-family: 'condensed';
+	font-size: 1rem;
+	display: block;
+	text-transform: uppercase;
+	padding-bottom: 0.3125rem;
+	padding-left: 0.3125rem;
+	line-height: 1.6rem;
+}
+
+#tipo-dano.damage li {
+	padding: 0.3rem 0;
+	cursor: pointer;
+}
+
+#tipo-dano.damage li:hover {
+	color: #d7162f;
+}
+
+.mCSB_container .damage {
+	margin-bottom: 3rem;
+}
+.fancybox-outer .fancybox-inner .error {
+	font-family: 'Open Sans', sans-serif;
+	line-height: 1.3rem;
+}
+
+.supply-warranty .form-group {
+	margin: 0.5rem 0;
+}
+
+.supply-warranty .grid_4 .form-group label {
+	display:inline;
+}
+
+.supply-warranty .grid_4 .form-group a {
+	color: #d7162f;
+	float: right;
+	font-family: 'Open Sans condensed', sans-serif;
+	text-decoration: underline;
+}
+
+.supply-warranty .grid_8 .form-group input, .supply-warranty .grid_8 .form-group label {
+	display: inline;
+	width:auto;
+	margin-right:0.4rem;
+	padding: 0.5rem;
+}
+
+.supply-warranty .grid_8 .form-group input {
+	font-family: 'Open Sans', sans-serif;
+	width: 40%;
+}
+
+.supply-warranty .grid_4 .form-group input.form-control {
+	border: #E1E1E1 solid 1px;
+	padding: 0.5rem;
+}
+
+.supply-warranty .form-group .btn-default.button {
+	display: inline-block;
+}
+
+.supply-warranty .footer_links > div {
+	width: 100%;
+	text-align: center;
+	margin: 40px 0;
+}
+
+/*RESUMEN DE GARANTIAS*/
+
+#resumen-garantia h3 {
+    font-family: 'condensed';
+    color:#d7162f;
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+		line-height: 1.9rem;
+}
+
+#resumen-garantia {
+	font-family: 'Open Sans', sans-serif;
+	color:#ADADAD;
+	font-weight: lighter;
+}
+
+#resumen-garantia strong {
+	font-family: 'condensed';
+	color:#231f20;
+	font-size: 1.1rem;
+	margin-right: 5px;
+}
+
+#resumen-garantia ul li:last-child {
+	margin-top: 20px;
+}
+
+#resumen-garantia textarea {
+	background:#fff;
+	height: 50px;
+	margin-bottom: 10px;
+}
+
+#resumen-garantia .linkGarantias {
+	text-align: right;
+}
+
+#module-matisses-garantias .footer_links > div {
+	width: 100%;
+	text-align: center;
+	margin: 40px 0;
 }
