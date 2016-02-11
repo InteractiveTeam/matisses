@@ -24,22 +24,43 @@
     /*Tabla garantias*/
     .module-matisses-garantias table {
     margin-top: 2.5rem;
+    border: none;
     }
     .module-matisses-garantias table thead th {
+    background: #fff;
+    border: none;
     text-transform: uppercase;
+    color: #272727;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: bold;
+    }
+    .module-matisses-garantias table tbody{
+    border: 1px solid #dbdbdb;
+    }
+    .module-matisses-garantias table tbody > tr:first-child {
+    background: #f8f8f8;
     }
     .module-matisses-garantias table tr td {
     font-family: 'Open Sans', sans-serif;
     font-size: 0.9375rem;
     color: #777676;
+    border: none;
     }
-    .module-matisses-garantias table .history_link a:hover {
+    .module-matisses-garantias table .options a{
+    color: #d7162f;
+    text-decoration: underline;
+    }
+    .module-matisses-garantias table .options a:hover{
     color: #000;
     }
     .module-matisses-garantias table .history_link a {
     color: #D7162F;
-    text-decoration: none;
     }
+    .module-matisses-garantias table .history_link a:hover {
+    color: #000;
+    }
+
     .module-matisses-garantias table .history_detail a {
     font-weight: normal;
     color: #D7162F;
@@ -49,22 +70,84 @@
     color: #D7162F;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: normal;
     }
     .module-matisses-garantias .history_state span.label.dark {
     color: #1A8A1A;
     }
 
-    /****/
-
-    .warranty-order .footer_links {
+    .module-matisses-garantias .footer_links {
     text-align: center;
     margin: 2.5rem 0;
     }
     .module-matisses-garantias .fa-chevron-left {
     padding-right: 0.625rem;
     }
+
+    .module-matisses-garantias table .details {
+    background: #fdfdfd;
+    padding: 1.25rem;
+    }
+    .module-matisses-garantias table .details h3 {
+    color: #d7162f;
+    font-family: 'condensed';
+    font-size: 1.5rem;
+    margin-bottom: 0.625rem;
+    }
+    .module-matisses-garantias table .details h3 span{
+    color: #656565;
+    }
+    .module-matisses-garantias table .details .bx-wrapper {
+    border: 1px solid #ccc;
+    }
+    .module-matisses-garantias table .details .bx-wrapper img{
+    width: 80%;
+    margin: 0 auto;
+    }
+    .module-matisses-garantias table .details .bx-wrapper li{
+    width:28.875rem !important;
+    }
+    .module-matisses-garantias table .captions li {
+    border: 1px solid #ccc;
+    border-top: 0;
+    }
+    .module-matisses-garantias table .attributes {
+    padding: 3.125rem 10px 0 30px;
+    }
+    .module-matisses-garantias table .attributes li strong{
+    color: #231f20;
+    font-family: 'condensed';
+    text-transform: uppercase;
+    font-size: 1rem;
+    }
+    .module-matisses-garantias table .attributes li{
+    padding-bottom: 0.9375rem;
+    }
+    .module-matisses-garantias .tbl-history {
+    width: 100%;
+    margin-top: 10px;
+    }
+    .module-matisses-garantias .tbl-history tbody{
+    border: none;
+    }
+    .module-matisses-garantias .tbl-history tbody tr,
+    .module-matisses-garantias .tbl-history tbody tr:first-child{
+    background: none;
+    }
+    .module-matisses-garantias .tbl-history tbody tr td{
+    padding: 0;
+    }
+    .module-matisses-garantias .tbl-history tbody tr td span{
+    color: #d7162f;
+    }
+
+
+    /****/
+
+
+
+
 
     /*Step1*/
     .content-warranty {
