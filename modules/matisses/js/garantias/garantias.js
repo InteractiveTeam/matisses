@@ -1,9 +1,9 @@
 // JavaScript Document
 $(document).ready(function(e) {
 	
-	$('#resumen-garantia .slider').bxSlider({
-					  pagerCustom: '#resumen-garantia .captions'
-				});
+		var slider = $('#resumen-garantia .slider').bxSlider({
+			startSlide: 0
+			});
 				
 				
 		$("#fileUpload").live('change', function () {
@@ -14,11 +14,10 @@ $(document).ready(function(e) {
 		 var imgPath = $(this)[0].value;
 		 var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
 		 var image_holder = $("#image-holder");
-		 var image_captions = $("#bx-pager");
 		 var html = '';
 		 var captions = '';
 		 image_holder.empty();
-	
+		 $(html).html('');
 		 if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
 			 if (typeof (FileReader) != "undefined") {
 	
@@ -29,16 +28,8 @@ $(document).ready(function(e) {
 					 var reader = new FileReader();
 					 reader.onload = function (e) {
 						 
-						captions='<li>';
-						captions+='<a data-slide-index="'+cont+'" href="">';
-						captions+='<img  src="'+e.target.result+'" class="img-responsive" />';
-						captions+='</a></li>';
-						$(captions).appendTo(image_captions);
-						
-						html='<li>';
-						html+='<img style="width:100%; height: auto" src="'+e.target.result+'" class="img-responsive" />';
-						html+='</li>';
-						$(html).appendTo(image_holder);
+							html='<li><img style="width:100%; height: auto" src="'+e.target.result+'" class="img-responsive" /></li>';
+							$(html).appendTo(image_holder);
 						
 						cont = cont +1;
 						
@@ -57,10 +48,8 @@ $(document).ready(function(e) {
 		 }
 		 
 		 setTimeout(function(){
-                        	$('#step2 .slider').bxSlider({
-								  pagerCustom: '#step2 .captions'
-							});
-		 },3020)
+            slider.reloadSlider();
+		 },1000)
 		 
 	 });			
 	

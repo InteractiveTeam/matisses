@@ -111,9 +111,9 @@ $(document).ready(function(e) {
 	  if(products)
 	  {
 		  products = JSON.parse(products)
-		  $(products).each(function(index, element) {
-           	$('#image-images-thumbnails').prepend('<div title="Modificar | Eliminar" data-pointer="'+element.pointer+'" class="experience-pointer '+element.market+'-'+element.orientation+'" style="left:'+$.trim(element.left)+'%; top:'+$.trim(element.top)+'%;"></div>');
-          });
+		  for(i = 0; i < Object.keys(products).length; i++) { 
+		      $('#image-images-thumbnails').prepend('<div title="Modificar | Eliminar" data-pointer="'+products['marker'+i].pointer+'" class="experience-pointer '+products['marker'+i].market+'-'+products['marker'+i].orientation+'" style="left:'+$.trim(products['marker'+i].left)+'%; top:'+$.trim(products['marker'+i].top)+'%;"></div>');
+		  }
 		  $('.experience-pointer').draggable({revert: function(e){updatePointer(e);}});
 	  }
 	

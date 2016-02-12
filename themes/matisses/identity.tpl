@@ -219,11 +219,6 @@
     {/if}
 </div>
 
-    <div class="grid_12 alpha omega">
-        <p id="security_informations">
-        {l s='[Insert customer data privacy clause here, if applicable]'}
-        </p>
-    </div>
     <div class="footer_links grid_12 alpha omega">
         <ul class="cf">
             <li>

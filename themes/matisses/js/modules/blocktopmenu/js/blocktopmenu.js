@@ -162,10 +162,10 @@ function menuChange(status)
 
 //Megamenu-responsive
 $(document).ready(function(e){
-	var ShowUser = $("<div class='show-user'></div>");
-	$('#drop_content_user').append(ShowUser)
+	var ShowUser = $("<div class='show-user'><div class='selectIcon'>v</div></div>");
+	$('#menu-right').append(ShowUser)
 
-	$('.show-user').on('click', function(){
+	$('.show-user .selectIcon').on('click', function(){
 		$('#drop_content_user > a').slideToggle();
 	})
 	//MENU responsiveMenu
@@ -186,6 +186,24 @@ $(document).ready(function(e){
 		})
 
 		var sub = $('li.sfHover');
+
+		//menu footer
+		var contmenuFooter = $("<ul class='menuFooterRp'></ul>")
+		var itemsMenuFooter = $('#menu-footer li');
+
+		function llamarMenu() {
+				var widthPage = $(window).width();
+	      if(widthPage < 321){
+						$('#menu-footer').append(contmenuFooter)
+						$.each(itemsMenuFooter, function(indice, objeto){
+								var itemFooter = $(objeto)
+								contmenuFooter.append(itemFooter)
+						});
+				}
+		}
+
+		llamarMenu();
+
 })
 
 //Divs a megamenu

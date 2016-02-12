@@ -1306,7 +1306,7 @@
     }
 
     .right-down-menu {
-        padding: 1rem 1.875rem 0 0;
+      padding: 1rem 0.875rem 0 0;
     }
 
 	#user {
@@ -1474,13 +1474,16 @@
         margin: 0 2.5%;
     }
 
-    .content-user .show-user:before {
-		content: "\2304";
+    .show-user .selectIcon {
 		color:#fff;
-		font-size: 2rem;
+		font-size: 1rem;
+		font-family: 'Open Sans', sans-serif;
 		position: absolute;
-		right: -4px;
-		top: 8px;
+		right: 4px;
+		top: 16px;
+		width: 15px;
+    height: 20px;
+		cursor: pointer;
 	}
 
     /**busqueda*/
@@ -1507,6 +1510,19 @@
 
 	ul.step li a, ul.step li span, ul.step li.step_current span, ul.step li.step_current_end span, #cart_summary tbody td.cart_description small {
 	    font-size: 1rem;
+	}
+
+		.address_delivery.select.form-group.selector1 {
+	    width: 105%;
+	}
+
+	/*GARANTIAS*/
+	body.module-matisses-garantias .center_column {
+		width:100%;
+	}
+
+	.tbl-responsive .footable-row-detail-row:last-child .footable-row-detail-value {
+		padding:1rem 0;
 	}
 
 }
@@ -1586,13 +1602,16 @@
 		left: 10px !important;
 	}
 
-	.content-user .show-user:before {
-		content: "\2304";
+	.show-user .selectIcon {
 		color:#fff;
-		font-size: 2rem;
+		font-size: 1rem;
+		font-family: 'Open Sans', sans-serif;
 		position: absolute;
-		right: -4px;
-		top: 8px;
+		right: 4px;
+		top: 16px;
+		width: 15px;
+    height: 20px;
+		cursor: pointer;
 	}
 
 	.content-user:before:hover .account {
@@ -2014,7 +2033,7 @@
 	}
 
 	.cms .generic-right span {
-		padding: 1.6rem;
+		padding: 1rem;
 	}
 
 	.cms .generic-right figure {
@@ -2134,4 +2153,38 @@
 		margin: 0 auto;
 	}
 
+	.menuFooterRp {
+		margin: 0;
+		width:100%;
+	}
+
+	.menuFooterRp li {
+		width:50%;
+		display: inline-block;
+	}
+
+	.menuFooterRp li a {
+		border: none;
+		font-size: 1.15rem;
+		padding: 1rem 0;
+	}
+
+	.menuFooterRp li:nth-child(even) {
+		text-align: right;
+	}
+
+	/*GARANTIA*/
+
+	body.module-matisses-garantias .center_column {
+		width:100%;
+	}
+
+	body.module-matisses-garantias #block-history table {
+		width:500px
+	}
+
+}
+
+.show-user {
+	display:none;
 }
