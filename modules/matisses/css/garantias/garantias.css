@@ -142,7 +142,52 @@
     color: #d7162f;
     }
 
+    .module-matisses-garantias .bx-controls-direction a.bx-next {
+    background-position: -30px -68px;
+    }
+    .module-matisses-garantias .bx-controls-direction a.bx-next:hover{
+	background-position: -30px -104px;
+	}
+    .module-matisses-garantias .bx-controls-direction a.bx-prev {
+    background-position: 0 -68px;
+    }
+    .module-matisses-garantias .bx-controls-direction a.bx-prev:hover{
+	background-position: 0 -104px;
+	}
+    .module-matisses-garantias .bx-controls-direction div a {
+    height: 2.1875rem;
+    width: 1.5625rem;
+    }
 
+    .submitReorder > p{
+    margin-top: 1.25rem;
+    font-size: 1.25rem;
+    font-family: 'gothic';
+    color: #d7162f;
+    border-bottom: 1px solid;
+    }
+
+    .order-warranty .fa-file-pdf-o {
+    padding-right: 0.625rem;
+    }
+    .order-warranty li{
+    font-family: 'Open Sans', sans-serif;
+    color: #777676;
+    padding-bottom: 0.625rem;
+    }
+    .order-warranty ul{
+    margin: 1.25rem 0;
+    }
+    .order-warranty li strong{
+    font-weight: bold;
+    }
+    .order-warranty li:before {
+    content: "\f105";
+    display: inline-block;
+    font-family: "FontAwesome";
+    padding-right: 0.625rem;
+    color: #d7162f;
+    }
     /****/
 
 

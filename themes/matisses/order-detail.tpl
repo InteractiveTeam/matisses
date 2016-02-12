@@ -26,27 +26,38 @@
 
 {if isset($reorderingAllowed) && $reorderingAllowed}
 <div class="grid_12 alpha omega">
-	<form id="submitReorder" action="{if isset($opc) && $opc}{$link->getPageLink('order-opc', true)}{else}{$link->getPageLink('order', true)}{/if}" method="post" class="submit">
+	<form id="submitReorder" class="submitReorder" action="{if isset($opc) && $opc}{$link->getPageLink('order-opc', true)}{else}{$link->getPageLink('order', true)}{/if}" method="post" class="submit">
 			<input type="hidden" value="{$order->id}" name="id_order"/>
 			<input type="hidden" value="" name="submitReorder"/>
 				<a href="#" onclick="$(this).closest('form').submit(); return false;" class="btn btn-default btn-red">
 					{l s='Reorder'}
 				</a>
-				<p class="dark">
-					<strong>{l s='Order Reference %s - placed on' sprintf=$order->getUniqReference()} {dateFormat date=$order->date_add full=0}</strong>
+				<p>
+					{l s='Order Reference %s - placed on' sprintf=$order->getUniqReference()} {dateFormat date=$order->date_add full=0}</strong>
 				</p>
 	</form>
 </div>
 {/if}
-	<div class="info-order grid_12 alpha omega">
-		{if $carrier->id}<p><strong class="dark">{l s='Carrier'}</strong> {if $carrier->name == "0"}{$shop_name|escape:'html':'UTF-8'}{else}{$carrier->name|escape:'html':'UTF-8'}{/if}</p>{/if}
-		<p><strong class="dark">{l s='Payment method'}</strong> <span class="color-myaccount">{$order->payment|escape:'html':'UTF-8'}</span></p>
+	<div class="order-warranty grid_12 alpha omega">
+		{if $carrier->id}
+		<ul>
+			<li>
+				<strong>{l s='Carrier'}:</strong> {if $carrier->name == "0"}{$shop_name|escape:'html':'UTF-8'}{else}{$carrier->name|escape:'html':'UTF-8'}{/if}
+			</li>
+			{/if}
+
+			<li>
+				<strong>{l s='Payment method'}:</strong>
+				<span class="color-myaccount">{$order->payment|escape:'html':'UTF-8'}</span>
+			</li>
+		</ul>
 		{if $invoice AND $invoiceAllowed}
-		<p>
-			<i class="icon-file-text"></i>
-			<a target="_blank" href="{$link->getPageLink('pdf-invoice', true)}?id_order={$order->id|intval}{if $is_guest}&amp;secure_key={$order->secure_key|escape:'html':'UTF-8'}{/if}">{l s='Download your invoice as a PDF file.'}</a>
-		</p>
+		<div class="grid_12 alpha omega">
+			<a class="btn btn-default btn-red" target="_blank" href="{$link->getPageLink('pdf-invoice', true)}?id_order={$order->id|intval}{if $is_guest}&amp;secure_key={$order->secure_key|escape:'html':'UTF-8'}{/if}">
+			<i class="fa fa-file-pdf-o"></i> {l s='Download your invoice as a PDF file.'} </a>
+		</div>
 		{/if}
+
 		{if $order->recyclable}
 		<p><i class="icon-repeat"></i>&nbsp;{l s='You have given permission to receive your order in recycled packaging.'}</p>
 		{/if}
