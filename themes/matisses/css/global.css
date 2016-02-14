@@ -906,7 +906,7 @@ box-sizing: border-box;
 	transition:all .36s ease;
 	}
 	#header {
-	z-index: 5003;
+	z-index: 99999;
 	width: 100%;
 	}
 	.main_panel>.container>.row{
@@ -1118,7 +1118,7 @@ box-sizing: border-box;
 	display: inline-block;
 	background: none;
 	text-transform: uppercase;
-	padding: 0.3125rem 0.9375rem;
+	padding: 0.3125rem 1.6rem;
 	line-height: 1.5;
 	height: auto;
 	font-size: 1rem;
@@ -3962,6 +3962,8 @@ line-height: 1.5;
 .supply-warranty .grid_4 .form-group input.form-control {
 	border: #E1E1E1 solid 1px;
 	padding: 0.5rem;
+	color: #868686;
+  font-size: 1rem;
 }
 
 .supply-warranty .form-group .btn-default.button {
@@ -3981,7 +3983,7 @@ line-height: 1.5;
     color:#d7162f;
     margin-bottom: 1.25rem;
     text-transform: uppercase;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 		line-height: 1.9rem;
 }
 
@@ -3995,21 +3997,35 @@ line-height: 1.5;
 	font-family: 'condensed';
 	color:#231f20;
 	font-size: 1.1rem;
-	margin-right: 5px;
+	margin-right: 10px;
+	text-transform: uppercase;
 }
 
-#resumen-garantia ul li:last-child {
+#resumen-garantia .grid_6 > ul li {
+	margin: 0 0 10px 0;
+}
+
+#resumen-garantia .grid_6 > ul {
+	margin:3rem 0 0 1rem;
+}
+
+#resumen-garantia .grid_6 > ul li:last-child {
 	margin-top: 20px;
 }
 
 #resumen-garantia textarea {
 	background:#fff;
-	height: 50px;
-	margin-bottom: 10px;
+	height: 150px;
+	margin-bottom: 30px;
 }
 
 #resumen-garantia .linkGarantias {
 	text-align: right;
+}
+
+#resumen-garantia .linkGarantias a {
+	line-height: 1.9rem;
+	padding-top: 10px;
 }
 
 #module-matisses-garantias .footer_links > div {
@@ -4017,3 +4033,43 @@ line-height: 1.5;
 	text-align: center;
 	margin: 40px 0;
 }
+
+#module-matisses-garantias .bx-wrapper {
+		border: #E1E1E1 solid 1px;
+}
+
+#resumen-garantia .bx-wrapper img {
+    max-width: 90%;
+    display: block;
+    margin: 0 auto;
+}
+
+#resumen-garantia .bx-wrapper .bx-pager-item, #resumen-garantia .captions {
+	display:none;
+}
+
+.module-matisses-garantias .bx-wrapper a.bx-prev {
+	background-position: 10px -70px;
+}
+
+.module-matisses-garantias .bx-wrapper a.bx-next {
+	background-position: -30px -70px;
+}
+
+.module-matisses-garantias .bx-wrapper a.bx-prev:hover {
+	background-position: 10px -105px;
+}
+
+.module-matisses-garantias .bx-wrapper a.bx-next:hover {
+	background-position: -30px -105px;
+}
+
+.module-matisses-garantias table tr {
+	border-bottom:#D4D4D4 solid 1px;
+}
+
+.fa-angle-left:before {
+    font-weight: bold !important;
+    font-size: 1.3rem;
+    margin-right: 10px;
+	}

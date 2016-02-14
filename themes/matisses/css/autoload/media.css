@@ -1524,6 +1524,7 @@
 	.tbl-responsive .footable-row-detail-row:last-child .footable-row-detail-value {
 		padding:1rem 0;
 	}
+	/*Nueva garantia*/
 
 }
 
@@ -1977,7 +1978,7 @@
 	}
 
 	.center_column > h1 {
-		margin-left: 5%;
+		margin-left: 0;
 	}
 
 	.module-news-list .main-container .center_column {
@@ -2180,8 +2181,57 @@
 	}
 
 	body.module-matisses-garantias #block-history table {
-		width:500px
+		width:500px;
 	}
+
+	/*Garantias*/
+
+	body.module-matisses-garantias .center_column {
+		padding:0;
+	}
+
+	.warranty-history .table-responsive table tr td.details {
+		padding:0;
+	}
+
+	.warranty-history .table-responsive table tr td > .grid_5, .warranty-history .table-responsive table tr td > .grid_7 {
+		margin:30px 0;
+		padding: 10px;
+		width: 290px;
+		transition: all 0.4s ease;
+		-webkit-transition: all 0.1s ease;
+	}
+	.module-matisses-garantias table .details .bx-wrapper li, .module-matisses-garantias table .details .bx-wrapper .slider, .module-matisses-garantias table .details .bx-wrapper .slider li {
+		width: 100% !important;
+	}
+
+	body.module-matisses-garantias table .details .bx-wrapper img {
+    width: 100%;
+    margin: 0 auto;
+	}
+
+	body.module-matisses-garantias table .details a.btn.btn-default.btn-red {
+    display: block;
+	}
+
+	.module-matisses-garantias table .details .attributes {
+		padding:0;
+		width: 100%;
+	}
+
+	.module-matisses-garantias table .attributes li {
+		display:block;
+		width:100%;
+	}
+
+	body.module-matisses-garantias .footer_links {
+    margin:0;
+	}
+
+	.module-matisses-garantias  a.btn.btn-default.btn-red {
+    width: 100%;
+    margin: 10px auto;
+
 
 }
 

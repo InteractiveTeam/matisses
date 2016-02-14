@@ -43,7 +43,7 @@
     </div>
   </div>
   <div class="footer_links cf grid_12">
-    <div class="grid_2 omega alpha"> <a class="btn btn-default button btn-red" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}"> {l s='Volver a mi cuenta' mod='matisses'}</a> </div>
+    <div class="grid_2 omega alpha"> <a class="btn btn-default button btn-red" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}"><i class="fa fa-angle-left"></i> {l s='Volver a mi cuenta' mod='matisses'}</a> </div>
   </div>
   </div>
 </form>

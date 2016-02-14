@@ -920,6 +920,7 @@ class News extends Module {
 	
 	public function getPopulars()
 	{
+
 		return Db::getInstance()->ExecuteS('SELECT b.title, c.title as category, viewed
 											FROM '._DB_PREFIX_.'news as a
 												 INNER JOIN	'._DB_PREFIX_.'news_langs as b
@@ -934,14 +935,14 @@ class News extends Module {
 	
 	public function getCommentados()
 	{								
-		
+
 		return Db::getInstance()->ExecuteS('SELECT b.title, c.title as category, (SELECT count(*) FROM '._DB_PREFIX_.'news_comments WHERE id_news = a.id_news) as comentarios
 											FROM '._DB_PREFIX_.'news as a
 												 INNER JOIN	'._DB_PREFIX_.'news_langs as b
 												 INNER JOIN '._DB_PREFIX_.'news_cats_lang AS c
 												 	on a.id_news = b.id_news
 													and b.id_lang = c.id_lang
-											WHERE viewed !=0
+											WHERE (SELECT count(*) FROM '._DB_PREFIX_.'news_comments WHERE id_news = a.id_news) !=0
 												and b.id_lang = '.$this->context->language->id.'
 											group by a.id_news  order by (SELECT count(*) FROM '._DB_PREFIX_.'news_comments WHERE id_news = a.id_news) desc
 											');

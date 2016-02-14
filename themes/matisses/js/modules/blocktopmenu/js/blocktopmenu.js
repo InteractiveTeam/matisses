@@ -204,6 +204,28 @@ $(document).ready(function(e){
 
 		llamarMenu();
 
+		//back relative scroll GARANTIAS
+		var contDetails = $('.warranty-history table').width();
+		var contInfoG = $('.warranty-history .table-responsive table tr td > .grid_5');
+		var contInfoGb = $('.warranty-history .table-responsive table tr td > .grid_7');
+		var contInfoGw = $('.warranty-history .table-responsive table tr td > .grid_5').width();
+		var padin = contDetails-contInfoGw;
+
+		var lastScrollLeft = 0;
+
+		$('.table-responsive').scroll(function(){
+			 var st = $(this).scrollLeft();
+		   if (st > 150){
+				 lastScrollLeft++;
+				 contInfoG.css('marginLeft', lastScrollLeft)
+				 contInfoGb.css('marginLeft', lastScrollLeft)
+		   } else {
+				 lastScrollLeft--;
+				 contInfoG.css('marginLeft', lastScrollLeft)
+				 contInfoGb.css('marginLeft', lastScrollLeft)
+		   }
+		   lastScrollLeft = st;
+		})
 })
 
 //Divs a megamenu
