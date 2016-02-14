@@ -68,8 +68,9 @@
 	</div>
 
 {if count($order_history)}
-<h1 class="page-heading">{l s='Follow your order\'s status step-by-step'}</h1>
-<div class="table_block">
+<div class="info-warranty grid_12 alpha omega">
+	<h2 class="page-subheading">{l s='Follow your order\'s status step-by-step'}</h2>
+	<div class="table_block">
 	<table class="detail_step_by_step table table-bordered">
 		<thead>
 			<tr>
@@ -87,6 +88,7 @@
 		</tbody>
 	</table>
 </div>
+</div>
 {/if}
 
 {if isset($followup)}
@@ -95,7 +97,7 @@
 {/if}
 
 <div class="adresses_bloc grid_12 alpha omega">
-		<div class="grid_6"{if $order->isVirtual()} style="display:none;"{/if}>
+		<div class="grid_6 alpha omega"{if $order->isVirtual()} style="display:none;"{/if}>
 			<ul class="address alternate_item box">
 				<li><h3 class="page-subheading">{l s='Delivery address'} ({$address_delivery->alias})</h3></li>
 				{foreach from=$dlv_adr_fields name=dlv_loop item=field_item}

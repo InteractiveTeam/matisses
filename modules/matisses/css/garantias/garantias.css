@@ -65,16 +65,13 @@
     font-weight: normal;
     color: #D7162F;
     }
-    .module-matisses-garantias .history_state span {
+    .module-matisses-garantias .label.dark {
     background: none !important;
-    color: #D7162F;
+    color: #1A8A1A;
+    font-weight: 600;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
     font-size: 0.875rem;
-    font-weight: normal;
-    }
-    .module-matisses-garantias .history_state span.label.dark {
-    color: #1A8A1A;
     }
 
     .module-matisses-garantias .footer_links {
@@ -166,7 +163,9 @@
     color: #d7162f;
     border-bottom: 1px solid;
     }
-
+    .order-warranty {
+    margin-bottom: 3.125rem;
+    }
     .order-warranty .fa-file-pdf-o {
     padding-right: 0.625rem;
     }
