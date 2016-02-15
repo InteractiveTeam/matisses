@@ -2545,7 +2545,7 @@ class CartCore extends ObjectModel
 		$params['delivery_option_list']	= $delivery_option_list;
 		$params['delivery_option']		= $delivery_option;
 		$params['products_cart']		= $this->getProducts();
-		$total_shipping = Hook::exec('actionCalculateShipping',$params);
+		$total_shipping = Hook::exec('actionCalculateShipping',$params); 
 		return $total_shipping;
 	}
 	/**

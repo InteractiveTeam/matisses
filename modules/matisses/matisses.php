@@ -29,7 +29,7 @@ class matisses extends Module
 	***********************************************/
 	public function getContent()
 	{	
-		$this->registerHook('actionCalculateShipping');
+		//$this->registerHook('actionCalculateShipping');
 		//$this->registerHook('actionCustomerAccountAdd');
 		//$this->registerHook('displayExperiencesHome');
 		//$this->registerHook('displayCustomerAccount');
@@ -432,9 +432,9 @@ class matisses extends Module
 	
 	public function hookactionCalculateShipping($params)
 	{
+		//echo "<pre>"; print_r($params); echo "</pre>";
+		$shipping_cost = $params['total_shipping'];
 		$id_address = key($params['delivery_option']);
-		//echo "<pre>"; print_r($params); echo "</pre>"; 
-		//die();
 		if($id_address)
 		{
 			$Address = new Address($id_address);
@@ -452,8 +452,10 @@ class matisses extends Module
 				$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['quantity'] = $product['quantity'];
 			}
 			$salesWarehouseDTO = $this->array_to_xml($salesWarehouseDTO,false);
-			$response 	= $this->wsmatisses_get_data('inventoryItem','quoteShipping','prestashop',$salesWarehouseDTO);
+			$response 	= $this->wsmatisses_get_data('inventoryItem','quoteShipping','pruebas',$salesWarehouseDTO,true);
 			
+			if($response['return']['code']=='0101001')
+				$shipping_cost = $response['return']['detail'];
 		}
 		return $shipping_cost;
 	}
@@ -1235,7 +1237,7 @@ class matisses extends Module
 		return $boolean ? $return : $response;
 	}
 	
-	public function wsmatisses_get_data($objeto,$operacion,$origen,$datos=NULL)
+	public function wsmatisses_get_data($objeto,$operacion,$origen,$datos=NULL, $return = false)
 	{
 		//set_time_limit(15);
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
@@ -1251,6 +1253,9 @@ class matisses extends Module
 		{
 			return array('error_string' => $client->error_str);
 		}
+
+		if($return)
+			return $result; 
 		
 		if(!$result['return'])
 			return false;
