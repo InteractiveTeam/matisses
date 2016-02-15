@@ -11,7 +11,7 @@
           	<input type="hidden" name="poid" id="poid" value="{$poid}"> 
             <label class="control-label col-lg-3 required"> <span >{l s='Producto' mod='matisses'}</span> </label>
             <div class="col-lg-9 ">
-              <input type="text" id="product" name="product" placeholder="{l s='sku o id del product' mod='matisses'}" value="{$pointer.id_product}">
+              <input type="text" id="product" name="product" placeholder="{l s='sku o id del producto' mod='matisses'}" value="{$pointer.id_product}">
             </div>
           </div>
           

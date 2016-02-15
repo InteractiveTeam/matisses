@@ -2541,7 +2541,11 @@ class CartCore extends ObjectModel
 			else
 				$total_shipping += $delivery_option_list[$id_address][$key]['total_price_without_tax'];
 		}
-
+		$params['total_shipping'] 		= $total_shipping;
+		$params['delivery_option_list']	= $delivery_option_list;
+		$params['delivery_option']		= $delivery_option;
+		$params['products_cart']		= $this->getProducts();
+		$total_shipping = Hook::exec('actionCalculateShipping',$params); 
 		return $total_shipping;
 	}
 	/**

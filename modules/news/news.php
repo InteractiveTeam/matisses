@@ -4114,7 +4114,7 @@ class News extends Module {
 				SELECT * FROM '._DB_PREFIX_.'news_comments 
 				WHERE id_lang = '.$this->context->language->id.'
 					and id_shop = '.$this->context->shop->id.'
-					and id_news = '.$id_news.'
+					and id_news = "'.$id_news.'"
 				order by date desc
 				limit '.($limit * $page).','.$limit;
 						
@@ -4131,7 +4131,7 @@ class News extends Module {
 				SELECT count(*) FROM '._DB_PREFIX_.'news_comments 
 				WHERE id_lang = '.$this->context->language->id.'
 					and id_shop = '.$this->context->shop->id.'
-					and id_news = '.$id_news;
+					and id_news = "'.$id_news.'"';
 				
 		$total = ceil(Db::getInstance()->getValue($sql)/$limit);
 		$paginador = array();

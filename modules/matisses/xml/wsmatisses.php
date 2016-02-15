@@ -1,41 +1,58 @@
 <?php
-class matisses extends Module
-{
-	
-	private $_uploadfile = 'matisses';
+if ( !defined( '_PS_VERSION_' ) )
+  exit;
+  
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+*	Mensajes de error
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
+  	$this->array_to_xml(array('code'=>9000, 'detail'=>$this->l('Missing object param')));
+	$this->array_to_xml(array('code'=>9001, 'detail'=>$this->l('Missing operation param')));
+	$this->array_to_xml(array('code'=>9002, 'detail'=>$this->l('Missing origin param')));
+	$this->array_to_xml(array('code'=>9003, 'detail'=>$this->l('Missing data param')));
+	$this->array_to_xml(array('code'=>9004, 'detail'=>$this->l('Unknowlage objet')));
+	$this->array_to_xml(array('code'=>9005, 'detail'=>$this->l('Unknowlage operation')));
+	$this->array_to_xml(array('code'=>9006, 'detail'=>'error')); // INSERT CUSTOMERS
+	$this->array_to_xml(array('code'=>9007, 'detail'=>$this->l('wrong xml data')));
+	$this->array_to_xml(array('code'=>9008, 'detail'=>$this->l('Customer not exists')));
+	$this->array_to_xml(array('code'=>9009, 'detail'=>$this->l('User can\'t delate')));
+	$this->array_to_xml(array('code'=>9010, 'detail'=>$this->l('Service not active')));
+	$this->array_to_xml(array('code'=>9011, 'detail'=>$this->l('Customer not updated')));
+	$this->array_to_xml(array('code'=>9012, 'detail'=>$this->l('Customer not updated')));
 	
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/	
+ 
+class wsmatisses extends Module 
+{
+
+// FUNCIONES PROPIAS DEL MODULO
+	
+	/*******************************************************
+	*	@author:	Sebastian casta�o
+	*	@package:	Matisses integracion (Funciones de modulo)
+	*	@summary:	Constructor del modulo
+	*******************************************************/ 
 	public function __construct()
 	{
-		$this->name 			= basename(__FILE__,'.php');
-		$this->tab 				= 'administration';
-		$this->version 			= '1.0'; 
-		$this->author 			= 'Arkix';
-		$this->token 			= Tools::getAdminTokenLite('AdminModules');
-		$this->ht_file			= _PS_ROOT_DIR_.'/.htaccess';
+		$this->name = 'wsmatisses';
+		$this->tab = 'Test';
+		$this->version = 1.0;
+		$this->author = 'Arkix';
+		$this->need_instance = 0;
 		parent::__construct();
-		$this->displayName 		= $this->l('Matisses');
-		$this->description 		= $this->l('Instalador componentes matisses');
-		$this->_module 			= $this->name;
-		$this->bootstrap		= true;
-		$this->confirmUninstall = $this->l('Si desinstala este modulo el sitio puede no funcionar correctamente, ¿Esta seguro de continuar?');
-		//Db::getInstance()->execute("UPDATE ps_category_lang SET name = 'Menu' where id_category = 2");
-		//$this->registerHook('actionProductCartSave');
-		
+		$this->displayName = $this->l( 'Matisses integration sap' );
+		$this->description = $this->l( 'Integration module sap - prestashop' );
 	}
 	
-	/***********************************************
-	* BACKEND
-	***********************************************/
+	/*******************************************************
+	*	@author:	Sebastian casta�o
+	*	@package:	Matisses integracion (Funciones de modulo)
+	*	@summary:	Metodo del panel de administracion en el
+					Backend del prestashop
+	*******************************************************/ 
 	public function getContent()
 	{	
-		//$this->registerHook('actionCalculateShipping');
-		//$this->registerHook('actionCustomerAccountAdd');
-		//$this->registerHook('displayExperiencesHome');
-		//$this->registerHook('displayCustomerAccount');
-		//$this->registerHook('actionSortFilters');
-		//$install[] = $this->__installPage('module-matisses-garantias','garantias');
-		//self::hookactionListInvoice();
+		self::hookactionListInvoice();
 		if (Tools::isSubmit('updateApyKey'))
 		{
 			$NewApyKey = pSQL(Tools::getValue('ApyKey'));
@@ -72,97 +89,26 @@ class matisses extends Module
 		$this->context->smarty->assign('TimeRecord',Configuration::get($this->name.'_TimeRecord'));
 		$this->context->smarty->assign('Log',$Log);
 		
-		return $this->display(__FILE__, '/views/backend.tpl');
-	}	
+		return $this->display(__FILE__, '/view/backend.tpl');
+	}
 	
-	/***********************************************
-	*	INSTALACIÓN
-	***********************************************/
+	/*******************************************************
+	*	@author:	Sebastian casta�o
+	*	@package:	Matisses integracion (Funciones de modulo)
+	*	@summary:	Metodo de instalacion del modulo en el
+					Prestashop
+	*******************************************************/ 
 	public function install()
 	{
-		
-		// install controllers
-		$install[] = $this->__installTabs('adminMatisses','Matisses',0);
-		$parent = (int)Tab::getIdFromClassName('adminMatisses');
-		$install[] = $this->__installTabs('adminExperiences','Experiencias',$parent);
-		//images types
-		$install[] = $this->__installImageTypes('experiences-home',570,145);
-		
-		$install[] = $this->__installPage('module-matisses-experiences','experiencias');
-
-		
-		
-		$sql = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'highlights` (
-				  `id_highlight` int(11) NOT NULL AUTO_INCREMENT,
-				  `active` int(1) NOT NULL,
-				  PRIMARY KEY (`id_highlight`),
-				  KEY `active` (`active`)
-				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-				
-				CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'experiences` (
-				  `id_experience` int(11) NOT NULL AUTO_INCREMENT,
-				  `parent` int(11) NOT NULL,
-				  `id_shop_default` int(2) NOT NULL,
-				  `position` int(3) NOT NULL,
-				  `products` text,
-				  `active` int(1) NOT NULL,
-				  PRIMARY KEY (`id_experience`),
-				  KEY `active` (`active`),
-				  KEY `position` (`position`)
-				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-				
-				CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'experiences_lang` (
-				  `id_experience` int(11) NOT NULL AUTO_INCREMENT,
-				  `id_shop` int(2) NOT NULL,
-				  `id_lang` int(3) NOT NULL,
-				  `name` varchar(200) NOT NULL,
-				  `description` text,
-				  `link_rewrite` varchar(200),
-				  `meta_title` varchar(200),
-				  `meta_keywords` text,
-				  `meta_description` text,
-				  PRIMARY KEY (`id_experience`,`id_shop`,`id_lang`)
-				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-				
-				CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'experiences_product` (
-				  `id_experience` int(11) NOT NULL AUTO_INCREMENT,
-				  `id_product` int(11) NOT NULL,
-				  `top` int(4) NOT NULL,
-				  `left` int(4) NOT NULL,
-				  PRIMARY KEY (`id_experience`,`id_product`)
-				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-				
-				CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'product_store_available` (
-				  `id_product` int(11) NOT NULL,
-				  `id_store` int(11) NOT NULL,
-				  PRIMARY KEY (`id_product`,`id_store`)
-				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1;
-				
-				CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'category_homologation` (
-				  `id_category` int(11) NOT NULL,
-				  `id_matisses` int(11) NOT NULL,
-				  PRIMARY KEY (`id_category`,`id_matisses`)
-				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=latin1;		
-				
-				DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'wsmatisses_homologacion`;
-				CREATE TABLE IF NOT EXISTS `'. _DB_PREFIX_ .'wsmatisses_homologacion` (
-				  `codeprestashop` varchar(30) NOT NULL,
-				  `codeerp` varchar(30) NOT NULL,
-				  `object` varchar(30) NOT NULL,
-				  PRIMARY KEY (`codeprestashop`,`codeerp`,`object`)
-				) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-								
-		';
-		
-		$sql.='
-				DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'wsmatisses_configuration`;
-				CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'wsmatisses_configuration` (
+		$sql = "
+				DROP TABLE IF EXISTS `" . _DB_PREFIX_ . "wsmatisses_configuration`;
+				CREATE TABLE IF NOT EXISTS `" . _DB_PREFIX_ . "wsmatisses_configuration` (
 				  `apykey` varchar(300) NOT NULL,
 				  PRIMARY KEY (`apykey`)
 				) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 				
-				DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'wsmatisses_log`;
-				CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'wsmatisses_log` (
+				DROP TABLE IF EXISTS `" . _DB_PREFIX_ . "wsmatisses_log`;
+				CREATE TABLE IF NOT EXISTS `" . _DB_PREFIX_ . "wsmatisses_log` (
 				  `register_date` int(15) NOT NULL,
 				  `object` varchar(30) NOT NULL,
 				  `operation` varchar(30) NOT NULL,
@@ -174,7 +120,7 @@ class matisses extends Module
 				  PRIMARY KEY (`register_date`)
 				) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 				
-				DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'wsmatisses_homologacion`;
+				DROP TABLE IF EXISTS `" . _DB_PREFIX_ . "wsmatisses_homologacion`;
 				CREATE TABLE IF NOT EXISTS `". _DB_PREFIX_ ."wsmatisses_homologacion` (
 				  `codeprestashop` varchar(30) NOT NULL,
 				  `codeerp` varchar(30) NOT NULL,
@@ -182,8 +128,8 @@ class matisses extends Module
 				  PRIMARY KEY (`codeprestashop`,`codeerp`,`object`)
 				) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 				
-				DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'wsmatisses_pagos`;
-				CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'wsmatisses_pagos` (
+				DROP TABLE IF EXISTS `" . _DB_PREFIX_ . "wsmatisses_pagos`;
+				CREATE TABLE IF NOT EXISTS `" . _DB_PREFIX_ . "wsmatisses_pagos` (
 				  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 				  `customer_id` int(11) NOT NULL,
 				  `id_shop` int(11) NOT NULL,
@@ -200,505 +146,48 @@ class matisses extends Module
 				  KEY `key_placetopay` (`key_placetopay`),
 				  KEY `key_prestashop` (`key_prestashop`),
 				  KEY `key_matisses` (`key_matisses`)
-				) ENGINE=InnoDB DEFAULT CHARSET=latin1;		
-		';
-		
+				) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+				";
 		Configuration::updateValue($this->name.'_RowNumber',20);
 		Configuration::updateValue($this->name.'_TimeRecord', -4);	
-		
-		if(!file_exists(_PS_IMG_DIR_.'highlights'))
-			mkdir(_PS_IMG_DIR_.'highlights',755);
-			
-		if(!file_exists(_PS_IMG_DIR_.'experiences'))
-			mkdir(_PS_IMG_DIR_.'experiences',755);	
-		
-		if (!parent::install() 
-			|| in_array(0,$install) 
-			|| !Db::getInstance()->Execute($sql)
-			|| !$this->registerHook('displayFacebookLogin')
-			|| !$this->registerHook('header')
-			|| !$this->registerHook('displayFooterProduct')
-			|| !$this->registerHook('displayAvailableProduct')
-			|| !$this->registerHook('displaySchemesProduct')
-			|| !$this->registerHook('displayExperiencesHome')
-			|| !$this->registerHook('displayCustomerAccount')
-			|| !$this->registerHook('actionSortFilters')
-			|| !$this->registerHook('moduleRoutes')
-			
-			|| $this->registerHook('actionCustomerAccountUpdate')
-			|| $this->registerHook('actionValidateProductsAvailableCart')
-			|| $this->registerHook('actionCustomerAccountAdd')
-			|| $this->registerHook('actionProductCartSave')
-			|| $this->registerHook('actionPaymentProccess')
-			|| $this->registerHook('actionAddGarantia')
-			|| $this->registerHook('actionListGarantia')
-			|| $this->registerHook('actionAddCommetsGarantia')
-			|| $this->registerHook('actionListInvoice')
-			|| $this->registerHook('actioncalculateAditionalCosts')
-			|| $this->registerHook('actionOrderDetail')
-			|| $this->registerHook('actionCalculateShipping')
-			|| $this->registerHook('trackOrder')			
+		if(parent::install() 
+			&& Db::getInstance()->Execute($sql) 
+			&& $this->registerHook('actionCustomerAccountUpdate')
+			&& $this->registerHook('actionValidateProductsAvailableCart')
+			&& $this->registerHook('actionCustomerAccountAdd')
+			&& $this->registerHook('actionProductCartSave')
+			&& $this->registerHook('actionPaymentProccess')
+			&& $this->registerHook('actionAddGarantia')
+			&& $this->registerHook('actionListGarantia')
+			&& $this->registerHook('actionAddCommetsGarantia')
+			&& $this->registerHook('actionListInvoice')
+			&& $this->registerHook('calculateAditionalCosts')
+			&& $this->registerHook('trackOrder')
 			
 			)
-			return false;
-			
-		Tools::generateHtaccess($this->ht_file, null, null, '', Tools::getValue('PS_HTACCESS_DISABLE_MULTIVIEWS'), false, Tools::getValue('PS_HTACCESS_DISABLE_MODSEC'));	
-		return true;
+				return true;
+		return false;
 	}
 	
-
-	
-	private function __installPage($page=NULL,$title=NULL, $url_rewrite=NULL, $description=NULL)
-	{
-		try{
-			
-			if($page && $title)
-			{
-				$meta = new Meta();
-				$meta->page 		= $page;
-				$meta->title 		= $title;
-				
-				if($description)
-					$meta->description	= $description;
-					
-				$meta->url_rewrite	= $url_rewrite ? $url_rewrite : Tools::link_rewrite($title);
-				$meta->add();
-				return true; 
-			}
-		}catch (Exception $e) {
-			return false;
-		}				
-	}
-	
-	private function __uninstallPage($page=NULL)
-	{
-		try{
-			if($page)
-			{
-				$page = Meta::getMetaByPage($page, $this->context->language->id);
-				if($page['id_meta'])
-					Db::getInstance()->delete('ps_meta', 'id_meta='.$page['id_meta']);
-
-				return true; 
-			}
-		}catch (Exception $e) {
-			return false;
-		}				
-	}	
-	
-	private function __installTabs($class_name,$name,$parent=0,$page=NULL,$title=NULL,$description=NULL, $url_rewrite=NULL)
-	{
-		try{
-			$id_tab = (int)Tab::getIdFromClassName($class_name);
-			if(!$id_tab)
-			{
-				$tab = new Tab();
-				$tab->active = 1;
-				$tab->class_name = $class_name;
-				$tab->name = array();
-				foreach (Language::getLanguages(true) as $lang)
-					$tab->name[$lang['id_lang']] = $name;
-					
-				$tab->id_parent = $parent;
-				$tab->module 	= $this->name;
-				$tab->add(); 
-				if($page && $title)
-				{
-					$meta = new Meta();
-					$meta->page 		= $page;
-					$meta->title 		= $title;
-					
-					if($description)
-						$meta->description	= $description;
-						
-					if($url_rewrite)
-					$meta->url_rewrite	= Tools::link_rewrite($url_rewrite);
-					$meta->add(); 
-					
-				}
-			}else{
-					$this->__uninstallTabs($class_name);
-					self::__installTabs($class_name,$name,$parent,$page,$title,$description, $url_rewrite);
-				 }
-			return true;
-			
-		}catch (Exception $e) {
-			return false;
-		}
-		
-	}
-	/***********************************************
-	*	INSTALACIÓN
-	***********************************************/	
+	/*******************************************************
+	*	@author:	Sebastian casta�o
+	*	@package:	Matisses integracion (Funciones de modulo)
+	*	@summary:	Metodo de desinstalacion del modulo en el
+					prestashop
+	*******************************************************/ 
 	public function uninstall()
 	{
-		
-		$uninstall[] = $this->__uninstallTabs('adminExperiences');
-		$uninstall[] = $this->__uninstallTabs('adminDestacados');
-		$uninstall[] = $this->__uninstallTabs('adminWebservices');
-		$uninstall[] = $this->__uninstallTabs('adminMatisses');
-		$uninstall[] = $this->__uninstallImageTypes('experiences-home');
-		// pages
-		$uninstall[] = $this->__uninstallPage('module-matisses-experiences');
-		
-		$sql = 'DROP TABLE IF EXISTS `'._DB_PREFIX_.'highlights`;
-				DROP TABLE IF EXISTS `'._DB_PREFIX_.'experiences`;
-				DROP TABLE IF EXISTS `'._DB_PREFIX_.'experiences_lang`;
-				DROP TABLE IF EXISTS `'._DB_PREFIX_.'experiences_product`;
-				DROP TABLE IF EXISTS `'._DB_PREFIX_.'product_store_available`;
-				DROP TABLE IF EXISTS `'._DB_PREFIX_.'category_homologation`;
-				
-				DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'wsmatisses_configuration`;
-				DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'wsmatisses_log`;
-				DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'wsmatisses_homologacion`;
-				DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'wsmatisses_pagos`;				
-		';
-		
-		if(file_exists(_PS_IMG_DIR_.'highlights'))
-			Tools::deleteDirectory(_PS_IMG_DIR_.'highlights');
-			
-		if(file_exists(_PS_IMG_DIR_.'experiences'))
-			Tools::deleteDirectory(_PS_IMG_DIR_.'experiences');	
-
-		
-		if (!parent::uninstall() 
-			|| in_array(0,$uninstall) 
-			|| !Db::getInstance()->Execute($sql)
-			)
+		$sql = "
+				DROP TABLE IF EXISTS `" . _DB_PREFIX_ . "wsmatisses_configuration`;
+				DROP TABLE IF EXISTS `" . _DB_PREFIX_ . "wsmatisses_log`;
+				DROP TABLE IF EXISTS `" . _DB_PREFIX_ . "wsmatisses_homologacion`;
+				DROP TABLE IF EXISTS `" . _DB_PREFIX_ . "wsmatisses_pagos`;
+				";
+		if (!Db::getInstance()->Execute($sql) || parent::uninstall() == false)
 			return false;
 		return true;
 	}
 	
-	private function __installImageTypes($name,$width,$height,$p=false,$c=false,$m=false,$su=false,$sc=false,$st=false)
-	{
-		try{
-			$ImageType = new ImageType();
-			$ImageType->name 	= $name;
-			$ImageType->width 	= $width;
-			$ImageType->height 	= $height;
-			$ImageType->products 		= $p;
-			$ImageType->categories 		= $c;
-			$ImageType->manufacturers 	= $m;
-			$ImageType->suppliers 		= $su;
-			$ImageType->scenes 			= $sc;
-			$ImageType->stores 			= $st;
-			$ImageType->add();
-			return true;
-		}catch (Exception $e) {
-			return false;
-		}
-	}
-	
-	
-	private function __uninstallImageTypes($name)
-	{
-		try{
-			Db::getInstance()->Execute('DELETE FROM '._DB_PREFIX_.'image_type WHERE name="'.$name.'" ');
-			return true;
-		}catch (Exception $e) {
-			return false;
-		}
-	}
-	
-	private function __uninstallTabs($class_name)
-	{
-		try{
-			$id_tab = (int)Tab::getIdFromClassName($class_name);
-			if ($id_tab)
-			{
-				$tab = new Tab($id_tab);
-				$tab->delete();
-			}
-			return true;
-		}catch (Exception $e) {
-			return false;
-		}
-	}
-
-	/*********************************************
-	* WEB SERVICES
-	*********************************************/
-	public function loadProducts()
-	{
-		require_once dirname(__FILE__).'/webservice/wsproduct.php';
-		$ws = new wsproduct;
-		$ws->init();
-	}
-	
-	
-	/*********************************************
-	* HOOKS
-	*********************************************/
-	
-	public function hookactionCalculateShipping($params)
-	{
-		//echo "<pre>"; print_r($params); echo "</pre>";
-		$shipping_cost = $params['total_shipping'];
-		$id_address = key($params['delivery_option']);
-		if($id_address)
-		{
-			$Address = new Address($id_address);
-			$State 	 = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow('
-								SELECT *
-								FROM `'._DB_PREFIX_.'state`
-								WHERE `id_state` = '.(int)$Address->id_state
-							);
-			
-			$salesWarehouseDTO['salesWarehouseDTO']['destinationCityCode'] = $State['iso_code'];
-			
-			foreach($params['products_cart'] as $k => $product)
-			{
-				$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['itemCode'] = $product['reference'];
-				$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['quantity'] = $product['quantity'];
-			}
-			$salesWarehouseDTO = $this->array_to_xml($salesWarehouseDTO,false);
-			$response 	= $this->wsmatisses_get_data('inventoryItem','quoteShipping','pruebas',$salesWarehouseDTO,true);
-			
-			if($response['return']['code']=='0101001')
-				$shipping_cost = $response['return']['detail'];
-		}
-		return $shipping_cost;
-	}
-
-	
-	
-	public function hookactionSortFilters($params)
-	{
-
-		$filters = $params['filters'];
-		
-		unset($keyfilter);
-		foreach($filters as $k => $filter)
-		{
-			if(!$keyfilter)
-			{
-				if(strstr($filter['name'],'material'))
-				{
-					$keyfilter = $k;
-					$filters[$k]['name'] = $this->l('material');
-				}
-			}else{
-				if(strstr($filter['name'],'material'))
-				{
-					unset($values);
-					$values = $filter['values'];
-					if(sizeof($values))
-					{
-						unset($keymat);
-						$keymat = key($values);
-						$filters[$keyfilter]['values'][$keymat]['nbr'] = $values[$keymat]['nbr'];
-						$filters[$keyfilter]['values'][$keymat]['name'] =$values[$keymat]['name'];
-						$filters[$keyfilter]['values'][$keymat]['url_name'] = $values[$keymat]['url_name'];
-						$filters[$keyfilter]['values'][$keymat]['meta_title'] = $values[$keymat]['meta_title'];
-						$filters[$keyfilter]['values'][$keymat]['link'] = $values[$keymat]['link'];
-						$filters[$keyfilter]['values'][$keymat]['rel'] = $values[$keymat]['rel'];
-						unset($filters[$k]); 
-					}
-				}
-			}
-		}
-		return $filters;
-	}
-	
-	public function hookdisplayCustomerAccount($params)
-	{
-		return $this->display(__FILE__, 'views/templates/hook/garantias.tpl');
-	}
-	
-	
-	public function hookdisplayExperiencesHome($params)
-	{
-		require_once dirname(__FILE__)."/classes/Experiences.php";
-		$Experiences = new Experiences();
-
-		$list = $Experiences->getExperiences();
-		foreach($list as $k => $exp)
-		{
-			$list[$k]['image'] = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/img/experiences/'.$exp['id_experience'].'-home.jpg';
-		}
-		$this->context->smarty->assign('experiences', $list);
-		return $this->display(__FILE__, 'views/templates/hook/experiences_home.tpl');
-		
-	}
-	
-	
-	public function hookmoduleRoutes() {
-	/*
-		return array(
-				'module-maticces-experiences' => array(
-                    'controller' => 'new',
-                    'rule' =>  'news/new/{id_news}-{cat_news}-{page_cat}/{cat_rewrite}/{rewrite}.html',
-                    'keywords' => array(
-                        'id_news'   => array('regexp' => '[0-9]+',   'param' => 'id_news'),
-                        'cat_news'  => array('regexp' => '[0-9]*',   'param' => 'cat_news'),
-                        'cat_rewrite'  => array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'cat_rewrite'),
-                        'page_cat'      => array('regexp' => '[0-9]*',   'param' => 'page_cat'),
-                        'rewrite'   => array('regexp' => '[_a-zA-Z0-9-\pL]*',   'param' => 'rewrite'),
-                    ),
-                    'params' => array(
-						'fc' => 'module',
-                        'module' => 'news',
-                        'controller' => 'new'
-                    )
-                )
-				 
-    	);	
-*/
-    }	
-	
-	public function hookHeader($params)
-	{
-		$this->page_name = Dispatcher::getInstance()->getController();
-		$this->context->controller->addJS($this->_path.'js/fblogin.js');
-		if(in_array($this->page_name, array('product')))
-		{
-			$this->context->controller->addJqueryUI('ui.tabs');
-			$this->context->controller->addJS($this->_path.'js/producttabs.js');
-		}
-		
-		if(in_array($this->page_name, array('index')))
-		{
-			$this->context->controller->addJqueryPlugin('bxslider');
-			$this->context->controller->addJS($this->_path.'js/experiences_home.js');
-		}
-		//echo "<pre>"; print_r($params); echo "</pre>";
-	}
-	
-	public function hookdisplayFooterProduct($params)
-	{
-		$this->context->smarty->assign(array(
-											'product' => $params['product'],
-											));
-		return $this->display(__FILE__, 'views/templates/hook/product_tabs.tpl');
-	}
-	
-	
-	public function hookdisplayFacebookLogin($params)
-	{
-		$this->context->controller->addJS($this->_path.'js/fblogin.js');
-		return $this->display(__FILE__, 'views/templates/hook/facebook_login.tpl');
-	}
-	
-	public function hookdisplayAvailableProduct($params)
-	{
-		$stores = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'store WHERE codmatisses in("'.str_replace(',',",",$params['product']->stores).'")');
-		$this->context->smarty->assign('stores',$stores);	
-		return $this->display(__FILE__, 'views/templates/hook/product_available.tpl');
-	}
-	
-	public function hookdisplaySchemesProduct($params)
-	{
-		$sketch 		= $params['product']->sketch;
-		$video 			= $params['product']->video;
-		$three_sixty 	= $params['product']->three_sixty;
-		
-		if($video)
-			$video= 'https://www.youtube.com/embed/'.$video;
-		
-		if($sketch)
-			$sketch = '/modules/'.$this->name.'/files/'.$params['product']->reference.'/plantilla/'.$sketch;
-
-		
-		$this->context->smarty->assign('schemas',array(
-			'sketch' => $sketch,
-			'video' => $video,
-			'three_sixty' => $three_sixty,
-		));	
-		return $this->display(__FILE__, 'views/templates/hook/product_schemes.tpl');
-	}
-	
-	
-	/*********************************************
-	* AJAX 
-	*********************************************/
-	
-	public function processAjaxCallback()
-	{
-		$option 	= $_REQUEST['option'];
-		$request 	= $_REQUEST['request'];
-		switch($option)
-		{
-			case 'fblogin': 
-				
-				$Customer = Customer::getCustomersByEmail($_REQUEST['request']['email']);
-				if(sizeof($Customer)>0)
-				{
-					
-					$response['haserror'] 	= false;
-					$response['action']		= 'reload';
-					$response['url']		= $this->createFacebookLogin($Customer);
-					
-				}else{
-						$response['haserror'] 	= false;
-						$response['action']		= 'create';
-						$response['data']		= $request;
-					 }
-				
-			
-			break;
-			default:
-				$response['haserror'] 	= true;
-				$response['message']	= $this->l('No data sending');
-		}
-		
-		return json_encode($response);
-	}
-	
-	private function createFacebookLogin($CurrentCustomer)
-	{
-		$customer = new Customer($CurrentCustomer[0]['id_customer']);
-		$this->context->cookie->id_compare = isset($this->context->cookie->id_compare) ? $this->context->cookie->id_compare: CompareProduct::getIdCompareByIdCustomer($customer->id);
-		$this->context->cookie->id_customer = (int)($customer->id);
-		$this->context->cookie->customer_lastname = $customer->lastname;
-		$this->context->cookie->customer_firstname = $customer->firstname;
-		
-		$this->context->cookie->customer_secondname = $customer->secondname;
-		$this->context->cookie->customer_surname = $customer->surname;
-		$this->context->cookie->customer_charter = $customer->charter;
-		
-		
-		$this->context->cookie->logged = 1;
-		$customer->logged = 1;
-		$this->context->cookie->is_guest = $customer->isGuest();
-		$this->context->cookie->passwd = $customer->passwd;
-		$this->context->cookie->email = $customer->email;
-
-		// Add customer to the context
-		$this->context->customer = $customer;
-		
-		if(empty($this->context->cart))
-		{
-			$this->context->cart = new Cart($id_cart);
-			$this->context->cart->id_currency = 1;
-		}
-
-		$id_carrier = (int)$this->context->cart->id_carrier;
-		$this->context->cart->id_carrier = 0;
-		$this->context->cart->setDeliveryOption(null);
-		$this->context->cart->id_address_delivery = (int)Address::getFirstCustomerAddressId((int)($customer->id));
-		$this->context->cart->id_address_invoice = (int)Address::getFirstCustomerAddressId((int)($customer->id));
-
-		$this->context->cart->id_customer = (int)$customer->id;
-		$this->context->cart->secure_key = $customer->secure_key;
-
-		if ($this->ajax && isset($id_carrier) && $id_carrier && Configuration::get('PS_ORDER_PROCESS_TYPE'))
-		{
-			$delivery_option = array($this->context->cart->id_address_delivery => $id_carrier.',');
-			$this->context->cart->setDeliveryOption($delivery_option);
-		}
-
-		$this->context->cart->save();
-		$this->context->cookie->id_cart = (int)$this->context->cart->id;
-		$this->context->cookie->write();
-		$this->context->cart->autosetProductAddress();
-
-		// Login information have changed, so we check if the cart rules still apply
-		CartRule::autoRemoveFromCart($this->context);
-		CartRule::autoAddToCart($this->context);
-
-		return 'index.php?controller='.(($this->authRedirection !== false) ? urlencode($this->authRedirection) : $back);
-	}
-
 // FUNCIONES DE INTEGRACION CON CLIENTES
 	
 	/*******************************************************
@@ -709,7 +198,7 @@ class matisses extends Module
 					cuando se ingresa al listado de productos 
 					para validar su existencia en sap
 	*******************************************************/
-	public function hookactionCustomerAccountAdd($params,$factura=false)
+	public function hookactionCustomerAccountAdd($params)
 	{
 
 		require_once dirname(__FILE__)."/classes/template.php";
@@ -721,22 +210,15 @@ class matisses extends Module
 		$opt = $_POST['wsactualizar'] ? 'modify' : 'add';
 		$infoxml[0]['operation'] 		= $opt;
 		$infoxml[0]['source'] 			= 'prestashop';
-		$infoxml[0]['id'] 				= $InfCustomer[0]['charter'].'CL';
+		$infoxml[0]['id'] 				= $InfCustomer[0]['customer_cedula'].'CL';
 		$infoxml[0]['lastName1'] 		= strtoupper($InfCustomer[0]['lastname']);
-		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['secondname']);
-        $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
+		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['customer_lastname2']);
+        $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['customer_lastname2'] ? ' '.$InfCustomer[0]['customer_lastname2']: '').' '.$InfCustomer[0]['firstname']);
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname']);
 		$infoxml[0]['email']			= $InfCustomer[0]['email'];
 		$infoxml[0]['gender']			= 3;
         $infoxml[0]['salesPersonCode'] 	= ""; // se envia vacio esto se llena por default en sap;
-
-		if(sizeof($InfAddresses)==1)
-		{
-			$InfAddresses[1] = $InfAddresses[0];
-		}
 		
-		
-		$cont = 0;
 		foreach($InfAddresses as $d => $v) 
 		{
 			$addresses[$d]['addressName']	= $InfAddresses[$d]['alias'];
@@ -746,16 +228,11 @@ class matisses extends Module
 			$addresses[$d]['stateCode']		= Country::getIsoById(Country::getIdByName((int)Configuration::get('PS_LANG_DEFAULT'),$InfAddresses[$d]['country']));
             $addresses[$d]['stateName']		= $InfAddresses[$d]['country'];
 			$addresses[$d]['email']			= $InfCustomer[0]['email'];
-            $addresses[$d]['addressType']	= $cont ==0 ? 'F' : 'E'; //envio por defecto 
+            $addresses[$d]['addressType']	= 'F'; //envio por defecto 
             $addresses[$d]['mobile']		= $InfAddresses[$d]['phone_mobile'];
             $addresses[$d]['phone']			= $InfAddresses[$d]['phone'];
-			if($cont==1)
-				break;
-			$cont++;
 		}
 		$infoxml[0]['addresses'] = $addresses;
-		//print_r($infoxml);
-		//die();
 		$xml = new Template(dirname(__FILE__)."/xml/sap_customer.xml");
 		$xml->addParam('infoxml',$infoxml);
 		$xml = $xml->output();
@@ -772,7 +249,7 @@ class matisses extends Module
 					enviar a sap cuando un cliente actualiza 
 					su informacion en el prestashop.
 	*******************************************************/
-	public function hookactionCustomerAccountUpdate($params,$facturar=false)
+	public function hookactionCustomerAccountUpdate($params)
 	{
 		require_once dirname(__FILE__)."/classes/template.php";
 		$customer 		= new Customer();
@@ -781,17 +258,13 @@ class matisses extends Module
 		$InfAddresses	= $customer->getAddresses((int)Configuration::get('PS_LANG_DEFAULT'));
 		$infoxml[0]['operation'] 		= 'modify';
 		$infoxml[0]['source'] 			= 'prestashop';
-		$infoxml[0]['id'] 				= $InfCustomer[0]['charter'].'CL';
+		$infoxml[0]['id'] 				= $InfCustomer[0]['customer_cedula'].'CL';
 		$infoxml[0]['lastName1'] 		= strtoupper($InfCustomer[0]['lastname']);
-		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['secondname']);
-        $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
+		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['customer_lastname2']);
+        $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['customer_lastname2'] ? ' '.$InfCustomer[0]['customer_lastname2']: '').' '.$InfCustomer[0]['firstname']);
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname']);
 		$infoxml[0]['email']			= $InfCustomer[0]['email'];
         $infoxml[0]['salesPersonCode'] 	= ""; // se envia vacio esto se llena por default en sap;
-		
-		if(sizeof($InfAddresses)==1)
-			$InfAddresses[1] = $InfAddresses[0];
-	
 		foreach($InfAddresses as $d => $v) 
 		{
 			$addresses[$d]['addressName']	= $InfAddresses[$d]['alias'];
@@ -825,20 +298,12 @@ class matisses extends Module
 	public function hookactionProductCartSave($params)
 	{
 		// solo se ejecuta desde el front
-		
-		$headers = get_headers(Configuration::get($this->name.'_UrlWs'));
-		
-		if(!strstr($headers[0],'200'))
-			return false;
-			
-
-		//ini_set('display_errors',false);
-		//error_reporting(~E_NOTICE);
+	
+		ini_set('display_errors',false);
+		error_reporting(~E_NOTICE);
 		$id_cart 	= is_object($this->context->cart->id) ? $this->context->cart->id : $this->context->cookie->id_cart;
 		$products				= $params['id_product'];
 		$id_product_attribute	= $params['id_product_attribute'];
-		
-		
 		
 		if($id_product_attribute!=0)
 		{
@@ -848,13 +313,14 @@ class matisses extends Module
 				return false;
 				
 			$response 	= $this->wsmatisses_get_data('inventoryItem','listWebEnabledStock','sap',$this->array_to_xml(array('inventoryItemDTO'=>array('itemCode'=>$reference)),false));
+			
 			$reference	= $response['inventoryItemDTO']['itemCode'];
 			require_once dirname(__FILE__)."/wsclasses/ws_product.php";
 			$ws_product = new ws_product();
-			//print_r($reference);
+
 			if($reference)
 			{
-				$stock = $response['inventoryItemDTO']['stock']; 
+				$stock = $response['inventoryItemDTO']['stock'];
 				$StockSum=0;
 				foreach($stock as $d => $v)
 				{
@@ -898,42 +364,13 @@ class matisses extends Module
 							}
 						}else{
 								$return = false;
-							 }	 
+							 }
 						return $return; 
 					 }
 			}
-		return false;	
 	}
 	
-	public function hookactioncalculateAditionalCosts($params)
-	{
-		return self::wsmatissess_calculateAditionalCosts($params); 				
-	}
-	
-	public function wsmatissess_getReferencesByModel($params)
-	{
-		
-		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
-		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), array("trace"=>1,"exceptions"=>0)); 
-		$inventoryItemDTO['inventoryItemDTO']['model'] 		= $params;
-		
-		$inventoryItemDTO 	= self::array_to_xml($inventoryItemDTO,false);
-		$s 			= array('genericRequest' => array('data'		=>$inventoryItemDTO,
-														'object'	=>'inventoryItem',
-														'operation'	=>'listItemsByModel',
-														'source'	=>'prestashop')
-												); 
-		
-		$result = $client->call('callService', $s);
-		//echo "<pre>"; print_r($result); echo "</pre>";
-		$result = $this->xml_to_array($result['return']['detail']);
-		
-		return $result['inventoryItemListDTO']['items'];
-		//echo "<pre>"; print_r($result); echo "</pre>";
-		//return $result['additionalCostsDTO']['installationCost'].'_'.$result['additionalCostsDTO']['deliveryCost']; 		
-	}
-	
-	public function wsmatissess_calculateAditionalCosts($params)
+	public function hookcalculateAditionalCosts($params)
 	{
 		
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
@@ -951,16 +388,16 @@ class matisses extends Module
 		$s 			= array('genericRequest' => array('data'		=>$OrderParametersDTO,
 														'object'	=>'order',
 														'operation'	=>'calculateAdditionalCosts',
-														'source'	=>'prestashop')
+														'source'	=>'prueba')
 												); 
 		
 		$result = $client->call('callService', $s);
-		$result = $this->xml_to_array($result['return']['detail']);
-		return $result['additionalCostsDTO']['installationCost'].'_'.$result['additionalCostsDTO']['deliveryCost']; 			
+		return $this->xml_to_array($result['return']['detail']);	 				
 	}
 	
 	public function hooktrackOrder($params)
 	{
+		
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), array("trace"=>1,"exceptions"=>0)); 
 		$orderDTO = array();
@@ -972,7 +409,7 @@ class matisses extends Module
 													'data'		=> $this->array_to_xml($orderDTO,false),
 													'object'	=> 'order',
 													'operation'	=> 'trackOrder',
-													'source'	=> 'prestashop'
+													'source'	=> 'prueba'
 												 )); 
 												 
 		$result = $client->call('callService', $s);
@@ -982,7 +419,7 @@ class matisses extends Module
 		
 		//echo '<br><br><pre>';echo print_r($cadena);echo '</pre>';
 		
-/*		echo '<br><br><br>otra prueba<br><br><br>';
+		echo '<br><br><br>otra prueba<br><br><br>';
 		foreach ($cadena as $c){
 			$datos[] = array(
 				'date' =>  $c['date'],
@@ -994,15 +431,13 @@ class matisses extends Module
 
 		
 		echo '<br><br><pre>';print_r($datos);echo '</pre>';
-		$var = array();
-		$var['nombre'] = 'paulo';
-		$var['apellido'] = 'ossa';
 		
 		//return $this->xml_to_array($result['return']['detail']);			
-		return $var;*/
-		return $cadena;
+		return 'hp no funciona';
+		
 	}
 	
+
 	public function hookactionPaymentConfirmation($params)
 	{
 		//echo "<pre>"; print_r($params); echo "</pre>";
@@ -1027,7 +462,7 @@ class matisses extends Module
 		$s 			= array('genericRequest' => array('data'		=>$comment,
 														'object'	=>'serviceRequest',
 														'operation'	=>'addComment',
-														'source'	=>'prestashop')
+														'source'	=>'prueba')
 												); 
 		$result = $client->call('callService', $s);
 		return $result;	
@@ -1041,7 +476,7 @@ class matisses extends Module
 		$s 			= array('genericRequest' => array('data'		=>$params['id_garantia'],
 														'object'	=>'serviceRequest',
 														'operation'	=>'getRequestHistory',
-														'source'	=>'prestashop')
+														'source'	=>'prueba')
 												); 
 		$result = $client->call('callService', $s);
 		$result = $this->xml_to_array($result['return']['detail']);
@@ -1058,7 +493,7 @@ class matisses extends Module
 		$s 			= array('genericRequest' => array('data'		=>$invoice,
 														'object'	=>'order',
 														'operation'	=>'listCustomerOrders',
-														'source'	=>'prestashop')
+														'source'	=>'prueba')
 												); 
 		$result = $client->call('callService', $s);
 		$result = $this->xml_to_array($result['return']['detail']);
@@ -1085,7 +520,7 @@ class matisses extends Module
 		$s 			= array('genericRequest' => array('data'		=>$garantia,
 														'object'	=>'serviceRequest',
 														'operation'	=>'createServiceRequest',
-														'source'	=>'prestashop')
+														'source'	=>'prueba')
 												); 
 		
 		$result = $client->call('callService', $s);
@@ -1095,23 +530,16 @@ class matisses extends Module
 
 	public function wsmatisses_registrar($params)
 	{
-/*		echo "<pre>";
-		print_r($params);
-
-		echo "</pre>";*/
-		
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
 		$order['incomingPaymentDTO']['nroFactura'] = Db::getInstance()->getValue('SELECT id_factura FROM `' . _DB_PREFIX_ . 'cart` WHERE id_cart= "'.$params['id_order'].'"');
 		$order['incomingPaymentDTO']['nroTarjeta'] = '1111';
-		$order['incomingPaymentDTO']['voucher']    = $params['receipt'];
-		$order['incomingPaymentDTO']['franquicia'] = $params['franchise_name'];
-		$order['incomingPaymentDTO']['tipo']       = 'CREDITO';
+		$order['incomingPaymentDTO']['voucher'] = $params['receipt'];
 		$order 		= self::array_to_xml($order,false);
 		$s 			= array('genericRequest' => array('data'		=>$order,
 														'object'	=>'order',
 														'operation'	=>'addPayment',
-														'source'	=>'prestashop')
+														'source'	=>'prueba')
 												); 
 		$result = $client->call('callService', $s); 
 	}
@@ -1126,10 +554,11 @@ class matisses extends Module
 		$s 			= array('genericRequest' => array('data'		=>$order,
 														'object'	=>'order',
 														'operation'	=>'voidInvoice',
-														'source'	=>'prestashop')
+														'source'	=>'prueba')
 												); 
 		$result = $client->call('callService', $s); 
 	}
+	
 	
 	public function hookactionValidateProductsAvailableCart()
 	{
@@ -1167,7 +596,8 @@ class matisses extends Module
 			return $this->wsmatisses_createInvoice($products);
 	}
 
-	// FUNCIONES DE COMUNICACION CON SAP	
+// FUNCIONES DE COMUNICACION CON SAP	
+
 	public function wsmatisses_facturar($params)
 	{
 		set_time_limit(0);
@@ -1178,7 +608,7 @@ class matisses extends Module
 		$s 			= array('genericRequest' => array('data'		=>$order,
 														'object'	=>'order',
 														'operation'	=>'createInvoice',
-														'source'	=>'prestashop')
+														'source'	=>'prueba')
 												); 
 		$result = $client->call('callService', $s); 
 
@@ -1237,25 +667,13 @@ class matisses extends Module
 		return $boolean ? $return : $response;
 	}
 	
-	public function wsmatisses_get_data($objeto,$operacion,$origen,$datos=NULL, $return = false)
+	
+	public function wsmatisses_get_data($objeto,$operacion,$origen,$datos=NULL)
 	{
-		//set_time_limit(15);
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 		$client = new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
-		//echo "<pre>"; print_r($client); echo "</pre>";
-		//die();
 		$s 		= array('genericRequest' => array('data'=>$datos,'object'=>$objeto,'operation'=>$operacion,'source'=>$origen)); 
-		
-
-
 		$result = $client->call('callService', $s);
-		if($client->error_str)
-		{
-			return array('error_string' => $client->error_str);
-		}
-
-		if($return)
-			return $result; 
 		
 		if(!$result['return'])
 			return false;
@@ -1263,18 +681,16 @@ class matisses extends Module
 		if('0101002' == $result['return']['code'])
 		{
 			//echo ak;
-			$datos 		= $this->xml_to_array(utf8_encode($result['return']['detail']));
-		}else{
-				$datos 		= $this->xml_to_array(utf8_encode($result['return']['detail']));
-			 }
-		//echo "<pre>"; print_r($datos); echo "</pre>--------------------------";
+			$datos 		= $this->xml_to_array($result['return']['detail']);
+		}
+		//echo "<pre>"; print_r($datos); echo "</pre>";
 		return $datos;
 	}
 	
 	public function wsmatisses_listStockChanges()
 	{		
 		require_once dirname(__FILE__)."/classes/template.php";
-		$datos 		= $this->wsmatisses_get_data('inventoryItem','listStockChanges','sap',5);
+		$datos 		= $this->wsmatisses_get_data('inventoryItem','listStockChanges','sap',5000);
 		if(is_array($datos))
 		{
 			require_once dirname(__FILE__)."/wsclasses/ws_product.php";
@@ -1291,9 +707,9 @@ class matisses extends Module
 		fwrite($ddf,"	".date("H:i:s")." INICIA CONSULTA REFERENCIAS \n");
 		fwrite($ddf,"	----------------------------------------------------------------------------------\n");
 		fclose($ddf);
-		ini_set('display_errors',false);
+		ini_set('display_errors',true);
 		require_once dirname(__FILE__)."/classes/template.php";
-		$datos 		= $this->wsmatisses_get_data('inventoryItem','listReferencesWithStock','prestashop','');	
+		$datos 		= $this->wsmatisses_get_data('inventoryItem','listReferencesWithStock','prueba','');	
 		if(is_array($datos))
 		{
 			$ddf = fopen(dirname(__FILE__).'/loadproducts.log','a');
@@ -1338,20 +754,10 @@ class matisses extends Module
 		ini_set('display_errors',false);	
 		require_once dirname(__FILE__)."/classes/template.php";
 		$data['inventoryItemDTO']['itemCode'] = $reference;
-		$datos 		= $this->wsmatisses_get_data('inventoryItem','getItemInfo','prestashop',$this->array_to_xml($data,false));
+		$datos 		= $this->wsmatisses_get_data('inventoryItem','getItemInfo','prueba',$this->array_to_xml($data,false));
 		return $datos['inventoryItemDTO']; 
 	}
-
-	public function wsmatisses_getModelInfo()
-	{
-		ini_set('display_errors',false);	
-		require_once dirname(__FILE__)."/classes/template.php";
-		$datos 		= $this->wsmatisses_get_data('inventoryItem','listModelsWithStock','prestashop','');
-		if($datos['error_string'])
-			return $datos;
-		
-		return $datos['webEnabledModelsDTO']['models']; 
-	}	
+	
 	
 	public function wsmatisses_listDetailedLastDayStockChanges()
 	{
@@ -1366,23 +772,6 @@ class matisses extends Module
 		}
 	}
 	
-	public function customerExists($cedula) 
-	{
-		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
-		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
-		$customerDTO['customerDTO']['id'] = $cedula.'CL';
-		$customerDTO= self::array_to_xml($customerDTO,false);
-		
-		//print_r($customerDTO);
-		$s 			= array('genericRequest' => array('data'		=>$customerDTO,
-														'object'	=>'customer',
-														'operation'	=>'get',
-														'source'	=>'prestashop')
-												); 
-		$result = $client->call('callService', $s);
-		return $result['return']['code']!='0101909' ? true : false;
-	}
-	
 	public function wsmatisses_createInvoice($products)
 	{
 		if(!is_array($products))
@@ -1391,20 +780,9 @@ class matisses extends Module
 		if(!is_object($this->context->customer))
 			return false;
 			
-
-			
-		// verifico si el cliente existe
-		/*
-		if(self::customerExists($this->context->customer->charter))
-		{
-			$this->hookactionCustomerAccountUpdate(array('email'=>$this->context->cookie->email),true);
-		}else{
-				$this->hookactionCustomerAccountAdd(array('email'=>$this->context->cookie->email),true);
-			 }
-			*/
 		$orderDTO = array();
 		$orderDTO['orderDTO']['header']['prestashopOrderId']= $this->context->cookie->id_cart;
-		$orderDTO['orderDTO']['header']['customerId']		= $this->context->customer->charter;
+		$orderDTO['orderDTO']['header']['customerId']		= $this->context->customer->customer_cedula;
 		foreach($products as $d => $v)
 		{
 			$orderDTO['orderDTO']['detail'][$d]['itemCode'] = $products[$d]['reference'];
@@ -1441,20 +819,16 @@ class matisses extends Module
 														'data'		=> $xml,
 														'object'	=> 'order',
 														'operation'	=> 'add',
-														'source'	=> 'prestashop'
+														'source'	=> 'prueba'
 													 )); 
 													 
 													 
 			$result = $client->call('callService', $s);
-			
-
-			
-			
  			if($result && $result['return']['code']=='0201001')
 			{
 				if($result['return']['code']=='0201902')
 				{
-					$this->hookactionCustomerAccountAdd(array('email'=>$this->context->cookie->email),true);
+					$this->hookactionCustomerAccountAdd(array('email'=>$this->context->cookie->email));
 				}
 				if(array_key_exists($result['return']['code'],array('0201902'=>'',
 																	'0201903'=>'',
@@ -1462,8 +836,8 @@ class matisses extends Module
 																	'0201905'=>'',
 																	'0201906'=>'',
 																	'0201907'=>''))){
-					echo $this->l($result['return']['code'].' - Lo siento! - se ha presentado un error durante la operaci�n, no se puede continuar con el proceso de compra');
-					echo '<p>'.$result['return']['detail'].'</p>';
+					echo utf8_encode($this->l($result['return']['code'].' - Lo siento! - se ha presentado un error durante la operaci�n, no se puede continuar con el proceso de compra'));
+					echo '<p>'.utf8_encode($result['return']['detail']).'</p>';
 					exit;
 				}
 				
@@ -1472,23 +846,20 @@ class matisses extends Module
 				{
 					$return = true;
 				}
-				
-				// actualizo el cliente
-				
+
 				if(self::wsmatisses_facturar(array('id_order' => $orderDTO['orderDTO']['header']['prestashopOrderId'])))
 				{
 					return true;
 				}else{
-							echo (
-								$this->l('Lo siento! - se ha presentado un error durante la operación, no se puede continuar con el proceso de compra
+							echo utf8_encode(
+								$this->l('Lo siento! - se ha presentado un error durante la operaci�n, no se puede continuar con el proceso de compra
 											<br>
 											No se pudo validar el estado del proceso.')
 								);
 							exit;
 					 }
 			}else{
-					
-					echo ($this->l('Lo siento! - se ha presentado un error durante la operación, no se puede continuar con el proceso de compra').'<p>'.utf8_encode($result['return']['detail']).'</p>');
+					echo utf8_encode($this->l('Lo siento! - se ha presentado un error durante la operaci�n, no se puede continuar con el proceso de compra'));
 					exit;
 				 } 
 			
@@ -1496,7 +867,21 @@ class matisses extends Module
 		}
 		return false; 
 	}
+	
+/* 	public function wsmatisses_listWebEnabledStock($xml)
+	{
+		require_once dirname(__FILE__)."/classes/template.php";
+		$datos 		= $this->wsmatisses_get_data('inventoryItem','listWebEnabledStock','sap',$xml);
+		if(is_array($datos))
+		{
+			//require_once dirname(__FILE__)."/wsclasses/ws_product.php";
+			//$ws_product = new ws_product();
+			//$ws_product->product_listStockChanges($datos);
+		}	
+	} */
+	
 
+	
 
 	/*******************************************************
 	*	@author:	Sebastian casta�o
@@ -1838,7 +1223,6 @@ class matisses extends Module
 	}
 	
 	/*******************************************************
-
 	*	@author:	Sebastian casta�o
 	*	@package:	Matisses integracion (Helpers)
 	*	@summary:	Metodo que apoya la funcionalidad del metodo
@@ -1953,7 +1337,9 @@ class matisses extends Module
 	{
 		return State::getIdByIso(trim($state));
 	}
+}
 
-	
-}	
+
+
+
 ?>
