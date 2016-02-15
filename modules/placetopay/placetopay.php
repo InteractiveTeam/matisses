@@ -72,9 +72,9 @@ class PlacetoPay extends PaymentModule
 	public function hookPayment($params)
 	{
 		global $smarty;
-		//Controller::addJqueryPlugin('fancybox');
+		//Controller::addJqueryPlugin('fancybox'); 
 		Tools::addJs($this->_path.'/placetopay.js');
-
+		
 		// aborta si el medio no esta activo
 		if (!$this->active)
 			return;
@@ -113,11 +113,11 @@ class PlacetoPay extends PaymentModule
 	public function hookPaymentReturn($params)
 	{
 		global $smarty;
-
+		
 #		echo "<pre>Post ";print_r($_POST); echo "</pre>";
 #		echo "<pre>Get ";print_r($_POST); echo "</pre>";
-
-
+	
+		
 		if ((!$this->active) || ($params['objOrder']->module != $this->name))
 			return ;
 
@@ -133,25 +133,25 @@ class PlacetoPay extends PaymentModule
 			case PlacetoPayConnector::P2P_APPROVED:
 			case PlacetoPayConnector::P2P_DUPLICATE:
 				$webservice 			= $transaction;
-				$webservice['status'] 	= 'ok';
+				$webservice['status'] 	= 'ok';  
 				Hook::exec('actionPaymentProccess', $webservice);
 				$smarty->assign('status', 'ok');
 				break;
 			case PlacetoPayConnector::P2P_ERROR:
 				$webservice 			= $transaction;
-				$webservice['status'] 	= 'fail';
+				$webservice['status'] 	= 'fail';  
 				Hook::exec('actionPaymentProccess', $webservice);
 				$smarty->assign('status', 'fail');
 				break;
 			case PlacetoPayConnector::P2P_DECLINED:
 				$webservice 			= $transaction;
-				$webservice['status'] 	= 'rejected';
+				$webservice['status'] 	= 'rejected';  
 				Hook::exec('actionPaymentProccess', $webservice);
 				$smarty->assign('status', 'rejected');
 				break;
 			case PlacetoPayConnector::P2P_PENDING:
 				$webservice 			= $transaction;
-				$webservice['status'] 	= 'pending';
+				$webservice['status'] 	= 'pending';  
 				Hook::exec('actionPaymentProccess', $webservice);
 				$smarty->assign('status', 'pending');
 				break;
@@ -169,7 +169,7 @@ class PlacetoPay extends PaymentModule
 			$smarty->assign('payerName', $customer->firstname . ' ' . $customer->lastname);
 			$smarty->assign('payerEmail', $customer->email);
 		}
-
+		
 		// asocia la ruta base donde encuentra las imagenes
 		$smarty->assign('placetopayImgUrl', _MODULE_DIR_.$this->name.'/img/');
 
@@ -202,13 +202,11 @@ class PlacetoPay extends PaymentModule
 		$smarty->assign('transaction', $transaction);
 
 		// genera el HTML
-		$html = '<div class="grid_12 alpha omega">
-					<ul class="address item">
-						<li class="address_title">' . $this->l('Place to Pay') . '</li>
-						<li>' . $this->display(__FILE__, 'detail.tpl') . '</li>
-					</ul>
-				</div>
-
+		$html = '<ul style="height: 164.4px;" class="address item">
+				<li class="address_title">' . $this->l('Place to Pay') . '</li>
+				<li>' . $this->display(__FILE__, 'detail.tpl') . '</li>
+			</ul>
+			<br style="clear:both">';
 		return $html;
 	}
 
@@ -321,13 +319,13 @@ class PlacetoPay extends PaymentModule
 			$this->gpgRecipientKeyID,
 			$this->customerSiteID,
 			$cart->id, $totalAmount, $taxAmount, 0);
-
-		echo $paymentURL;
-
+			
+		echo $paymentURL;	
+		
 
 		// genera la orden en prestashop, si no se generó la URL
 		// crea la orden con el error, al menos para que quede asentada
-
+		
 
 		if (empty($paymentURL)) {
 			$orderMessage = $p2p->getErrorMessage();
@@ -362,7 +360,7 @@ class PlacetoPay extends PaymentModule
 				.'&id_order='.$this->currentOrder
 				.'&key='.$order->secure_key;
 		}
-
+		
 		Tools::redirectLink($paymentURL);
 
 	}
@@ -614,7 +612,7 @@ class PlacetoPay extends PaymentModule
 	private function displayPlacetoPayConfiguration()
 	{
 		global $smarty;
-
+		
 		// genera la lista de llaves
 		$keyList = array();
 		$gpgHomeDir = Configuration::get('PLACETOPAY_GPGHOMEDIR');
@@ -725,10 +723,10 @@ class PlacetoPay extends PaymentModule
 		// que tienen una antiguedad superior a n minutos
 		$result = Db::getInstance()->ExecuteS('SELECT * FROM `'._DB_PREFIX_.'payment_placetopay`
 			WHERE `date` < \'' . date('Y-m-d H:i:s', time() - $minutes * 60) . '\' AND `status` = ' . PlacetoPayConnector::P2P_PENDING);
-
+		
 		if(empty($result))
-			echo "NO encontre pedidos aun<br>";
-
+			echo "NO encontre pedidos aun<br>";	
+			
 		if (!empty($result)) {
 			foreach($result as $row) {
 				$currency = new Currency((int)$row['id_currency']);
@@ -739,7 +737,7 @@ class PlacetoPay extends PaymentModule
 				if (($rc == PlacetoPayConnector::P2P_ERROR) && ($p2p->getErrorCode() == 'HTTP')) {
 					// no se realiza ninguna actualizacion, debido a que hay un error
 					// en el consumo del webservice
-					$params['status'] 			= 'fail';
+					$params['status'] 			= 'fail'; 
 					$params['id_order']  		=  $row['id_order'];
 					$params['receipt']   		=  $row['amount'];
 					$params['franchise_name']	=  $row['franchise_name'];
@@ -751,13 +749,13 @@ class PlacetoPay extends PaymentModule
 						$order = new Order($orderID);
 						if (Validate::isLoadedObject($order))
 						{
-							$params['status'] 			= 'ok';
+							$params['status'] 			= 'ok'; 
 							$params['id_order']  		=  $row['id_order'];
 							$params['receipt']   		=  $row['amount'];
-							$params['franchise_name']	=  $row['franchise_name'];
+							$params['franchise_name']	=  $row['franchise_name'];						
 							Hook::exec('actionPaymentProccess',$params);
 							$this->settleTransaction($rc, $order, $p2p);
-
+							
 						}
 					}
 				}
