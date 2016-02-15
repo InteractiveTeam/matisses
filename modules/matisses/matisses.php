@@ -448,10 +448,12 @@ class matisses extends Module
 			
 			foreach($params['products_cart'] as $k => $product)
 			{
-				$salesWarehouseDTO[$k]['items']['itemCode'] = $product['reference'];
-				$salesWarehouseDTO[$k]['items']['quantity'] = $product['quantity'];
+				$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['itemCode'] = $product['reference'];
+				$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['quantity'] = $product['quantity'];
 			}
-
+			$salesWarehouseDTO = $this->array_to_xml($salesWarehouseDTO,false);
+			$response 	= $this->wsmatisses_get_data('inventoryItem','quoteShipping','prestashop',$salesWarehouseDTO);
+			
 		}
 		return $shipping_cost;
 	}
