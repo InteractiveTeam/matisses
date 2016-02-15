@@ -61,7 +61,7 @@
 
 					</div>
 					<div class="grid_12 alpha omega">
-						<div class="grid_6 alpha omega">
+						<div class="grid_12 alpha omega right">
 							<label for="imagen" class="btn btn-default button btn-red">{l s='Cargar Imagen'}</label>
 							<button type="submit" name="submitStep2" id="submitStep2" class="btn btn-default button btn-red right"> {l s='Continuar' mod='matisses'}</button>
 						</div>

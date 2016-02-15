@@ -163,9 +163,9 @@ function menuChange(status)
 //Megamenu-responsive
 $(document).ready(function(e){
 	var ShowUser = $("<div class='show-user'><div class='selectIcon'>v</div></div>");
-	$('#menu-right').append(ShowUser)
+	$('.header_user_info').append(ShowUser)
 
-	$('.show-user .selectIcon').on('click', function(){
+	$('.show-user').on('click', function(){
 		$('#drop_content_user > a').slideToggle();
 	})
 	//MENU responsiveMenu
