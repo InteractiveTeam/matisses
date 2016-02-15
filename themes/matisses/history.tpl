@@ -35,7 +35,7 @@
 {if $slowValidation}
 	<p class="alert alert-warning">{l s='If you have just placed an order, it may take a few minutes for it to be validated. Please refresh this page if your order is missing.'}</p>
 {/if}
-<div class="block-center" id="block-history ">
+<div class="block-center block-history" id="block-history ">
 	{if $orders && count($orders)}
 		<table id="order-list" class="table table-bordered footab">
 			<thead>
@@ -86,7 +86,7 @@
 							{/if}
 						</td>
 						<td class="history_detail">
-							<a class="btn btn-default button button-small" href="javascript:showOrder(1, {$order.id_order|intval}, '{$link->getPageLink('order-detail', true)|escape:'html':'UTF-8'}');">
+							<a class="btn btn-default btn-red" href="javascript:showOrder(1, {$order.id_order|intval}, '{$link->getPageLink('order-detail', true)|escape:'html':'UTF-8'}');">
 								<span>
 									{l s='Details'}<i class="icon-chevron-right right"></i>
 								</span>
@@ -109,16 +109,7 @@
 	{else}
 		<p class="alert alert-warning">{l s='You have not placed any orders.'}</p>
 	{/if}
-</div>
-<div class="footer_links cf grid_12 omega alpha">
-	<div class="grid_4 alpha">
-		<a class="btn btn-default button btn-red" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
-			{l s='Back to Your Account'}
-		</a>
-	</div>
-	<div class="grid_4 omega">
-		<a class="btn btn-default button btn-red" href="{$base_dir}">
-			{l s='Home'}
-		</a>
+	<div class="footer_links grid_12 omega alpha">
+		<a class="btn btn-default  btn-red" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}"> <i class="fa fa-chevron-left"></i>{l s='Volver a mi cuenta' mod='matisses'}</a>
 	</div>
 </div>

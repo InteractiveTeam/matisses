@@ -1,38 +1,101 @@
-/************************************************************
-				History Page Styles
-************************************************************/
-#order-detail-content table .return_quantity_buttons {
-  margin-top: 3px; }
-  #order-detail-content table .return_quantity_buttons a {
+    /************************************************************
+    	History Page Styles
+    ************************************************************/
+    #order-detail-content table .return_quantity_buttons {
+    margin-top: 3px; }
+    #order-detail-content table .return_quantity_buttons a {
     display: none;
     float: left; }
     #order-detail-content table .return_quantity_buttons a + a {
-      margin-left: 3px; }
-#order-detail-content table .order_qte_input {
-  display: none;
-  width: 57px;
-  height: 27px;
-  line-height: 27px;
-  padding: 0;
-  text-align: center; }
-#order-detail-content table label {
-  font-weight: 400; }
+    margin-left: 3px; }
+    #order-detail-content table .order_qte_input {
+    display: none;
+    width: 57px;
+    height: 27px;
+    line-height: 27px;
+    padding: 0;
+    text-align: center; }
+    #order-detail-content table label {
+    font-weight: 400; }
 
-.table td.history_detail a + a {
-  margin-left: 14px; }
-.table td.step-by-step-date {
-  width: 105px; }
-.table tfoot strong {
-  color: #333333; }
+    .table td.history_detail a + a {
+    margin-left: 14px; }
+    .table td.step-by-step-date {
+    width: 105px; }
+    .table tfoot strong {
+    color: #333333; }
 
-.info-order i {
-  font-size: 20px; }
-  .info-order i.icon-gift {
+    .info-order i {
+    font-size: 20px; }
+    .info-order i.icon-gift {
     color: #f13340; }
-  .info-order i.icon-repeat {
+    .info-order i.icon-repeat {
     color: #55c65e; }
 
-#sendOrderMessage {
-  margin-bottom: 30px; }
-  #sendOrderMessage select.form-control {
+    #sendOrderMessage {
+    margin-bottom: 30px; }
+    #sendOrderMessage select.form-control {
     width: 263px; }
+
+/*Mis compras*/
+/*Tabla garantias*/
+.block-history table {
+margin-top: 2.5rem;
+border: none;
+}
+.block-history table thead th {
+background: #fff;
+border: none;
+text-transform: uppercase;
+color: #272727;
+font-family: 'Open Sans', sans-serif;
+font-size: 0.875rem;
+font-weight: bold;
+}
+.block-history table tbody{
+border: 1px solid #dbdbdb;
+}
+.block-history table tbody > tr:first-child {
+background: #f8f8f8;
+}
+.block-history table tr td {
+font-family: 'Open Sans', sans-serif;
+font-size: 0.9375rem;
+color: #777676;
+border: none;
+}
+.block-history table .options a{
+color: #d7162f;
+text-decoration: underline;
+}
+.block-history table .options a:hover{
+color: #000;
+}
+.block-history table .history_link a {
+color: #D7162F;
+}
+.block-history table .history_link a:hover {
+color: #000;
+}
+
+.block-history table .history_detail a {
+font-weight: normal;
+color: #D7162F;
+}
+.block-history .label.dark {
+background: none !important;
+color: #1A8A1A;
+font-weight: 600;
+padding: 0;
+font-family: 'Open Sans', sans-serif;
+font-size: 0.875rem;
+}
+
+.block-history .footer_links {
+text-align: center;
+margin: 2.5rem 0;
+}
+
+.block-history .fa-chevron-left {
+padding-right: 0.625rem;
+}
