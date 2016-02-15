@@ -91,6 +91,7 @@
             	<div class="left-down-menu cf"> {hook h="displayMatMegamenu"}
 	              <ul id="menu" class="grid_10 menu-experiencias" style="color:black">
                     <li id="experiencias"><a href="{$link->getModuleLink('matisses','experiences')}">{l s='Experiencias'}</a></li>
+                    <li id="experiencias"><a href="{$link->getModuleLink('matisses','experiences')}">{l s='Experiencias 2'}</a></li>
 	                <li id="wishlist">{hook h="displayMatWishlist"}</li>
 	                <li id="giftlist"><a href="#"><span></span>{l s='Lista de regalos'}</a></li>
 	              </ul>
