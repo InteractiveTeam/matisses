@@ -684,7 +684,7 @@
 		border-bottom: none;
 	}
 	.page-subheading{
-		font-size: 13px;
+		font-size: 1.5rem;
 	}
 	.box li {
 		font-size: 12px;
@@ -1254,6 +1254,26 @@
         font-family: 'Open Sans', sans-serif;
         font-size: 13px;
     }
+		/*BANNER*/
+		.main-container #homepage-slider {
+			height:518px;
+		}
+
+		.main-container #slider .homeslider-description {
+			padding: 11.25rem 0.625rem;
+		}
+
+		.content-coleccion {
+			padding:20px 25px;
+		}
+
+		.content-coleccion .item-html {
+    	line-height: 1.1rem;
+		}
+
+		.bx-controls.bx-has-pager {
+    	bottom: 11rem;
+		}
 
 }
 
@@ -1341,7 +1361,7 @@
 	}
 
 	.coleccion img {
-		height: 145px;
+		height: 112px;
 		width:300px;
 	}
 
@@ -1475,15 +1495,15 @@
     }
 
     .show-user .selectIcon {
-		color:#fff;
-		font-size: 1rem;
-		font-family: 'Open Sans', sans-serif;
-		position: absolute;
-		right: 4px;
-		top: 16px;
-		width: 15px;
-    height: 20px;
-		cursor: pointer;
+				color:#fff;
+				font-size: 1rem;
+				font-family: 'Open Sans', sans-serif;
+				position: absolute;
+				right: 4px;
+				top: 16px;
+				width: 15px;
+		    height: 20px;
+				cursor: pointer;
 	}
 
     /**busqueda*/
@@ -1525,6 +1545,34 @@
 		padding:1rem 0;
 	}
 	/*Nueva garantia*/
+	/*BANNER*/
+	.main-container #homepage-slider {
+		height:547px;
+	}
+
+	#homepage-slider .bx-wrapper .bx-viewport {
+		height:547px !important;
+	}
+
+	#homepage-slider .bx-wrapper img {
+	  max-width: 111% !important;
+	}
+
+	.main-container #slider .homeslider-description {
+		padding: 11.25rem 0.625rem;
+	}
+
+	.content-coleccion {
+		padding:15px 20px;
+	}
+
+	.content-coleccion .item-html {
+		line-height: 1.1rem;
+	}
+
+	.bx-controls.bx-has-pager {
+		bottom: 2.8rem;
+	}
 
 }
 
@@ -1608,8 +1656,8 @@
 		font-size: 1rem;
 		font-family: 'Open Sans', sans-serif;
 		position: absolute;
-		right: 4px;
-		top: 16px;
+		right: 8px;
+		top: 24px;
 		width: 15px;
     height: 20px;
 		cursor: pointer;
@@ -1639,6 +1687,14 @@
 	.sf-contener .sf-menu > li span.active:after {
 		content: '\2715';
 	}
+
+		#homepage-slider .slide-3 .circle {
+	    width: 3.25rem;
+	    height: 3.25rem;
+			background-size:60%;
+			border-width: 5px;
+			margin:0.5rem;
+		}
 
 	/*menu*/
 
@@ -2150,7 +2206,7 @@
 	}
 
 	#carrier_area .cart_navigation, #center_column form p:last-child {
-		width: 91%;
+		width: 88%;
 		margin: 0 auto;
 	}
 
@@ -2231,10 +2287,53 @@
 	.module-matisses-garantias  a.btn.btn-default.btn-red {
     width: 100%;
     margin: 10px auto;
+	}
 
+	.supply-warranty .container, .supply-warranty .container > div {
+		padding: 0;
+	}
 
-}
+	.supply-warranty .grid_8 .form-group input {
+		width: 100%;
+	}
 
-.show-user {
-	display:none;
+	.supply-warranty .grid_8 .form-group button, .supply-warranty .grid_8 .form-group label {
+		width: 48%;
+		text-align:center !important;
+	}
+
+	#module-matisses-garantias .footer_links > div {
+    margin: 0;
+	}
+
+	#resumen-garantia strong {
+    word-break: break-all;
+		margin-right: 5px;
+	}
+
+	#resumen-garantia > div {
+		padding: 0;
+	}
+
+	#resumen-garantia .grid_6 > ul {
+		margin:0.7rem 0;
+	}
+
+	/*recuperar contraseña*/
+	#password #center_column {
+		width:92%;
+	}
+
+	#password #center_column button {
+		width:100%;
+	}
+
+	#password .box .form-group .form-control {
+		width:100%;
+	}
+
+	#password #center_column .submit {
+		width:100%;
+	}
+
 }
