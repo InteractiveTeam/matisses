@@ -1,0 +1,9 @@
+@CHARSET "ISO-8859-1";
+
+.icon-giftlist {
+    text-align: center !important;
+}
+
+.icon-giftlist:before, .icon-icon-giftlist:before { 
+	content: "\f06b";
+}

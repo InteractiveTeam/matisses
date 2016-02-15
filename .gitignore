@@ -18,6 +18,11 @@ upload/*
 themes/default-bootstrap/*
 themes/foxlore/*
 
+# Excluir GiftList
+modules/giftlist/uploads/*
+override/classes/Cart.php
+override/controllers/front/CartController.php
+
 # Exluir la fans.tpl
 *fans.tpl
 
