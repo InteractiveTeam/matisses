@@ -176,18 +176,15 @@ param_product_url = '';
 								{foreach from=$filter.values key=id_value item=value name=fe}
 									{if $value.nbr || !$hide_0_values}
 						  <li class="nomargin {if in_array($id_value, $filterssel)} active {/if} {if $filter_selected==$id_value} active {/if}{if $smarty.foreach.fe.index >= $filter.filter_show_limit}hiddable{/if} {if isset($filter.is_color_group) && $filter.is_color_group}color-item{/if}">
-										{if isset($filter.is_color_group) && $filter.is_color_group}
+									<label for="layered_{$filter.type_lite}_{$id_value}"{if !$value.nbr} class="disabled"{else}{if isset($filter.is_color_group) && $filter.is_color_group} data-name="layered_{$filter.type_lite}_{$id_value}" class="layered_color" data-rel="{$id_value}_{$filter.id_key}"{/if}{/if}>
+
+                                        {if isset($filter.is_color_group) && $filter.is_color_group}
 											<input class="color-option {if isset($value.checked) && $value.checked}on{/if} {if !$value.nbr}disable{/if}" type="button" name="layered_{$filter.type_lite}_{$id_value}" data-rel="{$id_value}_{$filter.id_key}" id="layered_id_attribute_group_{$id_value}" {if !$value.nbr}disabled="disabled"{/if} style="background: {if isset($value.color)}{if file_exists($col_img_dir|cat:$id_value|cat:'.jpg')}url({$img_col_dir}{$id_value}.jpg){else}{$value.color}{/if}{else}#CCC{/if};" title="{$value.name|escape:html:'UTF-8'}" value="{$value.name|escape:html:'UTF-8'}"/>
 											{if isset($value.checked) && $value.checked}<input type="hidden" name="layered_{$filter.type_lite}_{$id_value}" value="{$id_value}" />{/if}
 										{else}
 											<input type="checkbox" class="checkbox" name="layered_{$filter.type_lite}_{$id_value}" id="layered_{$filter.type_lite}{if $id_value || $filter.type == 'quantity'}_{$id_value}{/if}" value="{$id_value}{if $filter.id_key}_{$filter.id_key}{/if}"{if isset($value.checked)} checked="checked"{/if}{if !$value.nbr} disabled="disabled"{/if} />
 										{/if}
-										<label for="layered_{$filter.type_lite}_{$id_value}"{if !$value.nbr} class="disabled"{else}{if isset($filter.is_color_group) && $filter.is_color_group} data-name="layered_{$filter.type_lite}_{$id_value}" class="layered_color" data-rel="{$id_value}_{$filter.id_key}"{/if}{/if}>
-											{if !$value.nbr}
-											{$value.name|escape:html:'UTF-8'}{if $layered_show_qties}<span> ({$value.nbr})</span>{/if}
-											{else}
-											<a href="{$value.link}" data-rel="{$value.rel}">{$value.name|escape:html:'UTF-8'}{if $layered_show_qties}<span> ({$value.nbr})</span>{/if}</a>
-											{/if}
+											<a>{$value.name|escape:html:'UTF-8'}{if $layered_show_qties}<span> ({$value.nbr})</span>{/if}</a>
 										</label>
 									</li>
 									{/if}
@@ -197,18 +194,14 @@ param_product_url = '';
 								{foreach from=$filter.values key=id_value item=value name=fe}
 									{if $value.nbr || !$hide_0_values}
 									<li class="nomargin {if $smarty.foreach.fe.index >= $filter.filter_show_limit}hiddable{/if} {if isset($filter.is_color_group) && $filter.is_color_group} color-item{/if}">
-										{if isset($filter.is_color_group) && $filter.is_color_group}
+										<label for="layered_{$filter.type_lite}_{$id_value}"{if !$value.nbr} class="disabled"{else}{if isset($filter.is_color_group) && $filter.is_color_group} data-name="layered_{$filter.type_lite}_{$id_value}" class="layered_color" data-rel="{$id_value}_{$filter.id_key}"{/if}{/if}>
+                                        {if isset($filter.is_color_group) && $filter.is_color_group}
 											<input class="radio color-option {if isset($value.checked) && $value.checked}on{/if} {if !$value.nbr}disable{/if}" type="button" name="layered_{$filter.type_lite}_{$id_value}" data-rel="{$id_value}_{$filter.id_key}" id="layered_id_attribute_group_{$id_value}" {if !$value.nbr}disabled="disabled"{/if} style="background: {if isset($value.color)}{if file_exists($col_img_dir|cat:$id_value|cat:'.jpg')}url({$img_col_dir}{$id_value}.jpg){else}{$value.color}{/if}{else}#CCC{/if};" title="{$value.name|escape:html:'UTF-8'}"/>
 											{if isset($value.checked) && $value.checked}<input type="hidden" name="layered_{$filter.type_lite}_{$id_value}" value="{$id_value}" />{/if}
 										{else}
 											<input type="radio" class="radio layered_{$filter.type_lite}_{$id_value}" name="layered_{$filter.type_lite}{if $filter.id_key}_{$filter.id_key}{else}_1{/if}" id="layered_{$filter.type_lite}{if $id_value || $filter.type == 'quantity'}_{$id_value}{if $filter.id_key}_{$filter.id_key}{/if}{/if}" value="{$id_value}{if $filter.id_key}_{$filter.id_key}{/if}"{if isset($value.checked)} checked="checked"{/if}{if !$value.nbr} disabled="disabled"{/if} />
 										{/if}
-										<label for="layered_{$filter.type_lite}_{$id_value}"{if !$value.nbr} class="disabled"{else}{if isset($filter.is_color_group) && $filter.is_color_group} data-name="layered_{$filter.type_lite}_{$id_value}" class="layered_color" data-rel="{$id_value}_{$filter.id_key}"{/if}{/if}>
-											{if !$value.nbr}
-												{*$value.name|escape:html:'UTF-8'*}{if $layered_show_qties}<span> ({$value.nbr})</span>{/if}</a>
-											{else}
-												<a href="{$value.link}" data-rel="{$value.rel}">{$value.name|escape:html:'UTF-8'}{if $layered_show_qties}<span> ({$value.nbr})</span>{/if}</a>
-											{/if}
+											<a>{$value.name|escape:html:'UTF-8'}{if $layered_show_qties}<span> ({$value.nbr})</span>{/if}</a>
 										</label>
 									</li>
 									{/if}

@@ -265,11 +265,12 @@
 						<td colspan="2" class="price" id="total_shipping">{l s='Free Shipping!'}</td>
 					</tr>
 				{else}
+                
 					{if $use_taxes && $total_shipping_tax_exc != $total_shipping}
 						{if $priceDisplay}
 							<tr class="cart_total_delivery" {if $total_shipping_tax_exc <= 0} style="display:none;"{/if}>
 								<td colspan="{$col_span_subtotal}" class="text-right">{if $display_tax_label}{l s='Total shipping (tax excl.)'}{else}{l s='Total shipping'}{/if}</td>
-								<td colspan="2" class="price" id="total_shipping">{displayPrice price=$total_shipping_tax_exc}</td>
+								<td colspan="2" class="price" id="total_shipping">{displayPrice price=$total_shipping_tax_exc} </td>
 							</tr>
 						{else}
 							<tr class="cart_total_delivery"{if $total_shipping <= 0} style="display:none;"{/if}>

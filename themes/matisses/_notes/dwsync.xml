@@ -41,7 +41,7 @@
 <file name="order-follow.tpl" server="192.168.3.45" local="130974342340981591" remote="130977918600000000" Dst="0" />
 <file name="order-opc.tpl" server="192.168.3.45" local="130974342341101679" remote="130977918600000000" Dst="0" />
 <file name="order-opc-new-account.tpl" server="192.168.3.45" local="130974342341051606" remote="130977918600000000" Dst="0" />
-<file name="order-payment.tpl" server="192.168.3.45" local="130974342341151624" remote="130977918600000000" Dst="0" />
+<file name="order-payment.tpl" server="192.168.3.45" local="131000506749029060" remote="131000686200000000" Dst="0" />
 <file name="order-return.tpl" server="192.168.3.45" local="130974342341201634" remote="130977918600000000" Dst="0" />
 <file name="order-slip.tpl" server="192.168.3.45" local="130974342341251628" remote="130977918600000000" Dst="0" />
 <file name="order-steps.tpl" server="192.168.3.45" local="130974342341301649" remote="130977918600000000" Dst="0" />
@@ -59,7 +59,7 @@
 <file name="scenes.tpl" server="192.168.3.45" local="130974342342176750" remote="130977919200000000" Dst="0" />
 <file name="search.tpl" server="192.168.3.45" local="130976396967184729" remote="130977919200000000" Dst="0" />
 <file name="shopping-cart-product-line.tpl" server="192.168.3.45" local="130974342342266822" remote="130977919200000000" Dst="0" />
-<file name="shopping-cart.tpl" server="192.168.3.45" local="130974342342321834" remote="130977919200000000" Dst="0" />
+<file name="shopping-cart.tpl" server="192.168.3.45" local="131000507825313779" remote="131000687400000000" Dst="0" />
 <file name="sitemap.tpl" server="192.168.3.45" local="130974342342371765" remote="130977919200000000" Dst="0" />
 <file name="store_infos.tpl" server="192.168.3.45" local="130974342342416775" remote="130977919200000000" Dst="0" />
 <file name="stores.tpl" server="192.168.3.45" local="130977382466083389" remote="130977919200000000" Dst="0" />

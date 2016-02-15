@@ -446,14 +446,15 @@ class matisses extends Module
 			
 			$salesWarehouseDTO['salesWarehouseDTO']['destinationCityCode'] = $State['iso_code'];
 			
+			
 			foreach($params['products_cart'] as $k => $product)
 			{
 				$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['itemCode'] = $product['reference'];
 				$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['quantity'] = $product['quantity'];
 			}
+			
 			$salesWarehouseDTO = $this->array_to_xml($salesWarehouseDTO,false);
 			$response 	= $this->wsmatisses_get_data('inventoryItem','quoteShipping','pruebas',$salesWarehouseDTO,true);
-			
 			if($response['return']['code']=='0101001')
 				$shipping_cost = $response['return']['detail'];
 		}

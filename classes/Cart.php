@@ -2197,6 +2197,7 @@ class CartCore extends ObjectModel
 				$position = 0;
 				foreach ($value['carrier_list'] as $id_carrier => $data)
 				{
+
 					$total_price_with_tax += $data['price_with_tax'];
 					$total_price_without_tax += $data['price_without_tax'];
 					$total_price_without_tax_with_rules = (in_array($id_carrier, $free_carriers_rules)) ? 0 : $total_price_without_tax ;
@@ -2541,11 +2542,10 @@ class CartCore extends ObjectModel
 			else
 				$total_shipping += $delivery_option_list[$id_address][$key]['total_price_without_tax'];
 		}
-		$params['total_shipping'] 		= $total_shipping;
-		$params['delivery_option_list']	= $delivery_option_list;
-		$params['delivery_option']		= $delivery_option;
-		$params['products_cart']		= $this->getProducts();
-		$total_shipping = Hook::exec('actionCalculateShipping',$params); 
+		
+
+		
+		
 		return $total_shipping;
 	}
 	/**
@@ -2986,6 +2986,9 @@ class CartCore extends ObjectModel
 		$total_discounts = $this->getOrderTotal(true, Cart::ONLY_DISCOUNTS);
 		$total_discounts_tax_exc = $this->getOrderTotal(false, Cart::ONLY_DISCOUNTS);
 
+
+
+
 		// The cart content is altered for display
 		foreach ($cart_rules as &$cart_rule)
 		{
@@ -3051,6 +3054,12 @@ class CartCore extends ObjectModel
 			if ((float)$cart_rule['value_real'] == 0 && (int)$cart_rule['free_shipping'] == 0)
 				unset($cart_rules[$key]);
 		}
+
+		$params['total_shipping'] 		= $total_shipping;
+		$params['delivery_option_list']	= $delivery_option_list;
+		$params['delivery_option']		= $this->getDeliveryOption();
+		$params['products_cart']		= $this->getProducts();
+		$total_shipping_tax_exc 		= Hook::exec('actionCalculateShipping',$params);
 
 		return array(
 			'delivery' => $delivery,
