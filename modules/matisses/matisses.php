@@ -731,11 +731,6 @@ class matisses extends Module
 		$infoxml[0]['gender']			= 3;
         $infoxml[0]['salesPersonCode'] 	= ""; // se envia vacio esto se llena por default en sap;
 
-		if(sizeof($InfAddresses)==1)
-		{
-			$InfAddresses[1] = $InfAddresses[0];
-		}
-		
 		
 		$cont = 0;
 		foreach($InfAddresses as $d => $v) 
@@ -790,8 +785,6 @@ class matisses extends Module
 		$infoxml[0]['email']			= $InfCustomer[0]['email'];
         $infoxml[0]['salesPersonCode'] 	= ""; // se envia vacio esto se llena por default en sap;
 		
-		if(sizeof($InfAddresses)==1)
-			$InfAddresses[1] = $InfAddresses[0];
 	
 		foreach($InfAddresses as $d => $v) 
 		{
