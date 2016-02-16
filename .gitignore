@@ -24,8 +24,8 @@ config/xml/*.xml
 /log/*
 *sitemap.xml
 modules/*/config*.xml
-modules/blockfacebooklike/*
-modules/gamification/*
+modules/**/blockfacebooklike
+modules/**/gamification
 administracion/backups/
 administracion/export/
 administracion/import/
