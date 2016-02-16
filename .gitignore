@@ -6,7 +6,9 @@
 
 # Exluir carpetas
 administracion/*
+/cache/*
 cache/*
+themes/*/cache/
 docs/*
 download/*
 log/*
@@ -17,6 +19,19 @@ webservices/*
 upload/*
 themes/default-bootstrap/*
 themes/foxlore/*
+administracion/autoupgrade/
+config/xml/*.xml
+/log/*
+*sitemap.xml
+modules/*/config*.xml
+modules/blockfacebooklike/*
+modules/gamification/*
+administracion/backups/
+administracion/export/
+administracion/import/
+download/
+/img/*
+upload/
 
 # Exluir la fans.tpl
 *fans.tpl
