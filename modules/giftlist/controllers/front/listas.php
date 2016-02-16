@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 include_once __DIR__ . '/../../classes/GiftList.php';
@@ -53,14 +52,12 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 	public function setMedia() {
 		parent::setMedia ();
 		$this->addJS ( array (
-			_MODULE_DIR_ . '/giftlist/views/js/vendor/magnific-popup/jquery.magnific-popup.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/datetimepicker/jquery.datetimepicker.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/validation/jquery.validate.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/mask/jquery.mask.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/listas.js'
 		) );
 		$this->addCSS ( array (
-			_MODULE_DIR_ . '/giftlist/views/css/vendor/magnific-popup/magnific-popup.css',
 			_MODULE_DIR_ . '/giftlist/views/css/vendor/datetimepicker/jquery.datetimepicker.css',
 			_MODULE_DIR_ . '/giftlist/views/css/listas.css'
 		) );

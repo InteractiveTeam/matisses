@@ -1,96 +1,77 @@
 $(document).ready(function() {
-	$('#btn-edit').magnificPopup({
-		type: 'ajax',
-		preloader: false,
-		focus: '#name',
-		modal: true,
-
-		// When elemened is focused, some mobile browsers in some cases zoom in
-		// It looks not nice, so we disable it:
-		callbacks: {
-			beforeOpen: function() {
-				if($(window).width() < 700) {
-					this.st.focus = false;
-				} else {
-					this.st.focus = '#name';
-				}
-			},
-			ajaxContentAdded: function(){
-				$('#event_date').datetimepicker({
-					 minDate:'1',
-					 format:"d/m/Y H:i",
-					 mask:true
-				});
-				validate();
-				$('#tel').mask("000-00-00", {placeholder: "___-__-__"});
-				$('#cel').mask("000-000-0000", {placeholder: "___-___-____"});
-				//fill form
-				$("#form-title").text("Editar Lista");
-				$("#name").val(list_desc.name);
-				$("#id_list").val(list_desc.id);
-				$("#event_type").val(list_desc.event_type);
-				$("#event_date").val(list_desc.event_date);
-				$("#guest_number").val(list_desc.guest_number);
-				$("#max_amount").val(list_desc.max_amount);
-				$("#message").val(list_desc.message);
-				$('#public').prop('checked',list_desc.public == 1 ? 'checked' : '');
-				$('#recieve_bond').prop('checked',list_desc.recieve_bond == 1 ? 'checked' : '');
-				var dir = JSON.parse(list_desc.info_creator);
-				$("#city").val(dir.city);
-				$("#town").val(dir.town);
-				$("#address").val(dir.address);
-				$("#tel").val(dir.tel);
-				$("#cel").val(dir.cel);
-				//issetcocreator
-				if(typeof address_cocreator != 'undefinded' && address_cocreator != ""){
-					$('#tel_co').mask("000-00-00", {placeholder: "___-__-__"});
-					$('#cel_co').mask("000-000-0000", {placeholder: "___-___-____"});
-					$("#id_list_co").val($(".products-associated").attr("data-id"));
-					$("#city_co").val(address_cocreator.city);
-					$("#town_co").val(address_cocreator.town);
-					$("#address_co").val(address_cocreator.address);
-					$("#tel_co").val(address_cocreator.tel);
-					$("#cel_co").val(address_cocreator.cel);
-				}
+	$('#btn-edit').fancybox({
+		'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	600, 
+		'speedOut'		:	200, 
+		'overlayShow'	:	false,
+		'type'			: 	'ajax',
+		afterShow		: 	function(){
+            $('#event_date').datetimepicker({
+                 minDate:'1',
+                 format:"d/m/Y H:i",
+                 mask:true
+            });
+            validate();
+            $('#tel').mask("000-00-00", {placeholder: "___-__-__"});
+            $('#cel').mask("000-000-0000", {placeholder: "___-___-____"});
+            //fill form
+            $("#form-title").text("Editar Lista");
+            $("#name").val(list_desc.name);
+            $("#id_list").val(list_desc.id);
+            $("#event_type").val(list_desc.event_type);
+            $("#event_date").val(list_desc.event_date);
+            $("#guest_number").val(list_desc.guest_number);
+            $("#max_amount").val(list_desc.max_amount);
+            $("#message").val(list_desc.message);
+            $('#public').prop('checked',list_desc.public == 1 ? 'checked' : '');
+            $('#recieve_bond').prop('checked',list_desc.recieve_bond == 1 ? 'checked' : '');
+            var dir = JSON.parse(list_desc.info_creator);
+            $("#city").val(dir.city);
+            $("#town").val(dir.town);
+            $("#address").val(dir.address);
+            $("#tel").val(dir.tel);
+            $("#cel").val(dir.cel);
+            //issetcocreator
+            if(typeof address_cocreator != 'undefinded' && address_cocreator != ""){
+                $('#tel_co').mask("000-00-00", {placeholder: "___-__-__"});
+                $('#cel_co').mask("000-000-0000", {placeholder: "___-___-____"});
+                $("#id_list_co").val($(".products-associated").attr("data-id"));
+                $("#city_co").val(address_cocreator.city);
+                $("#town_co").val(address_cocreator.town);
+                $("#address_co").val(address_cocreator.address);
+                $("#tel_co").val(address_cocreator.tel);
+                $("#cel_co").val(address_cocreator.cel);
 			}
 		}
 	});
 
-	$('#btn-edit-info').magnificPopup({
-		type: 'ajax',
-		preloader: false,
-		focus: '#city',
-		modal: true,
-
-		// When elemened is focused, some mobile browsers in some cases zoom in
-		// It looks not nice, so we disable it:
-		callbacks: {
-			beforeOpen: function() {
-				if($(window).width() < 700) {
-					this.st.focus = false;
-				} else {
-					this.st.focus = '#name';
-				}
-			},
-			ajaxContentAdded: function(){
-				validate();
-				$('#tel_co').mask("000-00-00", {placeholder: "___-__-__"});
-				$('#cel_co').mask("000-000-0000", {placeholder: "___-___-____"});
-				$("#id_list").val($(".products-associated").attr("data-id"));
-				if(typeof address_cocreator != 'undefinded' && address_cocreator != ""){
-					$("#city_co").val(address_cocreator.city);
-					$("#town_co").val(address_cocreator.town);
-					$("#address_co").val(address_cocreator.address);
-					$("#tel_co").val(address_cocreator.tel);
-					$("#cel_co").val(address_cocreator.cel);
-				}
+	$('#btn-edit-info').fancybox({
+		'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	600, 
+		'speedOut'		:	200, 
+		'overlayShow'	:	false,
+		'type'			: 	'ajax',
+		afterShow		:   function(){
+            validate();
+            $('#tel_co').mask("000-00-00", {placeholder: "___-__-__"});
+            $('#cel_co').mask("000-000-0000", {placeholder: "___-___-____"});
+            $("#id_list").val($(".products-associated").attr("data-id"));
+            if(typeof address_cocreator != 'undefinded' && address_cocreator != ""){
+                $("#city_co").val(address_cocreator.city);
+                $("#town_co").val(address_cocreator.town);
+                $("#address_co").val(address_cocreator.address);
+                $("#tel_co").val(address_cocreator.tel);
+                $("#cel_co").val(address_cocreator.cel);
+				
 			}
 		}
 	});
 
 	$(document).on('click', '.popup-modal-dismiss', function (e) {
 		e.preventDefault();
-		$.magnificPopup.close();
+		$.fancybox.close();
 	});
 
 	setTimeout(function() {
