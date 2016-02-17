@@ -102,6 +102,7 @@ $(document).ready(function()
 
 	$('#search a').on('click',function(){
 		$('header .search-container').slideToggle(500);
+        $('ul li.search').toggleClass( "highlight-close" );
 	})
 
 });

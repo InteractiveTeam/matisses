@@ -214,6 +214,7 @@ box-sizing: border-box;
 	}
 	.fixedHeader .right-down-menu li#search {
     padding-right: 1.25rem;
+    padding-top: 1.2rem;
 	}
 	.fixedHeader #header_logo{
 	padding-top: 0.625rem;
@@ -270,7 +271,7 @@ box-sizing: border-box;
 	background-position: 0 -23px;
 	}
 	.menu-experiencias {
-	padding: 1.5625rem 0 0.9rem 0.625rem;
+	padding: 1.4rem 0 0.9rem 0.625rem;
 	display: table;
 	}
 	.menu-experiencias li {
@@ -297,12 +298,21 @@ box-sizing: border-box;
 	#redes { vertical-align: middle; }
 	#social_block li {padding: 0 1.25rem;}
 
-	.right-down-menu{
-	padding: 0.9rem 1.875rem 0 0;
+	.right-down-menu {
+	padding: 0.6rem 1.875rem 0 0;
 	}
+
 	.right-down-menu > ul{
 	float: right;
 	}
+
+    .fixedHeader .menu-experiencias {
+        padding-top: 1.6rem;
+    }
+
+    .fixedHeader .menu-content > li > a {
+        padding-top:1.45rem;
+    }
 
 	.right-down-menu #lhnChatButton a{
 	background: url("../img/sprite-menu-top.png") 0 -60px no-repeat;
@@ -314,7 +324,7 @@ box-sizing: border-box;
 	.right-down-menu #blog a{
 	background: url("../img/sprite-menu-top.png") 0 -80px no-repeat;
 	}
-	.right-down-menu #search a{
+	.right-down-menu .search a{
 	text-indent: 99em;
 	display: inline-block;
 	background: url("../img/icon-search.png") 0 0 no-repeat;
@@ -323,6 +333,10 @@ box-sizing: border-box;
 	padding-top: 10px;
 	padding-right: 0;
 	}
+
+    .right-down-menu .highlight-close a {
+    background: url("../img/icon-search-close.png") 0 0 no-repeat;
+    }
 
 	#chat > a {
 	position: static !important;
@@ -893,7 +907,7 @@ box-sizing: border-box;
 
 	/*Buscador*/
 	.search-container form .search_query {
-	background: #d9282e;
+	background: #d9282e url(../img/icon-search_white.png) no-repeat 98% center;
 	border: none;
 	padding: 3.125rem 1.875rem;
 	color: #fff;
@@ -3841,19 +3855,21 @@ transition: all 0.2s ease;
 	width: auto;
 }
 
+/*Experienca*/
+
 .experiences-list li {
 	margin: 0px !important;
 }
 
 .experiences-list li {
-	/*width: 390px!important;*/
+    width: 367px!important;
 	padding:0 5px !important;
 	margin: 0 !important;
 	overflow: hidden;
 }
 
 .experiences-list li img, .experiences-list li a {
-width:103%;
+width:109%;
 }
 
 .experience-page .current h5 {
@@ -3873,6 +3889,12 @@ width:103%;
 .exp-slide .bx-wrapper {
 	/*max-width: 92% !important;
 	margin: 0 4% !important;*/
+}
+
+.exp-slide.grid_12.alpha.omega {
+    width: 94%;
+    margin: 3.75rem 3%;
+    
 }
 
 /*GARANTIA*/

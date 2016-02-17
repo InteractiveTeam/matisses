@@ -226,6 +226,8 @@ $(document).ready(function(e){
 		   }
 		   lastScrollLeft = st;
 		})
+
+        //the code
 })
 
 //Divs a megamenu
