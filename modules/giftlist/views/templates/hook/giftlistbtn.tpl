@@ -7,7 +7,7 @@
 	</div>
 	<div class="content-account row">
 		<div class="col-md-2">
-			<img src="{$module_dir}img/not_found.jpg" />
+			<img src="{$module_dir}uploads/not-found.jpg" />
 		</div>
 		<div class="col-md-6">
 			<h3>Buscar lista</h3>
