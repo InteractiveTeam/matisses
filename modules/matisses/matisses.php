@@ -712,7 +712,6 @@ class matisses extends Module
 	*******************************************************/
 	public function hookactionCustomerAccountAdd($params,$factura=false)
 	{
-
 		require_once dirname(__FILE__)."/classes/template.php";
 		$customer 		= new Customer();
 		$InfCustomer	= $_POST['email'] ? $customer->searchByName(pSQL($_POST['email'])) :  $customer->searchByName(pSQL($params['email']));
@@ -731,13 +730,19 @@ class matisses extends Module
 		$infoxml[0]['gender']			= 3;
         $infoxml[0]['salesPersonCode'] 	= ""; // se envia vacio esto se llena por default en sap;
 
+		if(sizeof($InfAddresses)>0)
+		{
+			$infoxml[0]['defaultBillingAddress'] = '';
+			$infoxml[0]['defaultShippingAddress'] = '';
+		}
+		
 		
 		$cont = 0;
 		foreach($InfAddresses as $d => $v) 
 		{
 			$addresses[$d]['addressName']	= $InfAddresses[$d]['alias'];
             $addresses[$d]['address']		= $InfAddresses[$d]['address1'];
-			$addresses[$d]['cityCode']		= Country::getIsoById(Country::getIdByName((int)Configuration::get('PS_LANG_DEFAULT'),$InfAddresses[$d]['country'])).$InfAddresses[$d]['state_iso'];
+			$addresses[$d]['cityCode']		= $InfAddresses[$d]['state_iso'];
 			$addresses[$d]['cityName']		= $InfAddresses[$d]['state'];
 			$addresses[$d]['stateCode']		= Country::getIsoById(Country::getIdByName((int)Configuration::get('PS_LANG_DEFAULT'),$InfAddresses[$d]['country']));
             $addresses[$d]['stateName']		= $InfAddresses[$d]['country'];
@@ -790,7 +795,7 @@ class matisses extends Module
 		{
 			$addresses[$d]['addressName']	= $InfAddresses[$d]['alias'];
             $addresses[$d]['address']		= $InfAddresses[$d]['address1'];
-			$addresses[$d]['cityCode']		= Country::getIsoById(Country::getIdByName((int)Configuration::get('PS_LANG_DEFAULT'),$InfAddresses[$d]['country'])).$InfAddresses[$d]['state_iso'];
+			$addresses[$d]['cityCode']		= $InfAddresses[$d]['state_iso'];
 			$addresses[$d]['cityName']		= $InfAddresses[$d]['state'];
 			$addresses[$d]['stateCode']		= Country::getIsoById(Country::getIdByName((int)Configuration::get('PS_LANG_DEFAULT'),$InfAddresses[$d]['country']));
             $addresses[$d]['stateName']		= $InfAddresses[$d]['country'];
