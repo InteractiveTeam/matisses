@@ -21,6 +21,7 @@ themes/default-bootstrap/*
 themes/foxlore/*
 administracion/autoupgrade/
 config/xml/*.xml
+config/*.php
 /log/*
 *sitemap.xml
 modules/*/config*.xml
