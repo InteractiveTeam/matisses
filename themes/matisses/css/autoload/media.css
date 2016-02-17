@@ -1275,6 +1275,24 @@
     	bottom: 11rem;
 		}
 
+		.show-user {
+			display:none;
+		}
+
+}
+
+@media only screen and (min-height :678px) and (max-height :683px){
+	/*BANNER*/
+	.main-container #homepage-slider {
+		height:430px;
+	}
+
+	.main-container #slider .homeslider-description {
+		padding: 8.25rem 0.625rem;
+	}
+	.content-coleccion {
+    padding-left: 1.1rem;
+	}
 }
 
 @media only screen and (max-width :1024px) and (min-width: 321px) {
@@ -1572,6 +1590,10 @@
 
 	.bx-controls.bx-has-pager {
 		bottom: 2.8rem;
+	}
+
+	.search .center_column {
+		width:64rem;
 	}
 
 }
@@ -2334,6 +2356,16 @@
 
 	#password #center_column .submit {
 		width:100%;
+	}
+
+	/*Resultados de búsqueda*/
+
+	#search.search {
+		position: inherit;
+	}
+
+	.search .center_column {
+		width:92%;
 	}
 
 }
