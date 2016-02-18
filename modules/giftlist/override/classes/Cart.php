@@ -1,4 +1,5 @@
 <?php
+
 include_once _PS_MODULE_DIR_ ."giftlist/classes/Bond.php";
 /*
 * 2007-2015 PrestaShop
@@ -155,7 +156,6 @@ class Cart extends CartCore
 	public function __construct($id = null, $id_lang = null)
 	{
 		parent::__construct($id);
-
 		if (!is_null($id_lang))
 			$this->id_lang = (int)(Language::getLanguage($id_lang) !== false) ? $id_lang : Configuration::get('PS_LANG_DEFAULT');
 
@@ -472,7 +472,6 @@ class Cart extends CartCore
 		*****************/
 		$sql = "SELECT id_product FROM "._DB_PREFIX_."product WHERE reference = 'BOND-LIST'";
 		$id_bond_product = Db::getInstance()->getValue($sql);
-
 		// Build query
 		$sql = new DbQuery();
 
@@ -505,7 +504,6 @@ class Cart extends CartCore
 			product_shop.`id_category_default` = cl.`id_category`
 			AND cl.`id_lang` = '.(int)$this->id_lang.Shop::addSqlRestrictionOnLang('cl', 'cp.id_shop')
 		);
-
 		$sql->leftJoin('product_supplier', 'ps', 'ps.`id_product` = cp.`id_product` AND ps.`id_product_attribute` = cp.`id_product_attribute` AND ps.`id_supplier` = p.`id_supplier`');
 
 		$sql->leftJoin('specific_price', 'sp', 'sp.`id_product` = cp.`id_product`'); // AND 'sp.`id_shop` = cp.`id_shop`
@@ -571,14 +569,13 @@ class Cart extends CartCore
 		// Thus you can avoid one query per product, because there will be only one query for all the products of the cart
 		Product::cacheProductsFeatures($products_ids);
 		Cart::cacheSomeAttributesLists($pa_ids, $this->id_lang);
+
 		$cart_shop_context = Context::getContext()->cloneContext();
-
 		$this->_products = array();
-
 		/****************************
 		Select Bond From DB
 		******************************/
-
+		
 		$sqlBonds = ("SELECT id_bond FROM "._DB_PREFIX_."cart_product WHERE id_cart = ".$this->id. " AND id_bond <> 0;" );
 		$res = Db::getInstance()->executeS($sqlBonds);
 		$images = Image::getImages(1, $id_bond_product);
@@ -632,6 +629,7 @@ class Cart extends CartCore
 				);
 			}
 		}
+
 
 		foreach ($result as &$row)
 		{
@@ -738,6 +736,7 @@ class Cart extends CartCore
 
 			$this->_products[] = $row;
 		}
+
 		return $this->_products;
 	}
 
@@ -860,7 +859,6 @@ class Cart extends CartCore
 
 		return true;
 	}
-
 	public function containsProduct($id_product, $id_product_attribute = 0, $id_customization = 0, $id_address_delivery = 0)
 	{
 		$sql = 'SELECT cp.`quantity` FROM `'._DB_PREFIX_.'cart_product` cp';
@@ -893,7 +891,7 @@ class Cart extends CartCore
 	 * @param integer $id_product_attribute Attribute ID if needed
 	 * @param string $operator Indicate if quantity must be increased or decreased
 	 */
-public function updateQty($quantity, $id_product, $id_product_attribute = null, $id_customization = false,
+	public function updateQty($quantity, $id_product, $id_product_attribute = null, $id_customization = false,
 		$operator = 'up', $id_address_delivery = 0, Shop $shop = null, $auto_add_cart_rule = true,$id_giftlist = null)
 	{
 		if (!$shop)
@@ -1055,7 +1053,6 @@ public function updateQty($quantity, $id_product, $id_product_attribute = null, 
 		else
 			return true;
 	}
-
 
 	/*
 	** Customization management
@@ -1346,7 +1343,7 @@ public function updateQty($quantity, $id_product, $id_product_attribute = null, 
 				WHERE `id_customization` = '.(int)$id_customization
 			);
 		}
-
+		
 		return true;
 	}
 
@@ -1663,8 +1660,7 @@ public function updateQty($quantity, $id_product, $id_product_attribute = null, 
 		if ($type == Cart::ONLY_DISCOUNTS)
 			return $order_total_discount;
 
-
-			//the following code is to calculate the total of the order with bonds
+		//the following code is to calculate the total of the order with bonds
 		$sqlBonds = ("SELECT id_bond FROM "._DB_PREFIX_."cart_product WHERE id_cart = ".$this->id. " AND id_bond <> 0" );
 		$res = Db::getInstance()->executeS($sqlBonds);
 		if(count($res > 0)){
@@ -2065,7 +2061,6 @@ public function updateQty($quantity, $id_product, $id_product_attribute = null, 
 			$best_price_carriers = array();
 			$best_grade_carriers = array();
 			$carriers_instance = array();
-
 			// Get country
 			if ($id_address)
 			{
@@ -2619,7 +2614,11 @@ public function updateQty($quantity, $id_product, $id_product_attribute = null, 
 			else
 				$total_shipping += $delivery_option_list[$id_address][$key]['total_price_without_tax'];
 		}
-
+		$params['total_shipping'] 		= $total_shipping;
+		$params['delivery_option_list']	= $delivery_option_list;
+		$params['delivery_option']		= $delivery_option;
+		$params['products_cart']		= $this->getProducts();
+		$total_shipping = Hook::exec('actionCalculateShipping',$params);
 		return $total_shipping;
 	}
 	/**
@@ -2715,7 +2714,6 @@ public function updateQty($quantity, $id_product, $id_product_attribute = null, 
 
 		if (Cache::isStored($cache_id))
 			return Cache::retrieve($cache_id);
-
 		// Order total in default currency without fees
 		$order_total = $this->getOrderTotal(true, Cart::ONLY_PHYSICAL_PRODUCTS_WITHOUT_SHIPPING, $product_list);
 
@@ -2741,7 +2739,6 @@ public function updateQty($quantity, $id_product, $id_product_attribute = null, 
 			{
 				if (!Validate::isLoadedObject($default_country))
 					$default_country = new Country(Configuration::get('PS_COUNTRY_DEFAULT'), Configuration::get('PS_LANG_DEFAULT'));
-
 				$id_zone = (int)$default_country->id_zone;
 			}
 		}
@@ -3001,10 +2998,10 @@ public function updateQty($quantity, $id_product, $id_product_attribute = null, 
 			LEFT JOIN `'._DB_PREFIX_.'product` p ON (cp.`id_product` = p.`id_product`)
 			WHERE (cp.`id_product_attribute` IS NULL OR cp.`id_product_attribute` = 0)
 			AND cp.`id_cart` = '.(int)$this->id);
-
+			
 			self::$_totalWeight[$this->id] = round((float)$weight_product_with_attribute + (float)$weight_product_without_attribute, 3);
 		}
-
+		
 		return self::$_totalWeight[$this->id];
 	}
 
@@ -3042,14 +3039,14 @@ public function updateQty($quantity, $id_product, $id_product_attribute = null, 
 
 		$base_total_tax_inc = $this->getOrderTotal(true);
 		$base_total_tax_exc = $this->getOrderTotal(false);
-
+		
 		$total_tax = $base_total_tax_inc - $base_total_tax_exc;
 
 		if ($total_tax < 0)
 			$total_tax = 0;
 
 		$currency = new Currency($this->id_currency);
-
+		
 		$products = $this->getProducts($refresh);
 		$gift_products = array();
 		$cart_rules = $this->getCartRules();
@@ -3198,7 +3195,7 @@ public function updateQty($quantity, $id_product, $id_product_attribute = null, 
 
 		return (int)$id_cart;
 	}
-
+	
 	/**
 	* Check if cart contains only virtual products
 	*
@@ -3220,11 +3217,11 @@ public function updateQty($quantity, $id_product, $id_product_attribute = null, 
 			{
 				if (empty($product['is_virtual']))
 					$is_virtual = 0;
+				self::$_isVirtualCart[$this->id] = (int)$is_virtual;
 			}
-			self::$_isVirtualCart[$this->id] = (int)$is_virtual;
-		}
 
-		return self::$_isVirtualCart[$this->id];
+			return self::$_isVirtualCart[$this->id];
+		}
 	}
 
 	/**
@@ -3363,7 +3360,7 @@ public function updateQty($quantity, $id_product, $id_product_attribute = null, 
 		$cart->id = null;
 		$cart->id_shop = $this->id_shop;
 		$cart->id_shop_group = $this->id_shop_group;
-
+		
 		if (!Customer::customerHasAddress((int)$cart->id_customer, (int)$cart->id_address_delivery))
 			$cart->id_address_delivery = (int)Address::getFirstCustomerAddressId((int)$cart->id_customer);
 
@@ -3372,7 +3369,7 @@ public function updateQty($quantity, $id_product, $id_product_attribute = null, 
 
 		if ($cart->id_customer)
 			$cart->secure_key = Cart::$_customer->secure_key;
-
+		
 		$cart->add();
 
 		if (!Validate::isLoadedObject($cart))
@@ -3390,7 +3387,6 @@ public function updateQty($quantity, $id_product, $id_product_attribute = null, 
 			if ($id_address_delivery)
 				if (Customer::customerHasAddress((int)$cart->id_customer, $product['id_address_delivery']))
 					$id_address_delivery = $product['id_address_delivery'];
-
 			foreach ($product_gift as $gift)
 				if (isset($gift['gift_product']) && isset($gift['gift_product_attribute']) && (int)$gift['gift_product'] == (int)$product['id_product'] && (int)$gift['gift_product_attribute'] == (int)$product['id_product_attribute'])
 					$product['quantity'] = (int)$product['quantity'] - 1;
@@ -3594,7 +3590,7 @@ public function updateQty($quantity, $id_product, $id_product_attribute = null, 
 			$sql->where('id_address_delivery = '.(int)$id_address_delivery);
 			$sql->where('id_cart = '.(int)$this->id);
 			$duplicatedQuantity = Db::getInstance()->getValue($sql);
-
+			
 			if ($duplicatedQuantity > $quantity)
 			{
 				$sql = 'UPDATE '._DB_PREFIX_.'cart_product
@@ -3765,6 +3761,7 @@ public function updateQty($quantity, $id_product, $id_product_attribute = null, 
 			WHERE `id_cart` = '.(int)$this->id.'
 				AND (`id_address_delivery` = 0 OR `id_address_delivery` IS NULL)';
 
+
 		Db::getInstance()->execute($sql);
 	}
 
@@ -3881,7 +3878,6 @@ public function updateQty($quantity, $id_product, $id_product_attribute = null, 
 		{
 			$hook = Hook::exec('displayCarrierList', array('address' => $address));
 			$hook_extracarrier_addr[$address->id] = $hook;
-
 			if ($first)
 			{
 				$array = array_merge(

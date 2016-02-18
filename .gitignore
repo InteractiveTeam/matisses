@@ -22,6 +22,12 @@ themes/foxlore/*
 modules/giftlist/uploads/*
 override/classes/Cart.php
 override/controllers/front/CartController.php
+.project
+.buildpath
+.settings/*
+modules/gamification/*
+img/*
+cache/class_index.php
 
 # Exluir la fans.tpl
 *fans.tpl

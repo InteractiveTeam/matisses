@@ -33,7 +33,7 @@
 		<div class="col-md-4">
 		
 			<h3>Administrar lista</h3>
-			<a href="{$gift_link}" class="btn btn-default">Ingresar</a>
+			<a href="{$gift_link}" class="btn btn-default btn-red">Ingresar</a>
 		</div>
 	</div>
 </li>
