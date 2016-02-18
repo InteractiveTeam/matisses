@@ -104,6 +104,11 @@ $(document).ready(function()
 		$('header .search-container').slideToggle(500);
         $('ul li.search').toggleClass( "highlight-close" );
 	})
+    
+    $('#search a').focusout(function(){
+        $('header .search-container').slideUp(500);
+        $('ul li.search').removeClass( "highlight-close" );
+    })
 
 });
 

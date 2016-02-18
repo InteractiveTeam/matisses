@@ -943,7 +943,7 @@
 	/*zona perfil*/
 	#user{
 		min-width: 4.375rem;
-		padding: 0.625rem;
+		padding: 0.525rem;
 	}
 	#user .login{
 		display: none;
@@ -1272,14 +1272,6 @@
         font-size: 13px;
     }
 		/*BANNER*/
-		.main-container #homepage-slider {
-			height:518px;
-		}
-
-		.main-container #slider .homeslider-description {
-			padding: 11.25rem 0.625rem;
-		}
-
 		.content-coleccion {
 			padding:20px 25px;
 		}
@@ -1295,25 +1287,78 @@
 		.show-user {
 			display:none;
 		}
+        
+    #user {
+        padding-top: 0.7rem !important;
+         height: 3.9375rem;
+    }
 
 }
 
-@media only screen and (min-height :678px) and (max-height :683px){
+@media only screen and (max-height :1024px) and (max-width :1366px){
 	/*BANNER*/
+	.main-container #homepage-slider, #homepage-slider .bx-wrapper .bx-viewport li a {
+        max-height: 42rem;
+	}
+    
+    .bx-wrapper .bx-viewport li img {
+        max-width:102% !important;
+    }
+    
+    #slider  .bx-controls.bx-has-pager {
+		bottom: 7%;
+	}
+    
+    #homepage-slider .homeslider-description {
+        background-position: center 90%;
+    }
+}
+
+@media only screen and (max-height :924px) {
+	/*BANNER*/
+	.main-container #homepage-slider, #homepage-slider .bx-wrapper .bx-viewport li a {
+        max-height: 42.2rem;
+	}
+    
+    #slider #homepage-slider .homeslider-description {
+        height: 100%;
+        background-position: center 85%;
+    }
+}
+
+@media only screen and (max-height :768px) and (max-width :1366px) {
+	/*BANNER*/
+
 	.main-container #homepage-slider {
-		height:430px;
+		max-height: 32rem;
 	}
 
-	.main-container #slider .homeslider-description {
+	#slider #homepage-slider .homeslider-description {
 		padding: 8.25rem 0.625rem;
+        height:76%;
 	}
+    
 	.content-coleccion {
     padding-left: 1.1rem;
 	}
+    
+    #slider .bx-controls.bx-has-pager {
+     bottom: 30%;
+    }
 }
 
-@media only screen and (max-width :1024px) and (min-width: 321px) {
 
+@media only screen and (max-width :1024px) and (min-width: 321px) {
+    
+    #user {
+        padding-top: 0.2rem !important;
+        height: 3.5rem;
+    }
+    
+    .show-user {
+        display: block;
+    }
+    
 	#page {
 		margin: 0 0 30px  0;
 	}
@@ -1530,15 +1575,14 @@
     }
 
     .show-user .selectIcon {
-				color:#fff;
-				font-size: 1rem;
-				font-family: 'Open Sans', sans-serif;
-				position: absolute;
-				right: 4px;
-				top: 16px;
-				width: 15px;
-		    height: 20px;
-				cursor: pointer;
+    color:#fff;
+    font-size: 1rem;
+    position: absolute;
+    right: 4px;
+    top: 19px;
+    width: 15px;
+    height: 20px;
+    cursor: pointer;
 	}
 
     /**busqueda*/
@@ -1581,8 +1625,8 @@
 	}
 	/*Nueva garantia*/
 	/*BANNER*/
-	.main-container #homepage-slider {
-		height:547px;
+	#slider #homepage-slider {
+		max-height: 34rem;
 	}
 
 	#homepage-slider .bx-wrapper .bx-viewport {
@@ -1593,9 +1637,14 @@
 	  max-width: 111% !important;
 	}
 
-	.main-container #slider .homeslider-description {
+	#slider #homepage-slider .homeslider-description {
 		padding: 11.25rem 0.625rem;
+        height:34rem;
 	}
+    
+    #slider .bx-controls.bx-has-pager {
+        bottom: 10%;
+    }
 
 	.content-coleccion {
 		padding:15px 20px;
@@ -1603,10 +1652,6 @@
 
 	.content-coleccion .item-html {
 		line-height: 1.1rem;
-	}
-
-	.bx-controls.bx-has-pager {
-		bottom: 2.8rem;
 	}
 
 	.search .center_column {
@@ -1691,15 +1736,14 @@
 	}
 
 	.show-user .selectIcon {
-		color:#fff;
-		font-size: 1rem;
-		font-family: 'Open Sans', sans-serif;
-		position: absolute;
-		right: 8px;
-		top: 24px;
-		width: 15px;
+    color:#fff;
+    font-size: 1rem;
+    position: absolute;
+    right: 8px;
+    top: 24px;
+    width: 15px;
     height: 20px;
-		cursor: pointer;
+    cursor: pointer;
 	}
 
 	.content-user:before:hover .account {
@@ -2034,7 +2078,7 @@
 
 	.header-container .main_panel.cf {
 		margin: 0;
-		min-height: 66px;
+		min-height: 62px;
 	}
 
 	.search-container form .search_query {

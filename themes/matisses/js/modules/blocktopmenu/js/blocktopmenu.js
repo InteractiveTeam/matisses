@@ -162,7 +162,7 @@ function menuChange(status)
 
 //Megamenu-responsive
 $(document).ready(function(e){
-	var ShowUser = $("<div class='show-user'><div class='selectIcon'>v</div></div>");
+	var ShowUser = $("<div class='show-user'><div class='selectIcon'><i class='fa fa-angle-down'></i></div></div>");
 	$('.header_user_info').append(ShowUser)
 
 	$('.show-user').on('click', function(){

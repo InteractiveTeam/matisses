@@ -930,7 +930,7 @@ box-sizing: border-box;
 	transition:all .36s ease;
 	}
 	#header {
-	z-index: 99999;
+	z-index: 2;
 	width: 100%;
 	}
 	.main_panel>.container>.row{
@@ -2176,6 +2176,10 @@ box-sizing: border-box;
 	#reinsurance_block {
 	clear: both !important;
 	}
+    #short_description_block {    
+    font-family: 'Open Sans', sans-serif;
+    color: #777676;
+    }
 	#short_description_content ul,
 	#short_description_content ol,
 	#short_description_content dl,
@@ -3941,16 +3945,11 @@ line-height: 1.5;
 }
 
 .checkbox .checker .checked:before, .checkbox .radio .checked:before {
-	color:#d7162f;
-	position: absolute;
+  color:#d7162f;
+  position: absolute;
   top: 1px;
   left: 3px;
 }
-
-.submenu-container .view-menu a {
-    margin-right: 2rem;
-}
-
 
 .module-matisses-garantias table tr td {
     vertical-align: baseline;
@@ -4145,15 +4144,17 @@ line-height: 1.5;
 	}
 
 	#slider #homepage-slider {
-		max-height: 42rem;
+		height: 47.4rem;
 	}
 
 	#slider  #homepage-slider .homeslider-description {
+        height: 80%;
 		padding:15.25rem  0.625rem;
+        background-position: center 90%;
 	}
 
 	#slider  .bx-controls.bx-has-pager {
-		bottom: 30%;
+		bottom: 22%;
 	}
 
 	/*agotado*/
@@ -4172,25 +4173,36 @@ line-height: 1.5;
 		border:none;
 	}
 	#search .product_list.category_list.grid .star_content {
-		display:none;
+	display:none;
 	}
 
 	#search .product_list.category_list.grid .content_price .price.product-price {
-		font-family: 'gothic';
+	font-family: 'gothic';
     color: #231f20;
     font-size: 1.375rem;
 	}
 
 	.product-container .wrap_features .tag span {
-		display: inline-block;
+	display: inline-block;
     font-family: 'gothic';
     font-weight: bold;
     padding: 0.3125rem 0.9375rem;
 	}
 
 	.content_sortPagiBar .sortPagiBar .category-right {
-		margin-top:40px;
+	margin-top:0px;
 	}
+
+    #search .content_sortPagiBar .category-right {
+    margin-top:0px;
+    }
+
+    .ac_results ul li {
+    padding: 10px;
+    font-family: 'condensed';
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    }
 
 	body .product_list.grid .product-container:before, body .product_list.grid .product-container:after, body .c_item .product-container:before, body .c_item .product-container:after {
     height: 100% !important;
@@ -4203,3 +4215,11 @@ line-height: 1.5;
 	.product_list.grid .product-container:hover:before,.c_item .product-container:hover:before{
 		top: -50% !important;
 	}
+
+   #index .product_list.grid .product-container {
+        width: 384px !important;
+    }
+
+    body .product_list.grid .button-container .btn_border {
+        padding: 15px 20px;
+    }

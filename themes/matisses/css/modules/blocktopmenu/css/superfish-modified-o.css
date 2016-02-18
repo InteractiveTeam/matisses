@@ -87,8 +87,6 @@
 	.submenu-container > li.sfHover > a{
 	color: #d7162f;
 	}
-
-/*edit*/
 	.submenu-container > li > ul  {
 	background: #f7f7f7;
 	position: absolute;
@@ -96,14 +94,17 @@
 	left: 0;
 	border-bottom: 5px solid #d7162f;
 	border-top: 1px solid #ccc;
-	padding: 1.6rem 7.5rem;
-    overflow: hidden;
+	padding: 2.5rem 7.5rem;
 	}
-
+	.submenu-container > li > ul > li:first-child {
+    border-left: none;
+	}
 	.submenu-container > li > ul > li {
-    display: block;
-    padding: 0;
-	width: 15.6875rem;
+    border-left: 1px solid #e0e0e0;
+	padding: 0 0.625rem;
+	min-height: 14.375rem;
+	margin-bottom: 1.875rem;
+	width: 14.6875rem;
 	}
 
 	.submenu-container li > ul > li a {
@@ -111,43 +112,28 @@
     color: #231f20;
     display: block;
     text-align: left;
-    padding: 0.625rem 2.3rem;
+    padding: 0.625rem;
 	}
-
-    .submenu-container li > ul > li a:hover {
-        background:#fff;
-    }
-
 	.submenu-container li > ul > li > ul {
-	padding: 1.8rem 3.625rem;
-    position: absolute;
-    margin-top: 0;
-    top: 0 !important;
-    left: 23rem !important;
-    width: 30rem;
-    background: #fff;
-    z-index: 2;
-    height:150%;
+	padding: 0 0.625rem;
+	position: static;
+	display: block !important;
+	margin-top: 0.625rem;
 	}
-
 	.submenu-container li > ul > li > ul li {
 	display: block;
 	vertical-align: top;
 	margin-bottom: 0.625rem;
-    width:50%;
-    display: inline-block;
 	}
-
 	.submenu-container li > ul > li > ul li a {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 1rem;
+	font-family: 'Open Sans', sans-serif;;
+	font-size: 0.875rem;
     color: #757575;
     display: block;
     padding: 0;
 	text-align: left;
 	line-height: 1.5;
 	text-transform: none;
-    font-weight: lighter;
 	}
 	.category-thumbnail {
     width: 75rem;
@@ -168,12 +154,7 @@
 	.submenu-container .view-menu a:hover{
 	color: #000;
 	}
-/*18-002-2016 actual */ 
-    .submenu-container li > ul .view-menu a {
-        display:inline-block;
-        padding: 5px;
-    }
-    
+
 /*07-12-2015*/
 
  @media (min-width: 768px) and (max-width: 1199px) {
