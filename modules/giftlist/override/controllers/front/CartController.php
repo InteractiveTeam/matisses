@@ -406,7 +406,11 @@ class CartController extends CartControllerCore
 
 	protected function processChangeProductInCartFromList() {
 		$mode = (Tools::getIsset ( 'updateFromList' ) && $this->id_product) ? 'update' : 'add';
-		if ($this->qty == 0)
+        $params['id_product'] = $this->id_product;
+		$params['id_product_attribute'] = $this->id_product_attribute;
+		
+		$response = Hook::exec('actionProductCartSave', $params);
+		if ($this->qty == 0 || $response==0)
 			$this->errors [] = Tools::displayError ( 'Null quantity.', ! Tools::getValue ( 'ajax' ) );
 		elseif (! $this->id_product)
 			$this->errors [] = Tools::displayError ( 'Product not found', ! Tools::getValue ( 'ajax' ) );

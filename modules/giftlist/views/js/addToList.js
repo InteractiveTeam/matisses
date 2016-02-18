@@ -43,26 +43,33 @@ $(function(){
 					data: dataForm
 				},
 				success: function(res){
+                    $.fancybox.close();
 					res = JSON.parse(res);
-					$(".response").text(res.msg);
-					$(".prod_name").text(res.prod_name);
-					res.attributes.forEach(function(row){
-						$(".att").append("<p>"+row.value+"</p>");
-					});
-					$(".price").text(res.price);
-					$(".image-prod").css("background","url("+res.image+") center");
-					$(".see-list").attr("href",res.description_link);
-					$.fancybox.close();
-					$.fancybox({
-					     'autoScale': true,
-					     'transitionIn': 'elastic',
-					     'transitionOut': 'elastic',
-					     'speedIn': 500,
-					     'speedOut': 300,
-					     'autoDimensions': true,
-					     'centerOnScroll': true,
-					     'href' : '#contentdiv'
-					  });
+                    if(res.error == true){
+                        alert(res.msg);
+                        $("#add-list").attr("disabled", true);
+                        $("#add-list").removeAttr("id");
+                    }else{
+                        $(".response").text(res.msg);
+                        $(".prod_name").text(res.prod_name);
+                        res.attributes.forEach(function(row){
+                            $(".att").append("<p>"+row.value+"</p>");
+                        });
+                        $(".price").text(res.price);
+                        $(".image-prod").css("background","url("+res.image+") center");
+                        $(".see-list").attr("href",res.description_link);
+                        $.fancybox.close();
+                        $.fancybox({
+                             'autoScale': true,
+                             'transitionIn': 'elastic',
+                             'transitionOut': 'elastic',
+                             'speedIn': 500,
+                             'speedOut': 300,
+                             'autoDimensions': true,
+                             'centerOnScroll': true,
+                             'href' : '#contentdiv'
+                          });
+                    }
 				},
 				error: function(res){
 					console.log("I'm sorry");

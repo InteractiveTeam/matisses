@@ -87,7 +87,14 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 		$list = new GiftListModel($data['list']);
 		$prod = new ProductCore($id_product);
 		$link = new LinkCore();
-		$images = Image::getImages($this->context->language->id, $id_product);
+        $params['id_product'] = $id_product;
+		$params['id_product_attribute'] = $data['form'][3]['value'];
+        $response = Hook::exec('actionProductCartSave', $params);
+        if($response == 0)
+            die(Tools::jsonEncode(array(
+                'msg' => "No hay cantidades suficientes en el inventario",
+                'error' => true))
+               );
 		$lpd->id_list = $data['list'];
 		$lpd->id_product = $id_product;
 		$lpd->message = $data['message'];
@@ -115,7 +122,8 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 					'attributes' => $att,
 					'price' => $prod->getPrice(),
 					'image' => "http://".$link->getImageLink($prod->link_rewrite[1], (int)$images[0]['id_image'], 'home_default'),
-					'description_link' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url))
+					'description_link' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url)),
+                    'error' => true
 				)));
 			}
 		}catch (Exception $e){
@@ -170,15 +178,25 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
     */
     private function _groupProducts($cant,$cant_group){
         $total = $cant;
-        while($total >= $cant_group){
-            $total -= $cant_group;
+        if(cant_group != "" && cant_group > 0){
+            while($total >= $cant_group){
+                $total -= $cant_group;
+            }
+            
+            return Tools::jsonEncode( array(
+                "wanted" => $cant,
+                "missing"=> $cant,
+                "cant" => $cant_group,
+                "rest" => $total
+            ));
         }
         return Tools::jsonEncode( array(
-            "wanted" => $cant,
-            "missing"=> $cant,
-            "cant" => $cant_group,
-            "rest" => $total
-		));
+                "wanted" => $cant,
+                "missing"=> $cant,
+                "cant" => $cant,
+                "rest" => $total
+            ));
+        
     }
 
 	/**

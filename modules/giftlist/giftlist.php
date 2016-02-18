@@ -102,19 +102,19 @@ class giftlist extends Module
 
 	public function hookActionOrderStatusUpdate($params){
 		//Order status awaiting payment confirmation
-			if($params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_COD_VALIDATION")
-			|| $params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_CHEQUE")
-			|| $params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_PAYPAL")
-			|| $params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_BANKWIRE")){
-                $this->__verifyListInOrderAfertPayment($params['cart']);
-			}
+        if($params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_COD_VALIDATION")
+        || $params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_CHEQUE")
+        || $params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_PAYPAL")
+        || $params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_BANKWIRE")){
+            $this->__verifyListInOrderAfertPayment($params['cart']);
+        }
 
+        //Order status payment confirmation
+        if (!($params['newOrderStatus']->id == ConfigurationCore::get('PS_OS_WS_PAYMENT'))
+         && !($params['newOrderStatus']->id == ConfigurationCore::get('PS_OS_PAYMENT')))
+            $this->_updateStatesinList($params['cart']);
 
-			if (!($params['newOrderStatus']->id == ConfigurationCore::get('PS_OS_WS_PAYMENT'))
-			 && !($params['newOrderStatus']->id == ConfigurationCore::get('PS_OS_PAYMENT')))
-				return false;
-
-			$this->_updateStatesinList($params['cart']);
+        
 	}
     
     private function _updateStatesinList($cart){

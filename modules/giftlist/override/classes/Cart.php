@@ -25,7 +25,6 @@ include_once _PS_MODULE_DIR_ ."giftlist/classes/Bond.php";
 *  @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
-
 class Cart extends CartCore
 {
 	public $id;
@@ -579,9 +578,8 @@ class Cart extends CartCore
 		$sqlBonds = ("SELECT id_bond FROM "._DB_PREFIX_."cart_product WHERE id_cart = ".$this->id. " AND id_bond <> 0;" );
 		$res = Db::getInstance()->executeS($sqlBonds);
 		$images = Image::getImages(1, $id_bond_product);
-		if (empty($result) || empty($res))
+		if (empty($result) && empty($res))
 			return array();
-
 
 		/***************
 		Get All Bond in list
@@ -736,7 +734,6 @@ class Cart extends CartCore
 
 			$this->_products[] = $row;
 		}
-
 		return $this->_products;
 	}
 
