@@ -773,10 +773,18 @@ class matisses extends Module
 					enviar a sap cuando un cliente actualiza 
 					su informacion en el prestashop.
 	*******************************************************/
-	public function hookactionCustomerAccountUpdate($params,$facturar=false)
+	public function hookactionCustomerAccountUpdate($params,$facturar=false, $Adresses = array(), $id_customer = NULL)
 	{
 		require_once dirname(__FILE__)."/classes/template.php";
-		$customer 		= new Customer();
+		
+		
+		$customer 		= new Customer($id_customer);
+		if($customer->email)
+		{
+			$params[0]->email = $customer->email;
+			$params[0]->id = $customer->id;
+		}
+		
 		$InfCustomer	= $customer->searchByName(pSQL($params[0]->email));
 		$customer->id	= $params[0]->id;
 		$InfAddresses	= $customer->getAddresses((int)Configuration::get('PS_LANG_DEFAULT'));
@@ -787,10 +795,18 @@ class matisses extends Module
 		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['secondname']);
         $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname']);
+		
+		if(sizeof($Adresses)> 0)
+		{
+			$infoxml[0]['defaultBillingAddress'] = $Adresses['invoice'];
+			$infoxml[0]['defaultShippingAddress'] = $Adresses['delivery'];
+		}
+		
 		$infoxml[0]['email']			= $InfCustomer[0]['email'];
         $infoxml[0]['salesPersonCode'] 	= ""; // se envia vacio esto se llena por default en sap;
 		
-	
+
+
 		foreach($InfAddresses as $d => $v) 
 		{
 			$addresses[$d]['addressName']	= $InfAddresses[$d]['alias'];
@@ -805,6 +821,7 @@ class matisses extends Module
             $addresses[$d]['phone']			= $InfAddresses[$d]['phone'];
 		}
 		$infoxml[0]['addresses'] = $addresses;
+
 		$xml = new Template(dirname(__FILE__)."/xml/sap_customer.xml");
 		$xml->addParam('infoxml',$infoxml);
 		$xml = $xml->output();
@@ -1390,17 +1407,17 @@ class matisses extends Module
 		if(!is_object($this->context->customer))
 			return false;
 			
-
+		
+		$Addresses = Db::getInstance()->getRow('SELECT 
+													(SELECT alias from '._DB_PREFIX_.'address WHERE id_address = a.id_address_delivery) as delivery, 
+													(SELECT alias from '._DB_PREFIX_.'address WHERE id_address = a.id_address_invoice) as invoice  
+												FROM '._DB_PREFIX_.'cart as a
+												WHERE id_cart = '.$this->context->cookie->id_cart.' 	
+												');	
+ 	
+		$this->hookactionCustomerAccountUpdate(array('email'=>$this->context->cookie->email),true, $Addresses,$this->context->cookie->id_customer);
 			
-		// verifico si el cliente existe
-		/*
-		if(self::customerExists($this->context->customer->charter))
-		{
-			$this->hookactionCustomerAccountUpdate(array('email'=>$this->context->cookie->email),true);
-		}else{
-				$this->hookactionCustomerAccountAdd(array('email'=>$this->context->cookie->email),true);
-			 }
-			*/
+	
 		$orderDTO = array();
 		$orderDTO['orderDTO']['header']['prestashopOrderId']= $this->context->cookie->id_cart;
 		$orderDTO['orderDTO']['header']['customerId']		= $this->context->customer->charter;
