@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 include_once __DIR__ . '/../../classes/GiftList.php';
 include_once __DIR__ . '/../../classes/ListProductBond.php';
@@ -87,9 +89,11 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 		$list = new GiftListModel($data['list']);
 		$prod = new ProductCore($id_product);
 		$link = new LinkCore();
-        $params['id_product'] = $id_product;
-		$params['id_product_attribute'] = $data['form'][3]['value'];
-        $response = Hook::exec('actionProductCartSave', $params);
+        require_once _PS_MODULE_DIR_ . "matisses/matisses.php";
+		$services = new matisses;
+        die(print_r($services->wsmatisses_getModelInfo($prod->model)));
+        //$response = $services->wsmatisses_getInfoProduct($prod->reference);
+        die($print_r(response));
         if($response == 0)
             die(Tools::jsonEncode(array(
                 'msg' => "No hay cantidades suficientes en el inventario",

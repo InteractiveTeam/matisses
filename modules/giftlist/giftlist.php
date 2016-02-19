@@ -16,6 +16,7 @@ class giftlist extends Module
 		$this->tab = "administration";
 		$this->version = "1.0.0";
 		$this->author = "Arkix";
+        $this->token = Tools::getAdminTokenLite('AdminModules');
 		$this->need_instance = 0;
 		parent::__construct();
 
