@@ -4223,3 +4223,94 @@ line-height: 1.5;
     body .product_list.grid .button-container .btn_border {
         padding: 15px 20px;
     }
+/*new produc*/
+
+body.new-products {
+    background: #fff;
+    padding: 0;
+}
+
+/*Novedades*/
+
+    .pagination>li {
+    padding: 0 !important;
+    }
+
+/** Product Container **/
+    .category_list .product-container{
+    border: none !important;
+    margin: 0;
+    }
+
+    .category_list .product-container .left-block .wrap_features {
+    right: 7px;
+    left: inherit;
+    }
+    
+    .category_list .product-container .right-block .wrap_content_price .comments_note{
+    display: none;
+    }
+
+    .chosen-container-single .chosen-single{
+    height: 2.8125rem;
+    }
+    .sortPagiBar form label {
+    font-family: 'gothic';
+    color: #4b4b4b;
+    border-left: 1px solid #dbdbdb;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    display: inline-block;
+    height: 2.8125rem;
+    padding: 0.9375rem;
+    font-size: 1rem;
+    text-transform: none;
+    vertical-align: top;
+    }
+    #selectProductSort_chosen,
+    #selectProductSort_bottom_chosen {
+    width: 12.8125rem !important;
+    display: inline-block;
+	}
+    .content_sortPagiBar .top-pagination-content ul{
+    height: 45px;
+    }
+    .pagination > li > a,
+    .pagination > li > span {
+    border: none;
+    font-family: 'gothic';
+    padding: 0.625rem 0.9375rem;
+    font-weight: bold;
+    }
+    .parrilla-productos div.pagination {
+    float: right;
+    }
+    .product-price {
+    font-family: 'gothic';
+    color: #231f20;
+    font-size: 1.375rem;
+    }
+    .wrap_content_price {
+    padding: 0 0.625rem 0.625rem;
+    }
+
+
+    .bottom-pagination-content ul.pagination li > a, .bottom-pagination-content ul.pagination li > span{
+    line-height: 130%;
+    }
+
+/*Página parrilla productos*/
+	.parrilla-productos {
+	margin: 2.5rem 0;
+	}
+
+
+    .parrilla-productos .inner-product-list {
+    padding-bottom: 3.125rem;
+    }
+
+    .parrilla-productos .ajax_block_product {
+    padding-top: 2.5rem;
+    }
+
+
