@@ -29,11 +29,11 @@
 
 {if $products}
 	<div class="content_sortPagiBar">
-    	<div class="sortPagiBar clearfix">
+    	<div class="sortPagiBar grid_9 alpha omega">
 			{include file="./product-sort.tpl"}
 			{include file="./nbr-product-page.tpl"}
 		</div>
-    	<div class="top-pagination-content clearfix">
+    	<div class="top-pagination-content grid_3 alpha omega">
         	{include file="./product-compare.tpl"}
             {include file="$tpl_dir./pagination.tpl"}
         </div>

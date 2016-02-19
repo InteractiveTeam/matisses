@@ -1,5 +1,4 @@
 /* CSS Document */
-/* CSS Document */
 
 	.module-matisses-experiences .pointer{
 	position:absolute;
@@ -115,13 +114,9 @@
 
 	/*Posiciones*/
 	.white-right,
-	.white-left {
-	z-index: 0;
+	.white-left{
+	z-index: 10;
 	}
-
-    .black-right, .black-left {
-    z-index: 0;
-    }
 
 	.white-right .pointer-detail,
 	.white-right .pointer-detail {
@@ -234,7 +229,8 @@
 	}
 	.pointerAdded.black-left {
 	background-image:url(../../img/experience-black-left.png);
-	left: 0;
+	left: 350px;
+	top: -5px;
 	}
 	.pointerAdded.black-right {
 	background-image:url(../../img/experience-black.png);
@@ -244,16 +240,11 @@
 	background-image:url(../../img/experience-white-left.png);
 	left: 0;
 	}
-    .pointerAdded.white-right {
+	.pointerAdded.white-right {
 	background-image:url(../../img/experience-white.png);
 	left: 350px;
 	top: -5px;
 	}
-	/*.pointerAdded.white-right {
-	background-image:url(../../img/experience-white.png);
-	left: 350px;
-	top: -5px;
-	}*/
 
 	.experience-page #directionslider{
 	display: none;

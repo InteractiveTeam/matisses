@@ -34,7 +34,7 @@
 	<div class="container">
 		<a class="home" href="{$base_dir}" title="{l s='Return to Home'}">{l s ='Home'}</a>
 		{if isset($path) AND $path}
-			<i class="fa fa-angle-right"></i>
+			<i class="fa fa-angle-right navigation-pipe" {if isset($category) && isset($category->id_category) && $category->id_category == 1}style="display:none;"{/if}>{$navigationPipe|escape:'html':'UTF-8'}</i>
 			{if !$path|strpos:'span'}
 				<span class="navigation_page">{$path}</span>
 			{else}

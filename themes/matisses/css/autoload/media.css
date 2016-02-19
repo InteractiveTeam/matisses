@@ -1347,6 +1347,49 @@
     }
 }
 
+@media only screen and (max-height :768px) and (max-width :1366px) {
+	/*BANNER*/
+
+	.main-container #homepage-slider {
+		max-height: 32rem;
+	}
+
+	#slider #homepage-slider .homeslider-description {
+		padding: 8.25rem 0.625rem;
+        height:76%;
+	}
+    
+	.content-coleccion {
+    padding-left: 1.1rem;
+	}
+    
+    #slider .bx-controls.bx-has-pager {
+     bottom: 30%;
+    }
+}
+
+@media only screen and (max-height :678px) {
+	/*BANNER*/
+
+    .main-container #homepage-slider {
+		max-height: 27rem;
+	}
+
+	#slider #homepage-slider .homeslider-description {
+		padding: 7.25rem 0.625rem;
+        height:64%;
+        background:url("/themes/matisses/img/icon-scroll.png") center 370px no-repeat
+	}
+    
+	.content-coleccion {
+    padding-left: 1.1rem;
+	}
+    
+    #slider .bx-controls.bx-has-pager {
+     bottom: 30%;
+    }
+}
+
 
 @media only screen and (max-width :1024px) and (min-width: 321px) {
     

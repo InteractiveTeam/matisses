@@ -930,7 +930,7 @@ box-sizing: border-box;
 	transition:all .36s ease;
 	}
 	#header {
-	z-index: 2;
+	z-index: 12;
 	width: 100%;
 	}
 	.main_panel>.container>.row{
@@ -1142,7 +1142,8 @@ box-sizing: border-box;
 	display: inline-block;
 	background: none;
 	text-transform: uppercase;
-	padding: 0.3125rem 1.6rem;
+    padding:0.4425rem 1.6rem;
+	/*padding: 0.3125rem 1.6rem;*/
 	line-height: 1.5;
 	height: auto;
 	font-size: 1rem;
@@ -2169,10 +2170,17 @@ box-sizing: border-box;
 	display: inline-block;
 	color: #fff;
 	font-family: 'condensed';
+    font-weight: lighter;
 	}
 	.breadcrumb span{
 	font-family: 'condensed';
 	}
+    .breadcrumb .fa {
+    margin: 0 0.5rem;
+    color: #666666;
+    font-size: 20px;
+    font-weight: bold;
+    }
 	#reinsurance_block {
 	clear: both !important;
 	}
@@ -3380,7 +3388,7 @@ box-sizing: border-box;
 	display: block;
 	font-family: 'Open Sans', sans-serif;
 	color: #a5a5a5;
-	font-size: 0.875rem;
+    font-size: 0.775rem;
 	}
 	.menu-copyright ul li a:hover{
 	color: #fff;
@@ -4313,4 +4321,15 @@ body.new-products {
     padding-top: 2.5rem;
     }
 
+/*Hover product*/
 
+.primary_block #thumbs_list li {
+   transition: all 0.4s ease;
+   -webkit-transition: all 0.4s ease;
+}
+
+/*actualizar cuenta*/
+
+.radio+.radio, .checkbox+.checkbox {
+    margin-top: 5px;
+}

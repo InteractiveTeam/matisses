@@ -3769,7 +3769,7 @@
   ),
   'ToolsCore' => 
   array (
-    'path' => 'classes/Tools.php',
+    'path' => 'override/classes/Tools.php',
     'type' => 'class',
     'override' => false,
   ),
