@@ -22,6 +22,8 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
+
+
 {if !$opc}
 	{capture name=path}{l s='Shipping:'}{/capture}
 	{assign var='current_step' value='shipping'}
@@ -57,6 +59,7 @@
 				</div>
 			{/if}
 			<div class="delivery_options_address">
+            
 				{if isset($delivery_option_list)}
 					{foreach $delivery_option_list as $id_address => $option_list}
 						<p class="carrier_title">
@@ -112,7 +115,7 @@
 													<div class="delivery_option_price">
 														{if $option.total_price_with_tax && !$option.is_free && (!isset($free_shipping) || (isset($free_shipping) && !$free_shipping))}
 															{if $use_taxes == 1}
-																{if $priceDisplay == 1}
+																{if $priceDisplay == 1} 
 																	{convertPrice price=$option.total_price_without_tax}{if $display_tax_label} {l s='(tax excl.)'}{/if}
 																{else}
 																	{convertPrice price=$option.total_price_with_tax}{if $display_tax_label} {l s='(tax incl.)'}{/if}

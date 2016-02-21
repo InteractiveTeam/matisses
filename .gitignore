@@ -21,10 +21,12 @@ themes/default-bootstrap/*
 themes/foxlore/*
 administracion/autoupgrade/
 config/xml/*.xml
+config/*.xml
 config/*.php
 /log/*
 *sitemap.xml
 modules/*/config*.xml
+modules/*.xml
 modules/**/blockfacebooklike
 modules/**/gamification
 administracion/backups/

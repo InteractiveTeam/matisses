@@ -870,6 +870,19 @@ class OrderCore extends ObjectModel
 				$res[$key] = array_merge($res[$key], $res2[0]);
 
 		}
+		
+		foreach ($res as $key => $val)
+		{
+			
+			$res[$key]['cus'] = Db::getInstance()->getValue(
+																'SELECT authcode 
+																 FROM '._DB_PREFIX_.'payment_placetopay as a
+																 	INNER JOIN '._DB_PREFIX_.'order_payment as b
+																	on a.id_payment = b.id_order_payment 
+																 WHERE b.order_reference = "'.$val['reference'].'"'
+			 );
+		}
+		
 		return $res;
 	}
 

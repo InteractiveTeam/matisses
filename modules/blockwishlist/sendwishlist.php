@@ -40,14 +40,19 @@ if (Configuration::get('PS_TOKEN_ENABLE') == 1 AND
 )
 	exit($module->l('invalid token', 'sendwishlist'));
 
+
+
 if ($context->customer->isLogged())
 {
 	$id_wishlist = (int)Tools::getValue('id_wishlist');
 	if (empty($id_wishlist) === true)
 		exit($module->l('Invalid wishlist', 'sendwishlist'));
-	for ($i = 1; empty($_POST['email'.strval($i)]) === false; ++$i)
+	
+	$_POST['emails'] = array_filter(array_unique($_POST['emails']));	
+		
+	foreach($_POST['emails'] as $k => $email)
 	{
-		$to = Tools::getValue('email'.$i);
+		$to = $email;
 		$wishlist = WishList::exists($id_wishlist, $context->customer->id, true);
 		if ($wishlist === false)
 			exit($module->l('Invalid wishlist', 'sendwishlist'));
@@ -55,7 +60,10 @@ if ($context->customer->isLogged())
 			exit($module->l('Wishlist send error', 'sendwishlist'));
 		$toName = strval(Configuration::get('PS_SHOP_NAME'));
 		$customer = $context->customer;
+
 		if (Validate::isLoadedObject($customer))
+		{
+			if(
 			Mail::Send(
 				$context->language->id,
 				'wishlist',
@@ -67,7 +75,14 @@ if ($context->customer->isLogged())
 					'{message}' => $context->link->getModuleLink('blockwishlist', 'view', array('token' => $wishlist['token']))
 				),
 				$to, $toName, $customer->email, $customer->firstname.' '.$customer->lastname, null, null, dirname(__FILE__).'/mails/'
-			);
+			))
+			{
+				echo $module->l('Se ha enviado la lista de deseos a:').' '.$to.'<br>';
+			}else{
+					echo $module->l('No pudo enviarse la lista de deseos a:').' '.$to.'<br>';
+				 }
+		}
+	
 	}
-	echo $module->l('Su lista de deseos se ha enviado');
+	//echo '<br>'.$module->l('Su lista de deseos se ha enviado');
 }

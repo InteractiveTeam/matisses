@@ -102,6 +102,7 @@ $(document).ready(function(){
         if (!productcomments_url_rewrite)
             url_options = '&';
 
+
 		$.ajax({
 			url: productcomments_controller_url + url_options + 'action=add_comment&secure_key=' + secure_key + '&rand=' + new Date().getTime(),
 			data: $('#id_new_comment_form').serialize(),

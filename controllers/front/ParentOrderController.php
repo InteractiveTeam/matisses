@@ -503,6 +503,7 @@ class ParentOrderControllerCore extends FrontController
 			'checked' => $checked,
 			'delivery_option' => $delivery_option
 		));
+		
 
 		$vars = array(
 			'HOOK_BEFORECARRIER' => Hook::exec('displayBeforeCarrier', array(

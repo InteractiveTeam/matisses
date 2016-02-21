@@ -70,6 +70,7 @@ class ProductCommentsDefaultModuleFrontController extends ModuleFrontController
 		if (!$id_customer)
 			$id_guest = $this->context->cookie->id_guest;
 
+
 		$errors = array();
 		// Validation
 		if (!Validate::isInt(Tools::getValue('id_product')))

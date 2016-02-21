@@ -2056,6 +2056,20 @@ class CartCore extends ObjectModel
 			// Get the delivery option with the lower price
 			foreach ($best_price_carriers as $id_package => $id_carrier)
 			{
+				if($id_carrier == 6)
+				{
+					$delyvery_selected[$id_address][$id_carrier.','] = $id_address;
+					$delyvery_option[$id_address] = $id_carrier.',';
+					$params['total_shipping'] 		= $total_shipping;
+					$params['delivery_option_list']	= $delyvery_selected;
+					$params['delivery_option']		= $delyvery_option;
+					$params['products_cart']		= $this->getProducts();
+					$total_shipping 				= Hook::exec('actionCalculateShipping',$params);
+					$carriers_price[$id_address][$id_package][$id_carrier]['with_tax'] = $total_shipping;
+					$carriers_price[$id_address][$id_package][$id_carrier]['without_tax'] = $total_shipping;
+				}
+				
+				
 				$key .= $id_carrier.',';
 				if (!isset($best_price_carrier[$id_carrier]))
 					$best_price_carrier[$id_carrier] = array(
@@ -2294,9 +2308,10 @@ class CartCore extends ObjectModel
 		$carriers = array();
 		foreach (reset($delivery_option_list) as $key => $option)
 		{
+			//echo "<pre>"; print_r($option['carrier_list']); echo "</pre>";
+			$id_carrier = key($option['carrier_list']);
 			$price = $option['total_price_with_tax'];
 			$price_tax_exc = $option['total_price_without_tax'];
-
 			if ($option['unique_carrier'])
 			{
 				$carrier = reset($option['carrier_list']);
@@ -2315,6 +2330,7 @@ class CartCore extends ObjectModel
 				$delay = '';
 			}
 			$carriers[] = array(
+				'id'	=> $id_carrier,
 				'name' => $name,
 				'img' => $img,
 				'delay' => $delay,
@@ -3055,6 +3071,7 @@ class CartCore extends ObjectModel
 				unset($cart_rules[$key]);
 		}
 
+
 		$params['total_shipping'] 		= $total_shipping;
 		$params['delivery_option_list']	= $delivery_option_list;
 		$params['delivery_option']		= $this->getDeliveryOption();
@@ -3079,7 +3096,7 @@ class CartCore extends ObjectModel
 			'total_shipping_tax_exc' => $total_shipping_tax_exc,
 			'total_products_wt' => $total_products_wt,
 			'total_products' => $total_products,
-			'total_price' => $base_total_tax_inc,
+			'total_price' => $base_total_tax_inc + $total_shipping_tax_exc,
 			'total_tax' => $total_tax,
 			'total_price_without_tax' => $base_total_tax_exc,
 			'is_multi_address_delivery' => $this->isMultiAddressDelivery() || ((int)Tools::getValue('multi-shipping') == 1),

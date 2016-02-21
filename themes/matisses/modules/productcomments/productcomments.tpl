@@ -153,10 +153,10 @@
 						</label>
 						<input class="form-control" id="commentCustomerName" name="customer_name" type="text" value=""/>
 					{/if}
-					<label for="comment_title">
+					<label for="title">
 						{l s='Title' mod='productcomments'}: <sup class="required">*</sup>
 					</label>
-					<input class="form-control" id="comment_title" name="title" type="text" value=""/>
+					<input class="form-control" id="title" name="title" type="text" value=""/>
 					<label for="content">
 						{l s='Comment' mod='productcomments'}: <sup class="required">*</sup>
 					</label>

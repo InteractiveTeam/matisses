@@ -82,7 +82,9 @@
 		{foreach from=$order_history item=state name="orderStates"}
 			<tr class="{if $smarty.foreach.orderStates.first}first_item{elseif $smarty.foreach.orderStates.last}last_item{/if} {if $smarty.foreach.orderStates.index % 2}alternate_item{else}item{/if}">
 				<td class="step-by-step-date">{dateFormat date=$state.date_add full=0}</td>
-				<td><span{if isset($state.color) && $state.color} style="background-color:{$state.color|escape:'html':'UTF-8'}; border-color:{$state.color|escape:'html':'UTF-8'};"{/if} class="label{if isset($state.color) && Tools::getBrightness($state.color) > 128} dark{/if}">{$state.ostate_name|escape:'html':'UTF-8'}</span></td>
+				<td>
+                {if $state.id_order_state ==2}{assign var=showgaratiabutton value=1} {/if}
+                <span{if isset($state.color) && $state.color} style="background-color:{$state.color|escape:'html':'UTF-8'}; border-color:{$state.color|escape:'html':'UTF-8'};"{/if} class="label{if isset($state.color) && Tools::getBrightness($state.color) > 128} dark{/if}">{$state.ostate_name|escape:'html':'UTF-8'}</span></td>
 			</tr>
 		{/foreach}
 		</tbody>
@@ -350,7 +352,9 @@
 						</td>
                         {if $garantias}
                         <td class="price">
+                        	{if $showgaratiabutton}
                             <a href="{$link->getModuleLink('matisses','garantias')}/paso1/producto/{$order->id}-{$productId}-{$productAttributeId}" class="button btn btn-default button-medium pull-right btn-red"><span>{l s='Solicitar garantía'}<i class="icon-chevron-right right"></i></span></a>
+                        	{/if}
                         </td>
                         {/if}
 

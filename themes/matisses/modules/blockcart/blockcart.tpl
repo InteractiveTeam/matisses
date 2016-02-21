@@ -72,7 +72,7 @@
 												{if !isset($product.is_gift) || !$product.is_gift}
 													{if $priceDisplay == $smarty.const.PS_TAX_EXC}{displayWtPrice p="`$product.total`"}{else}{displayWtPrice p="`$product.total_wt`"}{/if}
 												{else}
-													{l s='Free!' mod='blockcart'}
+													{l s='Por definir' mod='blockcart'}
 												{/if}
 											</span>
 											{if isset($product.attributes_small)}
@@ -150,7 +150,7 @@
 								</span>
 								<span class="price cart_block_shipping_cost ajax_cart_shipping_cost">
 									{if $shipping_cost_float == 0}
-										{l s='Free shipping!' mod='blockcart'}
+										{l s='Por definir' mod='blockcart'}
 									{else}
 										{$shipping_cost}
 									{/if}
@@ -290,7 +290,8 @@
 						</strong>
 						<span class="ajax_cart_shipping_cost">
 							{if $shipping_cost_float == 0}
-								{l s='Free shipping!' mod='blockcart'}
+								{*l s='Free shipping!' mod='blockcart'*}
+                                {l s='Por definir' mod='blockcart'}
 							{else}
 								{$shipping_cost}
 							{/if}
@@ -349,7 +350,7 @@
 
 {addJsDefL name=customizationIdMessage}{l s='Customization #' mod='blockcart' js=1}{/addJsDefL}
 {addJsDefL name=removingLinkText}{l s='remove this product from my cart' mod='blockcart' js=1}{/addJsDefL}
-{addJsDefL name=freeShippingTranslation}{l s='Free shipping!' mod='blockcart' js=1}{/addJsDefL}
+{addJsDefL name=freeShippingTranslation}{l s='Por definir' mod='blockcart' js=1}{/addJsDefL}
 {addJsDefL name=freeProductTranslation}{l s='Free!' mod='blockcart' js=1}{/addJsDefL}
 {addJsDefL name=delete_txt}{l s='Delete' mod='blockcart' js=1}{/addJsDefL}
 {/strip}

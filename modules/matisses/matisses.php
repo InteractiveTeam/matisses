@@ -435,30 +435,37 @@ class matisses extends Module
 		//echo "<pre>"; print_r($params); echo "</pre>";
 		$shipping_cost = $params['total_shipping'];
 		$id_address = key($params['delivery_option']);
-		if($id_address)
+		$id_carrier = str_replace(',','',current(array_values($params['delivery_option'])));
+		
+		if($id_carrier == 6)
 		{
-			$Address = new Address($id_address);
-			$State 	 = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow('
-								SELECT *
-								FROM `'._DB_PREFIX_.'state`
-								WHERE `id_state` = '.(int)$Address->id_state
-							);
-			
-			$salesWarehouseDTO['salesWarehouseDTO']['destinationCityCode'] = $State['iso_code'];
-			
-			
-			foreach($params['products_cart'] as $k => $product)
+			if($id_address)
 			{
-				$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['itemCode'] = $product['reference'];
-				$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['quantity'] = $product['quantity'];
+				$Address = new Address($id_address);
+				$State 	 = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow('
+									SELECT *
+									FROM `'._DB_PREFIX_.'state`
+									WHERE `id_state` = '.(int)$Address->id_state
+								);
+				
+				$salesWarehouseDTO['salesWarehouseDTO']['destinationCityCode'] = $State['iso_code'];
+				
+				
+				foreach($params['products_cart'] as $k => $product)
+				{
+					$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['itemCode'] = $product['reference'];
+					$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['quantity'] = $product['quantity'];
+				}
+				
+				$salesWarehouseDTO = $this->array_to_xml($salesWarehouseDTO,false);
+				$response 	= $this->wsmatisses_get_data('inventoryItem','quoteShipping','pruebas',$salesWarehouseDTO,true);
+				if($response['return']['code']=='0101001')
+					$shipping_cost = $response['return']['detail'];
 			}
-			
-			$salesWarehouseDTO = $this->array_to_xml($salesWarehouseDTO,false);
-			$response 	= $this->wsmatisses_get_data('inventoryItem','quoteShipping','pruebas',$salesWarehouseDTO,true);
-			if($response['return']['code']=='0101001')
-				$shipping_cost = $response['return']['detail'];
-		}
-		return $shipping_cost;
+			return $shipping_cost;
+		}else{
+				$shipping_cost;
+			 }
 	}
 
 	
