@@ -67,8 +67,8 @@ class IdentityControllerCore extends FrontController
 					$this->errors[] = sprintf(Tools::displayError('The %s do not match'),'<b>'.Tools::displayError('Passwords').'</b>');
 			}
 	
-			if(!is_numeric(Tools::getValue('charter')))
-				$this->errors[] = sprintf(Tools::displayError('The %s is not valid'),'<b>'.Tools::displayError('Charter').'</b>');
+			if(!Tools::getValue('charter'))
+				$this->errors[] = sprintf(Tools::displayError('The %s is required'),'<b>'.Tools::displayError('Charter').'</b>');
 			
 			if(Tools::getValue('charter'))
 			{

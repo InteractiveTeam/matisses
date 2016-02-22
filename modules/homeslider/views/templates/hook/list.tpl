@@ -40,8 +40,12 @@
 							<span><i class="icon-arrows "></i></span>
 						</div>
 						<div class="col-md-3">
-							<img src="{$image_baseurl}{$slide.image}" alt="{$slide.title}" class="img-thumbnail" />
-						</div>
+                        	{if $slide.typeslide == 'Video'}
+								<iframe src="{$slide.videoid}" width="289" height="147" frameborder="0"></iframe>
+                            {else}
+                            <img src="{$image_baseurl}{$slide.image}" alt="{$slide.title}" class="img-thumbnail" />
+							{/if}
+                        </div>
 						<div class="col-md-8">
 							<h4 class="pull-left">
 								#{$slide.id_slide} - {$slide.title}

@@ -26,15 +26,18 @@
 function showOrder(mode, var_content, file)
 {
 	var garantias = $('#pagegarantias').val();
+	var id_order = var_content;
+	console.log(var_content);
 	$.get(
 		file,
 		((mode === 1) ? {'id_order': var_content, 'ajax': true, 'garantias': garantias} : {'id_order_return': var_content, 'ajax': true, 'garantias': garantias}),
 		function(data)
 		{
-			$('#block-order-detail').fadeOut('slow', function()
+			$('.detail-order').html('<div id="block-order-detail"></div>').addClass('hidden');
+			$('#'+id_order+' #block-order-detail').fadeOut('slow', function()
 			{
 				$(this).html(data);
-				$('.footab').footable();
+				//$('.footab').footable();
 				/* if return is allowed*/
 				if ($('#order-detail-content .order_cb').length > 0)
 				{
@@ -93,10 +96,11 @@ function showOrder(mode, var_content, file)
 				$('form#sendOrderMessage').submit(function(){
 					return sendOrderMessage();
 			});
-			$(this).fadeIn('slow', function() {
-				$(window).resize();
+			$('#'+id_order+' #block-order-detail').parent().removeClass('hidden');
+			$('#'+id_order+' #block-order-detail').fadeIn('slow', function() {
+				//$(window).resize();
 				$('body:not(#order-opc) select:not(#id_state)').chosen();
-				$.scrollTo(this, 1200);
+				//$.scrollTo(this, 1200);
 			});
 		});
 	});

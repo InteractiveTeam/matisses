@@ -102,8 +102,8 @@
 								<td class="wishlist_delete">
 									<a
 									class="icon"
-									href="javascript:;"
-									onclick="return (WishlistDelete('wishlist_{$wishlists[i].id_wishlist|intval}', '{$wishlists[i].id_wishlist|intval}', '{l s='Do you really want to delete this wishlist ?' mod='blockwishlist' js=1}'));">
+									href="javascript:WishlistDelete('wishlist_{$wishlists[i].id_wishlist|intval}', '{$wishlists[i].id_wishlist|intval}', '{l s='Do you really want to delete this wishlist ?' mod='blockwishlist' js=1}')"
+									>
 										<i class="fa fa-trash-o"></i>
 									</a>
 								</td>

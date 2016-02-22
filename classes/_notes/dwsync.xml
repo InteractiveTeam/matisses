@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="Link.php" server="192.168.3.45" local="130974341718273114" remote="130977919200000000" Dst="0" />
+<file name="Link.php" server="192.168.3.45" local="130994538600000000" remote="130994538600000000" Dst="0" />
 <file name="Product.php" server="C:/xampp/htdocs/matisses/" local="130965779042520927" remote="130965779040000000" Dst="0" />
 <file name="Customer.php" server="C:/xampp/htdocs/matisses/" local="130958032450869301" remote="130958032450000000" Dst="0" />
 <file name="Hook.php" server="C:/xampp/htdocs/matisses/" local="130964252751973326" remote="130964252750000000" Dst="0" />
@@ -9,7 +9,7 @@
 <file name="Combination.php" server="C:/xampp/htdocs/matisses/" local="130965749224811766" remote="130965749220000000" Dst="0" />
 <file name="Attribute.php" server="C:/xampp/htdocs/matisses/" local="130965752303673176" remote="130965752300000000" Dst="0" />
 <file name="Store.php" server="C:/xampp/htdocs/matisses/" local="130965782704375336" remote="130965782700000000" Dst="0" />
-<file name="Customer.php" server="192.168.3.45" local="130974341713357518" remote="130977919200000000" Dst="0" />
+<file name="Customer.php" server="192.168.3.45" local="131005602035869335" remote="131005782000000000" Dst="0" />
 <file name="Address.php" server="192.168.3.45" local="130974341705446508" remote="130977906000000000" Dst="0" />
 <file name="AddressFormat.php" server="192.168.3.45" local="130974341705601528" remote="130977906000000000" Dst="0" />
 <file name="AdminTab.php" server="192.168.3.45" local="130974341706056597" remote="130977906000000000" Dst="0" />
@@ -21,11 +21,11 @@
 <file name="Carrier.php" server="192.168.3.45" local="130974341709211981" remote="130977906000000000" Dst="0" />
 <file name="Cart.php" server="192.168.3.45" local="131004984755159076" remote="131005164600000000" Dst="0" />
 <file name="CartRule.php" server="192.168.3.45" local="130974341710372130" remote="130977906000000000" Dst="0" />
-<file name="Category.php" server="192.168.3.45" local="130974341710837178" remote="130977906000000000" Dst="0" />
+<file name="Category.php" server="192.168.3.45" local="130994538600000000" remote="130994538600000000" Dst="0" />
 <file name="Chart.php" server="192.168.3.45" local="130974341710952216" remote="130977906000000000" Dst="0" />
 <file name="CMS.php" server="192.168.3.45" local="130974341708346865" remote="130977906000000000" Dst="0" />
 <file name="CMSCategory.php" server="192.168.3.45" local="130974341708691928" remote="130977906000000000" Dst="0" />
-<file name="Combination.php" server="192.168.3.45" local="130974341711227247" remote="130977906000000000" Dst="0" />
+<file name="Combination.php" server="192.168.3.45" local="130994538600000000" remote="130994538600000000" Dst="0" />
 <file name="CompareProduct.php" server="192.168.3.45" local="130974341711492263" remote="130977906000000000" Dst="0" />
 <file name="Configuration.php" server="192.168.3.45" local="130974341711707299" remote="130977906000000000" Dst="0" />
 <file name="ConfigurationKPI.php" server="192.168.3.45" local="130974341711812301" remote="130977906000000000" Dst="0" />
@@ -64,7 +64,7 @@
 <file name="Language.php" server="192.168.3.45" local="130974341718113094" remote="130977906000000000" Dst="0" />
 <file name="LocalizationPack.php" server="192.168.3.45" local="130974341718398134" remote="130977906000000000" Dst="0" />
 <file name="Mail.php" server="192.168.3.45" local="130974341718553143" remote="130977906000000000" Dst="0" />
-<file name="Manufacturer.php" server="192.168.3.45" local="130974341718858181" remote="130977906000000000" Dst="0" />
+<file name="Manufacturer.php" server="192.168.3.45" local="130994538600000000" remote="130994538600000000" Dst="0" />
 <file name="Media.php" server="192.168.3.45" local="130974341719008203" remote="130977906000000000" Dst="0" />
 <file name="Message.php" server="192.168.3.45" local="130974341719193245" remote="130977906000000000" Dst="0" />
 <file name="Meta.php" server="192.168.3.45" local="130974341719323256" remote="130977906000000000" Dst="0" />
@@ -78,7 +78,7 @@
 <file name="PrestaShopBackup.php" server="192.168.3.45" local="130974341721078464" remote="130977906000000000" Dst="0" />
 <file name="PrestaShopCollection.php" server="192.168.3.45" local="130974341721233487" remote="130977906000000000" Dst="0" />
 <file name="PrestaShopLogger.php" server="192.168.3.45" local="130974341721353496" remote="130977906000000000" Dst="0" />
-<file name="Product.php" server="192.168.3.45" local="130974341722068584" remote="130977906000000000" Dst="0" />
+<file name="Product.php" server="192.168.3.45" local="130994538600000000" remote="130994538600000000" Dst="0" />
 <file name="ProductDownload.php" server="192.168.3.45" local="130974341722173612" remote="130977906000000000" Dst="0" />
 <file name="ProductSale.php" server="192.168.3.45" local="130974341722363643" remote="130977906000000000" Dst="0" />
 <file name="ProductSupplier.php" server="192.168.3.45" local="130974341722493650" remote="130977906000000000" Dst="0" />
@@ -100,7 +100,7 @@
 <file name="Tab.php" server="192.168.3.45" local="130974341725288988" remote="130977906000000000" Dst="0" />
 <file name="Tag.php" server="192.168.3.45" local="130974341725604035" remote="130977906000000000" Dst="0" />
 <file name="Theme.php" server="192.168.3.45" local="130974341725754073" remote="130977906000000000" Dst="0" />
-<file name="Tools.php" server="192.168.3.45" local="130974578971215032" remote="130977906000000000" Dst="0" />
+<file name="Tools.php" server="192.168.3.45" local="130994538600000000" remote="130994538600000000" Dst="0" />
 <file name="Translate.php" server="192.168.3.45" local="130974341726279127" remote="130977906000000000" Dst="0" />
 <file name="TranslatedConfiguration.php" server="192.168.3.45" local="130974341726544147" remote="130977906600000000" Dst="0" />
 <file name="Upgrader.php" server="192.168.3.45" local="130974341726664169" remote="130977906600000000" Dst="0" />

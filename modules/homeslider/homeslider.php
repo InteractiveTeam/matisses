@@ -371,8 +371,14 @@ class HomeSlider extends Module
 				$errors[] = $this->l('The caption is not set.');
 			if (Tools::strlen(Tools::getValue('url_'.$id_lang_default)) == 0)
 				$errors[] = $this->l('The URL is not set.');
-			if (!Tools::isSubmit('has_picture') && (!isset($_FILES['image_'.$id_lang_default]) || empty($_FILES['image_'.$id_lang_default]['tmp_name'])))
-				$errors[] = $this->l('The image is not set.');
+					
+			if(Tools::getValue('typeslide')!='Video')
+			{
+				if (!Tools::isSubmit('has_picture') && (!isset($_FILES['image_'.$id_lang_default]) || empty($_FILES['image_'.$id_lang_default]['tmp_name'])))
+					$errors[] = $this->l('The image is not set.');
+			}
+			
+			
 			if (Tools::getValue('image_old_'.$id_lang_default) && !Validate::isFileName(Tools::getValue('image_old_'.$id_lang_default)))
 				$errors[] = $this->l('The image is not set.');
 		} /* Validation for deletion */
@@ -487,6 +493,7 @@ class HomeSlider extends Module
 			/* Sets position */
 			$slide->position = (int)Tools::getValue('position');
 			/* Sets active */
+			$slide->typeslide = Tools::getValue('typeslide');
 			$slide->active = (int)Tools::getValue('active_slide');
 			$slide->videoid = Tools::getValue('videoid');
 		
@@ -699,7 +706,7 @@ class HomeSlider extends Module
 		$id_lang = $this->context->language->id;
 
 		return Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('
-			SELECT hs.`id_homeslider_slides` as id_slide, hss.`videoid`, hssl.`image`, hss.`position`, hss.`active`, hssl.`title`,
+			SELECT hs.`id_homeslider_slides` as id_slide, hss.`videoid`,hss.`typeslide`, hssl.`image`, hss.`position`, hss.`active`, hssl.`title`,
 			hssl.`url`, hssl.`legend`, hssl.`description`, hssl.`image`
 			FROM '._DB_PREFIX_.'homeslider hs
 			LEFT JOIN '._DB_PREFIX_.'homeslider_slides hss ON (hs.id_homeslider_slides = hss.id_homeslider_slides)
@@ -796,8 +803,8 @@ class HomeSlider extends Module
 					array(
 						'type' => 'select',
 						'label' => $this->l('Tipo de slide'),
-						'name' => 'type-slide',
-						'class' => 'type-slide',
+						'name' => 'typeslide',
+						'class' => 'typeslide',
 						'options' => array(
 							'query' => array(
 												array('id_type' => 'imagen', 'type' => $this->l('Imagen')),
@@ -821,7 +828,7 @@ class HomeSlider extends Module
 						'label' => $this->l('video'),
 						'name' => 'videoid',
 						'calss' => 'video',
-						'desc' => $this->l('Ingrese el código del video de youtube')
+						'desc' => $this->l('Ingrese la url del video')
 					),
 					
 					array(
@@ -1026,6 +1033,7 @@ class HomeSlider extends Module
 		$fields['active_slide'] = Tools::getValue('active_slide', $slide->active);
 		$fields['has_picture'] = true;
 		$fields['videoid'] = Tools::getValue('videoid', $slide->videoid);
+		$fields['typeslide'] = Tools::getValue('typeslide', $slide->typeslide);
 
 		$languages = Language::getLanguages(false);
 

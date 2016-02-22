@@ -26,6 +26,20 @@
 var responsiveflag = false;
 
 $(document).ready(function(){
+	
+	setTimeout(function(){
+	$('#birth-arrows .chosen-single div').html('<p class="up"></p><p class="down"></p>').promise().done(function(){
+		$('#birth-arrows .up').live('click',function(e){
+			e.preventDefault();
+		})
+		$('#birth-arrows .down').live('click',function(e){
+			e.preventDefault()
+		})
+		
+	});
+	}, 300);
+	
+	
 	highdpiInit();
 	responsiveResize();
 	$(window).resize(responsiveResize);

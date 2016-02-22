@@ -30,7 +30,7 @@
 </div>
 {else}
 <div class="elem_butt">
-	<a id="wishlist_button" href="#" onclick="$.fancybox($('.fanbcybox-wishlist').html())" rel="nofollow"  title="{l s='Add to my wishlist' mod='blockwishlist'}">
+	<a id="wishlist_button" class="addToWishlist" href="#" data-product="{$id_product|intval}" rel="nofollow"  title="{l s='Add to my wishlist' mod='blockwishlist'}">
 		<span class="hidden-xxs">{l s='Add to wishlist' mod='blockwishlist'}</span>
 	</a>
 </div>	

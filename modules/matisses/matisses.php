@@ -558,6 +558,13 @@ class matisses extends Module
 	{
 		$this->page_name = Dispatcher::getInstance()->getController();
 		$this->context->controller->addJS($this->_path.'js/fblogin.js');
+		
+		if(in_array($this->page_name, array('category')))
+		{
+			$this->context->controller->addJS($this->_path.'js/product_colors.js');
+		}
+		
+		
 		if(in_array($this->page_name, array('product')))
 		{
 			$this->context->controller->addJqueryUI('ui.tabs');

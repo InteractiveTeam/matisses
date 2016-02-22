@@ -178,7 +178,7 @@ class CustomerCore extends ObjectModel
 			
 			'secondname' => 				array('type' => self::TYPE_STRING, 'validate' => 'isName', 'required' => false, 'size' => 32),
 			'surname' => 					array('type' => self::TYPE_STRING, 'validate' => 'isName', 'required' => false, 'size' => 32),
-			'charter' => 					array('type' => self::TYPE_STRING, 'required' => true, 'size' => 32),
+			'charter' => 					array('type' => self::TYPE_STRING, 'required' => false, 'size' => 32),
 			
 			'email' => 						array('type' => self::TYPE_STRING, 'validate' => 'isEmail', 'required' => true, 'size' => 128),
 			'passwd' => 					array('type' => self::TYPE_STRING, 'validate' => 'isPasswd', 'required' => true, 'size' => 32),

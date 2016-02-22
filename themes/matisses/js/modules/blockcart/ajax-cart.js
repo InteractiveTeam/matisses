@@ -183,8 +183,9 @@ var ajaxCart = {
 		$(document).on('click', '.ajax_add_to_cart_button', function(e){
 			e.preventDefault();
 			var idProduct =  $(this).data('id-product');
+			var idProductAttribute =  $(this).data('id-product-attribute');
 			if ($(this).prop('disabled') != 'disabled')
-				ajaxCart.add(idProduct, null, false, this);
+				ajaxCart.add(idProduct, idProductAttribute, false, this);
 		});
 		//for product page 'add' button...
 		$(document).on('click', '#add_to_cart button', function(e){

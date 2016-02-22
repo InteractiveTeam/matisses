@@ -32,9 +32,9 @@
 				{foreach from=$homeslider_slides item=slide}
 					{if $slide.active}
                     	{if $slide.videoid}
-                            <li class="homeslider-container" id="{$slide.videoid}">
+                            <li class="homeslider-container">
                             
-                            	<img src="{$link->getMediaLink("`$smarty.const._MODULE_DIR_`homeslider/images/`$slide.image|escape:'htmlall':'UTF-8'`")}"{if isset($slide.size) && $slide.size} {$slide.size}{else} width="100%" height="100%"{/if} alt="{$slide.legend|escape:'htmlall':'UTF-8'}" />
+                            	<iframe src="{$slide.videoid}" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
                                 {if isset($slide.description) && trim($slide.description) != ''}
                                     <div class="homeslider-description">{$slide.description}</div>
                                 {/if} 

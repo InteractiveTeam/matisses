@@ -46,9 +46,21 @@ fb_login = function(){
 	});
 }
 
+$(document).ready(function(e) {
+    if($('.authentication').size()>0 && localStorage.facebooklogin)
+	{
+		$('#passwd').val(localStorage.passwd).parent().addClass('hidden');
+		$('#passwd2').val(localStorage.passwd).parent().addClass('hidden');		
+	}
+});
+
 
 function submitFacebookFunction(data)
 {
+	localStorage.removeItem('facebooklogin');
+	localStorage.removeItem('passwd');
+	
+	
 	$('#create_account_error').html('').hide();
 	$.ajax({
 		type: 'POST',
@@ -88,10 +100,14 @@ function submitFacebookFunction(data)
 						if (typeof bindUniform !=='undefined')
 							bindUniform();
 						if (typeof bindStateInputAndUpdate !=='undefined')
-							bindStateInputAndUpdate();
+							bindSteInputAndUpdate();
 						document.location = '#account-creation';
 					});
 					
+					localStorage.passwd = data.id;
+					localStorage.facebooklogin = true;
+					$('#passwd').val(localStorage.passwd).parent().addClass('hidden');
+					$('#passwd2').val(localStorage.passwd).parent().addClass('hidden');					
 					$('#customer_lastname').val(data.last_name);
 					$('#customer_firstname').val(data.first_name);
 				});

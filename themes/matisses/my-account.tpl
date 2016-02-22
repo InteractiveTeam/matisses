@@ -175,3 +175,7 @@
 	{/if}
 
 </div>
+<script>
+	localStorage.removeItem('facebooklogin');
+	localStorage.removeItem('passwd');
+</script>

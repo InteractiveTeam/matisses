@@ -49,6 +49,11 @@
 		</ol>
 	</div>
 	{/if}-->
+    <script>
+    	localStorage.removeItem('facebooklogin');
+		localStorage.removeItem('passwd');
+    </script>
+    
 	<div class="alert alert-danger " id="create_account_error" style="display:none"></div>
 	<div class="row">
 
@@ -489,7 +494,7 @@
 					<label for="passwd">{l s='Confirmar contraseña'} <sup>*</sup></label>
 					<input type="password" class="is_required validate form-control" data-validate="isPasswd" name="passwd2" id="passwd2" />
 				</div>
-				<div class="form-group grid_6">
+				<div id="birth-arrows" class="form-group grid_6">
 					<label>{l s='Date of Birth'}</label>
 					<div class="row">
 						<div class="grid_4 alpha">

@@ -9,10 +9,10 @@
 <file name="AddressController.php" server="192.168.3.45" local="130990231633281941" remote="130990411200000000" Dst="0" />
 <file name="AddressesController.php" server="192.168.3.45" local="130974341768729436" remote="130977906600000000" Dst="0" />
 <file name="AttachmentController.php" server="192.168.3.45" local="130974341768809518" remote="130977906600000000" Dst="0" />
-<file name="AuthController.php" server="192.168.3.45" local="130974341768974464" remote="130977906600000000" Dst="0" />
+<file name="AuthController.php" server="192.168.3.45" local="131005602375883007" remote="131005782000000000" Dst="0" />
 <file name="BestSalesController.php" server="192.168.3.45" local="130974341769054474" remote="130977906600000000" Dst="0" />
 <file name="CartController.php" server="192.168.3.45" local="130974341769169492" remote="130977906600000000" Dst="0" />
-<file name="CategoryController.php" server="192.168.3.45" local="130974341769444547" remote="130977906600000000" Dst="0" />
+<file name="CategoryController.php" server="192.168.3.45" local="131005441130694332" remote="131005621200000000" Dst="0" />
 <file name="ChangeCurrencyController.php" server="192.168.3.45" local="130974341769519536" remote="130977906600000000" Dst="0" />
 <file name="CmsController.php" server="192.168.3.45" local="130974341769619550" remote="130977906600000000" Dst="0" />
 <file name="CompareController.php" server="192.168.3.45" local="130974341769714564" remote="130977906600000000" Dst="0" />
@@ -21,10 +21,10 @@
 <file name="GetFileController.php" server="192.168.3.45" local="130974341770124611" remote="130977906600000000" Dst="0" />
 <file name="GuestTrackingController.php" server="192.168.3.45" local="130974341770224622" remote="130977906600000000" Dst="0" />
 <file name="HistoryController.php" server="192.168.3.45" local="130994539200000000" remote="130994539200000000" Dst="0" />
-<file name="IdentityController.php" server="192.168.3.45" local="130974341770409651" remote="130977906600000000" Dst="0" />
+<file name="IdentityController.php" server="192.168.3.45" local="131005604085385937" remote="131005783800000000" Dst="0" />
 <file name="index.php" server="192.168.3.45" local="130974341772979984" remote="130977906600000000" Dst="0" />
 <file name="ManufacturerController.php" server="192.168.3.45" local="130974341770584684" remote="130977906600000000" Dst="0" />
-<file name="MyAccountController.php" server="192.168.3.45" local="130974341770664675" remote="130977906600000000" Dst="0" />
+<file name="MyAccountController.php" server="192.168.3.45" local="130994539200000000" remote="130994539200000000" Dst="0" />
 <file name="NewProductsController.php" server="192.168.3.45" local="130974341770754694" remote="130977906600000000" Dst="0" />
 <file name="OrderConfirmationController.php" server="192.168.3.45" local="130995113234252764" remote="130995292800000000" Dst="0" />
 <file name="OrderController.php" server="192.168.3.45" local="130974341771014722" remote="130977906600000000" Dst="0" />

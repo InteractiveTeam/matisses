@@ -1,5 +1,4 @@
-<?php
-/*
+{*
 * 2007-2014 PrestaShop
 *
 * NOTICE OF LICENSE
@@ -21,27 +20,18 @@
 *  @author PrestaShop SA <contact@prestashop.com>
 *  @copyright  2007-2014 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
-*  International Registred Trademark & Property of PrestaShop SA
-*/
+*  International Registered Trademark & Property of PrestaShop SA
+*}
 
-include(dirname(__FILE__).'/../../config/config.inc.php');
-include(dirname(__FILE__).'/../../init.php');
-include(dirname(__FILE__).'/blocklayered.php');
-
-Context::getContext()->controller->php_self = 'category';
-$blockLayered = new BlockLayered();
-
-
-
-foreach($_REQUEST as $k => $val)
-{
-	if(strstr($k,'layered_id_feature_'))
-	{
-		$id_feature_value = str_replace('layered_id_feature_','',$k);
-		$id_feature = Db::getInstance()->getValue('SELECT id_feature FROM '._DB_PREFIX_.'feature_value WHERE id_feature_value = '.$id_feature_value);
-		$_REQUEST[$k] = $id_feature_value.'_'.$id_feature;
-	}
-}
-
-
-echo $blockLayered->ajaxCall();
+<ul class="color_to_pick_list cf">
+	{foreach from=$colors_list item='color'}
+		{assign var='img_color_exists' value=file_exists($col_img_dir|cat:$color.id_attribute|cat:'.jpg')}
+		<li>
+			<a href="{$link->getProductLink($color.id_product, null, null, null, null, null, $color.id_product_attribute)|escape:'html':'UTF-8'}" id="color_{$color.id_product_attribute|intval}" class="color_pick"{if !$img_color_exists && isset($color.color) && $color.color} style="background:{$color.color};"{/if}>
+				{if $img_color_exists}
+					<img src="{$img_col_dir}{$color.id_attribute|intval}.jpg" alt="{$color.name|escape:'html':'UTF-8'}" title="{$color.name|escape:'html':'UTF-8'}" width="20" height="20" />
+				{/if}
+			</a>
+		</li>
+	{/foreach}
+</ul>

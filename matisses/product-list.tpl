@@ -49,7 +49,7 @@
 		{if $totModuloMobile == 0}{assign var='totModuloMobile' value=$nbItemsPerLineMobile}{/if}
 
 		<div itemscope itemprop="itemListElement" itemtype="http://schema.org/Product" class="ajax_block_product{if $page_name == 'index' || $page_name == 'product'} grid_4 {else} grid_4 {/if}{if $smarty.foreach.products.iteration%$nbItemsPerLine == 0} last-in-line{elseif $smarty.foreach.products.iteration%$nbItemsPerLine == 1} first-in-line{/if}{if $smarty.foreach.products.iteration > ($smarty.foreach.products.total - $totModulo)} last-line{/if}{if $smarty.foreach.products.iteration%$nbItemsPerLineTablet == 0} last-item-of-tablet-line{elseif $smarty.foreach.products.iteration%$nbItemsPerLineTablet == 1} first-item-of-tablet-line{/if}{if $smarty.foreach.products.iteration%$nbItemsPerLineMobile == 0} last-item-of-mobile-line{elseif $smarty.foreach.products.iteration%$nbItemsPerLineMobile == 1} first-item-of-mobile-line{/if}{if $smarty.foreach.products.iteration > ($smarty.foreach.products.total - $totModuloMobile)} last-mobile-line{/if}">
-			<div class="product-container" id="{$product.id_product}">
+			<div class="product-container">
 				<div class="left-block">
 					<div class="product-image-container">
 					<div class="wrap_image_list">
@@ -100,26 +100,12 @@
 				<div class="right-block">
 					<div class="wrap_content_price">
 						{hook h='displayProductListReviews' product=$product}
-						<div class="header-products cf">
-							<h2 class="product-name" itemprop="name">
-								{if isset($product.pack_quantity) && $product.pack_quantity}{$product.pack_quantity|intval|cat:' x '}{/if}
-								<a href="{$product.link|escape:'html':'UTF-8'}" title="{$product.name|escape:'html':'UTF-8'}" itemprop="url" >
-									{$product.name|truncate:45:'...'|escape:'html':'UTF-8'}
-								</a>
-							</h2>
-
-							<div class="colors">
-                            	{if substr_count($product.color_list,'color_pick') > 1 } 
-                                	{substr_count($product.color_list,'color_pick')} 
-                                   	{l s='Colores'}
-                                {else}
-                                	{substr_count($product.color_list,'color_pick')} 
-                                   	{l s='Color'}
-                                {/if}
-                                </div>
-						</div>
-
-
+						<h2 class="product-name" itemprop="name">
+							{if isset($product.pack_quantity) && $product.pack_quantity}{$product.pack_quantity|intval|cat:' x '}{/if}
+							<a href="{$product.link|escape:'html':'UTF-8'}" title="{$product.name|escape:'html':'UTF-8'}" itemprop="url" >
+								{$product.name|truncate:45:'...'|escape:'html':'UTF-8'}
+							</a>
+						</h2>
 						<p class="product-desc" itemprop="description">
 							{$product.description_short|strip_tags:'UTF-8'|truncate:300:'...'}
 						</p>
@@ -203,7 +189,7 @@ buy-now ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, "
 						{/if}
 					</div>
                         {if isset($product.color_list)}
-                            <div class="color-list-container">{$product.color_list}</div>
+                            <div class="color-list-container">se{$product.color_list}</div>
                         {/if}
                         {if false}
 						<div class="share_product">

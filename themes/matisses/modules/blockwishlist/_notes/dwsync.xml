@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="blockwishlist.tpl" server="192.168.3.45" local="130974342313168105" remote="130977918000000000" Dst="0" />
+<file name="blockwishlist.tpl" server="192.168.3.45" local="131005690213400118" remote="131005870200000000" Dst="0" />
 <file name="blockwishlist-ajax.tpl" server="192.168.3.45" local="130974342313073092" remote="130977918000000000" Dst="0" />
-<file name="blockwishlist_button.tpl" server="192.168.3.45" local="130974342313223130" remote="130977918000000000" Dst="0" />
-<file name="blockwishlist-extra.tpl" server="192.168.3.45" local="130977382465903367" remote="130977918000000000" Dst="0" />
+<file name="blockwishlist_button.tpl" server="192.168.3.45" local="131005627464810423" remote="131005807200000000" Dst="0" />
+<file name="blockwishlist-extra.tpl" server="192.168.3.45" local="131005692683098869" remote="131005872600000000" Dst="0" />
 <file name="blockwishlist_top.tpl" server="192.168.3.45" local="130974342313268116" remote="130977918000000000" Dst="0" />
 <file name="index.php" server="192.168.3.45" local="130974342313288150" remote="130977918000000000" Dst="0" />
-<file name="my-account.tpl" server="192.168.3.45" local="130976399470032376" remote="130977918000000000" Dst="0" />
+<file name="my-account.tpl" server="192.168.3.45" local="131004988200000000" remote="131004988200000000" Dst="0" />
 <file name="blockwishlist_button.tpl" server="C:/xampp/htdocs/matisses/" local="130965851232443893" remote="130965851230000000" Dst="0" />
 </dwsync>

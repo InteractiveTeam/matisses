@@ -392,10 +392,10 @@ class AuthControllerCore extends FrontController
 			if (Tools::getValue('passwd') != Tools::getValue('passwd2'))
 				$this->errors[] = sprintf(Tools::displayError('The %s do not match'),'<b>'.Tools::displayError('Passwords').'</b>');
 		}
-		/*
-		if(!is_numeric(Tools::getValue('charter')))
-			$this->errors[] = sprintf(Tools::displayError('The %s is not valid'),'<b>'.Tools::displayError('Charter').'</b>');
-		*/
+		
+		if(!Tools::getValue('charter'))
+			$this->errors[] = sprintf(Tools::displayError('The %s is required'),'<b>'.Tools::displayError('Charter').'</b>');
+		
 		if(Tools::getValue('charter'))
 		{
 			$exists = Db::getInstance()->getValue('SELECT count(*) FROM '._DB_PREFIX_.'customer WHERE charter = "'.Tools::getValue('charter').'"');

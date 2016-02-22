@@ -23,16 +23,23 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 $(document).ready(function(){
+
 	$(document).on('submit', '#create-account_form', function(e){
 		e.preventDefault();
 		submitFunction();
 	});
 	$('.is_customer_param').hide();
+
 });
+
+
+
 
 function submitFunction()
 {
 	$('#create_account_error').html('').hide();
+	
+
 	$.ajax({
 		type: 'POST',
 		url: baseUri,
@@ -65,6 +72,7 @@ function submitFunction()
 				$('#center_column').html('<div id="noSlide">' + $('#center_column').html() + '</div>');
 				$('#noSlide').fadeOut('slow', function()
 				{
+					
 					$('#noSlide').html(jsonData.page);
 					$(this).fadeIn('slow', function()
 					{

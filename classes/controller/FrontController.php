@@ -1312,6 +1312,7 @@ class FrontControllerCore extends Controller
 		if (!is_array($products) || !count($products) || !file_exists(_PS_THEME_DIR_.'product-list-colors.tpl'))
 			return;
 
+
 		$products_need_cache = array();
 		foreach ($products as &$product)
 			if (!$this->isCached(_PS_THEME_DIR_.'product-list-colors.tpl', $this->getColorsListCacheId($product['id_product'])))

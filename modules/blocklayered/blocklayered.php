@@ -1708,6 +1708,7 @@ class BlockLayered extends Module
 
 	private function getSelectedFilters()
 	{
+		
 		$home_category = Configuration::get('PS_HOME_CATEGORY');
 		$id_parent = (int)Tools::getValue('id_category', Tools::getValue('id_category_layered', $home_category));
 		if ($id_parent == $home_category)
@@ -1734,7 +1735,7 @@ class BlockLayered extends Module
 						$url_attribute = str_replace('-', $this->getAnchor(), $url_attribute);
 					$url_parameters = explode($this->getAnchor(), $url_attribute);
 
-
+					
 
 					$attribute_name  = array_shift($url_parameters);
 					$attribute_name = str_replace('material','material_',$attribute_name);
@@ -1764,13 +1765,29 @@ class BlockLayered extends Module
 					}
 				}
 
+				
+
 				return $selected_filters;
 			}
+			
 		}
 
 		/* Analyze all the filters selected by the user and store them into a tab */
 		$selected_filters = array('category' => array(), 'manufacturer' => array(), 'quantity' => array(), 'condition' => array());
+		
 		foreach ($_GET as $key => $value)
+		{
+			if(strstr($key,'layered_id_feature'))
+			{
+				$id_feature_value = str_replace('layered_id_feature_','',$key);
+				$id_feature = Db::getInstance()->getValue('SELECT id_feature FROM '._DB_PREFIX_.'feature_value WHERE id_feature_value = '.$id_feature_value);
+				$_GET[$key] = $id_feature_value.'_'.$id_feature;
+			}
+		}
+
+		foreach ($_GET as $key => $value)
+		{
+
 			if (substr($key, 0, 8) == 'layered_')
 			{
 				preg_match('/^(.*)_([0-9]+|new|used|refurbished|slider)$/', substr($key, 8, strlen($key) - 8), $res);
@@ -1803,6 +1820,7 @@ class BlockLayered extends Module
 						$selected_filters[$res[1]] = $tmp_tab;
 				}
 			}
+		}
 		return $selected_filters;
 	}
 
@@ -2303,6 +2321,9 @@ class BlockLayered extends Module
 					AND c.active = 1
 					GROUP BY c.id_category ORDER BY c.nleft, c.position';
 			}
+			
+			
+			
 			foreach ($filters as $filter_tmp)
 			{
 				$method_name = 'get'.ucfirst($filter_tmp['type']).'FilterSubQuery';
@@ -2584,8 +2605,10 @@ class BlockLayered extends Module
 					$feature_array = array();
 					if (isset($products) && $products)
 					{
+						
 						foreach ($products as $feature)
 						{
+							
 							if (!isset($feature_array[$feature['id_feature']]))
 								$feature_array[$feature['id_feature']] = array(
 									'type_lite' => 'id_feature',
@@ -2598,7 +2621,7 @@ class BlockLayered extends Module
 									'filter_show_limit' => $filter['filter_show_limit'],
 									'filter_type' => $filter['filter_type']
 								);
-
+							
 							if (!isset($feature_array[$feature['id_feature']]['values'][$feature['id_feature_value']]))
 								$feature_array[$feature['id_feature']]['values'][$feature['id_feature_value']] = array(
 									'nbr' => (int)$feature['nbr'],
@@ -2606,9 +2629,13 @@ class BlockLayered extends Module
 									'url_name' => $feature['value_url_name'],
 									'meta_title' => $feature['value_meta_title']
 								);
-
+							
+							
 							if (isset($selected_filters['id_feature'][$feature['id_feature_value']]))
+							{
 								$feature_array[$feature['id_feature']]['values'][$feature['id_feature_value']]['checked'] = true;
+							}
+
 						}
 
 						//Natural sort
@@ -2628,7 +2655,25 @@ class BlockLayered extends Module
 						}
 
 						$filter_blocks = array_merge($filter_blocks, $feature_array);
+						
 					}
+					
+					foreach($filter_blocks as $keyx => $filter1)
+					{
+						if(strstr($filter1['name'],'material_'))
+						{
+							foreach($filter_blocks as $key2 => $filter2)
+							{
+								if(strstr($filter2['name'],'material_'))
+								{
+									$key = key($filter2['values']);
+									
+									$filter_blocks[$keyx]['values'][$key]=$filter2['values'][$key] ;
+								}
+							}
+						}
+					}
+					
 					break;
 
 				case 'category':
