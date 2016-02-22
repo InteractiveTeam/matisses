@@ -5,6 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 include_once __DIR__ . '/../../classes/GiftList.php';
 include_once __DIR__ . '/../../classes/ListProductBond.php';
+include_once _PS_CLASS_DIR_ . "stock/StockAvailable.php";
 
 class giftlistlistasModuleFrontController extends ModuleFrontController {
 	public $uploadDir = __DIR__. "../../../uploads/";
@@ -89,12 +90,8 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 		$list = new GiftListModel($data['list']);
 		$prod = new ProductCore($id_product);
 		$link = new LinkCore();
-        require_once _PS_MODULE_DIR_ . "matisses/matisses.php";
-		$services = new matisses;
-        die(print_r($services->wsmatisses_getModelInfo($prod->model)));
-        //$response = $services->wsmatisses_getInfoProduct($prod->reference);
-        die($print_r(response));
-        if($response == 0)
+        $s = StockAvailable::getQuantityAvailableByProduct((int)$id_product,(int)$data['form'][3]['value']);
+        if($s == 0)
             die(Tools::jsonEncode(array(
                 'msg' => "No hay cantidades suficientes en el inventario",
                 'error' => true))
@@ -127,7 +124,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 					'price' => $prod->getPrice(),
 					'image' => "http://".$link->getImageLink($prod->link_rewrite[1], (int)$images[0]['id_image'], 'home_default'),
 					'description_link' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url)),
-                    'error' => true
+                    'error' => false
 				)));
 			}
 		}catch (Exception $e){
@@ -182,7 +179,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
     */
     private function _groupProducts($cant,$cant_group){
         $total = $cant;
-        if(cant_group != "" && cant_group > 0){
+        if($cant_group != "" && $cant_group > 0){
             while($total >= $cant_group){
                 $total -= $cant_group;
             }

@@ -13,10 +13,10 @@ class giftlist extends Module
 	{
 		$this->dbstruct = new DBStruct();
 		$this->name = basename(__FILE__,'.php');
-		$this->tab = "administration";
+		$this->tab = "front_office_features";
 		$this->version = "1.0.0";
 		$this->author = "Arkix";
-        $this->token = Tools::getAdminTokenLite('AdminModules');
+        //$this->token = Tools::getAdminTokenLite('AdminModules');
 		$this->need_instance = 0;
 		parent::__construct();
 
