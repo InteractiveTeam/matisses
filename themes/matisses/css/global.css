@@ -4202,7 +4202,8 @@ line-height: 1.5;
 	}
 
     #search .content_sortPagiBar .category-right {
-    margin-top:0px;
+        margin-bottom:20px;
+        margin-top:0px;
     }
 
     .ac_results ul li {
@@ -4269,12 +4270,12 @@ body.new-products {
     border-top: 1px solid #dbdbdb;
     border-bottom: 1px solid #dbdbdb;
     display: inline-block;
-    height: 2.8125rem;
-    padding: 0.9375rem;
+    padding: 0.6375rem;
     font-size: 1rem;
     text-transform: none;
     vertical-align: top;
     }
+
     #selectProductSort_chosen,
     #selectProductSort_bottom_chosen {
     width: 12.8125rem !important;
@@ -4332,4 +4333,10 @@ body.new-products {
 
 .radio+.radio, .checkbox+.checkbox {
     margin-top: 5px;
+}
+
+/*ocultar pedir de nuevo*/
+
+a[title='Pedir de nuevo'] {
+display:none;
 }

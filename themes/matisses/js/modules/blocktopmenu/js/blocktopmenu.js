@@ -226,8 +226,37 @@ $(document).ready(function(e){
 		   }
 		   lastScrollLeft = st;
 		})
+        
+        //hover experiencias
+        $('.block-img-exp > div.pointer').mouseenter(function() {
+            $(this).css('zIndex', 4)
+          })
+          .mouseleave(function() {
+             $(this).css('zIndex', 0)
+          });
+        
+        //list menu
+    
+        var business = $('ul.submenu-container > li > ul');
+        $.each(business, function(x,y){
+         var category = $(y).children('li');
+         var countCategory = category.length;
 
-        //the code
+         $.each(category, function(z, w){
+             var subcategory = $(w).find('li');
+             for(var s = 0; s < countCategory; s++)
+             {
+                subcategory.eq(s).addClass('col-1');
+             }
+
+             for(var s = countCategory; s < subcategory.length; s++)
+             {
+                subcategory.eq(s).addClass('col-2');
+             }
+         }); 
+
+        });
+
 })
 
 //Divs a megamenu

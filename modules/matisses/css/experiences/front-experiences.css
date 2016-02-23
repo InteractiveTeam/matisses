@@ -12,6 +12,7 @@
 	}
 	.module-matisses-experiences .pointer:hover > .pointer-detail{
 	display:block;
+    z-index: 2 !important;
 	}
 	.module-matisses-experiences div.black-left {
 	background-image:url(../../img/experience-black-left.png);
