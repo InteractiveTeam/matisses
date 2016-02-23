@@ -207,11 +207,6 @@ class GiftListModel extends ObjectModel
         return new CustomerCore($this->id_creator);
     }
     
-    public function getAllLists(){
-        $sql = "SELECT * FROM "._DB_PREFIX."gift_list";
-        return Db::getInstance()-executeS($sql);
-    }
-    
     public function getCartProductsByList($id){
         $sql = "SELECT * FROM "._DB_PREFIX."cart_product WHERE id_giftlist = ".$id;
         return Db::getInstance()-executeS($sql);
@@ -228,5 +223,18 @@ class GiftListModel extends ObjectModel
     public function getProductsInCartByOrder($id_order){
         $sql = 'SELECT id_product, id_giftlist,id_bond FROM '._DB_PREFIX_.'cart_product a INNER JOIN '._DB_PREFIX_.'orders b ON a.id_cart = b.id_cart WHERE b.id_order = '.$id_order.'and a.id_giftlist <> 0';
         return Db::getInstance()-executeS($sql);
+    }
+    
+    public function seendMessage($data){
+        $id_shop = (int)Context::getContext()->shop->id;
+		$id_lang = $this->context->language->id;
+		$params = array(
+			'{lastname}'
+		);
+        MailCore::Send($id_lang, 'cron-mail', sprintf(
+        MailCore::l('resumen de lista'), 1),
+        $params, Tools::getValue('email'), $customer->firstname.' '.$customer->lastname,
+        null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
+        die("Se ha compartido la lista");
     }
 }
