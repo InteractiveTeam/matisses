@@ -96,6 +96,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
                 'msg' => "No hay cantidades suficientes en el inventario",
                 'error' => true))
                );
+        $images = Image::getImages($this->context->language->id, $id_product);
 		$lpd->id_list = $data['list'];
 		$lpd->id_product = $id_product;
 		$lpd->message = $data['message'];

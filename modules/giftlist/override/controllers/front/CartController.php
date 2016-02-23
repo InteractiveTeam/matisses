@@ -458,7 +458,7 @@ class CartController extends CartControllerCore
 				$this->errors [] = Tools::displayError ( 'Please fill in all of the required fields, and then save your customizations.', ! Tools::getValue ( 'ajax' ) );
 			if (! $this->errors) {
 				$cart_rules = $this->context->cart->getCartRules ();
-				$update_quantity = $this->context->cart->updateQty ( $this->qty * ($this->qty_group != 0 ? $this->qty_group : 1), $this->id_product, $this->id_product_attribute, $this->customization_id, Tools::getValue ( 'op', 'up' ), $this->id_address_delivery );
+				$update_quantity = $this->context->cart->updateQty ( $this->qty * ($this->qty_group != 0 ? $this->qty_group : 1), $this->id_product, $this->id_product_attribute, $this->customization_id, Tools::getValue ( 'op', 'up' ), $this->id_address_delivery ,null, null,$this->giftlist );
 				if ($update_quantity < 0) {
 					$minimal_quantity = ($this->id_product_attribute) ? Attribute::getAttributeMinimalQty ( $this->id_product_attribute ) : $product->minimal_quantity;
 					$this->errors [] = sprintf ( Tools::displayError ( 'You must add %d minimum quantity', ! Tools::getValue ( 'ajax' ) ), $minimal_quantity );
