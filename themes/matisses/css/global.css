@@ -948,8 +948,7 @@ box-sizing: border-box;
 	}
 	h2.title_main_section span:before,h2.title_main_section span:after,
 	h2.title_main_section strong:before,h2.title_main_section strong:after,
-	.title_topbanner strong:before,.title_topbanner strong:after,
-	#pagenotfound h1 span:before,#pagenotfound h1 span:after{
+	.title_topbanner strong:before,.title_topbanner strong:after {
 	content: "×";
 	font-size: 36px;
 	font-weight: 300;
@@ -2892,14 +2891,15 @@ box-sizing: border-box;
 	#pagenotfound {
 	height: 100%;
 	width: 100%;
-	background: url(../img/bg_404.jpg) no-repeat center top;
+	/*background: url(../img/bg_404.jpg) no-repeat center top;*/
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
 	}
 	html.pagenotfound #page,html.pagenotfound {
-	height: 100%;
+
 	}
+
 	#pagenotfound h2 {
 	font-size: 48px;
 	line-height: 1;
@@ -2914,27 +2914,85 @@ box-sizing: border-box;
 	#pagenotfound .pagenotfound {
 	margin: 0 auto;
 	text-align: center;
+    width:60rem;
 	}
-	#pagenotfound #footer{
-	display: none;
-	}
+
+    #pagenotfound .pagenotfound .contFound {
+    margin: 260px auto;
+    width: 90%;
+    }
+
+    #pagenotfound .pagenotfound .contFound:after, #pagenotfound .pagenotfound .contFound:before {
+    display: block;
+    content: " ";
+    height:2px;
+    width: 100%;
+    background: #727272;
+    }
+
+    body#pagenotfound h1 {
+    color: #fff
+    }
+
+    #pagenotfound .pagenotfound h1 {
+    display: inline-block;
+    color: #5a5957;
+    border: none;
+    font-size: 0%;
+    font-size: 4.2rem;
+    margin: 10px 0;
+    border-right: #000 solid 2px;
+    vertical-align: middle;
+    padding: 0 15px;
+    }
+
 	#pagenotfound .pagenotfound .img-404 {
 	padding: 8px 0 27px 0;
 	}
-	#pagenotfound .pagenotfound p{
+
+	#pagenotfound .pagenotfound p {
 	line-height: 2;
-	max-width: 765px;
+    max-width: 720px;
 	margin: 0 auto;
-	padding-bottom: 20px;
+    padding:0 10px;
+	padding-bottom: 0;
+    display: inline-block;
+    text-align:left;
+    vertical-align: middle;
+    font-family: 'extended';
+    color:#000;
+    line-height: 1.2rem;
 	}
-	#pagenotfound .pagenotfound .form-control {
-	max-width: 293px;
+
+#pagenotfound .optionDirection {
+    margin-bottom: 40px;
+}
+    
+    #pagenotfound .optionDirection p {
+        font-family: 'condensed';
+        font-size: 1.75rem;
+        margin: 20px 0;
+        display: block;
+        text-align: center;
+        max-width:100%;
+        letter-spacing: 1px;
+    }
+	
+    #pagenotfound .pagenotfound .form-control {
+	max-width: 95%;
 	display: inline-block;
 	margin-right: 5px;
 	vertical-align: top;
-	height: 55px;
-	padding: 26px 10px 27px;
+	padding: 20px 10px;
 	}
+
+    #pagenotfound .optionDirection .btn_shears {
+    background: transparent;
+    padding: 8px;
+    font-size: 1.4rem;
+    margin: 0;
+    }
+
 	#pagenotfound .form-control::-webkit-input-placeholder{
 	color:#fff;
 	}

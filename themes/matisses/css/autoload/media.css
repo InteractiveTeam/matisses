@@ -1291,8 +1291,8 @@
     #user {
         padding-top: 0.7rem !important;
          height: 3.9375rem;
-    }
-
+    }    
+    
 }
 
 @media only screen and (max-height :1024px) and (max-width :1366px){
@@ -2472,5 +2472,50 @@
 	.search .center_column {
 		width:92%;
 	}
+    
+    /*ERROR 404*/
+    
+    #pagenotfound .pagenotfound {
+    width:100%;
+    }
+    
+    #pagenotfound .pagenotfound .contFound {
+        margin: 20px auto;
+    }
+    
+    #pagenotfound h1 {
+        font-size: 20px;
+    }
+    
+    #pagenotfound .pagenotfound h1 {
+    border: none;
+    display: block;
+    margin-top: 30px;
+    }
+    
+    #pagenotfound .pagenotfound p {
+    line-height: 1.2rem;
+    text-align: center;
+    display: block;
+    margin-bottom: 30px;
+    }
+    
+    #pagenotfound .optionDirection p {
+    line-height: 1.6rem;
+    letter-spacing: inherit;
+    }
+    
+    #pagenotfound .form_404 {
+    padding: 0;
+    position: inherit;
+    }
+    
+    #pagenotfound .pagenotfound .form-control {
+        max-width: 80%;
+    }
+    
+    #pagenotfound .optionDirection .btn_shears {
+    position: inherit;
+    }
 
 }

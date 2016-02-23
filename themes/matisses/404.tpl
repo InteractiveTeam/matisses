@@ -23,22 +23,35 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 <div class="pagenotfound">
+    <div class="contFound">
     	<h1><span>{l s='404.'}</span></h1>
-	<h2>{l s='Page not found'}</h2>
-
-	<p>
-		{l s='We\'re sorry, but the Web address you\'ve entered is no longer available.
-		To find a product, please type its name in the field below.'}
-	</p>
-
-	<form action="{$link->getPageLink('search')|escape:'html':'UTF-8'}" method="post" class="std form_404">
-		<fieldset>
-			<div>
-				<input id="search_query" name="search_query" type="text" placeholder="{l s='Enter a product name...'}" class="form-control grey" />
-                <button type="submit" name="Submit" value="OK" class="btn btn_border button-small"><span>{l s='Ok'}</span></button>
-			</div>
-		</fieldset>
-	</form>
-
-	<div class="buttons"><a class="btn btn_border button-medium" href="{$base_dir}" title="{l s='Home'}"><span><i class="icon-chevron-left left"></i>{l s='Back to home'}</span></a></div>
+        <!--<h2>{l s='Page not found'}</h2>-->
+        <p>
+            {l s='Parece que la página que estás buscando haya sido removida, haya cambiado de nombre o no está disponible temporalmente.'}
+        </p>
+    </div>
+    <div class="optionDirection">
+    <p>{l s='Intenta realizar tu búsqueda con otras palabras o ve a la '}<a href="{$base_dir}">{l s='página de inicio'}</a></p>    
+        <form action="{$link->getPageLink('search')|escape:'html':'UTF-8'}" method="post" class="std form_404">
+            <fieldset>
+                <div>
+                   <button type="submit" name="Submit" value="OK" class="btn btn_shears"><i class="fa fa-search"></i></button>
+                    <input id="search_query" name="search_query" type="text" placeholder="Enter a product name..." class="form-control grey" />
+                    
+                </div>
+            </fieldset>
+        </form>
+    </div>
 </div>
+<!--Bloque1 Visualizados-->
+	    <div id="displayed-category" class="displayed-category">
+			<div class="container">
+				<div class="info-chaordic">
+					<img src="../../themes/matisses/img/displayed-category.jpg" alt="productos visualizados">
+					<div class="mask">
+						<h1>Espacio para Chaordic</h1>
+					</div>
+				</div>
+			</div>
+	    </div>
+		<!--Fin Bloque1 Visualizados-->
