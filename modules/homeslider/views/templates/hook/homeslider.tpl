@@ -26,6 +26,7 @@
 {if $page_name =='index'}
 <!-- Module HomeSlider -->
     {if isset($homeslider_slides)}
+    <div class="dimmer"></div>
 		<div id="homepage-slider">
 			{if isset($homeslider_slides.0) && isset($homeslider_slides.0.sizes.1)}{capture name='height'}{$homeslider_slides.0.sizes.1}{/capture}{/if}
 			<ul id="homeslider"{if isset($smarty.capture.height) && $smarty.capture.height} style="max-height:{$smarty.capture.height}px;"{/if}>
