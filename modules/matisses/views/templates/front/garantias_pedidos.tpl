@@ -85,18 +85,10 @@
 						<td class="history_detail">
 							<a class="btn btn-default btn-red" href="javascript:showOrder(1, {$order.id_order|intval}, '{$link->getPageLink('order-detail', true)|escape:'html':'UTF-8'}');">
 								<span>
-									{l s='Details'}<i class="icon-chevron-right right"></i>
+									{l s='Detalles'}<i class="icon-chevron-right right"></i>
 								</span>
 							</a>
-							{if isset($opc) && $opc}
-								<a class="link-button" href="{$link->getPageLink('order-opc', true, NULL, "submitReorder&id_order={$order.id_order|intval}")|escape:'html':'UTF-8'}" title="{l s='Reorder'}">
-							{else}
-								<a class="link-button" href="{$link->getPageLink('order', true, NULL, "submitReorder&id_order={$order.id_order|intval}")|escape:'html':'UTF-8'}" title="{l s='Reorder'}">
-							{/if}
-								{if isset($reorderingAllowed) && $reorderingAllowed}
-									<i class="icon-refresh"></i>{l s='Reorder'}
-								{/if}
-							</a>
+							
 						</td>
                         
 					</tr>
@@ -104,7 +96,7 @@
                     	<td colspan="7" class="detail-order hidden" id="{$order.id_order}">
                         	<div id="block-order-detail"></div>
                         </td>
-                    </tr>
+                    </tr> 
 				{/foreach}
 			</tbody>
 		</table>
