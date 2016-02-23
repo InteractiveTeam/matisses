@@ -206,4 +206,27 @@ class GiftListModel extends ObjectModel
     public function getCreator(){
         return new CustomerCore($this->id_creator);
     }
+    
+    public function getAllLists(){
+        $sql = "SELECT * FROM "._DB_PREFIX."gift_list";
+        return Db::getInstance()-executeS($sql);
+    }
+    
+    public function getCartProductsByList($id){
+        $sql = "SELECT * FROM "._DB_PREFIX."cart_product WHERE id_giftlist = ".$id;
+        return Db::getInstance()-executeS($sql);
+    }
+    
+    public function getPaidsOrders($order_state){
+        $sql = 'SELECT id_order FROM '._DB_PREFIX_.'order_history WHERE date_add LIKE "%'.date("Y-m-d").'%" and id_order_state = '.$order_state;
+        return Db::getInstance()-executeS($sql);
+    }
+    public function getPaidStatusOrder(){
+        $sql = 'SELECT id_order_state FROM  '._DB_PREFIX_.'order_state WHERE paid = 1';
+        return Db::getInstance()-executeS($sql);
+    }
+    public function getProductsInCartByOrder($id_order){
+        $sql = 'SELECT id_product, id_giftlist,id_bond FROM '._DB_PREFIX_.'cart_product a INNER JOIN '._DB_PREFIX_.'orders b ON a.id_cart = b.id_cart WHERE b.id_order = '.$id_order.'and a.id_giftlist <> 0';
+        return Db::getInstance()-executeS($sql);
+    }
 }

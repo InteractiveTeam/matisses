@@ -29,7 +29,6 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 		"customer WHERE id_customer = ". $res['id_cocreator'];
 		$creator = Db::getInstance()->getRow($sql);
 		$cocreator = Db::getInstance()->getRow($sql2);
-
 		$this->context->smarty->assign ( array (
 			'list_desc' => $res,
 			'all_link' => $this->context->link->getModuleLink('giftlist', 'listas'),
