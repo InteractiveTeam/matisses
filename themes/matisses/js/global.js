@@ -401,5 +401,18 @@ $(document).ready(function(){
 
 	var ancho = $(window).width();
 	//alert(ancho);
-	$(".sf-menu > li > ul").width(ancho);
+	$(".sf-menu > li > ul").width(ancho);    
+    
 })
+//ANIMAR SCROLL
+
+$(window).scroll(function(){
+    var numCont = $(document).scrollTop();
+    var dimmer = $('.homepage-slider .dimmer');
+    var opaci = numCont*0.005;
+    var slider = $('.homepage-slider');
+    
+    dimmer.css('opacity', opaci*0.3);
+    slider.css('transform', 'translateY('+numCont*0.6+'px)');
+})
+    
