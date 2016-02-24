@@ -115,7 +115,7 @@ box-sizing: border-box;
 
 	/*Header*/
 	.header-container {
-	min-height: 8.125rem;
+	min-height: 7.125rem;
 	position: relative;
 	}
 	h1{
@@ -164,6 +164,26 @@ box-sizing: border-box;
 	header .banner .row {
 	margin: 0px;
 	}
+    
+    #slider {
+    overflow: hidden;
+    }
+
+    #slider .banner {
+    position: relative;
+    z-index: -1;
+    }
+    
+    .homepage-slider .dimmer {
+    background: rgb(15,16,19);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+    }
 	header .nav {
 	line-height: 37px;
 	height: 53px;
@@ -933,16 +953,7 @@ box-sizing: border-box;
 	z-index: 12;
 	width: 100%;
 	}
-    .dimmer {
-    background: rgb(15,16,19);
-    height: 100%;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 40;
-    }   
+    
     body .header-container > #header {
     background: #fff;
     }
@@ -4224,6 +4235,7 @@ line-height: 1.5;
 
 	#slider #homepage-slider {
 		height: 47.4rem;
+        position: relative;
 	}
 
 	#slider  #homepage-slider .homeslider-description {

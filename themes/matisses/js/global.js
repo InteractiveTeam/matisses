@@ -405,31 +405,14 @@ $(document).ready(function(){
     
 })
 //ANIMAR SCROLL
-(function($) {
-	'use strict';
 
-	var $dimmer;
-	var $banner;
-
-	function scrollHandler() {
-		var rect = $banner[0].getBoundingClientRect();
-		var movement = -rect.top * 0.45;
-
-		$dimmer[0].style.opacity = movement * 0.005;
-		$banner[0].style.transform = 'translateY(' + movement + 'px)';
-	}
-
-	$(document).ready(function() {
-
-    var header;
-    var sticky;
-
-        // Inicializar el parallax
-        $dimmer = $('.main-content .dimmer');
-        $banner = $('#homepage-slider');
-
-        $(window).scroll(function() {
-            window.requestAnimationFrame(scrollHandler);
-        });
-    });
-})(jQuery);
+$(window).scroll(function(){
+    var numCont = $(document).scrollTop();
+    var dimmer = $('.homepage-slider .dimmer');
+    var opaci = numCont*0.005;
+    var slider = $('.homepage-slider');
+    
+    dimmer.css('opacity', opaci*0.3);
+    slider.css('transform', 'translateY('+numCont*0.6+'px)');
+})
+    
