@@ -20,7 +20,7 @@ class matisses extends Module
 		$this->bootstrap		= true;
 		$this->confirmUninstall = $this->l('Si desinstala este modulo el sitio puede no funcionar correctamente, ¿Esta seguro de continuar?');
 		//Db::getInstance()->execute("UPDATE ps_category_lang SET name = 'Menu' where id_category = 2");
-		//$this->registerHook('actionProductCartSave');
+		
 		
 	}
 	
@@ -29,6 +29,7 @@ class matisses extends Module
 	***********************************************/
 	public function getContent()
 	{	
+		//$this->registerHook('actionAddGarantia');
 		//$this->registerHook('actionCalculateShipping');
 		//$this->registerHook('actionCustomerAccountAdd');
 		//$this->registerHook('displayExperiencesHome');

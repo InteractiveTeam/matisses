@@ -646,8 +646,9 @@ class Blocktopmenu extends Module
 					
 					if($cont<=5)
 					{
-						$html .= '<li'.(($this->page_name == 'category'
-						&& (int)Tools::getValue('id_category') == (int)$category['id_category']) ? ' class="sfHoverForce"' : '').'>';
+						if($category['level_depth']<=4)
+							$html .= '<li'.(($this->page_name == 'category' && (int)Tools::getValue('id_category') == (int)$category['id_category']) ? ' class="sfHoverForce"' : '').'>';
+						
 						$html .= '<a href="'.$link.'" title="'.$category['name'].'">'.$category['name'].'</a>';
 					}
 					
@@ -661,8 +662,12 @@ class Blocktopmenu extends Module
 				 }
 			if (isset($category['children']) && !empty($category['children']))
 			{
-				
-				$html .= '<ul style="display:none; overflow: hidden">';
+				if($category['level_depth']<=3)
+				{
+					$html .= '<ul style="display:none; overflow: hidden">';
+				}else{
+						$html .= '<div class="SubCategory">';
+					 }
 				$html .= $this->generateCategoriesMenu($category['children'], 1);
 
 				if ((int)$category['level_depth'] > 1)
@@ -682,12 +687,17 @@ class Blocktopmenu extends Module
 						$html .= '</div>';
 					}
 				}
-
-				$html .= '</ul>';
+				if($category['level_depth']<=3)
+				{
+					$html .= '</ul>';
+				} else{
+						$html .= '</div>';
+					  }
 			}
 			if($cont<=5)
 			{
-				$html .= '</li>';
+				if($category['level_depth']<=4)
+					$html .= '</li>';
 			}
 		}
 

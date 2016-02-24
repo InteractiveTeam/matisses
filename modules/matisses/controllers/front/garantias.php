@@ -255,6 +255,21 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 								'fecha'	=> time(),
 								
 							));
+
+							$itemCode = Db::getInstance()->getValue('SELECT reference 
+																	 FROM '._DB_PREFIX_.'product_attribute 
+																	 WHERE id_product = "'.$orderdetail[1].'" 
+																	  and id_product_attribute = "'.$orderdetail[2].'"');
+								 
+								 
+							
+							
+							$params['customerId'] 		= $this->context->customer->id;
+							$params['description'] 		= Tools::getValue('resumen') ;
+							$params['invoiceNumber'] 	= $orderdetail[0];
+							$params['itemCode'] 		= $itemCode;
+							$params['subject'] 			= Tools::getValue('asunto');	
+							Hook::exec('actionAddGarantia', $params);
 		
 							$id_insert = Db::getInstance()->Insert_ID();
 							foreach($imagenes as $k => $imagen)
