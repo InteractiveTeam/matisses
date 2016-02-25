@@ -641,16 +641,17 @@ class Blocktopmenu extends Module
 				$html .= '<li id="parent-menu">';
 				$html .= '<a class="parent-link" href="#" title="'.$category['name'].'">'.$category['name'].'</a>';	
 			}else{
+					/*
 					if($category['level_depth']>=5)
 						$cont++;
+					*/
 					
-					if($cont<=5)
-					{
 						if($category['level_depth']<=4)
 							$html .= '<li'.(($this->page_name == 'category' && (int)Tools::getValue('id_category') == (int)$category['id_category']) ? ' class="sfHoverForce"' : '').'>';
 						
 						$html .= '<a href="'.$link.'" title="'.$category['name'].'">'.$category['name'].'</a>';
-					}
+					
+					/*}
 					
 					if($cont==6)
 					{
@@ -659,6 +660,7 @@ class Blocktopmenu extends Module
 						$html .= '<div class="view-menu"><a href="'.$linkparent.'" title="">'.$this->l('Ver mas').'</a>
 								<i class="fa fa-angle-double-right"></i></div>';
 					}
+					*/
 				 }
 			if (isset($category['children']) && !empty($category['children']))
 			{

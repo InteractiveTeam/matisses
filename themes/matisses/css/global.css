@@ -169,9 +169,8 @@ box-sizing: border-box;
     overflow: hidden;
     }
 
-    #slider .banner {
-    position: relative;
-    z-index: -1;
+    #slider #htmlcontent_home {
+        position: relative;
     }
     
     .homepage-slider .dimmer {
@@ -676,7 +675,7 @@ box-sizing: border-box;
 	width: 2.5rem;
 	height: 2.5rem;
 	}
-	.bx-prev:hover{
+	.bx-prev:hover {
 	background: url("../img/sprite-viewed.png") 5px -26px no-repeat #A80C20;
 	}
 	.bx-next{
@@ -686,7 +685,7 @@ box-sizing: border-box;
 	width: 2.5rem;
 	height: 2.5rem;
 	}
-	.bx-next:hover{
+	.bx-next:hover {
 	background: url("../img/sprite-viewed.png") 5px -56px no-repeat #A80C20;
 	}
 
@@ -986,7 +985,7 @@ box-sizing: border-box;
 	height: 36px;
 	opacity: 0.65;
 	}
-	#pagenotfound h1 span:before,#pagenotfound h1 span:after{
+	#pagenotfound h1 span:before, #pagenotfound h1 span:after{
 	font-size: 138px;
 	left: -187px;
 	height: 155px;
@@ -2915,10 +2914,7 @@ box-sizing: border-box;
 	#pagenotfound {
 	height: 100%;
 	width: 100%;
-	/*background: url(../img/bg_404.jpg) no-repeat center top;*/
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	background-size: cover;
+	background: url(../img/bg-error.jpg) no-repeat center 10%;
 	}
 	html.pagenotfound #page,html.pagenotfound {
 
@@ -2949,9 +2945,15 @@ box-sizing: border-box;
     #pagenotfound .pagenotfound .contFound:after, #pagenotfound .pagenotfound .contFound:before {
     display: block;
     content: " ";
-    height:2px;
+    height:6px;
     width: 100%;
     background: #727272;
+    background: url(../img/bg-shadow404.png) no-repeat center top;
+    background-size: 100%;
+    }
+    
+    #pagenotfound .pagenotfound .contFound:before {
+        background-position: center bottom;
     }
 
     body#pagenotfound h1 {
@@ -3007,8 +3009,18 @@ box-sizing: border-box;
 	display: inline-block;
 	margin-right: 5px;
 	vertical-align: top;
-	padding: 20px 10px;
 	}
+
+    #pagenotfound .optionDirection .form-control::-moz-placeholder {
+      color: #999999;
+      opacity: 1;
+    }
+    #pagenotfound .optionDirection .form-control:-ms-input-placeholder {
+      color: #999999;
+    }
+    #pagenotfound .optionDirection .form-control::-webkit-input-placeholder {
+      color: #999999;
+    }
 
     #pagenotfound .optionDirection .btn_shears {
     background: transparent;
@@ -3197,6 +3209,19 @@ box-sizing: border-box;
 	color: #d7162f;
 	}
 
+    .fancybox-wrap {
+        font-family: 'Open Sans', sans-serif;
+        line-height: 1.3rem;
+    }
+
+     .fancybox-wrap select {
+        width:100%;
+        padding: 7px 5px;
+        margin: 10px 0;
+        border-radius: 0;
+        -webkit-border-radius:0;
+    }
+    
 	#cmsinfo_block {
 	overflow: hidden;
 	background: #f2f2f2;
@@ -4245,7 +4270,7 @@ line-height: 1.5;
 	}
 
 	#slider  .bx-controls.bx-has-pager {
-		bottom: 22%;
+		bottom: 6%;
 	}
 
 	/*agotado*/
@@ -4403,6 +4428,14 @@ body.new-products {
 
     .parrilla-productos .ajax_block_product {
     padding-top: 2.5rem;
+    }
+
+    .main-container .parrilla-productos .sortPagiBar form label {
+        padding: 0.6375rem;
+        }
+
+    .top-pagination-content ul.pagination li.pagination_previous span, .top-pagination-content ul.pagination li.pagination_next span, .top-pagination-content ul.pagination li.pagination_previous a, .top-pagination-content ul.pagination li.pagination_next a {
+    padding: 0.925rem 0.9375rem;
     }
 
 /*Hover product*/

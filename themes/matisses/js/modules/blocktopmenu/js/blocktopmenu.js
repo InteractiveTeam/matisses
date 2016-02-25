@@ -238,23 +238,19 @@ $(document).ready(function(e){
         //list menu
     
         var business = $('ul.submenu-container > li > ul');
+        
         $.each(business, function(x,y){
-         var category = $(y).children('li');
-         var countCategory = category.length;
+            var category = $(y).children('li');
+            var countMax = category.length;
 
-         $.each(category, function(z, w){
-             var subcategory = $(w).find('li');
-             for(var s = 0; s < countCategory; s++)
-             {
-                subcategory.eq(s).addClass('col-1');
-             }
+            $.each(category, function(z, w){
+                 var subcategory = $(w).find('.SubCategory').children('a');
 
-             for(var s = countCategory; s < subcategory.length; s++)
-             {
-                subcategory.eq(s).addClass('col-2');
-             }
-         }); 
-
+              for (var i=0; i < subcategory.length; i+=countMax) {
+                var group = subcategory.slice(i, i+countMax);
+                group.wrapAll('<div class=col />');
+              }
+            });  
         });
 
 })

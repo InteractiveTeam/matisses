@@ -2,7 +2,7 @@
 <dwsync>
 <file name="config.xml" server="192.168.3.45" local="130974342233017912" remote="130977918600000000" Dst="0" />
 <file name="config.rb" server="192.168.3.45" local="130974342232997927" remote="130977918600000000" Dst="0" />
-<file name="header.tpl" server="192.168.3.45" local="130976399468702187" remote="130977918600000000" Dst="0" />
+<file name="header.tpl" server="192.168.3.45" local="131008941037324660" remote="131009121000000000" Dst="0" />
 <file name="index.tpl" server="192.168.3.45" local="130974344594076645" remote="130977918600000000" Dst="0" />
 <file name="footer.tpl" server="192.168.3.45" local="130976399468462155" remote="130977918600000000" Dst="0" />
 <file name="404.tpl" server="192.168.3.45" local="130974342231872766" remote="130977918600000000" Dst="0" />
@@ -28,7 +28,7 @@
 <file name="maintenance.tpl" server="192.168.3.45" local="130974342284469347" remote="130977918600000000" Dst="0" />
 <file name="manufacturer-list.tpl" server="192.168.3.45" local="130974344594251659" remote="130977918600000000" Dst="0" />
 <file name="manufacturer.tpl" server="192.168.3.45" local="130974342284599371" remote="130977918600000000" Dst="0" />
-<file name="my-account.tpl" server="192.168.3.45" local="131005404202012721" remote="131005584000000000" Dst="0" />
+<file name="my-account.tpl" server="192.168.3.45" local="131008809471461949" remote="131009037000000000" Dst="0" />
 <file name="nbr-product-page.tpl" server="192.168.3.45" local="130977202506955187" remote="130977918600000000" Dst="0" />
 <file name="new-products.tpl" server="192.168.3.45" local="130974342340551609" remote="130977918600000000" Dst="0" />
 <file name="order-address-multishipping-products.tpl" server="192.168.3.45" local="130974342340591542" remote="130977918600000000" Dst="0" />
