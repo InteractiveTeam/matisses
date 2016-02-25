@@ -21,6 +21,8 @@ class GiftListModel extends ObjectModel
 	public $address_after;
 	public $created_at;
 	public $updated_at;
+    public $context;
+    public $validated;
 
 	public static $definition = array(
 		'table' => 'gift_list',
@@ -44,12 +46,14 @@ class GiftListModel extends ObjectModel
 			'edit' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
 			'address_before' => array('type' => self::TYPE_STRING, 'size' => 100),
 			'address_after' => array('type' => self::TYPE_STRING, 'size' => 100),
+            'validated' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
 			'created_at' => array('type' => self::TYPE_DATE),
 			'updated_at' => array('type' => self::TYPE_DATE)
 		)
 	);
 
 	public function __construct($id = null) {
+        $this->context = Context::getContext();
 		parent::__construct($id);
 		$this->id_image = ($this->id && file_exists(_PS_IMG_DIR_.'giftlists/'.(int)$this->id.'.jpg')) ? (int)$this->id : false;
 		$this->image_dir = _PS_IMG_DIR_.'giftlists/';
@@ -72,7 +76,6 @@ class GiftListModel extends ObjectModel
 	 */
 	public function updateInfo(){
 		$sql = "UPDATE `"._DB_PREFIX_."gift_list` SET `info_cocreator` = '".$this->info_cocreator."' WHERE `id` = ".$this->id.";";
-		//die($sql);
 		if(!Db::getInstance()->execute($sql))
 			return false;
 		return true;
@@ -87,6 +90,13 @@ class GiftListModel extends ObjectModel
 		$this->deleteImage();
 		return parent::delete();
 	}
+    
+    public function setValidated(){
+        $sql = "UPDATE "._DB_PREFIX_."gift_list SET validated = 1 WHERE id = ". $this->id;
+        if(!Db::getInstance()->execute($sql))
+			return false;
+		return true;      
+    }
 
 
 	/**
@@ -209,32 +219,65 @@ class GiftListModel extends ObjectModel
     
     public function getCartProductsByList($id){
         $sql = "SELECT * FROM "._DB_PREFIX."cart_product WHERE id_giftlist = ".$id;
-        return Db::getInstance()-executeS($sql);
+        return Db::getInstance()->executeS($sql);
     }
     
-    public function getPaidsOrders($order_state){
+    public static function getPaidsOrders($order_state){
         $sql = 'SELECT id_order FROM '._DB_PREFIX_.'order_history WHERE date_add LIKE "%'.date("Y-m-d").'%" and id_order_state = '.$order_state;
-        return Db::getInstance()-executeS($sql);
+        return Db::getInstance()->executeS($sql);
     }
-    public function getPaidStatusOrder(){
+    public static function getPaidStatusOrder(){
         $sql = 'SELECT id_order_state FROM  '._DB_PREFIX_.'order_state WHERE paid = 1';
-        return Db::getInstance()-executeS($sql);
+        return Db::getInstance()->executeS($sql);
     }
-    public function getProductsInCartByOrder($id_order){
-        $sql = 'SELECT id_product, id_giftlist,id_bond FROM '._DB_PREFIX_.'cart_product a INNER JOIN '._DB_PREFIX_.'orders b ON a.id_cart = b.id_cart WHERE b.id_order = '.$id_order.'and a.id_giftlist <> 0';
-        return Db::getInstance()-executeS($sql);
+    public static function getProductsInCartByOrder($id_order){
+        $sql = 'SELECT id_product,id_giftlist,id_bond,b.id_customer,a.quantity FROM '._DB_PREFIX_.'cart_product a INNER JOIN '._DB_PREFIX_.'orders b ON a.id_cart = b.id_cart WHERE b.id_order = '.$id_order.' and a.id_giftlist <> 0';
+        return Db::getInstance()->executeS($sql);
     }
     
-    public function seendMessage($data){
+    public function sendMessage($data,$out){
+        $context = Context::getContext();
         $id_shop = (int)Context::getContext()->shop->id;
-		$id_lang = $this->context->language->id;
+		$id_lang = $context->language->id;
+        $product_list_txt = $this->getEmailTemplateContent('cron-mail-products.txt', Mail::TYPE_TEXT, $data,$out);
+        $product_list_html = $this->getEmailTemplateContent('cron-mail-products.txt', Mail::TYPE_HTML, $data,$out);
 		$params = array(
-			'{lastname}'
+            '{creator}' => $data[0]['creator'],
+            '{description_link}' => $data[0]['description_link'],
+			'{products_html}' => $product_list_html,
+            '{products_txt}' => $product_list_txt,
+            '{message}' => "HOLI"
 		);
         MailCore::Send($id_lang, 'cron-mail', sprintf(
         MailCore::l('resumen de lista'), 1),
-        $params, Tools::getValue('email'), $customer->firstname.' '.$customer->lastname,
+        $params, $data[0]['email'], $data[0]['creator'],
         null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
-        die("Se ha compartido la lista");
+    }
+    
+    protected function getEmailTemplateContent($template_name, $mail_type, $var,$out)
+    {
+		$email_configuration = Configuration::get('PS_MAIL_TYPE');
+		if ($email_configuration != $mail_type && $email_configuration != Mail::TYPE_BOTH)
+			return '';
+
+		$theme_template_path = _PS_THEME_DIR_.'modules/giftlist/mails'.DIRECTORY_SEPARATOR.$this->context->language->iso_code.DIRECTORY_SEPARATOR.$template_name;
+		$default_mail_template_path = _PS_MODULE_DIR_."mails/".$this->context->language->iso_code.DIRECTORY_SEPARATOR.$template_name;
+		if (Tools::file_exists_cache($theme_template_path))
+			$default_mail_template_path = $theme_template_path;
+
+		if (Tools::file_exists_cache($default_mail_template_path))
+		{
+			$this->context->smarty->assign(array(
+                'products'=> $var,
+                'out' => $out
+            ));
+			return $this->context->smarty->fetch($default_mail_template_path);
+		}
+		return '';
+	}
+    
+    public static function getAllList(){
+        $sql = 'SELECT * FROM  '._DB_PREFIX_.'gift_list WHERE validated = 0';
+        return Db::getInstance()->executeS($sql);
     }
 }
