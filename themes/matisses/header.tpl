@@ -97,7 +97,7 @@
 	            <div class="left-up-menu cf">
 	              <ul class="menu">
 	                <li id="tiendas"><a href="{$link->getPageLink('stores')}">{l s='Tiendas'}</a></li>
-	                <li id="metodos-envio"><a href="{$link->getCMSLink('1')}">{l s='Métodos de envío'}</a></li>
+	                <li id="metodos-envio"><a href="{$link->getCMSLink('9')}">{l s='Métodos de envío'}</a></li>
 	                <li id="garantias"><a href="{$link->getModuleLink('matisses','garantias')}/nueva">{l s='Garantías'}</a></li>
 	              </ul>
 	              {*$HOOK_TOP*}
