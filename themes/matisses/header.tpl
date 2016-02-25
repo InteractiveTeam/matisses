@@ -1,4 +1,4 @@
-a{*
+{*
 * 2007-2014 PrestaShop
 *
 * NOTICE OF LICENSE

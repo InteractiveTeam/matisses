@@ -1642,8 +1642,8 @@
         width: 1024px;
     }
 
-    .sf-contener .submenu-container li > ul > li > ul {
-        width: 257px;
+    body .submenu-container li > ul > li .SubCategory {
+        left: 16.9rem !important;
     }
 
     .submenu-container ul > li > ul li a {
@@ -1715,6 +1715,10 @@
 
 	#menu-left .menu-content > li > a {
 		padding: 33px 0 0 2rem;
+	}
+    
+   .sf-menu .SubCategory {
+    display: none;
 	}
 
 	.content-user {

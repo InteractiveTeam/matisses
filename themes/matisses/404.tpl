@@ -22,6 +22,9 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
+<style>
+    
+</style>
 <div class="pagenotfound">
     <div class="contFound">
     	<h1><span>{l s='404.'}</span></h1>
@@ -36,7 +39,7 @@
             <fieldset>
                 <div>
                    <button type="submit" name="Submit" value="OK" class="btn btn_shears"><i class="fa fa-search"></i></button>
-                    <input id="search_query" name="search_query" type="text" placeholder="Enter a product name..." class="form-control grey" />
+                    <input id="search_query" name="search_query" type="text" placeholder="Buscar..." class="form-control grey" />
                     
                 </div>
             </fieldset>

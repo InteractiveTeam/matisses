@@ -411,8 +411,8 @@ $(window).scroll(function(){
     var dimmer = $('.homepage-slider .dimmer');
     var opaci = numCont*0.005;
     var slider = $('.homepage-slider');
-    
+
     dimmer.css('opacity', opaci*0.3);
-    slider.css('transform', 'translateY('+numCont*0.6+'px)');
+    slider.css('transform', 'translateY('+numCont*0.4+'px)');
 })
     

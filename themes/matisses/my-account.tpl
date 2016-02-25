@@ -62,8 +62,8 @@
 				</div>
 				<div class="grid_2 dates-account">
 					<h3>{l s='Más acciones'}</h3>
-					<p><a href="#">Contactar un asesor</a></p>
-					<p><a href="{$link->getPageLink('store', true)|escape:'html':'UTF-8'}">{l s='Encuentra la tienda más cercana'}</a></p>
+					<p><a href="mailto:servicioalcliente@matisses.com">Contactar un asesor</a></p>
+					<p><a href="{$link->getPageLink('stores', true)|escape:'html':'UTF-8'}">{l s='Encuentra la tienda más cercana'}</a></p>
 				</div>
 			</div>
 		</li>
