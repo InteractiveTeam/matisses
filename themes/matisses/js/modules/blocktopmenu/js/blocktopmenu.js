@@ -171,11 +171,20 @@ $(document).ready(function(e){
 	//MENU responsiveMenu
 
 		var itemsMenu = $('.menu-mobile li');
-
-		$.each(itemsMenu, function(indice, objeto){
+        var subItemsMenu = $('.menu-mobile li ul li');
+		
+        $.each(itemsMenu, function(indice, objeto){
 			var item = $(objeto);
 
 			if(item.find('ul').length > 0) {
+				item.prepend('<div class="more"></div>');
+			}
+		});
+    
+    	$.each(subItemsMenu, function(ind, obj){
+			var item = $(obj);
+
+			if(item.find('.SubCategory').length > 0) {
 				item.prepend('<div class="more"></div>');
 			}
 		});
@@ -183,6 +192,7 @@ $(document).ready(function(e){
 		$('.menu-mobile li .more').on('click', function(){
 			$(this).siblings('ul').slideToggle();
 			$(this).toggleClass('rotate-o');
+            $(this).siblings('.SubCategory').slideToggle();
 		})
 
 		var sub = $('li.sfHover');
