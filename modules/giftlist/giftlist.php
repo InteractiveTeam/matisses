@@ -107,7 +107,7 @@ class giftlist extends Module
         || $params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_CHEQUE")
         || $params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_PAYPAL")
         || $params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_BANKWIRE")){
-            $this->__verifyListInOrderAfertPayment($params['cart']);
+            $this->__verifyListInOrderBeforePayment($params['cart']);
         }
 
         //Order status payment confirmation
@@ -171,7 +171,7 @@ class giftlist extends Module
         }
     }
     
-    private function __verifyListInOrderAfertPayment($cart){
+    private function __verifyListInOrderBeforePayment($cart){
         $sql = "SELECT * FROM "._DB_PREFIX_."cart_product WHERE id_cart = " .$cart->id;
         $products = Db::getInstance()->executeS($sql);
         $buyer = new Customer($cart->id_customer);
@@ -193,6 +193,16 @@ class giftlist extends Module
                         'created_at' => date( "Y-m-d H:i:s" )
                     ));
                 }
+            }else{
+                $sqlB = "SELECT * FROM " . _DB_PREFIX_ . "list_product_bond WHERE id_list = ". $product['id_giftlist']. " AND id_product = ".$product['id_product'] . " AND id_bond = 0";
+                $prod = Db::getInstance()->getRow($sqlB);
+                $cant = Tools::jsonDecode($prod['group']);
+                $cant->missing -= $product['quantity'];
+                Db::getInstance()->update('list_product_bond',array(
+                    'group' => Tools::jsonEncode($cant),
+                    'bought' => $cant->missing > 0 ? 1 : 0,
+                    'updated_at' => date( "Y-m-d H:i:s" )
+                ),"id_product = ".$product['id_product']);
             }
         }
     }

@@ -40,9 +40,14 @@
 				{$row['price']}
 				<div class="add_container">
 					<label for="total_qty">Comprar</label>
-					<input type="number" name="total_qty" class="total_qty" value="{$cant->missing}">
 					{if !empty($cant->cant)}
-						<label class="qty_group" data-value="{$cant->cant}">Cantidad por grupo {$cant->cant}</label>
+					    {if $cant->missing > $cant->cant_group}
+					        <input type="number" name="total_qty" max="{$cant->tot_groups}" class="total_qty" value="{$cant->tot_groups}">
+						    <label class="qty_group" data-value="{$cant->missing}">Cantidad por grupo {$cant->cant}</label>
+                       {else}
+                            <input type="number" name="total_qty" max="1" class="total_qty" value="1" disabled>
+                            <label class="qty_group" data-value="{$cant->cant}">Cantidad por grupo {$cant->cant}</label>
+                        {/if}
 					{/if}
 					<button class="add-to-cart">Add to car</button>
 				</div>

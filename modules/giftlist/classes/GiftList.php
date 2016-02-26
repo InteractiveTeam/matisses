@@ -280,4 +280,11 @@ class GiftListModel extends ObjectModel
         $sql = 'SELECT * FROM  '._DB_PREFIX_.'gift_list WHERE validated = 0';
         return Db::getInstance()->executeS($sql);
     }
+    
+    public static function setValidatedFalse(){
+        $sql = "UPDATE "._DB_PREFIX_."gift_list SET validated = 0 ";
+        if(!Db::getInstance()->execute($sql))
+			return false;
+		return true;  
+    }
 }

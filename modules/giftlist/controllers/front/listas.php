@@ -180,23 +180,30 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
     */
     private function _groupProducts($cant,$cant_group){
         $total = $cant;
+        $i = 0;
         if($cant_group != "" && $cant_group > 0){
             while($total >= $cant_group){
+                $i++;
                 $total -= $cant_group;
+            }
+            if($cant_group > 0){
+                $i++;
             }
             
             return Tools::jsonEncode( array(
                 "wanted" => $cant,
                 "missing"=> $cant,
                 "cant" => $cant_group,
-                "rest" => $total
+                "rest" => $total,
+                "tot_groups" => $i
             ));
         }
         return Tools::jsonEncode( array(
                 "wanted" => $cant,
                 "missing"=> $cant,
                 "cant" => $cant,
-                "rest" => $total
+                "rest" => $total,
+                "tot_groups" => 1
             ));
         
     }

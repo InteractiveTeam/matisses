@@ -140,3 +140,5 @@ foreach($list as $l){
     }
     $l->sendMessage($array(),$out);
 }
+
+Giftlist::setValidatedFalse();
