@@ -336,6 +336,17 @@ class giftlist extends Module
 						'module' => 'giftlist'
 				]
 			],
+			'module-giftlist-administrar' => [
+				'controller' => 'administrar',
+				'rule' => 'giftlist/listas{/:url}',
+                'keywords' => [
+					'url' => ['regexp' => '[_a-zA-Z0-9_-]+', 'param' => 'url']
+				],
+				'params' => [
+						'fc' => 'module',
+						'module' => 'giftlist'
+				]
+			],
 		];
 	}
 

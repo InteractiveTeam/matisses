@@ -6,11 +6,10 @@ if (session_status() == PHP_SESSION_NONE) {
 include_once __DIR__ . '/../../classes/GiftList.php';
 include_once __DIR__ . '/../../classes/ListProductBond.php';
 include_once _PS_CLASS_DIR_ . "stock/StockAvailable.php";
+define("_ERROR_", "Ha ocurrido un error");
 
 class giftlistlistasModuleFrontController extends ModuleFrontController {
-	public $uploadDir = __DIR__. "../../../uploads/";
 	public $module;
-    define(_ERROR_, "Ha ocurrido un error");
 
 	public function initContent() {
 		if(!$this->context->customer->isLogged()){
@@ -23,6 +22,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 		$this->context->smarty->assign ( array (
 			'all_lists' => $list->getListByCreatorId($this->context->customer->id),
 			'shared_lists' => $list->getSharedListByCoCreatorId($this->context->customer->id),
+            'admin_link' => $this->context->link->getModuleLink('giftlist', 'administrar',array("url"=> "nuevo")),
 			'description_link' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => "")),
 			'form' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/form_save_list.php",
 			'share_list' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/share_email.php"
@@ -76,12 +76,6 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 		parent::__construct ();
 	}
 
-	public function postProcess($id = 0) {
-		if (Tools::isSubmit ('saveList')) {
-			$this->_saveList($id);
-		}
-	}
-
 	/**
 	 * @param int $id_product
 	 * @param array $data
@@ -133,26 +127,6 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 			die($e->getMessage());
 		}
 	}
-	/**
-	 * upload image from list
-	 * @return boolean|string|NULL
-	 */
-	private function _uploadImage(){
-		if ($_FILES['image']['name'] != '') {
-			$file = Tools::fileAttachment('image');
-			$sqlExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
-			$mimeType = array('image/png', 'image/x-png','image/jpeg','image/gif');
-			if(!$file || empty($file) || !in_array($file['mime'], $mimeType))
-				return false;
-			else {
-				move_uploaded_file($file['tmp_name'], $this->uploadDir . Db::getInstance()->Insert_ID(). ".". $sqlExtension);
-				$image_name = Db::getInstance()->Insert_ID(). ".". $sqlExtension;
-			}
-			@unlink($file);
-			return isset($image_name) ?_MODULE_DIR_."giftlist/uploads/" . $image_name : false;
-		}
-		return false;
-	}
 
 	/**
 	 * @param int $id
@@ -174,6 +148,37 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 			die(Tools::jsonEncode($response));
 		}
 
+	}
+    
+    private function _shareList(){
+		$id_shop = (int)Context::getContext()->shop->id;
+		$id_lang = $this->context->language->id;
+		$list = new GiftListModel (Tools::getValue('id_list'));
+		$currency = $this->context->currency;
+		$customer = new CustomerCore($list->id_creator);
+		$params = array(
+			'{lastname}' => $customer->lastname,
+			'{firstname}' => $customer->firstname,
+			'{code}' => $list->code,
+			'{description_link}' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url))
+		);
+
+		if(!empty($list->id_cocreator)){
+			$customer = new CustomerCore($list->id_cocreator);
+			$params['firstname_co'] = $customer->firstname;
+			$params['lastname_co'] = $customer->lastname;
+
+			MailCore::Send($id_lang, 'share-list', sprintf(
+			MailCore::l('Te han compartido una lista'), 1),
+			$params, Tools::getValue('email'), $customer->firstname.' '.$customer->lastname,
+			null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
+			die("Se ha compartido la lista");
+		}
+		MailCore::Send($id_lang, 'share-list-no-cocreator', sprintf(
+		MailCore::l('Te han compartido una lista'), 1),
+		$params, Tools::getValue('email'), $customer->firstname.' '.$customer->lastname,
+		null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
+		die("Se ha compartido la lista");
 	}
     
     /*
@@ -205,94 +210,6 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
                 "cant" => $cant,
                 "rest" => $total,
                 "tot_groups" => 1
-            ));
-        
+            ));   
     }
-
-	/**
-	 * @param number $id
-	 */
-	private function _saveList($id = 0){
-		if($id != 0){
-			$list = new GiftListModel ($id);
-		}else{
-			$list = new GiftListModel ();
-		}
-		$list->id_creator = $this->context->customer->id;
-		$list->id_cocreator = 0;
-		$list->name = Tools::getValue ( 'name' );
-		$list->event_type = Tools::getValue ( 'event_type' );
-		$list->event_date = date("Y-m-d H:i:s", strtotime(Tools::getValue ( 'event_date' )));
-		$list->public = Tools::getValue( 'public' ) == "on" ? 1 : 0;
-		$list->guest_number = Tools::getValue ( 'guest_number' );
-		$list->recieve_bond = Tools::getValue ( 'recieve_bond' ) == "on" ? 1 : 0;
-		$list->edit = Tools::getValue ( 'can_edit' ) == "on" ? 1 : 0;
-		$list->max_amount = Tools::getValue ( "max_amount" );
-		$list->address_after = NULL;
-		$list->code = $list->returnCode();
-		$list->url = $list->slugify($list->name);
-		$list->message = Tools::getValue('message');
-		$dirC = array(
-				'country' => "Colombia",
-				'city'    => Tools::getValue('city'),
-				'town'    => Tools::getValue('town'),
-				'address' => Tools::getValue('address'),
-				'tel'     => Tools::getValue('tel'),
-				'cel'     => Tools::getValue('cel')
-		);
-		$list->info_creator = Tools::jsonEncode($dirC);
-		$id == 0 ? $list->created_at = date ( "Y-m-d H:i:s" ) : $list->updated_at = date ( "Y-m-d H:i:s" );
-		try {
-			if ($list->save()){
-				$list->image = !$this->_uploadImage() ? $list->image : $this->_uploadImage();
-                $list->id_cocreator = $list->setCocreator($list-id,Tools::getValue ( 'email_cocreator' ));
-				$list->update();
-				$this->context->smarty->assign ( array (
-						'response' => "Se ha creado la lista",
-						'error' => false
-				));
-			}
-			else
-				$this->context->smarty->assign ( array (
-						'response' => _ERROR_,
-						'error' => true
-				));
-		} catch ( Exception $e ) {
-			$this->context->smarty->assign ( array (
-					'response' => $e->getMessage(),
-					'error' => true
-			));
-		}
-	}
-
-	private function _shareList(){
-		$id_shop = (int)Context::getContext()->shop->id;
-		$id_lang = $this->context->language->id;
-		$list = new GiftListModel (Tools::getValue('id_list'));
-		$currency = $this->context->currency;
-		$customer = new CustomerCore($list->id_creator);
-		$params = array(
-			'{lastname}' => $customer->lastname,
-			'{firstname}' => $customer->firstname,
-			'{code}' => $list->code,
-			'{description_link}' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url))
-		);
-
-		if(!empty($list->id_cocreator)){
-			$customer = new CustomerCore($list->id_cocreator);
-			$params['firstname_co'] = $customer->firstname;
-			$params['lastname_co'] = $customer->lastname;
-
-			MailCore::Send($id_lang, 'share-list', sprintf(
-			MailCore::l('Te han compartido una lista'), 1),
-			$params, Tools::getValue('email'), $customer->firstname.' '.$customer->lastname,
-			null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
-			die("Se ha compartido la lista");
-		}
-		MailCore::Send($id_lang, 'share-list-no-cocreator', sprintf(
-		MailCore::l('Te han compartido una lista'), 1),
-		$params, Tools::getValue('email'), $customer->firstname.' '.$customer->lastname,
-		null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
-		die("Se ha compartido la lista");
-	}
 }

@@ -4,13 +4,13 @@ include_once __DIR__ . '/../../classes/GiftList.php';
 include_once __DIR__ . '/../../classes/ListProductBond.php';
 include_once __DIR__ . '/../../classes/Bond.php';
 include_once _PS_OVERRIDE_DIR_ ."controllers/front/CartController.php";
+define("_ERROR_","Ha ocurrido un error");
+define("_DELETED_","Elmininado Correctamente");
+define("_EDITED_","Se ha editado la informacion");
 
 class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	public $uploadDir = __DIR__. "../../../uploads/";
 	public $module;
-    define(_ERROR_,"Ha ocurrido un error");
-    define(_DELETED_,"Elmininado Correctamente");
-    define(_EDITED_,"Se ha editado la informacion");
 	/**
 	* Select all event types
 	* Select firstname and lastnamen from creator and cocreator
@@ -34,6 +34,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 		$this->context->smarty->assign ( array (
 			'list_desc' => $res,
 			'all_link' => $this->context->link->getModuleLink('giftlist', 'listas'),
+			'admin_link' => $this->context->link->getModuleLink('giftlist', 'administrar',array("url" => Tools::getValue('url'))),
 			'address' => Tools::jsonDecode($res['info_creator']),
 			'address_cocreator' => $res['info_cocreator'] == "" ? "''" :  $res['info_cocreator'],
 			'form' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/form_save_list.php",

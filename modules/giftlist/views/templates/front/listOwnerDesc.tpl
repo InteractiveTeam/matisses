@@ -54,11 +54,7 @@
 	         		<div class="col-md-3">
 	         			<p><b>Fecha:</b> {date("d/m/Y H:i", strtotime($list_desc['event_date']))}</p>
 						<p><b>Cantidad de invitados:</b> {$list_desc['guest_number']}</p>
-						{if empty($list_desc['id_cocreator'])}
-						<a class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Editar" href="{$form}" id="btn-edit">Editar <span class="icon-pencil"></span></a>
-						{else}						
-						<a class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Editar" href="{$form_edit}" id="btn-edit">Editar <span class="icon-pencil"></span></a>
-						{/if}
+						<a class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Editar" href="{$admin_link}">Editar <span class="icon-pencil"></span></a>
 	         		</div>
 	         	</div>
 	         </div>

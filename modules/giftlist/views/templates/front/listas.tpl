@@ -13,7 +13,7 @@
 			<h1>Lista de regalos</h1>
 		</div>
 		<div class="col-md-2">
-			<a class="btn btn-success" href="{$form}" data-toggle="tooltip" data-placement="bottom" title="Crear" id="btnAdd">add</a>
+			<a class="btn btn-success" href="{$admin_link}" data-toggle="tooltip" data-placement="bottom" title="Crear">add</a>
 		</div>
 	</div>
 	{foreach from=$all_lists item=row}
