@@ -55,9 +55,9 @@
 	         			<p><b>Fecha:</b> {date("d/m/Y H:i", strtotime($list_desc['event_date']))}</p>
 						<p><b>Cantidad de invitados:</b> {$list_desc['guest_number']}</p>
 						{if empty($list_desc['id_cocreator'])}
-						<a class="btn btn-success" href="{$form}" id="btn-edit">Editar <span class="icon-pencil"></span></a>
+						<a class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Editar" href="{$form}" id="btn-edit">Editar <span class="icon-pencil"></span></a>
 						{else}						
-						<a class="btn btn-success" href="{$form_edit}" id="btn-edit">Editar <span class="icon-pencil"></span></a>
+						<a class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Editar" href="{$form_edit}" id="btn-edit">Editar <span class="icon-pencil"></span></a>
 						{/if}
 	         		</div>
 	         	</div>
@@ -84,7 +84,7 @@
 					{/if}
 				{/foreach}
 				{$row['price']}
-				<button class="delete-product">Quitar producto</button>
+				<button class="delete-product" data-toggle="tooltip" data-placement="bottom" title="Quitar producto">Quitar producto</button>
 			</div>
 		{/foreach}
 		</div>

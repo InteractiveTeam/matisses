@@ -3,7 +3,7 @@
 <div class="container">
 	{if isset($response)}
 	<div class="alert {if $error == true} alert-danger{else} alert-success{/if}  alert-dismissible" role="alert">
-		<button type="button" data-dismiss="alert" id="closeMsg" class="close" 
+		<button type="button" data-toggle="tooltip" data-placement="bottom" title="Cerrar" data-dismiss="alert" id="closeMsg" class="close" 
 		aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		{$response}
 	</div>
@@ -13,7 +13,7 @@
 			<h1>Lista de regalos</h1>
 		</div>
 		<div class="col-md-2">
-			<a class="btn btn-success" href="{$form}" id="btnAdd">add</a>
+			<a class="btn btn-success" href="{$form}" data-toggle="tooltip" data-placement="bottom" title="Crear" id="btnAdd">add</a>
 		</div>
 	</div>
 	{foreach from=$all_lists item=row}
@@ -47,14 +47,14 @@
 				<div class="col-md-3 text-center">
 					<form id="action-{$row['id']}" class="actions" action="{$request_uri}" role="form" method="post">
 						<div class="row">
-							<a href="{$description_link }/{$row['url']}" data-id="{$row['id']}" class="btn-edit btn btn-default btn-sm">Editar <span class="icon-pencil"></span></a>
+							<a href="{$description_link }/{$row['url']}" data-id="{$row['id']}" data-toggle="tooltip" data-placement="bottom" title="Editar" class="btn-edit btn btn-default btn-sm">Editar <span class="icon-pencil"></span></a>
 						</div>
 						<div class="row">
-							<button name="delete-list" value="{$row['id']}" class="delete-list btn btn-default btn-sm">Eliminar <span class="icon-eraser"></span></button>
+							<button name="delete-list" data-toggle="tooltip" data-placement="bottom" title="Eliminar" value="{$row['id']}" class="delete-list btn btn-default btn-sm">Eliminar <span class="icon-eraser"></span></button>
 						</div>
 					</form> 
 					<div class="row">
-						<a href="{$share_list}" data-id="{$row['id']}" class="share-list btn btn-default btn-sm">Compartir <span class="icon-mail-forward"></span></a>
+						<a href="{$share_list}" data-id="{$row['id']}" data-toggle="tooltip" data-placement="bottom" title="Compartir" class="share-list btn btn-default btn-sm">Compartir <span class="icon-mail-forward"></span></a>
 					</div>
 				</div>
 			</div>
@@ -94,10 +94,10 @@
 				<div class="col-md-3 text-center">
 					<form id="action-{$row['id']}" class="actions" action="{$request_uri}" role="form" method="post">
 						<div class="row">
-							<a href="{$description_link }/{$row['url']}" data-id="{$row['id']}" class="btn-edit btn btn-default btn-sm">Editar <span class="icon-pencil"></span></a>
+							<a href="{$description_link }/{$row['url']}" data-id="{$row['id']}" data-toggle="tooltip" data-placement="bottom" title="Editar" class="btn-edit btn btn-default btn-sm">Editar <span class="icon-pencil"></span></a>
 						</div>
 						<div class="row">
-							<button name="share-list" class="btn btn-default btn-sm">Compartir <span class="icon-mail-forward"></span></button>
+							<button name="share-list" data-toggle="tooltip" data-placement="bottom" title="Compartir" class="btn btn-default btn-sm">Compartir <span class="icon-mail-forward"></span></button>
 						</div>
 					</form> 
 				</div>

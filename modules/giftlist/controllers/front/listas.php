@@ -10,6 +10,7 @@ include_once _PS_CLASS_DIR_ . "stock/StockAvailable.php";
 class giftlistlistasModuleFrontController extends ModuleFrontController {
 	public $uploadDir = __DIR__. "../../../uploads/";
 	public $module;
+    define(_ERROR_, "Ha ocurrido un error");
 
 	public function initContent() {
 		if(!$this->context->customer->isLogged()){
@@ -167,7 +168,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 			die(Tools::jsonEncode($response));
 		}else{
 			$response = array(
-				'msg' => "Ha ocurrido un error",
+				'msg' => _ERROR_,
 				'id'  => 0
 			);
 			die(Tools::jsonEncode($response));
@@ -218,7 +219,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 			$list = new GiftListModel ();
 		}
 		$list->id_creator = $this->context->customer->id;
-		$list->id_cocreator = $list->setCoCreator(Tools::getValue ( 'email_cocreator' ));
+		$list->id_cocreator = 0;
 		$list->name = Tools::getValue ( 'name' );
 		$list->event_type = Tools::getValue ( 'event_type' );
 		$list->event_date = date("Y-m-d H:i:s", strtotime(Tools::getValue ( 'event_date' )));
@@ -244,6 +245,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 		try {
 			if ($list->save()){
 				$list->image = !$this->_uploadImage() ? $list->image : $this->_uploadImage();
+                $list->id_cocreator = $list->setCocreator($list-id,Tools::getValue ( 'email_cocreator' ));
 				$list->update();
 				$this->context->smarty->assign ( array (
 						'response' => "Se ha creado la lista",
@@ -252,7 +254,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 			}
 			else
 				$this->context->smarty->assign ( array (
-						'response' => "Ha ocurrido un error",
+						'response' => _ERROR_,
 						'error' => true
 				));
 		} catch ( Exception $e ) {

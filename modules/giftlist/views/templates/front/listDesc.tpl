@@ -12,7 +12,7 @@
 			<p>{$event_type['name']}</p>
 			<p>Creado por: {$creator['firstname']} {$creator['lastname']} {if !empty($cocreator)} y {$cocreator['firstname']} {$cocreator['lastname']} {/if}</p>
 			{if $list_desc['recieve_bond']}
-				<a href="{$bond_form}" class="btn btn-default" id="add_bond">Comprar bono</a>
+				<a href="{$bond_form}" data-toggle="tooltip" data-placement="bottom" title="Comprar bono" class="btn btn-default" id="add_bond">Comprar bono</a>
 			{/if}
 		</div>
 		<div class="col-md-6">
@@ -42,14 +42,14 @@
 					<label for="total_qty">Comprar</label>
 					{if !empty($cant->cant)}
 					    {if $cant->missing > $cant->cant_group}
-					        <input type="number" name="total_qty" max="{$cant->tot_groups}" class="total_qty" value="{$cant->tot_groups}">
-						    <label class="qty_group" data-value="{$cant->missing}">Cantidad por grupo {$cant->cant}</label>
+					        <input type="number" data-value="{$cant->missing}" name="total_qty" max="{$cant->tot_groups}" class="total_qty" value="1">
+						    <label class="qty_group" data-value="{$cant->cant}">Cantidad por grupo {$cant->cant}</label>
                        {else}
                             <input type="number" name="total_qty" max="1" class="total_qty" value="1" disabled>
-                            <label class="qty_group" data-value="{$cant->cant}">Cantidad por grupo {$cant->cant}</label>
+                            <label class="qty_group" data-value="{$cant->cant}">Cantidad por grupo {$cant->rest}</label>
                         {/if}
 					{/if}
-					<button class="add-to-cart">Add to car</button>
+					<button data-toggle="tooltip" data-placement="bottom" title="Agregar al carrito" class="add-to-cart">Add to car</button>
 				</div>
 			</div>
 		{/foreach}
@@ -60,7 +60,7 @@
 <div id="contentdiv" style="display: none;">
 	<p id="message"></p>
 	<div class="col-md-12">
-		<a class="keep-buy btn btn-default pull-left">Continuar comprando</a>
-		<a href="{$base_dir}pedido" class="see-list btn btn-default pull-right">Ir al carrito</a>
+		<a data-toggle="tooltip" data-placement="bottom" title="Continuar comprando" class="keep-buy btn btn-default pull-left">Continuar comprando</a>
+		<a href="{$base_dir}pedido" data-toggle="tooltip" data-placement="bottom" title="Ir al carrito" class="see-list btn btn-default pull-right">Ir al carrito</a>
 	</div>
 </div>

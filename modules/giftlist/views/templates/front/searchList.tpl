@@ -19,7 +19,7 @@
 		<div class="col-md-3">
 			<input type="text" class="form-control" name="code" id="code" placeholder="Código"/>
 		</div>
-		<button class="btn btn-default button" id="search" >Buscar</button>
+		<button class="btn btn-default button" data-toggle="tooltip" data-placement="bottom" title="Buscar" id="search" >Buscar</button>
 	</div>
 	</form>
 	
@@ -139,7 +139,7 @@
 						<form id="action-{$row['id']}" class="actions" action="{$request_uri}" 
 						role="form" method="post">
 							<div class="row">
-								<a href="{$description_link}/{$row['url']}" data-id="{$row['id']}" 
+								<a href="{$description_link}/{$row['url']}" data-toggle="tooltip" data-placement="bottom" title="Ver" data-id="{$row['id']}" 
 								class="btn-view btn btn-default btn-sm">Ver</a>
 							</div>
 						</form> 

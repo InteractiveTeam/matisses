@@ -8,7 +8,9 @@ include_once _PS_OVERRIDE_DIR_ ."controllers/front/CartController.php";
 class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	public $uploadDir = __DIR__. "../../../uploads/";
 	public $module;
-
+    define(_ERROR_,"Ha ocurrido un error");
+    define(_DELETED_,"Elmininado Correctamente");
+    define(_EDITED_,"Se ha editado la informacion");
 	/**
 	* Select all event types
 	* Select firstname and lastnamen from creator and cocreator
@@ -112,9 +114,9 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	private function _deteleProductFromList($id_list,$id_product){
 		$lpd = new ListProductBondModel();
 		if(!$lpd->deleteProduct($id_list, $id_product)){
-			die("Ha ocurrido un error");
+			die(_ERROR_);
 		}else{
-			die("Elmininado Correctamente");
+			die(_DELETED_);
 		}
 	}
 
@@ -183,13 +185,13 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 		try {
 			if ($list->updateInfo()){
 				$this->context->smarty->assign (array (
-					'response' => "Se ha Editado la información",
+					'response' => _EDITED_,
 					'error' => false
 				));
 			}
 			else
 				$this->context->smarty->assign (array (
-					'response' => "Ha ocurrido un error",
+					'response' => _ERROR_,
 					'error' => true
 				));
 		} catch ( Exception $e ) {
@@ -229,15 +231,16 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 		try {
 			if ($list->save()){
 				$list->image = !$this->_uploadImage() ? $list->image : $this->_uploadImage();
+                $list->id_cocreator = $list->setCocreator($list-id,Tools::getValue ( 'email_cocreator' ));
 				$list->update();
 				$this->context->smarty->assign (array (
-					'response' => "Se ha Editado la lista",
+					'response' => _EDITED_,
 					'error' => false
 				));
 			}
 			else
 			$this->context->smarty->assign (array (
-				'response' => "Ha ocurrido un error",
+				'response' => _ERROR_,
 				'error' => true
 			));
 		} catch ( Exception $e ) {

@@ -5,7 +5,7 @@
 <div class="container">
 {if isset($response)}
 	<div class="alert {if $error == true} alert-danger{else} alert-success{/if}  alert-dismissible" role="alert">
-		<button type="button" data-dismiss="alert" id="closeMsg" class="close" 
+		<button type="button" data-toggle="tooltip" data-placement="bottom" title="Cerrar" data-dismiss="alert" id="closeMsg" class="close" 
 		aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		{$response}
 	</div>
@@ -53,11 +53,11 @@
 	         			<p><b>Fecha:</b> {date("d/m/Y H:i", strtotime($list_desc['event_date']))}</p>
 						<p><b>Cantidad de invitados:</b> {$list_desc['guest_number']}</p>
 						{if $list_desc['edit'] == 1 && empty($list_desc['id_cocreator'])}
-						<a class="btn btn-success" href="{$form}" id="btn-edit">Editar <span class="icon-pencil"></span></a>
+						<a class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Editar" href="{$form}" id="btn-edit">Editar <span class="icon-pencil"></span></a>
 						{elseif $list_desc['edit'] == 1 && !empty($list_desc['id_cocreator'])}						
-						<a class="btn btn-success" href="{$form_edit}" id="btn-edit">Editar <span class="icon-pencil"></span></a>
+						<a class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Editar" href="{$form_edit}" id="btn-edit">Editar <span class="icon-pencil"></span></a>
 						{else}
-						<a class="btn btn-success" href="{$form_cocreator}" id="btn-edit-info">Editar mi información <span class="icon-pencil"></span></a>
+						<a class="btn btn-success" href="{$form_cocreator}" data-toggle="tooltip" data-placement="bottom" title="Editar mi informacion" id="btn-edit-info">Editar mi información <span class="icon-pencil"></span></a>
 						{/if}
 	         		</div>
 	         	</div>
@@ -82,7 +82,7 @@
 					{/if}
 				{/foreach}
 				{if $list_desc['edit']}
-				<button class="delete-product">Quitar producto</button>
+				<button data-toggle="tooltip" data-placement="bottom" title="Quitar producto" class="delete-product">Quitar producto</button>
 				{/if}
 			</div>
 		{/foreach}

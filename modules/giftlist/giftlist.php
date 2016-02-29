@@ -38,6 +38,8 @@ class giftlist extends Module
 			$this->registerHook('displayProductButtons');
 			$this->registerHook('displayBackOfficeHeader');
 			$this->registerHook("actionOrderStatusUpdate");
+            $this->registerHook("actionCustomerAccountAdd");
+            $this->registerHook("actionProductInList");
 			$this->dbstruct->CreateListConfigurationTable();
 			$this->dbstruct->CreateEventTypeTable();
 			$this->dbstruct->CreateGiftListTable();
@@ -100,7 +102,46 @@ class giftlist extends Module
 			return $this->display(__FILE__, 'addToListBtn.tpl');
 		}
 	}
+    
+    public function hookActionProductInList($params){
+        $l = new GiftListModel($params['id_list']);
+        $p = new ProductCore($param["id_product"]);
+        $lpd = ListProductBondModel::getByProductAndList($params['id_list'],$params['id_product']);
+        $customer = new CustomerCore($l->id_creator);
+        $cant = ToolsCore::jsonDecode($lpd['group']);
+        $attr = $p->getAttributeCombinationsById($params['id_product_attribute'],$this->context->language->id);
+        $id_image = ProductCore::getCover($params['id_product']);
+        // get Image by id
+        if (sizeof($id_image) > 0) {
+            $image = new Image($id_image['id_image']);
+            // get image full URL
+            $image_url = _PS_BASE_URL_._THEME_PROD_DIR_.$image->getExistingImgPath().".jpg";
+        }
+        $out[] = array (
+            '{creator}' => $customer->firstname.' '.$customer->lastname,
+            '{image}' => $image_url,
+            '{name}' => $p->name[1],
+            '{price}' => $p->price,
+            '{color}' => attr['attribute_name'],
+            "{wanted}" => $cant->wanted,
+            "{missing}" => $cant->missing,
+            '{description_link}' =>$context->link->getModuleLink('giftlist', 'descripcion',array('url' => $l->url)),
+        );
+        $this->_sendEmail("out-stock","Producto agotado",$customer,$params);
+    }
 
+    public function hookactionCustomerAccountAdd($params){
+        //get the email
+        $sql = "SELECt * FROM "._DB_PREFIX_."  email_cocreator WHERE email = '".$params['customer']->email."'";
+        $res = Db::getInstance()->getRow($ql);
+        if(!empty($res)){
+            Db::getInstace()->update('gift_list',array(
+                'id_cocreator' => $parmas['customer']->id
+            ),'id ='.$res['íd+list']);
+        }
+        
+    }
+    
 	public function hookActionOrderStatusUpdate($params){
 		//Order status awaiting payment confirmation
         if($params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_COD_VALIDATION")

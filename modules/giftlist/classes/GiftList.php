@@ -183,16 +183,20 @@ class GiftListModel extends ObjectModel
 
 	/**
 	 * @param stirng $email
-	 * search ig $email exist in database, if exist save id, else save 0
+	 * search ig $email exist in database, if exist save id, else save in ps-emai-cocreator
 	 * @return number
 	 */
-	public function setCoCreator($email){
+	public function setCoCreator($id,$email){
 		$sql = "SELECT id_customer FROM `" . _DB_PREFIX_ . "customer` WHERE `email` = '". $email."';";
 		$row = Db::getInstance()->getRow($sql);
 		if(Db::getInstance()->numRows() > 0)
 			return $row['id_customer'];
-		else
-			return 0;
+		else{
+            $sql = Db::getInstance()->insert('email_cocreator',array(
+                'id_list' => $id,
+                'email' => $email
+            ));
+        }
 	}
 
 	public function searchByCode($code){

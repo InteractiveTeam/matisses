@@ -410,8 +410,11 @@ class CartController extends CartControllerCore
 		$params['id_product_attribute'] = $this->id_product_attribute;
 		
 		$response = Hook::exec('actionProductCartSave', $params);
-		if ($this->qty == 0 || $response==0)
-			$this->errors [] = Tools::displayError ( 'Null quantity.', ! Tools::getValue ( 'ajax' ) );
+		if ($this->qty == 0 || $response==0){
+            $params['id_list'] = $this->id_giftlist;
+            Hook::exec('actionProductInList',$params);
+            $this->errors [] = Tools::displayError ( 'Null quantity.', ! Tools::getValue ( 'ajax' ) );
+        }
 		elseif (! $this->id_product)
 			$this->errors [] = Tools::displayError ( 'Product not found', ! Tools::getValue ( 'ajax' ) );
 		$product = new Product ( $this->id_product, true, $this->context->language->id );

@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
 	$('#btn-edit').fancybox({
 		'transitionIn'	:	'elastic',
 		'transitionOut'	:	'elastic',
@@ -33,7 +34,7 @@ $(document).ready(function() {
             $("#tel").val(dir.tel);
             $("#cel").val(dir.cel);
             //issetcocreator
-            if(typeof address_cocreator != 'undefinded' && address_cocreator != ""){
+            if(typeof address_cocreator !== 'undefined' && address_cocreator !== ""){
                 $('#tel_co').mask("000-00-00", {placeholder: "___-__-__"});
                 $('#cel_co').mask("000-000-0000", {placeholder: "___-___-____"});
                 $("#id_list_co").val($(".products-associated").attr("data-id"));
@@ -87,6 +88,8 @@ $(document).ready(function() {
 	$(".add-to-cart").click(function(e){
 		var product_card = $(this).parent().parent();
 		total = product_card.find(".total_qty").val() * (typeof product_card.find(".qty_group") != "undefined" ? product_card.find(".qty_group").attr("data-value") : 1);
+        if(total > product_card.find(".total_qty").attr("data-value"))
+            total = parseInt(product_card.find(".total_qty").attr("data-value"));
 		addFromList(product_card.attr("data-id"),product_card.find(".prod-attr").val(), total, $(this),$(".products-associated").attr("data-id"));
 	});
 
