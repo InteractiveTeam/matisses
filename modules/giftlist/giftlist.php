@@ -123,7 +123,7 @@ class giftlist extends Module
             '{image}' => $image_url,
             '{name}' => $p->name[1],
             '{price}' => $p->price,
-            '{color}' => attr['attribute_name'],
+            '{color}' => $attr['attribute_name'],
             "{wanted}" => $cant->wanted,
             "{missing}" => $cant->missing,
             '{description_link}' =>$context->link->getModuleLink('giftlist', 'descripcion',array('url' => $l->url))
