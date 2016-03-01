@@ -47,7 +47,7 @@
             </div>
             <div class="col-md-6">
                 <div class="checkbox">
-                    <label>Publico <input type="checkbox" {if $edit}{if $data['public']}checked{/if}{/if} id="public" name="public">
+                    <label>Publico <input type="checkbox" {if $edit}{if $data['public']}checked{/if}{else}checked{/if} id="public" name="public">
                     </label>
                 </div>
             </div>
@@ -55,7 +55,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="guest_number">Numero de invitados</label> <input type="number" class="form-control" name="guest_number" id="guest_number"  value="{if $edit}{$data['guest_number']}{/if}" placeholder="Numero de invitados">
+                    <label for="guest_number">Numero de invitados</label> <input type="number" class="form-control" name="guest_number" id="guest_number"  value="{if $edit}{$data['guest_number']}{else}0{/if}" placeholder="Numero de invitados">
                 </div>
             </div>
             <div class="col-md-6">
@@ -75,7 +75,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="max_amount">Cantidad Maxima</label> <input type="number" class="form-control" name="max_amount" value="{if $edit}{$data['max_amount']}{/if}" id="max_amount" placeholder="Cantidad Maxima">
+                    <label for="min_amount">Cantidad Maxima</label> <input type="number" class="form-control" name="min_amount" value="{if $edit}{$data['min_amount']}{/if}" id="min_amount" placeholder="Cantidad Maxima">
                 </div>
             </div>
         </div>
@@ -105,6 +105,9 @@
                     <label for="address">Direccion</label> <input type="text" id="address" class="form-control" name="address"  value="{if $edit}{$info_creator->address}{/if}" placeholder="Direccion" />
                 </div>
                 <div class="col-md-12">
+                    <label for="address_2">Segunda Direccion</label> <input type="text" id="address_2" class="form-control" name="address_2"  value="{if $edit}{$info_creator->address_2}{/if}" placeholder="Segunda Direccion" />
+                </div>
+                <div class="col-md-12">
                     <label for="tel">Telefono</label> <input type="text" id="tel" class="form-control" name="tel" placeholder="Telefono"  value="{if $edit}{$info_creator->tel}{/if}" />
                 </div>
                 <div class="col-md-12">
@@ -131,113 +134,30 @@
                 {if $edit}{if !empty($data['id_cocreator']) && $data['id_cocreator'] == $cookie->customer->id}
                 {$info_cocreator = Tools::JsonDecode($data['info_cocreator'])}
                 <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="country">Pais</label> <input type="text" id="country" class="form-control" value="Colombia" disabled />
-                        </div>
+                    <div class="col-md-12">
+                        <label for="country">Pais</label> <input type="text" id="country" class="form-control" value="Colombia" disabled />
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="city_co">Ciudad</label> <input type="text" id="city_co" class="form-control" name="city_co" placeholder="Ciudad" value="{if $edit}{$info_cocreator->city_co}{/if}" />
-                        </div>
+                    <div class="col-md-12">
+                        <label for="city_co">Ciudad</label> <input type="text" id="city_co" class="form-control" name="city_co" placeholder="Ciudad" value="{if $edit}{$info_cocreator->city_co}{/if}" />
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="town_co">Municipio</label> <input type="text" id="town_co" class="form-control" name="town_co" placeholder="Municipio" value="{if $edit}{$info_cocreator->town_co}{/if}" />
-                        </div>
+                    <div class="col-md-12">
+                        <label for="town_co">Municipio</label> <input type="text" id="town_co" class="form-control" name="town_co" placeholder="Municipio" value="{if $edit}{$info_cocreator->town_co}{/if}" />
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="address_co">Direccion</label> <input type="text" id="address_co" class="form-control" name="address_co" placeholder="Direccion" value="{if $edit}{$info_cocreator->address_co}{/if}" />
-                        </div>
+                    <div class="col-md-12">
+                        <label for="address_co">Direccion</label> <input type="text" id="address_co" class="form-control" name="address_co" placeholder="Direccion" value="{if $edit}{$info_cocreator->address_co}{/if}" />
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="tel_co">Telefono</label> <input type="text" id="tel_co" class="form-control" name="tel_co" placeholder="Telefono" value="{if $edit}{$info_cocreator->tel_co}{/if}"/>
-                        </div>
+                    <div class="col-md-12">
+                        <label for="address_co_2">Segunda Direccion</label> <input type="text" id="address_co_2" class="form-control" name="address_co_2" placeholder="Segunda Direccion" value="{if $edit}{$info_cocreator->address_co_2}{/if}" />
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="cel_co">Ceular</label> <input type="text" id="cel_co" class="form-control" name="cel_co" placeholder="Celular" value="{if $edit}{$info_cocreator->cel_co}{/if}"/>
-                        </div>
+                    <div class="col-md-12">
+                        <label for="tel_co">Telefono</label> <input type="text" id="tel_co" class="form-control" name="tel_co" placeholder="Telefono" value="{if $edit}{$info_cocreator->tel_co}{/if}"/>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="cel_co">Ceular</label> <input type="text" id="cel_co" class="form-control" name="cel_co" placeholder="Celular" value="{if $edit}{$info_cocreator->cel_co}{/if}"/>
                     </div>
                 </div>
                 {/if}{/if}
             </div>
-        </div>
-        {* 2 dir*}
-        {if $edit}{$info_creator = Tools::JsonDecode($data['info_creator'])}{/if}
-        <div class="row">
-            <p>Segunda direccion</p>
-            {if $edit}{$info_creator_2 = Tools::JsonDecode($data['info_creator_2'])}{/if}
-            <div class="col-md-6">		
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="country_2">Pais</label> <input type="text" id="country_2" class="form-control" value="Colombia" disabled/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="city_2">Ciudad</label> <input type="text" id="city_2" class="form-control" name="city_2" placeholder="Ciudad" value="{if $edit}{$info_creator_2->city_2}{/if}" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="town_2">Municipio</label> <input type="text" id="town_2" class="form-control" name="town_2" placeholder="Municipio" value="{if $edit}{$info_creator_2->town_2}{/if}" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="address_2">Direccion</label> <input type="text" id="address_2" class="form-control" name="address_2" placeholder="Direccion" value="{if $edit}{$info_creator_2->address_2}{/if}" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="tel_2">Telefono</label> <input type="text" id="tel_2" class="form-control" name="tel_2" placeholder="Telefono" value="{if $edit}{$info_creator_2->tel_2}{/if}" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="cel_2">Celular</label> <input type="text" id="cel_2" class="form-control" name="cel_2" placeholder="Celular" value="{if $edit}{$info_creator_2->cel_2}{/if}" />
-                    </div>
-                </div>
-            </div>
-            {*dir 2 coo*}
-            {if $edit}{if !empty($data['id_cocreator']) && $data['id_cocreator'] == $cookie->customer->id}
-            {$info_cocreator = Tools::JsonDecode($data['info_cocreator_2'])}
-            <div class="col-md-6">		
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="country_co_2">Pais</label> <input type="text" id="country_co_2" class="form-control" value="Colombia" disabled />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="city_co_2">Ciudad</label> <input type="text" id="city_co_2" class="form-control" name="city_co_2" placeholder="Ciudad" value="{if $edit}{$info_cocreator_2->city_co_2}{/if}"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="town_co_2">Municipio</label> <input type="text" id="town_co_2" class="form-control" name="town_co_2" placeholder="Municipio" value="{if $edit}{$info_cocreator_2->town_co_2}{/if}"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="address_co_2">Direccion</label> <input type="text" id="address_co_2" class="form-control" name="address_co_2" placeholder="Direccion" value="{if $edit}{$info_cocreator_2->address_co_2}{/if}"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="tel_co_2">Telefono</label> <input type="text" id="tel_co_2" class="form-control" name="tel_co_2" placeholder="Telefono" value="{if $edit}{$info_cocreator_2->tel_co_2}{/if}"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="cel_co_2">Celular</label> <input type="text" id="cel_co_2" class="form-control" name="cel_co_2" placeholder="Celular" value="{if $edit}{$info_cocreator_2->cel_co_2}{/if}"/>
-                    </div>
-                </div>
-            </div>
-            {/if}{/if}
         </div>
         <div class="col-md-12">
             <input id="btnSave" type="submit" name="saveList"

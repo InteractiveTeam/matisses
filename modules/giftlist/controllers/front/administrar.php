@@ -90,7 +90,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 		$list->guest_number = Tools::getValue ( 'guest_number' );
 		$list->recieve_bond = Tools::getValue ( 'recieve_bond' ) == "on" ? 1 : 0;
 		$list->edit = Tools::getValue ( 'can_edit' ) == "on" ? 1 : 0;
-		$list->max_amount = Tools::getValue ( "max_amount" );
+		$list->min_amount = Tools::getValue ( "min_amount" );
 		$list->address_after = NULL;
 		$list->code = $list->returnCode();
 		$list->url = $list->slugify($list->name);
@@ -100,21 +100,12 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 				'city'    => Tools::getValue('city'),
 				'town'    => Tools::getValue('town'),
 				'address' => Tools::getValue('address'),
+                'address_2' => Tools::getValue('address_2'),
 				'tel'     => Tools::getValue('tel'),
 				'cel'     => Tools::getValue('cel')
-		);
-        $dirC2 = array(
-				'country' => "Colombia",
-				'city_2'    => Tools::getValue('city_2'),
-				'town_2'    => Tools::getValue('town_2'),
-				'address_2' => Tools::getValue('address_2'),
-				'tel_2'     => Tools::getValue('tel_2'),
-				'cel_2'     => Tools::getValue('cel_2')
-		);
-        
+		);        
         
 		$list->info_creator = Tools::jsonEncode($dirC);
-        $list->info_creator_2 = Tools::jsonEncode($dirC2);
 		$id == 0 ? $list->created_at = date ( "Y-m-d H:i:s" ) : $list->updated_at = date ( "Y-m-d H:i:s" );
 		try {
 			if ($list->save()){
@@ -125,19 +116,11 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
                     'city_co'    => Tools::getValue('city_co'),
                     'town_co'    => Tools::getValue('town_co'),
                     'address_co' => Tools::getValue('address_co'),
+                    'address_co_2' => Tools::getValue('address_co_2'),
                     'tel_co'     => Tools::getValue('tel_co'),
                     'cel_co'     => Tools::getValue('cel_co')
                 );
-                $dirCC2 =  array(
-                    'country' => "Colombia",
-                    'city_co_2'    => Tools::getValue('city_co_2'),
-                    'town_co_2'    => Tools::getValue('town_co_2'),
-                    'address_co_2' => Tools::getValue('address_co_2'),
-                    'tel_co_2'     => Tools::getValue('tel_co_2'),
-                    'cel_co_2'     => Tools::getValue('cel_co_2')
-                );
                 $list->info_cocreator = Tools::jsonEncode($dirCC);
-                $list->info_cocreator_2 = Tools::jsonEncode($dirCC2);
 				$list->update();
 				$this->context->smarty->assign ( array (
 						'response' => "Se ha creado la lista",

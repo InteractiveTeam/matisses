@@ -132,8 +132,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 	 * @param int $id
 	 */
 	private function _ajaxProcessDeleteList($id){
-		$list = new GiftListModel ();
-		$list->id = $id;
+		$list = new GiftListModel($id);
 		if($list->delete()){
 			$response = array(
 				'msg' => "Se ha eliminado correctamente",

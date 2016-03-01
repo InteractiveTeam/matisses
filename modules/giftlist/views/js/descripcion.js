@@ -1,51 +1,5 @@
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
-	$('#btn-edit').fancybox({
-		'transitionIn'	:	'elastic',
-		'transitionOut'	:	'elastic',
-		'speedIn'		:	600, 
-		'speedOut'		:	200, 
-		'overlayShow'	:	false,
-		'type'			: 	'ajax',
-		afterShow		: 	function(){
-            $('#event_date').datetimepicker({
-                 minDate:'1',
-                 format:"d/m/Y H:i",
-                 mask:true
-            });
-            validate();
-            $('#tel').mask("000-00-00", {placeholder: "___-__-__"});
-            $('#cel').mask("000-000-0000", {placeholder: "___-___-____"});
-            //fill form
-            $("#form-title").text("Editar Lista");
-            $("#name").val(list_desc.name);
-            $("#id_list").val(list_desc.id);
-            $("#event_type").val(list_desc.event_type);
-            $("#event_date").val(list_desc.event_date);
-            $("#guest_number").val(list_desc.guest_number);
-            $("#max_amount").val(list_desc.max_amount);
-            $("#message").val(list_desc.message);
-            $('#public').prop('checked',list_desc.public == 1 ? 'checked' : '');
-            $('#recieve_bond').prop('checked',list_desc.recieve_bond == 1 ? 'checked' : '');
-            var dir = JSON.parse(list_desc.info_creator);
-            $("#city").val(dir.city);
-            $("#town").val(dir.town);
-            $("#address").val(dir.address);
-            $("#tel").val(dir.tel);
-            $("#cel").val(dir.cel);
-            //issetcocreator
-            if(typeof address_cocreator !== 'undefined' && address_cocreator !== ""){
-                $('#tel_co').mask("000-00-00", {placeholder: "___-__-__"});
-                $('#cel_co').mask("000-000-0000", {placeholder: "___-___-____"});
-                $("#id_list_co").val($(".products-associated").attr("data-id"));
-                $("#city_co").val(address_cocreator.city);
-                $("#town_co").val(address_cocreator.town);
-                $("#address_co").val(address_cocreator.address);
-                $("#tel_co").val(address_cocreator.tel);
-                $("#cel_co").val(address_cocreator.cel);
-			}
-		}
-	});
 
 	$('#btn-edit-info').fancybox({
 		'transitionIn'	:	'elastic',
@@ -281,7 +235,7 @@ function addFromList(idProduct, idCombination, quantity, callerElement,id_list){
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown)
 		{
-			alert("Impossible to add the product to the cart.\n\ntextStatus: '" + textStatus + "'\nerrorThrown: '" + errorThrown + "'\nresponseText:\n" + XMLHttpRequest.responseText);
+			alert("Impossible to add t|he product to the cart.\n\ntextStatus: '" + textStatus + "'\nerrorThrown: '" + errorThrown + "'\nresponseText:\n" + XMLHttpRequest.responseText);
 			//reactive the button when adding has finished
 			$('#add_to_cart input').removeAttr('disabled').addClass('exclusive').removeClass('exclusive_disabled');
 		}

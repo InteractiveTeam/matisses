@@ -1,25 +1,6 @@
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
-	//modals
-    $('#btnAdd').fancybox({
-		'transitionIn'	:	'elastic',
-		'transitionOut'	:	'elastic',
-		'speedIn'		:	600, 
-		'speedOut'		:	200, 
-		'overlayShow'	:	false,
-		'type'			: 	'ajax',
-		afterShow		: 	function(){
-            validation();				
-            $('#event_date').datetimepicker({
-                 minDate:'1',
-                 format:"Y-m-d H:i",
-                 mask:true
-            });
-            $('#tel').mask("000-00-00", {placeholder: "___-__-__"});
-            $('#cel').mask("000-000-0000", {placeholder: "___-___-____"});
-        }
-	});
-	
+		
 	$(document).on('click', '.popup-modal-dismiss', function (e) {
 		e.preventDefault();
 		$.fancybox.close();

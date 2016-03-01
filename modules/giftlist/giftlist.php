@@ -62,7 +62,8 @@ class giftlist extends Module
 	public function uninstall(){
 		if(!parent::uninstall())
 			return false;
-
+        unlink(_PS_ROOT_DIR_ . "override/classes/Cart.php");
+        unlink(_PS_ROOT_DIR_ . "override/controllers/front/CartController.php");
 		$this->dbstruct->DeleteListProductBondTable();
 		$this->dbstruct->DeleteListConfigurationTable();
 		$this->dbstruct->DeleteEmailCocreatorTable();

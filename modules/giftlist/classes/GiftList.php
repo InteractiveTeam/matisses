@@ -12,7 +12,7 @@ class GiftListModel extends ObjectModel
 	public $url;
 	public $message;
 	public $image;
-	public $max_amount;
+	public $min_amount;
 	public $info_creator;
 	public $info_cocreator;
 	public $info_creator_2;
@@ -42,11 +42,9 @@ class GiftListModel extends ObjectModel
 			'message' => array('type' => self::TYPE_STRING),
 			'image' => array('type' => self::TYPE_STRING, 'size' => 255),
 			'recieve_bond' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
-			'max_amount' => array('type' => self::TYPE_INT),
+			'min_amount' => array('type' => self::TYPE_INT),
 			'info_creator' => array('type' => self::TYPE_STRING),
 			'info_cocreator' => array('type' => self::TYPE_STRING),
-			'info_creator_2' => array('type' => self::TYPE_STRING),
-			'info_cocreator_2' => array('type' => self::TYPE_STRING), 
 			'edit' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
 			'address_before' => array('type' => self::TYPE_STRING, 'size' => 100),
 			'address_after' => array('type' => self::TYPE_STRING, 'size' => 100),
@@ -91,7 +89,9 @@ class GiftListModel extends ObjectModel
 			return false;
 
 		Db::getInstance()->delete('list_product_bond',"id_list = ".$this->id);
-		$this->deleteImage();
+		Db::getInstance()->delete('email_cocreator',"id_list = ".$this->id);
+
+		//$this->deleteImage();
 		return parent::delete();
 	}
     

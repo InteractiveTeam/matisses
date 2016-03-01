@@ -32,7 +32,7 @@ var ax = {
             var t = new Date(value);
             var now = new Date();
             return t.getDay != now.getDate && t.getMonth != now.getMonth && t.getYear != now.getYear;
-        }, "La fecha no puede ser la actual");
+        }, "La fecha seleccionada en este campo debe ser posterior a la fecha actual.");
 
         $("#frmSaveList").validate({
             rules:{

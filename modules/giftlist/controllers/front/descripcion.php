@@ -205,55 +205,6 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	}
 
 	/**
-	* @param int $id
-	*/
-	private function _saveList($id){
-		$list = new GiftListModel ($id);
-		$list->name = Tools::getValue('name');
-		$list->event_type = Tools::getValue('event_type');
-		$list->event_date = date("Y-m-d H:i:s", strtotime(Tools::getValue('event_date')));
-		$list->public = Tools::getValue('public') == "on" ? 1 : 0;
-		$list->guest_number = Tools::getValue('guest_number');
-		$list->recieve_bond =Tools::getValue('recieve_bond') == "on" ? 1 : 0;
-		$list->max_amount = Tools::getValue("max_amount");
-		$list->address_after = NULL;
-		$list->code = $list->returnCode($id, true);
-		$list->url = $list->slugify($list->name);
-		$list->message = Tools::getValue('message');
-		$dirC = array(
-			'country' => "Colombia",
-			'city'    => Tools::getValue('city'),
-			'town'    => Tools::getValue('town'),
-			'address' => Tools::getValue('address'),
-			'tel'     => Tools::getValue('tel'),
-			'cel'     => Tools::getValue('cel')
-		);
-		$list->info_creator = Tools::jsonEncode($dirC);
-		$list->updated_at = date ( "Y-m-d H:i:s" );
-		try {
-			if ($list->save()){
-				$list->image = !$this->_uploadImage() ? $list->image : $this->_uploadImage();
-                $list->id_cocreator = $list->setCocreator($list-id,Tools::getValue ( 'email_cocreator' ));
-				$list->update();
-				$this->context->smarty->assign (array (
-					'response' => _EDITED_,
-					'error' => false
-				));
-			}
-			else
-			$this->context->smarty->assign (array (
-				'response' => _ERROR_,
-				'error' => true
-			));
-		} catch ( Exception $e ) {
-			$this->context->smarty->assign (array (
-				'response' => $e->getMessage(),
-				'error' => true
-			));
-		}
-	}
-
-	/**
 	* upload image from list
 	* @return boolean|string|NULL
 	*/

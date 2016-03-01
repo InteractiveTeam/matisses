@@ -30,6 +30,13 @@
 								id="address_co" class="form-control" name="address_co"
 								placeholder="Direccion" />
 						</div>
+					</div>			
+					<div class="row">
+						<div class="col-md-12">
+							<label for="address_co_2">Direccion</label> <input type="text"
+								id="address_co_2" class="form-control" name="address_co_2"
+								placeholder="Direccion" />
+						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
