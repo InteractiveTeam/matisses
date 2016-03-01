@@ -96,14 +96,23 @@
 	left: 0;
 	border-bottom: 5px solid #d7162f;
 	border-top: 1px solid #ccc;
-	padding: 1.6rem 7.5rem;
+	padding: 0 7.5rem;
 	}
 
 	.submenu-container > li > ul > li {
     display: block;
     padding: 0;
-	width: 15.6875rem;
+	width: 17.6875rem;
+    background:#f2f2f2;
 	}
+    
+    .submenu-container > li > ul > li:first-child {
+    padding-top: 20px;
+    }    
+
+    .submenu-container > li > ul > li {
+
+    }    
 
 	.submenu-container li > ul > li a {
 	font-size: 1.25rem;
@@ -146,13 +155,13 @@
 
 	.submenu-container li > ul > li .SubCategory a {
 	font-family: 'Open Sans', sans-serif;
-	font-size: 1rem;
+	font-size: 1.2rem;
     color: #757575;
     display: block;
     padding: 0;
     margin: 0;
 	text-align: left;
-	line-height: 1.5;
+	line-height: 1.8;
 	text-transform: none;
     font-weight: lighter;
     transition: all 0.4s ease;
