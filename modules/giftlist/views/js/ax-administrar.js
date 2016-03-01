@@ -3,7 +3,7 @@ var ax = {
         $(document).ready(function(){
             var dateText = $('#event_date');
             dateText.datetimepicker({
-                 minDate:'1',
+                 minDate:'-1969/12/31',
                  format:"d/m/Y H:i",
                  mask: dateText.val() == "" ? true : false
             });
@@ -28,6 +28,11 @@ var ax = {
         $.validator.addMethod("noSpaceEnd", function(value, element) {
             return value.lastIndexOf(" ") != value.length - 1;
         }, "El campo es requerido");
+        $.validator.addMethod("noTodayDate", function(value, element) {
+            var t = new Date(value);
+            var now = new Date();
+            return t.getDay != now.getDate && t.getMonth != now.getMonth && t.getYear != now.getYear;
+        }, "La fecha no puede ser la actual");
 
         $("#frmSaveList").validate({
             rules:{
@@ -40,7 +45,8 @@ var ax = {
                 event_date: {
                     required:true,
                     noSpaceStart:true,
-                    noSpaceEnd:true
+                    noSpaceEnd:true,
+                    noTodayDate:true
                 },
                 guest_number: {
                     required: true,
@@ -79,6 +85,6 @@ var ax = {
             }*/
         });
     }
-}
+};
 
 ax.init();

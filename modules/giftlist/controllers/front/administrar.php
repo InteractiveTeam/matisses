@@ -69,7 +69,8 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 		return false;
 	}
     
-    public function postProcess($id = 0) {
+    public function postProcess() {
+        $id = Tools::getValue("id_list");
 		if (Tools::isSubmit ('saveList')) {
 			$this->_saveList($id);
 		}
@@ -82,7 +83,6 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 			$list = new GiftListModel ();
 		}
 		$list->id_creator = $this->context->customer->id;
-		$list->id_cocreator = 0;
 		$list->name = Tools::getValue ( 'name' );
 		$list->event_type = Tools::getValue ( 'event_type' );
 		$list->event_date = date("Y-m-d H:i:s", strtotime(Tools::getValue ( 'event_date' )));
@@ -103,12 +103,41 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 				'tel'     => Tools::getValue('tel'),
 				'cel'     => Tools::getValue('cel')
 		);
+        $dirC2 = array(
+				'country' => "Colombia",
+				'city_2'    => Tools::getValue('city_2'),
+				'town_2'    => Tools::getValue('town_2'),
+				'address_2' => Tools::getValue('address_2'),
+				'tel_2'     => Tools::getValue('tel_2'),
+				'cel_2'     => Tools::getValue('cel_2')
+		);
+        
+        
 		$list->info_creator = Tools::jsonEncode($dirC);
+        $list->info_creator_2 = Tools::jsonEncode($dirC2);
 		$id == 0 ? $list->created_at = date ( "Y-m-d H:i:s" ) : $list->updated_at = date ( "Y-m-d H:i:s" );
 		try {
 			if ($list->save()){
 				$list->image = !$this->_uploadImage() ? $list->image : $this->_uploadImage();
                 $list->id_cocreator = $list->setCocreator($list-id,Tools::getValue ( 'email_cocreator' ));
+                $dirCC =  array(
+                    'country' => "Colombia",
+                    'city_co'    => Tools::getValue('city_co'),
+                    'town_co'    => Tools::getValue('town_co'),
+                    'address_co' => Tools::getValue('address_co'),
+                    'tel_co'     => Tools::getValue('tel_co'),
+                    'cel_co'     => Tools::getValue('cel_co')
+                );
+                $dirCC2 =  array(
+                    'country' => "Colombia",
+                    'city_co_2'    => Tools::getValue('city_co_2'),
+                    'town_co_2'    => Tools::getValue('town_co_2'),
+                    'address_co_2' => Tools::getValue('address_co_2'),
+                    'tel_co_2'     => Tools::getValue('tel_co_2'),
+                    'cel_co_2'     => Tools::getValue('cel_co_2')
+                );
+                $list->info_cocreator = Tools::jsonEncode($dirCC);
+                $list->info_cocreator_2 = Tools::jsonEncode($dirCC2);
 				$list->update();
 				$this->context->smarty->assign ( array (
 						'response' => "Se ha creado la lista",
@@ -126,6 +155,6 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 					'error' => true
 			));
 		}
-        Tools::redirect($this->context->link->getModuleLink('giftlist', 'listas'));
+        Tools::redirect($this->context->link->getModuleLink('giftlist', 'descripcion',array("url" => $list->url)));
 	}
 }
