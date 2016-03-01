@@ -1,6 +1,6 @@
 {* Owner User *} 
 {capture name=path}
-<a href="{$all_link}">{l s='giftlist' mod='giftlist'}</a> <span class="bread">{$list_desc['name']}</span>
+<a href="{$all_link}">{l s='giftlist' mod='giftlist'}</a><i class="fa fa-angle-right"></i>{$list_desc['name']}
 {/capture}
 {if version_compare($smarty.const._PS_VERSION_,'1.6.0.0','<')}{include file="$tpl_dir./breadcrumb.tpl"}{/if}
 {*List info*}

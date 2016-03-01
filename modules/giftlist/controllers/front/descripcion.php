@@ -170,6 +170,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
     }
 
 		/**
+        *only for cocreator who cannot edit the list
 		* @param int $id
 		*/
 	private function _saveInfoCocreator($id){

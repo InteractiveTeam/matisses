@@ -1,6 +1,6 @@
 {* Not Logged User AND searched list *}
 {capture name=path}
-{$list_desc['name']}
+<i class="fa fa-angle-right"></i>{$list_desc['name']}
 {/capture}
 
 <div class="container">

@@ -15,6 +15,8 @@ class GiftListModel extends ObjectModel
 	public $max_amount;
 	public $info_creator;
 	public $info_cocreator;
+	public $info_creator_2;
+	public $info_cocreator_2;
 	public $recieve_bond;
 	public $edit;
 	public $address_before;
@@ -43,6 +45,8 @@ class GiftListModel extends ObjectModel
 			'max_amount' => array('type' => self::TYPE_INT),
 			'info_creator' => array('type' => self::TYPE_STRING),
 			'info_cocreator' => array('type' => self::TYPE_STRING),
+			'info_creator_2' => array('type' => self::TYPE_STRING),
+			'info_cocreator_2' => array('type' => self::TYPE_STRING), 
 			'edit' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
 			'address_before' => array('type' => self::TYPE_STRING, 'size' => 100),
 			'address_after' => array('type' => self::TYPE_STRING, 'size' => 100),
