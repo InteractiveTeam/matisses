@@ -31,7 +31,7 @@ var ax = {
         $.validator.addMethod("noTodayDate", function(value, element) {
             var t = new Date(value);
             var now = new Date();
-            return t.getDay != now.getDate && t.getMonth != now.getMonth && t.getYear != now.getYear;
+            return (t.getDay == now.getDate && t.getMonth == now.getMonth && t.getYear == now.getYear ? false : true);
         }, "La fecha seleccionada en este campo debe ser posterior a la fecha actual.");
 
         $("#frmSaveList").validate({

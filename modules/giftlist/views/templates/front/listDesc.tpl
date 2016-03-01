@@ -2,6 +2,7 @@
 {capture name=path}
 <i class="fa fa-angle-right"></i>{$list_desc['name']}
 {/capture}
+<input type="hidden" value="{$list_desc['min_amount']}" id="min_amount">
 
 <div class="container">
 	<div class="row">

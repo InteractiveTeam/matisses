@@ -75,7 +75,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="min_amount">Cantidad Maxima</label> <input type="number" class="form-control" name="min_amount" value="{if $edit}{$data['min_amount']}{/if}" id="min_amount" placeholder="Cantidad Maxima">
+                    <label for="min_amount">Cantidad Minima</label> <input type="number" class="form-control" name="min_amount" value="{if $edit}{$data['min_amount']}{/if}" id="min_amount" placeholder="Cantidad Minima">
                 </div>
             </div>
         </div>
