@@ -24,28 +24,10 @@ Fixes generalres
     z-index: 10430!important;
 }
 
-#content-modal {
-	background: #fff;
-}
 
-.wrapper {
-    padding: 18px 4%;
-}
-
-.xdsoft_datetimepicker {
-	z-index: 99999!important;
-}
 
 #message {
     width: 100%;
-}
-
-.modal-footer{
-    margin-top: 15px;
-}
-
-#btnAdd {
-    margin-top: 28px;
 }
 
 #saveInfo{
