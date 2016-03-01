@@ -118,7 +118,7 @@ class giftlist extends Module
             // get image full URL
             $image_url = _PS_BASE_URL_._THEME_PROD_DIR_.$image->getExistingImgPath().".jpg";
         }
-        $out[] = array (
+        $out = array (
             '{creator}' => $customer->firstname.' '.$customer->lastname,
             '{image}' => $image_url,
             '{name}' => $p->name[1],
@@ -126,7 +126,7 @@ class giftlist extends Module
             '{color}' => attr['attribute_name'],
             "{wanted}" => $cant->wanted,
             "{missing}" => $cant->missing,
-            '{description_link}' =>$context->link->getModuleLink('giftlist', 'descripcion',array('url' => $l->url)),
+            '{description_link}' =>$context->link->getModuleLink('giftlist', 'descripcion',array('url' => $l->url))
         );
         $this->_sendEmail("out-stock","Producto agotado",$customer,$params);
     }
