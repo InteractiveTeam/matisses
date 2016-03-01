@@ -501,6 +501,45 @@ box-sizing: border-box;
 	font-weight: lighter;
 	}
 
+    .cms h3 {
+    text-align: left;
+    font-family: 'condensed';
+    color: #000;
+    text-transform: uppercase;
+    font-size: 1.475rem;
+    }
+
+    .cms h4 {
+    text-align: left;
+    font-family: 'condensed';
+    color: #000;
+    text-transform: uppercase;
+    font-size: 1.35rem;
+    }
+    
+    .container ul  {
+        list-style: inherit;
+        list-style-position: inside;
+    }
+
+    .container ol  {
+    list-style-type: decimal;
+    list-style-position: inside;
+    }
+
+    .container ul li, .container ol li {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1rem;
+	color: #777676;
+	line-height: 1.5;
+	word-break: break-all;
+    font-weight: lighter;
+	}
+    
+    b, strong {
+        font-weight: 700 !important;
+    }
+
 	/*HOME*/
 	/*Slider*/
 	.coleccion {
