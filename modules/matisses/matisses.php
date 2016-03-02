@@ -868,21 +868,22 @@ class matisses extends Module
 		$id_cart 	= is_object($this->context->cart->id) ? $this->context->cart->id : $this->context->cookie->id_cart;
 		$products				= $params['id_product'];
 		$id_product_attribute	= $params['id_product_attribute'];
-		
-		
-		
+
 		if($id_product_attribute!=0)
 		{
 			$reference = self::getReferenceByIdProductAttribute($id_product_attribute,$products);
 			
+			
+			
 			if(!$reference)
 				return false;
+			
 				
 			$response 	= $this->wsmatisses_get_data('inventoryItem','listWebEnabledStock','sap',$this->array_to_xml(array('inventoryItemDTO'=>array('itemCode'=>$reference)),false));
+			
 			$reference	= $response['inventoryItemDTO']['itemCode'];
 			require_once dirname(__FILE__)."/wsclasses/ws_product.php";
 			$ws_product = new ws_product();
-			//print_r($reference);
 			if($reference)
 			{
 				$stock = $response['inventoryItemDTO']['stock']; 
@@ -1290,6 +1291,7 @@ class matisses extends Module
 		
 		if(!$result['return'])
 			return false;
+			
 		
 		if('0101002' == $result['return']['code'])
 		{
@@ -1298,7 +1300,7 @@ class matisses extends Module
 		}else{
 				$datos 		= $this->xml_to_array(utf8_encode($result['return']['detail']));
 			 }
-		//echo "<pre>"; print_r($datos); echo "</pre>--------------------------";
+		
 		return $datos;
 	}
 	
