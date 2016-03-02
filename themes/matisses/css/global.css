@@ -12,7 +12,6 @@ font-weight: normal;
 font-style: normal;
 }*/
 
-
 @font-face {
 font-family: 'condensed';
 src: url('../font/tradegothic-boldcondtwenty-webfont.woff') format('woff');
@@ -492,12 +491,11 @@ box-sizing: border-box;
 	}
 
 	/*content page*/
-	.center_column p {
+	p {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 1rem;
 	color: #777676;
 	line-height: 1.5;
-	word-break: break-all;
 	font-weight: lighter;
 	}
 
@@ -516,17 +514,17 @@ box-sizing: border-box;
     font-size: 1.35rem;
     }
     
-    .container ul  {
+   .cms-preguntas-frecuentes .container ul  {
         list-style: inherit;
         list-style-position: inside;
     }
 
-    .container ol  {
+    .cms-preguntas-frecuentes .container ol  {
     list-style-type: decimal;
     list-style-position: inside;
     }
 
-    .container ul li, .container ol li {
+    .cms-preguntas-frecuentes .container ul li, .cms-preguntas-frecuentes .container ol li {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 1rem;
 	color: #777676;
@@ -1104,7 +1102,11 @@ box-sizing: border-box;
 	font-size: 1.125rem;
 	padding-bottom: 5px;
 	}
-	p.lnk a {
+    a.link {
+    text-decoration: underline;
+    color:#d7162f;
+    }
+    p.lnk a {
 	color: #000;
 	}
 	p.lnk a:hover{color: #d7162f;}
@@ -3418,7 +3420,7 @@ box-sizing: border-box;
 /* footer */
 	.footer  p{
 	color: #bcbcbc;
-	font-size: 0.875rem;
+    line-height: 1.2rem;
 	}
 	.footer .checker {
 	display: inline-block;
@@ -3427,6 +3429,7 @@ box-sizing: border-box;
     display: inline-block;
     vertical-align: top;
     margin-left: 0.625rem;
+    font-family: 'Open Sans', sans-serif;
 	}
 	.footer-up{
 	background-color: #212121;
@@ -3478,7 +3481,10 @@ box-sizing: border-box;
 	.menu-footer {
 	margin-bottom: 1.25rem;
 	}
-	.menu-footer li a{
+    .menu-footer ul {
+    list-style: none;
+    }	
+    .menu-footer li a{
 	color: #bcbcbc;
 	font-family: 'gothic';
 	font-size: 1.125rem;
@@ -3489,6 +3495,7 @@ box-sizing: border-box;
 	color: #fff;
 	}
 	.footer .share p {
+    font-family: 'Open Sans', sans-serif;
     display: inline-block;
     margin-right: 0.9375rem;
 	vertical-align: bottom;
@@ -4013,6 +4020,45 @@ transition: all 0.2s ease;
 	width: auto;
 }
 
+.detail-order #block-order-detail #sendOrderMessage {
+    display:none;
+}
+
+.detail-order > div#block-order-detail > ul.address > li.address_title {
+    font-family: 'condensed';
+    color: #000;
+    text-transform: uppercase;
+    font-size: 1.475rem;
+    text-align: left;
+    background: #e1e1e1;
+    border: 1px solid #CFCECE;
+    margin-bottom: 1.25rem;
+    padding: 0.625rem 0.9375rem;
+    clear: both;
+    display: inline-block;
+    width: 100%;
+}
+
+.detail-order > div#block-order-detail div#order-detail-content {
+    margin-top: 60px;
+}
+
+.detail-order > div#block-order-detail div#order-detail-content table {
+    background-color: #FBFBFB;
+}
+
+.detail-order > div#block-order-detail div#order-detail-content table tbody .item td { 
+text-align: right;
+}
+
+.detail-order > div#block-order-detail div#order-detail-content table tfoot .item td {
+    text-align: right;
+}
+
+#block-order-detail .address.item .address_title ~ li {
+    display: none;
+}
+
 /*Experienca*/
 
 .experiences-list li {
@@ -4086,6 +4132,14 @@ line-height: 1.5;
 .cart_navigation a:nth-child(1){
 	float:right;
 }*/
+
+.block-history #block-order-detail #submitReorder .btn.btn-default.btn-red, .block-history #block-order-detail  .order-warranty .btn {
+    margin:15px 0;
+}
+
+.block-history #block-order-detail #submitReorder > p {
+    font-size:1.4rem;
+}
 
 .cart_navigation a:nth-child(2) {
     float: right;
@@ -4283,7 +4337,7 @@ line-height: 1.5;
 	background-position: -30px -105px;
 }
 
-.module-matisses-garantias table tr {
+.history table tr, .module-matisses-garantias table tr {
 	border-bottom:#D4D4D4 solid 1px;
 }
 
@@ -4473,9 +4527,9 @@ body.new-products {
         padding: 0.6375rem;
         }
 
-    .top-pagination-content ul.pagination li.pagination_previous span, .top-pagination-content ul.pagination li.pagination_next span, .top-pagination-content ul.pagination li.pagination_previous a, .top-pagination-content ul.pagination li.pagination_next a {
+    /*.top-pagination-content ul.pagination li.pagination_previous span, .top-pagination-content ul.pagination li.pagination_next span, .top-pagination-content ul.pagination li.pagination_previous a, .top-pagination-content ul.pagination li.pagination_next a {
     padding: 0.925rem 0.9375rem;
-    }
+    }*/
 
 /*Hover product*/
 
@@ -4494,4 +4548,23 @@ body.new-products {
 
 a[title='Pedir de nuevo'] {
 display:none;
+}
+
+/*Lista de Deseos*/
+
+.module-blockwishlist-mywishlist .block-order-detail {
+    margin-top:20px;
+}
+
+.module-blockwishlist-mywishlist .wl_send .col-md-8 {
+    margin:0;
+    padding: 0
+}
+
+.module-blockwishlist-mywishlist .wl_send .row .col-md-4 {
+   margin-top: 38px;
+}
+
+.module-blockwishlist-mywishlist .wl_send .submit {
+    margin-top: 20px;
 }

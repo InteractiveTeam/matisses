@@ -1259,7 +1259,11 @@
     }
 
     .sf-contener .submenu-container > li > ul {
-        padding: 20px;
+        padding: 0 20px;
+    }
+    
+    .submenu-container li > ul > li .SubCategory {
+        left: 19rem !important;
     }
 
     .sf-contener .submenu-container li > ul > li > ul {
@@ -2523,6 +2527,22 @@
     
     #pagenotfound .optionDirection .btn_shears {
     position: inherit;
+    }
+    
+    /*lista de deseos*/
+    
+    .module-blockwishlist-mywishlist .block-order-detail {
+        margin-top:20px;
+    }
+    
+    .module-blockwishlist-mywishlist .wl_send .row .col-md-4 {
+       margin-top: 20px;
+       padding: 0
+    }
+
+     .module-blockwishlist-mywishlist .wl_send button.btn.btn-default.btn-red {
+        padding: 0.47rem 1.3rem;
+        width: 100%;
     }
 
 }
