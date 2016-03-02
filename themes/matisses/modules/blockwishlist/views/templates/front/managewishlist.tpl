@@ -59,7 +59,7 @@
                 <label>{l s='Permalink' mod='blockwishlist'}:</label>
                 <input type="text" class="form-control" value="{$link->getModuleLink('blockwishlist', 'view', ['token' => $token_wish])|escape:'html':'UTF-8'}" readonly="readonly"/>
             </div>
-            <div class="submit grid_12">
+            <div class="submit grid_12 hidden">
                 <a id="showSendWishlist" class="btn btn-default btn-red" href="#" onclick="WishlistVisibility('wl_send', 'SendWishlist'); return false;" title="{l s='Send this wishlist' mod='blockwishlist'}">
                     {l s='Send this wishlist' mod='blockwishlist'}
                 </a>
