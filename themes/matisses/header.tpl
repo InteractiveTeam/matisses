@@ -80,6 +80,28 @@
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 		<![endif]-->
+		
+<!--Chaordic loader-->		
+<script async defer src="//static.chaordicsystems.com/static/loader.js" data-apikey="matisses"></script>
+{if $logged}
+    <script>
+        window.chaordic_meta = {
+            "page": {
+                "name": "{$page_name}",
+                "timestamp": new Date()
+            }
+        }
+    </script>
+{else}
+    <script>
+        window.chaordic_meta = {
+            "page": {
+                "name": "{$page_name}",
+                "timestamp": new Date()
+            }
+        }
+    </script>
+{/if}
 </head>
 <body{if isset($page_name)} id="{$page_name|escape:'html':'UTF-8'}"{/if} class="{if isset($page_name)}{$page_name|escape:'html':'UTF-8'}{/if}{if isset($body_classes) && $body_classes|@count} {implode value=$body_classes separator=' '}{/if}{if $hide_left_column} hide-left-column{/if}{if $hide_right_column} hide-right-column{/if}{if isset($content_only) && $content_only} content_only{/if} lang_{$lang_iso}" itemscope itemtype="http://schema.org/WebPage">
 	{if !isset($content_only) || !$content_only}

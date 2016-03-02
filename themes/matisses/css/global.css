@@ -972,6 +972,12 @@ box-sizing: border-box;
 	text-transform: uppercase;
 	}
 
+    /*filtro busqueda*/
+
+    #search .content_sortPagiBar:last-child .category-right#productsSortForm {
+        min-height: 235px;
+    }
+
 	/*Carrito de compra*/
 	#index #left_column, #index #right_column {
 	display: none;
@@ -1022,6 +1028,9 @@ box-sizing: border-box;
 	height: 36px;
 	opacity: 0.65;
 	}
+    #homepage-slider .bx-wrapper .bx-viewport {
+    height: 675px !important;
+    }
 	#pagenotfound h1 span:before, #pagenotfound h1 span:after{
 	font-size: 138px;
 	left: -187px;
@@ -4102,7 +4111,7 @@ width:109%;
 }
 
 /*GARANTIA*/
-.damage {
+.scroll-left.scroll-pane.mCustomScrollbar._mCS_1 {
 border: #E1E1E1 solid 1px;
 padding: 15px;
 font-family: 'Open Sans', sans-serif;
@@ -4126,6 +4135,14 @@ line-height: 1.5;
 
 .supply-warranty .grid_8 .form-group .right {
 	text-align: right;
+}
+
+.supply-warranty .grid_4 .scroll-left.scroll-pane.mCustomScrollbar {
+    max-height: 300px;
+}
+
+.supply-warranty .grid_4 .mCSB_container .damage {
+	margin-bottom: 0rem;
 }
 
 /*COMPRA
@@ -4200,6 +4217,7 @@ line-height: 1.5;
 .mCSB_container .damage {
 	margin-bottom: 3rem;
 }
+
 .fancybox-outer .fancybox-inner .error {
 	font-family: 'Open Sans', sans-serif;
 	line-height: 1.3rem;
@@ -4339,6 +4357,10 @@ line-height: 1.5;
 
 .history table tr, .module-matisses-garantias table tr {
 	border-bottom:#D4D4D4 solid 1px;
+}
+
+.history table tr, .module-matisses-garantias table.tbl-history tr {
+	border-bottom:none;
 }
 
 .fa-angle-left:before {
@@ -4568,3 +4590,59 @@ display:none;
 .module-blockwishlist-mywishlist .wl_send .submit {
     margin-top: 20px;
 }
+
+.module-blockwishlist-mywishlist .emails {
+    background: #F4F4F4;
+    margin: 20px 0;
+    padding: 20px;
+    width: 82%;
+}
+
+.module-blockwishlist-mywishlist .emails input.form-control[readonly] {
+margin-top:5px;
+}
+
+.module-blockwishlist-mywishlist .emails .row {
+    border-bottom: #ccc solid 1px;
+    padding: 5px 0;
+}
+
+.module-blockwishlist-mywishlist .emails .row .col-md-4 {
+    margin: 0;
+    width:16.666666%;
+}
+
+.module-blockwishlist-mywishlist .emails .row .col-md-8 {
+    margin: 0;
+    width:83.333333%;
+}
+
+.module-blockwishlist-mywishlist .emails .row .col-md-4 .btn.btn-default.btn-red {
+    border: none;
+    padding: 0.3rem 0.9rem;
+}
+/*Iniciar sesion*/
+
+.account_creation .form-group p.up, .account_creation .form-group p.down {
+    position:relative;
+    height:50%;
+}
+
+.account_creation .form-group p.up:before {
+    position:absolute;
+    font-family: FontAwesome;
+    content: '\f0de';
+    font-size: 18px;
+    color: #7B7B7B;
+    top:40%;
+}
+
+.account_creation .form-group p.down:before {
+    position:absolute;
+    font-family: FontAwesome;
+    content: '\f0dd';
+    font-size: 18px;
+    color: #7B7B7B;
+    bottom:40%;
+}
+
