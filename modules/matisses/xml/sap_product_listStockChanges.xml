@@ -1,0 +1,18 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.webintegrator.matisses.co/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ws:callService>
+         <!--Optional:-->
+         <genericRequest>
+            <!--Optional:-->
+            <data>5000</data>
+            <!--Optional:-->
+            <object>inventoryItem</object>
+            <!--Optional:-->
+            <operation>listStockChanges</operation>
+            <!--Optional:-->
+            <source>sap</source>
+         </genericRequest>
+      </ws:callService>
+   </soapenv:Body>
+</soapenv:Envelope>

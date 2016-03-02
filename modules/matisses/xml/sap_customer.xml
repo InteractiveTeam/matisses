@@ -1,0 +1,52 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.webintegrator.matisses.co/">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <ws:callService>
+      <!--Optional:-->
+      <genericRequest>
+        <!--Optional:-->
+        <tmpl_loop name="infoxml">
+			<data>
+			  <![CDATA[<customerDTO>
+				
+					<id><tmpl_var name="id"></id>
+					<lastName1><tmpl_var name="lastName1"></lastName1>
+					<lastName2><tmpl_var name="lastName2"></lastName2>
+					<legalName><tmpl_var name="legalName"></legalName>
+					<names><tmpl_var name="names"></names>
+					
+					<tmpl_if name='defaultBillingAddress'><defaultBillingAddress><tmpl_var name="defaultBillingAddress"></defaultBillingAddress></tmpl_if>
+					<tmpl_if name='defaultShippingAddress'><defaultShippingAddress><tmpl_var name="defaultShippingAddress"></defaultShippingAddress></tmpl_if>
+					
+					<email><tmpl_var name="email"></email>
+					<gender><tmpl_var name="gender"></gender>
+					<salesPersonCode><tmpl_var name="salesPersonCode"></salesPersonCode>
+					<tmpl_if name="addresses">
+						<tmpl_loop name="addresses">
+							<addresses>
+								<addressName><tmpl_var name="addressName"></addressName>
+								<address><tmpl_var name="address"></address>
+								<cityCode><tmpl_var name="cityCode"></cityCode>
+								<cityName><tmpl_var name="cityName"></cityName>
+								<stateCode><tmpl_var name="stateCode"></stateCode>
+								<stateName><tmpl_var name="stateName"></stateName>
+								<email><tmpl_var name="email"></email>
+								<addressType><tmpl_var name="addressType"></addressType>
+								<mobile><tmpl_var name="mobile"></mobile>
+								<phone><tmpl_var name="phone"></phone>
+							</addresses>
+						</tmpl_loop>
+					</tmpl_if>
+				</customerDTO>]]>
+			</data>
+			<!--Optional:-->
+			<object>customer</object>
+			<!--Optional:-->
+			<operation><tmpl_var name='operation'></operation>
+			<!--Optional:-->
+			<source><tmpl_var name='source'></source>
+		</tmpl_loop>
+      </genericRequest>
+    </ws:callService>
+  </soapenv:Body>
+</soapenv:Envelope>
