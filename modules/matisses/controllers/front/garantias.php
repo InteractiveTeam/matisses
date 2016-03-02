@@ -258,19 +258,19 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 
 
 							$id_insert = Db::getInstance()->Insert_ID();
-							echo "<br><br><br><br><br><br><br><br><br>id_insert:  ".$id_insert."<br>";
+							//echo "<br><br><br><br><br><br><br><br><br>id_insert:  ".$id_insert."<br>";
 							foreach($imagenes as $k => $imagen)
 							{
 								move_uploaded_file($imagen['tmp_name'],_PS_IMG_DIR_.'garantias/'.$id_insert.'_'.$k.'.jpg');
 								$imagesuploaded[] = $id_insert.'_'.$k;
 								$realimages[] =  'garantias/'.$id_insert.'_'.$k.'.jpg';
 							}
-							echo "<pre>";
-							print_r($imagesuploaded);
-							echo "</pre>";
-							echo "<pre>";
-							print_r($realimages);
-							echo "</pre>";
+							//echo "<pre>";
+							//print_r($imagesuploaded);
+							//echo "</pre>";
+							//echo "<pre>";
+							//print_r($realimages);
+							//echo "</pre>";
 							
 							
 							$itemCode = Db::getInstance()->getValue('SELECT reference 
@@ -301,10 +301,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'garantias SET imgs = "'.str_replace(_PS_IMG_DIR_,'',implode(',',$imagesuploaded)).'" WHERE id = '.$id_insert );
 							$link = new link;
 							
-							
-							
-							
-							//Tools::redirect($link->getModuleLink('matisses','garantias').'/step3/producto/'.$_POST['data']); 
+							Tools::redirect($link->getModuleLink('matisses','garantias').'/step3/producto/'.$_POST['data']); 
 						}else{
 								//actualizo
 								$id_insert = $garantia['id_garantia'];
