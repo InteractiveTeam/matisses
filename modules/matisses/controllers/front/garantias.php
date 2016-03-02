@@ -301,6 +301,9 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'garantias SET imgs = "'.str_replace(_PS_IMG_DIR_,'',implode(',',$imagesuploaded)).'" WHERE id = '.$id_insert );
 							$link = new link;
 							
+							
+							
+							
 							Tools::redirect($link->getModuleLink('matisses','garantias').'/step3/producto/'.$_POST['data']); 
 						}else{
 								//actualizo
