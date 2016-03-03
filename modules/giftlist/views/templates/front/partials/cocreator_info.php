@@ -1,5 +1,5 @@
 <div id="saveInfo" class="white-popup-block">
-	<form role="form" action="" method="post" enctype="multipart/form-data">
+	<form role="form" action="" method="post" id="info_cocreator" enctype="multipart/form-data">
 		<div class="container" id="content-modal">
 			<div class="container wrapper">
 				<div class="col-md-12">
@@ -15,20 +15,20 @@
 					<div class="row">
 						<div class="col-md-12">
 							<label for="city_co">Ciudad</label> <input type="text" id="city_co"
-								class="form-control" name="city_co" placeholder="Ciudad" />
+								class="form-control" name="city_co" placeholder="Ciudad" required/>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
 							<label for="town_co">Municipio</label> <input type="text" id="town_co"
-								class="form-control" name="town_co" placeholder="Municipio" />
+								class="form-control" name="town_co" placeholder="Municipio" required/>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
 							<label for="address_co">Direccion</label> <input type="text"
 								id="address_co" class="form-control" name="address_co"
-								placeholder="Direccion" />
+								placeholder="Direccion" required/>
 						</div>
 					</div>			
 					<div class="row">

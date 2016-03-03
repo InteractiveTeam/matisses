@@ -4,7 +4,7 @@ include_once __DIR__ . '/../../classes/GiftList.php';
 include_once __DIR__ . '/../../classes/ListProductBond.php';
 include_once __DIR__ . '/../../classes/Bond.php';
 include_once _PS_OVERRIDE_DIR_ ."controllers/front/CartController.php";
-define("_ERROR_","Ha ocurrido un error");
+define("_ERROR_","Ha ocurrido un error, vuelva a intentarlo mas tarde");
 define("_DELETED_","Elmininado Correctamente");
 define("_EDITED_","Se ha editado la informacion");
 
@@ -102,6 +102,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	}
 
 	public function postProcess(){
+        //echo "<pre>";echo print_r($_POST);die("</pre>");
 		if(Tools::isSubmit ('saveList'))
 		$this->_saveList(Tools::getValue("id_list"));
 		else if(Tools::isSubmit('saveInfo'))
@@ -180,6 +181,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			'city'    => Tools::getValue('city_co'),
 			'town'    => Tools::getValue('town_co'),
 			'address' => Tools::getValue('address_co'),
+			'address_2' => Tools::getValue('address_co_2'),
 			'tel'     => Tools::getValue('tel_co'),
 			'cel'     => Tools::getValue('cel_co')
 		);
