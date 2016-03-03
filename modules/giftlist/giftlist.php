@@ -88,7 +88,7 @@ class giftlist extends Module
 	  			'gift_link' =>  $this->context->link->getModuleLink('giftlist', 'listas'),
   				'search_link' => $this->context->link->getModuleLink('giftlist', 'buscar')
 	  		));
-	  //return $this->display(__FILE__, 'giftlistbtn.tpl');
+	  return $this->display(__FILE__, 'giftlistbtn.tpl');
 	}
 
 	public function hookDisplayProductButtons($params)
