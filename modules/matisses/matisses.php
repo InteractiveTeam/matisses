@@ -1285,9 +1285,9 @@ class matisses extends Module
 		{
 			return array('error_string' => $client->error_str);
 		}
-
+		print_r($result);  
 		if($return)
-			return $result; 
+			return $result;  
 		
 		if(!$result['return'])
 			return false;
