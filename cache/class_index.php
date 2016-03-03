@@ -1177,7 +1177,7 @@
   ),
   'AdminTranslationsController' => 
   array (
-    'path' => '',
+    'path' => 'override/controllers/admin/AdminTranslationsController.php',
     'type' => 'class',
     'override' => false,
   ),

@@ -513,7 +513,11 @@ box-sizing: border-box;
     text-transform: uppercase;
     font-size: 1.35rem;
     }
-    
+
+    .cms .main-content a {
+    color:#d9292e;
+    }
+
    .cms-preguntas-frecuentes .container ul  {
         list-style: inherit;
         list-style-position: inside;

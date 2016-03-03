@@ -1214,7 +1214,7 @@
     }
     
     .header-container .fixedHeader .right-down-menu li {
-        padding-top:1rem !important;
+        padding-top:0.6rem !important;
     }
 
     .fixedHeader .user-profile {
@@ -1463,7 +1463,11 @@
 		position:relative;
 		padding: 0.2rem;
 	}
-
+    
+    .fixedHeader .menu-experiencias {
+        padding-top: 0rem;
+    }
+    
 	.content-user {
 		display:block !important;
 		position:relative;
@@ -1560,7 +1564,7 @@
 	}
 
 	.fixedHeader #block_top_menu {
-		padding-top: 5px !important;
+		padding-top: 0px !important;
 	}
 
 	.fixedHeader .menu-content {

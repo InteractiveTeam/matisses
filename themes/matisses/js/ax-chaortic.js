@@ -1,37 +1,41 @@
 var chaordic_meta;
 
-ax = {
-    init: function () {
+    ax = {
+        setChaordic: function (data) {
+            var page = data.page;
+            var loggeduser = data.loggeduser;
 
-    },
-    setChaordic: function (user, pagename) {
-        /*var loggeduser = user;
-        var page = pagename;
+            switch (page) {
+                case 'index':
+                    page = 'home';
+                    break;
+                default:
+                    page = 'other';
+                    break;
+            }
 
-        switch (page) {
-        case 'index':
-            page = 'home';
-            break;
-        default:
-            page = 'other';
+            if (loggeduser == 'true') {
+                chaordic_meta = {
+                    "page": {
+                        "name": page,
+                        "timestamp": new Date()
+                    }
+                }
+                if (data.page == 'category') {
+                    chaordic_meta.page.categories = [{"name": data.category,"id": data.idcategory}];
+                }
+                console.log(data.page+' '+data.category+' '+data.idcategory);
+            } else {
+                chaordic_meta = {
+                    "page": {
+                        "name": page,
+                        "timestamp": new Date()
+                    }
+                }
+                if (data.page == 'category') {
+                    chaordic_meta.page.categories = [{"name": data.category,"id": data.idcategory}];
+                }
+                console.log(data.page+' '+data.category+' '+data.idcategory);
+            }
         }
-
-        if (loggeduser) {
-            chaordic_meta = {
-                "page": {
-                    "name": "{$page_name}",
-                    "timestamp": new Date()
-                }
-            }
-            console.log(pagename);
-        } else {
-            chaordic_meta = {
-                "page": {
-                    "name": "{$page_name}",
-                    "timestamp": new Date()
-                }
-            }
-            console.log(pagename);
-        }*/
     }
-}
