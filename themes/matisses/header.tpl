@@ -101,6 +101,7 @@
     data.loggeduser = islogged;
     data.category = categoria;
     data.idcategory = idcategoria;
+    console.log('{/literal}{$cookie->id_customer} {$customerName} {$cookie->email} {$cookie->username} {$languages}{literal}');
          
     ax.setChaordic(data);
 </script>

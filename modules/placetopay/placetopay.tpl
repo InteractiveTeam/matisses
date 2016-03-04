@@ -72,7 +72,7 @@
             
 			
             <div class="btnPagar cart_navigation" >
-                <a href="javascript:ProcesarPago()" onclick="" class="placetopay button-exclusive btn btn-default" title="{l s='Pay with Place to Pay' mod='placetopay'}">{l s='Realizar Pago'}</a>
+                <a href="javascript:ProcesarPago()" onclick="" class="placetopay btn btn-default btn-red" title="{l s='Pay with Place to Pay' mod='placetopay'}">{l s='Realizar Pago'}</a>
               <!-- <a href="{$base_dir_ssl}modules/placetopay/redirect.php" class="placetopay" title="{l s='Pay with Place to Pay' mod='placetopay'}">{l s='Realizar Pago'}</a>-->
             </div>
         </div>

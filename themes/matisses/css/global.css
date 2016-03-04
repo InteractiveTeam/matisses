@@ -3833,7 +3833,7 @@ box-sizing: border-box;
 	font-size: 1.5625rem;
 	}
 	.cart_navigation .btn {
-	font-size: 1.125rem;
+	font-size: 1.295rem;
 	}
 	.order .cart_navigation{
 	margin-top:1.25rem;
@@ -3964,10 +3964,6 @@ box-sizing: border-box;
 	display: inline-block;
 }
 
-.main-container .address li a.button span {
-	font-family: "condensed";
-}
-
 .main-container .addresses .address li {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 1rem;
@@ -3979,6 +3975,10 @@ box-sizing: border-box;
 		color:#fff;
 		line-height:1.4rem;
 		float:right;
+}
+
+.main-container .address li a.button span {
+	font-family: "condensed";
 }
 
 .main-container .address li.address_update a span {
@@ -4005,7 +4005,7 @@ box-sizing: border-box;
 		line-height: 1.2rem;
 		padding-left: 10px;
 		font-family: 'Open Sans', sans-serif;
-		display: inline-block;
+		display: block;
 	}
 
 	#layer_cart .layer_cart_product h2 {
@@ -4658,5 +4658,12 @@ margin-top:5px;
     font-size: 18px;
     color: #7B7B7B;
     bottom:40%;
+}
+
+/*pago*/
+
+#HOOK_PAYMENT #contentPlaceToPay .datosPlaceToPay  {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.43rem;
 }
 
