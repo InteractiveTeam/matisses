@@ -1214,7 +1214,7 @@
     }
     
     .header-container .fixedHeader .right-down-menu li {
-        padding-top:1rem !important;
+        padding-top:0.6rem !important;
     }
 
     .fixedHeader .user-profile {
@@ -1259,7 +1259,11 @@
     }
 
     .sf-contener .submenu-container > li > ul {
-        padding: 20px;
+        padding: 0 20px;
+    }
+    
+    .submenu-container li > ul > li .SubCategory {
+        left: 19rem !important;
     }
 
     .sf-contener .submenu-container li > ul > li > ul {
@@ -1291,6 +1295,10 @@
         padding-top: 0.7rem !important;
          height: 3.9375rem;
     }    
+    
+    body .submenu-container li > ul > li .SubCategory {
+        left: 19rem !important;
+    }
     
 }
 
@@ -1455,7 +1463,11 @@
 		position:relative;
 		padding: 0.2rem;
 	}
-
+    
+    .fixedHeader .menu-experiencias {
+        padding-top: 0rem;
+    }
+    
 	.content-user {
 		display:block !important;
 		position:relative;
@@ -1552,7 +1564,7 @@
 	}
 
 	.fixedHeader #block_top_menu {
-		padding-top: 5px !important;
+		padding-top: 0px !important;
 	}
 
 	.fixedHeader .menu-content {
@@ -2524,5 +2536,53 @@
     #pagenotfound .optionDirection .btn_shears {
     position: inherit;
     }
+    
+    /*lista de deseos*/
+    
+    .module-blockwishlist-mywishlist .block-order-detail {
+        margin-top:20px;
+    }
+    
+    .module-blockwishlist-mywishlist .wl_send .row .col-md-4 {
+       margin-top: 10px;
+       padding: 0
+    }
 
+     .module-blockwishlist-mywishlist .wl_send button.btn.btn-default.btn-red {
+        padding: 0.47rem 1.3rem;
+        width: 100%;
+    }
+    
+    .module-blockwishlist-mywishlist .emails {
+        margin: 10px 0;
+        padding: 10px;
+        width: 100%;
+    }
+    
+    .module-blockwishlist-mywishlist .emails .row .col-md-8 {
+    width:100%;
+    }
+    
+    .module-blockwishlist-mywishlist .emails .row .col-md-4 {
+    width: 36.666666%;
+    }
+    
+    .module-blockwishlist-mywishlist .emails .row {
+    padding: 10px 0;
+    }
+    /*iniciar sesion*/
+    
+    .account_creation #birth-arrows .grid_4 {
+        margin: 5px 0;
+        padding: 0;
+    }
+    
+    #center_column .account_creation .form-group p.down {
+        width: 100%;
+    }
+    
+    .checkbox {
+        white-space: normal;
+    }
+    
 }

@@ -36,11 +36,13 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 		$this->addJS ( array (
             _MODULE_DIR_ . '/giftlist/views/js/vendor/datetimepicker/jquery.datetimepicker.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/validation/jquery.validate.min.js',
+			_MODULE_DIR_ . '/giftlist/views/js/vendor/validation/messages_es.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/mask/jquery.mask.min.js',
             _MODULE_DIR_ . '/giftlist/views/js/ax-administrar.js'
 		) );
 		$this->addCSS ( array (
             _MODULE_DIR_ . '/giftlist/views/css/vendor/datetimepicker/jquery.datetimepicker.css',
+            _MODULE_DIR_ . '/giftlist/views/css/ax-administrar.css'
 		) );
 	}
     
@@ -77,6 +79,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 	}
     
     private function _saveList($id = 0){
+        /*echo "<pre>";echo print_r($_POST);die("</pre>");*/
 		if($id != 0){
 			$list = new GiftListModel ($id);
 		}else{

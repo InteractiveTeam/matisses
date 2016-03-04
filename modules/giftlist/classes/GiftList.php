@@ -196,10 +196,18 @@ class GiftListModel extends ObjectModel
 		if(Db::getInstance()->numRows() > 0)
 			return $row['id_customer'];
 		else{
-            $sql = Db::getInstance()->insert('email_cocreator',array(
-                'id_list' => $id,
-                'email' => $email
-            ));
+            $sql = "SELECT * FROM "._DB_PREFIX_."email_cocreator WHERE id_list = ".$id;
+            $row = Db::getInstance()->getRow($sql);
+            if(!empty($row)){
+                Db::getInstance()->update('email_cocreator',array(
+                    'email' => $email
+                ),'id_list = '. $id);
+            }{
+                Db::getInstance()->insert('email_cocreator',array(
+                    'id_list' => $id,
+                    'email' => $email
+                ));
+            }
         }
 	}
 

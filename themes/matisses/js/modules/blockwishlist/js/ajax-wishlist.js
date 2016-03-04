@@ -84,7 +84,7 @@ $(document).ready(function(){
 			var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 			if(!filter.test($('input#email').val()))
 			{
-				$.fancybox('Ingresa un email válido asdas');
+				$.fancybox('Ingresa un email válido');
 			}else{
 					var html = '<div class="row email'+$('.wl_send input[type=text]').size()+'">';
 							html+= '<div class="col-md-8" >';

@@ -1049,6 +1049,7 @@ class ToolsCore
 			$context = Context::getContext();
 
 		$id_category = (int)$id_category;
+		//echo 'Lindo=>'.$id_category;
 		if ($id_category == 1)
 			return '<span class="navigation_end">'.$path.'</span>';
 
@@ -1058,11 +1059,16 @@ class ToolsCore
 			$pipe = '>';
 
 		$full_path = '';
+		
 		if ($category_type === 'products')
 		{
 			$interval = Category::getInterval($id_category);
 			$id_root_category = $context->shop->getCategory();
 			$interval_root = Category::getInterval($id_root_category);
+			/*echo "davin2 => ";
+			print_r($interval_root);
+			echo "davin3 => ";
+			print_r($id_root_category);*/
 			if ($interval)
 			{
 				$sql = 'SELECT c.id_category, cl.name, cl.link_rewrite
@@ -1074,27 +1080,27 @@ class ToolsCore
 							AND c.nleft >= '.$interval_root['nleft'].'
 							AND c.nright <= '.$interval_root['nright'].'
 							AND cl.id_lang = '.(int)$context->language->id.'
+                            AND cl.name != "Menu"
 							AND c.active = 1
 							AND c.level_depth > '.(int)$interval_root['level_depth'].'
-						ORDER BY c.level_depth ASC';
+						ORDER BY c.level_depth ASC'; //delete menu srom breadcrumb
 				$categories = Db::getInstance()->executeS($sql);
 
 				$n = 1;
 				$n_categories = count($categories);
-				foreach ($categories as $category)
-				{
-					$full_path .=
-					(($n < $n_categories || $link_on_the_item) ? '<a href="'.Tools::safeOutput($context->link->getCategoryLink((int)$category['id_category'], $category['link_rewrite'])).'" title="'.htmlentities($category['name'], ENT_NOQUOTES, 'UTF-8').'" data-gg="">' : '').
-					htmlentities($category['name'], ENT_NOQUOTES, 'UTF-8').
-					(($n < $n_categories || $link_on_the_item) ? '</a>' : '').
-					(($n++ != $n_categories || !empty($path)) ? '<i class="fa fa-angle-right"></i>' : '');
+				foreach ($categories as $category){					
+						$full_path .=
+						(($n < $n_categories || $link_on_the_item) ? '<a href="'.Tools::safeOutput($context->link->getCategoryLink((int)$category['id_category'], $category['link_rewrite'])).'" title="'.htmlentities($category['name'], ENT_NOQUOTES, 'UTF-8').'" data-gg="">' : '').
+						htmlentities($category['name'], ENT_NOQUOTES, 'UTF-8').
+						(($n < $n_categories || $link_on_the_item) ? '</a>' : '').
+						(($n++ != $n_categories || !empty($path)) ? '<i class="fa fa-angle-right"></i>' : '');                   
 				}
 
 				return $full_path.$path;
 			}
 		}
 		elseif ($category_type === 'CMS')
-		{
+		{    
 			$category = new CMSCategory($id_category, $context->language->id);
 			if (!Validate::isLoadedObject($category))
 				die(Tools::displayError());
@@ -1102,8 +1108,8 @@ class ToolsCore
 
 			if ($path != $category->name)
 				$full_path .= '<a href="'.Tools::safeOutput($category_link).'" data-gg="">'.htmlentities($category->name, ENT_NOQUOTES, 'UTF-8').'</a><i class="fa fa-angle-right"></i>'.$path;
-			else
-				$full_path = ($link_on_the_item ? '<a href="'.Tools::safeOutput($category_link).'" data-gg="">' : '').htmlentities($path, ENT_NOQUOTES, 'UTF-8').($link_on_the_item ? '</a>' : '');
+			else                
+				$full_path = ($link_on_the_item ? '<a migue2 href="'.Tools::safeOutput($category_link).'" data-gg="">' : '').htmlentities($path, ENT_NOQUOTES, 'UTF-8').($link_on_the_item ? '</a>' : '');
 
 			return Tools::getPath($category->id_parent, $full_path, $link_on_the_item, $category_type);
 		}
@@ -1126,8 +1132,13 @@ class ToolsCore
 			$default_category = $context->shop->getCategory();
 			$category = new Category($id_category, $context->language->id);
 		}
-		elseif ($type_cat === 'CMS')
-		    $category = new CMSCategory($id_category, $context->language->id);
+		elseif ($type_cat === 'CMS'){
+            /*Delete Footer from breadcrumb*/
+            $sql = "SELECT name FROM "._DB_PREFIX_."cms_category_lang WHERE id_cms_category = ".$id_category;
+            $res = Db::getinstance()->getRow($sql);
+            if($res['name'] != "Footer")
+		      $category = new CMSCategory($id_category, $context->language->id);
+        }
 
 		if (!Validate::isLoadedObject($category))
 			$id_category = $default_category;

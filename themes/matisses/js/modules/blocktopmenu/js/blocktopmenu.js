@@ -252,7 +252,9 @@ $(document).ready(function(e){
         $.each(business, function(x,y){
             var category = $(y).children('li');
             var countMax = category.length;
-
+            
+            category.eq(category.length-1).css('paddingBottom',20)
+            
             $.each(category, function(z, w){
                  var subcategory = $(w).find('.SubCategory').children('a');
 
@@ -262,7 +264,6 @@ $(document).ready(function(e){
               }
             });  
         });
-
 })
 
 //Divs a megamenu

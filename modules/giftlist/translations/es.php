@@ -17,6 +17,9 @@ $_MODULE['<{giftlist}prestashop>admingiftlistcontroller_b068931cc450442b63f5b3d2
 $_MODULE['<{giftlist}prestashop>admingiftlistcontroller_d3b206d196cd6be3a2764c1fb90b200f'] = 'Código';
 $_MODULE['<{giftlist}prestashop>admingiftlistcontroller_1697e6a2bbf92c42bfb286efb9689e1b'] = '¡Solo los usuarios pueden crear!';
 $_MODULE['<{giftlist}prestashop>administrar_c1a30538ec70535ffc61286dc53dfa12'] = 'Lista de regalos';
+$_MODULE['<{giftlist}prestashop>administrar_22af645d1859cb5ca6da0c484f1f37ea'] = 'Nuevo';
+$_MODULE['<{giftlist}prestashop>administrar_200500765ab3770c049bd0a3ebe0398b'] = 'Crear lista';
+$_MODULE['<{giftlist}prestashop>administrar_49c0e1bd1a62c2a923c1c1355d9c96b6'] = 'Editar lista';
 $_MODULE['<{giftlist}prestashop>listownerdesc_c1a30538ec70535ffc61286dc53dfa12'] = 'Lista de regalos';
 $_MODULE['<{giftlist}prestashop>listshareddesc_c1a30538ec70535ffc61286dc53dfa12'] = 'Lista de regalos';
 $_MODULE['<{giftlist}prestashop>listas_c1a30538ec70535ffc61286dc53dfa12'] = 'Lista de regalos';

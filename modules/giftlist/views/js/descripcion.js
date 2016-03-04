@@ -9,7 +9,7 @@ $(document).ready(function() {
 		'overlayShow'	:	false,
 		'type'			: 	'ajax',
 		afterShow		:   function(){
-            validate();
+            $("#info_cocreator").validate();
             $('#tel_co').mask("000-00-00", {placeholder: "___-__-__"});
             $('#cel_co').mask("000-000-0000", {placeholder: "___-___-____"});
             $("#id_list").val($(".products-associated").attr("data-id"));

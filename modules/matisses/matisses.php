@@ -1287,7 +1287,7 @@ class matisses extends Module
 		}
 
 		if($return)
-			return $result; 
+			return $result;  
 		
 		if(!$result['return'])
 			return false;
