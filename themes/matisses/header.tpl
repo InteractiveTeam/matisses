@@ -91,6 +91,7 @@
     var islogged = '{/literal}{if $logged}true{else}false{/if}{literal}';
     var categoria = '{/literal}{$category->name}{literal}';
     var idcategoria = '{/literal}{$category->id}{literal}';
+    data.currentdate = '{/literal}{$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"}{literal}';
     data.page = page;
     data.loggeduser = islogged;
     data.category = categoria;
