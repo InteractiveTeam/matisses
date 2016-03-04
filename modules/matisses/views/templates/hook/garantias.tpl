@@ -14,7 +14,7 @@
                 <a class="btn btn-default btn-red " href="{$link->getModuleLink('matisses','garantias')}/estado" title="Ingresar"> {l s='Ingresar' mod='matisses'}</a>
             </div>
         </div>
-        <div class="grid_4 dates-account">
+        <div class="grid_5 dates-account">
             <h3>{l s='Iniciar nueva garantia' mod='matisses'}</h3>
             <p>{l s='Cuéntanos que sucede con el producto que compraste' mod='matisses'}</p>
             <div class="footer-account">

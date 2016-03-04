@@ -15,6 +15,12 @@ var chaordic_meta;
                 case 'subcategory':
                     page = 'subcategory';
                     break;
+                case 'order':
+                    page = 'checkout';
+                    break;
+                case 'search':
+                    page = 'search';
+                    break;
                 default:
                     page = 'other';
                     break;
