@@ -160,6 +160,28 @@
             </div>
         </div>
         <div class="col-md-12">
+            <div class="radio">
+                Enviar antes de la fecha a: 
+              <label><input type="radio" name="date_before" value="creator" {if $data['id_cocreator'] != 0}{if $data['address_after'] == "creator"}checked="checked"{/if}{else}checked="checked"{/if}>Direccion de creador</label>
+            </div>
+            {if isset($data['id_cocreator']) && $data['id_cocreator'] != 0}
+            <div class="radio">
+              <label><input type="radio" name="date_before" {if $data['id_cocreator'] != 0 && $data['address_after' == "cocreator"]}checked="checked"{/if}value="cocreator">Direccion de co-creador</label>
+            </div>
+            {/if}
+        </div>
+        <div class="col-md-12">
+            <div class="radio">
+                Enviar despues de la fecha a: 
+              <label><input type="radio" name="date_after" value="creator"  {if $data['id_cocreator'] != 0}{if $data['address_before'] == "creator"}checked="checked"{/if}{else}checked="checked"{/if}>Direccion de creador</label>
+            </div>
+            {if isset($data['id_cocreator']) && $data['id_cocreator'] != 0}
+            <div class="radio">
+              <label><input type="radio" name="date_after" value="cocreator" {if $data['id_cocreator'] != 0 && $data['address_before' == "cocreator"]}checked="checked"{/if}>Direccion de co-creador</label>
+            </div>
+            {/if}
+        </div>
+        <div class="col-md-12">
             <input id="btnSave" type="submit" name="saveList"
                 class="btn btn-success pull-right" value="Guardar">
             <button id="btnCancel"

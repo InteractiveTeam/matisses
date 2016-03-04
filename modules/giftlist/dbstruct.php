@@ -63,7 +63,7 @@ class DBStruct extends Module
             `validated` TINYINT(1),
 			`created_at` DATETIME NOT NULL,
 			`updated_at` DATETIME NOT NULL,
-	  	PRIMARY KEY (`id`, `event_type`,`id_creator`),
+	  	    PRIMARY KEY (`id`, `event_type`,`id_creator`),
 			UNIQUE (code),
 
 		 	INDEX `fk_"._DB_PREFIX_."gift_list_"._DB_PREFIX_."event_type_idx` (`event_type` ASC),

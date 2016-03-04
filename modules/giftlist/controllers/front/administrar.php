@@ -79,7 +79,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 	}
     
     private function _saveList($id = 0){
-        /*echo "<pre>";echo print_r($_POST);die("</pre>");*/
+        //echo "<pre>";echo print_r($_POST);die("</pre>");
 		if($id != 0){
 			$list = new GiftListModel ($id);
 		}else{
@@ -88,13 +88,15 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 		$list->id_creator = $this->context->customer->id;
 		$list->name = Tools::getValue ( 'name' );
 		$list->event_type = Tools::getValue ( 'event_type' );
-		$list->event_date = date("Y-m-d H:i:s", strtotime(Tools::getValue ( 'event_date' )));
+        $date = str_replace("/","-",Tools::getValue ( 'event_date' ));
+		$list->event_date = date("Y-m-d H:i:s", strtotime($date));
 		$list->public = Tools::getValue( 'public' ) == "on" ? 1 : 0;
 		$list->guest_number = Tools::getValue ( 'guest_number' );
 		$list->recieve_bond = Tools::getValue ( 'recieve_bond' ) == "on" ? 1 : 0;
 		$list->edit = Tools::getValue ( 'can_edit' ) == "on" ? 1 : 0;
 		$list->min_amount = Tools::getValue ( "min_amount" );
-		$list->address_after = NULL;
+		$list->address_after = Tools::getValue ( "date_after" );
+		$list->address_before = Tools::getValue ( "date_before" );
 		$list->code = $list->returnCode();
 		$list->url = $list->slugify($list->name);
 		$list->message = Tools::getValue('message');
