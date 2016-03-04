@@ -9,6 +9,12 @@ var chaordic_meta;
                 case 'index':
                     page = 'home';
                     break;
+                case 'category':
+                    page = 'category';
+                    break;
+                case 'subcategory':
+                    page = 'subcategory';
+                    break;
                 default:
                     page = 'other';
                     break;
@@ -32,7 +38,7 @@ var chaordic_meta;
                         "timestamp": new Date()
                     }
                 }
-                if (data.page == 'category') {
+                if (page == 'category' || page == 'subcategory') {
                     chaordic_meta.page.categories = [{"name": data.category,"id": data.idcategory}];
                 }
                 console.log(data.page+' '+data.category+' '+data.idcategory);

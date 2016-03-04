@@ -88,6 +88,11 @@
 <script type="text/javascript">
     var data = {};
     var page = '{/literal}{$page_name}{literal}';
+    {/literal}
+        {if $category->level_depth == 5}
+            page = 'subcategory';
+        {/if}
+    {literal}
     var islogged = '{/literal}{if $logged}true{else}false{/if}{literal}';
     var categoria = '{/literal}{$category->name}{literal}';
     var idcategoria = '{/literal}{$category->id}{literal}';
@@ -96,7 +101,7 @@
     data.loggeduser = islogged;
     data.category = categoria;
     data.idcategory = idcategoria;
-    
+         
     ax.setChaordic(data);
 </script>
 {/literal}
