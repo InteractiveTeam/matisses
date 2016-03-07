@@ -856,7 +856,9 @@ class matisses extends Module
 	public function hookactionProductCartSave($params)
 	{
 		// solo se ejecuta desde el front
-		$headers = get_headers(Configuration::get($this->name.'_UrlWs'));
+        $header = "http://181.143.4.46:8280/WebIntegrator/GenericFacade?wsdl";
+		//$headers = get_headers(Configuration::get($this->name.'_UrlWs'));
+		$headers = get_headers($header);
 
 		
         if(is_soap_fault($headers) || empty($headers)){
