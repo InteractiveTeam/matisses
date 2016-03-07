@@ -48,10 +48,10 @@ var dates = {
             NaN
         );
     }
-}
+};
 
 
-var ax = {
+var ax_admin = {
     init: function(){
         $(document).ready(function(){
             var dateText = $('#event_date');
@@ -142,4 +142,4 @@ var ax = {
     }
 };
 
-ax.init();
+ax_admin.init();

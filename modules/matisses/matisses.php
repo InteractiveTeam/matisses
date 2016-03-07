@@ -856,8 +856,15 @@ class matisses extends Module
 	public function hookactionProductCartSave($params)
 	{
 		// solo se ejecuta desde el front
-		
 		$headers = get_headers(Configuration::get($this->name.'_UrlWs'));
+
+		
+        if(is_soap_fault($headers) || empty($headers)){
+            die(Tools::jsonEncode(array(
+                'hasError' => true,
+                'errors' => array("En este momento no es posible agregar al carrito"),
+            )));
+        }
 		
 		if(!strstr($headers[0],'200'))
 			return false;

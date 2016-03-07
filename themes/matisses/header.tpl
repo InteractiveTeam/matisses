@@ -88,14 +88,21 @@
 <script type="text/javascript">
     var data = {};
     var page = '{/literal}{$page_name}{literal}';
+    {/literal}
+        {if $category->level_depth == 5}
+            page = 'subcategory';
+        {/if}
+    {literal}
     var islogged = '{/literal}{if $logged}true{else}false{/if}{literal}';
     var categoria = '{/literal}{$category->name}{literal}';
     var idcategoria = '{/literal}{$category->id}{literal}';
+    data.currentdate = '{/literal}{$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"}{literal}';
     data.page = page;
     data.loggeduser = islogged;
     data.category = categoria;
     data.idcategory = idcategoria;
-    
+    console.log('{/literal}{$cookie->id_customer} {$customerName} {$cookie->email} {$cookie->username} {$languages}{literal}');
+         
     ax.setChaordic(data);
 </script>
 {/literal}

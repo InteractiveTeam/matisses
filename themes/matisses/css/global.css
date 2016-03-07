@@ -12,6 +12,7 @@ font-weight: normal;
 font-style: normal;
 }*/
 
+
 @font-face {
 font-family: 'condensed';
 src: url('../font/tradegothic-boldcondtwenty-webfont.woff') format('woff');
@@ -514,26 +515,26 @@ box-sizing: border-box;
     font-size: 1.35rem;
     }
 
-    .cms .main-content a {
+    .cms .container a {
     color:#d9292e;
     }
 
-   .cms-preguntas-frecuentes .container ul  {
+   .cms .container ul  {
         list-style: inherit;
         list-style-position: inside;
     }
 
-    .cms-preguntas-frecuentes .container ol  {
+    .cms .container ol  {
     list-style-type: decimal;
     list-style-position: inside;
     }
 
-    .cms-preguntas-frecuentes .container ul li, .cms-preguntas-frecuentes .container ol li {
+    .cms .container ul li, .cms .container ol li {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 1rem;
 	color: #777676;
 	line-height: 1.5;
-	word-break: break-all;
+	word-break: normal;
     font-weight: lighter;
 	}
     
@@ -817,6 +818,12 @@ box-sizing: border-box;
 	display: inline-block;
 	vertical-align: top;
 	}
+    .primary_block .pb-right-column .wrap_attr {
+        display: none;
+    }
+    .container .product .rate_wrap {
+        padding: 1.25rem 0 0.9375rem;
+    }
 	/*btns-hover*/
 	.button-container .btn-default.showmore {
 	border-color: #fff;
@@ -3826,7 +3833,7 @@ box-sizing: border-box;
 	font-size: 1.5625rem;
 	}
 	.cart_navigation .btn {
-	font-size: 1.125rem;
+	font-size: 1.295rem;
 	}
 	.order .cart_navigation{
 	margin-top:1.25rem;
@@ -3913,7 +3920,7 @@ box-sizing: border-box;
 		background:#fff;
 	}
 
-	.order_delivery .address li span {
+	.main-container .order_delivery .address li span {
 		font-size: 1rem;
 		line-height: 1.2rem;
 		margin-left: 10px;
@@ -3922,19 +3929,19 @@ box-sizing: border-box;
 		padding: 0.2rem;
 	}
 
-	.address li:nth-child(odd), .address li:nth-child(odd) {
+	.main-container .address li:nth-child(odd), .address li:nth-child(odd) {
 		background: #F3F3F3;
 	}
 
-	.adresses_bloc {
+	.main-container .adresses_bloc {
 		margin: 20px 0;
 	}
 
-	.adresses_bloc .address li:nth-child(odd) span, .adresses_bloc .address li:nth-child(odd) span {
+	.main-container .adresses_bloc .address li:nth-child(odd) span, .main-container .adresses_bloc .address li:nth-child(odd) span {
 		background: #F3F3F3;
 	}
 
-	.address li:last-child {
+	.main-container .address li:last-child {
 		background:transparent;
 		font-family: 'Open Sans', sans-serif;
 		font-size: 1rem;
@@ -3942,14 +3949,14 @@ box-sizing: border-box;
 		padding: 0;
 	}
 
-.addresses .address li {
+.main-container .addresses .address li {
     font-family: 'Open Sans', sans-serif;
     font-size: 1rem;
     line-height: 1rem;
 		padding: 0.5rem;
 }
 
-.address li span {
+.main-container .address li span {
 	font-size: 1rem;
 	line-height: 1.2rem;
 	margin-left: 10px;
@@ -3957,45 +3964,48 @@ box-sizing: border-box;
 	display: inline-block;
 }
 
-.addresses .address li {
+.main-container .addresses .address li {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 1rem;
 	line-height: 1.2rem;
 }
 
-.address li.address_update a {
+.main-container .address li.address_update a {
 		background: #D7162F;
 		color:#fff;
 		line-height:1.4rem;
 		float:right;
-		font-family: 'Open Sans condensed';
 }
 
-.address li.address_update a span {
+.main-container .address li a.button span {
+	font-family: "condensed";
+}
+
+.main-container .address li.address_update a span {
 	margin:0;
 }
 
-.address li.address_update a {
+.main-container .address li.address_update a {
     margin: 0;
 		transition: all 0.4s ease;
 		-webkit-transition: all 0.4s ease;
 }
-.addresses li.address_update a:hover {
+.main-container .addresses li.address_update a:hover {
 	background:#fff;
 	color:#D7162F;
 }
-	.address li:first-child {
+	.main-container .address li:first-child {
 		padding: 0;
 		background:transparent;
 		margin: 0;
 	}
 
-	.address li.address_phone_mobile {
+	.main-container .address li.address_phone_mobile {
 		font-size: 1rem;
 		line-height: 1.2rem;
 		padding-left: 10px;
 		font-family: 'Open Sans', sans-serif;
-		display: inline-block;
+		display: block;
 	}
 
 	#layer_cart .layer_cart_product h2 {
@@ -4648,5 +4658,12 @@ margin-top:5px;
     font-size: 18px;
     color: #7B7B7B;
     bottom:40%;
+}
+
+/*pago*/
+
+#HOOK_PAYMENT #contentPlaceToPay .datosPlaceToPay  {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.43rem;
 }
 
