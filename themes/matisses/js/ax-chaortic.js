@@ -55,7 +55,7 @@ ax = {
                     chaordic_meta.search = {};
                     chaordic_meta.search.query = data.search_q;
                 }
-                
+                console.log(data);
                 console.log(page);
             } 
             else {
@@ -90,7 +90,7 @@ ax = {
                         });
                     }
                 }
-                
+                console.log(data);
                 console.log(page);
             }
         });
