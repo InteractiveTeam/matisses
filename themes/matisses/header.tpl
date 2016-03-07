@@ -88,20 +88,33 @@
 <script type="text/javascript">
     var data = {};
     var page = '{/literal}{$page_name}{literal}';
+    var islogged = '{/literal}{if $logged}true{else}false{/if}{literal}';
     {/literal}
-        {if $category->level_depth == 5}
-            page = 'subcategory';
+        {if !empty($category)}
+            data.category = '{$category->name}';
+            data.idcategory = '{$category->id}';
+            {if $category->level_depth == 5}
+                page = 'subcategory';
+            {/if}
+        {/if}
+        {if $logged}
+            data.idcustomer = '{$idcustomer}';
+            data.customername = '{$customername}';
+            data.username = '{$customeremail}';
+            data.customeremail = '{$customeremail}';
+            data.customercharter = '{$customercharter}';
+            var newl = {$customernewsletter};
+            if (newl == 1) {
+                data.newsletter = true;   
+            } else {
+                data.newsletter = false;
+            }
         {/if}
     {literal}
-    var islogged = '{/literal}{if $logged}true{else}false{/if}{literal}';
-    var categoria = '{/literal}{$category->name}{literal}';
-    var idcategoria = '{/literal}{$category->id}{literal}';
-    data.currentdate = '{/literal}{$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"}{literal}';
     data.page = page;
     data.loggeduser = islogged;
-    data.category = categoria;
-    data.idcategory = idcategoria;
-    console.log('{/literal}{$cookie->id_customer} {$customerName} {$cookie->email} {$cookie->username} {$languages}{literal}');
+    data.search_q = '{/literal}{$search_query}{literal}';
+    data.currentdate = '{/literal}{$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"}{literal}';
          
     ax.setChaordic(data);
 </script>

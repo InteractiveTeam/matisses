@@ -27,16 +27,28 @@ var chaordic_meta;
             }
 
             if (loggeduser == 'true') {
+                
                 chaordic_meta = {
                     "page": {
                         "name": page,
                         "timestamp": new Date()
+                    },
+                    "user": {
+                        "id": data.idcustomer,
+                        "name": data.customername,
+                        "username": data.username,
+                        "email": data.customeremail,
+                        "allow_mail_marketing": data.newsletter,
+                        "document_id": data.customercharter
                     }
                 }
-                if (data.page == 'category') {
+                
+                if (data.page == 'category' || page == 'subcategory') {
                     chaordic_meta.page.categories = [{"name": data.category,"id": data.idcategory}];
                 }
-                console.log(data.page+' '+data.category+' '+data.idcategory);
+                
+                
+                console.log(page);
             } else {
                 chaordic_meta = {
                     "page": {
@@ -44,10 +56,13 @@ var chaordic_meta;
                         "timestamp": new Date()
                     }
                 }
+                
                 if (page == 'category' || page == 'subcategory') {
                     chaordic_meta.page.categories = [{"name": data.category,"id": data.idcategory}];
                 }
-                console.log(data.page+' '+data.category+' '+data.idcategory);
+                
+               
+                console.log(page);
             }
         }
     }

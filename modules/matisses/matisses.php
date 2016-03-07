@@ -557,6 +557,8 @@ class matisses extends Module
 	
 	public function hookHeader($params)
 	{
+        global $smarty;
+        global $cookie;
 		$this->page_name = Dispatcher::getInstance()->getController();
 		$this->context->controller->addJS($this->_path.'js/fblogin.js');
 		
@@ -577,7 +579,21 @@ class matisses extends Module
 			$this->context->controller->addJqueryPlugin('bxslider');
 			$this->context->controller->addJS($this->_path.'js/experiences_home.js');
 		}
-		//echo "<pre>"; print_r($params); echo "</pre>";
+		//Assign cutomer information
+        if ($cookie->isLogged()) {
+            $id = (int)$this->context->cookie->id_customer;
+            $sql = "select id_customer,CONCAT_WS(' ',firstname, lastname) as 'name', email, charter, newsletter from "._DB_PREFIX_."customer ";
+            $sql .= "where id_customer = '".$id."'";
+            $res = Db::getInstance()->executeS($sql);
+            
+            $this->context->smarty->assign(array(
+                'idcustomer' => $res[0]['id_customer'],
+                'customername' => $res[0]['name'],
+                'customeremail' => $res[0]['email'],
+                'customercharter' => $res[0]['charter'],
+                'customernewsletter' => $res[0]['newsletter']
+		    ));
+        }
 	}
 	
 	public function hookdisplayFooterProduct($params)
