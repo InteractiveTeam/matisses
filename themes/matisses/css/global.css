@@ -4677,3 +4677,20 @@ margin-top:5px;
     line-height: 1.43rem;
 }
 
+/*comentarios*/
+
+.newImgsContent .newSlideshow {
+    max-height: 452px;
+}
+
+.newContent .grid_4 #addComment {
+margin-left:-15px;
+}
+
+.comments ul {
+    padding:15px; 
+}
+
+.comments li {
+    margin-top:15px; 
+}
