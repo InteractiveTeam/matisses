@@ -344,6 +344,12 @@ box-sizing: border-box;
 	.right-down-menu #blog a{
 	background: url("../img/sprite-menu-top.png") 0 -80px no-repeat;
 	}
+    
+    .blog-list .latest-articles .commented-popular .content-tabs ul li {
+    display:block;
+    margin-bottom: 30px;
+    }
+
 	.right-down-menu .search a{
 	text-indent: 99em;
 	display: inline-block;
@@ -4132,6 +4138,10 @@ font-family: 'Open Sans', sans-serif;
 font-size: 1rem;
 color: #ADADAD;
 line-height: 1.5;
+}
+
+#layered_block_left .scroll-left.scroll-pane.mCustomScrollbar._mCS_1 {
+    border: none;
 }
 
 .supply-warranty ul.slider {
