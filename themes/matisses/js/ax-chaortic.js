@@ -47,7 +47,6 @@ var chaordic_meta;
                     chaordic_meta.page.categories = [{"name": data.category,"id": data.idcategory}];
                 }
                 
-                
                 console.log(page);
             } else {
                 chaordic_meta = {
@@ -61,7 +60,6 @@ var chaordic_meta;
                     chaordic_meta.page.categories = [{"name": data.category,"id": data.idcategory}];
                 }
                 
-               
                 console.log(page);
             }
         }
