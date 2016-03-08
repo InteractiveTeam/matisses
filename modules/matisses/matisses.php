@@ -594,6 +594,25 @@ class matisses extends Module
                 'customernewsletter' => $res[0]['newsletter']
 		    ));
         }
+        
+        // Assing current product
+        if (Tools::getValue('controller') == 'product') {
+            
+            $id_product = (int)Tools::getValue('id_product');
+            $link = new LinkCore();
+            $images = Image::getImages($this->context->language->id, $id_product);
+            $product = new Product($id_product);
+            $this->context->smarty->assign(array(
+                'idproduct' => $product->id,
+                'nameproduct' => $product->getProductName($product->id),
+                'linkproduct' => $product->getLink(),
+                'descproduct' => $product->description,
+				'imageproduct' => $link->getImageLink($product->link_rewrite, (int)$images[0]["id_image"], 'home_default'),
+				'priceproduct' => $product->getPriceWithoutReduct()
+				
+		    ));
+            //echo "<pre>"; print_r($product); echo "</pre>";
+        }
 	}
 	
 	public function hookdisplayFooterProduct($params)
