@@ -99,6 +99,8 @@ $(document).ready(function(e) {
 		{
 			Id= '#'+Id;
 			$(Id).slideUp('slow','linear',function(){
+				$(' * #showdetail').show();
+				$(' * #closedetail').hide();
 			})
 		}
 	})
