@@ -12,7 +12,6 @@ font-weight: normal;
 font-style: normal;
 }*/
 
-
 @font-face {
 font-family: 'condensed';
 src: url('../font/tradegothic-boldcondtwenty-webfont.woff') format('woff');
@@ -379,6 +378,10 @@ box-sizing: border-box;
 	padding: 0;
 	text-align: right;
 	}
+
+.category-thumbnail .wrap_scale .wrap_image_thumb img {
+    height:100%;
+    }
 
 	.menu-right ul li {
 	display: table-cell;
@@ -4076,8 +4079,16 @@ transition: all 0.2s ease;
     background-color: #FBFBFB;
 }
 
-.detail-order > div#block-order-detail div#order-detail-content table tbody .item td { 
+.detail-order > div#block-order-detail div#order-detail-content table tbody .item td:nth-child(5) {
+text-align: center;
+}
+
+.detail-order > div#block-order-detail div#order-detail-content table tbody .item td:nth-child(6), .detail-order > div#block-order-detail div#order-detail-content table tbody .item td:nth-child(7) { 
 text-align: right;
+}
+
+#order-detail-content table .return_quantity_buttons {
+    display: none;
 }
 
 .detail-order > div#block-order-detail div#order-detail-content table tfoot .item td {
@@ -4693,4 +4704,31 @@ margin-left:-15px;
 
 .comments li {
     margin-top:15px; 
+}
+
+/*tu opinion*/
+
+.product-tabs .ui-corner-bottom #product_comments_block_extra {
+    display:none;
+}
+
+.product-tabs .ui-corner-bottom .info-opinion {
+    border-left:none;
+    padding-left: 0;
+}
+
+#product_comments_block_tab .comment .comment_details ul {
+    margin-top: 30px;
+    padding: 10px;
+    background: #F5F5F5;
+}
+
+#product_comments_block_tab .comment .comment_details span {
+    font-family: 'condensed';
+    font-size: 18px;
+    color: #777676;
+}
+
+#product_comments_block_tab .comment .comment_details button span, #product_comments_block_tab .comment .comment_details .report_btn {
+    color: #d7162f;
 }

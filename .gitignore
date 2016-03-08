@@ -36,3 +36,4 @@ modules/gamification/*
 img/*
 cache/class_index.php
 .brackets.json
+config/settings.inc.php
