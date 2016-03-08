@@ -371,43 +371,60 @@ function WishlistVisibility(bought_class, id_button)
 */
 function WishlistSend(id, id_wishlist, id_email)
 {
+	var error = 0;
 	var emails = new Array;
 	$('.emails input[type=text]').each(function(index, element) {
         emails.push($(element).val())
     });
 	
-	$.post(
-		baseDir + 'modules/blockwishlist/sendwishlist.php',
-		{
-			token: static_token,
-			id_wishlist: id_wishlist,
-			emails: emails,
-		},
-		function(data)
-		{
-			if (data)
+	console.log($('input#email').val()+' - '+emails.length)
+	if($('input#email').val()!='' && emails.length==0)
+	{
+		error = 1;
+		$.fancybox('Debe adicionar al menos un correo para el envío de la lista');
+	}
+	
+	if(error ==0 && emails.length==0)
+	{
+		error = 1;
+		$.fancybox('Ingresa al menos un correo para el envío de la lista');
+	}
+	
+	if(error==0)
+	{
+		$.post(
+			baseDir + 'modules/blockwishlist/sendwishlist.php',
 			{
-	            if (!!$.prototype.fancybox)
+				token: static_token,
+				id_wishlist: id_wishlist,
+				emails: emails,
+			},
+			function(data)
+			{
+				if (data)
 				{
-	                $.fancybox.open([
-	                    {
-	                        type: 'inline',
-	                        autoScale: true,
-	                        minHeight: 30,
-	                        content: '<p class="fancybox-error">' + data + '</p>'
-	                    }
-	                ], {
-	                    padding: 0
-	                });
-					$('.emails').html('');	
-				}else{
-	                alert(data)
-				};
+					if (!!$.prototype.fancybox)
+					{
+						$.fancybox.open([
+							{
+								type: 'inline',
+								autoScale: true,
+								minHeight: 30,
+								content: '<p class="fancybox-error">' + data + '</p>'
+							}
+						], {
+							padding: 0
+						});
+						$('.emails').html('');	
+					}else{
+						alert(data)
+					};
+				}
+				else
+					WishlistVisibility(id, 'hideSendWishlist');
 			}
-			else
-				WishlistVisibility(id, 'hideSendWishlist');
-		}
-	);
+		);
+	}
 }
 
 function wishlistProductsIdsAdd(id)
