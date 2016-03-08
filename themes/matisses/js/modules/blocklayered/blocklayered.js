@@ -601,6 +601,9 @@ function reloadContent(params_plus)
 					// Check if slider is enable & if slider is used
 					if(typeof($('#layered_'+sliderType+'_slider').slider('values', 0)) != 'object')
 					{
+						if(typeof blocklayeredSliderName == 'undefined')
+							var blocklayeredSliderName = new Array;
+							
 						if ($('#layered_'+sliderType+'_slider').slider('values', 0) != $('#layered_'+sliderType+'_slider').slider('option' , 'min')
 						|| $('#layered_'+sliderType+'_slider').slider('values', 1) != $('#layered_'+sliderType+'_slider').slider('option' , 'max'))
 							current_friendly_url += '/'+blocklayeredSliderName[sliderType]+'-'+$('#layered_'+sliderType+'_slider').slider('values', 0)+'-'+$('#layered_'+sliderType+'_slider').slider('values', 1)
@@ -608,6 +611,9 @@ function reloadContent(params_plus)
 				}
 				else if ($('#layered_'+sliderType+'_range_min').length)
 				{
+					if(typeof blocklayeredSliderName == 'undefined')
+							var blocklayeredSliderName = new Array;
+					
 					current_friendly_url += '/'+blocklayeredSliderName[sliderType]+'-'+$('#layered_'+sliderType+'_range_min').val()+'-'+$('#layered_'+sliderType+'_range_max').val();
 				}
 			});
