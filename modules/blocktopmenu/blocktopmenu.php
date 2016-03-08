@@ -625,6 +625,7 @@ class Blocktopmenu extends Module
 	{
 		$html = '';
 		$cont = 0;
+		
 		foreach ($categories as $key => $category)
 		{
 			if ($category['level_depth'] > 1)
@@ -646,10 +647,15 @@ class Blocktopmenu extends Module
 						$cont++;
 					*/
 					
-						if($category['level_depth']<=4)
-							$html .= '<li'.(($this->page_name == 'category' && (int)Tools::getValue('id_category') == (int)$category['id_category']) ? ' class="sfHoverForce"' : '').'>';
 						
-						$html .= '<a href="'.$link.'" title="'.$category['name'].'">'.$category['name'].'</a>';
+					
+						if($category['level_depth']<=4)
+							$html .= '<li class="'.(($this->page_name == 'category' && (int)Tools::getValue('id_category') == (int)$category['id_category']) ? 'sfHoverForce"' : '').'">';
+						
+						$html .= '<a 
+									'.($category['level_depth']>=4 && $cat->getProducts($this->context->language->id,null,null,null,null,true)==0 ? 'class="hidden"':'').'
+									href="'.$link.'" 
+									title="'.$category['name'].'">'.$category['name'].'</a>';
 					
 					/*}
 					
