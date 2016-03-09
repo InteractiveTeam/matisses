@@ -93,9 +93,7 @@
         {if !empty($category)}
             data.category = '{$category->name}';
             data.idcategory = '{$category->id}';
-            {if $category->level_depth == 5}
-                page = 'subcategory';
-            {/if}
+            data.leveldepth = {$category->level_depth};
         {/if}
         {if $logged}
             data.idcustomer = '{$idcustomer}';
@@ -115,6 +113,13 @@
     data.loggeduser = islogged;
     data.search_q = '{/literal}{$search_query}{literal}';
     data.currentdate = '{/literal}{$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"}{literal}';
+    data.idproduct = {/literal}{$idproduct}{literal};
+    data.nameproduct = '{/literal}{$nameproduct}{literal}';
+    data.linkproduct = '{/literal}{$linkproduct}{literal}';
+    data.descproduct = '{/literal}{$descproduct}{literal}';
+    data.imageproduct = '{/literal}{$imageproduct}{literal}';
+    data.priceproduct = '{/literal}{$priceproduct}{literal}';
+    
          
     ax.setChaordic(data);
 </script>
