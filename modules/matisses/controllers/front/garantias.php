@@ -98,7 +98,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 													and a.id_customer = '.$this->context->customer->id.'
 												 	and a.id_order = '.$orderdetail[0].'	
 												 	and a.id_product = '.$orderdetail[1].'	
-												 	and a.id_product_attribute = '.$orderdetail[2]);		
+												 	and a.id_product_attribute = '.$orderdetail[2]);
 		$garantia['imgs'] = explode(',',$garantia['imgs']);	
 		return $garantia;										
 	}
@@ -239,7 +239,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 				$imagen = $_FILES['imagen'];
 				if($imagen['name'][0])
 				{
-					for($i=1; $i<=sizeof($imagen['name']); $i++)
+					for($i=0; $i<=sizeof($imagen['name']); $i++)
 					{
 						if($imagen['name'][$i])
 						{
@@ -272,6 +272,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 						}
 					}
 				}
+
 					
 					if(sizeof($this->errors)==0)
 					{
