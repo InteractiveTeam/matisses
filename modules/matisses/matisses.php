@@ -602,16 +602,25 @@ class matisses extends Module
             $link = new LinkCore();
             $images = Image::getImages($this->context->language->id, $id_product);
             $product = new Product($id_product);
+            $cat = Product::getProductCategoriesFull($product->id,$this->context->language->id);
+            $categories = array();
+            
+            foreach ($cat as $key=>$row) {
+                $categories[$key] = array($row['id_category'],$row['name']);
+            }
+            
             $this->context->smarty->assign(array(
                 'idproduct' => $product->id,
                 'nameproduct' => $product->getProductName($product->id),
                 'linkproduct' => $product->getLink(),
                 'descproduct' => $product->description,
 				'imageproduct' => $link->getImageLink($product->link_rewrite, (int)$images[0]["id_image"], 'home_default'),
-				'priceproduct' => $product->getPriceWithoutReduct()
-				
+				'priceproduct' => $product->getPriceWithoutReduct(),
+                'categories' => $categories,
+				'statusproduct' => $product->active
 		    ));
-            //echo "<pre>"; print_r($product); echo "</pre>";
+            
+            //echo "<pre>"; print_r($categories); echo "</pre>";
         }
 	}
 	
