@@ -621,7 +621,6 @@ class matisses extends Module
                 'categoriesprod' => $categories,
 				'statusproduct' => $product->active
 		    ));
-            
             //echo "<pre>"; print_r($categories); echo "</pre>";
         }
 	}

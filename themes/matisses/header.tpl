@@ -131,6 +131,7 @@
     data.currentdate = '{/literal}{$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"}{literal}';    
          
     ax.setChaordic(data);
+         
 </script>
 {/literal}
 </head>
