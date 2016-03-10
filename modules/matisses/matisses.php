@@ -604,11 +604,13 @@ class matisses extends Module
             $product = new Product($id_product);
             $cat = Product::getProductCategoriesFull($product->id,$this->context->language->id);
             $categories = array();
-            
-            foreach ($cat as $key=>$row) {
-                $categories[$key] = array($row['id_category'],$row['name']);
+            foreach($cat as $row){
+                array_push($categories, 
+                           array(
+                               'id' => $row['id_category'],
+                                'name' => $row['name']
+                            ));
             }
-            
             $this->context->smarty->assign(array(
                 'idproduct' => $product->id,
                 'nameproduct' => $product->getProductName($product->id),
@@ -616,7 +618,7 @@ class matisses extends Module
                 'descproduct' => $product->description,
 				'imageproduct' => $link->getImageLink($product->link_rewrite, (int)$images[0]["id_image"], 'home_default'),
 				'priceproduct' => $product->getPriceWithoutReduct(),
-                'categories' => $categories,
+                'categoriesprod' => $categories,
 				'statusproduct' => $product->active
 		    ));
             
