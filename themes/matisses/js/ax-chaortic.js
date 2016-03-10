@@ -87,9 +87,7 @@ ax = {
                     chaordic_meta.product.price = data.priceproduct;
                     chaordic_meta.product.status = data.statusproduct;
                 }
-                
-                //console.log(page);
-                
+                console.log(page);
             } else {
 
                 chaordic_meta = {
@@ -125,19 +123,7 @@ ax = {
                         });
                     }
                 }
-                
-                // Set product data in a product page
-                if (page == 'product') {
-                    chaordic_meta.product = {};
-                    chaordic_meta.product.id = data.idproduct;
-                    chaordic_meta.product.name = data.nameproduct;
-                    chaordic_meta.product.url = data.linkproduct;
-                    chaordic_meta.product.description = data.descproduct;
-                    chaordic_meta.product.images_ssl = {"default": data.imageproduct};
-                    chaordic_meta.product.price = data.priceproduct;
-                    chaordic_meta.product.status = data.statusproduct;
-                }
-                //console.log(page);
+                console.log(page);
             }
         });
     }
