@@ -87,6 +87,8 @@ ax = {
                     chaordic_meta.product.price = data.priceproduct;
                     chaordic_meta.product.status = data.statusproduct;
                 }
+                
+                
                 console.log(page);
             } else {
 
@@ -123,6 +125,9 @@ ax = {
                         });
                     }
                 }
+
+                
+               
                 console.log(page);
             }
         });
