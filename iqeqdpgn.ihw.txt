@@ -1,0 +1,13 @@
+﻿Revert "07-03-16 / ajuste caordi medio día"
+
+This reverts commit 898480106a2f3d780f35d78f00f8e24be0c24811.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch PruebasMatisses
+# Your branch is up-to-date with 'origin/PruebasMatisses'.
+#
+# Changes to be committed:
+#	modified:   themes/matisses/js/ax-chaortic.js
+#
+
