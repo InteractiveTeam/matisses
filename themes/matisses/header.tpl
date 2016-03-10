@@ -108,20 +108,30 @@
                 data.newsletter = false;
             }
         {/if}
+        {if $page_name == 'product'}
+            data.idproduct = '{$idproduct}';
+            data.nameproduct = '{$nameproduct}';
+            var linkp = '{$linkproduct}';
+            data.linkproduct = linkp.replace(/http:|https:/g,'');
+            data.descproduct = '{$descproduct}';
+            data.imageproduct = '{$imageproduct}';
+            data.priceproduct = {$priceproduct};
+            if (status == 1) {
+                data.statusproduct = 'available';   
+            } else {
+                data.statusproduct = 'unavailable';
+            }
+        {/if}
+        {if $page_name == 'search'}
+            data.search_q = '{$search_query}';
+        {/if}
     {literal}
     data.page = page;
     data.loggeduser = islogged;
-    data.search_q = '{/literal}{$search_query}{literal}';
-    data.currentdate = '{/literal}{$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"}{literal}';
-    data.idproduct = {/literal}{$idproduct}{literal};
-    data.nameproduct = '{/literal}{$nameproduct}{literal}';
-    data.linkproduct = '{/literal}{$linkproduct}{literal}';
-    data.descproduct = '{/literal}{$descproduct}{literal}';
-    data.imageproduct = '{/literal}{$imageproduct}{literal}';
-    data.priceproduct = '{/literal}{$priceproduct}{literal}';
-    
+    data.currentdate = '{/literal}{$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"}{literal}';    
          
     ax.setChaordic(data);
+         
 </script>
 {/literal}
 </head>
