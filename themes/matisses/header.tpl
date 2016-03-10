@@ -128,8 +128,8 @@
     {literal}
     data.page = page;
     data.loggeduser = islogged;
-    data.currentdate = '{/literal}{$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"}{literal}';    
-         
+    data.search_q = '{/literal}{$search_query}{literal}';
+    data.currentdate = '{/literal}{$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"}{literal}';      
     ax.setChaordic(data);
          
 </script>

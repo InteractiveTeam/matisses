@@ -76,7 +76,6 @@ ax = {
                         });
                     }
                 }
-                
                 // Set product data in a product page
                 if (page == 'product') {
                     chaordic_meta.product = {};
@@ -91,8 +90,8 @@ ax = {
                 
                 //console.log(page);
                 
-            } 
-            else {
+            } else {
+
                 chaordic_meta = {
                     "page": {
                         "name": page,
@@ -139,7 +138,6 @@ ax = {
                     chaordic_meta.product.status = data.statusproduct;
                 }
                 //console.log(page);
-                
             }
         });
     }
