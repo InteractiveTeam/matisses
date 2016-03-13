@@ -52,7 +52,7 @@
             <sup>*</sup>{l s='Required field'}
         </p>
         <div class="grid_12 alpha omega">
-            <form action="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}" method="post" class="std">
+            <form action="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}" method="post" class="std" id="identity">
             <fieldset>
 
                 <div class="form-group grid_12">
@@ -141,24 +141,24 @@
                     </div>
                 </div>
 
-                    <div class="required form-group grid_6 {$showpassword}">
+                    <div class="form-group grid_6 {$showpassword}">
                         <label for="old_passwd" class="required">
                             {l s='Current Password'}
                         </label>
-                        <input class="is_required validate form-control" type="password" data-validate="isPasswd" name="old_passwd" id="old_passwd" value="{$facbookid}" />
+                        <input class="form-control" type="password" data-validate="isPasswd" name="old_passwd" id="old_passwd" value="{$facbookid}" />
                     </div>
                     <div class="password form-group grid_6 {$showpassword}">
                         <label for="passwd">
                             {l s='New Password'}
                         </label>
-                        <input class="is_required validate form-control" type="password" data-validate="isPasswd" name="passwd" id="passwd" value="{$facbookid}" />
+                        <input class="form-control" type="password" data-validate="isPasswd" name="passwd" id="passwd" value="{$facbookid}" />
                     </div>
 
                 <div class="password form-group grid_6 {$showpassword}">
                     <label for="confirmation">
                         {l s='Confirmation'}
                     </label>
-                    <input class="is_required validate form-control" type="password" data-validate="isPasswd" name="confirmation" id="confirmation" value="{$facbookid}" />
+                    <input class="form-control" type="password" data-validate="isPasswd" name="confirmation" id="confirmation" value="{$facbookid}" />
                 </div>
 
                 <div class="form-group required grid_6">
@@ -222,7 +222,7 @@
     <div class="footer_links grid_12 alpha omega">
         <ul class="cf">
             <li>
-                <button type="submit" name="submitIdentity" class="btn btn-default btn-red">
+                <button type="submit" name="submitIdentity" onclick="$('form#identity').submit()" class="btn btn-default btn-red">
                     {l s='Save'}
                 </button>
             </li>
