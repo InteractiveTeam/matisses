@@ -302,6 +302,8 @@
                         <li><a href="#tabs-2">Populares</a></li>
                       </ul>
                       <div id="tabs-1" class="content-tabs">
+                        
+                        
                         <ul>
                         	{foreach from=$commentados item=articulo}
                             <li>
@@ -309,7 +311,19 @@
                                     <span>{$articulo.category}</span>
                                 </div>
                                 <div class="newsTitle">
-                                    <h2>{$articulo.title}</h2>
+                                    <h2>
+                                    <a href="{$link->getModuleLink('news', 'new',
+                                    [
+                                        'id_news'  => "{$articulo.id_news}",
+                                        'cat_news' => "{$articulo.id_cat}",
+                                        'page_cat'     => "{$page}",
+                                        'rewrite'  => "{$articulo.rewrite}",
+                                        'cat_rewrite'  => "{$articulo.cat_rewrite}"
+                                     ]
+                                     ,false)}"
+                                   alt="{$articulo.title}" >
+                                    
+                                    {$articulo.title} </a></h2>
                                 </div>
                             </li>
                             {/foreach}
@@ -323,7 +337,21 @@
                                     <span>{$articulo.category}</span>
                                 </div>
                                 <div class="newsTitle">
-                                    <h2>{$articulo.title}</h2>
+                                    <h2>
+                                    <a href="{$link->getModuleLink('news', 'new',
+                                    [
+                                        'id_news'  => "{$articulo.id_news}",
+                                        'cat_news' => "{$articulo.id_cat}",
+                                        'page_cat'     => "{$page}",
+                                        'rewrite'  => "{$articulo.rewrite}",
+                                        'cat_rewrite'  => "{$articulo.cat_rewrite}"
+                                     ]
+                                     ,false)}"
+                                   alt="{$articulo.title}" >
+                                    	{$articulo.title}
+                                    </a>
+                                    
+                                  	</h2>
                                 </div>
                             </li>
                             {/foreach}

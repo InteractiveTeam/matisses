@@ -310,55 +310,63 @@
                         <li><a href="#tabs-1">Comentados</a></li>
                         <li><a href="#tabs-2">Populares</a></li>
                       </ul>
-                      <div id="tabs-1" class="content-tabs">
+<div id="tabs-1" class="content-tabs">
+                        
+                        
                         <ul>
+                        	{foreach from=$commentados item=articulo}
                             <li>
                                 <div class="category-news">
-                                    <span>Categoria 1</span>
+                                    <span>{$articulo.category}</span>
                                 </div>
                                 <div class="newsTitle">
-                                    <h2>La iluminación perfecta para los hogares</h2>
+                                    <h2>
+                                    <a href="{$link->getModuleLink('news', 'new',
+                                    [
+                                        'id_news'  => "{$articulo.id_news}",
+                                        'cat_news' => "{$articulo.id_cat}",
+                                        'page_cat'     => "{$page}",
+                                        'rewrite'  => "{$articulo.rewrite}",
+                                        'cat_rewrite'  => "{$articulo.cat_rewrite}"
+                                     ]
+                                     ,false)}"
+                                   alt="{$articulo.title}" >
+                                    
+                                    {$articulo.title} </a></h2>
                                 </div>
                             </li>
-                            <li>
-                                <div class="category-news">
-                                    <span>Categoria 1</span>
-                                </div>
-                                <div class="newsTitle">
-                                    <h2>La iluminación perfecta para los hogares</h2>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-news">
-                                    <span>Categoria 2</span>
-                                </div>
-                                <div class="newsTitle">
-                                    <h2>La iluminación perfecta para los hogares</h2>
-                                </div>
-                            </li>
+                            {/foreach}
                         </ul>
                       </div>
                       <div id="tabs-2" class="content-tabs">
                         <ul>
+                        	{foreach from=$populares item=articulo}
                             <li>
                                 <div class="category-news">
-                                    <span>Categoria 1</span>
+                                    <span>{$articulo.category}</span>
                                 </div>
                                 <div class="newsTitle">
-                                    <h2>La iluminación perfecta para los hogares</h2>
+                                    <h2>
+                                    <a href="{$link->getModuleLink('news', 'new',
+                                    [
+                                        'id_news'  => "{$articulo.id_news}",
+                                        'cat_news' => "{$articulo.id_cat}",
+                                        'page_cat'     => "{$page}",
+                                        'rewrite'  => "{$articulo.rewrite}",
+                                        'cat_rewrite'  => "{$articulo.cat_rewrite}"
+                                     ]
+                                     ,false)}"
+                                   alt="{$articulo.title}" >
+                                    	{$articulo.title}
+                                    </a>
+                                    
+                                  	</h2>
                                 </div>
                             </li>
-                            <li>
-                                <div class="category-news">
-                                    <span>Categoria 1</span>
-                                </div>
-                                <div class="newsTitle">
-                                    <h2>La iluminación perfecta para los hogares</h2>
-                                </div>
-                            </li>
+                            {/foreach}
+
                         </ul>
-                      </div>
-                    </div>
+                      </div>                    </div>
                 </div>
             </div>
         </div>

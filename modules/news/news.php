@@ -791,7 +791,9 @@ class News extends Module {
             'cat' => $cat,
 			'catname' => $this->getCatName((int) ($cat), $id_lang),
             'cat_rewrite' => $this->getCatRewrite($cat, $id_lang),
-            'page' => $page
+            'page' => $page,
+			'populares' => $this->getPopulars(),
+			'commentados' => $this->getCommentados()
         ));
 
         return $this->display(__FILE__, 'tpl/news_list_category.tpl');
@@ -921,7 +923,7 @@ class News extends Module {
 	public function getPopulars()
 	{
 
-		return Db::getInstance()->ExecuteS('SELECT b.title, c.title as category, viewed
+		$populars = Db::getInstance()->ExecuteS('SELECT a.id_news, b.title, c.title as category, viewed, c.*, b.*
 											FROM '._DB_PREFIX_.'news as a
 												 INNER JOIN	'._DB_PREFIX_.'news_langs as b
 												 INNER JOIN '._DB_PREFIX_.'news_cats_lang AS c
@@ -931,12 +933,18 @@ class News extends Module {
 												and b.id_lang = '.$this->context->language->id.'
 											group by a.id_news  order by viewed desc
 											');
+		foreach($populars as $d => $comment)
+		{
+			$populars[$d]['cat_rewrite'] = $this->getCatRewrite($comment['id_cat'],$this->context->language->id);
+			$populars[$d]['rewrite'] = Tools::str2url($comment['title']);
+		}
+		return $populars;
 	}
 	
 	public function getCommentados()
 	{								
 
-		return Db::getInstance()->ExecuteS('SELECT b.title, c.title as category, (SELECT count(*) FROM '._DB_PREFIX_.'news_comments WHERE id_news = a.id_news) as comentarios
+		$comments = Db::getInstance()->ExecuteS('SELECT a.id_news, b.title, c.title as category, (SELECT count(*) FROM '._DB_PREFIX_.'news_comments WHERE id_news = a.id_news) as comentarios, c.*, b.*
 											FROM '._DB_PREFIX_.'news as a
 												 INNER JOIN	'._DB_PREFIX_.'news_langs as b
 												 INNER JOIN '._DB_PREFIX_.'news_cats_lang AS c
@@ -946,6 +954,12 @@ class News extends Module {
 												and b.id_lang = '.$this->context->language->id.'
 											group by a.id_news  order by (SELECT count(*) FROM '._DB_PREFIX_.'news_comments WHERE id_news = a.id_news) desc
 											');
+		foreach($comments as $d => $comment)
+		{
+			$comments[$d]['cat_rewrite'] = $this->getCatRewrite($comment['id_cat'],$this->context->language->id);
+			$comments[$d]['rewrite'] = Tools::str2url($comment['title']);
+		}
+		return $comments;									
 	}
 	
 
@@ -4136,7 +4150,7 @@ class News extends Module {
 		foreach($comments as $k => $comment)
 		{
 			$comments[$k]['date'] = ($comment['date'] != 0 ? ( $this->_months[date('n', $comment['date'])] . ' ' . date('j', $comment['date']) . ', ' . date('Y', $comment['date']) ) : '');
-			$user = Db::getInstance()->getRow('SELECT firstname, lastname FROM '._DB_PREFIX.'customer WHERE id_customer ="'.$comment['id_customer'].'"');
+			$user = Db::getInstance()->getRow('SELECT firstname, lastname FROM '._DB_PREFIX_.'customer WHERE id_customer ="'.$comment['id_customer'].'"');
 			
 			$comments[$k]['id_customer'] = $user['firstname'].' '.$user['lastname'];
 		}
