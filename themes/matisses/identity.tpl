@@ -53,6 +53,7 @@
         </p>
         <div class="grid_12 alpha omega">
             <form action="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}" method="post" class="std" id="identity">
+            <input type="hidden" name="submitIdentity" value="1" />
             <fieldset>
 
                 <div class="form-group grid_12">
