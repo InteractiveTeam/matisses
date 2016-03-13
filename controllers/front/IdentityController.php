@@ -43,6 +43,8 @@ class IdentityControllerCore extends FrontController
 	 */
 	public function postProcess()
 	{
+		
+		
 		$origin_newsletter = (bool)$this->customer->newsletter;
 
 		if (Tools::isSubmit('submitIdentity'))
@@ -129,6 +131,7 @@ class IdentityControllerCore extends FrontController
 					$this->context->cookie->passwd = $this->customer->passwd;
 				if ($this->customer->update())
 				{
+					
 					$this->context->cookie->customer_lastname = $this->customer->lastname;
 					$this->context->cookie->customer_firstname = $this->customer->firstname;
 					
@@ -170,6 +173,8 @@ class IdentityControllerCore extends FrontController
 				'sl_day' => $birthday[2],
 				'errors' => $this->errors,
 				'genders' => Gender::getGenders(),
+				'showpassword' => strtolower($this->customer->customer_acount_type) == 'facebook' ? 'hidden' : '',
+				'facbookid' => $this->customer->facbookid,
 			));
 
 		// Call a hook to display more information

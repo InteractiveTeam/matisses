@@ -52,8 +52,7 @@
             <sup>*</sup>{l s='Required field'}
         </p>
         <div class="grid_12 alpha omega">
-            <form action="{$link
-            ->getPageLink('identity', true)|escape:'html':'UTF-8'}" method="post" class="std">
+            <form action="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}" method="post" class="std">
             <fieldset>
 
                 <div class="form-group grid_12">
@@ -101,7 +100,7 @@
                     <label for="surname" class="required">
                         {l s='Cédula'}
                     </label>
-                    <input class="is_required validate form-control" data-validate="isName" type="text" max="11" maxlength="11" name="charter" id="charter" value="{$smarty.post.charter}" />
+                    <input class="is_required validate form-control" type="text" max="11" maxlength="11" name="charter" id="charter" value="{$smarty.post.charter}" />
                 </div>
 
 
@@ -142,23 +141,24 @@
                     </div>
                 </div>
 
-                <div class="required form-group grid_6">
-                    <label for="old_passwd" class="required">
-                        {l s='Current Password'}
-                    </label>
-                    <input class="is_required validate form-control" type="password" data-validate="isPasswd" name="old_passwd" id="old_passwd" />
-                </div>
-                <div class="password form-group grid_6">
-                    <label for="passwd">
-                        {l s='New Password'}
-                    </label>
-                    <input class="is_required validate form-control" type="password" data-validate="isPasswd" name="passwd" id="passwd" />
-                </div>
-                <div class="password form-group grid_6">
+                    <div class="required form-group grid_6 {$showpassword}">
+                        <label for="old_passwd" class="required">
+                            {l s='Current Password'}
+                        </label>
+                        <input class="is_required validate form-control" type="password" data-validate="isPasswd" name="old_passwd" id="old_passwd" value="{$facbookid}" />
+                    </div>
+                    <div class="password form-group grid_6 {$showpassword}">
+                        <label for="passwd">
+                            {l s='New Password'}
+                        </label>
+                        <input class="is_required validate form-control" type="password" data-validate="isPasswd" name="passwd" id="passwd" value="{$facbookid}" />
+                    </div>
+
+                <div class="password form-group grid_6 {$showpassword}">
                     <label for="confirmation">
                         {l s='Confirmation'}
                     </label>
-                    <input class="is_required validate form-control" type="password" data-validate="isPasswd" name="confirmation" id="confirmation" />
+                    <input class="is_required validate form-control" type="password" data-validate="isPasswd" name="confirmation" id="confirmation" value="{$facbookid}" />
                 </div>
 
                 <div class="form-group required grid_6">

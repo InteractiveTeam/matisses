@@ -119,6 +119,7 @@
 						<label>{l s='Title'}</label>
 						{foreach from=$genders key=k item=gender}
 							<div class="radio-inline">
+                           
 								<label for="id_gender{$gender->id}" class="top">
 									<input type="radio" name="id_gender" id="id_gender{$gender->id}" value="{$gender->id}"{if isset($smarty.post.id_gender) && $smarty.post.id_gender == $gender->id} checked="checked"{/if} />
 									{$gender->name}
@@ -450,9 +451,12 @@
 		<div class="account_creation grid_12 omega alpha">
 			<div class="form-group grid_12 ">
 				<label class="hidden-xs">{l s='Género'}</label>
+                <input type="text" value="{$smarty.post.customer_acount_type}" id="customer_acount_type" name="customer_acount_type" />
+                <input type="text" value="{$smarty.post.facbookid}" id="facbookid" name="facbookid" />
 				{foreach from=$genders key=k item=gender}
 					<div class="radio-inline">
 						<label for="id_gender{$gender->id}" class="top">
+                        	
 							<input type="radio" name="id_gender" id="id_gender{$gender->id}" value="{$gender->id}" {if isset($smarty.post.id_gender) && $smarty.post.id_gender == $gender->id}checked="checked"{/if} />
 						{$gender->name}
 						</label>
