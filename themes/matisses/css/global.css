@@ -524,16 +524,16 @@ box-sizing: border-box;
     font-size: 1.35rem;
     }
 
-    .cms .container a {
+    .cms .center_column a {
     color:#d9292e;
     }
 
-   .cms .container ul  {
+   .cms .center_column ul  {
         list-style: inherit;
         list-style-position: inside;
     }
 
-    .cms .container ol  {
+    .cms .center_column ol  {
     list-style-type: decimal;
     list-style-position: inside;
     }
