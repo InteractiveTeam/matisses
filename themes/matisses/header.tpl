@@ -83,7 +83,7 @@
 		
 <!--Chaordic loader-->		
 <script async defer src="//static.chaordicsystems.com/static/loader.js" data-apikey="matisses"></script>
-<script type="text/javascript" src="{$js_dir}ax-chaortic.js"></script>
+<script type="text/javascript" src="{$js_dir}ax-chaordic.js"></script>
 {literal}
 <script type="text/javascript">
     var data = {};
