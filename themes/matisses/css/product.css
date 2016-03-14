@@ -889,7 +889,13 @@ a.fancybox-nav {
     border-left: 1px solid #dbdbdb;
 	height: 6.25rem;
 	background-color: #f8f8f8;
+    opacity: 0.4;
+    -webkit-opacity:0.4;
 	}
+    #product_schemes li.active {
+    opacity: 1;
+    -webkit-opacity:1;
+    }
 	#product_schemes li:hover{
 	background-color: #fff;
 	}
@@ -900,6 +906,7 @@ a.fancybox-nav {
 	#product_schemes li a img {
     margin: 0 auto;
 	}
+    
 	#product_schemes h3 {
     color: #231f20;
     font-size: 0.875rem;

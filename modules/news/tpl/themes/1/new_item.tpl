@@ -410,7 +410,6 @@
     </div>
 {if $cookie->id_customer}
 <div class="row">
-	<h2>{l s='Comentarios'}</h2>
 	<div class="error" id="error-comment" style="display:none">
     	{l s='Ingresa un comentario' mod='news'}
     </div>

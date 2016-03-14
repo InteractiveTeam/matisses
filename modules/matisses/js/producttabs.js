@@ -1,5 +1,7 @@
 $(document).ready(function(e) {
-	
+	setTimeout(function(){
+			window.location.hash = '';
+		},1500)
 	$('.product-360').on('click',function(e){
 		e.preventDefault();
 		url = $(this).attr('data-url');

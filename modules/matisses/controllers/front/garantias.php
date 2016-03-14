@@ -98,7 +98,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 													and a.id_customer = '.$this->context->customer->id.'
 												 	and a.id_order = '.$orderdetail[0].'	
 												 	and a.id_product = '.$orderdetail[1].'	
-												 	and a.id_product_attribute = '.$orderdetail[2]);		
+												 	and a.id_product_attribute = '.$orderdetail[2]);
 		$garantia['imgs'] = explode(',',$garantia['imgs']);	
 		return $garantia;										
 	}
@@ -196,13 +196,50 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 					$this->errors[] = Tools::displayError('Cargue almenos una imagen del daño');
 			}
 	
+	
+			if($_FILES['imagen']['name'][0])
+			{
+				$imagen = $_FILES['imagen'];
+				for($i=1; $i<=sizeof($imagen['name']); $i++)
+				{
+					if($imagen['name'][$i])
+					{
+						$imagenes[$i]['name'] 		= $imagen['name'][$i];
+						$imagenes[$i]['type'] 		= $imagen['type'][$i];
+						$imagenes[$i]['tmp_name'] 	= $imagen['tmp_name'][$i];
+						$imagenes[$i]['error']		= $imagen['error'][$i];
+						$imagenes[$i]['size']		= $imagen['size'][$i];
+					}
+				}
+				foreach($imagenes as $k => $imagen)
+				{
+					if(strtolower(trim(pathinfo($imagen['name'], PATHINFO_EXTENSION))) != 'jpg')
+					{
+						$this->errors[] = Tools::displayError('Una o mas imagenes no cumplen con el formato jpg');
+						break;
+					}
+					
+					if($imagen['error']!=0)
+					{
+						$this->errors[] = Tools::displayError('Una o mas imagenes presentaron error al cargar');
+						break;
+					}
+					
+					if($imagen['size']>Configuration::get("PS_PRODUCT_PICTURE_MAX_SIZE"))
+					{
+						$this->errors[] = Tools::displayError('Una o mas imagenes exceden el limite de carga permitido ').' '.(Configuration::get("PS_PRODUCT_PICTURE_MAX_SIZE")/(1024*1024)).'Mb';
+						break;
+					}
+				}				
+				
+			}	
 				
 			if(sizeof($this->errors)==0)
 			{
 				$imagen = $_FILES['imagen'];
 				if($imagen['name'][0])
 				{
-					for($i=1; $i<=sizeof($imagen['name']); $i++)
+					for($i=0; $i<=sizeof($imagen['name']); $i++)
 					{
 						if($imagen['name'][$i])
 						{
@@ -235,6 +272,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 						}
 					}
 				}
+
 					
 					if(sizeof($this->errors)==0)
 					{

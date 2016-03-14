@@ -107,7 +107,7 @@
           </ul>
           <ul class="column-3 column grid_4 omega">
             <li><a href="{$link->getCMSLink(9)}">{l s='Métodos de envio'}</a></li>
-            <li><a href="{$link->getModuleLink('matisses','garantias')}/nueva">{l s='Garantías'}</a></li>
+            <li><a href="{$link->getCMSLink(14)}">{l s='Garantías'}</a></li>
             <li><a href="{$link->getCMSLink(10)}">{l s='Preguntas Frecuentes'}</a></li>
           </ul>
         </div>

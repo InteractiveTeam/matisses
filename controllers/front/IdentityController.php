@@ -43,10 +43,12 @@ class IdentityControllerCore extends FrontController
 	 */
 	public function postProcess()
 	{
+		
+		
 		$origin_newsletter = (bool)$this->customer->newsletter;
-
 		if (Tools::isSubmit('submitIdentity'))
 		{
+			
 			$email = trim(Tools::getValue('email'));
 
 			if(Tools::getValue('confirmation'))
@@ -72,7 +74,7 @@ class IdentityControllerCore extends FrontController
 			
 			if(Tools::getValue('charter'))
 			{
-				$exists = Db::getInstance()->getValue('SELECT count(*) FROM '._DB_PREFIX_.'customer WHERE charter = "'.Tools::getValue('charter').'" and id_customer!= '.$this->context->customer->id);
+				$exists = Db::getInstance()->getValue('SELECT count(*) FROM '._DB_PREFIX_.'customer WHERE charter = "'.Tools::getValue('charter').'" and id_customer != '.$this->context->customer->id);
 				if($exists)
 					$this->errors[] = sprintf(Tools::displayError('La %s ya se encuentra registrada'),'<b>'.Tools::displayError('Charter').' </b>');
 			}
@@ -104,7 +106,7 @@ class IdentityControllerCore extends FrontController
 				// Merge all errors of this file and of the Object Model
 				$this->errors = array_merge($this->errors, $this->customer->validateController());
 			}
-
+			
 			if (!count($this->errors))
 			{
 				$this->customer->id_default_group = (int)$prev_id_default_group;
@@ -170,6 +172,8 @@ class IdentityControllerCore extends FrontController
 				'sl_day' => $birthday[2],
 				'errors' => $this->errors,
 				'genders' => Gender::getGenders(),
+				'showpassword' => strtolower($this->customer->customer_acount_type) == 'facebook' ? 'hidden' : '',
+				'facbookid' => $this->customer->facbookid,
 			));
 
 		// Call a hook to display more information

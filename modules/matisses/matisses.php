@@ -3,7 +3,6 @@ class matisses extends Module
 {
 	
 	private $_uploadfile = 'matisses';
-
 	
 	public function __construct()
 	{
@@ -64,7 +63,6 @@ class matisses extends Module
 										? 'selected' : NULL);
 		}	
 		$this->context->smarty->assign('path',$this->name);
-
 		$this->context->smarty->assign('displayName',$this->displayName);
 		$this->context->smarty->assign('ApyKey',$ApyKey);
 		$this->context->smarty->assign('UrlWs',Configuration::get($this->name.'_UrlWs'));
@@ -90,7 +88,6 @@ class matisses extends Module
 		$install[] = $this->__installImageTypes('experiences-home',570,145);
 		
 		$install[] = $this->__installPage('module-matisses-experiences','experiencias');
-
 		
 		
 		$sql = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'highlights` (
@@ -247,7 +244,6 @@ class matisses extends Module
 		return true;
 	}
 	
-
 	
 	private function __installPage($page=NULL,$title=NULL, $url_rewrite=NULL, $description=NULL)
 	{
@@ -279,7 +275,6 @@ class matisses extends Module
 				$page = Meta::getMetaByPage($page, $this->context->language->id);
 				if($page['id_meta'])
 					Db::getInstance()->delete('ps_meta', 'id_meta='.$page['id_meta']);
-
 				return true; 
 			}
 		}catch (Exception $e) {
@@ -360,7 +355,6 @@ class matisses extends Module
 			
 		if(file_exists(_PS_IMG_DIR_.'experiences'))
 			Tools::deleteDirectory(_PS_IMG_DIR_.'experiences');	
-
 		
 		if (!parent::uninstall() 
 			|| in_array(0,$uninstall) 
@@ -415,7 +409,6 @@ class matisses extends Module
 			return false;
 		}
 	}
-
 	/*********************************************
 	* WEB SERVICES
 	*********************************************/
@@ -468,12 +461,10 @@ class matisses extends Module
 				$shipping_cost;
 			 }
 	}
-
 	
 	
 	public function hookactionSortFilters($params)
 	{
-
 		$filters = $params['filters'];
 		
 		unset($keyfilter);
@@ -519,7 +510,6 @@ class matisses extends Module
 	{
 		require_once dirname(__FILE__)."/classes/Experiences.php";
 		$Experiences = new Experiences();
-
 		$list = $Experiences->getExperiences();
 		foreach($list as $k => $exp)
 		{
@@ -658,7 +648,6 @@ class matisses extends Module
 		
 		if($sketch)
 			$sketch = '/modules/'.$this->name.'/files/'.$params['product']->reference.'/plantilla/'.$sketch;
-
 		
 		$this->context->smarty->assign('schemas',array(
 			'sketch' => $sketch,
@@ -723,7 +712,6 @@ class matisses extends Module
 		$this->context->cookie->is_guest = $customer->isGuest();
 		$this->context->cookie->passwd = $customer->passwd;
 		$this->context->cookie->email = $customer->email;
-
 		// Add customer to the context
 		$this->context->customer = $customer;
 		
@@ -732,34 +720,27 @@ class matisses extends Module
 			$this->context->cart = new Cart($id_cart);
 			$this->context->cart->id_currency = 1;
 		}
-
 		$id_carrier = (int)$this->context->cart->id_carrier;
 		$this->context->cart->id_carrier = 0;
 		$this->context->cart->setDeliveryOption(null);
 		$this->context->cart->id_address_delivery = (int)Address::getFirstCustomerAddressId((int)($customer->id));
 		$this->context->cart->id_address_invoice = (int)Address::getFirstCustomerAddressId((int)($customer->id));
-
 		$this->context->cart->id_customer = (int)$customer->id;
 		$this->context->cart->secure_key = $customer->secure_key;
-
 		if ($this->ajax && isset($id_carrier) && $id_carrier && Configuration::get('PS_ORDER_PROCESS_TYPE'))
 		{
 			$delivery_option = array($this->context->cart->id_address_delivery => $id_carrier.',');
 			$this->context->cart->setDeliveryOption($delivery_option);
 		}
-
 		$this->context->cart->save();
 		$this->context->cookie->id_cart = (int)$this->context->cart->id;
 		$this->context->cookie->write();
 		$this->context->cart->autosetProductAddress();
-
 		// Login information have changed, so we check if the cart rules still apply
 		CartRule::autoRemoveFromCart($this->context);
 		CartRule::autoAddToCart($this->context);
-
 		return 'index.php?controller='.(($this->authRedirection !== false) ? urlencode($this->authRedirection) : $back);
 	}
-
 // FUNCIONES DE INTEGRACION CON CLIENTES
 	
 	/*******************************************************
@@ -789,7 +770,6 @@ class matisses extends Module
 		$infoxml[0]['email']			= $InfCustomer[0]['email'];
 		$infoxml[0]['gender']			= 3;
         $infoxml[0]['salesPersonCode'] 	= ""; // se envia vacio esto se llena por default en sap;
-
 		if(sizeof($InfAddresses)>0)
 		{
 			$infoxml[0]['defaultBillingAddress'] = '';
@@ -865,8 +845,6 @@ class matisses extends Module
 		$infoxml[0]['email']			= $InfCustomer[0]['email'];
         $infoxml[0]['salesPersonCode'] 	= ""; // se envia vacio esto se llena por default en sap;
 		
-
-
 		foreach($InfAddresses as $d => $v) 
 		{
 			$addresses[$d]['addressName']	= $InfAddresses[$d]['alias'];
@@ -881,14 +859,12 @@ class matisses extends Module
             $addresses[$d]['phone']			= $InfAddresses[$d]['phone'];
 		}
 		$infoxml[0]['addresses'] = $addresses;
-
 		$xml = new Template(dirname(__FILE__)."/xml/sap_customer.xml");
 		$xml->addParam('infoxml',$infoxml);
 		$xml = $xml->output();
  		if($this->wsmatisses_client('customer',$infoxml[0]['operation'],'prestashop',$xml))
 			$this->wsmatisses_homologacion('customer','id',$customer->id,$infoxml[0]['id']); 
 	}
-
 // FUNCIONES DE INTEGRACION CON PRODUCTOS	
 	/*******************************************************
 	*	@author:	Sebastian casta�o
@@ -904,7 +880,6 @@ class matisses extends Module
         $header = "http://181.143.4.46:8280/WebIntegrator/GenericFacade?wsdl";
 		//$headers = get_headers(Configuration::get($this->name.'_UrlWs'));
 		$headers = get_headers($header);
-
 		
         if(is_soap_fault($headers) || empty($headers)){
             die(Tools::jsonEncode(array(
@@ -916,13 +891,11 @@ class matisses extends Module
 		if(!strstr($headers[0],'200'))
 			return false;
 			
-
 		//ini_set('display_errors',false);
 		//error_reporting(~E_NOTICE);
 		$id_cart 	= is_object($this->context->cart->id) ? $this->context->cart->id : $this->context->cookie->id_cart;
 		$products				= $params['id_product'];
 		$id_product_attribute	= $params['id_product_attribute'];
-
 		if($id_product_attribute!=0)
 		{
 			$reference = self::getReferenceByIdProductAttribute($id_product_attribute,$products);
@@ -963,7 +936,6 @@ class matisses extends Module
 				
 				if(is_array($products))
 				{
-
 				}else{
 						$product 	= new Product($products);
 						if(!$product->reference || empty($product->reference))
@@ -1077,7 +1049,6 @@ class matisses extends Module
 			); 
 		}
 		
-
 		
 		echo '<br><br><pre>';print_r($datos);echo '</pre>';
 		$var = array();
@@ -1140,7 +1111,6 @@ class matisses extends Module
 		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), true);
 		$invoice['customerDTO']['id'] 		= $params['id'];	
 		$invoice 	= self::array_to_xml($invoice,false);
-
 		$s 			= array('genericRequest' => array('data'		=>$invoice,
 														'object'	=>'order',
 														'operation'	=>'listCustomerOrders',
@@ -1178,12 +1148,10 @@ class matisses extends Module
 		//print_r($result);
 		return $result;	 			
 	}
-
 	public function wsmatisses_registrar($params)
 	{
 /*		echo "<pre>";
 		print_r($params);
-
 		echo "</pre>";*/
 		
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
@@ -1252,7 +1220,6 @@ class matisses extends Module
 		if($continue)
 			return $this->wsmatisses_createInvoice($products);
 	}
-
 	// FUNCIONES DE COMUNICACION CON SAP	
 	public function wsmatisses_facturar($params)
 	{
@@ -1267,20 +1234,16 @@ class matisses extends Module
 														'source'	=>'prestashop')
 												); 
 		$result = $client->call('callService', $s); 
-
 		if(empty($result))
 		{
 			echo "<p>";print_r($result['return']['detail']);echo"</p>";
 			return false;	
 		}
-
-
 		if(substr($result['return']['code'],4,1)==9)
 		{
 			echo "<p>";print_r($result['return']['detail']);echo"</p>";
 			return false;
 		}else{
-
 				$sql = 'UPDATE `' . _DB_PREFIX_ . 'cart` set id_factura ="'.$result['return']['detail'].'" where id_cart = "'.$params['id_order'].'"';
 				Db::getInstance()->Execute($sql);
 				return true;
@@ -1318,7 +1281,6 @@ class matisses extends Module
 			$response = $ex->getMessage();
 			$return = false;
 		} 
-
 		$this->log($objeto,$operacion,$origen,$xml,$response,$status,$error);
 		return $boolean ? $return : $response;
 	}
@@ -1332,14 +1294,11 @@ class matisses extends Module
 		//die();
 		$s 		= array('genericRequest' => array('data'=>$datos,'object'=>$objeto,'operation'=>$operacion,'source'=>$origen)); 
 		
-
-
 		$result = $client->call('callService', $s);
 		if($client->error_str)
 		{
 			return array('error_string' => $client->error_str);
 		}
-
 		if($return)
 			return $result;  
 		
@@ -1405,7 +1364,6 @@ class matisses extends Module
 							 }
 					 }
 			}
-
 			require_once dirname(__FILE__)."/wsclasses/ws_loadProducts.php";
 			$ws_product = new ws_loadProducts();
 			$ws_product->_products = $products;
@@ -1428,7 +1386,6 @@ class matisses extends Module
 		$datos 		= $this->wsmatisses_get_data('inventoryItem','getItemInfo','prestashop',$this->array_to_xml($data,false));
 		return $datos['inventoryItemDTO']; 
 	}
-
 	public function wsmatisses_getModelInfo()
 	{
 		ini_set('display_errors',false);	
@@ -1534,7 +1491,6 @@ class matisses extends Module
 													 
 			$result = $client->call('callService', $s);
 			
-
 			
 			
  			if($result && $result['return']['code']=='0201001')
@@ -1583,8 +1539,6 @@ class matisses extends Module
 		}
 		return false; 
 	}
-
-
 	/*******************************************************
 	*	@author:	Sebastian casta�o
 	*	@package:	Matisses integracion (Funciones de Comunicacion sap)
@@ -1603,7 +1557,6 @@ class matisses extends Module
 		$operacion 	= empty($operacion) ? $datos['operation'] : $operacion;
 		$origen 	= empty($origen) ? $datos['source'] : $origen;
 		$datos 		= sizeof($datos)>1 ? $datos['data'] : $datos;
-
 		(!$objeto) ? array_push($response['error'],'Missing object param') : NULL;
 		(!$operacion) ? array_push($response['error'],'Missing object param') : NULL;
 		(!$origen) ? array_push($response['error'],'Missing object param') : NULL;
@@ -1651,9 +1604,7 @@ class matisses extends Module
 		$this->log($objeto,$operacion,$origen,$datos,$response,($errors !='' ? true : false),$errors); 	 
 		return $response;
 	}
-
 // FIN FUNCIONES DE AYUDA
-
 	/*******************************************************
 	*	@author:	Sebastian casta�o
 	*	@package:	Matisses integracion (Helpers)
@@ -1925,7 +1876,6 @@ class matisses extends Module
 	}
 	
 	/*******************************************************
-
 	*	@author:	Sebastian casta�o
 	*	@package:	Matisses integracion (Helpers)
 	*	@summary:	Metodo que apoya la funcionalidad del metodo
@@ -2019,7 +1969,6 @@ class matisses extends Module
 									,false, true,Db::INSERT_IGNORE,true
 									); 
 	}
-
 	public function getReferenceByIdProductAttribute($id_product_attribute,$id_product)
 	{
 		if(!$id_product_attribute)
@@ -2030,7 +1979,6 @@ class matisses extends Module
 											WHERE id_product ="'.$id_product.'"
 											AND id_product_attribute = "'.$id_product_attribute.'"');	
 	}
-
 	public function getbyisocity($city)
 	{
 		return Country::getByIso(trim($city));
@@ -2040,7 +1988,6 @@ class matisses extends Module
 	{
 		return State::getIdByIso(trim($state));
 	}
-
 	
 }	
 ?>

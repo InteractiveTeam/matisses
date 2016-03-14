@@ -30,7 +30,7 @@
     	<h1><span>{l s='404.'}</span></h1>
         <!--<h2>{l s='Page not found'}</h2>-->
         <p>
-            {l s='Parece que la página que estás buscando haya sido removida, haya cambiado de nombre o no está disponible temporalmente.'}
+            {l s='Parece que la página que estás buscando ha sido removida, ha cambiado de nombre o no está disponible temporalmente.'}
         </p>
     </div>
     <div class="optionDirection">
