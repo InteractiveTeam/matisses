@@ -132,5 +132,7 @@ $(document).ready(function(){
 
 function productcommentRefreshPage()
 {
+	window.location.hash = 'tabs-3';
+	
     window.location.reload();
 }

@@ -505,7 +505,7 @@ class Blocktopmenu extends Module
 			switch (substr($item, 0, strlen($value[1])))
 			{
 				case 'CAT':
-					$this->_menu .= $this->generateCategoriesMenu(Category::getNestedCategories($id, $id_lang, true, $this->user_groups));
+					$this->_menu .= $this->generateCategoriesMenu(Category::getNestedCategories($id, $id_lang, false, $this->user_groups));
 					break;
 
 				case 'PRD':
@@ -646,14 +646,16 @@ class Blocktopmenu extends Module
 					if($category['level_depth']>=5)
 						$cont++;
 					*/
-					
+					    $show = '';
+						if($category['level_depth']>=2)
+							$show = $this->checkifshow($cat,0) ? '' : ' hidden ';
 						
-					
+						
 						if($category['level_depth']<=4)
-							$html .= '<li class="'.(($this->page_name == 'category' && (int)Tools::getValue('id_category') == (int)$category['id_category']) ? 'sfHoverForce"' : '').'">';
+							$html .= '<li class="'. $show .(($this->page_name == 'category' && (int)Tools::getValue('id_category') == (int)$category['id_category']) ? 'sfHoverForce"' : '').'">';
 						
 						$html .= '<a 
-									'.($category['level_depth']>=4 && $cat->getProducts($this->context->language->id,null,null,null,null,true)==0 ? 'class="hidden"':'').'
+									class="'. $show .'"
 									href="'.$link.'" 
 									title="'.$category['name'].'">'.$category['name'].'</a>';
 					
@@ -710,6 +712,24 @@ class Blocktopmenu extends Module
 		}
 
 		return $html;
+	}
+	
+	private function checkifshow($cat,$sum)
+	{
+		$childrens = $cat->getChildren($cat->id,$this->context->language->id);
+		if(sizeof($childrens)>0)
+		{
+			foreach($childrens as $k => $category)
+			{
+				$childcategory = new Category($category['id_category']); 
+				$sum = self::checkifshow($childcategory,$sum);
+			}
+		}else{
+				$products = $cat->getProducts($this->context->language->id,null,null,null,null, true, true);
+				$products > 0  ? $sum = true : false;
+				return $sum;			
+			 }
+		return $sum;	 
 	}
 
 	private function getCMSMenuItems($parent, $depth = 1, $id_lang = false)

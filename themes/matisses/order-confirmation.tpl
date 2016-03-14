@@ -40,6 +40,15 @@
 	<a class="button-exclusive btn btn-default" href="{$link->getPageLink('guest-tracking', true, NULL, "id_order={$reference_order|urlencode}&email={$email|urlencode}")|escape:'html':'UTF-8'}" title="{l s='Follow my order'}"><i class="icon-chevron-left"></i>{l s='Follow my order'}</a>
     </p>
 {else}
+
+<form id="submitReorder" class="submitReorder" action="{$link->getPageLink('order', true)}" method="post" class="submit">
+    <input type="hidden" value="{$reference_order|urlencode}" name="id_order"/>
+    <input type="hidden" value="" name="submitReorder"/>
+    <a href="#" onclick="$('submitReorder').submit(); return false;" class="btn btn-default btn-red">
+        {l s='Pedir de nuevo'}
+    </a>
+</form>
+
 <p class="cart_navigation exclusive">
 	<a class="button-exclusive btn btn-default" href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}" title="{l s='Back to orders'}"><i class="icon-chevron-left"></i>{l s='Back to orders'}</a>
 </p>

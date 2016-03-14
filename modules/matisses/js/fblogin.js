@@ -110,6 +110,8 @@ function submitFacebookFunction(data)
 					$('#passwd2').val(localStorage.passwd).parent().addClass('hidden');					
 					$('#customer_lastname').val(data.last_name);
 					$('#customer_firstname').val(data.first_name);
+					$('#customer_acount_type').val('facebook');
+					$('#facbookid').val(localStorage.passwd);
 				});
 			}
 		},
