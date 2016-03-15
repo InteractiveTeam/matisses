@@ -116,6 +116,9 @@
             data.descproduct = '{$descproduct}';
             data.imageproduct = '{$imageproduct}';
             data.priceproduct = {$priceproduct};
+            data.categoriesp = {$categoriesp};
+            data.tagsproduct = {$tagsproduct};
+         
             if (status == 1) {
                 data.statusproduct = 'available';   
             } else {

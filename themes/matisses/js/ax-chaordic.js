@@ -134,7 +134,9 @@ ax = {
                     chaordic_meta.product.name = data.nameproduct;
                     chaordic_meta.product.url = data.linkproduct;
                     chaordic_meta.product.description = data.descproduct;
-                    chaordic_meta.product.images_ssl = {"default": data.imageproduct};
+                    chaordic_meta.product.images = {"default": data.imageproduct};
+                    chaordic_meta.product.categories = data.categoriesp;
+                    chaordic_meta.product.tags = data.tagsproduct;
                     chaordic_meta.product.price = data.priceproduct;
                     chaordic_meta.product.status = data.statusproduct;
                 }

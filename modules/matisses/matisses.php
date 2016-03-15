@@ -593,30 +593,35 @@ class matisses extends Module
             $images = Image::getImages($this->context->language->id, $id_product);
             $product = new Product($id_product);
             $cat = Product::getProductCategoriesFull($product->id,$this->context->language->id);
-            $categories = array();
+            $tags = Tag::getProductTags($id_product);
+            $categoriesp = array();
+            $tagsproduct = array();
+            
             foreach($cat as $row){
-                array_push($categories, 
+                array_push($categoriesp, 
                            array(
                                'id' => $row['id_category'],
                                 'name' => $row['name']
                             ));
             }
+            
+            foreach($tags as $tag){
+                foreach ($tag as $item) {
+                    array_push($tagsproduct,array('name' => $item));
+                }
+            }
+            
             $this->context->smarty->assign(array(
                 'idproduct' => $product->id,
                 'nameproduct' => $product->getProductName($product->id),
                 'linkproduct' => $product->getLink(),
-                'descproduct' => $product->description,
+                'descproduct' => strip_tags($product->description[1]),
 				'imageproduct' => $link->getImageLink($product->link_rewrite, (int)$images[0]["id_image"], 'home_default'),
 				'priceproduct' => $product->getPriceWithoutReduct(),
-                'categoriesprod' => $categories,
+                'categoriesp' => json_encode($categoriesp),
+                'tagsproduct' => json_encode($tagsproduct),
 				'statusproduct' => $product->active
 		    ));
-            /*
-            foreach($cat as $category)
-            {
-                echo "<pre>"; print_r($category['name']); echo "</pre>";
-            }*/
-            //echo "<pre>"; print_r($product); echo "</pre>";
         }
 	}
 	
