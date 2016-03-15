@@ -626,15 +626,22 @@ class matisses extends Module
         
         // Assing cart info to Chaordic
         if (Tools::getValue('controller') == 'order') {
-            $id_cart = $this->context->cart->id;
-            
+           
             if (isset($cart)) {
+                $id_cart = $this->context->cart->id;
+                $products = $cart->getProducts();
+                $items = array();
+                
+                foreach($products as $product) {
+                    echo "<pre>"; print_r($product->id_product); echo"</pre>";
+                }
+                
                 echo "<pre>"; print_r($cart->getProducts()); echo"</pre>";
+                
+                $this->context->smarty->assign(array(
+                    'idcart' => $id_cart
+                ));
             }
-            
-            $this->context->smarty->assign(array(
-                'idcart' => $id_cart
-		    ));
         }
 	}
 	

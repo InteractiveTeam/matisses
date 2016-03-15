@@ -120,7 +120,7 @@ ax = {
                         $('.inner-product-list .product-container').each(function(i,v) {
                             var item = {};
                             var id = String($(this).attr('id'));
-                            var p = $(this).find('.product-price').text().trim().replace("$ ","");
+                            var p = $(this).find('.product-price').text().replace("$ ","").trim();
                             item.id = id;
                             item.price = Number(p.replace(/\./g , ""));
                             chaordic_meta.search.items.push(item);
@@ -151,7 +151,8 @@ ax = {
                          if ($('#cart_summary').length > 0) {
 
                             $('#cart_summary tbody tr').each(function(i,v) {
-
+                                var item = {};
+                                var ref = $(this).find('.cart_ref').text().replace('Ref.','').trim();
                             });
                         }   
                     } else {
