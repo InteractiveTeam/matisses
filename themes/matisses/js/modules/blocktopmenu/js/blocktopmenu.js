@@ -203,7 +203,7 @@ $(document).ready(function(e){
 
 		function llamarMenu() {
 				var widthPage = $(window).width();
-	      if(widthPage < 321){
+	      if(widthPage < 481){
 						$('#menu-footer').append(contmenuFooter)
 						$.each(itemsMenuFooter, function(indice, objeto){
 								var itemFooter = $(objeto)
