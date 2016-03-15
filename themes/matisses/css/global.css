@@ -4539,6 +4539,16 @@ body.new-products {
     width: 12.8125rem !important;
     display: inline-block;
 	}
+    
+    .center_column .content_sortPagiBar {
+        margin-bottom: 20px;
+    } 
+
+    .center_column .product_list {
+        clear: both;
+        margin: 20px 0;
+    }
+
     .content_sortPagiBar .top-pagination-content ul{
     height: 45px;
     }

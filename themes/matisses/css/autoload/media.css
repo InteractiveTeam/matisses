@@ -1713,18 +1713,154 @@
 
 }
 
-@media screen and (max-width :320px) {
+@media only screen and (max-width :768px) {
+    .header-container .main_panel .grid_5 {
+        width: 39.66666%;
+    }
+    
+    .left-up-menu .menu li a {
+        padding: 0.9375rem 0.5375rem;
+    }
+    
+    #social_block li:first-child {
+    padding: 0;
+    }
+    
+    #social_block li {
+        padding: 0 0.9rem;
+    }
+    
+    #header_logo img {
+        padding: 0 0 0 0;
+    }
+    
+    .menu-left .left-down-menu {
+        width: 140%;
+    }
+    
+    .left-down-menu #block_top_menu {
+        padding-top: 0;
+    }
+    
+    .fixedHeader .right-down-menu li#search, #menu li#experiencias {
+    display:none;
+    }
+    
+    .left-down-menu #menu #wishlist, .left-down-menu #menu #giftlist {
+        display: inline-block;
+        margin: 0 5px;
+    }
+    
+    .coleccion img {
+        height: auto;
+        width: 90%;
+        margin: 10px 5% 20px 5%;
+    }
+    
+    #htmlcontent_home .content-coleccion {
+        display:block;
+    }
+    
+    #index .product_list.grid .product-container {
+        width: 31.9% !important; 
+    }
+    
+    .slide-experiencias li > div.slide-left {
+        width:362px !important;
+    }
+    
+    .newsletter-footer .newsletter-input {
+        padding: 0 0.6rem;
+        width: 14rem;
+    }
+    
+    .footer .habeas p {
+        display: inline-block;
+        width: 90%;
+    }
+    
+    button.button-small.btn-enviar {
+        padding: 0.4375rem 0.7rem;
+    }
+    
+    .footer-down .container .menu-copyright {
+        width: 90%;
+    }
+    
+    #homepage-slider .bx-wrapper .bx-viewport {
+        height: 420px !important;
+    }
+    
+    #slider #homepage-slider {
+        max-height: 26rem;
+    }
+
+}
+
+@media screen and (max-width :480px) {
+    .header-container .main_panel .menu-left {
+        padding: 0;
+    }
+    
+    .header-container .main_panel .grid_2 {
+        width: 100%;
+    }
+    
+    #page .header-container .main_panel {
+        min-height: 0;
+        height: 58px;
+        margin-bottom: 120px;
+    }
+    
+    #menu.menu-experiencias {
+        width: 141%;
+        display: block;
+    }
+    
+    .newsletter-footer .newsletter-input {
+        width:96%;
+        border-left: none;
+    }
+     
+    button.button-small.btn-enviar {
+        padding: 0.4375rem 2.5rem;
+    }
+    
+}
+
+@media screen and (max-width :340px) {
 
 	#user {
 		position:relative;
 	}
+     
+    #slider #homepage-slider {
+        max-height: 10rem;
+        padding: 0;
+    }
+    
+    #homepage-slider .bx-wrapper .bx-viewport {
+        height: 160px !important;    
+    }
+    
+    .left-down-menu #menu #wishlist, .left-down-menu #menu #giftlist {
+        margin: 0;
+    }
+     
+    .left-down-menu #wishlist {
+        background-position: 8px -3px;
+    }
+    
+    .left-down-menu #giftlist {
+        background-position: 8px -23px;
+    }
 
 	.menu-content > li > a::before {
 		display: none;
 	}
 
 	#menu-left .menu-content > li > a {
-		padding: 33px 0 12px 2rem;
+		padding: 28px 0 12px 2rem;
 	}
     
    .sf-menu .SubCategory {
