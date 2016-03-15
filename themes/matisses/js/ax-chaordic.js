@@ -15,7 +15,7 @@ ax = {
                     page = 'category';
                     break;
                 case 'order':
-                    page = 'checkout';
+                    page = 'cart';
                     break;
                 case 'search':
                     page = 'search';
