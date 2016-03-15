@@ -585,7 +585,7 @@ class matisses extends Module
 		    ));
         }
         
-        // Assing current product
+        // Assing current product Chaordic
         if (Tools::getValue('controller') == 'product') {
             
             $id_product = (int)Tools::getValue('id_product');
@@ -621,6 +621,15 @@ class matisses extends Module
                 'categoriesp' => json_encode($categoriesp),
                 'tagsproduct' => json_encode($tagsproduct),
 				'statusproduct' => $product->active
+		    ));
+        }
+        
+        // Assing cart info to Chaordic
+        if (Tools::getValue('controller') == 'order') {
+            $id_cart = $this->context->cart->id;
+            
+            $this->context->smarty->assign(array(
+                'idcart' => $id_cart
 		    ));
         }
 	}
