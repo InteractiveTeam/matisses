@@ -128,17 +128,26 @@
         {if $page_name == 'search'}
             data.search_q = '{$search_query}';
         {/if}
+        {if $page_name == 'order' }
+            {if !empty($idcart)}
+                data.idcart = '{$idcart}';
+            {/if}
+        {/if}
     {literal}
     data.page = page;
     data.loggeduser = islogged;
-         data.idcart = {/literal}{$idcart}{literal};
-         console.log({/literal}{$idcart}{literal});
     data.currentdate = '{/literal}{$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"}{literal}';    
          
     ax.setChaordic(data);
          
 </script>
 {/literal}
+<pre>
+    {assign var=products value=$cart->getProducts()}
+    {foreach $products as $product}
+    {$product.id_product}
+    {/foreach}
+</pre>
 </head>
 <body{if isset($page_name)} id="{$page_name|escape:'html':'UTF-8'}"{/if} class="{if isset($page_name)}{$page_name|escape:'html':'UTF-8'}{/if}{if isset($body_classes) && $body_classes|@count} {implode value=$body_classes separator=' '}{/if}{if $hide_left_column} hide-left-column{/if}{if $hide_right_column} hide-right-column{/if}{if isset($content_only) && $content_only} content_only{/if} lang_{$lang_iso}" itemscope itemtype="http://schema.org/WebPage">
 	{if !isset($content_only) || !$content_only}

@@ -143,7 +143,20 @@ ax = {
                 }
                 
                 if (page == 'cart') {
-                    chaordic_meta.cart = {};
+                    if (data.idcart) {
+                        chaordic_meta.cart = {};
+                        chaordic_meta.cart.id = data.idcart;
+                        chaordic_meta.cart.items = [{}];
+
+                         if ($('#cart_summary').length > 0) {
+
+                            $('#cart_summary tbody tr').each(function(i,v) {
+
+                            });
+                        }   
+                    } else {
+                        chaordic_meta.page.name = 'checkout';
+                    }
                 }
             }
         });
