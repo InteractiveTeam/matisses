@@ -627,7 +627,7 @@ class matisses extends Module
         // Assing cart info to Chaordic
         if (Tools::getValue('controller') == 'order') {
            
-            if (isset($cart)) {
+            if (isset($this->context->cart->id)) {
                 $id_cart = $this->context->cart->id;
                 $products = $cart->getProducts();
                 $items = array();
