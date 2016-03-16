@@ -164,7 +164,7 @@ ax = {
                                         "sku": ref,
                                         "price": Number(price.replace(/\./g , ""))
                                     },
-                                    "quantity": quantity
+                                    "quantity": Number(quantity)
                                 });
                             });
                             
