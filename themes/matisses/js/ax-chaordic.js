@@ -219,5 +219,11 @@ ax = {
                             
             chaordic_meta.cart.items = item;
         }
+    }, getUrlVars: function() {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+        });
+        return vars;
     }
 }
