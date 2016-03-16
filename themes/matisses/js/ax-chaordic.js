@@ -197,9 +197,8 @@ ax = {
         chaordic_meta.cart = {};
         chaordic_meta.cart.id = data.idcart;
         var urlpar = ax.getUrlVars()["multi-shipping"];
-        console.log(urlpar);
 
-        if ($('#cart_summary').length > 0) {
+        if ($('#cart_summary').length > 0 && typeof urlpar != 'undefined') {
             var item = [];
                              
             $('#cart_summary tbody tr').each(function(i,v) {
