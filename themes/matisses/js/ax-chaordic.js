@@ -169,7 +169,7 @@ ax = {
                         
                         if ($('#cart_summary').length > 0) {
                             $('#cart_summary tbody tr').each(function(i,v) {
-                                var txtQuant = $(this).find('.quantity_item .cart_quantity_input')
+                                var txtQuant = $(this).find('.quantity_item input[type="hidden"]');
                                 txtQuant.change(function(){
                                     ax.setCart();
                                 });
@@ -198,7 +198,7 @@ ax = {
                 var idp = $(this).attr("id").split("_");
                 var idproduct = idp[1];
                 var price = $(this).find('.cart_unit').text().replace('$','').trim();
-                var quantity = $(this).find('.cart_quantity .quantity_item input').val();
+                var quantity = $(this).find('.quantity_item input[type="hidden"]').val();
                 item.push({
                     "product": {
                         "id": idproduct,
