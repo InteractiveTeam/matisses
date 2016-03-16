@@ -109,9 +109,11 @@ ax = {
                             });
                         } else {
                             chaordic_meta.page.name = 'checkout';
+                            delete chaordic_meta.cart;
                         }
                     } else {
                         chaordic_meta.page.name = 'checkout';
+                        delete chaordic_meta.cart;
                     }
                 }
             } 
@@ -182,9 +184,11 @@ ax = {
                             });
                         } else {
                             chaordic_meta.page.name = 'checkout';
+                            delete chaordic_meta.cart;
                         }
                     } else {
                         chaordic_meta.page.name = 'checkout';
+                        delete chaordic_meta.cart;
                     }
                 }
             }
