@@ -162,7 +162,7 @@ ax = {
                                     "product": {
                                         "id": idproduct,
                                         "sku": ref,
-                                        "price": price
+                                        "price": Number(price.replace(/\./g , ""))
                                     },
                                     "quantity": quantity
                                 });
