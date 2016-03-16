@@ -146,14 +146,29 @@ ax = {
                     if (data.idcart) {
                         chaordic_meta.cart = {};
                         chaordic_meta.cart.id = data.idcart;
-                        chaordic_meta.cart.items = [{}];
+                        chaordic_meta.cart.items = [];
 
                          if ($('#cart_summary').length > 0) {
-
+                            var item = [];
+                             
                             $('#cart_summary tbody tr').each(function(i,v) {
-                                var item = {};
+                                
                                 var ref = $(this).find('.cart_ref').text().replace('Ref.','').trim();
+                                var idp = $(this).attr("id").split("_");
+                                var idproduct = idp[1];
+                                var price = $(this).find('.cart_unit').text().replace('$','').trim();
+                                var quantity = $(this).find('.cart_quantity .quantity_item input').val();
+                                item.push({
+                                    "product": {
+                                        "id": idproduct,
+                                        "sku": ref,
+                                        "price": price
+                                    },
+                                    "quantity": quantity
+                                });
                             });
+                            
+                            chaordic_meta.cart.items = item;
                         }   
                     } else {
                         chaordic_meta.page.name = 'checkout';
