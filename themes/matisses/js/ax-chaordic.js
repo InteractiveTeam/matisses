@@ -196,9 +196,10 @@ ax = {
     }, setCart: function() {
         chaordic_meta.cart = {};
         chaordic_meta.cart.id = data.idcart;
-        var urlpar = ax.getUrlVars()["multi-shipping"];
+        var urlpar = "";
+        urlpar = ax.getUrlVars()["multi-shipping"];
 
-        if ($('#cart_summary').length > 0 && typeof urlpar != 'undefined') {
+        if ($('#cart_summary').length > 0 && urlpar == undefined) {
             var item = [];
                              
             $('#cart_summary tbody tr').each(function(i,v) {
@@ -219,6 +220,9 @@ ax = {
             });
                             
             chaordic_meta.cart.items = item;
+        } else {
+            chaordic_meta.page.name = 'checkout';
+            delete chaordic_meta.cart;
         }
     }, getUrlVars: function() {
         var vars = {};
