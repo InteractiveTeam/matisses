@@ -107,6 +107,8 @@ ax = {
                                     ax.setCart();
                                 });
                             });
+                        } else {
+                            chaordic_meta.page.name = 'checkout';
                         }
                     } else {
                         chaordic_meta.page.name = 'checkout';
@@ -178,6 +180,8 @@ ax = {
                                     ax.setCart();
                                 });
                             });
+                        } else {
+                            chaordic_meta.page.name = 'checkout';
                         }
                     } else {
                         chaordic_meta.page.name = 'checkout';
