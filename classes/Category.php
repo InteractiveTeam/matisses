@@ -590,8 +590,34 @@ class CategoryCore extends ObjectModel
 		{
 			$row['id_image'] = Tools::file_exists_cache(_PS_CAT_IMG_DIR_.$row['id_category'].'.jpg') ? (int)$row['id_category'] : Language::getIsoById($id_lang).'-default';
 			$row['legend'] = 'no picture';
+			  
 		}
+		
+		foreach($result as $k => $category)
+		{
+			$result[$k]['show'] = $this->checkifshow(new Category($category['id_category']));
+		}
+		
+		//echo "<br><br><br><br><br><br><br><br><br><pre>"; print_r($result); echo "</pre>";
 		return $result;
+	}
+	
+	private function checkifshow($cat,$sum)
+	{
+		$childrens = $cat->getChildren($cat->id,$this->context->language->id);
+		if(sizeof($childrens)>0)
+		{
+			foreach($childrens as $k => $category)
+			{
+				$childcategory = new Category($category['id_category']); 
+				$sum = self::checkifshow($childcategory,$sum);
+			}
+		}else{
+				$products = $cat->getProducts($this->context->language->id,null,null,null,null, true, true);
+				$products > 0  ? $sum = true : false;
+				return $sum;			
+			 }
+		return $sum;	 
 	}
 
 	/**

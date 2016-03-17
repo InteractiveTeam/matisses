@@ -899,17 +899,22 @@ class matisses extends Module
 	*******************************************************/
 	public function hookactionProductCartSave($params)
 	{
-		// solo se ejecuta desde el front
-        $header = "http://181.143.4.46:8280/WebIntegrator/GenericFacade?wsdl";
-		//$headers = get_headers(Configuration::get($this->name.'_UrlWs'));
-		$headers = get_headers($header);
 		
+		## EL MIGUELAZO
+		// solo se ejecuta desde el front
+        //$header = "http://181.143.4.46:8280/WebIntegrator/GenericFacade?wsdl";
+		$headers = get_headers(Configuration::get($this->name.'_UrlWs'));
+		//$headers = get_headers($header);
+		
+		/*
         if(is_soap_fault($headers) || empty($headers)){
             die(Tools::jsonEncode(array(
                 'hasError' => true,
                 'errors' => array("En este momento no es posible agregar al carrito"),
             )));
         }
+		*/
+		## FIN DEL MIGUELAZO
 		
 		if(!strstr($headers[0],'200'))
 			return false;
