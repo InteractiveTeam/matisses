@@ -592,25 +592,26 @@ class CategoryCore extends ObjectModel
 			$row['legend'] = 'no picture';
 			  
 		}
-		
 		foreach($result as $k => $category)
 		{
-			$result[$k]['show'] = $this->checkifshow(new Category($category['id_category']));
+			$cat = new Category($category['id_category']);
+			if(!$this->checkifshow($cat,0))
+				unset($result[$k]);
 		}
 		
-		//echo "<br><br><br><br><br><br><br><br><br><pre>"; print_r($result); echo "</pre>";
 		return $result;
 	}
 	
 	private function checkifshow($cat,$sum)
 	{
-		$childrens = $cat->getChildren($cat->id,$this->context->language->id);
+		$childrens = $this->getChildren($cat->id,Context::getContext()->language->id);
 		if(sizeof($childrens)>0)
 		{
+				
 			foreach($childrens as $k => $category)
 			{
 				$childcategory = new Category($category['id_category']); 
-				$sum = self::checkifshow($childcategory,$sum);
+				return self::checkifshow($childcategory,$sum);
 			}
 		}else{
 				$products = $cat->getProducts($this->context->language->id,null,null,null,null, true, true);
