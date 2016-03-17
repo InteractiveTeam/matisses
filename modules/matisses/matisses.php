@@ -628,13 +628,23 @@ class matisses extends Module
         if (Tools::getValue('controller') == 'order') {
             $id_cart = $this->context->cart->id;
             
-            if (isset($cart)) {
+            /*if (isset($cart)) {
                 echo "<pre>"; print_r($cart->getProducts()); echo"</pre>";
-            }
+            }*/
             
             $this->context->smarty->assign(array(
                 'idcart' => $id_cart
 		    ));
+        }
+        
+        // Get products in order confirmation
+        if (Tools::getValue('controller') == 'order-confirmation') {
+            
+            if (isset($_GET['id_order'])) {
+                $order = new Order($_GET['id_order']);
+                $products = $order->getProducts();
+                echo "<pre>"; print_r($products); echo "</pre>";
+            }
         }
 	}
 	
