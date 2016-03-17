@@ -23,6 +23,9 @@ ax = {
                 case 'product':
                     page = 'product';
                     break;
+                case 'order-confirmation':
+                    page = 'confirmation';
+                    break;
                 default:
                     page = 'other';
                     break;
@@ -116,6 +119,20 @@ ax = {
                         delete chaordic_meta.cart;
                     }
                 }
+                
+                if (page == 'confirmation') {
+                    chaordic_meta.transaction = {};
+                    var idorder = ax.getUrlVars()['id_order'];
+                    var key = ax.getUrlVars()['key'];
+                    
+                    if (idorder) {
+                        chaordic_meta.transaction.id = idorder;
+                    }
+                    
+                    if (key) {
+                        chaordic_meta.transaction.signature = key;
+                    }
+                }
             } 
             else 
             {
@@ -191,6 +208,20 @@ ax = {
                         delete chaordic_meta.cart;
                     }
                 }
+                
+                if (page == 'confirmation') {
+                    chaordic_meta.transaction = {};
+                    var idorder = ax.getUrlVars()['id_order'];
+                    var key = ax.getUrlVars()['key'];
+                    
+                    if (idorder) {
+                        chaordic_meta.transaction.id = idorder;
+                    }
+                    
+                    if (key) {
+                        chaordic_meta.transaction.signature = key;
+                    }
+                }
             }
         });
     }, setCart: function() {
@@ -224,7 +255,8 @@ ax = {
             chaordic_meta.page.name = 'checkout';
             delete chaordic_meta.cart;
         }
-    }, getUrlVars: function() {
+    }, 
+    getUrlVars: function() {
         var vars = {};
         var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
         vars[key] = value;
