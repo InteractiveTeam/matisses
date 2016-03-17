@@ -585,7 +585,7 @@ class matisses extends Module
 		    ));
         }
         
-        // Assing current product
+        // Assing current product Chaordic
         if (Tools::getValue('controller') == 'product') {
             
             $id_product = (int)Tools::getValue('id_product');
@@ -593,25 +593,48 @@ class matisses extends Module
             $images = Image::getImages($this->context->language->id, $id_product);
             $product = new Product($id_product);
             $cat = Product::getProductCategoriesFull($product->id,$this->context->language->id);
-            $categories = array();
+            $tags = Tag::getProductTags($id_product);
+            $categoriesp = array();
+            $tagsproduct = array();
+            
             foreach($cat as $row){
-                array_push($categories, 
+                array_push($categoriesp, 
                            array(
                                'id' => $row['id_category'],
                                 'name' => $row['name']
                             ));
             }
+            
+            foreach($tags as $tag){
+                foreach ($tag as $item) {
+                    array_push($tagsproduct,array('name' => $item));
+                }
+            }
+            
             $this->context->smarty->assign(array(
                 'idproduct' => $product->id,
                 'nameproduct' => $product->getProductName($product->id),
                 'linkproduct' => $product->getLink(),
-                'descproduct' => $product->description,
+                'descproduct' => strip_tags($product->description[1]),
 				'imageproduct' => $link->getImageLink($product->link_rewrite, (int)$images[0]["id_image"], 'home_default'),
 				'priceproduct' => $product->getPriceWithoutReduct(),
-                'categoriesprod' => $categories,
+                'categoriesp' => json_encode($categoriesp),
+                'tagsproduct' => json_encode($tagsproduct),
 				'statusproduct' => $product->active
 		    ));
-            //echo "<pre>"; print_r($categories); echo "</pre>";
+        }
+        
+        // Assing cart info to Chaordic
+        if (Tools::getValue('controller') == 'order') {
+            $id_cart = $this->context->cart->id;
+            
+            if (isset($cart)) {
+                echo "<pre>"; print_r($cart->getProducts()); echo"</pre>";
+            }
+            
+            $this->context->smarty->assign(array(
+                'idcart' => $id_cart
+		    ));
         }
 	}
 	
@@ -876,17 +899,17 @@ class matisses extends Module
 	*******************************************************/
 	public function hookactionProductCartSave($params)
 	{
-		// solo se ejecuta desde el front
-        $header = "http://181.143.4.46:8280/WebIntegrator/GenericFacade?wsdl";
-		//$headers = get_headers(Configuration::get($this->name.'_UrlWs'));
-		$headers = get_headers($header);
 		
+		$headers = get_headers(Configuration::get($this->name.'_UrlWs'));
+		
+		
+		/*
         if(is_soap_fault($headers) || empty($headers)){
             die(Tools::jsonEncode(array(
                 'hasError' => true,
                 'errors' => array("En este momento no es posible agregar al carrito"),
             )));
-        }
+        }*/
 		
 		if(!strstr($headers[0],'200'))
 			return false;

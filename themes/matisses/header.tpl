@@ -116,6 +116,9 @@
             data.descproduct = '{$descproduct}';
             data.imageproduct = '{$imageproduct}';
             data.priceproduct = {$priceproduct};
+            data.categoriesp = {$categoriesp};
+            data.tagsproduct = {$tagsproduct};
+         
             if (status == 1) {
                 data.statusproduct = 'available';   
             } else {
@@ -124,6 +127,11 @@
         {/if}
         {if $page_name == 'search'}
             data.search_q = '{$search_query}';
+        {/if}
+        {if $page_name == 'order' }
+            {if !empty($idcart)}
+                data.idcart = '{$idcart}';
+            {/if}
         {/if}
     {literal}
     data.page = page;
