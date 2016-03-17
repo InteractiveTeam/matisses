@@ -214,7 +214,7 @@ class CustomerCore extends ObjectModel
 			'terms' => 					array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
 			'tratamiento' => 			array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
 			'customer_acount_type' => 	array('type' => self::TYPE_STRING,'required' => false  ),
-			'facbookid' => 	array('type' => self::TYPE_STRING,'required' => false),
+			'facbookid' => 	array('type' => self::TYPE_STRING,'required' => false), 
 		),
 	);
 
