@@ -639,8 +639,9 @@ class matisses extends Module
         
         // Get products in order confirmation
         if (Tools::getValue('controller') == 'order-confirmation') {
-            
+             echo "<script>console.log('Pagina de confirmacion');</script>";
             if (isset($_GET['id_order'])) {
+                echo "<script>console.log('Orden confirmation ".$_GET['id_order']."');</script>";
                 $order = new Order($_GET['id_order']);
                 $products = $order->getProducts();
                 echo "<pre>"; print_r($products); echo "</pre>";
