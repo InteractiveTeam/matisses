@@ -270,6 +270,9 @@
 
     {if $page_name =='category'}
 		<!--Bloque1 Visualizados-->
+    
+        <!-- Chaordic Top -->
+        <div chaordic="top"></div>
 	    <div id="displayed-category" class="displayed-category">
 			<div class="container">
 				<div class="info-chaordic">
