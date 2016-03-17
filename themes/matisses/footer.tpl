@@ -39,6 +39,8 @@
 
 {if $page_name=='category'}
 
+<!-- Chaordic Top -->
+<div chaordic="top"></div>
 <div id="purchased-block" class="purchased-block">
 	<div class="container">
 		<div class="info-chaordic">
@@ -50,6 +52,8 @@
 	</div>
 </div>
 
+<!-- Chaordic Middle -->
+<div chaordic="middle"></div>
 <div id="popular" class="popular">
     <div class="container">
         <div class="info-chaordic">
@@ -61,6 +65,8 @@
     </div>
 </div>
 
+<!-- Chaordic Bottom -->
+<div chaordic="bottom"></div>
 <div id="offers" class="offers-products">
 	<div class="container">
 		<div class="info-chaordic">
@@ -72,10 +78,9 @@
 	</div>
 </div>
 
-
-
-    <div id="historical-block" class="historical-block">
-		<div class="container">
+<!--
+<div id="historical-block" class="historical-block">
+            <div class="container">
 
 			<div class="info-chaordic">
 				<img src="../../themes/matisses/img/historical-block.jpg" alt="Histórico">
@@ -84,7 +89,8 @@
 				</div>
 			</div>
 		</div>
-    </div>
+</div>
+-->
 
 {/if}
 
