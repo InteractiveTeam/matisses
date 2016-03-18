@@ -644,7 +644,7 @@ class matisses extends Module
                 foreach ($productorders as $prod) {
                     $product = array();
                     $product['product'] = array(
-                        "id" => $prod['id_product'],
+                        "id" => $prod['product_id'],
                         "sku" => $prod['product_reference'],
                         "price" => $prod['product_price']
                     );

@@ -135,7 +135,7 @@
         {/if}
         {if $page_name == 'order-confirmation' }
             {if !empty($orderproducts)}
-                data.orderproducts = '{$orderproducts}';
+                data.orderproducts = {$orderproducts};
             {/if}
         {/if}
     {literal}
