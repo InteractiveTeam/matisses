@@ -646,13 +646,16 @@ class matisses extends Module
                     $product['product'] = array(
                         "id" => $prod['id_product'],
                         "sku" => $prod['product_reference'],
-                        "price" => $prod['product_reference']
+                        "price" => $prod['product_price']
                     );
                     $product['quantity'] = $prod['product_quantity'];
                     array_push($result,$product);
                 }
                 
                 echo "<pre>"; print_r($productorders); print_r($result);echo "</pre>";
+                $this->context->smarty->assign(array(
+                    'orderproducts' => json_encode($result)
+                ));
             }
         }
 	}

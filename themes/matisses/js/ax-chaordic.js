@@ -221,6 +221,8 @@ ax = {
                     if (key) {
                         chaordic_meta.transaction.signature = key;
                     }
+                    
+                    chaordic_meta.transaction.items = data.orderproducts;
                 }
             }
         });

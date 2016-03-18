@@ -133,6 +133,11 @@
                 data.idcart = '{$idcart}';
             {/if}
         {/if}
+        {if $page_name == 'order-confirmation' }
+            {if !empty($orderproducts)}
+                data.orderproducts = '{$orderproducts}';
+            {/if}
+        {/if}
     {literal}
     data.page = page;
     data.loggeduser = islogged;
