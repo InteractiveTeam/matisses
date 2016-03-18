@@ -648,7 +648,7 @@ class matisses extends Module
                         "sku" => $prod['product_reference'],
                         "price" => $prod['product_price']
                     );
-                    $product['quantity'] = $prod['product_quantity'];
+                    $product['quantity'] = (int)$prod['product_quantity'];
                     array_push($result,$product);
                 }
                 
