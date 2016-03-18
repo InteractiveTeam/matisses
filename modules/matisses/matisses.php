@@ -637,9 +637,8 @@ class matisses extends Module
 		    ));
         }
         
-        echo "<pre>"; print_r(Tools::getValue('controller')); echo "<pre>";
         // Get products in order confirmation
-        if (Tools::getValue('controller') == 'order-confirmation') {
+        if (Tools::getValue('controller') == 'orderconfirmation') {
              echo "<pre>"; print_r($_GET['id_order']); echo "<pre>";
             if (isset($_GET['id_order'])) {
                 
