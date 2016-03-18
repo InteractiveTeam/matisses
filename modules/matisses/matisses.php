@@ -651,8 +651,7 @@ class matisses extends Module
                     $product['quantity'] = (int)$prod['product_quantity'];
                     array_push($result,$product);
                 }
-                
-                echo "<pre>"; print_r($productorders); print_r($result);echo "</pre>";
+
                 $this->context->smarty->assign(array(
                     'orderproducts' => json_encode($result)
                 ));

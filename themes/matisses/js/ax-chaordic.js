@@ -129,6 +129,8 @@ ax = {
                         chaordic_meta.transaction.id = idorder;
                         chaordic_meta.transaction.items = data.orderproducts;
                     }
+                    
+                    chaordic_meta.transaction.signature = key;
                 }
             } 
             else 
@@ -215,6 +217,8 @@ ax = {
                         chaordic_meta.transaction.id = idorder;
                         chaordic_meta.transaction.items = data.orderproducts;
                     }
+                    
+                    chaordic_meta.transaction.signature = key;
                 }
             }
         });
