@@ -127,13 +127,8 @@ ax = {
                     
                     if (idorder) {
                         chaordic_meta.transaction.id = idorder;
+                        chaordic_meta.transaction.items = data.orderproducts;
                     }
-                    
-                    if (key) {
-                        chaordic_meta.transaction.signature = key;
-                    }
-                    
-                    chaordic_meta.transaction.items = data.orderproducts;
                 }
             } 
             else 
@@ -218,13 +213,8 @@ ax = {
                     
                     if (idorder) {
                         chaordic_meta.transaction.id = idorder;
+                        chaordic_meta.transaction.items = data.orderproducts;
                     }
-                    
-                    if (key) {
-                        chaordic_meta.transaction.signature = key;
-                    }
-                    
-                    chaordic_meta.transaction.items = data.orderproducts;
                 }
             }
         });
