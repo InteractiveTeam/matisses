@@ -136,7 +136,7 @@
         {if $page_name == 'order-confirmation' }
             {if !empty($orderproducts)}
                 data.orderproducts = {$orderproducts};
-                data.signature = {$signature};
+                data.signature = '{$signature}';
             {/if}
         {/if}
     {literal}
