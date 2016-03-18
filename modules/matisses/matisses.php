@@ -638,6 +638,7 @@ class matisses extends Module
             
             if (isset($_GET['id_order'])) {
                 $order = new Order($_GET['id_order']);
+                $signature = $_GET['key'];
                 $productorders = $order->getProducts();
                 $result = array();
                 
@@ -653,7 +654,8 @@ class matisses extends Module
                 }
 
                 $this->context->smarty->assign(array(
-                    'orderproducts' => json_encode($result)
+                    'orderproducts' => json_encode($result),
+                    'signature' => md5($signature)
                 ));
             }
         }
