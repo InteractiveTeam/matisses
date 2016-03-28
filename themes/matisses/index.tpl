@@ -42,6 +42,9 @@
     		{hook h="displayMatNewProducts"}
 		</div>
 	</div>
+	
+	<!-- Chaordic Top -->
+    <div chaordic="top"></div>
 	<div id="highlights" class="highlights">
 		<div class="container">
 			<div class="info-chaordic">
@@ -53,6 +56,8 @@
 		</div>
     </div>
 
+    <!-- Chaordic Middle -->
+    <div chaordic="middle"></div>
     <div id="offers" class="offers-products">
 		<div class="container">
 			<div class="info-chaordic">
@@ -63,7 +68,9 @@
 			</div>
 		</div>
     </div>
-
+    
+    <!-- Chaordic Bottom -->
+    <div chaordic="bottom"></div>
     <div id="popular" class="popular">
 		<div class="container">
 			<div class="info-chaordic">

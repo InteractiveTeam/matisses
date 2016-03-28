@@ -628,13 +628,36 @@ class matisses extends Module
         if (Tools::getValue('controller') == 'order') {
             $id_cart = $this->context->cart->id;
             
-            if (isset($cart)) {
-                echo "<pre>"; print_r($cart->getProducts()); echo"</pre>";
-            }
-            
             $this->context->smarty->assign(array(
                 'idcart' => $id_cart
 		    ));
+        }
+        
+        // Get products in order confirmation
+        if (Tools::getValue('controller') == 'orderconfirmation') {
+            
+            if (isset($_GET['id_order'])) {
+                $order = new Order($_GET['id_order']);
+                $signature = $_GET['key'];
+                $productorders = $order->getProducts();
+                $result = array();
+                
+                foreach ($productorders as $prod) {
+                    $product = array();
+                    $product['product'] = array(
+                        "id" => $prod['product_id'],
+                        "sku" => $prod['product_reference'],
+                        "price" => $prod['product_price']
+                    );
+                    $product['quantity'] = (int)$prod['product_quantity'];
+                    array_push($result,$product);
+                }
+
+                $this->context->smarty->assign(array(
+                    'orderproducts' => json_encode($result),
+                    'signature' => md5($signature)
+                ));
+            }
         }
 	}
 	
@@ -899,17 +922,17 @@ class matisses extends Module
 	*******************************************************/
 	public function hookactionProductCartSave($params)
 	{
-		// solo se ejecuta desde el front
-        $header = "http://181.143.4.46:8280/WebIntegrator/GenericFacade?wsdl";
-		//$headers = get_headers(Configuration::get($this->name.'_UrlWs'));
-		$headers = get_headers($header);
 		
+		$headers = get_headers(Configuration::get($this->name.'_UrlWs'));
+		
+		
+		/*
         if(is_soap_fault($headers) || empty($headers)){
             die(Tools::jsonEncode(array(
                 'hasError' => true,
                 'errors' => array("En este momento no es posible agregar al carrito"),
             )));
-        }
+        }*/
 		
 		if(!strstr($headers[0],'200'))
 			return false;
