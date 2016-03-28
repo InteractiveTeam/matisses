@@ -40,7 +40,7 @@
 		{assign var='request' value=$link->getPaginationLink(false, false, false, true)}
 	{/if}
 {/if}
-<form class="grid_6 alpha category-right" id="productsSortForm{if isset($paginationId)}_{$paginationId}{/if}" action="{$request|escape:'html':'UTF-8'}" class="productsSortForm">
+<form class="grid_7 alpha category-right" id="productsSortForm{if isset($paginationId)}_{$paginationId}{/if}" action="{$request|escape:'html':'UTF-8'}" class="productsSortForm">
 	<div class="select selector1">
         <label for="selectProductSort{if isset($paginationId)}_{$paginationId}{/if}">{l s='Organizar por'}</label>
 		<select id="selectProductSort{if isset($paginationId)}_{$paginationId}{/if}" class="selectProductSort form-control">
