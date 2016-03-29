@@ -118,7 +118,7 @@ box-sizing: border-box;
     min-height: 6.9rem;
 	position: relative;
 	}
-	h1{
+	h1, h2 {
 	font-family: "condensed";
 	color: #231f20;
 	text-transform: uppercase;
@@ -127,7 +127,11 @@ box-sizing: border-box;
 	border-bottom: 1px solid #dbdbdb;
 	padding-bottom: 0.3125rem;
 	}
-	.index h1{
+    h2 {
+    font-size: 1.4rem;
+    margin: 15px 0;
+    }
+    .index h1{
 	text-align: center;
 	margin-bottom: 2.1875rem;
 	margin-right: 1.25rem;
@@ -517,9 +521,9 @@ box-sizing: border-box;
 	/*content page*/
 	p {
 	font-family: 'Open Sans', sans-serif;
-	font-size: 1rem;
-	color: #777676;
-	line-height: 1.5;
+    font-size: 1rem;
+    color: #777676;
+    line-height: 1.2;
 	font-weight: lighter;
 	}
 
@@ -538,7 +542,7 @@ box-sizing: border-box;
     font-size: 1.35rem;
     }
 
-    .cms .center_column a {
+    .cms .center_column a, .description-news a {
     color:#d9292e;
     }
 
@@ -4874,4 +4878,8 @@ color:#fff;
 
 .product_attributes #color_to_pick_list li.selected a {
     border: none;
+}
+
+.ui-tabs .ui-tabs-nav li a {
+    padding: .5em 3em !important;
 }
