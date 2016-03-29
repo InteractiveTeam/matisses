@@ -615,6 +615,7 @@ class matisses extends Module
             $link = new LinkCore();
             $images = Image::getImages($this->context->language->id, $id_product);
             $product = new Product($id_product);
+            echo "<pre>"; print_r($product->getAttributeCombinaisons($this->context->language->id)); echo "</pre>";
             $cat = Product::getProductCategoriesFull($product->id,$this->context->language->id);
             $tags = Tag::getProductTags($id_product);
             $categoriesp = array();
