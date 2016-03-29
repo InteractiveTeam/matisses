@@ -585,7 +585,7 @@ class matisses extends Module
 		    ));
         }
         
-        // Assing subcategories 
+        // Assing parent subcategories 
         if (in_array($this->page_name, array('category','product'))) {
             $idcategory = Tools::getValue('id_category');
             $cat = new Category($idcategory);
@@ -602,7 +602,7 @@ class matisses extends Module
                                ));
                 
             }
-            /*echo "<pre>"; print_r($parent); echo "</pre>";*/
+
             $this->context->smarty->assign(array(
                 'parents' => json_encode($parents)
 		    ));
@@ -634,6 +634,24 @@ class matisses extends Module
                 }
             }
             
+            // parent categories of product
+            $idcategory = $product->getDefaultCategory();
+            $categ = new Category($idcategory);
+            $parent = $categ->getParentsCategories($this->context->language->id);
+            $parents = array();
+            
+            foreach($parent as $row){
+                
+                    array_push($parents,
+                               array(
+                                    'id' => $row['id_category'],
+                                    'name' => $row['name'],
+                                    'parents' => array($row['id_parent'])
+                               ));
+                
+            }
+            
+            // assign data of product
             $this->context->smarty->assign(array(
                 'idproduct' => $product->id,
                 'nameproduct' => $product->getProductName($product->id),
@@ -643,7 +661,9 @@ class matisses extends Module
 				'priceproduct' => $product->getPriceWithoutReduct(),
                 'categoriesp' => json_encode($categoriesp),
                 'tagsproduct' => json_encode($tagsproduct),
-				'statusproduct' => $product->active
+				'statusproduct' => $product->active,
+                'productcondition' => $product->condition,
+                'parents' => json_encode($parents)
 		    ));
         }
         

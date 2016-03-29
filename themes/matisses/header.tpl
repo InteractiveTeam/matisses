@@ -127,6 +127,7 @@
             } else {
                 data.statusproduct = 'unavailable';
             }
+            data.productcondition = '{$productcondition}';
         {/if}
         {if $page_name == 'search'}
             data.search_q = '{$search_query}';

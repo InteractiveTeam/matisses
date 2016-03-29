@@ -1,3 +1,4 @@
+
 // Global variable Chaordic
 var chaordic_meta;
 
@@ -32,7 +33,7 @@ ax = {
             }
             
             // Set subcategory page
-            if (page == 'category' && data.leveldepth == 5) {
+            if (page == 'category' && data.leveldepth > 3) {
                 page = 'subcategory';
             }
             
@@ -95,9 +96,18 @@ ax = {
                     chaordic_meta.product.description = data.descproduct;
                     chaordic_meta.product.images = {"default": data.imageproduct};
                     chaordic_meta.product.categories = data.categoriesp;
-                    chaordic_meta.product.tags = data.tagsproduct;
                     chaordic_meta.product.price = data.priceproduct;
                     chaordic_meta.product.status = data.statusproduct;
+                    
+                    if (data.tagsproduct) {
+                        chaordic_meta.product.tags = data.tagsproduct;
+                    }
+                    
+                    if (data.productcondition == 'new') {
+                        chaordic_meta.product.details = {"sello_nuevo": true, "sello_otro": false};
+                    } else {
+                        chaordic_meta.product.details = {"sello_nuevo": false, "sello_otro": true};
+                    }
                 }
                 
                 if (page == 'cart') {
@@ -188,9 +198,18 @@ ax = {
                     chaordic_meta.product.description = data.descproduct;
                     chaordic_meta.product.images = {"default": data.imageproduct};
                     chaordic_meta.product.categories = data.categoriesp;
-                    chaordic_meta.product.tags = data.tagsproduct;
                     chaordic_meta.product.price = data.priceproduct;
                     chaordic_meta.product.status = data.statusproduct;
+                    
+                    if (data.tagsproduct) {
+                        chaordic_meta.product.tags = data.tagsproduct;
+                    }
+                    
+                    if (data.productcondition == 'new') {
+                        chaordic_meta.product.details = {"sello_nuevo": true, "sello_otro": false};
+                    } else {
+                        chaordic_meta.product.details = {"sello_nuevo": false, "sello_otro": true};
+                    }
                 }
                 
                 if (page == 'cart') {
