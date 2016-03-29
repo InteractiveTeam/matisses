@@ -115,7 +115,7 @@ box-sizing: border-box;
 
 	/*Header*/
 	.header-container {
-	min-height: 8.125rem;
+    min-height: 6.9rem;
 	position: relative;
 	}
 	h1{
@@ -199,7 +199,7 @@ box-sizing: border-box;
 	position: relative;
 	}
 	.logo-desktop {
-	padding: 1.875rem 0;
+    padding: 1.54rem 0;
 	display: block;
 	-webkit-transition:all .36s ease;
 	-o-transition:all .36s ease;
@@ -233,10 +233,10 @@ box-sizing: border-box;
 	}
 	.fixedHeader .right-down-menu li#search {
     padding-right: 1.25rem;
-    padding-top: 1.2rem;
+    padding-top: 0.6rem;
 	}
 	.fixedHeader #header_logo{
-	padding-top: 0.625rem;
+	padding-top: 0.5rem;
 	}
 	.fixedHeader .right-down-menu li#cart,
 	.fixedHeader .right-down-menu li#user {
@@ -251,8 +251,11 @@ box-sizing: border-box;
 	}
 
 	/*menu*/
+    .submenu-container > li > ul {
+        min-height: 240px;
+    }
 	.menu-left{
-	padding: 1.875rem 0 0 0;
+    padding: 1.2rem 0 0 0;
 	}
 	.menu li {
 	display: inline-block;
@@ -290,8 +293,9 @@ box-sizing: border-box;
 	background-position: 0 -23px;
 	}
 	.menu-experiencias {
-	padding: 1.4rem 0 0.9rem 0.625rem;
+	padding: 1.1rem 0 0.9rem 0;
 	display: table;
+    width: 60%;
 	}
 	.menu-experiencias li {
 	display: table-cell;
@@ -326,11 +330,11 @@ box-sizing: border-box;
 	}
 
     .fixedHeader .menu-experiencias {
-        padding-top: 1.6rem;
+        padding-top: 1.3rem;
     }
 
     .fixedHeader .menu-content > li > a {
-        padding-top:1.45rem;
+        padding-top: 1.2rem;
     }
 
 	.right-down-menu #lhnChatButton a{
@@ -389,7 +393,6 @@ box-sizing: border-box;
 	.right-down-menu li a {
 	color: #000;
 	font-family: 'condensed';
-	font-size: 1.0625rem;
 	padding: 0 1.25rem 0 1.5625rem;
 	text-transform: uppercase;
 	}
@@ -419,7 +422,7 @@ box-sizing: border-box;
 	}
 
 	.menu-right #cart {
-	background: url("../img/shopping.png") center 5px no-repeat #000;
+    background: url("../img/shopping.png") center 36% no-repeat #000;
 	width: 5rem;
 	position: relative;
 	}
@@ -432,7 +435,7 @@ box-sizing: border-box;
 	font-family: 'condensed';
 	position: absolute;
 	display: block;
-	bottom: 1.5625rem;
+    bottom: 0.94rem;
 	right: 0.9375rem;
 	text-align: center;
 	}
@@ -449,12 +452,23 @@ box-sizing: border-box;
 	#user{
 	background-color: #d9292e;
 	min-width: 10.9375rem;
-	height: 3.4375rem;
 	vertical-align: top;
-	padding: 0.625rem 1.875rem 0;
+    padding: 0.3rem 1.875rem;
 	}
+    
+    #user .header_user_info .content-user {
+        margin-top:0px;
+    }
+    .header_user_info {
+        height: 100%;
+    }
+
+    .show-user {
+    display: none;
+    }
+
 	.user-profile{
-	background: url("../img/user.png") 0 6px no-repeat transparent;
+	background: url("../img/user.png") center no-repeat transparent;
 	height: 2.875rem;
 	width: 2.25rem;
 	vertical-align: middle;
@@ -893,7 +907,6 @@ box-sizing: border-box;
 	padding: 4.0625rem 0;
 	}
 
-
 	/*Experiencias*/
 	.experiences{
 	background-color: #f2f2f2;
@@ -980,6 +993,10 @@ box-sizing: border-box;
 	background-color: #d7162f;
 	border-color: #d7162f;
 	}
+
+    .main-container #homepage-slider, #homepage-slider .bx-wrapper .bx-viewport li a {
+        max-height: 46.54rem;
+    }
 
 	/*Buscador*/
 	.search-container form .search_query {
@@ -1781,6 +1798,16 @@ box-sizing: border-box;
 	.productsSortForm .chosen-container{
 	max-width: 110px;
 	}
+    
+    .center_column .content_sortPagiBar .sortPagiBar {
+    width: 72%;
+    float: left;
+    }
+
+    .center_column .content_sortPagiBar .top-pagination-content {
+    float: right;
+    }
+
 	.content_sortPagiBar .sortPagiBar .productsSortForm select {
 	max-width: 192px;
 	float: left;
@@ -1796,6 +1823,13 @@ box-sizing: border-box;
 	position: relative;
 	background: #fff;
 	}*/
+
+     .nbrItemPage.category-right.grid_4.alpha {
+        margin: 0;
+        padding: 0;
+        width: 25%;
+    }
+
 	.content_sortPagiBar .sortPagiBar .nbrItemPage select {
 	max-width: 59px;
 	float: left;
@@ -1823,6 +1857,11 @@ box-sizing: border-box;
 	text-align: left;
 	font-size: 0;
 	}*/
+
+    .sortPagiBar.clearfix {
+        float: left;
+        width: 80%;
+    }
 	.sortPagiBar .compare-form {
 	float: left;
 	}
@@ -4135,6 +4174,15 @@ width:109%;
 	margin: 0 4% !important;*/
 }
 
+.banner .homepage-slider .bx-wrapper {
+    height: 100%;
+    min-width:100%;
+}
+
+.homepage-slider .bx-wrapper .bx-viewport {
+    min-height: 100% !important;
+}
+
 .exp-slide.grid_12.alpha.omega {
     width: 94%;
     margin: 3.75rem 3%;
@@ -4364,8 +4412,8 @@ line-height: 1.5;
 }
 
 #resumen-garantia .bx-wrapper img {
-		max-width: 86%;
-		width: 86%;
+    max-width: 86%;
+    width: 86%;
     display: block;
     margin: 0 auto;
 }
@@ -4416,8 +4464,22 @@ line-height: 1.5;
 	#slider  #homepage-slider .homeslider-description {
         height: 80%;
 		padding:15.25rem  0.625rem;
-        background-position: center 90%;
+        background: none;
 	}
+    
+    #slider #homepage-slider .btn_scroll {
+        width: 75px;
+        height: 26px;
+        background: url("/themes/matisses/img/icon-scroll.png") center no-repeat;
+        position: absolute;
+        top: 70%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        z-index: 1;
+        cursor: pointer;
+    }
 
 	#slider  .bx-controls.bx-has-pager {
 		bottom: 6%;
@@ -4556,7 +4618,7 @@ body.new-products {
     .pagination > li > span {
     border: none;
     font-family: 'gothic';
-    padding: 0.625rem 0.9375rem;
+    padding: 0 0.9375rem;
     font-weight: bold;
     }
     .parrilla-productos div.pagination {
@@ -4776,12 +4838,14 @@ color:#fff;
 }
 
 .fa-houzz:before {
-    background: url(../img/houzz-icon.png) no-repeat center;
+    content: "";
+    background: url(../img/ax-houzz-icon.png) no-repeat center center;
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 22px;
+    height: 22px;
     background-size: auto 100%;
     color: transparent;
+    margin-top: 5px;
 }
 
 .description-news.grid_12.alpha.omega {
@@ -4802,4 +4866,12 @@ color:#fff;
 
 .sitemap_block ul li strong {
     font-weight: normal !important;
+}
+
+.product_attributes #color_to_pick_list li a {
+    border: #DEDEDE solid 1px;
+}
+
+.product_attributes #color_to_pick_list li.selected a {
+    border: none;
 }

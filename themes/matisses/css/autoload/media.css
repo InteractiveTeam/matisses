@@ -277,6 +277,7 @@
 	.page-subheading{
 		font-size: 16px;
 	}
+    
 	.sortPagiBar .compare-form{
 		top: 7px;
 	}
@@ -797,6 +798,18 @@
 		left: 0;
 		margin-left: 0;
 	}
+    
+    .center_column .content_sortPagiBar .sortPagiBar{
+        width:100%;
+    }
+    
+    .top-pagination-content, .bottom-pagination-content {
+        padding-left: 0;
+    }
+    
+    .parrilla-productos div.pagination {
+        float:left;
+    }
 
 	#identity #center_column form.std .row .col-xs-4, #authentication #center_column form.std .row .col-xs-4, #order-opc #center_column form.std .row .col-xs-4,
 	#identity #center_column form.std .row .col-xs-4 .chosen-container, #authentication #center_column form.std .row .col-xs-4 .chosen-container, #order-opc #center_column form.std .row .col-xs-4 .chosen-container{
@@ -1209,12 +1222,8 @@
         font-size: 0.99rem;
     }
     
-    .fixedHeader .menu-content > li > a {
-        padding-top:1.45rem;
-    }
-    
     .header-container .fixedHeader .right-down-menu li {
-        padding-top:0.6rem !important;
+        padding-top:0.9rem !important;
     }
 
     .fixedHeader .user-profile {
@@ -1241,7 +1250,7 @@
 	}
        
     .right-down-menu {
-        padding: 1.2rem 1.875rem 0 0;
+        padding: 0.5rem 1.875rem 0 0;
     }
 
 	/*SUBCATEGORIAS*/
@@ -1316,21 +1325,14 @@
 		bottom: 7%;
 	}
     
-    #homepage-slider .homeslider-description {
-        background-position: center 90%;
-    }
 }
 
 @media only screen and (max-height :924px) {
 	/*BANNER*/
 	.main-container #homepage-slider, #homepage-slider .bx-wrapper .bx-viewport li a {
-        max-height: 42.2rem;
+        max-height: 42.72rem;
 	}
     
-    #slider #homepage-slider .homeslider-description {
-        height: 100%;
-        background-position: center 85%;
-    }
 }
 
 @media only screen and (max-height :768px) and (max-width :1366px) {
@@ -1358,7 +1360,7 @@
 	/*BANNER*/
 
 	.main-container #homepage-slider {
-		max-height: 32rem;
+	    max-height: 32.97rem;
 	}
 
 	#slider #homepage-slider .homeslider-description {
@@ -1794,7 +1796,10 @@
     #slider #homepage-slider {
         max-height: 26rem;
     }
-
+    
+    #slider #homepage-slider .btn_scroll {
+        display:none;    
+    }
 }
 
 @media screen and (max-width :480px) {
