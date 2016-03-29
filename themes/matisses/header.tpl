@@ -94,6 +94,7 @@
             data.category = '{$category->name}';
             data.idcategory = '{$category->id}';
             data.leveldepth = {$category->level_depth};
+            data.parents = {$parents};
         {/if}
         {if $logged}
             data.idcustomer = '{$idcustomer}';
@@ -117,7 +118,9 @@
             data.imageproduct = '{$imageproduct}';
             data.priceproduct = {$priceproduct};
             data.categoriesp = {$categoriesp};
-            data.tagsproduct = {$tagsproduct};
+            {if !empty($tagsproduct)}
+                data.tagsproduct = {$tagsproduct};
+            {/if}
          
             if (status == 1) {
                 data.statusproduct = 'available';   

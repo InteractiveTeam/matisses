@@ -56,10 +56,15 @@ ax = {
                 
                 // Set categories to this pages
                 if (page == 'category' || page == 'subcategory' || page == 'product') {
-                    chaordic_meta.page.categories = [{
-                        "name": data.category,
-                        "id": data.idcategory
-                    }];
+                    chaordic_meta.page.categories = [];
+                    chaordic_meta.page.categories.push({
+                        "name": "Matisses",
+                        "id": "1"
+                    });
+                    
+                    for (i = data.parents.length-1; i >= 0; i--) { 
+                        chaordic_meta.page.categories.push(data.parents[i]);
+                    }
                 }
 
                 // Set query and items of a search
@@ -144,10 +149,15 @@ ax = {
 
                 // Set categories to this pages
                 if (page == 'category' || page == 'subcategory' || page == 'product') {
-                    chaordic_meta.page.categories = [{
-                        "name": data.category,
-                        "id": data.idcategory
-                    }];
+                    chaordic_meta.page.categories = [];
+                    chaordic_meta.page.categories.push({
+                        "name": "Matisses",
+                        "id": "1"
+                    });
+                    
+                    for (i = data.parents.length-1; i >= 0; i--) { 
+                        chaordic_meta.page.categories.push(data.parents[i]);
+                    }
                 }
 
                 // Set query and items of a search

@@ -585,8 +585,31 @@ class matisses extends Module
 		    ));
         }
         
+        // Assing subcategories 
+        if (in_array($this->page_name, array('category','product'))) {
+            $idcategory = Tools::getValue('id_category');
+            $cat = new Category($idcategory);
+            $parent = $cat->getParentsCategories($this->context->language->id);
+            $parents = array();
+            
+            foreach($parent as $row){
+                
+                    array_push($parents,
+                               array(
+                                    'id' => $row['id_category'],
+                                    'name' => $row['name'],
+                                    'parents' => array($row['id_parent'])
+                               ));
+                
+            }
+            /*echo "<pre>"; print_r($parent); echo "</pre>";*/
+            $this->context->smarty->assign(array(
+                'parents' => json_encode($parents)
+		    ));
+        }
+        
         // Assing current product Chaordic
-        if (Tools::getValue('controller') == 'product') {
+        if (in_array($this->page_name, array('product'))) {
             
             $id_product = (int)Tools::getValue('id_product');
             $link = new LinkCore();
@@ -625,7 +648,7 @@ class matisses extends Module
         }
         
         // Assing cart info to Chaordic
-        if (Tools::getValue('controller') == 'order') {
+        if (in_array($this->page_name, array('order'))) {
             $id_cart = $this->context->cart->id;
             
             $this->context->smarty->assign(array(
@@ -634,7 +657,7 @@ class matisses extends Module
         }
         
         // Get products in order confirmation
-        if (Tools::getValue('controller') == 'orderconfirmation') {
+        if (in_array($this->page_name, array('orderconfirmation'))) {
             
             if (isset($_GET['id_order'])) {
                 $order = new Order($_GET['id_order']);
