@@ -89,6 +89,7 @@ a.fancybox-nav {
 	text-align: center;
 	border-style: solid;
 	border-width: 1px;
+    height: 500px;
 	}
 .pb-left-column .wrap_scale{
 	display: block;
@@ -246,7 +247,7 @@ a.fancybox-nav {
     padding-right: 0.125rem;
 }
 .box-info-product .elem_butt {
-    width: 33%;
+    width: 34.2%;
     display: inline-block;
 	margin: 1.25rem 0.9375rem 0 0;
 }
@@ -489,10 +490,10 @@ a.fancybox-nav {
 	}
 
 #short_description_block {
-	padding-top: 0.625rem;
-	border-bottom: 1px solid #ccc;
-	padding-bottom: 1.5rem;
-	margin-bottom: 1.5rem;
+    padding-top: 0.625rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.8rem;
+    margin-bottom: 0.8rem;
 	}
 .pb-right-column #short_description_block .buttons_bottom_block {
 	display: none;
@@ -861,8 +862,7 @@ a.fancybox-nav {
 	}
 	.product .rate_wrap {
 	border-bottom: 1px solid #ccc;
-	margin-bottom: 1.875rem;
-	padding: 1.25rem 0 0.9375rem;
+    padding: 0.7rem 0 0.7rem;
 	}
 	#product_condition {
 	margin-top: 0.9375rem;
@@ -1005,7 +1005,7 @@ a.fancybox-nav {
 
 /*15-12-2015*/
 	.add_to_cart button {
-	width: 24.6875rem;
+	width: 25.5rem;
 	font-size: 1.5rem;
 	padding:0.3125rem;
 	font-family: 'condensed';

@@ -75,7 +75,7 @@
 		{if (isset($display_subcategories) && $display_subcategories eq 1) || !isset($display_subcategories) }
 		<!-- Subcategories -->
 		<div id="subcategories" class="subcategories">
-			<h1 class="subcategory-heading">{l s='Subcategories'}</h1>
+			<h1 class="subcategory-heading">{$category->name}</h1>
 			<ul class="cf">
 			{foreach from=$subcategories item=subcategory}
 				<li>

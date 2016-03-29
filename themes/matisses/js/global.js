@@ -401,7 +401,17 @@ $(document).ready(function(){
 
 	var ancho = $(window).width();
 	//alert(ancho);
-	$(".sf-menu > li > ul").width(ancho);    
+	$(".sf-menu > li > ul").width(ancho);   
+    
+    var heightScrolling = $('#slider').height();
+    var btnScrollingB = $("<div class='btn_scroll'>");
+    
+    $('#homeslider .homeslider-container').append(btnScrollingB);
+    
+    $('.btn_scroll').on('click', function(){
+        $("html, body").animate({scrollTop:heightScrolling+58+"px"});
+    })
+    
     
 })
 //ANIMAR SCROLL

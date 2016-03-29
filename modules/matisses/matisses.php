@@ -585,8 +585,31 @@ class matisses extends Module
 		    ));
         }
         
+        // Assing parent subcategories 
+        if (in_array($this->page_name, array('category','product'))) {
+            $idcategory = Tools::getValue('id_category');
+            $cat = new Category($idcategory);
+            $parent = $cat->getParentsCategories($this->context->language->id);
+            $parents = array();
+            
+            foreach($parent as $row){
+                
+                    array_push($parents,
+                               array(
+                                    'id' => $row['id_category'],
+                                    'name' => $row['name'],
+                                    'parents' => array($row['id_parent'])
+                               ));
+                
+            }
+
+            $this->context->smarty->assign(array(
+                'parents' => json_encode($parents)
+		    ));
+        }
+        
         // Assing current product Chaordic
-        if (Tools::getValue('controller') == 'product') {
+        if (in_array($this->page_name, array('product'))) {
             
             $id_product = (int)Tools::getValue('id_product');
             $link = new LinkCore();
@@ -596,7 +619,43 @@ class matisses extends Module
             $tags = Tag::getProductTags($id_product);
             $categoriesp = array();
             $tagsproduct = array();
+            $attr = $product->getAttributeCombinaisons($this->context->language->id);
+            $attrcolors = array();
+            $skuattr = array();
+            /*echo "<pre>"; print_r($attr); echo "</pre>";*/
             
+            // attributes
+            foreach($attr as $row){
+                if ($row['group_name'] == 'Color') {
+                    array_push($attrcolors,$row['attribute_name']);
+                }
+                
+                $tempattr = array();
+                $tempattr['id'] = $row['id_attribute'];
+                $tempattr['sku'] = $row['reference'];
+                $tempattr['specs'] = array('color' => $row['attribute_name']);
+                
+                if ($row['quantity'] > 0) { 
+                    $tempattr['status'] = 'available';
+                } else {
+                    $tempattr['status'] = 'unavailable';
+                }
+                array_push($skuattr,$tempattr);
+            }
+            
+            if (!empty($attrcolors)) {
+                $this->context->smarty->assign(array(
+                    'productcolors' => json_encode($attrcolors)
+                ));
+            }
+            
+            if (!empty($skuattr)) {
+                $this->context->smarty->assign(array(
+                    'productskuattr' => json_encode($skuattr)
+                ));
+            }
+            
+            // categories
             foreach($cat as $row){
                 array_push($categoriesp, 
                            array(
@@ -605,12 +664,31 @@ class matisses extends Module
                             ));
             }
             
+            //tags
             foreach($tags as $tag){
                 foreach ($tag as $item) {
                     array_push($tagsproduct,array('name' => $item));
                 }
             }
             
+            // parent categories of product
+            $idcategory = $product->getDefaultCategory();
+            $categ = new Category($idcategory);
+            $parent = $categ->getParentsCategories($this->context->language->id);
+            $parents = array();
+            
+            foreach($parent as $row){
+                
+                    array_push($parents,
+                               array(
+                                    'id' => $row['id_category'],
+                                    'name' => $row['name'],
+                                    'parents' => array($row['id_parent'])
+                               ));
+                
+            }
+            
+            // assign data of product
             $this->context->smarty->assign(array(
                 'idproduct' => $product->id,
                 'nameproduct' => $product->getProductName($product->id),
@@ -620,12 +698,14 @@ class matisses extends Module
 				'priceproduct' => $product->getPriceWithoutReduct(),
                 'categoriesp' => json_encode($categoriesp),
                 'tagsproduct' => json_encode($tagsproduct),
-				'statusproduct' => $product->active
+				'statusproduct' => $product->active,
+                'productcondition' => $product->condition,
+                'parents' => json_encode($parents)
 		    ));
         }
         
         // Assing cart info to Chaordic
-        if (Tools::getValue('controller') == 'order') {
+        if (in_array($this->page_name, array('order'))) {
             $id_cart = $this->context->cart->id;
             
             $this->context->smarty->assign(array(
@@ -634,7 +714,7 @@ class matisses extends Module
         }
         
         // Get products in order confirmation
-        if (Tools::getValue('controller') == 'orderconfirmation') {
+        if (in_array($this->page_name, array('orderconfirmation'))) {
             
             if (isset($_GET['id_order'])) {
                 $order = new Order($_GET['id_order']);

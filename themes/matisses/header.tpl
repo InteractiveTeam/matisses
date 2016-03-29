@@ -94,6 +94,7 @@
             data.category = '{$category->name}';
             data.idcategory = '{$category->id}';
             data.leveldepth = {$category->level_depth};
+            data.parents = {$parents};
         {/if}
         {if $logged}
             data.idcustomer = '{$idcustomer}';
@@ -117,13 +118,18 @@
             data.imageproduct = '{$imageproduct}';
             data.priceproduct = {$priceproduct};
             data.categoriesp = {$categoriesp};
-            data.tagsproduct = {$tagsproduct};
+            data.productcolors = {$productcolors};
+            data.productskuattr = {$productskuattr};
+            {if !empty($tagsproduct)}
+                data.tagsproduct = {$tagsproduct};
+            {/if}
          
             if (status == 1) {
                 data.statusproduct = 'available';   
             } else {
                 data.statusproduct = 'unavailable';
             }
+            data.productcondition = '{$productcondition}';
         {/if}
         {if $page_name == 'search'}
             data.search_q = '{$search_query}';
