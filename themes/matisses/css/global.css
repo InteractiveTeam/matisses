@@ -115,7 +115,7 @@ box-sizing: border-box;
 
 	/*Header*/
 	.header-container {
-	min-height: 7.5rem;
+    min-height: 6.9rem;
 	position: relative;
 	}
 	h1{
@@ -199,7 +199,7 @@ box-sizing: border-box;
 	position: relative;
 	}
 	.logo-desktop {
-	padding: 1.875rem 0;
+    padding: 1.54rem 0;
 	display: block;
 	-webkit-transition:all .36s ease;
 	-o-transition:all .36s ease;
@@ -233,10 +233,10 @@ box-sizing: border-box;
 	}
 	.fixedHeader .right-down-menu li#search {
     padding-right: 1.25rem;
-    padding-top: 0.9rem;
+    padding-top: 0.6rem;
 	}
 	.fixedHeader #header_logo{
-	padding-top: 0.625rem;
+	padding-top: 0.5rem;
 	}
 	.fixedHeader .right-down-menu li#cart,
 	.fixedHeader .right-down-menu li#user {
@@ -255,7 +255,7 @@ box-sizing: border-box;
         min-height: 240px;
     }
 	.menu-left{
-    padding: 1.3rem 0 0 0;
+    padding: 1.2rem 0 0 0;
 	}
 	.menu li {
 	display: inline-block;
@@ -293,8 +293,9 @@ box-sizing: border-box;
 	background-position: 0 -23px;
 	}
 	.menu-experiencias {
-	padding: 1.4rem 0 0.9rem 0.625rem;
+	padding: 1.1rem 0 0.9rem 0;
 	display: table;
+    width: 60%;
 	}
 	.menu-experiencias li {
 	display: table-cell;
@@ -392,7 +393,6 @@ box-sizing: border-box;
 	.right-down-menu li a {
 	color: #000;
 	font-family: 'condensed';
-	font-size: 1.0625rem;
 	padding: 0 1.25rem 0 1.5625rem;
 	text-transform: uppercase;
 	}
@@ -435,7 +435,7 @@ box-sizing: border-box;
 	font-family: 'condensed';
 	position: absolute;
 	display: block;
-    bottom: 1.2rem;
+    bottom: 0.94rem;
 	right: 0.9375rem;
 	text-align: center;
 	}
@@ -453,14 +453,14 @@ box-sizing: border-box;
 	background-color: #d9292e;
 	min-width: 10.9375rem;
 	vertical-align: top;
-    padding: 0.4rem 1.875rem;
+    padding: 0.3rem 1.875rem;
 	}
     
     #user .header_user_info .content-user {
         margin-top:0px;
     }
     .header_user_info {
-        height: 48px;
+        height: 100%;
     }
 
     .show-user {
@@ -468,7 +468,7 @@ box-sizing: border-box;
     }
 
 	.user-profile{
-	background: url("../img/user.png") 0 6px no-repeat transparent;
+	background: url("../img/user.png") center no-repeat transparent;
 	height: 2.875rem;
 	width: 2.25rem;
 	vertical-align: middle;
@@ -4866,4 +4866,12 @@ color:#fff;
 
 .sitemap_block ul li strong {
     font-weight: normal !important;
+}
+
+.product_attributes #color_to_pick_list li a {
+    border: #DEDEDE solid 1px;
+}
+
+.product_attributes #color_to_pick_list li.selected a {
+    border: none;
 }

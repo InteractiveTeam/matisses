@@ -1222,12 +1222,8 @@
         font-size: 0.99rem;
     }
     
-    .fixedHeader .menu-content > li > a {
-        padding-top:1.45rem;
-    }
-    
     .header-container .fixedHeader .right-down-menu li {
-        padding-top:0.6rem !important;
+        padding-top:0.9rem !important;
     }
 
     .fixedHeader .user-profile {
