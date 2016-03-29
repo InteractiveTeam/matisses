@@ -200,6 +200,8 @@ ax = {
                     chaordic_meta.product.categories = data.categoriesp;
                     chaordic_meta.product.price = data.priceproduct;
                     chaordic_meta.product.status = data.statusproduct;
+                    chaordic_meta.product.specs = {"color": data.productcolors};
+                    chaordic_meta.product.specs.skus = data.productskuattr;
                     
                     if (data.tagsproduct) {
                         chaordic_meta.product.tags = data.tagsproduct;

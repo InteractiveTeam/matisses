@@ -615,12 +615,47 @@ class matisses extends Module
             $link = new LinkCore();
             $images = Image::getImages($this->context->language->id, $id_product);
             $product = new Product($id_product);
-            echo "<pre>"; print_r($product->getAttributeCombinaisons($this->context->language->id)); echo "</pre>";
             $cat = Product::getProductCategoriesFull($product->id,$this->context->language->id);
             $tags = Tag::getProductTags($id_product);
             $categoriesp = array();
             $tagsproduct = array();
+            $attr = $product->getAttributeCombinaisons($this->context->language->id);
+            $attrcolors = array();
+            $skuattr = array();
+            /*echo "<pre>"; print_r($attr); echo "</pre>";*/
             
+            // attributes
+            foreach($attr as $row){
+                if ($row['group_name'] == 'Color') {
+                    array_push($attrcolors,$row['attribute_name']);
+                }
+                
+                $tempattr = array();
+                $tempattr['id'] = $row['id_attribute'];
+                $tempattr['sku'] = $row['reference'];
+                $tempattr['specs'] = array('color' => $row['attribute_name']);
+                
+                if ($row['quantity'] > 0) { 
+                    $tempattr['status'] = 'available';
+                } else {
+                    $tempattr['status'] = 'unavailable';
+                }
+                array_push($skuattr,$tempattr);
+            }
+            
+            if (!empty($attrcolors)) {
+                $this->context->smarty->assign(array(
+                    'productcolors' => json_encode($attrcolors)
+                ));
+            }
+            
+            if (!empty($skuattr)) {
+                $this->context->smarty->assign(array(
+                    'productskuattr' => json_encode($skuattr)
+                ));
+            }
+            
+            // categories
             foreach($cat as $row){
                 array_push($categoriesp, 
                            array(
@@ -629,6 +664,7 @@ class matisses extends Module
                             ));
             }
             
+            //tags
             foreach($tags as $tag){
                 foreach ($tag as $item) {
                     array_push($tagsproduct,array('name' => $item));

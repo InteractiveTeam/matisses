@@ -118,6 +118,8 @@
             data.imageproduct = '{$imageproduct}';
             data.priceproduct = {$priceproduct};
             data.categoriesp = {$categoriesp};
+            data.productcolors = {$productcolors};
+            data.productskuattr = {$productskuattr};
             {if !empty($tagsproduct)}
                 data.tagsproduct = {$tagsproduct};
             {/if}
