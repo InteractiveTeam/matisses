@@ -481,28 +481,28 @@
 						<ul id="delivery_address" class="address item box">
 							<li>
 								<h2 class="page-subheading">{l s='Delivery address'}&nbsp;
-								<span class="address_alias">({$delivery->alias})</span>
+								<span class="address_alias">({$delivery->alias})&nbsp;</span>
 							</h2>
 							</li>
-							{if $delivery->company}<li class="address_company">{$delivery->company|escape:'html':'UTF-8'}</li>{/if}
-							<li class="address_name">{$delivery->firstname|escape:'html':'UTF-8'} {$delivery->lastname|escape:'html':'UTF-8'}</li>
-							<li class="address_address1">{$delivery->address1|escape:'html':'UTF-8'}</li>
-							{if $delivery->address2}<li class="address_address2">{$delivery->address2|escape:'html':'UTF-8'}</li>{/if}
-							<li class="address_city">{$delivery->postcode|escape:'html':'UTF-8'} {$delivery->city|escape:'html':'UTF-8'}</li>
-							<li class="address_country">{$delivery->country|escape:'html':'UTF-8'} {if $delivery_state}({$delivery_state|escape:'html':'UTF-8'}){/if}</li>
+							{if $delivery->company}<li class="address_company">{$delivery->company|escape:'html':'UTF-8'}&nbsp;</li>{/if}
+							<li class="address_name">{$delivery->firstname|escape:'html':'UTF-8'} {$delivery->lastname|escape:'html':'UTF-8'}&nbsp;</li>
+							<li class="address_address1">{$delivery->address1|escape:'html':'UTF-8'}&nbsp;</li>
+							{if $delivery->address2}<li class="address_address2">{$delivery->address2|escape:'html':'UTF-8'}&nbsp;</li>{/if}
+							<li class="address_city">{$delivery->postcode|escape:'html':'UTF-8'} {$delivery->city|escape:'html':'UTF-8'}&nbsp;</li>
+							<li class="address_country">{$delivery->country|escape:'html':'UTF-8'} {if $delivery_state}({$delivery_state|escape:'html':'UTF-8'}){/if}&nbsp;</li>
 						</ul>
 					</div>
 				{/if}
 				{if $invoice->id}
 					<div class="grid_6">
-						<ul id="invoice_address" class="address alternate_item box">
-							<li><h2 class="page-subheading">{l s='Invoice address'}&nbsp;<span class="address_alias">({$invoice->alias})</span></h2></li>
+						<ul id="invoice_address" class="address alternate_item box"> 
+							<li><h2 class="page-subheading">{l s='Invoice address'}&nbsp;<span class="address_alias">({$invoice->alias})</span></h2>&nbsp;</li>
 							{if $invoice->company}<li class="address_company">{$invoice->company|escape:'html':'UTF-8'}</li>{/if}
-							<li class="address_name">{$invoice->firstname|escape:'html':'UTF-8'} {$invoice->lastname|escape:'html':'UTF-8'}</li>
-							<li class="address_address1">{$invoice->address1|escape:'html':'UTF-8'}</li>
-							{if $invoice->address2}<li class="address_address2">{$invoice->address2|escape:'html':'UTF-8'}</li>{/if}
-							<li class="address_city">{$invoice->postcode|escape:'html':'UTF-8'} {$invoice->city|escape:'html':'UTF-8'}</li>
-							<li class="address_country">{$invoice->country|escape:'html':'UTF-8'} {if $invoice_state}({$invoice_state|escape:'html':'UTF-8'}){/if}</li>
+							<li class="address_name">{$invoice->firstname|escape:'html':'UTF-8'} {$invoice->lastname|escape:'html':'UTF-8'}&nbsp;</li>
+							<li class="address_address1">{$invoice->address1|escape:'html':'UTF-8'}&nbsp;</li>
+							{if $invoice->address2}<li class="address_address2">{$invoice->address2|escape:'html':'UTF-8'}&nbsp;</li>{/if}
+							<li class="address_city">{$invoice->postcode|escape:'html':'UTF-8'} {$invoice->city|escape:'html':'UTF-8'}&nbsp;</li>
+							<li class="address_country">{$invoice->country|escape:'html':'UTF-8'} {if $invoice_state}({$invoice_state|escape:'html':'UTF-8'}){/if}&nbsp;</li>
 						</ul>
 					</div>
 				{/if}
@@ -530,7 +530,17 @@
 									{if isset($address.formated[$key_str]) && !empty($address.formated[$key_str])}
 										{if (!$addedli)}
 											{$addedli = true}
-											<li><span class="{if isset($addresses_style[$key_str])}{$addresses_style[$key_str]}{/if}">
+											<li> 
+                                            <span class="{if isset($addresses_style[$key_str])}{$addresses_style[$key_str]}{/if}">
+                                            
+                                            {if $key_str=='firstname'}<b>{l s='Nombre:'}</b>{/if}
+                                            {if $key_str=='address1'}<b>{l s='Dirección 1:'}</b>{/if}
+                                            {if $key_str=='address2'}<b>{l s='Dirección 2:'}</b>{/if}
+                                            {if $key_str=='city'}<b>{l s='Ciudad:'}</b>{/if}
+                                            {if $key_str=='Country:name'}<b>{l s='Departamento:'}</b>{/if}
+                                            {if $key_str=='phone'}<b>{l s='Teléfono:'}</b>{/if}
+                                            {if $key_str=='phone_mobile'}<b>{l s='Celular:'}</b>{/if}
+                                            
 										{/if}
 										{$address.formated[$key_str]|escape:'html':'UTF-8'}
 									{/if}

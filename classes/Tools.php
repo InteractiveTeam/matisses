@@ -322,6 +322,13 @@ class ToolsCore
 	{
 		if (!isset($key) || empty($key) || !is_string($key))
 			return false;
+			
+		if($_GET[$key] == ' ')	
+			unset($_GET[$key]);
+
+			
+		if($_POST[$key] == ' ')	
+			unset($_POST[$key]);
 
 		$ret = (isset($_POST[$key]) ? $_POST[$key] : (isset($_GET[$key]) ? $_GET[$key] : $default_value));
 
