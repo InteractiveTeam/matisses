@@ -3713,7 +3713,7 @@ box-sizing: border-box;
 
 /*Pagina Pedidos - Orden*/
 #order #center_column,
-#authentication #center_column, #password #center_column {
+#authentication #center_column, #password #center_column, #order-confirmation #center_column {
 	width: 100%;
 	max-width: 75rem;
 	margin: 0 auto;
@@ -4882,4 +4882,32 @@ color:#fff;
 
 .ui-tabs .ui-tabs-nav li a {
     padding: .5em 3em !important;
+}
+
+#order-confirmation table {
+    width:100%
+}
+
+#order-confirmation table tr td {
+    background: #fbfbfb;
+    color: #231f20;
+    text-transform: capitalize;
+    font-family: "condensed";
+    font-size: 1.125rem;
+}
+
+#order-confirmation table tr td {
+    border: 1px solid #ddd;
+    font-size: 1.3rem;
+}
+
+#order-confirmation table tr td:last-child {
+    background:#fff;
+}
+
+#order-confirmation table tr td:last-child b {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    color: #777676;
+    font-weight: lighter !important;
 }
