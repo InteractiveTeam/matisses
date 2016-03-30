@@ -146,7 +146,7 @@
                              ]
                              ,false)}"
                            alt="{$catsProductsObj[0][2]->title}" >
-                           <img src="{$catsProductsObj[0][2]->img}" title="{$catsProductsObj[0][1]->title}" alt="{$catsProductsObj[0][1]->title}" ></a>
+                           <img src="{$catsProductsObj[0][2]->img}" title="{$catsProductsObj[0][2]->title}" alt="{$catsProductsObj[0][2]->title}" ></a>
                     </div>
                     <div class="right-article grid_6 omega">
                         <div class="category-news">
