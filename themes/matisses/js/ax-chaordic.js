@@ -101,7 +101,7 @@ ax = {
                     chaordic_meta.product.specs = {"color": data.productcolors};
                     chaordic_meta.product.specs.skus = data.productskuattr;
                     
-                    if (data.tagsproduct) {
+                    if (data.tagsproduct.length > 0) {
                         chaordic_meta.product.tags = data.tagsproduct;
                     }
                     
@@ -205,7 +205,7 @@ ax = {
                     chaordic_meta.product.specs = {"color": data.productcolors};
                     chaordic_meta.product.specs.skus = data.productskuattr;
                     
-                    if (data.tagsproduct) {
+                    if (data.tagsproduct.length > 0) {
                         chaordic_meta.product.tags = data.tagsproduct;
                     }
                     
