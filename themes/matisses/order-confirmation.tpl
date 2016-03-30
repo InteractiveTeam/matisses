@@ -48,7 +48,7 @@
         {l s='Pedir de nuevo'}
     </a>
 </form>
-
+<br/>
 <p class="cart_navigation exclusive">
 	<a class="button-exclusive btn btn-default btn-red" href="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}" title="{l s='Back to orders'}"><i class="icon-chevron-left"></i>{l s='Back to orders'}</a>
 </p>
