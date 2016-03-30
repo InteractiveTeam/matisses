@@ -22,6 +22,9 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
+
+
+
 $(document).ready(function(){
 	if (typeof formatedAddressFieldsValuesList !== 'undefined')
 		updateAddressesDisplay(true);
@@ -212,6 +215,15 @@ function buildAddressBlock(id_address, address_type, dest_comp)
 
 function appendAddressList(dest_comp, values, fields_name)
 {
+	
+	var label1 = "Nombre:";
+	var label2 = "Dirección 1:";
+	var label3 = "Dirección 2:";
+	var label4 = "Ciudad:";
+	var label5 = "Departamento:";
+	var label6 = "Teléfono:";
+	var label7 = "Celular:";
+	
 	for (var item in fields_name)
 	{
 		var name = fields_name[item].replace(",", "");
@@ -222,10 +234,26 @@ function appendAddressList(dest_comp, values, fields_name)
 			var reg = new RegExp("[ ]+", "g");
 			var classes = name.split(reg);
 			new_li.className = '';
+			new_li.label = '';
+			 
 			for (clas in classes)
+			{
 				new_li.className += 'address_' + classes[clas].toLowerCase().replace(":", "_") + ' ';
+				switch(new_li.className)
+				{
+					case 'address_firstname address_lastname ': new_li.label = '<b>'+label1+'</b> '; break;
+					case 'address_address1 ': new_li.label = '<b>'+label2+'</b> '; break;
+					case 'address_address2 ': new_li.label = '<b>'+label3+'</b> '; break;
+					case 'address_postcode address_city ': new_li.label = '<b>'+label4+'</b> '; break;
+					case 'address_country_name ': new_li.label = '<b>'+label5+'</b> '; break;
+					case 'address_phone ': new_li.label = '<b>'+label6+'</b> '; break;
+					case 'address_phone_mobile ': new_li.label = '<b>'+label7+'</b> '; break;
+				}
+				
+			}
+			
 			new_li.className = new_li.className.trim();
-			new_li.innerHTML = value;
+			new_li.innerHTML = new_li.label+value;
 			dest_comp.append(new_li);
 		}
 	}

@@ -51,10 +51,11 @@
 		{/section}
 		</select>
     </div>
-	{else}
+	{else} 
 		<a href="{$link->getPageLink('address', true, NULL, "back={$back_order_page}?step=1{'&multi-shipping=1'|urlencode}{if $back}&mod={$back}{/if}")|escape:'html':'UTF-8'}" title="{l s='Add'}" class="button button-small btn btn-default"><span>{l s='Add a new address'}<i class="icon-chevron-right right"></i></span></a>
 	{/if}
 	</p>
+    
 	<div class="row ">
     	<div class="col-sm-12 col-md-6">
             <ul class="address alternate_item {if $cart->isVirtualCart()}full_width{/if} box" id="address_invoice">

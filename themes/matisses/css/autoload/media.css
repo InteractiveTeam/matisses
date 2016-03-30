@@ -1155,7 +1155,6 @@
 		height: auto;
 	}
 
-	/*Productos visualizados*/
 	.viewed-products{display: none;}
 	.viewed-products .title_block span {
 		margin-bottom: 1.5625rem;
