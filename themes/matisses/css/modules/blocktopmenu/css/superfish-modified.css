@@ -63,7 +63,7 @@
 	font-size:
 	}
 	.menu-content > li > a {
-    padding: 0.9rem 0 0 0;
+    padding: 0.9rem 0 14px 0;
     margin-left: 1.875rem;
     display: block;
     position: relative;
@@ -123,7 +123,7 @@
     }
 
 	.submenu-container li > ul > li .SubCategory {
-    padding: 1.8rem 3.625rem;
+    padding: 1.2rem 3.625rem;
     position: absolute;
     margin-top: 0;
     top: 0 !important;

@@ -198,7 +198,16 @@
                                             <span>{$news->cat_name}</span>
                                         </div>
                                         <div class="newsTitle">
-                                            <h2>{$news->title|escape:html:'UTF-8'}</h2>
+                                            <a href="{$link->getModuleLink('news', 'new',
+                                        [
+                                            'id_news'  => "{$news->id_news}",
+                                            'cat_news' => "{if $cat}{$cat}{/if}",
+                                            'page_cat'     => "{$page}",
+                                            'rewrite'  => "{$news->rewrite}",
+                                            'cat_rewrite'  => "{$cat_rewrite}"
+                                         ]
+                                         ,false)}"
+                                                alt="{$news->title|escape:html:'UTF-8'}" class="newsListItem"><h2>{$news->title|escape:html:'UTF-8'}</h2></a>
                                         </div>
 
                                         <div class="date-author cf">
@@ -320,7 +329,6 @@
                                     <span>{$articulo.category}</span>
                                 </div>
                                 <div class="newsTitle">
-                                    <h2>
                                     <a href="{$link->getModuleLink('news', 'new',
                                     [
                                         'id_news'  => "{$articulo.id_news}",
@@ -332,7 +340,7 @@
                                      ,false)}"
                                    alt="{$articulo.title}" >
                                     
-                                    {$articulo.title} </a></h2>
+                                    <h2>{$articulo.title}</h2></a>
                                 </div>
                             </li>
                             {/foreach}
@@ -346,7 +354,7 @@
                                     <span>{$articulo.category}</span>
                                 </div>
                                 <div class="newsTitle">
-                                    <h2>
+                                    
                                     <a href="{$link->getModuleLink('news', 'new',
                                     [
                                         'id_news'  => "{$articulo.id_news}",
@@ -357,10 +365,9 @@
                                      ]
                                      ,false)}"
                                    alt="{$articulo.title}" >
-                                    	{$articulo.title}
+                                    	<h2>{$articulo.title}</h2>
                                     </a>
-                                    
-                                  	</h2>
+
                                 </div>
                             </li>
                             {/foreach}

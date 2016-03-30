@@ -257,7 +257,7 @@ box-sizing: border-box;
 
 	/*menu*/
     .submenu-container > li > ul {
-        min-height: 240px;
+        min-height: 250px;
     }
 	.menu-left{
     padding: 1.2rem 0 0 0;
@@ -4916,4 +4916,22 @@ color:#fff;
 
 .ax-printPago {
     float: right;
+}
+
+.ax-printPago .btnPrint .fa-print {
+    margin-right: 8px;
+}
+
+.mCSB_scrollTools .mCSB_dragger {
+    height: 30px !important;
+}
+
+.newsTitle a.newsListItem:hover {
+    background: transparent;
+}
+
+.commented-popular .content-tabs li a {
+    padding: 0;
+    background:transparent;
+    border:none
 }
