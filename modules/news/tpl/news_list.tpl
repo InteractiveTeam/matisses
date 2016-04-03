@@ -334,8 +334,8 @@
                 <div class="commented-popular grid_12 omega">
                     <div id="tabs-news" class="news-tabs">
                       <ul>
-                        <li><a href="#tabs-1">Comentados</a></li>
-                        <li><a href="#tabs-2">Populares</a></li>
+                        <li><a class="atab" href="#tabs-1">Comentados</a></li>
+                        <li><a class="atab" href="#tabs-2">Populares</a></li>
                       </ul>
                       <div id="tabs-1" class="content-tabs">
                         
