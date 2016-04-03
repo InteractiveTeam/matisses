@@ -53,7 +53,7 @@
 	{/if}
 	<!-- Pagination -->
 	<div id="pagination{if isset($paginationId)}_{$paginationId}{/if}" class="pagination clearfix">
-    	{$stop = 2}	
+    	
 	    {if $nb_products > $products_per_page && $start!=$stop}
 			<form class="showall" action="{if !is_array($requestNb)}{$requestNb}{else}{$requestNb.requestUrl}{/if}" method="get">
 				<div>
