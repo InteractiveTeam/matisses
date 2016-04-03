@@ -31,6 +31,8 @@ class matissesexperiencesModuleFrontController extends ModuleFrontController
 					$this->experience->products[$k]['price'] 		= Product::getPriceStatic($this->experience->products[$k]['id_product'],true,$this->experience->products[$k]['id_product_attribute']);
 					$this->experience->products[$k]['link_rewrite']	= $Product->link_rewrite;
 					$this->experience->products[$k]['name']			= $Product->name;
+					$this->experience->products[$k]['left']			= (float) $this->experience->products[$k]['left'];
+					$this->experience->products[$k]['top']			= (float) $this->experience->products[$k]['top'];
 					if($this->experience->products[$k]['id_product_attribute']==1)
 					{
 						$this->experience->products[$k]['id_image'] 	= current(Product::getCover($this->experience->products[$k]['id_product'])); 
