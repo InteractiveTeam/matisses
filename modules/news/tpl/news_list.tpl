@@ -70,7 +70,7 @@
                                 'cat_rewrite'  => "{$destacados[1]->cat_rewrite}"
                              ]
                              ,false)}"
-                           alt="{$destacados[0]->title}" > <img src="{$destacados[1]->img}" title="{$destacados[1]->title}" alt="{$destacados[1]->title}" ></a>
+                           alt="{$destacados[1]->title}" > <img src="{$destacados[1]->img}" title="{$destacados[1]->title}" alt="{$destacados[1]->title}" ></a>
                     </div>
                     <div class="right-article grid_6 omega">
                         <div class="category-news">
@@ -87,7 +87,7 @@
                                 'cat_rewrite'  => "{$destacados[1]->cat_rewrite}"
                              ]
                              ,false)}"
-                                alt="{$destacados[0]->title}" ><h2>{$destacados[1]->title}</h2></a>
+                                alt="{$destacados[1]->title}" ><h2>{$destacados[1]->title}</h2></a>
                         </div>
                         <div class="date-author cf">
                             <span class="newsDate">{$destacados[1]->date} -</span>
@@ -109,7 +109,7 @@
                                 'cat_rewrite'  => "{$destacados[2]->cat_rewrite}"
                              ]
                              ,false)}"
-                           alt="{$destacados[1]->title}" > <img src="{$destacados[2]->img}" title="{$destacados[2]->title}" alt="{$destacados[2]->title}" ></a>
+                           alt="{$destacados[2]->title}" > <img src="{$destacados[2]->img}" title="{$destacados[2]->title}" alt="{$destacados[2]->title}" ></a>
 
                     </div>
                     <div class="right-article grid_6 omega">
@@ -129,7 +129,7 @@
                                 'cat_rewrite'  => "{$destacados[2]->cat_rewrite}"
                              ]
                              ,false)}"
-                                alt="{$destacados[1]->title}" ><h2>{$destacados[2]->title}</h2></a>
+                                alt="{$destacados[2]->title}" ><h2>{$destacados[2]->title}</h2></a>
                         </div>
                         <div class="date-author cf">
                             <span class="newsDate">{$destacados[2]->date} -</span>

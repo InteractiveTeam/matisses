@@ -33,7 +33,7 @@
                                                ]
 
                                               ,false)}"
-                                          title="{$destacados[1]->cat_name|truncate:50:'...'|escape:html:'UTF-8'}">
+                                          title="{$destacados[0]->cat_name|truncate:50:'...'|escape:html:'UTF-8'}">
                         <span>{$destacados[0]->cat_name}</span></a>
                     </div>
                     <div class="newsTitle">
@@ -63,7 +63,7 @@
                                 'cat_rewrite'  => "{$destacados[1]->cat_rewrite}"
                              ]
                              ,false)}"
-                           alt="{$destacados[0]->title}" > <img src="{$destacados[1]->img}" title="{$destacados[1]->title}" alt="{$destacados[1]->title}" ></a>
+                           alt="{$destacados[1]->title}" > <img src="{$destacados[1]->img}" title="{$destacados[1]->title}" alt="{$destacados[1]->title}" ></a>
                     </div>
                     <div class="right-article grid_6 omega">
                         <div class="category-news">
@@ -101,7 +101,7 @@
                                 'cat_rewrite'  => "{$destacados[1]->cat_rewrite}"
                              ]
                              ,false)}"
-                           alt="{$destacados[1]->title}" > <img src="{$destacados[2]->img}" title="{$destacados[2]->title}" alt="{$destacados[2]->title}" ></a>
+                           alt="{$destacados[1]->title}" > <img src="{$destacados[1]->img}" title="{$destacados[1]->title}" alt="{$destacados[1]->title}" ></a>
 
                     </div>
                     <div class="right-article grid_6 omega">
