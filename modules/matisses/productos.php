@@ -326,7 +326,8 @@
 			
 	
 			
-			$_Product->name 				= $_ProductData['webName'];
+			//$_Product->name 				= $_ProductData['webName'];
+			$_Product->name 				= $_ProductData['itemName'];
 			$_Product->reference 			= $_ProductData['itemCode'];
 			$_Product->itemname				= $_ProductData['itemName'];
 			$_Product->price				= $_ProductData['price'];

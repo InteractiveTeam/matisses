@@ -1149,10 +1149,12 @@ class ProductCore extends ObjectModel
 		$rq = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
 		if ($order_by == 'price')
 			Tools::orderbyPrice($rq, $order_way);
-
+		
 		foreach ($rq as &$row)
+		{
 			$row = Product::getTaxesInformations($row);
-
+			
+		}
 		return ($rq);
 	}
 

@@ -28,8 +28,8 @@
 	</td>
 
 	<td class="cart_description features">
-		<p class="product-name"><a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category, null, null, $product.id_shop, $product.id_product_attribute)|escape:'html':'UTF-8'}">{$product.name|escape:'html':'UTF-8'}</a></p>
-        {if $product.reference}<small class="cart_ref">{l s='SKU'} {$product.reference|escape:'html':'UTF-8'}</small>{/if}
+		<p class="product-name"><a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category, null, null, $product.id_shop, $product.id_product_attribute)|escape:'html':'UTF-8'}"><pre>{print_r($product)}</pre>{$product.name|escape:'html':'UTF-8'}</a></p>
+        {if $product.reference}<small class="cart_ref">{l s='SKU'} {hook h="actionMatChangeReference" reference=$product.reference}</small>{/if}
 		<!-- {if isset($product.attributes) && $product.attributes}<small><a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category, null, null, $product.id_shop, $product.id_product_attribute)|escape:'html':'UTF-8'}">{$product.attributes|escape:'html':'UTF-8'}</a></small>{/if} -->
             {if !isset($noDeleteButton) || !$noDeleteButton}
                 {if (!isset($customizedDatas.$productId.$productAttributeId) OR $quantityDisplayed > 0) && empty($product.gift)}
