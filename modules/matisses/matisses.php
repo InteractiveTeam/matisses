@@ -758,7 +758,6 @@ class matisses extends Module
                 // create new cart if needed
                 if (!isset($cart) || !$cart->id)
                 {
-                    $cart->delete();
                     $cart = new Cart();
                     $cart->id_customer = $idcus;
                     $cart->id_address_delivery = (int)  (Address::getFirstCustomerAddressId($cart->id_customer));
