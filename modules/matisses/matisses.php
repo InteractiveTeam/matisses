@@ -622,7 +622,6 @@ class matisses extends Module
             $attr = $product->getAttributeCombinaisons($this->context->language->id);
             $attrcolors = array();
             $skuattr = array();
-            /*echo "<pre>"; print_r($attr); echo "</pre>";*/
             
             // attributes
             foreach($attr as $row){
@@ -707,9 +706,87 @@ class matisses extends Module
         // Assing cart info to Chaordic
         if (in_array($this->page_name, array('order'))) {
             $id_cart = $this->context->cart->id;
+            $cartbyurl = false;
+            // reconstruct cart
+            $getparams = $_SERVER['QUERY_STRING'];
+            
+            if (isset($getparams)) {
+                $cart = null;
+                $vars = explode('&',$getparams);
+                $urlproducts = array();
+                $cont = 0; 
+                
+                foreach($vars as $row) {
+                    $findsku = strchr($row,'sku');
+                    
+                    if ($findsku) {
+                        $cartbyurl = true;
+                        $sk = explode('=', $findsku);
+                        array_push($urlproducts,array(
+                            'sku' => $sk[1],
+                            'qty' => ''
+                        ));
+                    }
+                    
+                    $findqty = strchr($row,'qty'); 
+                    
+                    if ($findqty) {
+                        $qt = explode('=', $findqty);
+                        $urlproducts[$cont]['qty'] = $qt[1];
+                        $cont++;
+                    }
+                } 
+                
+                $idcus = (int)($this->context->cookie->id_customer);
+                if (!empty($idcustomer)) {
+                    $idcus = $idcustomer;
+                }
+                
+                // get cart id if exists
+                if ($this->context->cookie->id_cart)
+                {
+                    $cart = new Cart($this->context->cookie->id_cart);
+                }
+
+                // create new cart if needed
+                if (!isset($cart) || !$cart->id)
+                {
+                    $cart->delete();
+                    $cart = new Cart();
+                    $cart->id_customer = $idcus;
+                    $cart->id_address_delivery = (int)  (Address::getFirstCustomerAddressId($cart->id_customer));
+                    $cart->id_address_invoice = $cart->id_address_delivery;
+                    $cart->id_lang = (int)($this->context->language->id);
+                    $cart->id_currency = (int)($this->context->cookie->id_currency);
+                    $cart->id_carrier = 1;
+                    $cart->recyclable = 0;
+                    $cart->gift = 0;
+                    $cart->add();
+                    $this->context->cookie->id_cart = (int)($cart->id);    
+                    $cart->update();
+                }
+                
+                foreach($urlproducts as $row) {
+                    $prod = Product::searchByName($this->context->language->id,$row['sku']);
+                    
+                    if ($prod) {
+                        $quant = $row['qty'];
+                        
+                        if (empty($quant)) {
+                            $quant = 1;
+                        }
+                        
+                        if ($prod[0]['quantity'] > 0) {
+                            $cart->updateQty($quant, $prod[0]['id_product']);
+                            $cart->update();
+                        }
+                    }
+                } 
+            }
             
             $this->context->smarty->assign(array(
-                'idcart' => $id_cart
+                'idcart' => $id_cart,
+                'cartbyurl' => $cartbyurl
 		    ));
         }
         
