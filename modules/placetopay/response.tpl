@@ -94,6 +94,5 @@
 <p>{l s='If you have any question please contact us on our phone' mod='placetopay'} {$storePhone}
 {l s='or using our email' mod='placetopay'} {mailto address=$storeEmail}</p>
 <br/>
-<p><a href='javascript:window.print()'><img src="{$placetopayImgUrl}b_print.png" alt="{l s='Print' mod='placetopay'}" width="32" height="32" border="0" /> 
-{l s='Print' mod='placetopay'}</a>
+<p class="ax-printPago"><a href='javascript:window.print()' class="btnPrint btn btn-default btn-red"><!--<img src="{$placetopayImgUrl}b_print.png" alt="{l s='Print' mod='placetopay'}" width="32" height="32" border="0" />--><i class="fa fa-print"></i>{l s='Print' mod='placetopay'}</a></p>
 <br/>

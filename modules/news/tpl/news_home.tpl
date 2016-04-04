@@ -123,7 +123,16 @@
                            alt="{$catsProductsObj[0][1]->title}" ><span>{$catsProductsObj[0][1]->cat_name}</span></a>
                         </div>
                         <div class="newsTitle">
-                            <h2>{$catsProductsObj[0][1]->title}</h2>
+                            <a href="{$link->getModuleLink('news', 'new',
+                            [
+                                'id_news'  => "{$catsProductsObj[0][1]->id_news}",
+                                'cat_news' => "{$catsProductsObj[0][1]->id_cat}",
+                                'page_cat'     => "{$page}",
+                                'rewrite'  => "{$catsProductsObj[0][1]->rewrite}",
+                                'cat_rewrite'  => "{$catsProductsObj[0][1]->cat_rewrite}"
+                             ]
+                             ,false)}"
+                                alt="{$catsProductsObj[0][1]->title}" ><h2>{$catsProductsObj[0][1]->title}</h2>                                </a>
                         </div>
                         <div class="date-author cf">
                             <span class="newsDate">{$catsProductsObj[0][1]->date} -</span>
@@ -155,7 +164,16 @@
                            <span>{$catsProductsObj[0][2]->cat_name}</span></a>
                         </div>
                         <div class="newsTitle">
-                            <h2>{$catsProductsObj[0][2]->title}</h2>
+                            <a href="{$link->getModuleLink('news', 'new',
+                            [
+                                'id_news'  => "{$catsProductsObj[0][2]->id_news}",
+                                'cat_news' => "{$catsProductsObj[0][2]->id_cat}",
+                                'page_cat'     => "{$page}",
+                                'rewrite'  => "{$catsProductsObj[0][2]->rewrite}",
+                                'cat_rewrite'  => "{$catsProductsObj[0][2]->cat_rewrite}"
+                             ]
+                             ,false)}"
+                                alt="{$catsProductsObj[0][1]->title}" ><h2>{$catsProductsObj[0][2]->title}</h2>                                </a>
                         </div>
                         <div class="date-author cf">
                             <span class="newsDate">{$catsProductsObj[0][2]->date} -</span>

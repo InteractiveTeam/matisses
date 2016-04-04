@@ -33,7 +33,7 @@
                                                ]
 
                                               ,false)}"
-                                          title="{$destacados[1]->cat_name|truncate:50:'...'|escape:html:'UTF-8'}">
+                                          title="{$destacados[0]->cat_name|truncate:50:'...'|escape:html:'UTF-8'}">
                         <span>{$destacados[0]->cat_name}</span></a>
                     </div>
                     <div class="newsTitle">
@@ -63,7 +63,7 @@
                                 'cat_rewrite'  => "{$destacados[1]->cat_rewrite}"
                              ]
                              ,false)}"
-                           alt="{$destacados[0]->title}" > <img src="{$destacados[1]->img}" title="{$destacados[1]->title}" alt="{$destacados[1]->title}" ></a>
+                           alt="{$destacados[1]->title}" > <img src="{$destacados[1]->img}" title="{$destacados[1]->title}" alt="{$destacados[1]->title}" ></a>
                     </div>
                     <div class="right-article grid_6 omega">
                         <div class="category-news">
@@ -101,7 +101,7 @@
                                 'cat_rewrite'  => "{$destacados[1]->cat_rewrite}"
                              ]
                              ,false)}"
-                           alt="{$destacados[1]->title}" > <img src="{$destacados[2]->img}" title="{$destacados[2]->title}" alt="{$destacados[2]->title}" ></a>
+                           alt="{$destacados[1]->title}" > <img src="{$destacados[1]->img}" title="{$destacados[1]->title}" alt="{$destacados[1]->title}" ></a>
 
                     </div>
                     <div class="right-article grid_6 omega">
@@ -198,7 +198,16 @@
                                             <span>{$news->cat_name}</span>
                                         </div>
                                         <div class="newsTitle">
-                                            <h2>{$news->title|escape:html:'UTF-8'}</h2>
+                                            <a href="{$link->getModuleLink('news', 'new',
+                                        [
+                                            'id_news'  => "{$news->id_news}",
+                                            'cat_news' => "{if $cat}{$cat}{/if}",
+                                            'page_cat'     => "{$page}",
+                                            'rewrite'  => "{$news->rewrite}",
+                                            'cat_rewrite'  => "{$cat_rewrite}"
+                                         ]
+                                         ,false)}"
+                                                alt="{$news->title|escape:html:'UTF-8'}" class="newsListItem"><h2>{$news->title|escape:html:'UTF-8'}</h2></a>
                                         </div>
 
                                         <div class="date-author cf">
@@ -307,8 +316,8 @@
                 <div class="commented-popular grid_12 omega">
                     <div id="tabs-news" class="news-tabs">
                       <ul>
-                        <li><a href="#tabs-1">Comentados</a></li>
-                        <li><a href="#tabs-2">Populares</a></li>
+                        <li><a class="atab" href="#tabs-1">Comentados</a></li>
+                        <li><a class="atab" href="#tabs-2">Populares</a></li>
                       </ul>
 <div id="tabs-1" class="content-tabs">
                         
@@ -320,7 +329,6 @@
                                     <span>{$articulo.category}</span>
                                 </div>
                                 <div class="newsTitle">
-                                    <h2>
                                     <a href="{$link->getModuleLink('news', 'new',
                                     [
                                         'id_news'  => "{$articulo.id_news}",
@@ -332,7 +340,7 @@
                                      ,false)}"
                                    alt="{$articulo.title}" >
                                     
-                                    {$articulo.title} </a></h2>
+                                    <h2>{$articulo.title}</h2></a>
                                 </div>
                             </li>
                             {/foreach}
@@ -346,7 +354,7 @@
                                     <span>{$articulo.category}</span>
                                 </div>
                                 <div class="newsTitle">
-                                    <h2>
+                                    
                                     <a href="{$link->getModuleLink('news', 'new',
                                     [
                                         'id_news'  => "{$articulo.id_news}",
@@ -357,10 +365,9 @@
                                      ]
                                      ,false)}"
                                    alt="{$articulo.title}" >
-                                    	{$articulo.title}
+                                    	<h2>{$articulo.title}</h2>
                                     </a>
-                                    
-                                  	</h2>
+
                                 </div>
                             </li>
                             {/foreach}

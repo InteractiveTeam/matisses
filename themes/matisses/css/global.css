@@ -130,6 +130,7 @@ box-sizing: border-box;
     h2 {
     font-size: 1.4rem;
     margin: 15px 0;
+    border-bottom: none;
     }
     .index h1{
 	text-align: center;
@@ -256,7 +257,7 @@ box-sizing: border-box;
 
 	/*menu*/
     .submenu-container > li > ul {
-        min-height: 240px;
+        min-height: 250px;
     }
 	.menu-left{
     padding: 1.2rem 0 0 0;
@@ -1810,6 +1811,7 @@ box-sizing: border-box;
 
     .center_column .content_sortPagiBar .top-pagination-content {
     float: right;
+    width: 26%;
     }
 
 	.content_sortPagiBar .sortPagiBar .productsSortForm select {
@@ -4910,4 +4912,26 @@ color:#fff;
     font-size: 1rem;
     color: #777676;
     font-weight: lighter !important;
+}
+
+.ax-printPago {
+    float: right;
+}
+
+.ax-printPago .btnPrint .fa-print {
+    margin-right: 8px;
+}
+
+.mCSB_scrollTools .mCSB_dragger {
+    height: 30px !important;
+}
+
+.newsTitle a.newsListItem:hover {
+    background: transparent;
+}
+
+.commented-popular .content-tabs li a {
+    padding: 0;
+    background:transparent;
+    border:none
 }

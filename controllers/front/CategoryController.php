@@ -210,9 +210,13 @@ class CategoryControllerCore extends FrontController
 		));
 
 		foreach ($this->cat_products as &$product)
+		{
 			if (isset($product['id_product_attribute']) && $product['id_product_attribute'] && isset($product['product_attribute_minimal_quantity']))
 				$product['minimal_quantity'] = $product['product_attribute_minimal_quantity'];
-
+			
+			$product['reference'] = Hook::exec('actionMatChangeReference', array('reference' => $product['reference']));
+			//echo "<pre>"; print_r($product); echo "</pre>";
+		}
 		$this->addColorsToProductList($this->cat_products);
 
 		$this->context->smarty->assign('nb_products', $this->nbProducts);

@@ -23,7 +23,6 @@ $(document).ready(function() {
 		}else{
 				var url = baseDir;
 					url+= '/modules/news/comments.php';
-					
 					$.post( url,{'option': 'add', 'comment': $('#comment').val(), 'id_news': $('#id_new').val() },function( data ) {
 					  	data = JSON.parse(data);
 						$('#comment').val('')
@@ -36,7 +35,7 @@ $(document).ready(function() {
 	})
 	 
 	$('#tabs-2').addClass('hidden'); 
-	$('#tabs-news a').on('click',function(e){
+	$('#tabs-news a.atab').on('click',function(e){
 		e.preventDefault();
 		$('#tabs-news a').parent().removeClass('active');
 		$(this).parent().addClass('active');

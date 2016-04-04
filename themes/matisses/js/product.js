@@ -87,7 +87,7 @@ $(document).ready(function(){
 			combinationsJS[k]['price'] = combinations[i]['price'];
 			combinationsJS[k]['ecotax'] = combinations[i]['ecotax'];
 			combinationsJS[k]['image'] = parseInt(combinations[i]['id_image']);
-			combinationsJS[k]['reference'] = combinations[i]['reference'];
+			combinationsJS[k]['reference'] = combinations[i]['reference'].replace('0000000000000','');
 			combinationsJS[k]['unit_price'] = combinations[i]['unit_impact'];
 			combinationsJS[k]['minimal_quantity'] = parseInt(combinations[i]['minimal_quantity']);
 
@@ -320,7 +320,7 @@ function addCombination(idCombination, arrayOfIdAttributes, quantity, price, eco
 	combination['price'] = price;
 	combination['ecotax'] = ecotax;
 	combination['image'] = id_image;
-	combination['reference'] = reference;
+	combination['reference'] = reference.replace('0000000000000','');
 	combination['unit_price'] = unit_price;
 	combination['minimal_quantity'] = minimal_quantity;
 	combination['available_date'] = [];
@@ -373,7 +373,7 @@ function findCombination(firstTime)
 			}
 			//combination of the user has been found in our specifications of combinations (created in back office)
 			selectedCombination['unavailable'] = false;
-			selectedCombination['reference'] = combinations[combination]['reference'];
+			selectedCombination['reference'] = combinations[combination]['reference'].replace('0000000000000','');
 			$('#idCombination').val(combinations[combination]['idCombination']);
 
 			//get the data of product with these attributes

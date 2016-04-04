@@ -34,6 +34,7 @@ class matisses extends Module
 		//$this->registerHook('displayExperiencesHome');
 		//$this->registerHook('displayCustomerAccount');
 		//$this->registerHook('actionSortFilters');
+		//$this->registerHook('actionMatChangeReference');	
 		//$install[] = $this->__installPage('module-matisses-garantias','garantias');
 		//self::hookactionListInvoice();
 		if (Tools::isSubmit('updateApyKey'))
@@ -235,7 +236,8 @@ class matisses extends Module
 			|| $this->registerHook('actioncalculateAditionalCosts')
 			|| $this->registerHook('actionOrderDetail')
 			|| $this->registerHook('actionCalculateShipping')
-			|| $this->registerHook('trackOrder')			
+			|| $this->registerHook('trackOrder')
+			|| $this->registerHook('actionMatChangeReference')			
 			
 			)
 			return false;
@@ -423,6 +425,11 @@ class matisses extends Module
 	/*********************************************
 	* HOOKS
 	*********************************************/
+	
+	public function hookactionMatChangeReference($params)
+	{
+		return str_replace('0000000000000','',$params['reference']);
+	}
 	
 	public function hookactionCalculateShipping($params)
 	{

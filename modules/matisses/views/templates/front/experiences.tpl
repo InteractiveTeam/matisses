@@ -9,7 +9,7 @@
             <div class="mask-exp"></div>
             {if $experience->products}
             	{foreach from=$experience->products item=pointer}
-                	<div class="pointer {$pointer.market}-{$pointer.orientation}" style="top:{$pointer.top}%;left:{$pointer.left}%">
+                	<div class="pointer {$pointer.market}-{$pointer.orientation}" style="top:{$pointer.top|strip}%;left:{$pointer.left|strip}%">
                     	<div class="pointer-detail grid_12 alpha omega">
                             <div class="pointer-detail-left grid_8">
                                 <h4>{$pointer.name}</h4>
