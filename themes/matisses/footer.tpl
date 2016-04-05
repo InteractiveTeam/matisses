@@ -39,10 +39,10 @@
 
 {if $page_name=='category'}
 
-<!-- Chaordic Top -->
-<div chaordic="top"></div>
 <div id="purchased-block" class="purchased-block">
 	<div class="container">
+        <!-- Chaordic Top -->
+        <div chaordic="top"></div>
 		<div class="info-chaordic">
 			<img src="../../themes/matisses/img/purchased-block.jpg" alt="comprados">
 			<div class="mask">
@@ -52,10 +52,10 @@
 	</div>
 </div>
 
-<!-- Chaordic Middle -->
-<div chaordic="middle"></div>
 <div id="popular" class="popular">
     <div class="container">
+        <!-- Chaordic Middle -->
+        <div chaordic="middle"></div>
         <div class="info-chaordic">
             <img src="../../themes/matisses/img/popular.jpg" alt="Más populares">
             <div class="mask">
@@ -65,10 +65,10 @@
     </div>
 </div>
 
-<!-- Chaordic Bottom -->
-<div chaordic="bottom"></div>
 <div id="offers" class="offers-products">
 	<div class="container">
+	    <!-- Chaordic Bottom -->
+        <div chaordic="bottom"></div>
 		<div class="info-chaordic">
 			<img src="../../themes/matisses/img/offers-products-2.jpg" alt="Oferta de productos">
 			<div class="mask">

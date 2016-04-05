@@ -291,10 +291,10 @@
     {if $page_name =='category'}
 		<!--Bloque1 Visualizados-->
     
-        <!-- Chaordic Top -->
-        <div chaordic="top"></div>
 	    <div id="displayed-category" class="displayed-category">
 			<div class="container">
+			    <!-- Chaordic Top -->
+                <div chaordic="top"></div>
 				<div class="info-chaordic">
 					<img src="../../themes/matisses/img/displayed-category.jpg" alt="productos visualizados">
 					<div class="mask">
@@ -310,9 +310,6 @@
 		<!--Bloque2 Parrilla Productos-->
 		<div class="parrilla-productos">
 			<div class="container">
-
-
-
 				<div id="left_column" class="column grid_{$left_column_size|intval} alpha ">{$HOOK_LEFT_COLUMN}</div>
 {/if}
 {if isset($left_column_size) && isset($right_column_size)}{assign var='cols' value=(12 - $left_column_size - $right_column_size)}{else}{assign var='cols' value=12}{/if}

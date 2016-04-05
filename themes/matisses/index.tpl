@@ -43,10 +43,10 @@
 		</div>
 	</div>
 	
-	<!-- Chaordic Top -->
-    <div chaordic="top"></div>
 	<div id="highlights" class="highlights">
 		<div class="container">
+			<!-- Chaordic Top -->
+            <div chaordic="top"></div>
 			<div class="info-chaordic">
 				<img src="../../themes/matisses/img/highlights.jpg" alt="Destacados">
 				<div class="mask">
@@ -56,10 +56,10 @@
 		</div>
     </div>
 
-    <!-- Chaordic Middle -->
-    <div chaordic="middle"></div>
     <div id="offers" class="offers-products">
 		<div class="container">
+		    <!-- Chaordic Middle -->
+            <div chaordic="middle"></div>
 			<div class="info-chaordic">
 				<img src="../../themes/matisses/img/offers-products.jpg" alt="Oferta de productos">
 				<div class="mask">
@@ -69,10 +69,10 @@
 		</div>
     </div>
     
-    <!-- Chaordic Bottom -->
-    <div chaordic="bottom"></div>
     <div id="popular" class="popular">
 		<div class="container">
+		    <!-- Chaordic Bottom -->
+            <div chaordic="bottom"></div>
 			<div class="info-chaordic">
 				<img src="../../themes/matisses/img/popular.jpg" alt="Más populares">
 				<div class="mask">
