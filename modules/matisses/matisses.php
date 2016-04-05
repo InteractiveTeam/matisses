@@ -594,7 +594,7 @@ class matisses extends Module
         }
         
         // Assing parent subcategories 
-        if (in_array($this->page_name, array('category','product'))) {
+        if (in_array($this->page_name, array('category'))) {
             $idcategory = Tools::getValue('id_category');
             $cat = new Category($idcategory);
             $parent = $cat->getParentsCategories($this->context->language->id);
@@ -602,13 +602,20 @@ class matisses extends Module
             
             foreach($parent as $row){
                 
+                if ($row['level_depth'] == 3) {
+                    array_push($parents,
+                               array(
+                                    'id' => $row['id_category'],
+                                    'name' => $row['name']
+                    ));   
+                } else if ($row['level_depth'] > 3) {
                     array_push($parents,
                                array(
                                     'id' => $row['id_category'],
                                     'name' => $row['name'],
                                     'parents' => array($row['id_parent'])
-                               ));
-                
+                    ));
+                }               
             }
 
             $this->context->smarty->assign(array(
@@ -686,13 +693,20 @@ class matisses extends Module
             
             foreach($parent as $row){
                 
+                if ($row['level_depth'] == 3) {
+                    array_push($parents,
+                               array(
+                                    'id' => $row['id_category'],
+                                    'name' => $row['name']
+                    ));   
+                } else if ($row['level_depth'] > 3) {
                     array_push($parents,
                                array(
                                     'id' => $row['id_category'],
                                     'name' => $row['name'],
                                     'parents' => array($row['id_parent'])
-                               ));
-                
+                    ));
+                }  
             }
             
             // assign data of product

@@ -58,10 +58,6 @@ ax = {
                 // Set categories to this pages
                 if (page == 'category' || page == 'subcategory' || page == 'product') {
                     chaordic_meta.page.categories = [];
-                    chaordic_meta.page.categories.push({
-                        "name": "Matisses",
-                        "id": "1"
-                    });
                     
                     for (i = data.parents.length-1; i >= 0; i--) { 
                         chaordic_meta.page.categories.push(data.parents[i]);
@@ -162,10 +158,6 @@ ax = {
                 // Set categories to this pages
                 if (page == 'category' || page == 'subcategory' || page == 'product') {
                     chaordic_meta.page.categories = [];
-                    chaordic_meta.page.categories.push({
-                        "name": "Matisses",
-                        "id": "1"
-                    });
                     
                     for (i = data.parents.length-1; i >= 0; i--) { 
                         chaordic_meta.page.categories.push(data.parents[i]);
