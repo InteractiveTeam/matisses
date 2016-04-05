@@ -138,6 +138,10 @@
             {if !empty($idcart)}
                 data.idcart = '{$idcart}';
             {/if}
+            {if !empty($cartbyurl)}
+                location.href = '{$base_dir}pedido';    
+                data.cartbyurl = {$cartbyurl};
+            {/if}
         {/if}
         {if $page_name == 'order-confirmation' }
             {if !empty($orderproducts)}
