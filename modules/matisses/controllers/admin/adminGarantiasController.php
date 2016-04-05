@@ -60,6 +60,7 @@ class AdminGarantiasController extends ModuleAdminController
 			Configuration::updateValue('confgaran_nimages',Tools::getValue('nimages'));
 			Configuration::updateValue('confgaran_nrdanos',Tools::getValue('nrdanos'));
 			Configuration::updateValue('confgaran_terminos',Tools::getValue('terminos'));
+			Configuration::updateValue('confgaran_meses',Tools::getValue('confgaran_meses'));
 			Configuration::updateValue('confgaran_imagen','garantias.jpg');
 			$this->display = 'add';	
 		}		
@@ -187,6 +188,15 @@ class AdminGarantiasController extends ModuleAdminController
 					'required' => false,
 					'desc' => $this->l('Numero de daños que puede seleccionar el usuario')
 				),
+				array(
+					'type' => 'text',
+					'label' => $this->l('Numero de meses'),
+					'name' => 'meses',
+					'lang' => false,
+					'required' => false,
+					'desc' => $this->l('Numero de meses permitodos para solicitar la garantia despues de la compra')
+				),				
+				
 			),
 			'submit' => array(
 				'title' => $this->l('Save'),
@@ -198,10 +208,12 @@ class AdminGarantiasController extends ModuleAdminController
 		$this->tpl_form_vars['PS_ALLOW_ACCENTED_CHARS_URL'] = (int)Configuration::get('PS_ALLOW_ACCENTED_CHARS_URL');
 		$this->tpl_form_vars['ps_force_friendly_product'] = Configuration::get('PS_FORCE_FRIENDLY_PRODUCT');
 		
-		$this->fields_value['nrdanos'] = Configuration::get('confgaran_nrdanos');
-		$this->fields_value['nimages'] = Configuration::get('confgaran_nimages');
-		$this->fields_value['danos'] = Configuration::get('confgaran_danos');
+		$this->fields_value['nrdanos'] 	= Configuration::get('confgaran_nrdanos');
+		$this->fields_value['nimages'] 	= Configuration::get('confgaran_nimages');
+		$this->fields_value['danos'] 	= Configuration::get('confgaran_danos');
 		$this->fields_value['terminos'] = Configuration::get('confgaran_terminos');
+		$this->fields_value['meses'] 	= Configuration::get('confgaran_meses');
+		
 		
 		/*
 		//$image = ImageManager::thumbnail(_PS_IMG_DIR_.'lookbook/'.$obj->id.'.jpg', $this->table.'_'.(int)$obj->id.'.'.$this->imageType, 350, $this->imageType, true);
