@@ -109,6 +109,9 @@
                 data.newsletter = false;
             }
         {/if}
+        {if $page_name == 'index'}
+            data.emailsubscribe = '{$emailsubscribe}';
+        {/if}
         {if $page_name == 'product'}
             data.idproduct = '{$idproduct}';
             data.nameproduct = '{$nameproduct}';

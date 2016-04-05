@@ -254,6 +254,10 @@ ax = {
                     chaordic_meta.transaction.signature = data.signature;
                 }
             }
+            
+            if (data.emailsubscribe) {
+                chaordic.push(['updateUserEmail', { email: data.emailsubscribe }])
+            }
         });
     }, setCart: function() {
         chaordic_meta.cart = {};
