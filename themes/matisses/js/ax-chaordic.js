@@ -256,7 +256,7 @@ ax = {
             }
             
             if (data.emailsubscribe) {
-                chaordic.push(['updateUserEmail', { email: data.emailsubscribe }])
+                chaordic.push(['updateUserEmail', { email: data.emailsubscribe }]);
             }
         });
     }, setCart: function() {
