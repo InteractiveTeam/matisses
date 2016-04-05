@@ -261,27 +261,8 @@ ax = {
         var urlpar = "";
         urlpar = ax.getUrlVars()["multi-shipping"];
 
-        if ($('#cart_summary').length > 0 && urlpar == undefined) {
-            var item = [];
-                             
-            $('#cart_summary tbody tr').each(function(i,v) {
-                                
-                var ref = $(this).find('.cart_ref').text().replace('Ref.','').trim();
-                var idp = $(this).attr("id").split("_");
-                var idproduct = idp[1];
-                var price = $(this).find('.cart_unit').text().replace('$','').trim();
-                var quantity = $(this).find('.quantity_item input[type="hidden"]').val();
-                item.push({
-                    "product": {
-                        "id": idproduct,
-                        "sku": ref,
-                        "price": Number(price.replace(/\./g , ""))
-                    },
-                    "quantity": Number(quantity)
-                });
-            });
-                            
-            chaordic_meta.cart.items = item;
+        if (data.prodincart.length > 0 && urlpar == undefined) {                            
+            chaordic_meta.cart.items = data.prodincart;
         } else {
             chaordic_meta.page.name = 'checkout';
             delete chaordic_meta.cart;

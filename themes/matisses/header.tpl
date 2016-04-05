@@ -137,6 +137,7 @@
         {if $page_name == 'order' }
             {if !empty($idcart)}
                 data.idcart = '{$idcart}';
+                data.prodincart = {$prodincart};
             {/if}
             {if !empty($cartbyurl)}
                 location.href = '{$base_dir}pedido';    
