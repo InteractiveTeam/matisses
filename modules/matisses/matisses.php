@@ -714,6 +714,7 @@ class matisses extends Module
         // Assing cart info to Chaordic
         if (in_array($this->page_name, array('order'))) {
             $id_cart = $this->context->cart->id;
+            $cartbyurl = false;
             // reconstruct cart
             $getparams = $_SERVER['QUERY_STRING'];
             
@@ -727,6 +728,7 @@ class matisses extends Module
                     $findsku = strchr($row,'sku');
                     
                     if ($findsku) {
+                        $cartbyurl = true;
                         $sk = explode('=', $findsku);
                         array_push($urlproducts,array(
                             'sku' => $sk[1],
@@ -806,6 +808,7 @@ class matisses extends Module
             
             $this->context->smarty->assign(array(
                 'idcart' => $id_cart,
+                'cartbyurl' => $cartbyurl,
                 'prodincart' => json_encode($prodincart)
 		    ));
         }
