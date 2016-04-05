@@ -4,6 +4,7 @@ include_once(dirname(__FILE__).'/../../classes/Danos.php');
 class AdminTiposDanosController extends ModuleAdminController
 {
 	public $_html = NULL;
+	public $cmaterial = NULL;
 	
 	public function __construct()
 	{
@@ -15,6 +16,11 @@ class AdminTiposDanosController extends ModuleAdminController
 		$this->explicitSelect 	= true;
 		$this->_defaultOrderBy 	= 'id_feature';
 		$this->allow_export 	= false;
+		$this->cmaterial		= Db::getInstance()->GetValue('
+						SELECT mcodigo
+						FROM '._DB_PREFIX_.'tipo_danos 
+						WHERE id_feature = "'.$value['id_feature'].'"	
+					');
 		$this->token 			= Tools::getAdminTokenLite(Tools::getValue('controller')).(Tools::getValue('id_feature') ? '&id_feature='.Tools::getValue('id_feature') : NULL);
 		$this->context = Context::getContext();
 
@@ -38,6 +44,14 @@ class AdminTiposDanosController extends ModuleAdminController
 		if(array_key_exists('addtipo_danosroot',$_GET))
 		{
 			$this->display = 'add';
+			$this->table   = 'tipo_danos';
+			$this->lang    = false;
+			$this->_defaultOrderBy 	= 'id_tipo';
+		}
+		
+		if(array_key_exists('updatetipo_danos',$_GET))
+		{
+			$this->display = 'edit';
 			$this->table   = 'tipo_danos';
 			$this->lang    = false;
 			$this->_defaultOrderBy 	= 'id_tipo';
@@ -145,12 +159,31 @@ class AdminTiposDanosController extends ModuleAdminController
 		
 		if(Tools::isSubmit('submitAddAveria'))
 		{
-			$Danos = new Danos;			
-			$Danos->id_feature = Tools::getValue('id_feature');
-			$Danos->mcodigo = Tools::getValue('mcodigo');
-			$Danos->acodigo = Tools::getValue('acodigo');
-			$Danos->aname = Tools::getValue('aname');
-			$Danos->add();
+			if(!Tools::getValue('id_feature') || !Validate::isInt(Tools::getValue('id_feature')))
+				$this->errors[] = Tools::displayError('Se presento un error inesperado');
+				
+			if(!Tools::getValue('mcodigo') || !Validate::isInt(Tools::getValue('mcodigo')))
+				$this->errors[] = Tools::displayError('Debe asignar un código de material válido');	
+				
+			if(!Tools::getValue('acodigo') || !Validate::isInt(Tools::getValue('acodigo')))
+				$this->errors[] = Tools::displayError('Debe asignar un código de averia válido');	
+				
+			if(!Tools::getValue('acodigo') || !Validate::isGenericName(Tools::getValue('acodigo')))
+				$this->errors[] = Tools::displayError('Debe asignar una averia válida');
+				
+			if(Db::getInstance()->getValue('SELECT count(*) FROM '._DB_PREFIX_.'tipo_danos WHERE mcodigo="'.Tools::getValue('mcodigo').'"'))
+				$this->errors[] = sprintf(Tools::displayError('El Codigo de daño %s ya se encuentra registrado'), '<b>'.Tools::getValue('mcodigo').'</b>');	
+							
+			
+			if(sizeof($this->errors)==0)
+			{
+				$Danos = new Danos;			
+				$Danos->id_feature = Tools::getValue('id_feature');
+				$Danos->mcodigo = Tools::getValue('mcodigo');
+				$Danos->acodigo = Tools::getValue('acodigo');
+				$Danos->aname = Tools::getValue('aname');
+				$Danos->add();
+			}
 		}
 		//die('entre');
 		return parent::postProcess();
@@ -277,12 +310,7 @@ class AdminTiposDanosController extends ModuleAdminController
 						WHERE a.id_feature = "'.$value['id_feature'].'"	
 					');
 					
-					$this->_list[$k]['codigo'] = Db::getInstance()->GetValue('
-						SELECT mcodigo
-						FROM '._DB_PREFIX_.'tipo_danos 
-						WHERE id_feature = "'.$value['id_feature'].'"	
-					');
-					
+					$this->_list[$k]['codigo'] = $this->getMcodigo($value['id_feature']);
 					$this->_list[$k]['codigo'] = $this->_list[$k]['codigo'] ? $this->_list[$k]['codigo'] : '-';
 					
 				}
@@ -290,10 +318,21 @@ class AdminTiposDanosController extends ModuleAdminController
 		//echo "<pre>"; print_r($this->_list); echo "</pre>";
 	}
 	
+	private function getMcodigo($idfeature)
+	{
+		return Db::getInstance()->GetValue('
+						SELECT mcodigo
+						FROM '._DB_PREFIX_.'tipo_danos 
+						WHERE id_feature = "'.pSQL($idfeature).'"	
+					');
+	}
 	
 	public function renderForm()
 	{
+		
 		$obj = $this->loadObject(true);
+		$this->cmaterial = $this->getMcodigo(Tools::getValue('id_feature'));
+		
 		$this->fields_form = array(
 			'tinymce' => false,
 			'legend' => array(
@@ -303,17 +342,17 @@ class AdminTiposDanosController extends ModuleAdminController
 			),
 			'input' => array(
 				array(
-					'type' => 'text',
+					'type' => 'hidden',
 					'label' => $this->l('id_feature'),
 					'name' => 'id_feature',
 					'required' => true,
 				),
 				
 				array(
-					'type' => 'text',
+					'type' => !$this->cmaterial ? 'text' : 'hidden',
 					'label' => $this->l('Código del daño'),
 					'name' => 'mcodigo',
-					'desc' => $this->l('Aun no se ha definido un codigo para el daño, ingresa uno para crear la nueva averia'),
+					'desc' => $this->l('Aun no se ha definido un codigo para este tipo dedaño, ingresa uno para crear la nueva averia'),
 					'required' => true,
 				),
 				
@@ -337,6 +376,9 @@ class AdminTiposDanosController extends ModuleAdminController
 				'name' => 'submitAddAveria'
 			)
 		);
+		$this->tpl_form_vars['token'] = $this->token;
+		$this->fields_value['mcodigo'] = $this->cmaterial;
+		
 
 		return parent::renderForm(); 
 	}
