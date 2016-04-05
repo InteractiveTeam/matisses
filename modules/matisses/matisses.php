@@ -36,6 +36,7 @@ class matisses extends Module
 		//$this->registerHook('actionSortFilters');
 		//$this->registerHook('actionMatChangeReference');	
 		//$install[] = $this->__installPage('module-matisses-garantias','garantias');
+		//$this->__installTabs('AdminTiposDanos','Tipos de daños',(int)Tab::getIdFromClassName('adminMatisses'));
 		//self::hookactionListInvoice();
 		if (Tools::isSubmit('updateApyKey'))
 		{
