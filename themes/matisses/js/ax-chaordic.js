@@ -270,5 +270,32 @@ ax = {
         vars[key] = value;
         });
         return vars;
+    },
+    addToCart: function (sks) {
+        
+        if (sks.length > 0) {
+            var skus = sks;
+            
+            $.ajax({
+                url: '../../../modules/matisses/addtocart.php',
+                type: 'post',
+                data: {skus : skus},
+                dataType: "json",
+                success: function(data) { 
+
+                    if (data.length > 0) {
+                        var cont = data.length;
+
+                        for (i = 0; i < data.length; i++) {
+                            ajaxCart.add(data[i],0,1,1,0);
+                        }
+                    }
+                },
+                error: function (data){
+                    console.log(data);
+                }
+            });
+        }
+        
     }
 }

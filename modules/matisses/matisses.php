@@ -593,6 +593,12 @@ class matisses extends Module
 		    ));
         }
         
+        
+        $this->context->smarty->assign(array(
+            'idlanguage' => $this->context->language->id
+        ));
+        
+        
         // Assing parent subcategories 
         if (in_array($this->page_name, array('category'))) {
             $idcategory = Tools::getValue('id_category');
@@ -854,6 +860,25 @@ class matisses extends Module
             }
         }
 	}
+    
+    public function searchByReference($skus) {
+        $references = $skus;
+        
+        if (!empty($references)) {
+            $idproducts = array();
+            $idlanguage = $this->context->language->id;
+            
+            foreach ($references as $row) {
+                $prod = Product::searchByName($idlanguage,$row);
+                $idprod = $prod[0]['id_product'];
+                array_push($idproducts,$idprod);
+            }
+            
+            return $idproducts;   
+        } else {
+            return null;
+        }
+    }
 	
 	public function hookdisplayFooterProduct($params)
 	{
