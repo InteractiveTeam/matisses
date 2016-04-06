@@ -300,7 +300,7 @@ box-sizing: border-box;
 	.menu-experiencias {
 	padding: 1.1rem 0 0.9rem 0;
 	display: table;
-    width: 60%;
+    width: 65%;
 	}
 	.menu-experiencias li {
 	display: table-cell;
@@ -4935,3 +4935,10 @@ color:#fff;
     background:transparent;
     border:none
 }
+
+@media screen and (max-width: 767px) {
+    .generic-right {
+        padding-top: 0 !important;
+    }
+}
+    

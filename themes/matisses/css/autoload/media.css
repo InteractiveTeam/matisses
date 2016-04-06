@@ -1242,6 +1242,7 @@
 
 	.menu-experiencias {
 		padding: 1.3rem 0 1.2rem 0.625rem;
+        width: 80%;
 	}
 
 	.content-coleccion {
@@ -1300,8 +1301,8 @@
 		}
         
     #user {
-        padding-top: 0.7rem !important;
-         height: 3.9375rem;
+        padding: 0.7rem 0.875rem !important;
+        height: 3.9375rem;
     }    
     
     body .submenu-container li > ul > li .SubCategory {
@@ -2866,5 +2867,4 @@
         width: 71%;
         line-height: 18px;
     }
-    
 }
