@@ -3891,6 +3891,7 @@ box-sizing: border-box;
 	}
 	.order .cart_navigation{
 	margin-top:1.25rem;
+            float: none;
 	}
 	.order_delivery .address li span{
 	font-family: 'Open Sans Condensed', sans-serif;
@@ -4610,6 +4611,7 @@ body.new-products {
     
     .center_column .content_sortPagiBar {
         margin-bottom: 20px;
+        float: none;
     } 
 
     .center_column .product_list {
@@ -4934,4 +4936,10 @@ color:#fff;
     padding: 0;
     background:transparent;
     border:none
+}
+
+/*Chaordic*/
+.ax-showcase-product {
+    clear: both;
+    padding: 10px 0;
 }

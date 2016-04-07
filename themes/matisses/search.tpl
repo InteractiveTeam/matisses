@@ -24,6 +24,8 @@
 *}
 
 {capture name=path}{l s='Search'}{/capture}
+<!-- Chaordic Top -->
+<div chaordic="top"></div>
 
 <h1
 {if isset($instant_search) && $instant_search}id="instant_search_results"{/if}
@@ -45,6 +47,9 @@ class="page-heading {if !isset($instant_search) || (isset($instant_search) && !$
         </span>
     {/if}
 </h1>
+
+<!-- Chaordic Middle -->
+<div chaordic="middle"></div>
 
 {include file="$tpl_dir./errors.tpl"}
 {if !$nbProducts}
@@ -93,3 +98,6 @@ class="page-heading {if !isset($instant_search) || (isset($instant_search) && !$
         </div>
     </div>
 {/if}
+
+<!-- Chaordic Bottom -->
+<div chaordic="bottom"></div>

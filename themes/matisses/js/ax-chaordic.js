@@ -248,7 +248,12 @@ ax = {
             }
             
             if (data.emailsubscribe) {
-                chaordic.push(['updateUserEmail', { email: data.emailsubscribe }]);
+                if (chaordic_meta.user) {
+                    chaordic_meta.user.push(['updateUserEmail', { email: data.emailsubscribe }]);   
+                } else {
+                    chaordic_meta.user = [];
+                    chaordic_meta.user.push(['updateUserEmail', { email: data.emailsubscribe }]);
+                }
             }
         });
     }, setCart: function() {
@@ -288,6 +293,33 @@ ax = {
 
                         for (i = 0; i < data.length; i++) {
                             ajaxCart.add(data[i],0,1,1,0);
+                        }
+                    }
+                },
+                error: function (data){
+                    console.log(data);
+                }
+            });
+        }
+        
+    },
+    addToWishList: function (sks) {
+        
+        if (sks.length > 0) {
+            var skus = sks;
+            
+            $.ajax({
+                url: '../../../modules/matisses/addtocart.php',
+                type: 'post',
+                data: {skus : skus},
+                dataType: "json",
+                success: function(data) { 
+
+                    if (data.length > 0) {
+                        var cont = data.length;
+
+                        for (i = 0; i < data.length; i++) {
+                           WishlistCart('wishlist_block_list', 'add', data[i], 0, 1);
                         }
                     }
                 },

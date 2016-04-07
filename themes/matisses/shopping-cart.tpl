@@ -24,7 +24,8 @@
 *}
 
 {capture name=path}{l s='Your shopping cart'}{/capture}
-
+<!-- Chaordic Top -->
+<div chaordic="top"></div>
 <h1 id="cart_title" class="page-heading">{l s='Shopping-cart summary'}
 	{if !isset($empty) && !$PS_CATALOG_MODE}
 		<span class="heading-counter">{l s='Your shopping cart contains:'}
@@ -588,3 +589,5 @@
 {addJsDefL name=txtProducts}{l s='products' js=1}{/addJsDefL}
 {/strip}
 {/if}
+<!-- Chaordic Bottom -->
+<div chaordic="bottom"></div>

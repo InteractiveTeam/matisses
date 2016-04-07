@@ -40,6 +40,7 @@
 {if $page_name=='category'}
 
 <div id="purchased-block" class="purchased-block">
+    {if $category->level_depth < 5}
 	<div class="container">
         <!-- Chaordic Top -->
         <div chaordic="top"></div>
@@ -50,6 +51,7 @@
 			</div>
 		</div>
 	</div>
+	{/if}
 </div>
 
 <div id="popular" class="popular">

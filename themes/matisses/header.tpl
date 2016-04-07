@@ -155,26 +155,7 @@
         {/if}
     {literal}
     data.page = page;
-    data.loggeduser = islogged;
-    
-    /*function addToCart(skus) {
-        var skus = [];
-        skus.push('09000000000000000053');
-        skus.push('10300000000000000007');
-        $.ajax({
-                url: '{/literal}{$base_dir}{literal}modules/matisses/addtocart.php',
-                type: 'post',
-                data: {skus : skus},
-                success: function(data) {
-                        console.log('success' + data);
-                        // OTHER SUCCESS COMMAND - CHECK THE RETURN VALUE
-                },
-                error: function (data){
-                    console.log(data);
-                }
-        });
-    }*/
-         
+    data.loggeduser = islogged;         
     ax.setChaordic(data);
          
 </script>
