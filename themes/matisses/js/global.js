@@ -426,3 +426,36 @@ $(window).scroll(function(){
     slider.css('transform', 'translateY('+numCont*0.4+'px)');
 })
     
+//añadir filtros
+$(document).ready(function(){
+    var elementFilterRp = $('<div></div>');
+    elementFilterRp.addClass('ax-filterRp');
+
+    $("<div class='ax-btn-filter'><p>Filtrar por: <i class='fa fa-sliders'></i></p></div>").prependTo('.parrilla-productos');
+    
+    $('.ax-btn-filter').on('click', function(){
+        $('.parrilla-productos #layered_block_left').slideToggle();
+    })
+})
+
+function FilterRp() {
+    
+    var widthPage = $(window).width();    
+
+    if(widthPage < 768){
+        $('#layered_block_left').hide();
+        $('.ax-btn-filter').prependTo($('.parrilla-productos'));
+        $('.ax-block-content').append($('.ax-blog-select-category'));
+    }else {
+        $('.parrilla-productos #layered_block_left').show();
+    }
+
+} 
+
+FilterRp()
+
+$(window).resize(
+    function() {
+        FilterRp()
+    }
+)
