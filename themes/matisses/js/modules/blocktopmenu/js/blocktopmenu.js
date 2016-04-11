@@ -247,6 +247,8 @@ $(document).ready(function(e){
         
         //list menu
     
+        $(".submenu-container .hidden" ).remove();  
+    
         var business = $('ul.submenu-container > li > ul');
         
         $.each(business, function(x,y){

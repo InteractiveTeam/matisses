@@ -792,12 +792,6 @@
 		text-align: right;
 		padding-left: 96px;
 	}
-	.content_sortPagiBar .sortPagiBar .nbrItemPage {
-		position: absolute;
-		bottom: -47px;
-		left: 0;
-		margin-left: 0;
-	}
     
     .center_column .content_sortPagiBar .sortPagiBar{
         width:100%;
@@ -808,7 +802,9 @@
     }
     
     .parrilla-productos div.pagination {
-        float:left;
+        width: 100%;
+        float: inherit !important;
+        text-align: left;
     }
 
 	#identity #center_column form.std .row .col-xs-4, #authentication #center_column form.std .row .col-xs-4, #order-opc #center_column form.std .row .col-xs-4,
@@ -1976,12 +1972,13 @@
     }
     
     .nbrItemPage.category-right.grid_4.alpha {
-        width: auto;
+        width: 100%;
+        height: auto;
     }
     
 }
 
-@media screen and (max-width :340px) {
+@media screen and (max-width :340px) and (max-width :480px) {
 
 	#user {
 		position:relative;
