@@ -51,12 +51,6 @@
 		{assign var="mobilePhoneExist" value=false}
 		{assign var="atLeastOneExists" value=false}
 		{foreach from=$ordered_adr_fields item=field_name}
-			{if $field_name eq 'company'}
-				<div class="form-group grid_6">
-					<label for="company">{l s='Company'}</label>
-					<input class="form-control validate" data-validate="{$address_validation.$field_name.validate}" type="text" id="company" name="company" value="{if isset($smarty.post.company)}{$smarty.post.company}{else}{if isset($address->company)}{$address->company|escape:'html':'UTF-8'}{/if}{/if}" />
-				</div>
-			{/if}
 			{if $field_name eq 'vat_number'}
 				<div id="vat_area">
 					<div id="vat_number">
