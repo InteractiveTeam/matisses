@@ -134,7 +134,8 @@
 						<ul id="criterions_list">
 						{foreach from=$criterions item='criterion'}
 							<li>
-								<label>{$criterion.name|escape:'html':'UTF-8'}:</label>
+								{*<label>{$criterion.name|escape:'html':'UTF-8'}:</label>*}
+								<label>{l s='quality' mod='productcomments'}:</label>
 								<div class="star_content">
 									<input class="star" type="radio" name="criterion[{$criterion.id_product_comment_criterion|round}]" value="1" />
 									<input class="star" type="radio" name="criterion[{$criterion.id_product_comment_criterion|round}]" value="2" />
