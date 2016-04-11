@@ -3,6 +3,7 @@
 include_once __DIR__ . '/../../classes/GiftList.php';
 include_once __DIR__ . '/../../classes/ListProductBond.php';
 include_once __DIR__ . '/../../classes/Bond.php';
+include_once __DIR__ . _PS_MODULE_DIR_ . "matisses/matisses.php";
 include_once _PS_OVERRIDE_DIR_ ."controllers/front/CartController.php";
 define("_ERROR_","Ha ocurrido un error, vuelva a intentarlo mas tarde");
 define("_DELETED_","Elmininado Correctamente");
@@ -134,6 +135,9 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			$cart->id_currency = $this->context->currency->id;
 			$cart->save();
 		}
+        $mat = new Matisses();
+        $res = $mat->wsmatisses_server(3000000,'gift','get','pruebas');
+        die(print_r($res));
 		$bond = new BondModel();
 		$list = new GiftListModel($id_list);
 		$bond->id_list = $id_list;

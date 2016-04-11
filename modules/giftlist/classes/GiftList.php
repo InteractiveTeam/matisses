@@ -142,8 +142,9 @@ class GiftListModel extends ObjectModel
 	 * generate random list code
 	 * @return string|Code
 	 */
-	private function _generateCode($length=11,$uc=TRUE,$n=TRUE,$sc=FALSE){
-		$source = 'abcdefghijklmnopqrstuvwxyz';
+	private function _generateCode($length=11,$uc=TRUE,$n=TRUE,$sc=FALSE,$letters = false){
+        $source = '';
+		if($letters == 1) $source .= 'abcdefghijklmnopqrstuvwxyz';
 		if($uc==1) $source .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		if($n==1) $source .= '1234567890';
 		if($sc==1) $source .= '|@#~$%()=^*+[]{}-_';
