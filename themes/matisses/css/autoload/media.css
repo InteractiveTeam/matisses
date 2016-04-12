@@ -1395,13 +1395,13 @@
 }
 
 
-@media only screen and (max-width :1024px) and (min-width: 341px) {
+@media only screen and (max-width :1024px) and (min-width: 361px) {
     
     #user {
         padding-top: 0.2rem !important;
         height: 3.5rem;
     }
-    
+     
     .show-user {
         display: block;
     }
@@ -1436,11 +1436,11 @@
 	}
 
 	.header-container .main_panel .grid_5 {
-		width: 39.66666%;
+		width: 37.66666%;
 	}
 
 	.header-container .main_panel .grid_2 {
-		width: 20.66666%;
+		width: 24.66666%;
 	}
 
 	.header-container .main_panel .menu-left {
@@ -1525,7 +1525,7 @@
 		width:100% !important;
 	}
 
-	.products-block .bx-viewport .product_list.grid .product-container {
+	#new-products_block_right .products-block .bx-viewport .product_list.grid .product-container {
 		width:32.3% !important;
 	}
 
@@ -1539,6 +1539,7 @@
 
 	.menu-experiencias {
 		padding:0;
+        width: 75%;
 	}
 
 	.menu-experiencias {
@@ -1551,9 +1552,8 @@
 		position:relative;
 	}
 
-	.left-down-menu .menu-experiencias {
-		position: absolute;
-		left: 20%;
+	.left-down-menu .menu-experiencias #experiencias {
+		display:none;
 	}
 
 	.newsletter-footer .newsletter-input {
@@ -1568,6 +1568,10 @@
 		margin-top: 0px;
 		margin-left: 0px;
 	}
+    
+    .bx-viewport {
+        height: 530px !important;
+    }
 
 	/*FILTROS*/
 
@@ -1693,7 +1697,7 @@
 	}
     
     #slider .bx-controls.bx-has-pager {
-        bottom: 10%;
+        bottom: 7%;
     }
 
 	.content-coleccion {
@@ -1978,7 +1982,7 @@
     
 }
 
-@media screen and (max-width :340px) and (max-width :480px) {
+@media screen and (max-width :360px) and (min-width :479px) {
 
 	#user {
 		position:relative;
