@@ -136,7 +136,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			$cart->save();
 		}
         $mat = new Matisses();
-        $res = $mat->wsmatisses_server(3000000,'gift','get','pruebas');
+        $res = $mat->wsmatissess_getVIPGift(2000000);
         die(print_r($res));
 		$bond = new BondModel();
 		$list = new GiftListModel($id_list);
