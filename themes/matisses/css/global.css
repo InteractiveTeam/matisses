@@ -950,6 +950,7 @@ box-sizing: border-box;
 	.slide-experiencias figcaption{
 	background: #fff;
 	padding: 25px 20px;
+    min-height: 270px;
 	}
 	.slide-experiencias img{
 	display: block;
@@ -998,6 +999,10 @@ box-sizing: border-box;
 	background-color: #d7162f;
 	border-color: #d7162f;
 	}
+
+    .slide-experiencias .bx-wrapper .bx-viewport {
+        height: 560px !important;
+    }
 
     .main-container #homepage-slider, #homepage-slider .bx-wrapper .bx-viewport li a {
         max-height: 46.54rem;
@@ -1805,13 +1810,13 @@ box-sizing: border-box;
 	}
     
     .center_column .content_sortPagiBar .sortPagiBar {
-    width: 72%;
+    width: auto;
     float: left;
     }
 
-    .center_column .content_sortPagiBar .top-pagination-content {
+    .center_column .content_sortPagiBar .top-pagination-content, .center_column .content_sortPagiBar .bottom-pagination-content {
     float: right;
-    width: 26%;
+    width: auto;
     }
 
 	.content_sortPagiBar .sortPagiBar .productsSortForm select {
@@ -1833,7 +1838,7 @@ box-sizing: border-box;
      .nbrItemPage.category-right.grid_4.alpha {
         margin: 0;
         padding: 0;
-        width: 25%;
+        width: auto;
     }
 
 	.content_sortPagiBar .sortPagiBar .nbrItemPage select {
@@ -4526,6 +4531,7 @@ line-height: 1.5;
 
 	.content_sortPagiBar .sortPagiBar .category-right {
 	margin-top:0px;
+    width: auto;
 	}
 
     #search .content_sortPagiBar .category-right {
@@ -4637,6 +4643,11 @@ body.new-products {
     color: #231f20;
     font-size: 1.375rem;
     }
+
+    #columns .parrilla-productos .product-price {
+    font-weight: lighter;
+    }
+    
     .wrap_content_price {
     padding: 0 0.625rem 0.625rem;
     }
@@ -5006,4 +5017,14 @@ color:#fff;
 .addresses .adress_update a.btn {
     padding-left: 0;
     padding-right: 0;
+}
+
+.subcategories h2 {
+    top:0
+}
+
+.subcategories h2 a {
+    padding-top: 100%;
+    display: inline-block;
+    width: 100%;
 }
