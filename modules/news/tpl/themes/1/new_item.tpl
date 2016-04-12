@@ -276,10 +276,9 @@
 
         </div>
 
-
-
-
-
+        <div class="grid_12 alpha omega exp-header">
+            <div class="grid_4 omega social-networks">{hook h='DisplayExperiencias' experience=$experience}</div>
+        </div>
 
         {if $tagsObj}
             <div class="newItemTags" >
