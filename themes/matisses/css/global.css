@@ -359,17 +359,17 @@ box-sizing: border-box;
     }
 
 	.right-down-menu .search a{
-	text-indent: 99em;
-	display: inline-block;
-	background: url("../img/icon-search.png") 0 0 no-repeat;
-	height: 31px;
-	width: 31px;
-	padding-top: 10px;
-	padding-right: 0;
+        text-indent: 99em;
+        display: inline-block;
+        background: url("../img/icon-search.png") 0 0 no-repeat;
+        height: 31px;
+        width: 31px;
+        padding-top: 10px;
+        padding-right: 0;
 	}
 
     .right-down-menu .highlight-close a {
-    background: url("../img/icon-search-close.png") 0 0 no-repeat;
+        background: url("../img/icon-search-close.png") 0 0 no-repeat;
     }
 
 	#chat > a {
