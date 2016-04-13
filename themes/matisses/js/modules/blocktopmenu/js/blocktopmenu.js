@@ -122,6 +122,8 @@ function mobileInit()
 		{
 			catSubUl.slideDown();
 			$(this).addClass('active');
+            $('.search-container').slideUp();
+            $('#search').removeClass('highlight-close');
 		}
 		else
 		{
@@ -246,6 +248,8 @@ $(document).ready(function(e){
           });
         
         //list menu
+    
+        $(".submenu-container .hidden" ).remove();  
     
         var business = $('ul.submenu-container > li > ul');
         

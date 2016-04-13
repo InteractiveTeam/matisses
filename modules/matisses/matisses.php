@@ -1257,6 +1257,21 @@ class matisses extends Module
 		//echo "<pre>"; print_r($result); echo "</pre>";
 		//return $result['additionalCostsDTO']['installationCost'].'_'.$result['additionalCostsDTO']['deliveryCost']; 		
 	}
+    
+    public function wsmatissess_getVIPGift($params)
+	{
+		
+		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
+		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), array("trace"=>1,"exceptions"=>0));
+		$s 			= array('genericRequest' => array('data'		=>$params,
+														'object'	=>'gift',
+														'operation'	=>'get',
+														'source'	=>'pruebas')
+												);
+		$result = $client->call('callService', $s);
+        echo "<pre>";print_r($result);echo "</pre>";die();
+        return $result;
+	}
 	
 	public function wsmatissess_calculateAditionalCosts($params)
 	{
@@ -1559,7 +1574,7 @@ class matisses extends Module
 		$client = new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
 		//echo "<pre>"; print_r($client); echo "</pre>";
 		//die();
-		$s 		= array('genericRequest' => array('data'=>$datos,'object'=>$objeto,'operation'=>$operacion,'source'=>$origen)); 
+		$s 		= array('genericRequest' => array('data'=>$datos,'object'=>$objeto,'operation'=>$operacion,'source'=>$origen));
 		
 		$result = $client->call('callService', $s);
 		if($client->error_str)
