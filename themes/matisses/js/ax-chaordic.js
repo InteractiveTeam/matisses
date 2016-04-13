@@ -7,7 +7,10 @@ ax = {
         var page = data.page;
         var loggeduser = data.loggeduser;
         
-        $(window).load(function () {        
+        $(window).load(function () {   
+            
+            jQuery('#newsletter').on('submit', function(){ window.chaordic.push(['updateUserEmail', { email: String(jQuery(this).find('[name=email]').val()) }]); });
+            
             switch (page) {
                 case 'index':
                     page = 'home';

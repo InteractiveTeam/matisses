@@ -691,6 +691,8 @@ class matisses extends Module
                 }
             }
             
+            print_r($this->context->category);
+            
             // parent categories of product
             $idcategory = $product->getDefaultCategory();
             $categ = new Category($idcategory);

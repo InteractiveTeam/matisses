@@ -122,7 +122,6 @@
             <div class="news-date"><span>{$date}</span></div>
             <div class="newText"><p> {$new}</p></div>
         </div>
-
         <div class="newContentTopRigthSocial grid_12 alpha omega">
             <div class="newTopActions">
                 <a href="javascript:window.print()" class="newPrint"></a>
@@ -276,9 +275,29 @@
 
         </div>
 
-        <div class="grid_12 alpha omega exp-header">
-            <div class="grid_4 omega social-networks">{hook h='DisplayExperiencias' experience=$experience}</div>
-        </div>
+        {if !empty($prev_id_news)}
+            <a href="{$link->getModuleLink('news', 'new',
+                                        [
+                                            'id_news'  => "{$prev_id_news}",
+                                            'cat_news' => "{if $cat}{$cat}{/if}",
+                                            'page_cat'     => "{$page}",
+                                            'rewrite'  => "{$news->rewrite}",
+                                            'cat_rewrite'  => "{$cat_rewrite}"
+                                         ]
+                                         ,false)}" class="newsListItem">{l s='Anterior' mod='news'}</a>
+        {/if}
+        
+        {if !empty($next_id_news)}
+            <a href="{$link->getModuleLink('news', 'new',
+                                        [
+                                            'id_news'  => "{$next_id_news}",
+                                            'cat_news' => "{if $cat}{$cat}{/if}",
+                                            'page_cat'     => "{$page}",
+                                            'rewrite'  => "{$news->rewrite}",
+                                            'cat_rewrite'  => "{$cat_rewrite}"
+                                         ]
+                                         ,false)}" class="newsListItem">{l s='Siguiente' mod='news'}</a>
+        {/if}
 
         {if $tagsObj}
             <div class="newItemTags" >
