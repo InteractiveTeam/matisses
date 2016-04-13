@@ -284,7 +284,7 @@
                                             'rewrite'  => "{$news->rewrite}",
                                             'cat_rewrite'  => "{$cat_rewrite}"
                                          ]
-                                         ,false)}" class="newsListItem">{l s='Anterior' mod='news'}</a>
+                                         ,false)}">{l s='Anterior' mod='news'}</a>
         {/if}
         
         {if !empty($next_id_news)}
@@ -296,7 +296,7 @@
                                             'rewrite'  => "{$news->rewrite}",
                                             'cat_rewrite'  => "{$cat_rewrite}"
                                          ]
-                                         ,false)}" class="newsListItem">{l s='Siguiente' mod='news'}</a>
+                                         ,false)}">{l s='Siguiente' mod='news'}</a>
         {/if}
 
         {if $tagsObj}
