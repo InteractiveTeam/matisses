@@ -164,8 +164,7 @@
 
         </div>
 
-<<<<<<< HEAD
-=======
+
         {if !empty($prev_id_news)}
             <a href="{$link->getModuleLink('news', 'new',
                                         [
@@ -175,7 +174,7 @@
                                             'rewrite'  => "{$news->rewrite}",
                                             'cat_rewrite'  => "{$cat_rewrite}"
                                          ]
-                                         ,false)}">{l s='Anterior' mod='news'}</a>
+                                         ,false)}"><i class="fa fa-angle-double-left">&nbsp;{l s='Anterior' mod='news'}</i></a>
         {/if}
         
         {if !empty($next_id_news)}
@@ -187,10 +186,10 @@
                                             'rewrite'  => "{$news->rewrite}",
                                             'cat_rewrite'  => "{$cat_rewrite}"
                                          ]
-                                         ,false)}">{l s='Siguiente' mod='news'}</a>
+                                         ,false)}">{l s='Siguiente' mod='news'}&nbsp;<i class="fa fa-angle-double-right"></i></a>
         {/if}
 
->>>>>>> origin/PruebasArkix
+
         {if $tagsObj}
             <div class="newItemTags" >
                 <span>{l s='TAGS ' mod='news'}</span>
