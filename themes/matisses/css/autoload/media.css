@@ -938,9 +938,9 @@
 	}
 	#search {
 		position: absolute;
-		right: 170px;
-		top: 15px;
+        right: 100%;
 	}
+    
 	.shopping_cart{
 		background: none;
 	}
@@ -1209,6 +1209,10 @@
    .sf-contener ul.menu-experiencias {
         padding: 1.5625rem 0 1.0rem 0.625rem;
    }
+    
+    .menu-experiencias {
+        width: 70%;
+    }
 }
 
 @media only screen and (max-width :1366px) and (min-width: 1023px) {
@@ -1828,6 +1832,18 @@
 
 @media screen and (max-width :480px) {
     
+    .right-down-menu .search a {
+        margin: 0;
+        padding: 0;
+        background-position: center;
+        width: 58px;
+        height: 62px;
+    }
+    
+    .right-down-menu .highlight-close a {
+        background: url("../../img/icon-search.png") center no-repeat #ededed;
+    }
+    
     h1, h2 {
         font-size: 2rem;
         margin: 0 3%;
@@ -1856,6 +1872,7 @@
     #page .header-container .main_panel {
         min-height: 0;
         margin-bottom: 63px;
+        z-index: 2;
     }
     
     #menu.menu-experiencias {
@@ -1871,6 +1888,10 @@
     .newsletter-footer .newsletter-input {
         width:96%;
         border-left: none;
+    }
+    
+    .category-thumbnail .wrap_scale {
+        position: inherit;
     }
      
     button.button-small.btn-enviar {
@@ -1906,7 +1927,7 @@
 
 	#block_top_menu .menu-content > li > ul {
 		padding:0;
-        margin-top: 12px;
+        margin-top: 5px;
 	}
 
 	.menu-mobile li a {
@@ -1982,10 +2003,19 @@
 		width:100%;
 	}
     
+    .category-thumbnail .wrap_scale {
+        position: inherit !important;
+        right: inherit !important;
+        padding: 0;
+        background: #BDBDBD;
+    }
+    
     .menu-mobile .category-thumbnail .wrap_scale .wrap_image_thumb img {
         position: inherit !important;
         width: auto;
         height: auto;
+        display: block;
+        width: 100%;
     }
 
     #index .product_list.grid .product-container {
@@ -2016,7 +2046,7 @@
     
 }
 
-@media screen and (max-width :390px) {
+@media screen and (max-width :380px) {
 
 	#user {
 		position:relative;
@@ -2036,8 +2066,12 @@
         width:100%;
     }
     
+    .category-thumbnail .wrap_scale {
+        position: inherit;
+    }
+    
     .category-thumbnail .wrap_scale .wrap_banner_item {
-        display: none !important;
+        
     }
     
     .bx-wrapper .bx-viewport li img {
@@ -2051,6 +2085,8 @@
     
     .new-products .logo-matisses {
         right: 50px;
+        display: none;
+ 
     }
     
     .new-products .product-description {
@@ -2379,7 +2415,7 @@
     }
     
 	.new-products .tag .new-label {
-        padding: 8px 12px;
+        padding: 2px 10px;
 	}
 
 	.newsletter-footer .newsletter-input {
@@ -2531,7 +2567,9 @@
 	}
 	/*SUBCATEGORIAS*/
 	.subcategories ul.cf li  {
-		width:94%;
+        width: 80%;
+        padding: 0 0 60px 0;
+        margin: 15px 10%;
 	}
 	/*Mi cuenta*/
 	.my-account .center_column, .my-account .footer-account input[type="text"]  {
@@ -2544,7 +2582,7 @@
 
 	a.btn.btn-default.btn-red {
 		width: 100%;
-    margin: 10px auto 30px auto;
+        margin: 10px auto;
 	}
 
 	.content-account p {
@@ -2620,7 +2658,7 @@
 	/*Carrito*/
 	.header-container #header .cart_block {
 		width: 300px;
-    left: -162px;
+        left: -186px;
 	}
 
 	.product_list.grid .product-container:after, .c_item .product-container:after {
@@ -2961,7 +2999,7 @@
     }
     
     #new-products_block_right .products-block .bx-viewport .product_list.grid .product-container {
-        width: 300px !important;
+        width: 340px !important;
     }
     
     .footer-down .container .menu-copyright {
@@ -2996,4 +3034,28 @@
         margin-bottom: 1rem;
     }
     
+    .fancybox-outer .fancybox-inner > img {
+        width: 100%;
+    }
+    
+    .ax-pagination_article a.btn.btn-default.btn-red {
+        width: 49%;
+        margin: 10px auto;
+    }
+    
+    .description-news .new-author p {
+        margin: 0.3125rem 0 0.125rem 1rem;
+    }
+}
+
+@media screen and (max-width :360px) {
+    #new-products_block_right .products-block .bx-viewport .product_list.grid .product-container {
+        width: 340px !important;
+    }
+}
+
+@media screen and (max-width :320px) {
+    #new-products_block_right .products-block .bx-viewport .product_list.grid .product-container {
+        width: 290px !important;
+    }
 }

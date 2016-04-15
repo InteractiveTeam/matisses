@@ -699,13 +699,13 @@ class matisses extends Module
             
             foreach($parent as $row){
                 
-                if ($row['level_depth'] == 3) {
+                if ($row['level_depth'] == 1) {
                     array_push($parents,
                                array(
                                     'id' => $row['id_category'],
                                     'name' => $row['name']
                     ));   
-                } else if ($row['level_depth'] > 3) {
+                } else if ($row['level_depth'] > 1) {
                     array_push($parents,
                                array(
                                     'id' => $row['id_category'],
