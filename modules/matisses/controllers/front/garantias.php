@@ -1,5 +1,7 @@
 <?php
 
+require_once _PS_MODULE_DIR_ . "matisses/classes/Danos.php";
+
 class matissesgarantiasModuleFrontController extends ModuleFrontController
 {
 	//public $php_self = "experiences";
@@ -175,6 +177,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 		$garantia = $this->getGarantia();
 		if(Tools::isSubmit('submitStep2'))
 		{
+            //echo "<pre>";print_r($_POST);echo "</pre>";die();
 			$this->context->smarty->assign(array(
 												'tipo' => Tools::getValue('tipo'),
 												'asunto' => Tools::getValue('asunto'),
@@ -378,7 +381,23 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 					}
 				}			
 		}
-		
+        $data = explode("-",Tools::getValue("data"));
+        $prod = new ProductCore($data[1]);
+        $features = $prod->getFeatures();
+        $damages = array();
+        $i = 0;
+        foreach($features as $ft){
+            $m = FeatureValueCore::getFeatureValuesWithLang(1,$ft['id_feature']);
+            $f = FeatureCore::getFeature(1,$ft['id_feature']);
+            
+            $damages[$i] = array(
+                'material' => $m[0]['value'],
+                'id_value' => $m[0]['id_feature_value'],
+                'code' => str_replace("material_","",$f['name']),
+                'damages' => Danos::getDamages($f['id_feature'])
+            );
+            $i++;
+        }
 		$realdanos = array();
 		$danos = explode(',',$this->info['confgaran_nrdanos']);
 		
@@ -412,6 +431,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 												'nrodanos' => $nrodanos,
 												'rnrodanos' => $this->info['confgaran_danos'],
 												'errors' => $this->errors,
+                                                'materials' => $damages
 												
 											 ));
 		if($garantia)

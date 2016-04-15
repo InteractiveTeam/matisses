@@ -29,6 +29,7 @@ class AdminTiposDanosController extends ModuleAdminController
 		{
 			$this->display = 'view';
 			$this->table   = 'tipo_danos';
+            $this->identifier	= 'id_tipo';
 			$this->lang    = false;
 			$this->_defaultOrderBy 	= 'id_tipo';
 		}
@@ -37,6 +38,7 @@ class AdminTiposDanosController extends ModuleAdminController
 		{
 			$this->display = 'add';
 			$this->table   = 'tipo_danos';
+            $this->identifier	= 'id_tipo';
 			$this->lang    = false;
 			$this->_defaultOrderBy 	= 'id_tipo';
 		}
@@ -45,6 +47,7 @@ class AdminTiposDanosController extends ModuleAdminController
 		{
 			$this->display = 'add';
 			$this->table   = 'tipo_danos';
+            $this->identifier	= 'id_tipo';
 			$this->lang    = false;
 			$this->_defaultOrderBy 	= 'id_tipo';
 		}
@@ -53,6 +56,7 @@ class AdminTiposDanosController extends ModuleAdminController
 		{
 			$this->display = 'edit';
 			$this->table   = 'tipo_danos';
+            $this->identifier	= 'id_tipo';
 			$this->lang    = false;
 			$this->_defaultOrderBy 	= 'id_tipo';
 		}
@@ -74,7 +78,10 @@ class AdminTiposDanosController extends ModuleAdminController
 			  KEY `id_feature` (`id_feature`,`mcodigo`,`acodigo`)
 			) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 		');
-		
+        
+		$this->_select = '
+            (SELECT REPLACE(name, "material_", "") FROM '._DB_PREFIX_.'feature_lang where a.id_feature = id_feature) as codigo_name            
+        ';
 
 		$this->fields_list = array(
 			'id_feature' => array(
@@ -82,14 +89,14 @@ class AdminTiposDanosController extends ModuleAdminController
 				'align' => 'center',
 				'class' => 'fixed-width-xs'
 			),
-			'codigo' => array(
+			'codigo_name' => array(
 				'title' => $this->l('Código material'),
 				'lang' => true,
 				'filter_key' => 'b!name',
 				'filter' => false,
-				'class' => 'fixed-width-xs'
+                'class' => 'fixed-width-xs',
+				'align' => 'center',
 			),
-			
 			'name' => array(
 				'title' => $this->l('Material'),
 				'lang' => true,
