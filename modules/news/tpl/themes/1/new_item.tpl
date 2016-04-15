@@ -137,9 +137,9 @@
                 </div>
                 <!-- AddThis Button END -->
             </div>
-            <div class="share shareFacebook">
+            <!-- <div class="share shareFacebook">
             {if $socialButtons[0]=='1'}
-                <!-- FACEBOOK BTN COUNT -->
+                FACEBOOK BTN COUNT
                 <iframe src="http://www.facebook.com/plugins/like.php?href={$link->getModuleLink('news', 'new',
                                                             [
                                                                 'id_news'  => "{$id_news}",
@@ -150,9 +150,9 @@
                                                              ]
 
                                                             ,false)}?&amp;layout=button_count&amp;show_faces=false&amp;action=like&amp;font=verdana&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:35px;" allowTransparency="true" class="iconShareFacebook"></iframe>
-                <!-- FACEBOOK BTN COUNT -->
+                FACEBOOK BTN COUNT 
             {/if}
-            </div>
+            </div>-->
             
             <div id="share"></div>
 
@@ -164,9 +164,9 @@
 
         </div>
 
-
+        <div class="ax-pagination_article">
         {if !empty($prev_id_news)}
-            <a href="{$link->getModuleLink('news', 'new',
+            <a class="prev btn btn-default btn-red" href="{$link->getModuleLink('news', 'new',
                                         [
                                             'id_news'  => "{$prev_id_news}",
                                             'cat_news' => "{if $cat}{$cat}{/if}",
@@ -174,11 +174,11 @@
                                             'rewrite'  => "{$news->rewrite}",
                                             'cat_rewrite'  => "{$cat_rewrite}"
                                          ]
-                                         ,false)}"><i class="fa fa-angle-double-left">&nbsp;{l s='Anterior' mod='news'}</i></a>
+                                         ,false)}"><i class="fa fa-angle-double-left"></i>&nbsp;{l s='Anterior' mod='news'}</a>
         {/if}
         
         {if !empty($next_id_news)}
-            <a href="{$link->getModuleLink('news', 'new',
+            <a class="next btn btn-default btn-red" href="{$link->getModuleLink('news', 'new',
                                         [
                                             'id_news'  => "{$next_id_news}",
                                             'cat_news' => "{if $cat}{$cat}{/if}",
@@ -188,7 +188,7 @@
                                          ]
                                          ,false)}">{l s='Siguiente' mod='news'}&nbsp;<i class="fa fa-angle-double-right"></i></a>
         {/if}
-
+        </div>
 
         {if $tagsObj}
             <div class="newItemTags" >

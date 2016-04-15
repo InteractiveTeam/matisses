@@ -1209,6 +1209,10 @@
    .sf-contener ul.menu-experiencias {
         padding: 1.5625rem 0 1.0rem 0.625rem;
    }
+    
+    .menu-experiencias {
+        width: 70%;
+    }
 }
 
 @media only screen and (max-width :1366px) and (min-width: 1023px) {
@@ -2578,7 +2582,7 @@
 
 	a.btn.btn-default.btn-red {
 		width: 100%;
-    margin: 10px auto 30px auto;
+        margin: 10px auto;
 	}
 
 	.content-account p {
@@ -3032,6 +3036,15 @@
     
     .fancybox-outer .fancybox-inner > img {
         width: 100%;
+    }
+    
+    .ax-pagination_article a.btn.btn-default.btn-red {
+        width: 49%;
+        margin: 10px auto;
+    }
+    
+    .description-news .new-author p {
+        margin: 0.3125rem 0 0.125rem 1rem;
     }
 }
 
