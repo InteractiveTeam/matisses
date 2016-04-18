@@ -94,7 +94,13 @@ ax = {
                     chaordic_meta.product.url = data.linkproduct;
                     chaordic_meta.product.description = data.descproduct;
                     chaordic_meta.product.images = {"default": data.imageproduct};
-                    chaordic_meta.product.categories = data.categoriesp;
+                    
+                    chaordic_meta.product.categories = [];
+                    
+                    for (i = data.parents.length-1; i >= 0; i--) { 
+                        chaordic_meta.product.categories.push(data.parents[i]);
+                    }
+                    
                     chaordic_meta.product.price = data.priceproduct;
                     chaordic_meta.product.status = data.statusproduct;
                     chaordic_meta.product.specs = {"color": data.productcolors};
@@ -194,7 +200,13 @@ ax = {
                     chaordic_meta.product.url = data.linkproduct;
                     chaordic_meta.product.description = data.descproduct;
                     chaordic_meta.product.images = {"default": data.imageproduct};
-                    chaordic_meta.product.categories = data.categoriesp;
+                    
+                    chaordic_meta.product.categories = [];
+                    
+                    for (i = data.parents.length-1; i >= 0; i--) { 
+                        chaordic_meta.product.categories.push(data.parents[i]);
+                    }
+                    
                     chaordic_meta.product.price = data.priceproduct;
                     chaordic_meta.product.status = data.statusproduct;
                     chaordic_meta.product.specs = {"color": data.productcolors};

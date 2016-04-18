@@ -699,13 +699,13 @@ class matisses extends Module
             
             foreach($parent as $row){
                 
-                if ($row['level_depth'] == 1) {
+                if ($row['level_depth'] == 3) {
                     array_push($parents,
                                array(
                                     'id' => $row['id_category'],
                                     'name' => $row['name']
                     ));   
-                } else if ($row['level_depth'] > 1) {
+                } else if ($row['level_depth'] > 3) {
                     array_push($parents,
                                array(
                                     'id' => $row['id_category'],
@@ -723,7 +723,7 @@ class matisses extends Module
                 'descproduct' => strip_tags($product->description[1]),
 				'imageproduct' => $link->getImageLink($product->link_rewrite, (int)$images[0]["id_image"], 'home_default'),
 				'priceproduct' => $product->getPriceWithoutReduct(),
-                'categoriesp' => json_encode($categoriesp),
+                'categoriesp' => json_encode($parents),
                 'tagsproduct' => json_encode($tagsproduct),
 				'statusproduct' => $product->active,
                 'productcondition' => $product->condition,
