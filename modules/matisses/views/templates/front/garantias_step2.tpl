@@ -15,21 +15,31 @@
  		<h2 class="page-subheading"> {l s='Suministro de informacion' mod='matisses'}</h2>
 
  		<div class="grid_4">
-			<label>{l s='Seleccione el tipo de daño'}</label>
-			<span>{l s='Máximo %s daños' sprintf=[$nrodanos]}</span>
-			<div class="scroll-left scroll-pane">
+        <label>{l s='Seleccione el tipo de daño'}</label>
+        <span>{l s='Máximo %s daños' sprintf=[$nrodanos]}</span>
+        {if !empty($materials)}
+        {foreach from=$materials item=row}
+            <div>
+                <a class="btn btn-default button btn-red material" data-id="{$row.id_value}" href="javascript:void(0)">
+                    {$row.material}
+                </a>
+			</div>
+			<div class="scroll-left scroll-pane danos{$row.id_value}" style="display:none">
             <ul id="tipo-dano" class="damage">
-				{foreach from=$danos item=dano}
-				<li id="{$dano.coddano}" data-value="{$dano.dano}">{$dano.dano}</li>
+				{foreach from=$row.damages item=dano}
+				<li id="{$dano.id_tipo}" data-value="{$dano.aname}">{$dano.aname}</li>
 				{/foreach}
 			</ul>
             </div>
-			<div class="form-group">
-				<label for="asunto">{l s='Tipo de dano Reportado:'}</label>  <a href="#" onclick="$('#tipo').val('')">{l s='Borrar'}</a>
-				<input type="text" name="tipo" id="tipo" readonly="readonly" class="form-control" value="{$tipo}" />
-			</div>
-		</div>
-
+			
+            {/foreach}
+            
+            <div class="form-group">
+                <label for="asunto">{l s='Tipo de dano Reportado:'}</label>  <a href="#" onclick="$('#tipo').val('')">{l s='Borrar'}</a>
+                <input type="text" name="tipo" id="tipo" readonly="readonly" class="form-control" value="{$tipo}" />
+            </div>  
+        {/if}
+		</div> 
 		<div class="grid_8">
 
 				<div class="form-group grid_12 alpha omega">

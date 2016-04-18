@@ -49,6 +49,12 @@
 
 			return parent::delete();
 		}
+        
+        public static function getDamages($id_feature){
+            return Db::getInstance()->executeS('
+                SELECT * FROM '._DB_PREFIX_.'tipo_danos WHERE id_feature = '.$id_feature.'
+            ');
+        }
 		
 	}
 ?>

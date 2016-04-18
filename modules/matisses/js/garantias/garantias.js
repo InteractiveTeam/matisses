@@ -157,5 +157,8 @@ $(document).ready(function(e) {
 		}
 	})
 	
-	
+	$(".material").click(function(){
+        var id_val = $(this).attr("data-id");
+        $(".danos"+id_val).slideToggle();
+    });
 });
