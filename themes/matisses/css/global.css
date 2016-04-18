@@ -118,7 +118,7 @@ box-sizing: border-box;
     min-height: 6.9rem;
 	position: relative;
 	}
-	h1, h2 {
+    h1, h2, h3 {
 	font-family: "condensed";
 	color: #231f20;
 	text-transform: uppercase;
@@ -128,6 +128,12 @@ box-sizing: border-box;
 	padding-bottom: 0.3125rem;
 	}
     h2 {
+    font-size: 1.4rem;
+    margin: 15px 0;
+    border-bottom: none;
+    }
+
+    h3 {
     font-size: 1.4rem;
     margin: 15px 0;
     border-bottom: none;
@@ -694,8 +700,8 @@ box-sizing: border-box;
 	padding-top: 0.3125rem;
 	}
 	.viewed-products .price{
-	font-size: 1.375rem;
-	color: #231f20;
+	font-size: 1.5rem;
+	color: #100f10;
 	font-family: 'gothic';
 	}
 	.header-products h2 a{
@@ -4631,7 +4637,7 @@ body.new-products {
     .pagination > li > span {
     border: none;
     font-family: 'gothic';
-    padding: 0 0.9375rem;
+    padding: 0.625rem 0.9375rem;
     font-weight: bold;
     }
     .parrilla-productos div.pagination {
@@ -4639,7 +4645,7 @@ body.new-products {
     }
     .product-price {
     font-family: 'gothic';
-    color: #231f20;
+    color: #0E0D0E !important;
     font-size: 1.375rem;
     }
 
@@ -4851,19 +4857,22 @@ color:#fff;
 	color:#d7162f;
 }
 
-.fa-houzz {
-    display: block;
-}
-
 .fa-houzz:before {
     content: "";
+    position: absolute;
     background: url(../img/ax-houzz-icon.png) no-repeat center center;
     display: block;
     width: 22px;
     height: 22px;
     background-size: auto 100%;
     color: transparent;
-    margin-top: 5px;
+    top: 20%;
+    left: 20%;
+}
+
+.ayo-btn.ayo-houzz {
+    position: relative;
+    width: 38px;
 }
 
 .description-news.grid_12.alpha.omega {
@@ -5047,84 +5056,29 @@ a.ayo-btn{
 	-webkit-transition: border .25s linear,color .25s linear,background-color .25s linear;
 	transition: border .25s linear,color .25s linear,background-color .25s linear;
     margin: 0 2.5px;
+    display: block;
+    background-color: #777;
 }
 .ayo-btn span{
 	font-family: sans-serif
 }
-.ayo-btn:hover {
+.ayo-btn:hover, .addthis_toolbox a.at300b:hover {
 	background-color: #d7162f;
 	color: #fff;
 }
-.ayo-facebook {
-	background-color: #4769a5;
-	border-color: #354d79;
-     background-color: #777;
-	-webkit-box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);
-	box-shadow: inset 0 -2px 0 rgba(0,0,0,.15)
-}
-.ayo-twitter {
-	background-color: #51a3bf;
-     background-color: #777;
-	border-color: #408299;
-	-webkit-box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);
-	box-shadow: inset 0 -2px 0 rgba(0,0,0,.15)
-}
-.ayo-google {
-	background-color: #bf3727;
-     background-color: #777;
-	border-color: #932b1f;
-	-webkit-box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);
-	box-shadow: inset 0 -2px 0 rgba(0,0,0,.15)
-}
-.ayo-linkedin {
-	background-color: #2ba3e1;
-     background-color: #777;
-	border-color: #207aa8;
-	-webkit-box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);
-	box-shadow: inset 0 -2px 0 rgba(0,0,0,.15)
-}
-.ayo-stumbleupon {
-	background-color: #eb4723;
-     background-color: #777;
-	border-color: #ab361d;
-	-webkit-box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);
-	box-shadow: inset 0 -2px 0 rgba(0,0,0,.15)
-}
-.ayo-reddit, .ayo-buffer {
-	background-color: #333333;
-     background-color: #777;
-	border-color: #1d1d1d;
-	-webkit-box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);
-	box-shadow: inset 0 -2px 0 rgba(0,0,0,.15)
-}
-
-.ayo-pinterest {
-	background-color: #cc2209;
-     background-color: #777;
-	border-color: #9b1a20;
-	-webkit-box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);
-	box-shadow: inset 0 -2px 0 rgba(0,0,0,.15)
-}
-.ayo-vk {
-	background-color: #4c75a3;
-	border-color: #39587b;
-    background-color: #777;
-	-webkit-box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);
-	box-shadow: inset 0 -2px 0 rgba(0,0,0,.15)
-}
-.ayo-pocket {
-	background-color: #e84352;
-	border-color: #c53946;
-     background-color: #777;
-	-webkit-box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);
-	box-shadow: inset 0 -2px 0 rgba(0,0,0,.15)
-}
-
 /*part facebook*/
+
+.ax-shareContent {
+    float:right;
+}
 
 #share {
     display: inline;
-    float: right;
+    height: 49px;
+}
+
+#share p:first-child a {
+    margin-left:0;
 }
 
 .shareFacebook {
@@ -5145,4 +5099,30 @@ a.ayo-btn{
         float:right;
 }
 
+.ax-shareContent a, .ax-shareContent a.newPrint, .ax-shareContent a.newPrint:link {
+	cursor:pointer;
+	color: #fff;
+	border: none;
+	padding: 10px 12px;
+	-webkit-font-smoothing: subpixel-antialiased;
+	-webkit-transition: border .25s linear,color .25s linear,background-color .25s linear;
+	transition: border .25s linear,color .25s linear,background-color .25s linear;
+    margin: 0 2.5px;
+    background: #777;
+    width: auto;
+    height: 38px;
+}
 
+.addthis_default_style .at300b {
+    padding: 10px 12px !important;
+    margin: 0 !important;
+}
+
+.addthis_default_style .at300b span {
+    background: transparent !important;
+}
+
+a.newPrint:hover {
+    background: #d7162f !important;
+    opacity:1 !important;
+}
