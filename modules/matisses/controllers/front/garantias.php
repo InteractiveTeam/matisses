@@ -304,18 +304,13 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							{
 								move_uploaded_file($imagen['tmp_name'],_PS_IMG_DIR_.'garantias/'.$id_insert.'_'.$k.'.jpg');
 								$imagesuploaded[] = $id_insert.'_'.$k;
-								$realimages[] =  'garantias/'.$id_insert.'_'.$k.'.jpg';
-								$handle = fopen(_PS_IMG_DIR_.'garantias/'.$id_insert.'_'.$k.'.jpg', "r");                  // Open the temp file
-                                $contents = fread($handle, filesize(_PS_IMG_DIR_.'garantias/'.$id_insert.'_'.$k.'.jpg'));  // Read the temp file
-                                fclose($handle);                                 // Close the temp file
-                                $uploadedImg[] = $decodeContent   = base64_encode($contents); 
+								$realimages[] = _PS_BASE_URL_.__PS_BASE_URI__.'img/garantias/'.$id_insert.'_'.$k.'.jpg';
 							}
-							//echo "<pre>";
-							//print_r($imagesuploaded);
-							//echo "</pre>";
-							//echo "<pre>";
-							//print_r($realimages);
-							//echo "</pre>";
+
+//							echo "<pre>";
+//							print_r($realimages);
+//							echo "</pre>";
+//                            die();
 							
 							
 							$itemCode = Db::getInstance()->getValue('SELECT reference 
