@@ -65,7 +65,7 @@
 	.menu-content > li > a {
     padding: 0.9rem 0 14px 0;
     margin-left: 1.875rem;
-    display: block;
+    display: inline-block;
     position: relative;
 	}
 	.submenu-container {

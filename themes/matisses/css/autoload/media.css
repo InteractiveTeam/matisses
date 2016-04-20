@@ -2893,14 +2893,6 @@
 
 	/*Resultados de búsqueda*/
 
-	#search {
-		position: inherit;
-	}
-    
-    ul li.search {
-		position: absolute !important;
-	}
-
 	.search .center_column {
 		width:92%;
 	}

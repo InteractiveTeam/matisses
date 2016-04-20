@@ -4631,7 +4631,7 @@ body.new-products {
     }
 
     .content_sortPagiBar .top-pagination-content ul{
-    height: 45px;
+    height: 44px;
     }
     .pagination > li > a,
     .pagination > li > span {
@@ -4677,7 +4677,7 @@ body.new-products {
     }
 
     .main-container .parrilla-productos .sortPagiBar form label {
-        padding: 0.6375rem;
+        padding: 0.6rem 0.6375rem;
         }
 
     /*.top-pagination-content ul.pagination li.pagination_previous span, .top-pagination-content ul.pagination li.pagination_next span, .top-pagination-content ul.pagination li.pagination_previous a, .top-pagination-content ul.pagination li.pagination_next a {
