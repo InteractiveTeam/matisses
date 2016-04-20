@@ -305,6 +305,10 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 								move_uploaded_file($imagen['tmp_name'],_PS_IMG_DIR_.'garantias/'.$id_insert.'_'.$k.'.jpg');
 								$imagesuploaded[] = $id_insert.'_'.$k;
 								$realimages[] =  'garantias/'.$id_insert.'_'.$k.'.jpg';
+								$handle = fopen(_PS_IMG_DIR_.'garantias/'.$id_insert.'_'.$k.'.jpg', "r");                  // Open the temp file
+                                $contents = fread($handle, filesize(_PS_IMG_DIR_.'garantias/'.$id_insert.'_'.$k.'.jpg'));  // Read the temp file
+                                fclose($handle);                                 // Close the temp file
+                                $uploadedImg[] = $decodeContent   = base64_encode($contents); 
 							}
 							//echo "<pre>";
 							//print_r($imagesuploaded);
@@ -335,6 +339,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							$params['subject'] 			= Tools::getValue('asunto');	
 							$params['problems']			= explode(',',Tools::getValue('tipo'));
 							$params['images']			= $realimages;
+							$params['images_64']         = $uploadedImg;
 							
 							
 							$response = Hook::exec('actionAddGarantia', $params );
