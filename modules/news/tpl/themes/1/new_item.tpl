@@ -123,20 +123,6 @@
             <div class="newText"><p> {$new}</p></div>
         </div>
         <div class="newContentTopRigthSocial grid_12 alpha omega">
-            <div class="newTopActions">
-                <a href="javascript:window.print()" class="newPrint"></a>
-                <a href="javascript:void(0)" onclick="lessText()" class="newTextLess"></a>
-                <a href="javascript:void(0)" onclick="normalText()"  class="newTextNormal"></a>
-                <a href="javascript:void(0)" onclick="moreText();" class="newTextMore"></a>
-                <!-- AddThis Button BEGIN -->
-                <div>
-                    <div class="addthis_toolbox addthis_default_style ">
-                        <a class="addthis_button_email" ></a>
-                    </div>
-                    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fd60a055ec70816"></script>
-                </div>
-                <!-- AddThis Button END -->
-            </div>
             <!-- <div class="share shareFacebook">
             {if $socialButtons[0]=='1'}
                 FACEBOOK BTN COUNT
@@ -154,8 +140,18 @@
             {/if}
             </div>-->
             
-            <div id="share"></div>
-
+            <div class="ax-shareContent">
+               <div class="newTopActions">
+                    <a href="javascript:window.print()" class="newPrint"><i class="fa fa-print" aria-hidden="true"></i></a>
+                    <!-- AddThis Button BEGIN -->
+                        <p class="addthis_toolbox addthis_default_style ">
+                            <a class="addthis_button_email" ></a>
+                        </p>
+                        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fd60a055ec70816"></script>
+                    <!-- AddThis Button END -->
+                </div>
+                <div id="share"></div>
+            </div>
             {if $socialButtonHtml}
             <div>
                 {$socialButtonHtml}

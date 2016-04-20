@@ -304,14 +304,13 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							{
 								move_uploaded_file($imagen['tmp_name'],_PS_IMG_DIR_.'garantias/'.$id_insert.'_'.$k.'.jpg');
 								$imagesuploaded[] = $id_insert.'_'.$k;
-								$realimages[] =  'garantias/'.$id_insert.'_'.$k.'.jpg';
+								$realimages[] = _PS_BASE_URL_.__PS_BASE_URI__.'img/garantias/'.$id_insert.'_'.$k.'.jpg';
 							}
-							//echo "<pre>";
-							//print_r($imagesuploaded);
-							//echo "</pre>";
-							//echo "<pre>";
-							//print_r($realimages);
-							//echo "</pre>";
+
+//							echo "<pre>";
+//							print_r($realimages);
+//							echo "</pre>";
+//                            die();
 							
 							
 							$itemCode = Db::getInstance()->getValue('SELECT reference 
@@ -335,6 +334,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							$params['subject'] 			= Tools::getValue('asunto');	
 							$params['problems']			= explode(',',Tools::getValue('tipo'));
 							$params['images']			= $realimages;
+							$params['images_64']         = $uploadedImg;
 							
 							
 							$response = Hook::exec('actionAddGarantia', $params );

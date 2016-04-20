@@ -136,14 +136,14 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			$cart->save();
 		}
         $mat = new Matisses();
-        $res = $mat->wsmatissess_getVIPGift(2000000);
-        die(print_r($res));
+        $res = $mat->wsmatissess_getVIPGift($data['mount']);
+        $FreeVipBond = $res["return"]['detail'];
 		$bond = new BondModel();
 		$list = new GiftListModel($id_list);
 		$bond->id_list = $id_list;
 		$bond->value = $data['mount'];
 		$bond->message = $data['message'];
-		$bond->luxury_bond = isset($data['luxury_bond']) ? 1 : 0;
+		$bond->luxury_bond = ($FreeVipBond ? 1 : (isset($data['luxury_bond']) ? 1 : 0));
 		$bond->created_at = date( "Y-m-d H:i:s" );
 		$sql = "SELECT id_product FROM "._DB_PREFIX_."product WHERE reference = 'BOND-LIST'";
 		$id_product = Db::getInstance()->getValue($sql);

@@ -1267,7 +1267,6 @@ class matisses extends Module
 														'source'	=>'pruebas')
 												);
 		$result = $client->call('callService', $s);
-        echo "<pre>";print_r($result);echo "</pre>";die();
         return $result;
 	}
 	
@@ -1412,7 +1411,7 @@ class matisses extends Module
 		$garantia['serviceRequestDTO']['subject'] 		= $params['subject'];	
 		
 		foreach($params['images'] as $d => $v)
-			$garantia['serviceRequestDTO']['images'][]['imageName'] = $v; 
+			$garantia['serviceRequestDTO']['images'][]['imageName'] = $v;
 			
 		foreach($params['problems'] as $d => $v)
 			$garantia['serviceRequestDTO']['problems'][]['name'] = $v; 	

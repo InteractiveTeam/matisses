@@ -519,6 +519,15 @@ $.fn.ayoshare = function() {
         html += '<p><a href="https://getpocket.com/save?title=' + a + '&url=' + b + '" onclick="javascript:void window.open(\'https://getpocket.com/save?title=' + a + '&url=' + b + '\',\'ibacor.com\',\'width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0\');return false;" class="ayo-btn ayo-pocket" title="Pocket"><i class="fa fa-get-pocket"></i></a></p>'
         ayo_pocket(b, xxx)
     }
+    
+    /*if (houzz == true) {
+        html += "<p><a class='houzz-share-button' data-url='"+b+"' data-hzid='Mat225' data-title='"+a+"' data-img='"+img+"' data-desc='"+desk+"' data-category='Category keywords ' data-showcount='1 ' href='https://www.houzz.com'></a></p>";
+       (function(d,s,id){if(!d.getElementById(id)){var js=d.createElement(s);js.id=id;js.async=true;js.src="//platform.houzz.com/js/widgets.js?"+(new Date().getTime());var ss=d.getElementsByTagName(s)[0];ss.parentNode.insertBefore(js,ss);}})(document,"script","houzzwidget-js");
+    }*/
+    
+    if (houzz == true) {
+        html += "<p><a class='ayo-btn ayo-houzz' href='http://www.houzz.es/pro/matisses/matisses' target='_blank'><i class='fa fa-houzz'></i></a></p>";
+    }
 
     $(this).html(html);
 
@@ -701,7 +710,7 @@ $.fn.ayoshare = function() {
             }
         })
 	}
-
+    
     function ayo_num(a) {
         var b = parseInt(a, 10);
         if (b === null) {
@@ -724,15 +733,16 @@ $.fn.ayoshare = function() {
 $(function() {
         $("#share").ayoshare(
             url = location.href, // Dynamic url 
-            google = true, // true or false
-            stumbleupon = true,
+            google = false, // true or false
+            stumbleupon = false,
             facebook = true,
             linkedin = false,
             pinterest = true,
-            bufferapp = true,
-            reddit = true,
+            bufferapp = false,
+            reddit = false,
             vk = false,
             pocket = false,
-            twitter = true
+            twitter = true,
+            houzz = true
         );
     });
