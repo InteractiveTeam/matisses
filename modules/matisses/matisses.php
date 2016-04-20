@@ -1267,7 +1267,6 @@ class matisses extends Module
 														'source'	=>'pruebas')
 												);
 		$result = $client->call('callService', $s);
-        echo "<pre>";print_r($result);echo "</pre>";die();
         return $result;
 	}
 	
