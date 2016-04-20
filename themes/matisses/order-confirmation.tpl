@@ -42,7 +42,7 @@
 {else}
 
 <form id="submitReorder" class="submitReorder" action="{$link->getPageLink('order', true)}" method="post" class="submit">
-    <input type="hidden" value="{$id_order|urlencode}" name="id_order"/>
+    <input type="hidden" value="{$id_order}" name="id_order"/>
     <input type="hidden" name="submitReorder"/>
     <a href="#" onclick="$('#submitReorder').submit(); return false;" class="btn btn-default btn-red">
         {l s='Pedir de nuevo'}
