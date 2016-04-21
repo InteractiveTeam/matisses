@@ -549,7 +549,7 @@ box-sizing: border-box;
     font-size: 1.35rem;
     }
 
-    .cms .center_column a, .description-news a {
+    .cms .center_column a, .description-news a, a {
     color:#d9292e;
     }
 
