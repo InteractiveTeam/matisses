@@ -59,7 +59,7 @@ ax = {
                 }
                 
                 // Set categories to this pages
-                if (page == 'category' || page == 'subcategory' || page == 'product') {
+                if (page == 'category' || page == 'subcategory') {
                     chaordic_meta.page.categories = [];
                     
                     for (i = data.parents.length-1; i >= 0; i--) { 
@@ -96,9 +96,42 @@ ax = {
                     chaordic_meta.product.images = {"default": data.imageproduct};
                     
                     chaordic_meta.product.categories = [];
-                    
-                    for (i = data.parents.length-1; i >= 0; i--) { 
-                        chaordic_meta.product.categories.push(data.parents[i]);
+                    chaordic_meta.page.categories = [];
+                    var categorias = $('.breadcrumb .navigation_page a[data-c]');
+                    var parents = [];
+
+                    if (categorias.length > 0) {
+                        categorias.each(function(i) {
+                            parents[i] = $(this).attr('data-c');
+
+                            if (i==0) {
+                               chaordic_meta.product.categories.push({
+                                 id: $(this).attr('data-c'),
+                                 name: $(this).text()
+                               });
+
+                               chaordic_meta.page.categories.push({
+                                 id: $(this).attr('data-c'),
+                                 name: $(this).text()
+                               });
+                            } 
+                             else {
+                                var par = [];
+                                par.push(parents[i-1]);
+
+                                chaordic_meta.product.categories.push({
+                                 id: $(this).attr('data-c'),
+                                 name: $(this).text(),
+                                 parents: par
+                               });
+
+                                chaordic_meta.page.categories.push({
+                                 id: $(this).attr('data-c'),
+                                 name: $(this).text(),
+                                 parents: par
+                               });
+                             } 
+                        });   
                     }
                     
                     chaordic_meta.product.price = data.priceproduct;
@@ -165,7 +198,7 @@ ax = {
                 }
 
                 // Set categories to this pages
-                if (page == 'category' || page == 'subcategory' || page == 'product') {
+                if (page == 'category' || page == 'subcategory') {
                     chaordic_meta.page.categories = [];
                     
                     for (i = data.parents.length-1; i >= 0; i--) { 
@@ -202,9 +235,42 @@ ax = {
                     chaordic_meta.product.images = {"default": data.imageproduct};
                     
                     chaordic_meta.product.categories = [];
-                    
-                    for (i = data.parents.length-1; i >= 0; i--) { 
-                        chaordic_meta.product.categories.push(data.parents[i]);
+                    chaordic_meta.page.categories = [];
+                    var categorias = $('.breadcrumb .navigation_page a[data-c]');
+                    var parents = [];
+
+                    if (categorias.length > 0) {
+                        categorias.each(function(i) {
+                            parents[i] = $(this).attr('data-c');
+
+                            if (i==0) {
+                               chaordic_meta.product.categories.push({
+                                 id: $(this).attr('data-c'),
+                                 name: $(this).text()
+                               });
+
+                               chaordic_meta.page.categories.push({
+                                 id: $(this).attr('data-c'),
+                                 name: $(this).text()
+                               });
+                            } 
+                             else {
+                                var par = [];
+                                par.push(parents[i-1]);
+
+                                chaordic_meta.product.categories.push({
+                                 id: $(this).attr('data-c'),
+                                 name: $(this).text(),
+                                 parents: par
+                               });
+
+                                chaordic_meta.page.categories.push({
+                                 id: $(this).attr('data-c'),
+                                 name: $(this).text(),
+                                 parents: par
+                               });
+                             } 
+                        });   
                     }
                     
                     chaordic_meta.product.price = data.priceproduct;
