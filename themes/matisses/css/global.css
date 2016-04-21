@@ -549,7 +549,7 @@ box-sizing: border-box;
     font-size: 1.35rem;
     }
 
-    .cms .center_column a, .description-news a {
+    .cms .center_column a, .description-news a, a {
     color:#d9292e;
     }
 
@@ -2096,6 +2096,7 @@ box-sizing: border-box;
 	border: none;
 	background: none;
 	padding: 0;
+    font-weight: 100;
 	}
 	.top-pagination-content ul.pagination li > a:hover span,
 	.bottom-pagination-content ul.pagination li > a:hover span {
@@ -4630,9 +4631,9 @@ body.new-products {
         margin: 20px 0;
     }
 
-    .content_sortPagiBar .top-pagination-content ul{
+    /*.content_sortPagiBar .top-pagination-content ul{
     height: 44px;
-    }
+    }*/
     .pagination > li > a,
     .pagination > li > span {
     border: none;
