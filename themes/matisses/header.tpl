@@ -81,8 +81,7 @@
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 		<![endif]-->
 		
-<!--Chaordic loader-->		
-<script async defer src="//static.chaordicsystems.com/static/loader.js" data-apikey="matisses"></script>
+<!--Chaordic-->		
 <script type="text/javascript" src="{$js_dir}ax-chaordic.js"></script>
 {literal}
 <script type="text/javascript">
@@ -119,18 +118,18 @@
             data.linkproduct = linkp.replace(/http:|https:/g,'');
             data.descproduct = '{$descproduct}';
             data.imageproduct = '{$imageproduct}';
+            data.categoriesp = {$categoriesp};
             data.priceproduct = {$priceproduct};
             data.productcolors = {$productcolors};
             data.productskuattr = {$productskuattr};
             {if !empty($tagsproduct)}
                 data.tagsproduct = {$tagsproduct};
             {/if}
-         
-            if (status == 1) {
-                data.statusproduct = 'available';   
-            } else {
+            {if $statusproduct == 1}
+                data.statusproduct = 'available';
+            {else}
                 data.statusproduct = 'unavailable';
-            }
+            {/if}
             data.productcondition = '{$productcondition}';
         {/if}
         {if $page_name == 'search'}
@@ -159,6 +158,7 @@
          
 </script>
 {/literal}
+<script async defer src="//static.chaordicsystems.com/static/loader.js" data-apikey="matisses"></script>
 </head>
 <body{if isset($page_name)} id="{$page_name|escape:'html':'UTF-8'}"{/if} class="{if isset($page_name)}{$page_name|escape:'html':'UTF-8'}{/if}{if isset($body_classes) && $body_classes|@count} {implode value=$body_classes separator=' '}{/if}{if $hide_left_column} hide-left-column{/if}{if $hide_right_column} hide-right-column{/if}{if isset($content_only) && $content_only} content_only{/if} lang_{$lang_iso}" itemscope itemtype="http://schema.org/WebPage">
 	{if !isset($content_only) || !$content_only}

@@ -651,7 +651,7 @@ class matisses extends Module
                 }
                 
                 $tempattr = array();
-                $tempattr['id'] = $row['id_attribute'];
+                /*$tempattr['id'] = $row['id_attribute'];*/
                 $tempattr['sku'] = $row['reference'];
                 $tempattr['specs'] = array('color' => $row['attribute_name']);
                 
@@ -712,9 +712,15 @@ class matisses extends Module
                                     'name' => $row['name'],
                                     'parents' => array($row['id_parent'])
                     ));
+                } else {
+                    array_push($parents,
+                               array(
+                                    'id' => $row['id_category'],
+                                    'name' => $row['name']
+                    )); 
                 }  
             }
-            
+            echo "<pre>";print_r($product->available_for_order);echo "</pre>";
             // assign data of product
             $this->context->smarty->assign(array(
                 'idproduct' => $product->id,
@@ -725,7 +731,7 @@ class matisses extends Module
 				'priceproduct' => $product->getPriceWithoutReduct(),
                 'categoriesp' => json_encode($parents),
                 'tagsproduct' => json_encode($tagsproduct),
-				'statusproduct' => $product->active,
+				'statusproduct' => $product->available_for_order,
                 'productcondition' => $product->condition,
                 'parents' => json_encode($parents)
 		    ));

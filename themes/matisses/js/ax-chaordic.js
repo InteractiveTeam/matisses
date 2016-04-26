@@ -94,8 +94,8 @@ ax = {
                     chaordic_meta.product.url = data.linkproduct;
                     chaordic_meta.product.description = data.descproduct;
                     chaordic_meta.product.images = {"default": data.imageproduct};
+                    chaordic_meta.product.categories = data.categoriesp;
                     
-                    chaordic_meta.product.categories = [];
                     chaordic_meta.page.categories = [];
                     var categorias = $('.breadcrumb .navigation_page a[data-c]');
                     var parents = [];
@@ -105,11 +105,6 @@ ax = {
                             parents[i] = $(this).attr('data-c');
 
                             if (i==0) {
-                               chaordic_meta.product.categories.push({
-                                 id: $(this).attr('data-c'),
-                                 name: $(this).text()
-                               });
-
                                chaordic_meta.page.categories.push({
                                  id: $(this).attr('data-c'),
                                  name: $(this).text()
@@ -118,12 +113,6 @@ ax = {
                              else {
                                 var par = [];
                                 par.push(parents[i-1]);
-
-                                chaordic_meta.product.categories.push({
-                                 id: $(this).attr('data-c'),
-                                 name: $(this).text(),
-                                 parents: par
-                               });
 
                                 chaordic_meta.page.categories.push({
                                  id: $(this).attr('data-c'),
@@ -137,7 +126,7 @@ ax = {
                     chaordic_meta.product.price = data.priceproduct;
                     chaordic_meta.product.status = data.statusproduct;
                     chaordic_meta.product.specs = {"color": data.productcolors};
-                    chaordic_meta.product.specs.skus = data.productskuattr;
+                    chaordic_meta.product.skus = data.productskuattr;
                     
                     if (data.tagsproduct.length > 0) {
                         chaordic_meta.product.tags = data.tagsproduct;
@@ -233,8 +222,8 @@ ax = {
                     chaordic_meta.product.url = data.linkproduct;
                     chaordic_meta.product.description = data.descproduct;
                     chaordic_meta.product.images = {"default": data.imageproduct};
+                    chaordic_meta.product.categories = data.categoriesp;
                     
-                    chaordic_meta.product.categories = [];
                     chaordic_meta.page.categories = [];
                     var categorias = $('.breadcrumb .navigation_page a[data-c]');
                     var parents = [];
@@ -244,11 +233,6 @@ ax = {
                             parents[i] = $(this).attr('data-c');
 
                             if (i==0) {
-                               chaordic_meta.product.categories.push({
-                                 id: $(this).attr('data-c'),
-                                 name: $(this).text()
-                               });
-
                                chaordic_meta.page.categories.push({
                                  id: $(this).attr('data-c'),
                                  name: $(this).text()
@@ -257,12 +241,6 @@ ax = {
                              else {
                                 var par = [];
                                 par.push(parents[i-1]);
-
-                                chaordic_meta.product.categories.push({
-                                 id: $(this).attr('data-c'),
-                                 name: $(this).text(),
-                                 parents: par
-                               });
 
                                 chaordic_meta.page.categories.push({
                                  id: $(this).attr('data-c'),
@@ -276,7 +254,7 @@ ax = {
                     chaordic_meta.product.price = data.priceproduct;
                     chaordic_meta.product.status = data.statusproduct;
                     chaordic_meta.product.specs = {"color": data.productcolors};
-                    chaordic_meta.product.specs.skus = data.productskuattr;
+                    chaordic_meta.product.skus = data.productskuattr;
                     
                     if (data.tagsproduct.length > 0) {
                         chaordic_meta.product.tags = data.tagsproduct;

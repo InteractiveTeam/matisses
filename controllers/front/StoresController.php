@@ -286,8 +286,8 @@ class StoresControllerCore extends FrontController
 		parent::setMedia();
 		$this->addJqueryUI('ui.accordion');
 		$this->addCSS(_THEME_CSS_DIR_.'stores.css');
+        $default_country = new Country((int)Tools::getCountry());
 		$this->addJS('http'.((Configuration::get('PS_SSL_ENABLED') && Configuration::get('PS_SSL_ENABLED_EVERYWHERE')) ? 's' : '').'://maps.google.com/maps/api/js?sensor=true&region='.substr($default_country->iso_code, 0, 2));
-		$default_country = new Country((int)Tools::getCountry());
 			
 		if (!Configuration::get('PS_STORES_SIMPLIFIED'))
 		{
