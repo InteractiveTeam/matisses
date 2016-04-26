@@ -31,7 +31,7 @@
 							{if !empty($list_desc['image'])} 
 								url('{$list_desc['image']}'); 
 							{else}
-								 url('{$modules_dir}giftlist/uploads/not-found.jpg')
+								 url('{$content_dir}giftlist/uploads/not-found.jpg')
 							{/if}
 							">
 						</div>

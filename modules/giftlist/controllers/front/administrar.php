@@ -1,7 +1,7 @@
 <?php
 
 class giftlistadministrarModuleFrontController extends ModuleFrontController {
-    public $uploadDir = __DIR__. "../../../uploads/";
+    public $uploadDir =_PS_UPLOAD_DIR_."giftlist/" ;
     
     public function initContent() {
 		if(!$this->context->customer->isLogged()){
@@ -38,7 +38,8 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/validation/jquery.validate.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/validation/messages_es.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/mask/jquery.mask.min.js',
-            _MODULE_DIR_ . '/giftlist/views/js/ax-administrar.js'
+            _MODULE_DIR_ . '/giftlist/views/js/ax-administrar.js',
+            'https://www.google.com/recaptcha/api.js'
 		) );
 		$this->addCSS ( array (
             _MODULE_DIR_ . '/giftlist/views/css/vendor/datetimepicker/jquery.datetimepicker.css',
@@ -54,7 +55,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 	 * upload image from list
 	 * @return boolean|string|NULL
 	 */
-	private function _uploadImage(){
+	private function _uploadImage($id = 0){
 		if ($_FILES['image']['name'] != '') {
 			$file = Tools::fileAttachment('image');
 			$sqlExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
@@ -62,11 +63,13 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 			if(!$file || empty($file) || !in_array($file['mime'], $mimeType))
 				return false;
 			else {
+                
+                die($file['tmp_name'].$this->uploadDir . ($id != 0 ? $id : Db::getInstance()->Insert_ID()). ".". $sqlExtension);
 				move_uploaded_file($file['tmp_name'], $this->uploadDir . Db::getInstance()->Insert_ID(). ".". $sqlExtension);
 				$image_name = Db::getInstance()->Insert_ID(). ".". $sqlExtension;
 			}
 			@unlink($file);
-			return isset($image_name) ?_MODULE_DIR_."giftlist/uploads/" . $image_name : false;
+			return isset($image_name) ?_PS_UPLOAD_DIR_."giftlist/" . $image_name : false;
 		}
 		return false;
 	}
@@ -85,6 +88,13 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 		}else{
 			$list = new GiftListModel ();
 		}
+        if (!($gcaptcha = (int)(Tools::getValue('g-recaptcha-response')))){
+	       $this->context->smarty->assign ( array (
+						'response' => "CAPTCHA no verificado",
+						'error' => true
+				));
+            return true;
+        }
 		$list->id_creator = $this->context->customer->id;
 		$list->name = Tools::getValue ( 'name' );
 		$list->event_type = Tools::getValue ( 'event_type' );
@@ -114,7 +124,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 		$id == 0 ? $list->created_at = date ( "Y-m-d H:i:s" ) : $list->updated_at = date ( "Y-m-d H:i:s" );
 		try {
 			if ($list->save()){
-				$list->image = !$this->_uploadImage() ? $list->image : $this->_uploadImage();
+				$list->image = !$this->_uploadImage($id) ? $list->image : $this->_uploadImage($id);
                 $list->id_cocreator = $list->setCocreator($list-id,Tools::getValue ( 'email_cocreator' ));
                 $dirCC =  array(
                     'country' => "Colombia",
