@@ -651,7 +651,7 @@ class matisses extends Module
                 }
                 
                 $tempattr = array();
-                $tempattr['id'] = $row['id_attribute'];
+                /*$tempattr['id'] = $row['id_attribute'];*/
                 $tempattr['sku'] = $row['reference'];
                 $tempattr['specs'] = array('color' => $row['attribute_name']);
                 
@@ -712,6 +712,12 @@ class matisses extends Module
                                     'name' => $row['name'],
                                     'parents' => array($row['id_parent'])
                     ));
+                } else {
+                    array_push($parents,
+                               array(
+                                    'id' => $row['id_category'],
+                                    'name' => $row['name']
+                    )); 
                 }  
             }
             
