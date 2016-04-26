@@ -550,7 +550,7 @@ class PrestaCenterXmlExportFree extends Module
 				(SELECT `nleft`
 				FROM `'._DB_PREFIX_.'category`
 				WHERE `id_category` = '.(int) $rootCategory.'
-				LIMIT 1)
+				LIMIT 1) AND c.level_depth > 2
 			ORDER BY c.`nleft`';
 		$result = $db->query($sql);
 		if ($result === false)

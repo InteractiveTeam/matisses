@@ -26,7 +26,7 @@
 						{if !empty($row['image'])} 
 							url('{$row['image']}'); 
 						{else}
-							 url('{$modules_dir}giftlist/uploads/not-found.jpg')
+							 url('{$content_dir}giftlist/uploads/not-found.jpg')
 						{/if}
 						">
 					</div>

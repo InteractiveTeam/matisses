@@ -405,6 +405,8 @@ class CartController extends CartControllerCore
 	}
 
 	protected function processChangeProductInCartFromList() {
+//        $prod = $this-context-cart->getProducts(true);
+//        die(print_r($prod));
 		$mode = (Tools::getIsset ( 'updateFromList' ) && $this->id_product) ? 'update' : 'add';
         $params['id_product'] = $this->id_product;
 		$params['id_product_attribute'] = $this->id_product_attribute;

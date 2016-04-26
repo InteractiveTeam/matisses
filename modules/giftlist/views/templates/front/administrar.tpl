@@ -2,7 +2,13 @@
 <a href="{$list_link}">{l s='giftlist' mod='giftlist'}</a><i class="fa fa-angle-right"></i>{if $edit}{$data['name']}{else}{l s='new' mod='giftlist'}{/if}
 {/capture}
 {if version_compare($smarty.const._PS_VERSION_,'1.6.0.0','<')}{include file="$tpl_dir./breadcrumb.tpl"}{/if}
-   
+{if $error}
+    <div class="alert alert-danger" role="alert">
+        <span aria-hidden="true"></span>
+        {$response}
+    </div>
+{/if}
+
 
 <form id="frmSaveList" role="form" action="" method="post" enctype="multipart/form-data">
     {* General *}
@@ -181,6 +187,7 @@
             </div>
             {/if}
         </div>
+        <div class="g-recaptcha col-md-12" data-sitekey="6LdmTB4TAAAAAFX-jZj0FvdX0xyk4I0vBrfn2Zkh"></div>
         <div class="col-md-12">
             <input id="btnSave" type="submit" name="saveList"
                 class="btn btn-success pull-right" value="Guardar">

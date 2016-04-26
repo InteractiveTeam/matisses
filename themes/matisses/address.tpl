@@ -100,13 +100,6 @@
 					<input class="is_required validate form-control" data-validate="{$address_validation.$field_name.validate}" type="text" id="postcode" name="postcode" value="{if isset($smarty.post.postcode)}{$smarty.post.postcode}{else}{if isset($address->postcode)}{$address->postcode|escape:'html':'UTF-8'}{/if}{/if}" />
 				</div>
 			{/if}
-			{if $field_name eq 'city'}
-				<div class="required form-group grid_6">
-					<label for="city">{l s='City'} <sup>*</sup></label>
-					<input class="is_required validate form-control" data-validate="{$address_validation.$field_name.validate}" type="text" name="city" id="city" value="{if isset($smarty.post.city)}{$smarty.post.city}{else}{if isset($address->city)}{$address->city|escape:'html':'UTF-8'}{/if}{/if}" maxlength="64" />
-				</div>
-				{* if customer hasn't update his layout address, country has to be verified but it's deprecated *}
-			{/if}
 			{if $field_name eq 'Country:name' || $field_name eq 'country'}
 				<div class="required form-group grid_6">
 					<label for="id_country">{l s='Country'} <sup>*</sup></label>
