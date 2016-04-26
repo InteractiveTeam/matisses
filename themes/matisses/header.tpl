@@ -125,12 +125,11 @@
             {if !empty($tagsproduct)}
                 data.tagsproduct = {$tagsproduct};
             {/if}
-         
-            if (status == 1) {
-                data.statusproduct = 'available';   
-            } else {
+            {if $statusproduct == 1}
+                data.statusproduct = 'available';
+            {else}
                 data.statusproduct = 'unavailable';
-            }
+            {/if}
             data.productcondition = '{$productcondition}';
         {/if}
         {if $page_name == 'search'}
