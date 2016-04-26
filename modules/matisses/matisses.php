@@ -720,7 +720,7 @@ class matisses extends Module
                     )); 
                 }  
             }
-            echo "<pre>";print_r($product->available_for_order);echo "</pre>";
+           
             // assign data of product
             $this->context->smarty->assign(array(
                 'idproduct' => $product->id,
