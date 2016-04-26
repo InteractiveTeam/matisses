@@ -10,7 +10,7 @@ define("_DELETED_","Elmininado Correctamente");
 define("_EDITED_","Se ha editado la informacion");
 
 class giftlistdescripcionModuleFrontController extends ModuleFrontController {
-	public $uploadDir = __DIR__. "../../../uploads/";
+	public $uploadDir =_PS_UPLOAD_DIR_."giftlist/uploads/";
 	public $module;
 	/**
 	* Select all event types
@@ -226,7 +226,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 				$image_name = Db::getInstance()->Insert_ID(). ".". $sqlExtension;
 			}
 			@unlink($file);
-			return isset($image_name) ?_MODULE_DIR_."giftlist/uploads/" . $image_name : false;
+			return isset($image_name) ?_PS_UPLOAD_DIR_."giftlist/uploads/" . $image_name : false;
 		}
 		return false;
 	}
