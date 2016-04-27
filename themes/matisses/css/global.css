@@ -374,7 +374,7 @@ box-sizing: border-box;
         padding-right: 0;
 	}
 
-	#search.search a{
+	.search a {
         text-indent: 99em;
         display: inline-block;
         background: url("../img/icon-search.png") 0 0 no-repeat;
@@ -384,8 +384,8 @@ box-sizing: border-box;
         padding-right: 0;
 	}
 
-    .right-down-menu .highlight-close a {
-        background: url("../img/icon-search-close.png") 0 0 no-repeat;
+    .right-down-menu .highlight-close a, .right-up-menu .highlight-close a {
+        background: url("../img/icon-search-close.png") center no-repeat #ededed !important;
     }
 
 	#chat > a {

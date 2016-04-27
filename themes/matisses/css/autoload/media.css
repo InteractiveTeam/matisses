@@ -938,8 +938,16 @@
 	#search {
 		position: absolute;
         right: 100%;
-        padding: 16px;
 	}
+    
+    #search a {
+        text-indent: 99em;
+        display: inline-block;
+        background-position: center;
+        height: 31px;
+        width: 31px;
+        padding: 31px 28px;
+    }
     
 	.shopping_cart{
 		background: none;
@@ -1841,7 +1849,7 @@
         height: 62px;
     }
     
-    .right-down-menu .highlight-close a {
+    .right-down-menu .highlight-close a, .right-up-menu .highlight-close a {
         background: url("../../img/icon-search.png") center no-repeat #ededed;
     }
     
