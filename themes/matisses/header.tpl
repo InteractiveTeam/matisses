@@ -119,7 +119,11 @@
             data.descproduct = '{$descproduct}';
             data.imageproduct = '{$imageproduct}';
             data.categoriesp = {$categoriesp};
-            data.priceproduct = {$priceproduct};
+            {if !empty($priceproduct)}
+                data.priceproduct = {$priceproduct};
+            {else}
+                data.priceproduct = 0;
+            {/if}
             data.productcolors = {$productcolors};
             data.productskuattr = {$productskuattr};
             {if !empty($tagsproduct)}
