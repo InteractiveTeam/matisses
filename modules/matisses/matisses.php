@@ -731,7 +731,7 @@ class matisses extends Module
 				'priceproduct' => $product->getPriceWithoutReduct(),
                 'categoriesp' => json_encode($categoriesp),
                 'tagsproduct' => json_encode($tagsproduct),
-				'statusproduct' => $product->quantity,
+				'statusproduct' => $product->getQuantity($product->id),
                 'productcondition' => $product->condition,
                 'parents' => json_encode($parents)
 		    ));
