@@ -129,6 +129,7 @@
             {if !empty($tagsproduct)}
                 data.tagsproduct = {$tagsproduct};
             {/if}
+            console.log({$statusproduct});
             {if $statusproduct > 0}
                 data.statusproduct = 'available';
             {else}
