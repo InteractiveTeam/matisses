@@ -2047,6 +2047,14 @@
 }
 
 @media screen and (max-width :380px) {
+    
+    .bottom-pagination-content {
+        width: 100% !important;
+    }
+    
+    .bottom-pagination-content ul.pagination li > a, .bottom-pagination-content ul.pagination li > span {
+        line-height: 12px;
+    }
 
 	#user {
 		position:relative;

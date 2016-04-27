@@ -4665,7 +4665,7 @@ body.new-products {
 
 /*Página parrilla productos*/
 	.parrilla-productos {
-	margin: 2.5rem 0;
+	margin: 2.5rem 0 3.7rem 0;
 	}
 
 
@@ -5126,4 +5126,21 @@ a.ayo-btn{
 a.newPrint:hover {
     background: #d7162f !important;
     opacity:1 !important;
+}
+
+#image-block .wrap_image_block #view_full_size {
+    width: 100%;
+    height: 100%;
+}
+
+.pb-left-column #image-block .zoomPad {
+    width: 100%;
+}
+
+.zoomWindow {
+    box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.32);
+}
+
+.create-account p {
+    margin-bottom: 1.85rem !important;
 }
