@@ -51,6 +51,7 @@ class PrestaCenterXmlExportFree extends Module
 		'days'				=> array('key' => 'id_lang'),
 		'availability'		=> array('helper' => 'availability|clean|escape'),
 		'reference'			=> array('helper' => 'clean|escape', ),
+		'reference_product'			=> array('helper' => 'clean|escape', ),
 		'supplier_reference'=> array('helper' => 'clean|escape', ),
 		'update_feed'		=> array('context' => self::CONTEXT_ALL, 'helper' => 'ftime'),
 		'update_item'		=> array('helper' => 'ftime'),
@@ -392,63 +393,68 @@ class PrestaCenterXmlExportFree extends Module
 		$product = new Product;
 		$properties = array_flip(array_keys(get_object_vars($product))); 
 		while ($row = $db->nextRow($result)) {
-			if ($row['id_product'] != $lastProductId) {
-				if ($lastProductId > 0) {
-					$this->writeProduct($tmp, $product);
-				}
-				$lastProductId = $row['id_product'];
-				$tmp = $row;
-				$tmp['id']					= $row['id_product'];
-				$tmp['ean']					= $row['ean13'];
-				$tmp['update_item']			= strtotime($row['date_upd']);
-				$tmp['availability']		= ''; 
-				$tmp['days']			= array();
-				$tmp['available_now']	= array();
-				$tmp['available_later'] = array();
-				$tmp['url']				= array();
-				$tmp['name']			= array();
-				$tmp['name_variant']	= array();
-				$tmp['categories']		= array();
-				$tmp['link_rewrite']	= array();
-				$tmp['img_url']			= array();
-				$tmp['description']		= array();
-				$tmp['description_short']	= array();
-				$tmp['price_vat']		= array();
-				$tmp['price_vat_local'] = array();
-				$tmp['price_vat_iso']	= array();
-			}
-			$product->id = $row['id_product'];
-			$product->category = null;
-			$tmp['categories'][$row['id_lang']] = null;
-			foreach ($row as $key => $value) {
-				if (isset($properties[$key])) {
-					$product->$key = $value;
-				}
-			}
-			if (!empty($this->categories['rewriteLink'][$row['id_category_default']][$row['id_lang']])) {
-				$product->category = $this->categories['rewriteLink'][$row['id_category_default']][$row['id_lang']];
-			}
-			if (!empty($this->categories['breadcrumb'][$row['id_category_default']][$row['id_lang']])) {
-				$tmp['categories'][$row['id_lang']] = $this->categories['breadcrumb'][$row['id_category_default']][$row['id_lang']];
-			}
-			$tmp['name'][$row['id_lang']] = $row['name'];
-			$tmp['description'][$row['id_lang']] = $row['description'];
-			$tmp['description_short'][$row['id_lang']] = $row['description_short'];
-			$tmp['available_now'][$row['id_lang']] = $row['available_now'];
-			$tmp['available_later'][$row['id_lang']] = $row['available_later'];
-			$tmp['link_rewrite'][$row['id_lang']] = $row['link_rewrite'];
-			$this->context->language = $this->languages[$row['id_lang']];
-			if ($this->exportInfo['rewrite'] == 1) {
-				$tmp['url'][$row['id_lang']] = $this->context->link->getProductLink($product, null, null, $row['ean13'], $row['id_lang'], null, 0, true);
-				$tmp['img_url'][$row['id_lang']] = !empty($row['id_image']) ? $this->context->link->getImageLink($row['link_rewrite'], $row['id_image'], $this->exportInfo['imgType']) : '';
-			} else {
-				$tmp['url'][$row['id_lang']] = $this->context->link->getProductLink($product, null, null, $row['ean13'], $row['id_lang'], null, 0, false);
-				$tmp['img_url'][$row['id_lang']] = !empty($row['id_image']) ? $this->context->link->getImageLink('', $row['id_image'], $this->exportInfo['imgType']) : '';
-			}
-			if ($row['quantity'] > 0)
-				$tmp['days'][$row['id_lang']] = preg_match('~(\d+)~', $row['available_now'], $m) ? $m[1] : 0;
-			else
-				$tmp['days'][$row['id_lang']] = preg_match('~(\d+)~', $row['available_later'], $m) ? $m[1] : '';
+            $product->id = $row['id_product'];
+            $allrefer = $product->getAttributeCombinaisons($row['id_lang']);
+            
+			foreach($allrefer as $inrefer) {
+                    if ($lastProductId > 0) {
+                        $this->writeProduct($tmp, $product);
+                    }
+                    $lastProductId = $row['id_product'];
+                    $tmp = $row;
+                    $tmp['id']					= $row['id_product'];
+                    $tmp['ean']					= $row['ean13'];
+                    $tmp['update_item']			= strtotime($row['date_upd']);
+                    $tmp['availability']		= ''; 
+                    $tmp['days']			= array();
+                    $tmp['available_now']	= array();
+                    $tmp['available_later'] = array();
+                    $tmp['url']				= array();
+                    $tmp['name']			= array();
+                    $tmp['name_variant']	= array();
+                    $tmp['categories']		= array();
+                    $tmp['link_rewrite']	= array();
+                    $tmp['img_url']			= array();
+                    $tmp['description']		= array();
+                    $tmp['description_short']	= array();
+                    $tmp['price_vat']		= array();
+                    $tmp['price_vat_local'] = array();
+                    $tmp['price_vat_iso']	= array();
+                    $tmp['reference_product'] = $inrefer['reference'];
+                
+                $product->id = $row['id_product'];
+                $product->category = null;
+                $tmp['categories'][$row['id_lang']] = null;
+                foreach ($row as $key => $value) {
+                    if (isset($properties[$key])) {
+                        $product->$key = $value;
+                    }
+                }
+                if (!empty($this->categories['rewriteLink'][$row['id_category_default']][$row['id_lang']])) {
+                    $product->category = $this->categories['rewriteLink'][$row['id_category_default']][$row['id_lang']];
+                }
+                if (!empty($this->categories['breadcrumb'][$row['id_category_default']][$row['id_lang']])) {
+                    $tmp['categories'][$row['id_lang']] = $this->categories['breadcrumb'][$row['id_category_default']][$row['id_lang']];
+                }
+                $tmp['name'][$row['id_lang']] = $row['name'];
+                $tmp['description'][$row['id_lang']] = $row['description'];
+                $tmp['description_short'][$row['id_lang']] = $row['description_short'];
+                $tmp['available_now'][$row['id_lang']] = $row['available_now'];
+                $tmp['available_later'][$row['id_lang']] = $row['available_later'];
+                $tmp['link_rewrite'][$row['id_lang']] = $row['link_rewrite'];
+                $this->context->language = $this->languages[$row['id_lang']];
+                if ($this->exportInfo['rewrite'] == 1) {
+                    $tmp['url'][$row['id_lang']] = $this->context->link->getProductLink($product, null, null, $row['ean13'], $row['id_lang'], null, 0, true);
+                    $tmp['img_url'][$row['id_lang']] = !empty($row['id_image']) ? $this->context->link->getImageLink($row['link_rewrite'], $row['id_image'], $this->exportInfo['imgType']) : '';
+                } else {
+                    $tmp['url'][$row['id_lang']] = $this->context->link->getProductLink($product, null, null, $row['ean13'], $row['id_lang'], null, 0, false);
+                    $tmp['img_url'][$row['id_lang']] = !empty($row['id_image']) ? $this->context->link->getImageLink('', $row['id_image'], $this->exportInfo['imgType']) : '';
+                }
+                if ($row['quantity'] > 0)
+                    $tmp['days'][$row['id_lang']] = preg_match('~(\d+)~', $row['available_now'], $m) ? $m[1] : 0;
+                else
+                    $tmp['days'][$row['id_lang']] = preg_match('~(\d+)~', $row['available_later'], $m) ? $m[1] : '';
+            }
 		}
 		if ($tmp) {
 			$this->writeProduct($tmp, $product);

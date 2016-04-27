@@ -727,7 +727,7 @@ class matisses extends Module
                 'nameproduct' => $product->getProductName($product->id),
                 'linkproduct' => $product->getLink(),
                 'descproduct' => strip_tags($product->description[1]),
-				'imageproduct' => $link->getImageLink($product->link_rewrite[1], (int)$images[0]["id_image"], 'home_default'),
+				'imageproduct' => $link->getImageLink($product->link_rewrite[1], (int)$images[0]["id_image"], 'large_default'),
 				'priceproduct' => $product->getPriceWithoutReduct(),
                 'categoriesp' => json_encode($categoriesp),
                 'tagsproduct' => json_encode($tagsproduct),

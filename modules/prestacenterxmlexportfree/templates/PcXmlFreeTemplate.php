@@ -262,30 +262,29 @@ class PcXmlFreeTemplate
 	{ 
 		$output = ''
 		.'<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss xmlns:date="http://exslt.org/dates-and-times" xmlns:g="http://base.google.com/ns/1.0" version="2.0"><channel>'
-		.($this->common['shop_name'] !== '' ? '<title>'.($this->common['shop_name'] !== '' ? $this->helperEscape(44, $this->helperStrip(44, $this->common['shop_name'])) : '').'</title>' : '')
-		.($this->common['shop_url'] !== '' ? '<link>'.($this->common['shop_url'] !== '' ? $this->helperEscape(45, $this->helperStrip(45, $this->common['shop_url'])) : '').'</link>' : '')
-		.($this->common['update_feed'] !== '' ? '<last_build_date>'.($this->common['update_feed'] !== '' ? $this->helperEscape(46, $this->helperFtime(46, $this->common['update_feed'])) : '').'</last_build_date>' : '')."\n"; 
+		.'<title>'.$this->helperEscape(44, $this->helperStrip(44, $this->common['shop_name'])).'</title>'
+		.'<link>'.$this->helperEscape(45, $this->helperStrip(45, $this->common['shop_url'])).'</link>'
+		.'<last_build_date>'.$this->helperEscape(46, $this->helperFtime(46, $this->common['update_feed'])).'</last_build_date>'."\n"; 
 		return $output; 
 	} 
 
 	public function feed4product(array $product = array()) 
 	{ 
-		$product['availability'] = $this->generatorAvailability(54, $product['availability'], 'in stock, on order, sold out');
+		$product['availability'] = $this->generatorAvailability(55, $product['availability'], 'in stock, on order, sold out');
 		$output = ''
 		.'<item>'
-		.($product['reference'] !== '' ? '<g:id>'.($product['reference'] !== '' ? $this->helperEscape(47, $this->helperClean(47, $product['reference'])) : '').'</g:id>' : '')
-		.($product['name'][$this->feedVars['id_lang']] !== '' ? '<title>'.($product['name'][$this->feedVars['id_lang']] !== '' ? $this->helperEscape(48, $this->helperClean(48, $product['name'][$this->feedVars['id_lang']])) : '').'</title>' : '')
-		.($product['description_short'][$this->feedVars['id_lang']] !== '' ? '<description>'.($product['description_short'][$this->feedVars['id_lang']] !== '' ? $this->helperEscape(49, $this->helperClean(49, $product['description_short'][$this->feedVars['id_lang']])) : '').'</description>' : '')
-		.'<g:google_product_category></g:google_product_category>'
-		.($product['categories'][$this->feedVars['id_lang']] !== '' ? '<g:product_type>'.($product['categories'][$this->feedVars['id_lang']] !== '' ? $this->helperEscape(50, $this->helperClean(50, $product['categories'][$this->feedVars['id_lang']])) : '').'</g:product_type>' : '')
-		.($product['url'][$this->feedVars['id_lang']] !== '' ? '<link>'.($product['url'][$this->feedVars['id_lang']] !== '' ? $this->helperEscape(51, $this->helperStrip(51, $product['url'][$this->feedVars['id_lang']])) : '').'</link>' : '')
-		.($product['img_url'][$this->feedVars['id_lang']] !== '' ? '<g:image_link>'.($product['img_url'][$this->feedVars['id_lang']] !== '' ? $this->helperEscape(52, $this->helperStrip(52, $product['img_url'][$this->feedVars['id_lang']])) : '').'</g:image_link>' : '')
-		.($product['condition'] !== '' ? '<g:condition>'.($product['condition'] !== '' ? $this->helperEscape(53, $this->helperCondition(53, $this->helperClean(53, $product['condition'], 'new,used,refurbished'), 'new,used,refurbished')) : '').'</g:condition>' : '')
-		.($product['availability'] !== '' ? '<g:availability>'.($product['availability'] !== '' ? $this->helperEscape(54, $this->helperClean(54, $product['availability'], 'in stock, on order, sold out')) : '').'</g:availability>' : '')
-		.($product['price_vat_iso'][$this->feedVars['id_currency']] !== '' ? '<g:price>'.($product['price_vat_iso'][$this->feedVars['id_currency']] !== '' ? $this->helperEscape(55, $product['price_vat_iso'][$this->feedVars['id_currency']]) : '').'</g:price>' : '')
-		.($product['ean'] !== '' ? '<g:gtin>'.($product['ean'] !== '' ? $this->helperEscape(56, $product['ean']) : '').'</g:gtin>' : '')
-		.($product['manufacturer'] !== '' ? '<g:brand>'.($product['manufacturer'] !== '' ? $this->helperEscape(57, $this->helperStrip(57, $product['manufacturer'])) : '').'</g:brand>' : '')
-		.($product['id'] !== '' ? '<g:item_group_id>'.($product['id'] !== '' ? $this->helperEscape(58, $product['id']) : '').'</g:item_group_id>' : '')
+		.'<g:item_group_id>'.$this->helperEscape(47, $product['id']).'</g:item_group_id>'
+		.'<g:id>'.$this->helperEscape(48, $this->helperClean(48, $product['reference_product'])).'</g:id>'
+		.'<title>'.$this->helperEscape(49, $this->helperClean(49, $product['name'][$this->feedVars['id_lang']])).'</title>'
+		.'<description>'.$this->helperEscape(50, $this->helperClean(50, $product['description'][$this->feedVars['id_lang']])).'</description>'
+		.'<g:product_type>'.$this->helperEscape(51, $this->helperClean(51, $product['categories'][$this->feedVars['id_lang']])).'</g:product_type>'
+		.'<link>'.$this->helperEscape(52, $this->helperStrip(52, $product['url'][$this->feedVars['id_lang']])).'</link>'
+		.'<g:image_link>'.$this->helperEscape(53, $this->helperStrip(53, $product['img_url'][$this->feedVars['id_lang']])).'</g:image_link>'
+		.'<g:condition>'.$this->helperEscape(54, $this->helperCondition(54, $this->helperClean(54, $product['condition'], 'new,used,refurbished'), 'new,used,refurbished')).'</g:condition>'
+		.'<g:availability>'.$this->helperEscape(55, $this->helperClean(55, $product['availability'], 'in stock, on order, sold out')).'</g:availability>'
+		.'<g:price>'.$this->helperEscape(56, $product['price_vat_iso'][$this->feedVars['id_currency']]).'</g:price>'
+		.'<g:gtin>'.$this->helperEscape(57, $product['ean']).'</g:gtin>'
+		.'<g:brand>'.$this->helperEscape(58, $this->helperStrip(58, $product['manufacturer'])).'</g:brand>'
 		.'</item>'."\n"; 
 		return $output; 
 	} 
