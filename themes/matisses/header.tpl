@@ -129,7 +129,7 @@
             {if !empty($tagsproduct)}
                 data.tagsproduct = {$tagsproduct};
             {/if}
-            {if $statusproduct == 1}
+            {if $statusproduct > 0}
                 data.statusproduct = 'available';
             {else}
                 data.statusproduct = 'unavailable';
