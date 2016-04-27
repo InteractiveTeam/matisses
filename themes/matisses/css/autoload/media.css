@@ -314,7 +314,6 @@
 	.top-pagination-content ul.pagination li > a, .top-pagination-content ul.pagination li > span,
 	.bottom-pagination-content ul.pagination li > a, .bottom-pagination-content ul.pagination li > span{
 		line-height: 30px;
-		height: 30px;
 	}
 	.top-pagination-content ul.pagination li.pagination_previous > span,
 	.top-pagination-content ul.pagination li.pagination_next > span,
@@ -939,6 +938,7 @@
 	#search {
 		position: absolute;
         right: 100%;
+        padding: 16px;
 	}
     
 	.shopping_cart{
@@ -1753,6 +1753,7 @@
     
     .menu-left .left-down-menu {
         width: 140%;
+        position: inherit;
     }
     
     .left-down-menu #block_top_menu {
@@ -2038,6 +2039,7 @@
     .nbrItemPage.category-right.grid_4.alpha {
         width: 100%;
         height: auto;
+        margin: 10px 0;
     }
     
     .popular {
@@ -2148,7 +2150,7 @@
 	}
 
 	.header-container {
-		height: 215px;
+		height: 235px;
 	}
 
 	.header_user_info .content-user > a {
@@ -2553,10 +2555,6 @@
 		bottom: -44px;
 		width: auto;
 		height: 44px;
-	}
-
-	.top-pagination-content ul.pagination li > a, .top-pagination-content ul.pagination li > span {
-		line-height: 14px;
 	}
 
 	/*Busqueda*/
@@ -3045,6 +3043,10 @@
     
     .description-news .new-author p {
         margin: 0.3125rem 0 0.125rem 1rem;
+    }  
+        
+    .top-pagination-content .pagination > li > a, .top-pagination-content .pagination > li > span {
+        padding: 0 0.9375rem;
     }
 }
 
@@ -3058,4 +3060,8 @@
     #new-products_block_right .products-block .bx-viewport .product_list.grid .product-container {
         width: 290px !important;
     }
+    
+    .header-container {
+		height: 215px;
+	}
 }
