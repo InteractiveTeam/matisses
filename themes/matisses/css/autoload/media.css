@@ -314,7 +314,6 @@
 	.top-pagination-content ul.pagination li > a, .top-pagination-content ul.pagination li > span,
 	.bottom-pagination-content ul.pagination li > a, .bottom-pagination-content ul.pagination li > span{
 		line-height: 30px;
-		height: 30px;
 	}
 	.top-pagination-content ul.pagination li.pagination_previous > span,
 	.top-pagination-content ul.pagination li.pagination_next > span,
@@ -2038,6 +2037,7 @@
     .nbrItemPage.category-right.grid_4.alpha {
         width: 100%;
         height: auto;
+        margin: 10px 0;
     }
     
     .popular {
@@ -2555,10 +2555,6 @@
 		height: 44px;
 	}
 
-	.top-pagination-content ul.pagination li > a, .top-pagination-content ul.pagination li > span {
-		line-height: 14px;
-	}
-
 	/*Busqueda*/
 
 	.header-container .main_panel.cf {
@@ -3045,6 +3041,10 @@
     
     .description-news .new-author p {
         margin: 0.3125rem 0 0.125rem 1rem;
+    }  
+        
+    .top-pagination-content .pagination > li > a, .top-pagination-content .pagination > li > span {
+        padding: 0 0.9375rem;
     }
 }
 

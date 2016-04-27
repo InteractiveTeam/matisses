@@ -449,7 +449,7 @@ function FilterRp() {
     }else {
         $('.parrilla-productos #layered_block_left').show();
     }
-
+l
 } 
 
 FilterRp()
