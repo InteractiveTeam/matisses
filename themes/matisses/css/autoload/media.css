@@ -938,6 +938,7 @@
 	#search {
 		position: absolute;
         right: 100%;
+        padding: 16px;
 	}
     
 	.shopping_cart{
@@ -1752,6 +1753,7 @@
     
     .menu-left .left-down-menu {
         width: 140%;
+        position: inherit;
     }
     
     .left-down-menu #block_top_menu {
@@ -2148,7 +2150,7 @@
 	}
 
 	.header-container {
-		height: 215px;
+		height: 235px;
 	}
 
 	.header_user_info .content-user > a {
@@ -3058,4 +3060,8 @@
     #new-products_block_right .products-block .bx-viewport .product_list.grid .product-container {
         width: 290px !important;
     }
+    
+    .header-container {
+		height: 215px;
+	}
 }
