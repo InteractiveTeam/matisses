@@ -4639,6 +4639,7 @@ body.new-products {
 
     .content_sortPagiBar.clearfix.bottom_pagi, .content_sortPagiBar.cf.grid_12.alpha.omega {
         position: absolute;
+        width: 100%;
     }
 
     .center_column .product_list {

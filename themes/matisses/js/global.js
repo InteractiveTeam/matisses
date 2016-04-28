@@ -446,10 +446,10 @@ function FilterRp() {
         $('#layered_block_left').hide();
         $('.ax-btn-filter').prependTo($('.parrilla-productos'));
         $('.ax-block-content').append($('.ax-blog-select-category'));
-        $('.search').prependTo($('.right-up-menu ul'));
+        $('.right-down-menu .search').prependTo($('.right-up-menu > ul'));
     }else {
         $('.parrilla-productos #layered_block_left').show();
-        $('.search').appendTo($('.right-down-menu ul'));
+        $('.right-down-menu > ul li:eq(1)').after($('.right-up-menu .search'))
     }
 } 
 
