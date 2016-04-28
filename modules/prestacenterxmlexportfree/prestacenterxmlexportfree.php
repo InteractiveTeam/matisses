@@ -422,7 +422,6 @@ class PrestaCenterXmlExportFree extends Module
                     $tmp['price_vat_iso']	= array();
                     $tmp['reference_product'] = $inrefer['reference'];
                 
-                $product->id = $row['id_product'];
                 $product->category = null;
                 $tmp['categories'][$row['id_lang']] = null;
                 foreach ($row as $key => $value) {
@@ -430,12 +429,27 @@ class PrestaCenterXmlExportFree extends Module
                         $product->$key = $value;
                     }
                 }
-                if (!empty($this->categories['rewriteLink'][$row['id_category_default']][$row['id_lang']])) {
+                /*if (!empty($this->categories['rewriteLink'][$row['id_category_default']][$row['id_lang']])) {
                     $product->category = $this->categories['rewriteLink'][$row['id_category_default']][$row['id_lang']];
                 }
                 if (!empty($this->categories['breadcrumb'][$row['id_category_default']][$row['id_lang']])) {
                     $tmp['categories'][$row['id_lang']] = $this->categories['breadcrumb'][$row['id_category_default']][$row['id_lang']];
+                }*/
+                // categories
+                $cat = Product::getProductCategoriesFull($product->id,$row['id_lang']);
+                
+                $cont = 0;
+                $allcat = count($cat);
+                
+                foreach($cat as $catprod){
+                    $cont++;      
+                    if ($cont == $allcat) {
+                        $tmp['categories'][$row['id_lang']] .= $catprod['name'];   
+                    } else {
+                        $tmp['categories'][$row['id_lang']] .= $catprod['name'].' | ';
+                    }
                 }
+                
                 $tmp['name'][$row['id_lang']] = $row['name'];
                 $tmp['description'][$row['id_lang']] = $row['description'];
                 $tmp['description_short'][$row['id_lang']] = $row['description_short'];
