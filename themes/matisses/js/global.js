@@ -450,6 +450,7 @@ function FilterRp() {
     }else {
         $('.parrilla-productos #layered_block_left').show();
         $('.right-down-menu > ul li:eq(1)').after($('.right-up-menu .search'))
+        
     }
 } 
 

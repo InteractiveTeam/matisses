@@ -4353,13 +4353,9 @@ line-height: 1.5;
 
 .supply-warranty .grid_4 .form-group a {
 	color: #d7162f;
-    float: right;
-    font-family: 'Open Sans condensed', sans-serif;
-    text-decoration: none;
-    margin: 0;
-    border: #ccc solid 1px;
-    padding: 5px 7px;
-    background: #F5F5F5;
+	float: right;
+	font-family: 'Open Sans condensed', sans-serif;
+	text-decoration: underline;
 }
 
 .supply-warranty .grid_8 .form-group input, .supply-warranty .grid_8 .form-group label {
