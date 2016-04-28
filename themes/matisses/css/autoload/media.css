@@ -1210,6 +1210,15 @@
 	#HOOK_PAYMENT .row .col-md-6 {
 		width: 100%;
 	}
+    
+    .content_sortPagiBar.bottom_pagi {
+        position: absolute;
+        width: 734.25px;
+    }
+    
+    .bottom-pagination-content ul.pagination li > span, .bottom-pagination-content ul.pagination li > a {
+        padding: 0 0.9375rem;
+    }
 
 }
 
@@ -1837,6 +1846,20 @@
         width: 100%;
     }
     
+    .content_sortPagiBar.bottom_pagi {
+        position: absolute;
+        width: 542.25px;
+    }
+    
+    #columns .parrilla-productos .sortPagiBar form label {
+        padding: 0 0.4375rem;
+        height: 32px;
+    }
+    
+    #columns .parrilla-productos #selectProductSort_chosen {
+        width: 7.87rem !important;
+    }
+    
 }
 
 @media screen and (max-width :480px) {
@@ -2058,8 +2081,12 @@
 
 @media screen and (max-width :380px) {
     
-    .content_sortPagiBar.clearfix.bottom_pagi, .content_sortPagiBar.cf.grid_12.alpha.omega {
-        position: inherit;
+    .content_sortPagiBar.bottom_pagi {
+        width: 320px;
+    }
+    
+    .parrilla-productos {
+        margin: 2.5rem 0 7.7rem 0;
     }
     
     .bottom-pagination-content {
