@@ -115,7 +115,7 @@
 			</div>
 		</div>
 			{include file="./product-list.tpl" products=$products categoryname=$category->name}
-			<div class="content_sortPagiBar cf grid_12 alpha omega">
+			<div class="content_sortPagiBar cf grid_12 alpha omega bottom_pagi">
 				<div class="sortPagiBar grid_9 alpha omega">
 					{include file="./product-compare.tpl" paginationId='bottom'}
 					{include file="./product-sort.tpl" paginationId='bottom'}

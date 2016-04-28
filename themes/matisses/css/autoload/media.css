@@ -2058,6 +2058,10 @@
 
 @media screen and (max-width :380px) {
     
+    .content_sortPagiBar.clearfix.bottom_pagi, .content_sortPagiBar.cf.grid_12.alpha.omega {
+        position: inherit;
+    }
+    
     .bottom-pagination-content {
         width: 100% !important;
     }
@@ -2095,6 +2099,7 @@
     .bx-wrapper .bx-viewport li img {
         max-width: 185% !important;
         margin-left: -50%;
+        width: 185% !important;
     }
     
     .new-products .product-content, .new-products .wrap_image_left {
@@ -2439,7 +2444,7 @@
 	.newsletter-footer .newsletter-input {
 		border-right: 1px solid #fff;
         border-left: 1px solid #fff;
-		width: 100%;
+		width: 95%;
 		padding: 0 0;
 	}
 
