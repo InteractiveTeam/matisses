@@ -4223,7 +4223,7 @@ width:109%;
 }
 
 /*GARANTIA*/
-.scroll-left.scroll-pane.mCustomScrollbar._mCS_1 {
+.scroll-left.scroll-pane.mCustomScrollbar {
 border: #E1E1E1 solid 1px;
 padding: 15px;
 font-family: 'Open Sans', sans-serif;
@@ -4259,6 +4259,10 @@ line-height: 1.5;
 
 .supply-warranty .grid_4 .mCSB_container .damage {
 	margin-bottom: 0rem;
+}
+
+.supply-warranty .grid_4 > div > a {
+    margin-top: 20px;
 }
 
 /*COMPRA
@@ -4349,9 +4353,13 @@ line-height: 1.5;
 
 .supply-warranty .grid_4 .form-group a {
 	color: #d7162f;
-	float: right;
-	font-family: 'Open Sans condensed', sans-serif;
-	text-decoration: underline;
+    float: right;
+    font-family: 'Open Sans condensed', sans-serif;
+    text-decoration: none;
+    margin: 0;
+    border: #ccc solid 1px;
+    padding: 5px 7px;
+    background: #F5F5F5;
 }
 
 .supply-warranty .grid_8 .form-group input, .supply-warranty .grid_8 .form-group label {
