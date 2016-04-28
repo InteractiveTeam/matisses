@@ -51,7 +51,7 @@ class PrestaCenterXmlExportFree extends Module
 		'days'				=> array('key' => 'id_lang'),
 		'availability'		=> array('helper' => 'availability|clean|escape'),
 		'reference'			=> array('helper' => 'clean|escape', ),
-		'reference_product'			=> array('helper' => 'clean|escape', ),
+		'reference_product'	=> array('helper' => 'clean|escape', ),
 		'supplier_reference'=> array('helper' => 'clean|escape', ),
 		'update_feed'		=> array('context' => self::CONTEXT_ALL, 'helper' => 'ftime'),
 		'update_item'		=> array('helper' => 'ftime'),
