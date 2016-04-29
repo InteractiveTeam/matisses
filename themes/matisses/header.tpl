@@ -101,12 +101,16 @@
             data.username = '{$customeremail}';
             data.customeremail = '{$customeremail}';
             data.customercharter = '{$customercharter}';
-            var newl = {$customernewsletter};
-            if (newl == 1) {
-                data.newsletter = true;   
-            } else {
+            {if !empty($customernewsletter)}
+                var newl = {$customernewsletter};
+                if (newl == 1) {
+                    data.newsletter = true;   
+                } else {
+                    data.newsletter = false;
+                }
+            {else}
                 data.newsletter = false;
-            }
+            {/if}
         {/if}
         {if $page_name == 'index'}
             data.emailsubscribe = '{$emailsubscribe}';

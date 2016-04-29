@@ -676,13 +676,112 @@ class matisses extends Module
             }
             
             // categories
+            /*$fullCategories = array();
+            
             foreach($cat as $row){
+                
+                $categ = new Category($row['id_category']);
+                $parent = $categ->getParentsCategories($this->context->language->id);
+                
+                foreach ($parent as $cparents) {
+                    
+                    if ($cparents['level_depth'] > 2) {
+                        echo "hola";
+                        foreach ($fullCategories as $main) {
+                            
+                            if ($cparents['id_category'] != $main['id']) {
+                                array_push($fullCategories, array(
+                                    'id' => $cparents['id_category'],
+                                    'name' => $cparents['name']
+                                ));
+                            }
+                            
+                        }
+                        
+                    }         
+                }
+                
+                echo "<pre>"; print_r($fullCategories); echo "</pre>"; die();
+                
                 array_push($categoriesp, 
                            array(
                                'id' => $row['id_category'],
                                 'name' => $row['name']
                             ));
             }
+            
+            echo "<pre>"; print_r($categoriesp); echo "</pre>"; die();*/
+            $categoriesForMeta = array();
+            
+            foreach($cat as $row){
+                $categ = new Category($row['id_category']);
+                $parent = $categ->getParentsCategories($this->context->language->id);
+                
+                if ($categ->level_depth > 2) {
+                    $exist = false;
+                    foreach($categoriesForMeta as $cf){
+                        if ($parent[2]['level_depth'] > 2) {
+                            if($cf['id'] == $parent[2]['id_category']){
+                                $exist = true;
+                            }
+                        }
+                    }
+                    if(!$exist){
+                        if ($parent[2]['level_depth'] > 2) {
+                            array_push($categoriesForMeta, array(
+                                'id' => $parent[2]['id_category'],
+                                'name' => $parent[2]['name']
+                            ));   
+                        }
+                    }
+                    $exist = false;
+                    foreach($categoriesForMeta as $cf){
+                        if ($parent[1]['level_depth'] > 2) {
+                            if($cf['id'] == $parent[1]['id_category']){
+                                $exist = true;
+                            }
+                        }
+                    }
+                    if(!$exist){
+                        if ($parent[1]['level_depth'] > 2) {
+                            array_push($categoriesForMeta, array(
+                                'id' => $parent[1]['id_category'],
+                                'name' => $parent[1]['name'],
+                                'parents' => array($parent[2]['id_category'])
+                            ));   
+                        }
+                    }
+                     if ($parent[0]['level_depth'] > 3) {
+                         array_push($categoriesForMeta, array(
+                            'id' => $parent[0]['id_category'],
+                            'name' => $parent[0]['name'],
+                            'parents' => array($parent[1]['id_category'])
+                        ));   
+                     } else {
+                         array_push($categoriesForMeta, array(
+                            'id' => $parent[0]['id_category'],
+                            'name' => $parent[0]['name'],
+                        ));
+                     }
+                }
+            }
+            /*            
+            $fullCategories = array();
+            $i = 0;
+            foreach($categoriesForMeta as $catproduct) {
+                                    
+                if (!isset($catproduct['parents'][0])) {
+                    $i++;
+                }
+                
+                if (isset($catproduct['parents'][0])) {
+                    $fullCategories[$i][] = $catproduct;                    
+                } 
+            }*/
+            
+            /*echo "<pre>"; print_r($fullCategories); echo "</pre><hr>"; 
+            
+            echo "<pre>"; print_r($categoriesForMeta); echo "</pre>"; die();*/
             
             //tags
             foreach($tags as $tag){
@@ -729,7 +828,7 @@ class matisses extends Module
                 'descproduct' => strip_tags($product->description[1]),
 				'imageproduct' => $link->getImageLink($product->link_rewrite[1], (int)$images[0]["id_image"], 'large_default'),
 				'priceproduct' => $product->getPriceWithoutReduct(),
-                'categoriesp' => json_encode($categoriesp),
+                'categoriesp' => json_encode($categoriesForMeta),
                 'tagsproduct' => json_encode($tagsproduct),
 				'statusproduct' => $product->getQuantity($product->id),
                 'productcondition' => $product->condition,
