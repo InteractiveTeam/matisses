@@ -217,12 +217,12 @@
 		                <li id="chat" class="chat">
 			            	<!-- This code must be installed within the body tags -->
 			            	<script type="text/javascript">
-			                var lhnAccountN = "27089-1";
+			                var lhnAccountN = "LHN24694";
 			                var lhnButtonN = 4827;
 			                var lhnChatPosition = 'righttab';
 			                var lhnInviteEnabled = 1;
-			                var lhnWindowN = 0;
-			                var lhnDepartmentN = 0;
+			                var lhnWindowN = 27112;
+			                var lhnDepartmentN = 29011;
 			                var lhnChatPositionYVal = 150;
 							var comparedProductsIds = 0;
 			            	</script>
