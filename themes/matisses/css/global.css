@@ -365,27 +365,28 @@ box-sizing: border-box;
     }
 
 	.right-down-menu .search a{
-        text-indent: 99em;
         display: inline-block;
-        background: url("../img/icon-search.png") 0 0 no-repeat;
+        font-family: FontAwesome;
         height: 31px;
         width: 31px;
-        padding-top: 10px;
-        padding-right: 0;
+        padding:0;
+        color: #D9292E;
+        font-size: 28px;
 	}
 
 	.search a {
-        text-indent: 99em;
         display: inline-block;
-        background: url("../img/icon-search.png") 0 0 no-repeat;
+        font-family: FontAwesome;
         height: 31px;
         width: 31px;
         padding-top: 10px;
         padding-right: 0;
+        color: #D9292E;
+        font-size: 28px;
 	}
 
-    .right-down-menu .highlight-close a, .right-up-menu .highlight-close a {
-        background: url("../img/icon-search-close.png") center no-repeat #ededed !important;
+    .right-down-menu .highlight-close a:before, .right-up-menu .highlight-close a:before {
+        content: "\f00d";
     }
 
 	#chat > a {
@@ -560,7 +561,7 @@ box-sizing: border-box;
     }
 
     .cms .center_column a, .description-news a, a {
-    color:#d9292e;
+    color:#636363;
     }
 
    .cms .center_column ul  {
@@ -697,7 +698,8 @@ box-sizing: border-box;
 	text-transform: uppercase;
 	font-size: 1.5rem;
 	font-family: "condensed";
-	padding-right: 0.625rem;
+	padding-right: 0;
+    display: inline;
 	}
 	.header-products .colors {
 	display: inline-block;
@@ -714,9 +716,12 @@ box-sizing: border-box;
 	font-family: 'gothic';
 	}
 	.header-products h2 a{
-	color: #d7162f;
+    color: #636363;
     display: inline-block;
-    min-height: 48px;
+    width: 77%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; 
 	}
 	.header-products h2 a:hover{
 	color: #000;
@@ -4219,7 +4224,7 @@ width:109%;
 }
 
 /*GARANTIA*/
-.scroll-left.scroll-pane.mCustomScrollbar._mCS_1 {
+.scroll-left.scroll-pane.mCustomScrollbar {
 border: #E1E1E1 solid 1px;
 padding: 15px;
 font-family: 'Open Sans', sans-serif;
@@ -4255,6 +4260,10 @@ line-height: 1.5;
 
 .supply-warranty .grid_4 .mCSB_container .damage {
 	margin-bottom: 0rem;
+}
+
+.supply-warranty .grid_4 > div > a {
+    margin-top: 20px;
 }
 
 /*COMPRA
@@ -4637,9 +4646,9 @@ body.new-products {
         float: none;
     } 
 
-    .content_sortPagiBar.clearfix.bottom_pagi, .content_sortPagiBar.cf.grid_12.alpha.omega {
+    .content_sortPagiBar.bottom_pagi {
         position: absolute;
-        width: 100%;
+        width: 877.5px;
     }
 
     .center_column .product_list {
@@ -5159,4 +5168,17 @@ a.newPrint:hover {
 
 .create-account p {
     margin-bottom: 1.85rem !important;
+}
+
+.product .center_column, .product .pull-right.search-back {
+    width: 75rem;
+    padding: 0 0.9375rem;
+    margin: 0 auto;
+    float: none;
+}
+
+.product .pull-right.search-back {
+    margin: 20px auto;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 1.125rem;
 }

@@ -64,7 +64,8 @@
 			</button>
 		{/if}
         {if $PS_SC_EMAIL}
-			<a {if $PS_SC_EMAIL_URL} href="mailto:{$PS_SC_EMAIL_URL}" {/if} data-type="email" onclick="MAIL" type="button" class="btn btn-default btn-email social-sharing">
+        {assign var=url value="`$smarty.server.HTTP_HOST``$smarty.server.REQUEST_URI`"}
+			<a {if $PS_SC_EMAIL_URL} href="mailto:{$PS_SC_EMAIL_URL}?body={urlencode($url)}" {/if} data-type="email" onclick="MAIL" type="button" class="btn btn-default btn-email social-sharing">
 				<i class="fa fa-envelope-o"></i> <span>{l s="Email" mod='socialsharing'}</span>
 				<!-- <img src="{$link->getMediaLink("`$module_dir`img/pinterest.gif")}" alt="Pinterest" /> -->
 			</a>

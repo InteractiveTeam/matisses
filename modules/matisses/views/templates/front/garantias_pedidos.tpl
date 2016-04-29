@@ -102,7 +102,7 @@
 		</table>
 		<div id="block-order-detail" class="unvisible">&nbsp;</div>
 	{else}
-		<p class="alert alert-warning">{l s='You have not placed any orders.'}</p>
+		<p class="alert alert-warning">{l s='You have not placed any orders.' mod='matisses'}</p>
 	{/if}
 </div>
 </div>

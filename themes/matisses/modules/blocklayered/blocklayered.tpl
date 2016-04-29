@@ -75,7 +75,7 @@ param_product_url = '';
 				</div>
 				{/if}
                 
-                <h2 class="layered_subtitle"> {l s='Categoria'}</h2>
+                <h2 class="layered_subtitle"> {l s='Categoría'}</h2>
 					<div id="enabled_filters" class="enabled-filters">
                         <ul>
                             <li>

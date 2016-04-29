@@ -941,12 +941,11 @@
 	}
     
     #search a {
-        text-indent: 99em;
         display: inline-block;
-        background-position: center;
-        height: 31px;
-        width: 31px;
-        padding: 31px 28px;
+        padding: 15px 16px;
+        width: auto;
+        height: auto;
+        font-size: 32px;
     }
     
 	.shopping_cart{
@@ -1210,6 +1209,15 @@
 	#HOOK_PAYMENT .row .col-md-6 {
 		width: 100%;
 	}
+    
+    .content_sortPagiBar.bottom_pagi {
+        position: absolute;
+        width: 734.25px;
+    }
+    
+    .bottom-pagination-content ul.pagination li > span, .bottom-pagination-content ul.pagination li > a {
+        padding: 0 0.9375rem;
+    }
 
 }
 
@@ -1728,6 +1736,10 @@
 
 @media only screen and (max-width :768px) {
     
+    .product .center_column {
+        width: 100%;
+    }
+    
     .show-user {
         display: block;
     }
@@ -1837,6 +1849,20 @@
         width: 100%;
     }
     
+    .content_sortPagiBar.bottom_pagi {
+        position: absolute;
+        width: 542.25px;
+    }
+    
+    #columns .parrilla-productos .sortPagiBar form label {
+        padding: 0 0.4375rem;
+        height: 32px;
+    }
+    
+    #columns .parrilla-productos #selectProductSort_chosen {
+        width: 7.87rem !important;
+    }
+    
 }
 
 @media screen and (max-width :480px) {
@@ -1850,7 +1876,7 @@
     }
     
     .right-down-menu .highlight-close a, .right-up-menu .highlight-close a {
-        background: url("../../img/icon-search.png") center no-repeat #ededed;
+        background: #ededed;
     }
     
     h1, h2 {
@@ -2058,8 +2084,12 @@
 
 @media screen and (max-width :380px) {
     
-    .content_sortPagiBar.clearfix.bottom_pagi, .content_sortPagiBar.cf.grid_12.alpha.omega {
-        position: inherit;
+    .content_sortPagiBar.bottom_pagi {
+        width: 320px;
+    }
+    
+    #columns .parrilla-productos {
+        margin: 2.5rem 0 7.7rem 0;
     }
     
     .bottom-pagination-content {

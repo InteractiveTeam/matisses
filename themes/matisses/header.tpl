@@ -221,12 +221,12 @@
 		                <li id="chat" class="chat">
 			            	<!-- This code must be installed within the body tags -->
 			            	<script type="text/javascript">
-			                var lhnAccountN = "27089-1";
+			                var lhnAccountN = "LHN24694";
 			                var lhnButtonN = 4827;
 			                var lhnChatPosition = 'righttab';
 			                var lhnInviteEnabled = 1;
-			                var lhnWindowN = 0;
-			                var lhnDepartmentN = 0;
+			                var lhnWindowN = 27112;
+			                var lhnDepartmentN = 29011;
 			                var lhnChatPositionYVal = 150;
 							var comparedProductsIds = 0;
 			            	</script>
@@ -237,7 +237,7 @@
 		                  	<a href="{$link->getModuleLink('news','list')}">{l s='Blog'}</a>
 						</li>
 		            	<li id="search" class="search">
-		                  	<a href="javascript:void(0)">{l s='Buscar'}</a>
+		                  	<a href="javascript:void(0)" class="fa fa-search"></a>
 						</li>
                         <li id="cart">{hook h='displayMatCart'}</li>
                         <li id="user">{hook h='displayMatUser'}</li>

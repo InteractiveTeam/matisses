@@ -71,14 +71,24 @@
                         <td{if isset($order.order_state)} data-value="{$order.id_order_state}"{/if} class="history_state">
 							{if isset($order.order_state)}
 								<span class="label{if isset($order.order_state_color) && Tools::getBrightness($order.order_state_color) > 128} dark{/if}"{if isset($order.order_state_color) && $order.order_state_color} style="background-color:{$order.order_state_color|escape:'html':'UTF-8'}; border-color:{$order.order_state_color|escape:'html':'UTF-8'};"{/if}>
+                                {if $order.order_state eq 'Pago aceptado'}
+                                    {l s='Aprobada'}
+                                {elseif $order.order_state eq 'Error en el pago'}
+                                    {l s='Fallida'} 
+                                {elseif $order.order_state eq 'En espera de confirmación de pago por Place to Pay'}
+                                    {l s='Pendiente'}
+                                {elseif $order.order_state eq 'Cancelado'}
+                                    {l s='Rechazada'} 
+                                {else}
 									{$order.order_state|escape:'html':'UTF-8'}
+                                {/if}
 								</span>
 							{/if}
 						</td> 
                                                
                         <td class="history_price" data-value="{$order.total_paid}">
 							<span class="price">
-								{displayPrice price=$order.total_paid currency=$order.id_currency no_utf8=false convert=false}
+								{$currency->iso_code} {displayPrice price=$order.total_paid currency=$order.id_currency no_utf8=false convert=false}
 							</span>
 						</td>
                         
