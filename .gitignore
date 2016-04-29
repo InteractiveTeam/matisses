@@ -37,3 +37,8 @@ modules/gamification/*
 img/*
 cache/class_index.php
 .brackets.json
+
+
+xml/matisses-products.xml
+img/*
+config/xml/modules_native_addons.xml
