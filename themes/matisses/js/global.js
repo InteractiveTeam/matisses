@@ -447,6 +447,7 @@ function FilterRp() {
         $('.ax-btn-filter').prependTo($('.parrilla-productos'));
         $('.ax-block-content').append($('.ax-blog-select-category'));
         $('.right-down-menu .search').prependTo($('.right-up-menu > ul'));
+        //$('#layered_block_left #layered_form').append('<p>cerrar</p>')
     }else {
         $('.parrilla-productos #layered_block_left').show();
         $('.right-down-menu > ul li:eq(1)').after($('.right-up-menu .search'))

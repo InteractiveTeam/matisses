@@ -233,7 +233,7 @@
 		                  	<a href="{$link->getModuleLink('news','list')}">{l s='Blog'}</a>
 						</li>
 		            	<li id="search" class="search">
-		                  	<a href="javascript:void(0)">{l s='Buscar'}</a>
+		                  	<a href="javascript:void(0)" class="fa fa-search"></a>
 						</li>
                         <li id="cart">{hook h='displayMatCart'}</li>
                         <li id="user">{hook h='displayMatUser'}</li>

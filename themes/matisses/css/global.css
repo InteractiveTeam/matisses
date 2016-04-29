@@ -365,27 +365,28 @@ box-sizing: border-box;
     }
 
 	.right-down-menu .search a{
-        text-indent: 99em;
         display: inline-block;
-        background: url("../img/icon-search.png") 0 0 no-repeat;
+        font-family: FontAwesome;
         height: 31px;
         width: 31px;
-        padding-top: 10px;
-        padding-right: 0;
+        padding:0;
+        color: #D9292E;
+        font-size: 28px;
 	}
 
 	.search a {
-        text-indent: 99em;
         display: inline-block;
-        background: url("../img/icon-search.png") 0 0 no-repeat;
+        font-family: FontAwesome;
         height: 31px;
         width: 31px;
         padding-top: 10px;
         padding-right: 0;
+        color: #D9292E;
+        font-size: 28px;
 	}
 
-    .right-down-menu .highlight-close a, .right-up-menu .highlight-close a {
-        background: url("../img/icon-search-close.png") center no-repeat #ededed !important;
+    .right-down-menu .highlight-close a:before, .right-up-menu .highlight-close a:before {
+        content: "\f00d";
     }
 
 	#chat > a {
