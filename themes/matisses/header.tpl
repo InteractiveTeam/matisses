@@ -177,7 +177,7 @@
 </script>
 {/if}
 <script type="text/javascript">
-    $(window).load(function() {
+    $(document).ready(function() {
         $('a:contains("Help Desk Software")').remove();
     });    
 </script>
