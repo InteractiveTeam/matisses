@@ -365,28 +365,27 @@ box-sizing: border-box;
     }
 
 	.right-down-menu .search a{
+        text-indent: 99em;
         display: inline-block;
-        font-family: FontAwesome;
-        height: 31px;
-        width: 31px;
-        padding:0;
-        color: #D9292E;
-        font-size: 28px;
-	}
-
-	.search a {
-        display: inline-block;
-        font-family: FontAwesome;
+        background: url("../img/icon-search.png") 0 0 no-repeat;
         height: 31px;
         width: 31px;
         padding-top: 10px;
         padding-right: 0;
-        color: #D9292E;
-        font-size: 28px;
 	}
 
-    .right-down-menu .highlight-close a:before, .right-up-menu .highlight-close a:before {
-        content: "\f00d";
+	.search a {
+        text-indent: 99em;
+        display: inline-block;
+        background: url("../img/icon-search.png") 0 0 no-repeat;
+        height: 31px;
+        width: 31px;
+        padding-top: 10px;
+        padding-right: 0;
+	}
+
+    .right-down-menu .highlight-close a, .right-up-menu .highlight-close a {
+        background: url("../img/icon-search-close.png") center no-repeat #ededed !important;
     }
 
 	#chat > a {
@@ -5181,4 +5180,16 @@ a.newPrint:hover {
     margin: 20px auto;
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 1.125rem;
+}
+
+#layered_block_left span.ax-close-filter {
+    display: block;
+    background: #8B8989;
+    padding: 15px 0;
+    color: #fff;
+    text-align: center;
+    font-family: 'condensed';
+    font-weight: 100;
+    letter-spacing: 1px;
+    font-size: 18px;
 }
