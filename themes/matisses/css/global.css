@@ -364,28 +364,28 @@ box-sizing: border-box;
     margin-bottom: 30px;
     }
 
-	.right-down-menu .search a{
-        text-indent: 99em;
+	.right-down-menu .search a {
         display: inline-block;
-        background: url("../img/icon-search.png") 0 0 no-repeat;
-        height: 31px;
-        width: 31px;
-        padding-top: 10px;
-        padding-right: 0;
+        padding: 0;
+        margin: 0;
+        font-size: 28px;
+        font-family: "FontAwesome";
+        color: #d9292e;
 	}
 
 	.search a {
-        text-indent: 99em;
         display: inline-block;
-        background: url("../img/icon-search.png") 0 0 no-repeat;
         height: 31px;
         width: 31px;
         padding-top: 10px;
         padding-right: 0;
+        font-family: "FontAwesome";
+        color: #d9292;
 	}
 
-    .right-down-menu .highlight-close a, .right-up-menu .highlight-close a {
-        background: url("../img/icon-search-close.png") center no-repeat #ededed !important;
+    .right-down-menu .highlight-close a:before, .right-up-menu .highlight-close a:before {
+        content: "\f00d";
+        color: #d9292e;
     }
 
 	#chat > a {
