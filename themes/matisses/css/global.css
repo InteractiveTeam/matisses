@@ -563,6 +563,10 @@ box-sizing: border-box;
     color:#636363;
     }
 
+    #cms a {
+        color: #d7162f;
+    }
+
    .cms .center_column ul  {
         list-style: inherit;
         list-style-position: inside;
@@ -954,6 +958,7 @@ box-sizing: border-box;
 	}
 	.experiences-slider .img-container a {
     display: block;
+    max-height: 240px;
 	}
 	.experiences-slider .img-container img {
     transition: transform 0.35s;

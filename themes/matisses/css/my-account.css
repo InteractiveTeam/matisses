@@ -73,10 +73,9 @@
     padding: 0.3125rem 1.5625rem;
     }
     .footer-account input[type="text"] {
-    height: 2.375rem;
     display: inline-block;
     vertical-align: top;
-    padding: 0.3125rem;
+    padding: 0.4525rem;
     font-family: 'Open Sans', sans-serif;
     font-size: 0.875rem;
     color: #777676;
