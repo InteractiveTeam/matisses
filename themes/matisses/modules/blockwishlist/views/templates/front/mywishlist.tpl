@@ -115,21 +115,8 @@
 			<div id="block-order-detail" class="block-order-detail">&nbsp;</div>
 		{/if}
 	{/if}
-	<!-- <ul class="footer_links cf">
-		<li>
-			<a class="btn btn-default button button-small" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
-				<span>
-					<i class="icon-chevron-left"></i>{l s='Back to Your Account' mod='blockwishlist'}
-				</span>
-			</a>
-		</li>
-		<li>
-			<a class="btn btn-default button button-small" href="{$base_dir|escape:'html':'UTF-8'}">
-				<span>
-					<i class="icon-chevron-left"></i>{l s='Home' mod='blockwishlist'}
-				</span>
-			</a>
-		</li>
-	</ul> -->
+	<div class="footer_links grid_12 omega alpha">
+        <a class="btn btn-default  btn-red" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}"> <i class="fa fa-chevron-left"></i>{l s='Volver a mi cuenta' mod='matisses'}</a>
+    </div>
 </div>
 </div>

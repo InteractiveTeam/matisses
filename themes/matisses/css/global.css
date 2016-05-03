@@ -5253,3 +5253,7 @@ a.newPrint:hover {
 #view_wishlist > p a {
     color: #d7162f;
 }
+
+.footer_links {
+    text-align: center;
+}
