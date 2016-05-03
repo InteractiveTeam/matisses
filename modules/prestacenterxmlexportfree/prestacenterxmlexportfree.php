@@ -346,7 +346,7 @@ class PrestaCenterXmlExportFree extends Module
 	{
 		$oldCurrency = $this->context->currency;
 		$oldLanguage = $this->context->language;
-		$oldLinkRewriting = $this->context->link->allow;
+		$oldLinkRewriting = (int)Configuration::get('PS_REWRITING_SETTINGS');
 		$oldShop = $this->context->shop;
 		try {
 			$this->initExport($settings);
