@@ -117,8 +117,7 @@
 		        </div>
 				<div class="grid_5 dates-account">
 					<h3>Ajustes de cuenta</h3>
-					<p><a href="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}">{l s='Cambiar la configuración de cuenta'}</a></p>
-					<p><a href="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}">{l s='E-mail, contraseña, nombre y teléfono móvil'}</a></p>
+					<p><a href="{$link->getPageLink('identity', true)|escape:'html':'UTF-8'}">{l s='Cambiar la configuración de cuenta'} <br> {l s='E-mail, contraseña, nombre y teléfono móvil'}</a></p>
 				</div>
 				<div class="grid_5 dates-account">
 					<h3>{l s='Libreta de direcciones'}</h3>
