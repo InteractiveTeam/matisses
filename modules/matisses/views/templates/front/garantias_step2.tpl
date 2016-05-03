@@ -24,12 +24,14 @@
                     {$row.material}
                 </a>
 			</div>
-			<div class="scroll-left scroll-pane danos{$row.id_value}" style="display:none">
-            <ul id="tipo-dano" class="damage">
-				{foreach from=$row.damages item=dano}
-				<li id="{$dano.id_tipo}"  data-id="{$dano.acodigo}" data-value="{$row.material}-{$dano.aname}">{$dano.aname}</li>
-				{/foreach}
-			</ul>
+            <div class="container-toggle danos{$row.id_value}" style="display:none">
+			     <div class="scroll-left scroll-pane">
+                    <ul id="tipo-dano" class="damage">
+                        {foreach from=$row.damages item=dano}
+                        <li id="{$dano.id_tipo}"  data-id="{$dano.acodigo}" data-value="{$row.material}-{$dano.aname}">{$dano.aname}</li>
+                        {/foreach}
+                    </ul>
+                </div>
             </div>
 			
             {/foreach}

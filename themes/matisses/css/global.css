@@ -307,6 +307,7 @@ box-sizing: border-box;
 	padding: 1.1rem 0 0.9rem 0;
 	display: table;
     width: 70%;
+    width: 40%;
 	}
 	.menu-experiencias li {
 	display: table-cell;
@@ -364,28 +365,28 @@ box-sizing: border-box;
     margin-bottom: 30px;
     }
 
-	.right-down-menu .search a{
-        text-indent: 99em;
+	.right-down-menu .search a {
         display: inline-block;
-        background: url("../img/icon-search.png") 0 0 no-repeat;
-        height: 31px;
-        width: 31px;
-        padding-top: 10px;
-        padding-right: 0;
+        padding: 0;
+        margin: 0;
+        font-size: 28px;
+        font-family: "FontAwesome";
+        color: #d9292e;
 	}
 
 	.search a {
-        text-indent: 99em;
         display: inline-block;
-        background: url("../img/icon-search.png") 0 0 no-repeat;
         height: 31px;
         width: 31px;
         padding-top: 10px;
         padding-right: 0;
+        font-family: "FontAwesome";
+        color: #d9292e;
 	}
 
-    .right-down-menu .highlight-close a, .right-up-menu .highlight-close a {
-        background: url("../img/icon-search-close.png") center no-repeat #ededed !important;
+    .right-down-menu .highlight-close a:before, .right-up-menu .highlight-close a:before {
+        content: "\f00d";
+        color: #d9292e;
     }
 
 	#chat > a {
@@ -561,6 +562,10 @@ box-sizing: border-box;
 
     .cms .center_column a, .description-news a, a {
     color:#636363;
+    }
+
+    #cms .content_only a, #cms .center_column .container a {
+        color: #d7162f;
     }
 
    .cms .center_column ul  {
@@ -954,6 +959,7 @@ box-sizing: border-box;
 	}
 	.experiences-slider .img-container a {
     display: block;
+    max-height: 240px;
 	}
 	.experiences-slider .img-container img {
     transition: transform 0.35s;
@@ -3740,8 +3746,7 @@ box-sizing: border-box;
 	}
 
 /*Pagina Pedidos - Orden*/
-#order #center_column,
-#authentication #center_column, #password #center_column, #order-confirmation #center_column {
+#order #center_column, #authentication #center_column, #password #center_column, #order-confirmation #center_column, #module-blockwishlist-view #center_column {
 	width: 100%;
 	max-width: 75rem;
 	margin: 0 auto;
@@ -5192,4 +5197,59 @@ a.newPrint:hover {
     font-weight: 100;
     letter-spacing: 1px;
     font-size: 18px;
+}
+
+#menu #giftlist {
+    display: none;
+}
+/*lista de deseos*/
+
+.product_infos .product-name#s_title {
+    color: #636363;
+    display: inline-block;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#mywishlist .wlp_bought ul.row.wlp_bought_list li {
+    min-height: auto;
+}
+
+#mywishlist .wlp_bought ul .wishlist_product_detail label, #mywishlist .wlp_bought ul .wishlist_product_detail input, #view_wishlist .wlp_bought ul .wishlist_product_detail label, #view_wishlist .wlp_bought ul .wishlist_product_detail input {
+    display: inline;
+}
+
+#mywishlist .wlp_bought .wishlist_product_detail select {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+}
+
+#mywishlist  .wl_send.box.unvisible.grid_12 {
+    padding: 0;
+}
+
+.order-close a {
+    color: #fff;
+}
+
+.first-item-of-tablet-line {
+    padding-left: 0;
+}
+
+#view_wishlist .wlp_bought_list  {
+    margin-top: 20px;
+}
+
+#view_wishlist .wlp_bought_list .ajax_block_product .col-xs-6.col-sm-12 {
+    padding: 0;
+}
+
+#view_wishlist .wlp_bought ul .col-md-4 {
+    width: 23.7%;
+}
+
+#view_wishlist > p a {
+    color: #d7162f;
 }

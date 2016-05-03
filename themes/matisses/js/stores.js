@@ -16,34 +16,28 @@
 * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
 * versions in the future. If you wish to customize PrestaShop for your
 * needs please refer to http://www.prestashop.com for more information.
-*
+*   
 *  @author PrestaShop SA <contact@prestashop.com>
 *  @copyright  2007-2014 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
-$(document).ready(function(){
-	
+$(document).ready(function(){ 
 	$( "#accordion-stores" ).accordion({
       heightStyle: "fill"
-    });
-	
-	map = new google.maps.Map(document.getElementById('map'), {
+    });	
+});
+
+function drawMaps(){
+    map = new google.maps.Map(document.getElementById('map'), {
 		center: new google.maps.LatLng(defaultLat, defaultLong),
 		zoom: 10,
 		mapTypeId: 'roadmap',
 		mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU}
 	});
 	infoWindow = new google.maps.InfoWindow();
-	/*
-	locationSelect = document.getElementById('locationSelect');
-		locationSelect.onchange = function() {
-		var markerNum = locationSelect.options[locationSelect.selectedIndex].value;
-		if (markerNum !== 'none')
-		google.maps.event.trigger(markers[markerNum], 'click');
-	};
-	*/
-	$('#addressInput').keypress(function(e) {
+    
+    $('#addressInput').keypress(function(e) {
 		code = e.keyCode ? e.keyCode : e.which;
 		if(code.toString() === 13)
 			searchLocations();
@@ -60,10 +54,9 @@ $(document).ready(function(){
 	});
 
 	initMarkers();
-});
+}
 
-function initMarkers()
-{
+function initMarkers(){
 	searchUrl += '?ajax=1&all=1';
 	downloadUrl(searchUrl, function(data) {
 		var xml = parseXml(data);

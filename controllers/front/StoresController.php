@@ -266,7 +266,7 @@ class StoresControllerCore extends FrontController
 		parent::initContent();
 
 		if (Configuration::get('PS_STORES_SIMPLIFIED'))
-			$this->assignStoresSimplified();
+			$this->assignStoresSimplified();  
 		else
 			$this->assignStores();
 
@@ -287,13 +287,8 @@ class StoresControllerCore extends FrontController
 		$this->addJqueryUI('ui.accordion');
 		$this->addCSS(_THEME_CSS_DIR_.'stores.css');
         $default_country = new Country((int)Tools::getCountry());
-		$this->addJS('http'.((Configuration::get('PS_SSL_ENABLED') && Configuration::get('PS_SSL_ENABLED_EVERYWHERE')) ? 's' : '').'://maps.google.com/maps/api/js?sensor=true&region='.substr($default_country->iso_code, 0, 2));
-			
-		if (!Configuration::get('PS_STORES_SIMPLIFIED'))
-		{
-			$this->addJS(_THEME_JS_DIR_.'stores.js');
-		}else{
-				$this->addJS(_THEME_JS_DIR_.'stores.js');
-			 }
+		//$this->addJS('http'.((Configuration::get('PS_SSL_ENABLED') && Configuration::get('PS_SSL_ENABLED_EVERYWHERE')) ? 's' : '').'://maps.google.com/maps/api/js?sensor=false&region='.substr($default_country->iso_code, 0, 2));
+
+		$this->addJS(_THEME_JS_DIR_.'stores.js');        
 	}
 }
