@@ -222,7 +222,7 @@ class PcXmlFreeTemplate
 	public function feed4header(array $product = array()) 
 	{ 
 		$output = ''
-		.'<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss xmlns:date="http://exslt.org/dates-and-times" xmlns:g="http://base.google.com/ns/1.0" version="2.0"><channel>'
+		.'<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss xmlns:date="http://exslt.org/dates-and-times" xmlns:g="http://base.google.com/ns/1.0" xmlns:c="http://www.chaordic.com.br/ns/catalog/1.0" version="2.0"><channel>'
 		.'<title>'.$this->helperEscape(29, $this->helperStrip(29, $this->common['shop_name'])).'</title>'
 		.'<link>'.$this->helperEscape(30, $this->helperStrip(30, $this->common['shop_url'])).'</link>'
 		.'<last_build_date>'.$this->helperEscape(31, $this->helperFtime(31, $this->common['update_feed'])).'</last_build_date>'."\n"; 
@@ -238,7 +238,7 @@ class PcXmlFreeTemplate
 		.'<g:id>'.$this->helperEscape(33, $this->helperClean(33, $product['reference_product'])).'</g:id>'
 		.'<title>'.$this->helperEscape(34, $this->helperClean(34, $product['name'][$this->feedVars['id_lang']])).'</title>'
 		.'<description>'.$this->helperEscape(35, $this->helperClean(35, $product['description'][$this->feedVars['id_lang']])).'</description>'
-		.'<g:product_type>'.$this->helperEscape(36, $this->helperClean(36, $product['categories'][$this->feedVars['id_lang']])).'</g:product_type>'
+		.'<c:categories>'.$this->helperEscape(36, $this->helperStrip(36, $product['categoriesmeta'])).'</c:categories>'
 		.'<link>'.$this->helperEscape(37, $this->helperStrip(37, $product['url'][$this->feedVars['id_lang']])).'</link>'
 		.'<g:image_link>'.$this->helperEscape(38, $this->helperStrip(38, $product['img_url'][$this->feedVars['id_lang']])).'</g:image_link>'
 		.'<g:condition>'.$this->helperEscape(39, $this->helperCondition(39, $this->helperClean(39, $product['condition'], 'new,used,refurbished'), 'new,used,refurbished')).'</g:condition>'

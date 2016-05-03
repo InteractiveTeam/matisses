@@ -15,7 +15,7 @@
 * http://www.prestacs.cz
 * 
 */
-
+require_once _PS_MODULE_DIR_."matisses/matisses.php";
 if (!defined('_PS_VERSION_'))
 	exit;
 class PcXmlFreeAvailabilityException extends PrestaShopModuleException { }
@@ -41,6 +41,7 @@ class PrestaCenterXmlExportFree extends Module
 		'description_short' => array('key' => 'id_lang', 'helper' => 'clean|escape'),
 		'manufacturer'		=> array('helper' => 'escape|strip'),
 		'categories'		=> array('key' => 'id_lang', 'helper' => 'clean|escape'),
+		'categoriesmeta'	=> array('helper' => 'escape|strip'),
 		'price_vat'			=> array('key' => 'id_currency', ),
 		'price_vat_local'	=> array('key' => 'id_currency', ),
 		'price_vat_iso'		=> array('key' => 'id_currency', ),
@@ -413,6 +414,7 @@ class PrestaCenterXmlExportFree extends Module
                     $tmp['name']			= array();
                     $tmp['name_variant']	= array();
                     $tmp['categories']		= array();
+                    $tmp['categoriesmeta']	= array();
                     $tmp['link_rewrite']	= array();
                     $tmp['img_url']			= array();
                     $tmp['description']		= array();
@@ -436,9 +438,78 @@ class PrestaCenterXmlExportFree extends Module
                     $tmp['categories'][$row['id_lang']] = $this->categories['breadcrumb'][$row['id_category_default']][$row['id_lang']];
                 }*/
                 // categories
-                $cat = Product::getProductCategoriesFull($product->id,$row['id_lang']);
+                $cat = Product::getProductCategoriesFull($row['id_product'],$row['id_lang']);
+                $categoriesForMeta = array();
+            
+                foreach($cat as $prow){
+                    $categ = new Category($prow['id_category']);
+                    $parent = $categ->getParentsCategories($this->context->language->id);
+
+                    if ($categ->level_depth > 2) {
+                        $exist = false;
+                        foreach($categoriesForMeta as $cf){
+                            if ($parent[2]['level_depth'] > 2) {
+                                if($cf['id'] == $parent[2]['id_category']){
+                                    $exist = true;
+                                }
+                            }
+                        }
+                        if(!$exist){
+                            if ($parent[2]['level_depth'] > 2) {
+                                array_push($categoriesForMeta, array(
+                                    'id' => $parent[2]['id_category'],
+                                    'name' => $parent[2]['name']
+                                ));   
+                            }
+                        }
+                        $exist = false;
+                        foreach($categoriesForMeta as $cf){
+                            if ($parent[1]['level_depth'] > 2) {
+                                if($cf['id'] == $parent[1]['id_category']){
+                                    $exist = true;
+                                }
+                            }
+                        }
+                        if(!$exist){
+                            if ($parent[1]['level_depth'] > 2) {
+                                array_push($categoriesForMeta, array(
+                                    'id' => $parent[1]['id_category'],
+                                    'name' => $parent[1]['name'],
+                                    'parents' => array($parent[2]['id_category'])
+                                ));   
+                            }
+                        }
+                         if ($parent[0]['level_depth'] > 3) {
+                             array_push($categoriesForMeta, array(
+                                'id' => $parent[0]['id_category'],
+                                'name' => $parent[0]['name'],
+                                'parents' => array($parent[1]['id_category'])
+                            ));   
+                         } else {
+                             array_push($categoriesForMeta, array(
+                                'id' => $parent[0]['id_category'],
+                                'name' => $parent[0]['name'],
+                            ));
+                         }
+                    }
+                }
                 
-                $cont = 0;
+                (string)$metaCategories = '';
+                $myArray = [];
+                foreach($categoriesForMeta as $catp) {
+                    if (!isset($catp['parents'][0])) {
+                        $metaCategories .= '<c:category c:id="'.$catp['id'].'">'.$catp['name'].'</c:category>';
+                        $myArray['c:category c:id="'.$catp['id'].'"'] = $catp['name'];
+                    } else {
+                        $metaCategories .= '<c:category c:id="'.$catp['id'].'" c:parentId="'.$catp['parents'][0].'">'.$catp['name'].'</c:category>';
+                        $myArray['c:category c:id="'.$catp['id'].'" c:parentId="'.$catp['parents'][0].'"'] = $catp['name'];
+                    }
+                }
+                
+                /*$tmp['categoriesmeta'] = htmlspecialchars($metaCategories);*/
+                $tmp['categoriesmeta'] = htmlspecialchars($metaCategories);
+                
+                /*$cont = 0;
                 $allcat = count($cat);
                 
                 foreach($cat as $catprod){
@@ -448,7 +519,7 @@ class PrestaCenterXmlExportFree extends Module
                     } else {
                         $tmp['categories'][$row['id_lang']] .= $catprod['name'].' | ';
                     }
-                }
+                }*/
                 
                 $tmp['name'][$row['id_lang']] = $row['name'];
                 $tmp['description'][$row['id_lang']] = $row['description'];
@@ -657,7 +728,24 @@ class PrestaCenterXmlExportFree extends Module
 			$file['filename'] = basename($file['filename']);
 			unset($file['pointer']);
 		}
-		unset($file, $this->template, $this->languages, $this->currencies,
+        
+        $ruta = $_SERVER["DOCUMENT_ROOT"].__PS_BASE_URI__."xml/matisses-products.xml";
+        $xml = @file($ruta);
+        
+        for($i=1; $i<count($xml); $i++){
+            $xml[$i] = str_replace("&quot;",'"',$xml[$i]);
+            $xml[$i] = str_replace("&lt;",'<',$xml[$i]);
+            $xml[$i] = str_replace("&gt;",'>',$xml[$i]);
+        }
+         /*echo "<pre>"; print_r($xml); echo "</pre>"; die();*/
+        $fp2 = @fopen($ruta, 'a+b');
+        ftruncate($fp2,0);
+        foreach($xml as $item){
+            @fwrite($fp2, $item);
+        }
+        @fclose($fp2);
+        
+        unset($file, $this->template, $this->languages, $this->currencies,
 			$this->categories );
 	}
 	protected function closeFiles()
