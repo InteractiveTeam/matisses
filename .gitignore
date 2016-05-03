@@ -38,6 +38,6 @@ img/*
 cache/class_index.php
 .brackets.json
 
-/xml/*.xml
+/xml/*
 img/*
 config/xml/modules_native_addons.xml
