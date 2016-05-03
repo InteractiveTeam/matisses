@@ -650,8 +650,7 @@ class matisses extends Module
                     array_push($attrcolors,$row['attribute_name']);
                 }
                 
-                $tempattr = array();
-                /*$tempattr['id'] = $row['id_attribute'];*/
+                $tempattr = array();        
                 $tempattr['sku'] = $row['reference'];
                 $tempattr['specs'] = array('color' => $row['attribute_name']);
                 
@@ -659,6 +658,12 @@ class matisses extends Module
                     $tempattr['status'] = 'available';
                 } else {
                     $tempattr['status'] = 'unavailable';
+                }
+                // color hexadecimal
+                $hexcolor = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'attribute WHERE id_attribute = "'.$row['id_attribute'].'"');
+                
+                if (isset($hexcolor)) {
+                    $tempattr['hex_color'] = $hexcolor[0]['color'];   
                 }
                 array_push($skuattr,$tempattr);
             }

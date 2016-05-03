@@ -246,6 +246,7 @@ class PcXmlFreeTemplate
 		.'<g:price>'.$this->helperEscape(41, $product['price_vat_iso'][$this->feedVars['id_currency']]).'</g:price>'
 		.'<g:gtin>'.$this->helperEscape(42, $product['ean']).'</g:gtin>'
 		.'<g:brand>'.$this->helperEscape(43, $this->helperStrip(43, $product['manufacturer'])).'</g:brand>'
+		.'<g:custom_label_0>'.$this->helperEscape(44, $this->helperClean(44, $product['hexcolor'])).'</g:custom_label_0>'
 		.'</item>'."\n"; 
 		return $output; 
 	} 

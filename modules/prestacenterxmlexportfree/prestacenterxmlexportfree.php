@@ -53,6 +53,7 @@ class PrestaCenterXmlExportFree extends Module
 		'availability'		=> array('helper' => 'availability|clean|escape'),
 		'reference'			=> array('helper' => 'clean|escape', ),
 		'reference_product'	=> array('helper' => 'clean|escape', ),
+		'hexcolor'	        => array('helper' => 'clean|escape', ),
 		'supplier_reference'=> array('helper' => 'clean|escape', ),
 		'update_feed'		=> array('context' => self::CONTEXT_ALL, 'helper' => 'ftime'),
 		'update_item'		=> array('helper' => 'ftime'),
@@ -423,6 +424,7 @@ class PrestaCenterXmlExportFree extends Module
                     $tmp['price_vat_local'] = array();
                     $tmp['price_vat_iso']	= array();
                     $tmp['reference_product'] = $inrefer['reference'];
+                    $tmp['hexcolor']        = array();
                 
                 $product->category = null;
                 $tmp['categories'][$row['id_lang']] = null;
@@ -506,20 +508,13 @@ class PrestaCenterXmlExportFree extends Module
                     }
                 }
                 
-                /*$tmp['categoriesmeta'] = htmlspecialchars($metaCategories);*/
                 $tmp['categoriesmeta'] = htmlspecialchars($metaCategories);
                 
-                /*$cont = 0;
-                $allcat = count($cat);
+                $hexcolor = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'attribute WHERE id_attribute = "'.$inrefer['id_attribute'].'"');
                 
-                foreach($cat as $catprod){
-                    $cont++;      
-                    if ($cont == $allcat) {
-                        $tmp['categories'][$row['id_lang']] .= $catprod['name'];   
-                    } else {
-                        $tmp['categories'][$row['id_lang']] .= $catprod['name'].' | ';
-                    }
-                }*/
+                if (isset($hexcolor)) {
+                    $tmp['hexcolor'] = $hexcolor[0]['color'];
+                }
                 
                 $tmp['name'][$row['id_lang']] = $row['name'];
                 $tmp['description'][$row['id_lang']] = $row['description'];
