@@ -737,13 +737,14 @@ class PrestaCenterXmlExportFree extends Module
             $xml[$i] = str_replace("&lt;",'<',$xml[$i]);
             $xml[$i] = str_replace("&gt;",'>',$xml[$i]);
         }
-         /*echo "<pre>"; print_r($xml); echo "</pre>"; die();*/
-        $fp2 = @fopen($ruta, 'a+b');
-        ftruncate($fp2,0);
+        
+        $fp = @fopen($ruta, 'a+b');
+        ftruncate($fp,0);
+        
         foreach($xml as $item){
-            @fwrite($fp2, $item);
+            @fwrite($fp, $item);
         }
-        @fclose($fp2);
+        @fclose($fp);
         
         unset($file, $this->template, $this->languages, $this->currencies,
 			$this->categories );
