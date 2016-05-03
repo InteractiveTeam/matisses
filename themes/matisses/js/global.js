@@ -25,8 +25,13 @@
 //global variables
 var responsiveflag = false;
 
-$(document).ready(function(){    
-	
+$(window).load(function(){
+    loadAPIMaps();
+    setTimeout(function(){
+        drawMaps();
+    },2000);
+});
+$(document).ready(function(){
 	setTimeout(function(){
 	$('#birth-arrows .chosen-single div').html('<p class="up"></p><p class="down"></p>').promise().done(function(){
 		$('#birth-arrows .up').live('click',function(e){
@@ -496,7 +501,7 @@ $.fn.ayoshare = function() {
     }
     if (twitter == true) {
         html += '<p><a href="https://twitter.com/share?text=' + a + '+-+via @bachors&url=' + b + '" onclick="javascript:void window.open(\'https://twitter.com/share?text=' + a + '+-+via @bachors&url=' + b + '\',\'ibacor.com\',\'width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0\');return false;" class="ayo-btn ayo-twitter" title="Twitter"><i class="fa fa-twitter"></i></a></p>'
-        ayo_twitter(b, xxx)
+        //ayo_twitter(b, xxx)
     }
     if (google == true) {
         html += '<p><a href="https://plus.google.com/share?url=' + b + '" onclick="javascript:void window.open(\'https://plus.google.com/share?url=' + b + '\',\'ibacor.com\',\'width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0\');return false;" class="ayo-btn ayo-google" title="Google+"><i class="fa fa-google-plus"></i></a></p>'
@@ -733,12 +738,12 @@ $.fn.ayoshare = function() {
         if (b >= 1000000) {
             return (b / 1000000).toFixed(1).replace(/\.0$/, "") + "M"
         }
-        if (b >= 1000) {
+        if (b >= 1000) { 
             return (b / 1000).toFixed(1).replace(/\.0$/, "") + "K"
         }
         return b
     }
-
+  
 };
 
 $(function() {
@@ -755,5 +760,13 @@ $(function() {
             pocket = false,
             twitter = true,
             houzz = true
-        );
+        ); 
     });
+
+
+function loadAPIMaps(){
+    var script = document.createElement("script");
+    script.src = "https://maps.googleapis.com/maps/api/js?v=3.exp;callback=loadMaps";
+    script.type = "text/javascript";
+    document.getElementsByTagName("head")[0].appendChild(script);
+}
