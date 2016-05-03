@@ -676,41 +676,6 @@ class matisses extends Module
             }
             
             // categories
-            /*$fullCategories = array();
-            
-            foreach($cat as $row){
-                
-                $categ = new Category($row['id_category']);
-                $parent = $categ->getParentsCategories($this->context->language->id);
-                
-                foreach ($parent as $cparents) {
-                    
-                    if ($cparents['level_depth'] > 2) {
-                        echo "hola";
-                        foreach ($fullCategories as $main) {
-                            
-                            if ($cparents['id_category'] != $main['id']) {
-                                array_push($fullCategories, array(
-                                    'id' => $cparents['id_category'],
-                                    'name' => $cparents['name']
-                                ));
-                            }
-                            
-                        }
-                        
-                    }         
-                }
-                
-                echo "<pre>"; print_r($fullCategories); echo "</pre>"; die();
-                
-                array_push($categoriesp, 
-                           array(
-                               'id' => $row['id_category'],
-                                'name' => $row['name']
-                            ));
-            }
-            
-            echo "<pre>"; print_r($categoriesp); echo "</pre>"; die();*/
             $categoriesForMeta = array();
             
             foreach($cat as $row){
@@ -765,23 +730,6 @@ class matisses extends Module
                      }
                 }
             }
-            /*            
-            $fullCategories = array();
-            $i = 0;
-            foreach($categoriesForMeta as $catproduct) {
-                                    
-                if (!isset($catproduct['parents'][0])) {
-                    $i++;
-                }
-                
-                if (isset($catproduct['parents'][0])) {
-                    $fullCategories[$i][] = $catproduct;                    
-                } 
-            }*/
-            
-            /*echo "<pre>"; print_r($fullCategories); echo "</pre><hr>"; 
-            
-            echo "<pre>"; print_r($categoriesForMeta); echo "</pre>"; die();*/
             
             //tags
             foreach($tags as $tag){
