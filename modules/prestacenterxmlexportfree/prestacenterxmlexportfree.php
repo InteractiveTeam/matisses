@@ -346,7 +346,7 @@ class PrestaCenterXmlExportFree extends Module
 	{
 		$oldCurrency = $this->context->currency;
 		$oldLanguage = $this->context->language;
-		$oldLinkRewriting = (int)Configuration::get('PS_REWRITING_SETTINGS');
+		$oldLinkRewriting = $this->context->link->allow;
 		$oldShop = $this->context->shop;
 		try {
 			$this->initExport($settings);
@@ -543,13 +543,11 @@ class PrestaCenterXmlExportFree extends Module
 	}
 	protected function initExport(array $settings)
 	{
-        $link = new LinkCore();
 		@set_time_limit(0);
 		$this->exportInfo = $settings;
 		$this->checkExportFolder();
 		$this->context->shop = new Shop(1);  
-		$link->setAllow((int)Configuration::get('PS_REWRITING_SETTINGS', null, null, Configuration::get('PS_SHOP_DEFAULT')));
-        $this->exportInfo['rewrite'] = $link->getAllow();
+		$this->context->link->allow = $this->exportInfo['rewrite'] = (int)Configuration::get('PS_REWRITING_SETTINGS', null, null, Configuration::get('PS_SHOP_DEFAULT'));
 		Dispatcher::getInstance()->use_routes = $this->exportInfo['rewrite'];
 		if ($this->exportInfo['rewrite']) {
 			Dispatcher::getInstance()->loadRoutes();

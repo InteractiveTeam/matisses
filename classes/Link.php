@@ -37,14 +37,7 @@ class LinkCore
 	protected $ssl_enable;
 
 	protected static $category_disable_rewrite = null;
-    
-    public function getAllow(){
-        return $this->allow;
-    }
-    
-    public function setAllow($a){
-        $this->allow = $a;
-    }
+
 	/**
 	  * Constructor (initialization only)
 	  */
