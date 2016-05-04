@@ -543,11 +543,13 @@ class PrestaCenterXmlExportFree extends Module
 	}
 	protected function initExport(array $settings)
 	{
+        $link = new LinkCore();
 		@set_time_limit(0);
 		$this->exportInfo = $settings;
 		$this->checkExportFolder();
 		$this->context->shop = new Shop(1);  
-		$this->context->link->allow = $this->exportInfo['rewrite'] = (int)Configuration::get('PS_REWRITING_SETTINGS', null, null, Configuration::get('PS_SHOP_DEFAULT'));
+		$link->setAllow((int)Configuration::get('PS_REWRITING_SETTINGS', null, null, Configuration::get('PS_SHOP_DEFAULT')));
+        $this->exportInfo['rewrite'] = $link->getAllow();
 		Dispatcher::getInstance()->use_routes = $this->exportInfo['rewrite'];
 		if ($this->exportInfo['rewrite']) {
 			Dispatcher::getInstance()->loadRoutes();
