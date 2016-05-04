@@ -205,7 +205,7 @@
 				</td>
 			</tr>
 		</tfoot>
-		<tbody>
+		<tbody> 
 		{foreach from=$products item=product name=products}
 			{if !isset($product.deleted)}
 				{assign var='productId' value=$product.product_id}
