@@ -18,7 +18,8 @@
 
 class Dispatcher extends DispatcherCore
 {
-	public $use_routes = false;
+	public $use_routes;
+    
 	public function loadRoutes($id_shop = NULL)
 	{
 		parent::loadRoutes($id_shop);

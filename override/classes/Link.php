@@ -18,5 +18,5 @@
 
 class Link extends LinkCore
 {
-	public $allow;
+	public $allow; 
 }
