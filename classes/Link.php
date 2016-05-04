@@ -27,7 +27,7 @@
 class LinkCore
 {
 	/** @var boolean Rewriting activation */
-	protected $allow;
+	public $allow;
 	protected $url;
 	public static $cache = array('page' => array());
 
