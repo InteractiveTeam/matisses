@@ -102,21 +102,58 @@
 		<div class="grid_6 alpha omega"{if $order->isVirtual()} style="display:none;"{/if}>
 			<ul class="address alternate_item box">
 				<li><h3 class="page-subheading">{l s='Delivery address'} ({$address_delivery->alias})</h3></li>
-				{foreach from=$dlv_adr_fields name=dlv_loop item=field_item}
-					{if $field_item eq "company" && isset($address_delivery->company)}<li class="address_company">{$address_delivery->company|escape:'html':'UTF-8'}</li>
-					{elseif $field_item eq "address2" && !empty($address_delivery->address2)}<li class="address_address2">{$address_delivery->address2|escape:'html':'UTF-8'}</li>
-					{elseif $field_item eq "phone_mobile" && $address_delivery->phone_mobile}<li class="address_phone_mobile">{$address_delivery->phone_mobile|escape:'html':'UTF-8'}</li>
-					{else}
-							{assign var=address_words value=" "|explode:$field_item}
-							<li>{foreach from=$address_words item=word_item name="word_loop"}{if !$smarty.foreach.word_loop.first} {/if}{if !empty($deliveryAddressFormatedValues[$word_item|replace:',':''])}<span class="address_{$word_item|replace:',':''}">{$deliveryAddressFormatedValues[$word_item|replace:',':'']|escape:'html':'UTF-8'}</span>{/if}{/foreach}</li>
-					{/if}
-				{/foreach}
+				
+                <li>
+                    <span class="address_lastname"><b>{l s='Nombre:'}</b>
+                        {$address_delivery->firstname|escape:'html':'UTF-8'}
+                        {$address_delivery->lastname|escape:'html':'UTF-8'}
+                    </span>
+                </li>                
+                {if $address_delivery->company !=""}
+                    <li>
+                        <span class="address_address2"><b>{l s='Empresa:'}</b>
+                        {$address_delivery->company|escape:'html':'UTF-8'}
+                        </span>
+                    </li>
+                {/if}                
+                <li>
+                    <span class="address_address1"><b>{l s='Dirección 1:'}</b>
+                    {$address_delivery->address1|escape:'html':'UTF-8'}
+                    </span>
+                </li>                
+                {if $address_delivery->address2 !=""}
+                    <li>
+                        <span class="address_address2"><b>{l s='Dirección 2:'}</b>
+                        {$address_delivery->address1|escape:'html':'UTF-8'}
+                        </span>
+                    </li>
+                {/if}
+                <li>
+                    <span class="address_ciy"><b>{l s='Ciudad:'}</b>
+                    {$address_delivery->city|escape:'html':'UTF-8'}
+                    </span>
+                </li>
+                <li>
+                    <span class="address_deparment"><b>{l s='Departamento:'}</b>
+                    {$address_delivery->country|escape:'html':'UTF-8'}
+                    </span>
+                </li>
+                <li>
+                    <span class="address_phone"><b>{l s='Teléfono:'}</b>
+                    {$address_delivery->phone|escape:'html':'UTF-8'}
+                    </span>
+                </li>
+                <li>
+                    <span class="address_phone_mobile"><b>{l s='Celular:'}</b>
+                    {$address_delivery->phone_mobile|escape:'html':'UTF-8'}
+                    </span>
+                </li>			
 			</ul>
 		</div>
 		<div class="grid_6">
 			<ul class="address item {if $order->isVirtual()}full_width{/if} box">
 				<li><h3 class="page-subheading">{l s='Invoice address'} ({$address_invoice->alias})</h3></li>
-				{foreach from=$inv_adr_fields name=inv_loop item=field_item}
+				{*foreach from=$inv_adr_fields name=inv_loop item=field_item}
 					{if $field_item eq "company" && isset($address_invoice->company)}<li class="address_company">{$address_invoice->company|escape:'html':'UTF-8'}</li>
 					{elseif $field_item eq "address2" && $address_invoice->address2}<li class="address_address2">{$address_invoice->address2|escape:'html':'UTF-8'}</li>
 					{elseif $field_item eq "phone_mobile" && $address_invoice->phone_mobile}<li class="address_phone_mobile">{$address_invoice->phone_mobile|escape:'html':'UTF-8'}</li>
@@ -124,7 +161,55 @@
 							{assign var=address_words value=" "|explode:$field_item}
 							<li>{foreach from=$address_words item=word_item name="word_loop"}{if !$smarty.foreach.word_loop.first} {/if}{if !empty($invoiceAddressFormatedValues[$word_item|replace:',':''])}<span class="address_{$word_item|replace:',':''}">{$invoiceAddressFormatedValues[$word_item|replace:',':'']|escape:'html':'UTF-8'}</span>{/if}{/foreach}</li>
 					{/if}
-				{/foreach}
+				{/foreach*}
+				
+				<li>
+                    <span class="address_lastname"><b>{l s='Nombre:'}</b>
+                        {$address_invoice->firstname|escape:'html':'UTF-8'}
+                        {$address_invoice->lastname|escape:'html':'UTF-8'}
+                    </span>
+                </li>
+                {if $address_invoice->company !=""}
+                    <li>
+                        <span class="address_address2"><b>{l s='Empresa:'}</b>
+                        {$address_invoice->company|escape:'html':'UTF-8'}
+                        </span>
+                    </li>
+                {/if}
+                <li>
+                    <span class="address_address1"><b>{l s='Dirección 1:'}</b>
+                    {$address_invoice->address1|escape:'html':'UTF-8'}
+                    </span>
+                </li>                
+                {if $address_invoice->address2 !=""}
+                    <li>
+                        <span class="address_address2"><b>{l s='Dirección 2:'}</b>
+                        {$address_invoice->address1|escape:'html':'UTF-8'}
+                        </span>
+                    </li>
+                {/if}
+                <li>
+                    <span class="address_ciy"><b>{l s='Ciudad:'}</b>
+                    {$address_invoice->city|escape:'html':'UTF-8'}
+                    </span>
+                </li>
+                <li>
+                    <span class="address_deparment"><b>{l s='Departamento:'}</b>
+                    {$address_invoice->country|escape:'html':'UTF-8'}
+                    </span>
+                </li>
+                <li>
+                    <span class="address_phone">
+                    <b>{l s='Teléfono:'}</b>
+                    {$address_invoice->phone|escape:'html':'UTF-8'}
+                    </span>
+                </li>
+                <li>
+                    <span class="address_phone_mobile">
+                    <b>{l s='Celular:'}</b>
+                    {$address_invoice->phone_mobile|escape:'html':'UTF-8'}
+                    </span>
+                </li>
 			</ul>
 		</div>
 

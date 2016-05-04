@@ -176,11 +176,7 @@
     });    
 </script>
 {/if}
-<script type="text/javascript">
-    $(window).load(function() {
-        $('a:contains("Help Desk Software")').remove();
-    });    
-</script>
+
 </head>
 <body{if isset($page_name)} id="{$page_name|escape:'html':'UTF-8'}"{/if} class="{if isset($page_name)}{$page_name|escape:'html':'UTF-8'}{/if}{if isset($body_classes) && $body_classes|@count} {implode value=$body_classes separator=' '}{/if}{if $hide_left_column} hide-left-column{/if}{if $hide_right_column} hide-right-column{/if}{if isset($content_only) && $content_only} content_only{/if} lang_{$lang_iso}" itemscope itemtype="http://schema.org/WebPage">
 	{if !isset($content_only) || !$content_only}
@@ -244,7 +240,7 @@
 			                var lhnChatPositionYVal = 150;
 							var comparedProductsIds = 0;
 			            	</script>
-	            			<a href="http://www.livehelpnow.net/products/live-chat-system" target="_blank" id="lhnHelp">{l s='Chat'}</a>
+	            			<a href="http://www.livehelpnow.net/products/live-chat-system" target="_blank" id="">{l s='Chat'}</a>
 	            			<script src="//www.livehelpnow.net/lhn/widgets/chatbutton/lhnchatbutton-current.min.js" type="text/javascript" id="lhnscript"></script>
 						</li>
 		            	<li id="blog" class="blog">

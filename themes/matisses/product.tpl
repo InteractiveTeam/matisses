@@ -416,7 +416,26 @@
 			</form>
 			{/if}
 			<div class="wrap_extra_right">
-			{if isset($HOOK_EXTRA_RIGHT) && $HOOK_EXTRA_RIGHT}{$HOOK_EXTRA_RIGHT}{/if}
+			{*if isset($HOOK_EXTRA_RIGHT) && $HOOK_EXTRA_RIGHT}{$HOOK_EXTRA_RIGHT}{/if*}
+			
+			<div class="ax-shareContent ax-shareContentProduct">
+               <div class="newTopActions">
+                    <a href="javascript:window.print()" class="productPrint"><i class="fa fa-print" aria-hidden="true"></i></a>
+                    <!-- AddThis Button BEGIN -->
+                        <p class="addthis_toolbox addthis_default_style">
+                            <a class="addthis_button_email" ></a>
+                        </p>
+                        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fd60a055ec70816"></script>
+                    <!-- AddThis Button END -->
+                </div>
+                <div id="share" class="share-product"></div>
+            </div>
+            {if $socialButtonHtml}
+            <div>
+                {$socialButtonHtml}
+            </div>
+            {/if}
+            
 			</div>
 			<!-- Out of stock hook -->
 			<div id="oosHook"{if $product->quantity > 0} style="display: none;"{/if}>
