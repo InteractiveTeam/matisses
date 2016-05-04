@@ -289,7 +289,7 @@
 																	{if $img_color_exists}
 																		<img src="{$img_col_dir}{$id_attribute|intval}.jpg" alt="{$colors.$id_attribute.name|escape:'html':'UTF-8'}" title="{$colors.$id_attribute.name|escape:'html':'UTF-8'}" />
 																	{/if}
-																</a>
+																</a> 
 															</li>
 															{if ($group.default == $id_attribute)}
 																{$default_colorpicker = $id_attribute}
