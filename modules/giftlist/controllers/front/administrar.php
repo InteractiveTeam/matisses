@@ -63,8 +63,6 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 			if(!$file || empty($file) || !in_array($file['mime'], $mimeType))
 				return false;
 			else {
-                
-                die($file['tmp_name'].$this->uploadDir . ($id != 0 ? $id : Db::getInstance()->Insert_ID()). ".". $sqlExtension);
 				move_uploaded_file($file['tmp_name'], $this->uploadDir . Db::getInstance()->Insert_ID(). ".". $sqlExtension);
 				$image_name = Db::getInstance()->Insert_ID(). ".". $sqlExtension;
 			}
