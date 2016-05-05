@@ -921,42 +921,28 @@ class News extends Module {
 	
 	
 	
-	public function getPopulars()
-	{
-
-		$populars = Db::getInstance()->ExecuteS('SELECT a.id_news, b.title, c.title as category, viewed, c.*, b.*
-											FROM '._DB_PREFIX_.'news as a
-												 INNER JOIN	'._DB_PREFIX_.'news_langs as b
-												 INNER JOIN '._DB_PREFIX_.'news_cats_lang AS c
-												 	on a.id_news = b.id_news
-													and b.id_lang = c.id_lang
-											WHERE viewed !=0
-												and b.id_lang = '.$this->context->language->id.'
-											group by a.id_news  order by viewed desc
-											');
-		foreach($populars as $d => $comment)
-		{
+	public function getPopulars(){        
+        $populars = Db::getInstance()->ExecuteS('SELECT news.id_news,news.viewed,nl.title,news.id_parent_category as id_cat,ncl.title as category,ncl.title as cat_rewrite
+            FROM '._DB_PREFIX_.'news AS news
+            INNER JOIN '._DB_PREFIX_.'news_cats_lang ncl ON ncl.id_cat = news.id_parent_category
+            INNER JOIN '._DB_PREFIX_.'news_langs nl ON nl.id_news = news.id_news');        
+        
+		foreach($populars as $d => $comment) {
 			$populars[$d]['cat_rewrite'] = $this->getCatRewrite($comment['id_cat'],$this->context->language->id);
 			$populars[$d]['rewrite'] = Tools::str2url($comment['title']);
 		}
 		return $populars;
 	}
 	
-	public function getCommentados()
-	{								
+	public function getCommentados(){
+        $comments = Db::getInstance()->ExecuteS('SELECT news.id_news, (SELECT count(*) FROM ps_news_comments WHERE id_news = news.id_news) as comentarios,news.id_parent_category as id_cat ,nl.title as title,ncl.title as category,ncl.title as cat_rewrite
+            FROM '._DB_PREFIX_.'news AS news 
+            INNER JOIN '._DB_PREFIX_.'news_comments nc ON news.id_news = nc.id_news
+            INNER JOIN '._DB_PREFIX_.'news_cats_lang ncl ON ncl.id_cat = news.id_parent_category
+            INNER JOIN '._DB_PREFIX_.'news_langs nl ON nl.id_news = news.id_news
+            GROUP BY nc.id_news');
 
-		$comments = Db::getInstance()->ExecuteS('SELECT a.id_news, b.title, c.title as category, (SELECT count(*) FROM '._DB_PREFIX_.'news_comments WHERE id_news = a.id_news) as comentarios, c.*, b.*
-											FROM '._DB_PREFIX_.'news as a
-												 INNER JOIN	'._DB_PREFIX_.'news_langs as b
-												 INNER JOIN '._DB_PREFIX_.'news_cats_lang AS c
-												 	on a.id_news = b.id_news
-													and b.id_lang = c.id_lang
-											WHERE (SELECT count(*) FROM '._DB_PREFIX_.'news_comments WHERE id_news = a.id_news) !=0
-												and b.id_lang = '.$this->context->language->id.'
-											group by a.id_news  order by (SELECT count(*) FROM '._DB_PREFIX_.'news_comments WHERE id_news = a.id_news) desc
-											');
-		foreach($comments as $d => $comment)
-		{
+        foreach($comments as $d => $comment){
 			$comments[$d]['cat_rewrite'] = $this->getCatRewrite($comment['id_cat'],$this->context->language->id);
 			$comments[$d]['rewrite'] = Tools::str2url($comment['title']);
 		}
