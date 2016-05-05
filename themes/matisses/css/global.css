@@ -920,7 +920,7 @@ box-sizing: border-box;
 
 	/*Destacados*/
 	.highlights {
-	padding: 4.0625rem 0;
+	/*padding: 4.0625rem 0;*/
 	}
 	.highlights .info img {
 	width: 100%;
@@ -934,7 +934,7 @@ box-sizing: border-box;
 	/*Más populares*/
 	.popular{
 	background-color: #fff;
-	padding: 4.0625rem 0;
+	/*padding: 4.0625rem 0;*/
 	}
 
 	/*Experiencias*/

@@ -43,21 +43,21 @@
 		</div>
 	</div>
 	
-	<div id="highlights" class="highlights ax-hide-temp">
+	<div id="highlights" class="highlights">
 		<div class="container">
 			<!-- Chaordic Top -->
             <div chaordic="top"></div>
 		</div>
     </div>
 
-    <div id="offers" class="offers-products ax-hide-temp">
+    <div id="offers" class="offers-products">
 		<div class="container">
 		    <!-- Chaordic Middle -->
             <div chaordic="middle"></div>
 		</div>
     </div>
     
-    <div id="popular" class="popular ax-hide-temp">
+    <div id="popular" class="popular">
 		<div class="container">
 		    <!-- Chaordic Bottom -->
             <div chaordic="bottom"></div>
