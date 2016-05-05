@@ -5294,3 +5294,7 @@ a.newPrint:hover {
 #view_wishlist ul.wlp_bought_list li .product_image img {
     max-height: 260px;
 }
+
+.inner-product-list .product_list .product_img_link img {
+    max-height: 288px;
+}
