@@ -5298,3 +5298,7 @@ a.newPrint:hover {
 .inner-product-list .product_list .product_img_link img {
     max-height: 288px;
 }
+
+.fancybox-inner {
+    overflow: hidden !important;
+}
