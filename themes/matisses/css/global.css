@@ -307,6 +307,7 @@ box-sizing: border-box;
 	padding: 1.1rem 0 0.9rem 0;
 	display: table;
     width: 70%;
+    width: 40%;
 	}
 	.menu-experiencias li {
 	display: table-cell;
@@ -380,7 +381,7 @@ box-sizing: border-box;
         padding-top: 10px;
         padding-right: 0;
         font-family: "FontAwesome";
-        color: #d9292;
+        color: #d9292e;
 	}
 
     .right-down-menu .highlight-close a:before, .right-up-menu .highlight-close a:before {
@@ -563,7 +564,7 @@ box-sizing: border-box;
     color:#636363;
     }
 
-    #cms a {
+    #cms .content_only a, #cms .center_column .container a {
         color: #d7162f;
     }
 
@@ -944,6 +945,7 @@ box-sizing: border-box;
 	.experiences-slider .img-container {
     overflow: hidden;
     position: relative;
+    min-height: 240px;
 	}
 	.experiences-slider .img-container:before {
     content: "";
@@ -958,10 +960,11 @@ box-sizing: border-box;
 	}
 	.experiences-slider .img-container a {
     display: block;
-    max-height: 240px;
+    height: 240px;
 	}
 	.experiences-slider .img-container img {
     transition: transform 0.35s;
+    height: 100%;
 	}
 	.experiences-slider .img-container:hover:before {
     opacity: 1;
@@ -975,7 +978,7 @@ box-sizing: border-box;
 	.slide-experiencias figcaption{
 	background: #fff;
 	padding: 25px 20px;
-    min-height: 270px;
+    min-height: 320px;
 	}
 	.slide-experiencias img{
 	display: block;
@@ -1241,7 +1244,7 @@ box-sizing: border-box;
 	}
 	.close:hover {
 	opacity: 1;
-	} 
+	}
 	button{
 	outline: none;
 	}
@@ -3745,8 +3748,7 @@ box-sizing: border-box;
 	}
 
 /*Pagina Pedidos - Orden*/
-#order #center_column,
-#authentication #center_column, #password #center_column, #order-confirmation #center_column {
+#order #center_column, #authentication #center_column, #password #center_column, #order-confirmation #center_column, #module-blockwishlist-view #center_column {
 	width: 100%;
 	max-width: 75rem;
 	margin: 0 auto;
@@ -3924,7 +3926,7 @@ box-sizing: border-box;
 	margin-top:1.25rem;
             float: none;
 	}
-	.order_delivery .address li span,.detail-order .address li span{
+	.order_delivery .address li span{
 	font-family: 'Open Sans Condensed', sans-serif;
 	color: #4b4b4b;
 	font-size: 1.125rem;
@@ -4006,8 +4008,7 @@ box-sizing: border-box;
 		background:#fff;
 	}
 
-	.main-container .order_delivery .address li span,
-    .main-container .detail-order .address li span{
+	.main-container .order_delivery .address li span {
 		font-size: 1rem;
 		line-height: 1.2rem;
 		margin-left: 10px;
@@ -5103,12 +5104,6 @@ a.ayo-btn{
     float:right;
 }
 
-#product #at3win{top: 7%;}
-.ax-shareContent.ax-shareContentProduct{float: none;padding-top:15px;}
-.ax-shareContent p{display: inline-block}
-.ax-shareContent .newTopActions,.ax-shareContent #share{display: inline-block;vertical-align: top;}
-.ax-shareContentProduct .productPrint{float: right;margin-left: 6px;}
-
 #share {
     display: inline;
     height: 49px;
@@ -5204,4 +5199,63 @@ a.newPrint:hover {
     font-weight: 100;
     letter-spacing: 1px;
     font-size: 18px;
+}
+
+#menu #giftlist {
+    display: none;
+}
+/*lista de deseos*/
+
+.product_infos .product-name#s_title {
+    color: #636363;
+    display: inline-block;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#mywishlist .wlp_bought ul.row.wlp_bought_list li {
+    min-height: auto;
+}
+
+#mywishlist .wlp_bought ul .wishlist_product_detail label, #mywishlist .wlp_bought ul .wishlist_product_detail input, #view_wishlist .wlp_bought ul .wishlist_product_detail label, #view_wishlist .wlp_bought ul .wishlist_product_detail input {
+    display: inline;
+}
+
+#mywishlist .wlp_bought .wishlist_product_detail select {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+}
+
+#mywishlist  .wl_send.box.unvisible.grid_12 {
+    padding: 0;
+}
+
+.order-close a {
+    color: #fff;
+}
+
+.first-item-of-tablet-line {
+    padding-left: 0;
+}
+
+#view_wishlist .wlp_bought_list  {
+    margin-top: 20px;
+}
+
+#view_wishlist .wlp_bought_list .ajax_block_product .col-xs-6.col-sm-12 {
+    padding: 0;
+}
+
+#view_wishlist .wlp_bought ul .col-md-4 {
+    width: 23.7%;
+}
+
+#view_wishlist > p a {
+    color: #d7162f;
+}
+
+.footer_links {
+    text-align: center;
 }
