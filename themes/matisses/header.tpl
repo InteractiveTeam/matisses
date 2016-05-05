@@ -176,7 +176,11 @@
     });    
 </script>
 {/if}
-
+<script type="text/javascript">
+    $(window).load(function() {
+        $('a:contains("Help Desk Software")').remove();
+    });    
+</script>
 </head>
 <body{if isset($page_name)} id="{$page_name|escape:'html':'UTF-8'}"{/if} class="{if isset($page_name)}{$page_name|escape:'html':'UTF-8'}{/if}{if isset($body_classes) && $body_classes|@count} {implode value=$body_classes separator=' '}{/if}{if $hide_left_column} hide-left-column{/if}{if $hide_right_column} hide-right-column{/if}{if isset($content_only) && $content_only} content_only{/if} lang_{$lang_iso}" itemscope itemtype="http://schema.org/WebPage">
 	{if !isset($content_only) || !$content_only}
@@ -229,13 +233,18 @@
 	            <div class="cf right-down-menu">
 	              	<ul>
 		                <li id="chat" class="chat">
-			            	<div id="lhnContainerDone" style="text-align: center; width: auto; top: 150px; right: 0px; position: fixed; z-index: 9999;">
-                                <div id="lhnChatButton" style="width: auto;">
-                                    <a href="#" onclick="OpenLHNChat();return false;" id="aLHNBTN">
-                                        <img id="lhnchatimg" border="0" alt="Live help" src="http://www.livehelpnow.net/lhn/functions/imageserver.ashx?lhnid=24694&amp;java=No&amp;zimg=4827&amp;sres=1920x1080&amp;sdepth=24&amp;custom1=&amp;custom2=&amp;custom3=&amp;t=t&amp;d=29011&amp;rnd=0.36317845692275763&amp;ck=true&amp;referrer=&amp;pagetitle=MATISSES&amp;pageurl=http%3A//www.matisses.co/">
-                                    </a>
-                            </div>
-                            <script type="text/javascript" src="http://www.livehelpnow.net/lhn/scripts/livehelpnow.aspx?lhnid=24694&amp;iv=1&amp;ivid=0&amp;d=29011&amp;ver=5.3&amp;rnd=0.8177507956510826"></script></div>
+			            	<!-- This code must be installed within the body tags -->
+			            	<script type="text/javascript">
+			                var lhnAccountN = "LHN24694";
+			                var lhnButtonN = 4827;
+			                var lhnChatPosition = 'righttab';
+			                var lhnInviteEnabled = 1;
+			                var lhnWindowN = 27112;
+			                var lhnDepartmentN = 29011;
+			                var lhnChatPositionYVal = 150;
+							var comparedProductsIds = 0;
+			            	</script>
+	            			<a href="http://www.livehelpnow.net/products/live-chat-system" target="_blank" id="lhnHelp">{l s='Chat'}</a>
 	            			<script src="//www.livehelpnow.net/lhn/widgets/chatbutton/lhnchatbutton-current.min.js" type="text/javascript" id="lhnscript"></script>
 						</li>
 		            	<li id="blog" class="blog">

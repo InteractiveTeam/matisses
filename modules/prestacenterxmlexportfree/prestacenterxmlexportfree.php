@@ -541,6 +541,7 @@ class PrestaCenterXmlExportFree extends Module
 		}
 		unset($tmp, $product);
 	}
+    
 	protected function initExport(array $settings)
 	{
 		@set_time_limit(0);
