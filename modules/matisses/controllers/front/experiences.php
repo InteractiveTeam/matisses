@@ -6,6 +6,15 @@ class matissesexperiencesModuleFrontController extends ModuleFrontController
 	protected $experience;
 	public $id_experience;
 	
+    public function __construct() {
+		$this->module = Module::getInstanceByName ( Tools::getValue ( 'module' ) );
+		if (! $this->module->active)
+			Tools::redirect ( 'index' );
+
+		$this->page_name = 'module-' . $this->module->name . '-' . Dispatcher::getInstance ()->getController ();
+		parent::__construct ();
+	}
+    
 	public function init()
 	{
 		parent::init();

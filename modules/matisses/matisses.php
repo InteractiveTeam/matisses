@@ -530,27 +530,19 @@ class matisses extends Module
 	
 	
 	public function hookmoduleRoutes() {
-	/*
-		return array(
-				'module-maticces-experiences' => array(
-                    'controller' => 'new',
-                    'rule' =>  'news/new/{id_news}-{cat_news}-{page_cat}/{cat_rewrite}/{rewrite}.html',
-                    'keywords' => array(
-                        'id_news'   => array('regexp' => '[0-9]+',   'param' => 'id_news'),
-                        'cat_news'  => array('regexp' => '[0-9]*',   'param' => 'cat_news'),
-                        'cat_rewrite'  => array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'cat_rewrite'),
-                        'page_cat'      => array('regexp' => '[0-9]*',   'param' => 'page_cat'),
-                        'rewrite'   => array('regexp' => '[_a-zA-Z0-9-\pL]*',   'param' => 'rewrite'),
-                    ),
-                    'params' => array(
-						'fc' => 'module',
-                        'module' => 'news',
-                        'controller' => 'new'
-                    )
-                )
-				 
-    	);	
-*/
+		/*return [
+            'module-matisses-experiences' => [
+                'controller' => 'experiences',
+                'rule' =>  'experiencias/{id_experciencia}',
+                'keywords' => [
+                    'id_experciencia'   => ['regexp' => '[0-9]+',   'param' => 'id_experciencia']
+                ],
+                'params' => [
+                    'fc' => 'module',
+                    'controller' => 'experiences',
+                ]        	 
+    	     ]
+        ];*/
     }	
 	
 	public function hookHeader($params)
