@@ -374,7 +374,7 @@ box-sizing: border-box;
         color: #d9292e;
 	}
 
-	.search a {
+	body .search a {
         display: inline-block;
         height: 31px;
         width: 31px;
