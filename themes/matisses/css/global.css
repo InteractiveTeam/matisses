@@ -3926,7 +3926,7 @@ box-sizing: border-box;
 	margin-top:1.25rem;
             float: none;
 	}
-	.order_delivery .address li span{
+	.order_delivery .address li span,.detail-order .address li span{
 	font-family: 'Open Sans Condensed', sans-serif;
 	color: #4b4b4b;
 	font-size: 1.125rem;
@@ -4008,7 +4008,8 @@ box-sizing: border-box;
 		background:#fff;
 	}
 
-	.main-container .order_delivery .address li span {
+	.main-container .order_delivery .address li span,
+    .main-container .detail-order .address li span {
 		font-size: 1rem;
 		line-height: 1.2rem;
 		margin-left: 10px;
@@ -5104,6 +5105,11 @@ a.ayo-btn{
     float:right;
 }
 
+#product #at3win{top: 7%;}
+.ax-shareContent.ax-shareContentProduct{float: none;padding-top:15px;}
+.ax-shareContent p{display: inline-block}
+.ax-shareContent .newTopActions,.ax-shareContent #share{display: inline-block;vertical-align: top;}
+.ax-shareContentProduct .productPrint{float: right;margin-left: 6px;}
 #share {
     display: inline;
     height: 49px;
