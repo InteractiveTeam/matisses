@@ -979,6 +979,7 @@ box-sizing: border-box;
 	background: #fff;
 	padding: 25px 20px;
     min-height: 320px;
+    border-bottom: #fafafa solid 10px;
 	}
 	.slide-experiencias img{
 	display: block;
@@ -5264,4 +5265,32 @@ a.newPrint:hover {
 
 .footer_links {
     text-align: center;
+}
+
+.content-blog .newsRight .first, .content-destacados .newsRight .first {
+    background: #493c33;
+}
+
+.content-blog .first .category-news span, .content-destacados .first .category-news span {
+    color: #b88c69;
+}
+
+.content-blog .first .newsTitle h2, .content-destacados .first .newsTitle h2 {
+    color: #ded1c8;
+}
+
+.content-blog .first .date-author span, .content-blog .first .date-author p, .content-destacados .first .date-author span, .content-destacados .first .date-author p {
+    color: #b5b0ac;
+}
+
+.content-blog .first p, .content-destacados .first p {
+    color: #fefdf9;
+}
+
+.ax-hide-temp {
+    display: none;
+}
+
+#view_wishlist ul.wlp_bought_list li .product_image img {
+    max-height: 260px;
 }

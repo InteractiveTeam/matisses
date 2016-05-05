@@ -26,10 +26,10 @@
 <div id="mywishlist">
     {capture name=path}
         <a href="{$link->getPageLink('my-account', true)|escape:'html'}">{l s='My account' mod='blockwishlist'}</a>
-        <span class="navigation-pipe">{$navigationPipe}</span>
+        <i class="fa fa-angle-right"></i>
         <a href="{$link->getModuleLink('blockwishlist', 'mywishlist')|escape:'html'}">{l s='My wishlists' mod='blockwishlist'}</a>
 		{if isset($current_wishlist)}
-	        <span class="navigation-pipe">{$navigationPipe}</span>
+	        <i class="fa fa-angle-right"></i>
 	        {$current_wishlist.name}
 		{/if}
     {/capture}
