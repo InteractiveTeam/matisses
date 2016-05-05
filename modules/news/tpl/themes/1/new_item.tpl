@@ -1,7 +1,7 @@
 {if false}
 <div class="breadcrumb newsBreadcrumb iconNewsList ">
     <a href="{$link->getPageLink('index.php',true)}" >{l s='Home' mod='news'}</a>
-    <span class="navigation-pipe">&gt;</span>
+    <i class="fa fa-angle-right"></i>
     <span class="navigation_page">
         <a href="{$link->getModuleLink('news', 'list',
                                                             [
@@ -12,7 +12,7 @@
 
                                                             ,false)}" >{l s='News' mod='news'}</a>
     </span>
-    <span class="navigation-pipe">&gt;</span>
+    <i class="fa fa-angle-right"></i>
     <span class="navigation_page">{$title|escape:html:'UTF-8'|truncate:60:'...'}</span>
 
     <a class="newsRss" href="{$link->getModuleLink('news', 'rss', ['rss_news'=>1] ,false)}" target="_blank"></a>

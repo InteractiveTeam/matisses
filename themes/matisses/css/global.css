@@ -5286,3 +5286,11 @@ a.newPrint:hover {
 .content-blog .first p, .content-destacados .first p {
     color: #fefdf9;
 }
+
+.ax-hide-temp {
+    display: none;
+}
+
+#view_wishlist ul.wlp_bought_list li .product_image img {
+    max-height: 260px;
+}
