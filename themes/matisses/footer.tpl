@@ -44,12 +44,6 @@
 	<div class="container">
         <!-- Chaordic Top -->
         <div chaordic="top"></div>
-		<div class="info-chaordic">
-			<img src="../../themes/matisses/img/purchased-block.jpg" alt="comprados">
-			<div class="mask">
-				<h1>Espacio para Chaordic</h1>
-			</div>
-		</div>
 	</div>
 	{/if}
 </div>
@@ -58,12 +52,6 @@
     <div class="container">
         <!-- Chaordic Middle -->
         <div chaordic="middle"></div>
-        <div class="info-chaordic">
-            <img src="../../themes/matisses/img/popular.jpg" alt="Más populares">
-            <div class="mask">
-                <h1>Espacio para Chaordic</h1>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -71,12 +59,6 @@
 	<div class="container">
 	    <!-- Chaordic Bottom -->
         <div chaordic="bottom"></div>
-		<div class="info-chaordic">
-			<img src="../../themes/matisses/img/offers-products-2.jpg" alt="Oferta de productos">
-			<div class="mask">
-				<h1>Espacio para Chaordic</h1>
-			</div>
-		</div>
 	</div>
 </div>
 

@@ -314,12 +314,6 @@
 			<div class="container">
 			    <!-- Chaordic Top -->
                 <div chaordic="top"></div>
-				<div class="info-chaordic">
-					<img src="../../themes/matisses/img/displayed-category.jpg" alt="productos visualizados">
-					<div class="mask">
-						<h1>Espacio para Chaordic</h1>
-					</div>
-				</div>
 			</div>
 	    </div>
 		<!--Fin Bloque1 Visualizados-->
