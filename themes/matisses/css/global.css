@@ -5271,7 +5271,7 @@ a.newPrint:hover {
     background: #493c33;
 }
 
-.content-blog .first .category-news span, .content-destacados .first .category-news span {
+.content-blog .category-news span, .content-destacados .category-news span {
     color: #b88c69;
 }
 
