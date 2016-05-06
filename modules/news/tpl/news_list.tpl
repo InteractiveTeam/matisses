@@ -205,7 +205,7 @@
                                     <div class="newsListContent right-article grid_8 alpha omega">
                                         <div class="category-news">
                                             <span>{$news->cat_name}</span>
-                                        </div>
+                                        </div>                                        
                                         <div class="newsTitle">
                                             <a href="{$link->getModuleLink('news', 'new',
                                         [
@@ -213,9 +213,8 @@
                                             'cat_news' => "{if $cat}{$cat}{/if}",
                                             'page_cat'     => "{$page}",
                                             'rewrite'  => "{$news->rewrite}",
-                                            'cat_rewrite'  => "{$cat_rewrite}"
-                                         ]
-                                         ,false)}"
+                                            'cat_rewrite'  => "{str_replace(' ','-',strtolower($news->cat_name))}"
+                                         ],false)}"
                                                 alt="{$news->title|escape:html:'UTF-8'}" class="newsListItem"><h2>{$news->title|escape:html:'UTF-8'}</h2></a>
                                         </div>
 
@@ -356,7 +355,7 @@
                                         'cat_rewrite'  => "{$articulo.cat_rewrite}"
                                      ]
                                      ,false)}"
-                                   alt="{$articulo.title}" ><h2>                                    {$articulo.title}</h2></a>
+                                   alt="{$articulo.title}" ><h2>{$articulo.title}</h2></a>
                                 </div>
                             </li>
                             {/foreach}
@@ -367,22 +366,20 @@
                         	{foreach from=$populares item=articulo}
                             <li>
                                 <div class="category-news">
+                                <div class="category-news">
                                     <span>{$articulo.category}</span>
                                 </div>
                                 <div class="newsTitle">
-                                    <a href="{$link->getModuleLink('news', 'new',
-                                    [
+                                    <a href="{$link->getModuleLink('news', 'new',[
                                         'id_news'  => "{$articulo.id_news}",
                                         'cat_news' => "{$articulo.id_cat}",
                                         'page_cat'     => "{$page}",
                                         'rewrite'  => "{$articulo.rewrite}",
                                         'cat_rewrite'  => "{$articulo.cat_rewrite}"
-                                     ]
-                                     ,false)}"
+                                     ] ,false)}"
                                    alt="{$articulo.title}" >
                                     	<h2>{$articulo.title}</h2>
                                     </a>
-                                    
                                 </div>
                             </li>
                             {/foreach}

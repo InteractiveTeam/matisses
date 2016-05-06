@@ -52,7 +52,7 @@ class News extends Module {
 				'module' =>			array('regexp' => '[_a-zA-Z0-9_-]+', 'param' => 'module'),
 				'controller' =>		array('regexp' => '[_a-zA-Z0-9_-]+', 'param' => 'controller') ),
                     'params' => array(
-			'fc' => 'module',
+			            'fc' => 'module',
                         'module' => 'news',
                         'controller' => 'news'
                     )
@@ -64,7 +64,7 @@ class News extends Module {
 				'rss_news' =>			array('regexp' => '[0-9]*', 'param' => 'rss_news')
                             ),
                     'params' => array(
-			'fc' => 'module',
+			             'fc' => 'module',
                         'module' => 'news',
                         'controller' => 'rss'
                     )
@@ -72,7 +72,8 @@ class News extends Module {
        
                 'module-news-new' => array(
                     'controller' => 'new',
-                    'rule' =>  'news/new/{id_news}-{cat_news}-{page_cat}/{cat_rewrite}/{rewrite}.html',
+                    //'rule' =>  'news/new/{id_news}-{cat_news}-{page_cat}/{cat_rewrite}/{rewrite}.html',
+                    'rule' =>  'blog/{cat_rewrite}/{id_news}-{rewrite}.html',
                     'keywords' => array(
                         'id_news'   => array('regexp' => '[0-9]+',   'param' => 'id_news'),
                         'cat_news'  => array('regexp' => '[0-9]*',   'param' => 'cat_news'),
@@ -81,9 +82,9 @@ class News extends Module {
                         'rewrite'   => array('regexp' => '[_a-zA-Z0-9-\pL]*',   'param' => 'rewrite'),
                     ),
                     'params' => array(
-				'fc' => 'module',
+				        'fc' => 'module',
                         'module' => 'news',
-                        'controller' => 'new'
+                        'controller' => 'new',
                     )
                 )
 
