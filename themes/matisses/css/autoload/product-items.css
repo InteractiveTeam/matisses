@@ -66,6 +66,7 @@
 	.product_list .product_img_link,.c_item .product_img_link{
 	display:inline-block;
 	position: relative;
+    min-height: 307px;
 	}
 	.product_list.grid .product-desc{
 	display: none;
