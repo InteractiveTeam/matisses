@@ -29,19 +29,6 @@
     	{hook h="displayMatSlider"}
         {hook h="displayMatAdvertisingHome"}
     </div>
-
-
-
-    <div id="viewed-products" class="viewed-products">
-		<div class="container">
-    		{hook h="displayMatShowesProducts"}
-		</div>
-    </div>
-    <div id="new-products" class="new-products">
-		<div class="container">
-    		{hook h="displayMatNewProducts"}
-		</div>
-	</div>
 	
 	<div id="highlights" class="highlights">
 		<div class="container">

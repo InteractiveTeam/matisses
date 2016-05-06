@@ -19,37 +19,6 @@
 </div>
 {/if}
 
-
-
-
-<div class="newsMenuCats">
-		<input type="hidden" name="id_new" id="id_new" value="{$id_new}" />
-        <form action="{$link->getModuleLink('news', 'news', [] ,false)}" method="post" class="fromNewsSearch" name="fromNewsSearch">
-            <input type="text" name="search_news" value="{$search_news}" class="newsSearch"></input>
-            <input type="submit" name="searchnewshidden" style="visibility: hidden"></input>
-        </form>
-
-       {if $catsObj}
-                 {assign var='menu_position' value=1}
-                 {foreach from=$catsObj item='cats' name=myLoop}
-                        <div class="{if $smarty.foreach.myLoop.last}news_last_item{else}news_first_item{/if}"><h1><a
-                                class="{if $cat==$cats->id} newsMenuHover_{$menu_position}_selected{/if} newsItemMenu newsMenuHover_{$menu_position}"
-                               href="{$link->getModuleLink('news', 'list',
-                                                            [
-                                                                'cat_news' => "{$cats->id}",
-                                                                'page_cat' => 0,
-                                                                'rewrite'  => "{$cats->rewrite}"
-                                                             ]
-
-                                                            ,false)}"
-                                title="{$cats->title|truncate:50:'...'|escape:html:'UTF-8'}">
-                                {$cats->title|escape:html:'UTF-8'}
-                            </a></h1></div>
-                        {assign var='menu_position' value=$menu_position+1}
-                 {/foreach}
-        {/if}
-
-     </div>
 <div class="newContent grid_12 omega alpha">
     <div class="newContentInt">
 
@@ -167,8 +136,8 @@
                                             'id_news'  => "{$prev_id_news}",
                                             'cat_news' => "{if $cat}{$cat}{/if}",
                                             'page_cat'     => "{$page}",
-                                            'rewrite'  => "{$news->rewrite}",
-                                            'cat_rewrite'  => "{$cat_rewrite}"
+                                            'rewrite'  => "{$prev_rewrite}",
+                                            'cat_rewrite'  => "{$prev_cat_rewrite}"
                                          ]
                                          ,false)}"><i class="fa fa-angle-double-left"></i>&nbsp;{l s='Anterior' mod='news'}</a>
         {/if}
@@ -179,8 +148,8 @@
                                             'id_news'  => "{$next_id_news}",
                                             'cat_news' => "{if $cat}{$cat}{/if}",
                                             'page_cat'     => "{$page}",
-                                            'rewrite'  => "{$news->rewrite}",
-                                            'cat_rewrite'  => "{$cat_rewrite}"
+                                            'rewrite'  => "{$next_rewrite}",
+                                            'cat_rewrite'  => "{$next_cat_rewrite}"
                                          ]
                                          ,false)}">{l s='Siguiente' mod='news'}&nbsp;<i class="fa fa-angle-double-right"></i></a>
         {/if}
