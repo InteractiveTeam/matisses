@@ -21,8 +21,8 @@
           <td>{$garantia.status}</td>
           <td>
           <div class="options">
-          	<a href="#" id="showdetail" data-id="{$garantia.id_garantia}">{l s='Ver detalle'}</a>
-          	<a href="#" id="closedetail" data-id="{$garantia.id_garantia}">{l s='Cerrar detalle'}</a></td>
+          	<a href="javascript:void(0)" id="showdetail" data-id="{$garantia.id_garantia}">{l s='Ver detalle'}</a>
+          	<a href="javascript:void(0)" id="closedetail" data-id="{$garantia.id_garantia}">{l s='Cerrar detalle'}</a></td>
           </div>
         </tr>
         <tr>

@@ -142,7 +142,7 @@
   </div>
   <div class="copyright">
     <div class="container"> <a class="" href="http://www.prestapro.ru" title="{l s='Prestapro'}">© {$smarty.now|date_format:"%Y"} {l s='Created By'} <span>{l s='Prestapro.'}</span> {l s='All right reserved'}</a> </div>
-    <div id="back-top"> <a href="#"> <i class="font-up-open-big"></i> </a> </div>
+    <div id="back-top"> <a href="javascript:void(0)"> <i class="font-up-open-big"></i> </a> </div>
   </div>
 </footer>
 {/if}

@@ -61,7 +61,7 @@
 					</div>
 					<div class="submit">
 						<div class="col-xs-6 text1">
-							<a class="closefb button grey_btn" href="#">
+							<a class="closefb button grey_btn" href="javascript:void(0)">
 								{l s='Cancel' mod='sendtoafriend'}
 							</a>
 						</div>

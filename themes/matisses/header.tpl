@@ -204,7 +204,7 @@
 	              <ul id="menu" class="grid_10 menu-experiencias" style="color:black">
                     <li id="experiencias"><a href="{$link->getModuleLink('matisses','experiences')}">{l s='Experiencias'}</a></li>
 	                <li id="wishlist">{hook h="displayMatWishlist"}</li>
-	                <li id="giftlist"><a href="#"><span></span>{l s='Lista de regalos'}</a></li>
+	                <li id="giftlist"><a href="javascript:void(0)"><span></span>{l s='Lista de regalos'}</a></li>
 	              </ul>
             	</div>
           	</div>
@@ -230,7 +230,7 @@
 		                <li id="chat" class="chat">
                             <div id="lhnContainerDone" style="text-align: center; width: auto; top: 150px; right: 0px; position: fixed; z-index: 9999;">
                                  <div id="lhnChatButton" style="width: auto;">
-                                     <a href="#" onclick="OpenLHNChat();return false;" id="aLHNBTN">
+                                     <a href="javascript:void(0)" onclick="OpenLHNChat();return false;" id="aLHNBTN">
                                          <img id="lhnchatimg" border="0" alt="Live help" src="http://www.livehelpnow.net/lhn/functions/imageserver.ashx?lhnid=24694&amp;java=No&amp;zimg=4827&amp;sres=1920x1080&amp;sdepth=24&amp;custom1=&amp;custom2=&amp;custom3=&amp;t=t&amp;d=29011&amp;rnd=0.36317845692275763&amp;ck=true&amp;referrer=&amp;pagetitle=MATISSES&amp;pageurl=http%3A//www.matisses.co/">
                                      </a>
                              </div>

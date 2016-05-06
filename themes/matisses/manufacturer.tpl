@@ -39,7 +39,7 @@
 				<div class="hide_desc">
 					{$manufacturer->description}
 				</div>
-				<a href="#" class="lnk_more" onclick="$(this).prev().slideDown('slow'); $(this).hide();$(this).prev().prev().hide(); return false;">
+				<a href="javascript:void(0)" class="lnk_more" onclick="$(this).prev().slideDown('slow'); $(this).hide();$(this).prev().prev().hide(); return false;">
 					{l s='More'}
 				</a>
 			{else}

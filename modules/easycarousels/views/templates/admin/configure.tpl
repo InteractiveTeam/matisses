@@ -72,7 +72,7 @@
 		<div class="col-lg-7 hook_settings">
 			<i class="icon icon-wrench"></i>
 			{l s='Hook settings' mod='easycarousels'}:
-			<a href="#" class="callSettings" data-settings="exceptions">{l s='page exceptions' mod='easycarousels'}</a>
+			<a href="javascript:void(0)" class="callSettings" data-settings="exceptions">{l s='page exceptions' mod='easycarousels'}</a>
 		</div>
 	</form>
 	<div id="settings_content" style="display:none;">{* filled dinamically *}</div>

@@ -24,13 +24,13 @@
 *}
 {if sizeof($wishlists)<=1}
 <div class="elem_butt">
-	<a id="wishlist_button" href="#" onclick="WishlistCart('wishlist_block_list', 'add', '{$id_product|intval}', $('#idCombination').val(), document.getElementById('quantity_wanted').value); return false;" rel="nofollow"  title="{l s='Add to my wishlist' mod='blockwishlist'}">
+	<a id="wishlist_button" href="javascript:void(0)" onclick="WishlistCart('wishlist_block_list', 'add', '{$id_product|intval}', $('#idCombination').val(), document.getElementById('quantity_wanted').value); return false;" rel="nofollow"  title="{l s='Add to my wishlist' mod='blockwishlist'}">
 		<span class="hidden-xxs">{l s='Add to wishlist' mod='blockwishlist'}</span>
 	</a>
 </div>
 {else}
 <div class="elem_butt">
-	<a id="wishlist_button" class="addToWishlist" href="#" data-product="{$id_product|intval}" rel="nofollow"  title="{l s='Add to my wishlist' mod='blockwishlist'}">
+	<a id="wishlist_button" class="addToWishlist" href="javascript:void(0)" data-product="{$id_product|intval}" rel="nofollow"  title="{l s='Add to my wishlist' mod='blockwishlist'}">
 		<span class="hidden-xxs">{l s='Add to wishlist' mod='blockwishlist'}</span>
 	</a>
 </div>	
@@ -40,7 +40,7 @@
     <ul>
         {foreach from=$wishlists item=wishlist}
         <li>
-            <a href="#" title="{$wishlist.name}" value="{$wishlist.id_wishlist}" onclick="WishlistCart('wishlist_block_list', 'add', '{$id_product|intval}', false, 1, '{$wishlist.id_wishlist}');">
+            <a href="javascript:void(0)" title="{$wishlist.name}" value="{$wishlist.id_wishlist}" onclick="WishlistCart('wishlist_block_list', 'add', '{$id_product|intval}', false, 1, '{$wishlist.id_wishlist}');">
                 {l s='%s Adicionar' sprintf=[$wishlist.name] mod='blockwishlist'}
              </a>
         </li>

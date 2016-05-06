@@ -40,7 +40,7 @@ Description of variables/placeholders you can use in XML feed template. All vari
 {l s='This behavior can be changed in the Pro version according to your preferences.' mod='prestacenterxmlexportfree'}
 </span>
 <br />
-<u><a href="#" class="prestacenterxmlexportfreetoggle" rel="1"></a></u><br />
+<u><a href="javascript:void(0)" class="prestacenterxmlexportfreetoggle" rel="1"></a></u><br />
 <span id="prestacenterxmlexportfreeblock2"><br />
 <b>{l s='Product availability' mod='prestacenterxmlexportfree'}</b><br />
 <br />
@@ -59,7 +59,7 @@ Description of variables/placeholders you can use in XML feed template. All vari
 *}
 </span>
 <br />
-<u><a href="#" class="prestacenterxmlexportfreetoggle" rel="2"></a></u><br />
+<u><a href="javascript:void(0)" class="prestacenterxmlexportfreetoggle" rel="2"></a></u><br />
 {* skrývání nápovědy *}
 <script>
 $('a.prestacenterxmlexportfreetoggle').each(function() {

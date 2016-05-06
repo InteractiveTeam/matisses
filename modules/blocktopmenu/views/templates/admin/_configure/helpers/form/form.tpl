@@ -100,8 +100,8 @@ function move(up)
 	    <div class="row">
 	    	<div class="col-lg-1">
 	    		<h4 style="margin-top:5px;">{l s='Change position' mod='blocktopmenu'}</h4> 
-                <a href="#" id="menuOrderUp" class="btn btn-default" style="font-size:20px;display:block;"><i class="icon-chevron-up"></i></a><br/>
-                <a href="#" id="menuOrderDown" class="btn btn-default" style="font-size:20px;display:block;"><i class="icon-chevron-down"></i></a><br/>
+                <a href="javascript:void(0)" id="menuOrderUp" class="btn btn-default" style="font-size:20px;display:block;"><i class="icon-chevron-up"></i></a><br/>
+                <a href="javascript:void(0)" id="menuOrderDown" class="btn btn-default" style="font-size:20px;display:block;"><i class="icon-chevron-down"></i></a><br/>
 	    	</div>
 	    	<div class="col-lg-4">
 	    		<h4 style="margin-top:5px;">{l s='Selected items' mod='blocktopmenu'}</h4>
@@ -116,8 +116,8 @@ function move(up)
 	    <br/>
 	    <div class="row">
 	    	<div class="col-lg-1"></div>
-	    	<div class="col-lg-4"><a href="#" id="removeItem" class="btn btn-default"><i class="icon-arrow-right"></i> {l s='Remove' mod='blocktopmenu'}</a></div>
-	    	<div class="col-lg-4"><a href="#" id="addItem" class="btn btn-default"><i class="icon-arrow-left"></i> {l s='Add' mod='blocktopmenu'}</a></div>
+	    	<div class="col-lg-4"><a href="javascript:void(0)" id="removeItem" class="btn btn-default"><i class="icon-arrow-right"></i> {l s='Remove' mod='blocktopmenu'}</a></div>
+	    	<div class="col-lg-4"><a href="javascript:void(0)" id="addItem" class="btn btn-default"><i class="icon-arrow-left"></i> {l s='Add' mod='blocktopmenu'}</a></div>
 	    </div>
 	{else}
 		{$smarty.block.parent}

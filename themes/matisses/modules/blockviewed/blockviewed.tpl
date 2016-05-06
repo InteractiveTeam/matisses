@@ -30,7 +30,7 @@
 		</div>
 		<div class="btns-viewed">
 			<div class="reload">
-				<a href="#" id="reload-slider"> refresh</a>
+				<a href="javascript:void(0)" id="reload-slider"> refresh</a>
 			</div>
 		    <div class="outside">
 		      	<span id="slider-next" class="next-viewed"></span>

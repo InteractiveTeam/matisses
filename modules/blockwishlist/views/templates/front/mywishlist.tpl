@@ -94,7 +94,7 @@
 									<i class="icon icon-check-square"></i>
 								</p>
 							{else}
-								<a href="#" onclick="javascript:event.preventDefault();(WishlistDefault('wishlist_{$wishlists[i].id_wishlist|intval}', '{$wishlists[i].id_wishlist|intval}'));">
+								<a href="javascript:void(0)" onclick="javascript:event.preventDefault();(WishlistDefault('wishlist_{$wishlists[i].id_wishlist|intval}', '{$wishlists[i].id_wishlist|intval}'));">
 									<i class="icon icon-square"></i>
 								</a>
 							{/if}

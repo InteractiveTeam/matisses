@@ -160,7 +160,7 @@
 					<ul class="dropdown-menu">
 						{foreach from=$languages item=lang}
 						<li>
-							<a href="#" class="lang_switcher" data-id-lang="{$lang.id_lang|intval}" onclick="event.preventDefault();">
+							<a href="javascript:void(0)" class="lang_switcher" data-id-lang="{$lang.id_lang|intval}" onclick="event.preventDefault();">
 								{$lang.name|escape:'html'}
 							</a>
 						</li>

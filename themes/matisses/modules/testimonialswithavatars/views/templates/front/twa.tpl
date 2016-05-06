@@ -41,7 +41,7 @@
 	{/if}
 	{if $show_load_more}
 	<div id="loadMore" class="middle-line">		
-		<a class="neat" href="#">{l s='View more' mod='testimonialswithavatars'}</a>
+		<a class="neat" href="javascript:void(0)">{l s='View more' mod='testimonialswithavatars'}</a>
 		<i class="fa fa-refresh fa-spin" style="display:none;"></i>		
 	</div>
 	{/if}

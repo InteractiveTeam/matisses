@@ -640,7 +640,7 @@ class Blocktopmenu extends Module
 			if($category['id_category'] == 3)
 			{	
 				$html .= '<li id="parent-menu">';
-				$html .= '<a class="parent-link" href="#" title="'.$category['name'].'">'.$category['name'].'</a>';	
+				$html .= '<a class="parent-link" href="javascript:void(0)" title="'.$category['name'].'">'.$category['name'].'</a>';	
 			}else{
 					/*
 					if($category['level_depth']>=5)

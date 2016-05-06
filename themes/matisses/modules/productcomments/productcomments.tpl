@@ -166,7 +166,7 @@
 				<div id="new_comment_form_footer">
 						<input id="id_product_comment_send" name="id_product" type="hidden" value='{$id_product_comment_form}' />
 						<div class="al_center col-xs-12">
-								<a class="closefb button grey_btn" href="#">
+								<a class="closefb button grey_btn" href="javascript:void(0)">
 									{l s='Cancel' mod='productcomments'}
 								</a>
 								<button id="submitNewMessage" name="submitMessage" type="submit" class="button">

@@ -156,7 +156,7 @@ var onboarding_ajax_url = "{$link->getAdminLink('AdminOnboarding')|escape:'javas
 						<i class="icon icon-angle-right icon-lg"></i>
 					</a>
 					{if $removable == true }
-					<a class="btn btn-default btn-lg pull-right" href="#" id="onboarding-close">
+					<a class="btn btn-default btn-lg pull-right" href="javascript:void(0)" id="onboarding-close">
 						{l s='No thanks!' mod='onboarding'}&nbsp;&nbsp;
 						<i class="icon icon-times icon-lg"></i>
 					</a>
@@ -169,7 +169,7 @@ var onboarding_ajax_url = "{$link->getAdminLink('AdminOnboarding')|escape:'javas
 			<h3 class="text-center">
 			{$smarty.capture.onboardingStepModalTitle|escape:'html':'UTF-8'}
 			</h3>
-			<a class="close-button" href="#" id="quick-start-button">
+			<a class="close-button" href="javascript:void(0)" id="quick-start-button">
 				<i class="icon icon-times-circle"></i>
 			</a>
 		</div>
@@ -182,7 +182,7 @@ var onboarding_ajax_url = "{$link->getAdminLink('AdminOnboarding')|escape:'javas
 						<p class="desc">
 						{l s='Give your shop its own identity based on your brand.' mod='onboarding'}<br/>
 						{l s='You can change your theme or install a new one, and make sure to upload your own logo to make your shop truly unique.' mod='onboarding'}<br/><br/>
-							<a class="btn btn-primary continue_editing" href="#">
+							<a class="btn btn-primary continue_editing" href="javascript:void(0)">
 							<i class="icon icon-pencil icon-lg"></i>
 							{l s='OK, take me to my theme' mod='onboarding'}</a>
 						</p>
@@ -202,7 +202,7 @@ var onboarding_ajax_url = "{$link->getAdminLink('AdminOnboarding')|escape:'javas
 							{assign "onboardingstep2importcsv" value=$continue_editing_links.import var="onboardingstep2importcsv"}
 							{l s='If you already have your product base in a .CSV file, save time and make an import!' tags=["<a href='$onboardingstep2importcsv&amp;addproduct'>"] mod='onboarding'}
 							<br/><br/>
-							<a class="btn btn-primary continue_editing" href="#">
+							<a class="btn btn-primary continue_editing" href="javascript:void(0)">
 							<i class="icon icon-book icon-lg"></i>
 							{l s='Ok, Go to my catalog' mod='onboarding'}</a>
 						</p>
@@ -218,7 +218,7 @@ var onboarding_ajax_url = "{$link->getAdminLink('AdminOnboarding')|escape:'javas
 						<p class="desc">
 							{l s='Select which payment methods you want to offer to customers on your shop, and manage the various restrictions you can apply (per currency, country or group of customers).' mod='onboarding'}
 							<br/><br/>
-							<a class="btn btn-primary continue_editing" href="#">
+							<a class="btn btn-primary continue_editing" href="javascript:void(0)">
 								<i class="icon icon-credit-card icon-lg"></i>
 								{l s='Show me payment methods' mod='onboarding'}
 							</a>
@@ -237,7 +237,7 @@ var onboarding_ajax_url = "{$link->getAdminLink('AdminOnboarding')|escape:'javas
 						{l s='Without this your customers won\'t be able to enjoy your products!' mod='onboarding'}
 						<br/>
 						<br/>
-						<a class="btn btn-primary continue_editing" href="#">
+						<a class="btn btn-primary continue_editing" href="javascript:void(0)">
 							<i class="icon icon-truck icon-lg"></i>
 							{l s='Let\'s see about shipping' mod='onboarding'}
 						</a>
@@ -257,7 +257,7 @@ var onboarding_ajax_url = "{$link->getAdminLink('AdminOnboarding')|escape:'javas
 					</button>
 				</div>
 			{else}
-				<a href="#" class="skip">{l s='Skip Tutorial' mod='onboarding'}</a>
+				<a href="javascript:void(0)" class="skip">{l s='Skip Tutorial' mod='onboarding'}</a>
 			{/if}
 		</div>
 		<div class="steps-animation-container">
@@ -306,22 +306,22 @@ var onboarding_ajax_url = "{$link->getAdminLink('AdminOnboarding')|escape:'javas
 			<textarea name="social-text" id="social-text">{l s='I just launched my online shop with @PrestaShop. Check it out!' mod='onboarding'}</textarea>
 			<br />
 			<div class="col-lg-3 text-center">
-				<a href="#" class="btn btn-default" onclick="share_facebook_click();">
+				<a href="javascript:void(0)" class="btn btn-default" onclick="share_facebook_click();">
 					<i class="icon icon-facebook icon-4x icon-fw"></i>
 				</a>
 			</div>
 			<div class="col-lg-3 text-center">
-				<a href="#" class="btn btn-default" onclick="share_twitter_click($('#social-text').text());">
+				<a href="javascript:void(0)" class="btn btn-default" onclick="share_twitter_click($('#social-text').text());">
 					<i class="icon icon-twitter icon-4x icon-fw"></i>
 				</a>
 			</div>
 			<div class="col-lg-3 text-center">
-				<a href="#" class="btn btn-default" onclick="share_linkedin_click();">
+				<a href="javascript:void(0)" class="btn btn-default" onclick="share_linkedin_click();">
 					<i class="icon icon-linkedin icon-4x icon-fw"></i>
 				</a>
 			</div>
 			<div class="col-lg-3 text-center">
-				<a href="#" class="btn btn-default" onclick="share_google_click();">
+				<a href="javascript:void(0)" class="btn btn-default" onclick="share_google_click();">
 					<i class="icon icon-google-plus icon-4x icon-fw"></i>
 				</a>
 			</div>

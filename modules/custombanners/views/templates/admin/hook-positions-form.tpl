@@ -50,18 +50,18 @@
 				<div class="module_col_actions">
 					
 					<div class="actions-enabled btn-group pull-right">						
-						<a class="btn btn-default" href="#">{l s='Actions' mod='custombanners'}</a>
+						<a class="btn btn-default" href="javascript:void(0)">{l s='Actions' mod='custombanners'}</a>
 						<a class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#" data-act="unhook"><i class="icon-minus-sign-alt"></i> {l s='Unhook' mod='custombanners'}</a></li>
+							<li><a href="javascript:void(0)" data-act="unhook"><i class="icon-minus-sign-alt"></i> {l s='Unhook' mod='custombanners'}</a></li>
 							{if !isset($module.current)}
-							<li><a href="#" data-act="disable"><i class="icon-power-off off"></i> {l s='Disable' mod='custombanners'}</a></li>
-							<li><a href="#" data-act="uninstall"><i class="icon-times"></i> {l s='Uninstall' mod='custombanners'}</a></li>
+							<li><a href="javascript:void(0)" data-act="disable"><i class="icon-power-off off"></i> {l s='Disable' mod='custombanners'}</a></li>
+							<li><a href="javascript:void(0)" data-act="uninstall"><i class="icon-times"></i> {l s='Uninstall' mod='custombanners'}</a></li>
 							{/if}
 						</ul>
 					</div>
 					<div class="actions-disabled">
-						<a class="btn btn-default" href="#" data-act="enable"><i class="icon-power-off on"></i> {l s='Enable' mod='custombanners'}</a>
+						<a class="btn btn-default" href="javascript:void(0)" data-act="enable"><i class="icon-power-off on"></i> {l s='Enable' mod='custombanners'}</a>
 					</div>
 					
 				</div>

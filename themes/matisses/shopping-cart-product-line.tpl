@@ -117,7 +117,7 @@
 						<span><i class="icon-minus">-</i></span>
 						</a>
 						{else}
-							<a class="product_quantity_down cart_quantity_down  disabled" href="#" id="cart_quantity_down_{$product.id_product}_{$product.id_product_attribute}_{if $quantityDisplayed > 0}nocustom{else}0{/if}_{$product.id_address_delivery|intval}" title="{l s='You must purchase a minimum of %d of this product.' sprintf=$product.minimal_quantity}">
+							<a class="product_quantity_down cart_quantity_down  disabled" href="javascript:void(0)" id="cart_quantity_down_{$product.id_product}_{$product.id_product_attribute}_{if $quantityDisplayed > 0}nocustom{else}0{/if}_{$product.id_address_delivery|intval}" title="{l s='You must purchase a minimum of %d of this product.' sprintf=$product.minimal_quantity}">
 							<span><i class="icon-minus">-</i></span>
 						</a>
 						{/if}
