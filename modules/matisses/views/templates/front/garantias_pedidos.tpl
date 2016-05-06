@@ -3,7 +3,7 @@
 	<a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
 		{l s='Mi cuenta'}
 	</a>
-	<span class="navigation-pipe">{$navigationPipe}</span>
+	<i class="fa fa-angle-right"></i>
 	<span class="navigation_page">{l s='Garantías'}</span>
 {/capture}
 {include file="$tpl_dir./errors.tpl"}

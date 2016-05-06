@@ -6,6 +6,15 @@ class matissesexperiencesModuleFrontController extends ModuleFrontController
 	protected $experience;
 	public $id_experience;
 	
+    public function __construct() {
+		$this->module = Module::getInstanceByName ( Tools::getValue ( 'module' ) );
+		if (! $this->module->active)
+			Tools::redirect ( 'index' );
+
+		$this->page_name = 'module-' . $this->module->name . '-' . Dispatcher::getInstance ()->getController ();
+		parent::__construct ();
+	}
+    
 	public function init()
 	{
 		parent::init();
@@ -74,7 +83,7 @@ class matissesexperiencesModuleFrontController extends ModuleFrontController
 		
 		
 		$path[] = '<span class="navigation"><a href="/experiencias">Experiencias</a></span>';
-		$path[] = '<span class="navigation-pipe"></span>';
+		$path[] = '<i class="fa fa-angle-right"></i>';
 		$path[] = '<span class="navigation">'.$this->experience->name.'</span>';
 		
 		$experiences =  $this->experience->getExperiences();

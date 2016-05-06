@@ -1257,8 +1257,9 @@
 	}
 
 	.menu-experiencias {
-		padding: 1.3rem 0 1.2rem 0.625rem;
-        width: 80%;
+		padding: 1.1rem 0 1.3rem 0.825rem;
+        /*width: 80%;*/
+        width: 51%;
 	}
 
 	.content-coleccion {
@@ -1391,6 +1392,10 @@
     #slider .bx-controls.bx-has-pager {
          bottom: 6%;
     }
+    
+    #slider #homepage-slider .btn_scroll {
+        top: 40%;
+    }
 }
 
 @media only screen and (max-height :678px) {
@@ -1413,6 +1418,12 @@
     #slider .bx-controls.bx-has-pager {
         bottom: 41%;
     }
+}
+
+@media only screen and (max-height :678px) and (max-width: 1366px) {
+    #slider .bx-controls.bx-has-pager {
+        bottom: 6%;
+    }  
 }
 
 @media only screen and (max-width :1024px) and (min-width: 361px) {
@@ -2679,13 +2690,21 @@
 		    transform: rotate(90deg);
 		    height: 320px;
 		    margin: 0;
-		    margin-top: -184px;
+		    margin-top: -150px;
 		    margin-left: 125px;
 	}
 
 	.newsMenuCats .content-destacados .newsLeft {
 		margin-top: -124px;
 	}
+    
+    .content-destacados .newsTitle h2 {
+        margin: 0 !important;
+    }
+    
+    .content-destacados .info-article {
+        margin: 0 3%;
+    }
 
 	/*testimonios*/
 	.generic-page img {

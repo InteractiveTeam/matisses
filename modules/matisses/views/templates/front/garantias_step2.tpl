@@ -1,7 +1,7 @@
 
 {capture name=path}
 		<a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Authentication'}">{l s='Mi Cuenta'}</a>
-		<span class="navigation-pipe">{$navigationPipe}</span>{l s='Garantias'}
+		<i class="fa fa-angle-right"></i>{l s='Garantias'}
 {/capture}
 <script>
 	var nrodanos = '{$rnrodanos}'

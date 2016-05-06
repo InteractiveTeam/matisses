@@ -27,9 +27,7 @@
     <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">
         {l s='My account'}
     </a>
-    <span class="navigation-pipe">
-        {$navigationPipe}
-    </span>
+    <i class="fa fa-angle-right"></i>
     <span class="navigation_page">
         {l s='Your personal information'}
     </span>

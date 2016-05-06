@@ -25,12 +25,6 @@
 //global variables
 var responsiveflag = false;
 
-$(window).load(function(){
-    loadAPIMaps();
-    setTimeout(function(){
-        drawMaps();
-    },2000);
-});
 $(document).ready(function(){
 	setTimeout(function(){
 	$('#birth-arrows .chosen-single div').html('<p class="up"></p><p class="down"></p>').promise().done(function(){
@@ -762,11 +756,3 @@ $(function() {
             houzz = true
         ); 
     });
-
-
-function loadAPIMaps(){
-    var script = document.createElement("script");
-    script.src = "https://maps.googleapis.com/maps/api/js?v=3.exp;callback=loadMaps";
-    script.type = "text/javascript";
-    document.getElementsByTagName("head")[0].appendChild(script);
-}

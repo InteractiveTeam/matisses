@@ -374,7 +374,7 @@ box-sizing: border-box;
         color: #d9292e;
 	}
 
-	.search a {
+	body .search a {
         display: inline-block;
         height: 31px;
         width: 31px;
@@ -920,7 +920,7 @@ box-sizing: border-box;
 
 	/*Destacados*/
 	.highlights {
-	padding: 4.0625rem 0;
+	/*padding: 4.0625rem 0;*/
 	}
 	.highlights .info img {
 	width: 100%;
@@ -934,7 +934,7 @@ box-sizing: border-box;
 	/*Más populares*/
 	.popular{
 	background-color: #fff;
-	padding: 4.0625rem 0;
+	/*padding: 4.0625rem 0;*/
 	}
 
 	/*Experiencias*/
@@ -979,6 +979,7 @@ box-sizing: border-box;
 	background: #fff;
 	padding: 25px 20px;
     min-height: 320px;
+    border-bottom: #fafafa solid 10px;
 	}
 	.slide-experiencias img{
 	display: block;
@@ -5264,4 +5265,40 @@ a.newPrint:hover {
 
 .footer_links {
     text-align: center;
+}
+
+.content-blog .newsRight .first, .content-destacados .newsRight .first {
+    background: #493c33;
+}
+
+.content-blog .category-news span, .content-destacados .category-news span {
+    color: #b88c69;
+}
+
+.content-blog .first .newsTitle h2, .content-destacados .first .newsTitle h2 {
+    color: #ded1c8;
+}
+
+.content-blog .first .date-author span, .content-blog .first .date-author p, .content-destacados .first .date-author span, .content-destacados .first .date-author p {
+    color: #b5b0ac;
+}
+
+.content-blog .first p, .content-destacados .first p {
+    color: #fefdf9;
+}
+
+.ax-hide-temp {
+    display: none;
+}
+
+#view_wishlist ul.wlp_bought_list li .product_image img {
+    max-height: 256px;
+}
+
+.inner-product-list .product_list .product_img_link img {
+    max-height: 288px;
+}
+
+.fancybox-inner {
+    overflow: hidden !important;
 }
