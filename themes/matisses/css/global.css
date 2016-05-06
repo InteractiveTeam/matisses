@@ -374,7 +374,7 @@ box-sizing: border-box;
         color: #d9292e;
 	}
 
-	.search a {
+	body .search a {
         display: inline-block;
         height: 31px;
         width: 31px;
@@ -5292,7 +5292,7 @@ a.newPrint:hover {
 }
 
 #view_wishlist ul.wlp_bought_list li .product_image img {
-    max-height: 260px;
+    max-height: 256px;
 }
 
 .inner-product-list .product_list .product_img_link img {

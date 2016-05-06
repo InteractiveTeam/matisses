@@ -1257,8 +1257,9 @@
 	}
 
 	.menu-experiencias {
-		padding: 1.3rem 0 1.2rem 0.625rem;
-        width: 80%;
+		padding: 1.1rem 0 1.3rem 0.825rem;
+        /*width: 80%;*/
+        width: 51%;
 	}
 
 	.content-coleccion {
@@ -1390,6 +1391,10 @@
     
     #slider .bx-controls.bx-has-pager {
          bottom: 6%;
+    }
+    
+    #slider #homepage-slider .btn_scroll {
+        top: 40%;
     }
 }
 

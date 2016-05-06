@@ -34,10 +34,8 @@ modules/blockfacebooklike/views/templates/hook/fans.tpl
 .buildpath
 .settings/*
 modules/gamification/*
-img/*
 cache/class_index.php
 .brackets.json
 
 /xml/*
-img/*
 config/xml/modules_native_addons.xml
