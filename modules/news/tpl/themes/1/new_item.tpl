@@ -167,8 +167,8 @@
                                             'id_news'  => "{$prev_id_news}",
                                             'cat_news' => "{if $cat}{$cat}{/if}",
                                             'page_cat'     => "{$page}",
-                                            'rewrite'  => "{$news->rewrite}",
-                                            'cat_rewrite'  => "{$cat_rewrite}"
+                                            'rewrite'  => "{$prev_rewrite}",
+                                            'cat_rewrite'  => "{$prev_cat_rewrite}"
                                          ]
                                          ,false)}"><i class="fa fa-angle-double-left"></i>&nbsp;{l s='Anterior' mod='news'}</a>
         {/if}
@@ -179,8 +179,8 @@
                                             'id_news'  => "{$next_id_news}",
                                             'cat_news' => "{if $cat}{$cat}{/if}",
                                             'page_cat'     => "{$page}",
-                                            'rewrite'  => "{$news->rewrite}",
-                                            'cat_rewrite'  => "{$cat_rewrite}"
+                                            'rewrite'  => "{$next_rewrite}",
+                                            'cat_rewrite'  => "{$next_cat_rewrite}"
                                          ]
                                          ,false)}">{l s='Siguiente' mod='news'}&nbsp;<i class="fa fa-angle-double-right"></i></a>
         {/if}
