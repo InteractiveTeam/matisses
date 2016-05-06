@@ -37,7 +37,7 @@ class SearchControllerCore extends FrontController
 	public function init()
 	{
 		parent::init();
-
+		
 		$this->instant_search = Tools::getValue('instantSearch');
 
 		$this->ajax_search = Tools::getValue('ajaxSearch');
@@ -56,7 +56,14 @@ class SearchControllerCore extends FrontController
 	public function initContent()
 	{
 		$query = Tools::replaceAccentedChars(urldecode(Tools::getValue('q')));
-		$original_query = Tools::getValue('q');
+        $original_query = Tools::getValue('q');
+
+        if (preg_match('/[0-9]{3}[*\b][0-9]{4}/',trim($query))){
+            $query = str_replace('*','0000000000000',$query);
+            $original_query = $query;
+        }
+        
+		
 		if ($this->ajax_search)
 		{
 			$searchResults = Search::find((int)(Tools::getValue('id_lang')), $query, 1, 10, 'position', 'desc', true);
@@ -89,9 +96,11 @@ class SearchControllerCore extends FrontController
 				'search_query' => $original_query,
 				'instant_search' => $this->instant_search,
 				'homeSize' => Image::getSize(ImageType::getFormatedName('home'))));
-		}
-		elseif (($query = Tools::getValue('search_query', Tools::getValue('ref'))) && !is_array($query))
-		{
+		} elseif (($query = Tools::getValue('search_query', Tools::getValue('ref'))) && !is_array($query)) {
+            if(preg_match('/[0-9]{3}[*\b][0-9]{4}/',trim($query))){
+                $query = str_replace('*','0000000000000',$query);
+            }
+            
 			$this->productSort();
 			$this->n = abs((int)(Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE'))));
 			$this->p = abs((int)(Tools::getValue('p', 1)));

@@ -3752,30 +3752,41 @@ class News extends Module {
         // get prev and next news
         $next_id_news = 0;
         $prev_id_news = 0;
+        $prev_rewrite = '';
+        $next_rewrite = '';
+        $prev_cat_rewrite = '';
+        $next_cat_rewrite = '';
 
         if (empty($search_news) && $tag == 0) {
             if ($cat > 0) {
-                $extraQuery = ' AND id_news IN (
-                               SELECT DISTINCT(id_new) AS id_news FROM ' . _DB_PREFIX_ . 'news_cats_rel  WHERE id_cat ="' . $cat . '" ) ';
+                $extraQuery = ' AND news.id_news IN (
+                               SELECT DISTINCT(id_new) AS id_news FROM '._DB_PREFIX_.'news_cats_rel  WHERE id_cat ="' . $cat . '" ) ';
             } else {
-                $extraQuery = ' AND id_news IN (
-                               SELECT id_news FROM ' . _DB_PREFIX_ . 'news_langs  WHERE (title like "%' . Search::sanitize($search_news, (int) $id_lang) . '%"
+                $extraQuery = ' AND news.id_news IN (
+                               SELECT id_news FROM '._DB_PREFIX_.'news_langs  WHERE (title like "%' . Search::sanitize($search_news, (int) $id_lang) . '%"
                                OR new like "%' . Search::sanitize($search_news, (int) $id_lang) . '%")  AND
                                 id_lang = ' . (int) ($params['cookie']->id_lang) . ' )';
             }
 
             $news = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS('
-                SELECT id_news FROM ' . _DB_PREFIX_ . 'news  WHERE
-                     active="1" ' . $extraQuery . '
-                ORDER by pos ASC ');
-
+                SELECT news.id_news, nl.title as title, ncl.title as category, ncl.title as cat_rewrite 
+                FROM '._DB_PREFIX_.'news as news
+                INNER JOIN '._DB_PREFIX_.'news_cats_lang ncl ON ncl.id_cat = news.id_parent_category
+                INNER JOIN '._DB_PREFIX_.'news_langs nl ON nl.id_news = news.id_news
+                WHERE active="1" ' . $extraQuery . '
+                ORDER by news.pos ASC');
+            
             for ($i = 0; $i < count($news); $i++) {
                 if ($news[$i]['id_news'] == $id_news) {
                     if ($i > 0) {
                         $prev_id_news = $news[$i - 1]['id_news'];
+                        $prev_rewrite = $news[$i - 1]['title'];
+                        $prev_cat_rewrite = $news[$i - 1]['cat_rewrite'];
                     }
                     if (count($news) > ($i + 1)) {
                         $next_id_news = $news[$i + 1]['id_news'];
+                        $next_rewrite = $news[$i + 1]['title'];
+                        $next_cat_rewrite = $news[$i + 1]['cat_rewrite'];
                     }
                 }
             }
@@ -3857,7 +3868,10 @@ class News extends Module {
             'news_slideshow_height' => intval(Configuration::get('NEWS_SLIDESHOW_HEIGHT')),
             'prev_id_news' => $prev_id_news,
             'next_id_news' => $next_id_news,
-
+            'prev_rewrite' => Tools::str2url($prev_rewrite),
+            'next_rewrite' => Tools::str2url($next_rewrite),
+            'prev_cat_rewrite' => Tools::str2url($prev_cat_rewrite),
+            'next_cat_rewrite' => Tools::str2url($next_cat_rewrite)
         ));
 
         return $this->display(__FILE__, 'tpl/themes/' . Configuration::get('NEWS_THEME') . '/new_item.tpl');
