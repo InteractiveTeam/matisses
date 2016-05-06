@@ -221,7 +221,7 @@ class SearchCore
 			return ($ajax ? array() : array('total' => 0, 'result' => array()));
 
 		$score = '';
-		if (is_array($score_array) && !empty($score_array))
+		if (count($score_array))
 			$score = ',(
 				SELECT SUM(weight)
 				FROM '._DB_PREFIX_.'search_word sw
@@ -397,55 +397,12 @@ class SearchCore
 		return $features;
 	}
 
-	/**
-	 * @param $weight_array
-	 * @return string
-	 */
-	protected static function getSQLProductAttributeFields(&$weight_array)
-	{
-		$sql = '';
-		if (is_array($weight_array))
-			foreach ($weight_array as $key => $weight)
-				if ((int)$weight)
-					switch ($key)
-					{
-						case 'pa_reference':
-							$sql .= ', pa.reference AS pa_reference';
-						break;
-						case 'pa_supplier_reference':
-							$sql .= ', pa.supplier_reference AS pa_supplier_reference';
-						break;
-						case 'pa_ean13':
-							$sql .= ', pa.ean13 AS pa_ean13';
-						break;
-						case 'pa_upc':
-							$sql .= ', pa.upc AS pa_upc';
-						break;
-					}
-		return $sql;
-	}
-
 	protected static function getProductsToIndex($total_languages, $id_product = false, $limit = 50, $weight_array = array())
 	{
-		$ids = null;
-		if (!$id_product)
-		{
-			// Limit products for each step but be sure that each attribute is taken into account
-			$sql = 'SELECT p.id_product FROM '._DB_PREFIX_.'product p
-				'.Shop::addSqlAssociation('product', 'p', true, null, true).'
-				WHERE product_shop.`indexed` = 0
-				AND product_shop.`visibility` IN ("both", "search")
-				AND product_shop.`active` = 1
-				ORDER BY product_shop.`id_product` ASC
-				LIMIT '.(int)$limit;
+		// Adjust the limit to get only "whole" products, in every languages (and at least one)
+		$max_possibilities = $total_languages * count(Shop::getShops(true));
+		$limit = max($max_possibilities, floor($limit / $max_possibilities) * $max_possibilities);
 
-
-			$res = Db::getInstance()->executeS($sql, false);
-			while ($row = Db::getInstance()->nextRow($res))
-				$ids[] = $row['id_product'];
-		}
-
-		// Now get every attribute in every language
 		$sql = 'SELECT p.id_product, pl.id_lang, pl.id_shop, l.iso_code';
 
 		if (is_array($weight_array))
@@ -459,14 +416,26 @@ class SearchCore
 						case 'reference':
 							$sql .= ', p.reference';
 						break;
+						case 'pa_reference':
+							$sql .= ', pa.reference AS pa_reference';
+						break;
 						case 'supplier_reference':
 							$sql .= ', p.supplier_reference';
+						break;
+						case 'pa_supplier_reference':
+							$sql .= ', pa.supplier_reference AS pa_supplier_reference';
 						break;
 						case 'ean13':
 							$sql .= ', p.ean13';
 						break;
+						case 'pa_ean13':
+							$sql .= ', pa.ean13 AS pa_ean13';
+						break;
 						case 'upc':
 							$sql .= ', p.upc';
+						break;
+						case 'pa_upc':
+							$sql .= ', pa.upc AS pa_upc';
 						break;
 						case 'description_short':
 							$sql .= ', pl.description_short';
@@ -483,6 +452,8 @@ class SearchCore
 					}
 
 		$sql .= ' FROM '._DB_PREFIX_.'product p
+			LEFT JOIN '._DB_PREFIX_.'product_attribute pa
+				ON pa.id_product = p.id_product
 			LEFT JOIN '._DB_PREFIX_.'product_lang pl
 				ON p.id_product = pl.id_product
 			'.Shop::addSqlAssociation('product', 'p', true, null, true).'
@@ -495,50 +466,11 @@ class SearchCore
 			WHERE product_shop.indexed = 0
 			AND product_shop.visibility IN ("both", "search")
 			'.($id_product ? 'AND p.id_product = '.(int)$id_product : '').'
-			'.($ids ? 'AND p.id_product IN ('.implode(',', array_map('intval', $ids)).')' : '').'
 			AND product_shop.`active` = 1
-			AND pl.`id_shop` = product_shop.`id_shop`';
+			AND pl.`id_shop` = product_shop.`id_shop`
+			LIMIT '.(int)$limit;
 
 		return Db::getInstance()->executeS($sql);
-	}
-
-	/**
-	 * @param $db
-	 * @param $id_product
-	 * @param $sql_attribute
-	 * @return mixed
-	 */
-	protected static function getAttributesFields($db, $id_product, $sql_attribute)
-	{
-		return $db->executeS('SELECT id_product '.$sql_attribute.' FROM '.
-										   _DB_PREFIX_.'product_attribute pa WHERE pa.id_product = '.(int)$id_product);
-	}
-
-	/**
-	 * @param $product_array
-	 * @param $weight_array
-	 * @param $key
-	 * @param $value
-	 * @param $id_lang
-	 * @param $iso_code
-	 */
-	protected static function fillProductArray(&$product_array, $weight_array, $key, $value, $id_lang, $iso_code)
-	{
-		if (strncmp($key, 'id_', 3) && isset($weight_array[$key]))
-		{
-			$words = explode(' ', Search::sanitize($value, (int)$id_lang, true, $iso_code));
-			foreach ($words as $word)
-				if (!empty($word))
-				{
-					$word = Tools::substr($word, 0, PS_SEARCH_MAX_WORD_LENGTH);
-					// Remove accents
-					$word = Tools::replaceAccentedChars($word);
-
-					if (!isset($product_array[$word]))
-						$product_array[$word] = 0;
-					$product_array[$word] += $weight_array[$key];
-				}
-		}
 	}
 
 	public static function indexation($full = false, $id_product = false)
@@ -556,19 +488,26 @@ class SearchCore
 		}
 		else
 		{
-			$db->execute('DELETE si FROM `'._DB_PREFIX_.'search_index` si
-				INNER JOIN `'._DB_PREFIX_.'product` p ON (p.id_product = si.id_product)
+			// Do it even if you already know the product id in order to be sure that it exists and it needs to be indexed
+			$products = $db->executeS('
+				SELECT p.id_product
+				FROM '._DB_PREFIX_.'product p
 				'.Shop::addSqlAssociation('product', 'p').'
-				WHERE product_shop.`visibility` IN ("both", "search")
+				INNER JOIN '._DB_PREFIX_.'product_lang pl ON pl.`id_shop` = product_shop.`id_shop`
+				WHERE product_shop.visibility IN ("both", "search")
 				AND product_shop.`active` = 1
-				AND '.($id_product ? 'p.`id_product` = '.(int)$id_product : 'product_shop.`indexed` = 0'));
+				AND '.($id_product ? 'p.id_product = '.(int)$id_product : 'product_shop.indexed = 0')
+			);
 
-			$db->execute('UPDATE `'._DB_PREFIX_.'product` p
-				'.Shop::addSqlAssociation('product', 'p').'
-				SET p.`indexed` = 0, product_shop.`indexed` = 0
-				WHERE product_shop.`visibility` IN ("both", "search")
-				AND product_shop.`active` = 1
-				AND '.($id_product ? 'p.`id_product` = '.(int)$id_product : 'product_shop.`indexed` = 0'));
+			$ids = array();
+			if ($products)
+				foreach ($products as $product)
+					$ids[] = (int)$product['id_product'];
+			if (count($ids))
+			{
+				$db->execute('DELETE FROM '._DB_PREFIX_.'search_index WHERE id_product IN ('.implode(',', $ids).')');
+				ObjectModel::updateMultishopTable('Product', array('indexed' => 0), 'a.id_product IN ('.implode(',', $ids).')');
+			}
 		}
 
 		// Every fields are weighted according to the configuration in the backend
@@ -595,10 +534,21 @@ class SearchCore
 		$count_words = 0;
 		$query_array3 = array();
 
+		// Every indexed words are cached into a PHP array
+		$word_ids = $db->executeS('
+			SELECT id_word, word, id_lang, id_shop
+			FROM '._DB_PREFIX_.'search_word', false);
+		$word_ids_by_word = array();
+		while ($word_id = $db->nextRow($word_ids))
+		{
+			if (!isset($word_ids_by_word[$word_id['id_shop']][$word_id['id_lang']]))
+				$word_ids_by_word[$word_id['id_shop']][$word_id['id_lang']] = array();
+			$word_ids_by_word[$word_id['id_shop']][$word_id['id_lang']]['_'.$word_id['word']] = (int)$word_id['id_word'];
+		}
+
 		// Retrieve the number of languages
 		$total_languages = count(Language::getLanguages(false));
 
-		$sql_attribute = Search::getSQLProductAttributeFields($weight_array);
 		// Products are processed 50 by 50 in order to avoid overloading MySQL
 		while (($products = Search::getProductsToIndex($total_languages, $id_product, 50, $weight_array)) && (count($products) > 0))
 		{
@@ -633,35 +583,49 @@ class SearchCore
 					}
 
 				// If we find words that need to be indexed, they're added to the word table in the database
-				if (is_array($product_array) && !empty($product_array))
+				if (count($product_array))
 				{
 					$query_array = $query_array2 = array();
 					foreach ($product_array as $word => $weight)
-						if ($weight)
+						if ($weight && !isset($word_ids_by_word['_'.$word]))
 						{
 							$query_array[$word] = '('.(int)$product['id_lang'].', '.(int)$product['id_shop'].', \''.pSQL($word).'\')';
 							$query_array2[] = '\''.pSQL($word).'\'';
+							$word_ids_by_word[$product['id_shop']][$product['id_lang']]['_'.$word] = 0;
 						}
 
-					if (is_array($query_array) && !empty($query_array))
+					if ($query_array2)
+					{
+						$existing_words = $db->executeS('
+						SELECT DISTINCT word FROM '._DB_PREFIX_.'search_word
+							WHERE word IN ('.implode(',', $query_array2).')
+						AND id_lang = '.(int)$product['id_lang'].'
+						AND id_shop = '.(int)$product['id_shop']);
+
+						foreach ($existing_words as $data)
+							unset($query_array[Tools::replaceAccentedChars($data['word'])]);
+					}
+
+					if (count($query_array))
 					{
 						// The words are inserted...
 						$db->execute('
 						INSERT IGNORE INTO '._DB_PREFIX_.'search_word (id_lang, id_shop, word)
 						VALUES '.implode(',', $query_array));
 					}
-					$word_ids_by_word = array();
-					if (is_array($query_array2) && !empty($query_array2))
+					if (count($query_array2))
 					{
-						// ...then their IDs are retrieved
+						// ...then their IDs are retrieved and added to the cache
 						$added_words = $db->executeS('
 						SELECT sw.id_word, sw.word
 						FROM '._DB_PREFIX_.'search_word sw
 						WHERE sw.word IN ('.implode(',', $query_array2).')
 						AND sw.id_lang = '.(int)$product['id_lang'].'
-						AND sw.id_shop = '.(int)$product['id_shop'], true, false);
+						AND sw.id_shop = '.(int)$product['id_shop'].'
+						LIMIT '.count($query_array2));
+						// replace accents from the retrieved words so that words without accents or with differents accents can still be linked
 						foreach ($added_words as $word_id)
-							$word_ids_by_word['_'.$word_id['word']] = (int)$word_id['id_word'];
+							$word_ids_by_word[$product['id_shop']][$product['id_lang']]['_'.Tools::replaceAccentedChars($word_id['word'])] = (int)$word_id['id_word'];
 					}
 				}
 
@@ -669,21 +633,20 @@ class SearchCore
 				{
 					if (!$weight)
 						continue;
-					if (!isset($word_ids_by_word['_'.$word]))
+					if (!isset($word_ids_by_word[$product['id_shop']][$product['id_lang']]['_'.$word]))
 						continue;
-					$id_word = $word_ids_by_word['_'.$word];
-					if (!$id_word)
+					if (!$word_ids_by_word[$product['id_shop']][$product['id_lang']]['_'.$word])
 						continue;
 					$query_array3[] = '('.(int)$product['id_product'].','.
-						(int)$id_word.','.(int)$weight.')';
+						(int)$word_ids_by_word[$product['id_shop']][$product['id_lang']]['_'.$word].','.(int)$weight.')';
 					// Force save every 200 words in order to avoid overloading MySQL
 					if (++$count_words % 200 == 0)
 						Search::saveIndex($query_array3);
 				}
 
-				$products_array[] = (int)$product['id_product'];
+				if (!in_array($product['id_product'], $products_array))
+					$products_array[] = (int)$product['id_product'];
 			}
-			$products_array = array_unique($products_array);
 			Search::setProductsAsIndexed($products_array);
 
 			// One last save is done at the end in order to save what's left
@@ -702,14 +665,14 @@ class SearchCore
 
 	protected static function setProductsAsIndexed(&$products)
 	{
-		if (is_array($products) && !empty($products))
+		if (count($products))
 			ObjectModel::updateMultishopTable('Product', array('indexed' => 1), 'a.id_product IN ('.implode(',', $products).')');
 	}
 
 	/** $queryArray3 is automatically emptied in order to be reused immediatly */
 	protected static function saveIndex(&$queryArray3)
 	{
-		if (is_array($queryArray3) && !empty($queryArray3))
+		if (count($queryArray3))
 			Db::getInstance()->execute(
 				'INSERT INTO '._DB_PREFIX_.'search_index (id_product, id_word, weight)
 				VALUES '.implode(',', $queryArray3).'
