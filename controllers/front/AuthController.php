@@ -394,7 +394,7 @@ class AuthControllerCore extends FrontController
 		}
 		
 		if(!Tools::getValue('charter'))
-			$this->errors[] = sprintf(Tools::displayError('The %s is required'),'<b>'.Tools::displayError('Charter').'</b>');
+			$this->errors[] = sprintf(Tools::displayError('%s es necesaria'),'<b>'.Tools::displayError('Charter').'</b>');
 		
 		if(Tools::getValue('charter'))
 		{
