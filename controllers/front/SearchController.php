@@ -120,10 +120,10 @@ class SearchControllerCore extends FrontController
 
 			Hook::exec('actionSearch', array('expr' => $query, 'total' => $search['total']));
 			$nbProducts = $search['total'];
-            
-            $itemPaginator = ($nbProducts / $this->n);
+
+            /* $itemPaginator = ($nbProducts / $this->n);
             $this->p = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);
-            $_GET['p'] = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);
+            $_GET['p'] = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);*/
             
             echo '<div>'.$this->p.'</div>';
             echo '<pre>'; print_r($search); echo '</pre></div>';
