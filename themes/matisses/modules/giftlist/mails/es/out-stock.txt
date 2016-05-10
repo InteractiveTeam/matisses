@@ -1,0 +1,11 @@
+{creator},  un producto de tu lista de regalos no tiene unidades disponibles en inventario:
+
+Imagen: {image}
+Nombre: {name}
+Color: {color}
+Precio: {price}
+Und. Solicitadas: {wanted}
+Und. Faltantes: {missing}
+Ingresa a tu lista para seguir añadiendo productos: {description_link}
+
+Mensaje: {message}

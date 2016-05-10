@@ -473,7 +473,6 @@
 		{$addresses_style.phone_mobile = 'address_phone_mobile'}
 		{$addresses_style.alias = 'address_title'}
 	{/if}
-
 	{if ((!empty($delivery_option) AND !isset($virtualCart)) OR $delivery->id OR $invoice->id) AND !$opc}
 		<div class="order_delivery cf row">
 			{if !isset($formattedAddresses) || (count($formattedAddresses.invoice) == 0 && count($formattedAddresses.delivery) == 0) || (count($formattedAddresses.invoice.formated) == 0 && count($formattedAddresses.delivery.formated) == 0)}
@@ -489,7 +488,7 @@
 							<li class="address_name">{$delivery->firstname|escape:'html':'UTF-8'} {$delivery->lastname|escape:'html':'UTF-8'}&nbsp;</li>
 							<li class="address_address1">{$delivery->address1|escape:'html':'UTF-8'}&nbsp;</li>
 							{if $delivery->address2}<li class="address_address2">{$delivery->address2|escape:'html':'UTF-8'}&nbsp;</li>{/if}
-							<li class="address_city">{$delivery->postcode|escape:'html':'UTF-8'} {$delivery->city|escape:'html':'UTF-8'}&nbsp;</li>
+							<li class="address_city">{$delivery->postcode|escape:'html':'UTF-8'} {State::getNameById($delivery->id_state)|escape:'html':'UTF-8'}&nbsp;</li>
 							<li class="address_country">{$delivery->country|escape:'html':'UTF-8'} {if $delivery_state}({$delivery_state|escape:'html':'UTF-8'}){/if}&nbsp;</li>
 						</ul>
 					</div>

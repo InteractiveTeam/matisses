@@ -130,7 +130,7 @@
                 {/if}
                 <li>
                     <span class="address_ciy"><b>{l s='Ciudad:'}</b>
-                    {$address_delivery->city|escape:'html':'UTF-8'}
+                    {State::getNameById($address_delivery->id_state)|escape:'html':'UTF-8'}
                     </span>
                 </li>
                 <li>
@@ -189,8 +189,8 @@
                     </li>
                 {/if}
                 <li>
-                    <span class="address_ciy"><b>{l s='Ciudad:'}</b>
-                    {$address_invoice->city|escape:'html':'UTF-8'}
+                    <span class="address_city"><b>{l s='Ciudad:'}</b>
+                    {State::getNameById($address_invoice->id_state)|escape:'html':'UTF-8'}
                     </span>
                 </li>
                 <li>

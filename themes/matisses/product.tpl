@@ -121,6 +121,7 @@
 					<div id="thumbs_list">
 						<ul id="thumbs_list_frame">
 						{if isset($images)}
+                        {$first_key = key($images)}
 							{foreach from=$images item=image name=thumbnails}
 								{assign var=imageIds value="`$product->id`-`$image.id_image`"}
 								{if !empty($image.legend)}
@@ -128,7 +129,8 @@
 								{else}
 									{assign var=imageTitle value=$product->name|escape:'html':'UTF-8'}
 								{/if}
-								<li id="thumbnail_{$image.id_image}"{if $smarty.foreach.thumbnails.last} class="last"{/if}>
+								<li id="thumbnail_{$image.id_image}"  class="{if $smarty.foreach.thumbnails.last}last{/if}
+                                {if $images[$first_key]['id_product_attribute'] != $image.id_product_attribute}ax-hide-temp{/if}">
 									<a{if $jqZoomEnabled && $have_image && !$content_only} href="javascript:void(0);" rel="{literal}{{/literal}gallery: 'gal1', smallimage: '{$link->getImageLink($product->link_rewrite, $imageIds, 'large_default')|escape:'html':'UTF-8'}',largeimage: '{$link->getImageLink($product->link_rewrite, $imageIds, 'thickbox_default')|escape:'html':'UTF-8'}'{literal}}{/literal}"{else} href="{$link->getImageLink($product->link_rewrite, $imageIds, 'thickbox_default')|escape:'html':'UTF-8'}"	data-fancybox-group="other-views" class="fancybox{if $image.id_image == $cover.id_image} shown{/if}"{/if} title="{$imageTitle}">
 										<img class="img-responsive" id="thumb_{$image.id_image}" src="{$link->getImageLink($product->link_rewrite, $imageIds, 'medium_default')|escape:'html':'UTF-8'}" alt="{$imageTitle}" title="{$imageTitle}" itemprop="image" />
 									</a>
@@ -372,10 +374,10 @@
 							<h2>Cantidad</h2>
 							<input type="text" name="qty" id="quantity_wanted" class="text" value="{if isset($quantityBackup)}{$quantityBackup|intval}{else}{if $product->minimal_quantity > 1}{$product->minimal_quantity}{else}1{/if}{/if}" />
 							<div class="wrap_up_down">
-							<a href="javascript:void(0)" data-field-qty="qty" class="button-plus product_quantity_up">
+							<a href="#" data-field-qty="qty" class="button-plus product_quantity_up">
 								<i class="icon-plus">+</i>
 							</a>
-							<a href="javascript:void(0)" data-field-qty="qty" class="button-minus product_quantity_down">
+							<a href="#" data-field-qty="qty" class="button-minus product_quantity_down">
 								<i class="icon-minus">-</i>
 							</a>
 							</div>

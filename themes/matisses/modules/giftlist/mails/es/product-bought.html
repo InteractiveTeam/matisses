@@ -5,11 +5,11 @@
 	<title></title>
 </head>
 <body>
-	<header></header>
+								<header></header>
 <table border="0" width="640" cellspacing="0" cellpadding="0" align="center">
 <tbody>
 <tr>
-<td colspan="20"><img style="display: block; border: none;" src="{shop_url}img/mailing/plantilla-final_01.png" alt="" width="640" height="99" /></td>
+<td colspan="20"><img style="display: block; border: none;" src="{shop_url}img/mailing/mailing/plantilla-final_01.png" alt="" width="640" height="99" /></td>
 </tr>
 <tr>
 <td colspan="9">
@@ -19,30 +19,38 @@
 <td>&nbsp;</td>
 </tr>
 <tr>
-<td style="font-family: sans-serif; font-size: 28px; line-height: 20px; font-weight: lighter; color: #545454; padding: 20px; text-align: center;" colspan="9">Hola</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
+<td style="font-family: sans-serif; font-size: 28px; line-height: 20px; font-weight: lighter; color: #545454; padding: 20px; text-align: left;" colspan="9">{creator}, un bono de regalo para tu lista de regalos fue comprado:</td>
 </tr>
 </tbody>
 </table>
 </td>
 </tr>
 <tr>
-<td style="font-family: sans-serif; font-size: 16px; line-height: 20px; font-weight: lighter; color: #545454; padding: 40px;" colspan="9">
+<td style="font-family: sans-serif; font-size: 16px; line-height: 20px; font-weight: lighter; color: #545454; padding: 20px;" colspan="9">
 <table class="table" style="width: 100%;">
 <tbody>
 <tr>
-<td style="padding: 7px 0;" width="10">&nbsp;</td>
-<td style="padding: 7px 0;"><span style="color: #555454; font-family: &#039;Open-sans&#039;, sans-serif; font-size: small;"> <span style="color: #777;"> <strong> Gracias por suscribirse&nbsp;a nuestro bolet&iacute;n. </strong> </span> </span></td>
-<td style="padding: 7px 0;" width="10">&nbsp;</td>
+<td class="linkbelow" style="padding: 7px 0;">
+<p>Nombre del producto: {name}</p>
+<p>Precio: ${product_price}</p>
+<p>Color: {color}</p>
+<p>Comprador: {buyer}</p>
+<p>Und. compradas: {qty_buy}</p>
+<p>Und. solicitadas: {qty_want}</p>
+<p>Und. faltantes: {qty_rest}</p>
+</td>
+</tr>
+<tr>
+<td class="space_footer" style="padding: 0;">&nbsp;Ingresa a tu lista para seguir a&ntilde;adiendo productos:&nbsp;<a href="%7Bdescription_link%7D">{description_link}</a>
+<p>Mensaje: {message}</p>
+</td>
 </tr>
 </tbody>
 </table>
 </td>
 </tr>
 <tr>
-<td><br />
+<td>
 <table border="0" width="100%" cellspacing="0" cellpadding="0" align="center">
 <tbody>
 <tr>
@@ -62,7 +70,7 @@
 <table border="0" width="50%" cellspacing="0" cellpadding="0" align="center">
 <tbody>
 <tr>
-<td><a style="display: block; border: none;" href="javascript:void(0)"><img style="display: block; border: none;" src="{shop_url}img/mailing/plantilla-final_09.png" alt="" width="129" height="39" /></a></td>
+<td><a style="display: block; border: none;" href="#"><img style="display: block; border: none;" src="{shop_url}img/mailing/plantilla-final_09.png" alt="" width="129" height="39" /></a></td>
 <td colspan="3">&nbsp;</td>
 <td><a style="display: block; border: none;" href="https://www.matisses.co/nuevos-productos"><img style="display: block; border: none;" src="{shop_url}img/mailing/plantilla-final_11.png" alt="" width="67" height="39" /></a></td>
 <td>&nbsp;</td>
@@ -117,5 +125,12 @@
 </tr>
 </tbody>
 </table>
+
+
+
+
+
+
+
 </body>
 </html>
