@@ -109,7 +109,10 @@ class SearchControllerCore extends FrontController
 			$query = Tools::replaceAccentedChars(urldecode($query));
 			$search = Search::find($this->context->language->id, $query, $this->p, $this->n, $this->orderBy, $this->orderWay);
             
-            echo '<div style="display:none"><pre>'; print_r($search); echo '</pre></div>';
+            echo '<div style="display:none">';
+            echo '<div>'.$this->n.'</div>';
+            echo '<div>'.$this->p.'</div>';
+            echo '<pre>'; print_r($search); echo '</pre></div>';
             
 			if (is_array($search['result']))
 				foreach ($search['result'] as &$product)
@@ -117,6 +120,8 @@ class SearchControllerCore extends FrontController
 
 			Hook::exec('actionSearch', array('expr' => $query, 'total' => $search['total']));
 			$nbProducts = $search['total'];
+            
+            
 			$this->pagination($nbProducts);
 
 			$this->addColorsToProductList($search['result']);
