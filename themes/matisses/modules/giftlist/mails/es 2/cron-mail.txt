@@ -1,0 +1,7 @@
+{creator}, tu lista de regalos ha tenido modificaciones:
+
+{products_txt}
+
+
+##Invitación a visitar el sitio web y actualizar la lista de regalos con los productos nuevos##
+Mensaje: {message}
