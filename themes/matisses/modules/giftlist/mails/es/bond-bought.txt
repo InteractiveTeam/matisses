@@ -1,0 +1,8 @@
+{creator}, un bono de regalo para tu lista de regalos fue comprado:
+
+Monto: ${value}
+Comprador: {buyer}
+
+Ingresa a tu lista para seguir añadiendo productos: {description_link}
+
+Mensaje: {message}

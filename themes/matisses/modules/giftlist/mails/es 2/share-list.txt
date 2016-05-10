@@ -1,0 +1,9 @@
+Una lista de regalos ha sido compartida contigo, 
+puedes encontrarla ingresando a la URL:
+{description_link}:
+
+Código de lista: {code}
+Nombre de creador: {firstname}
+Apellido de creador: {lastname}
+Nombre de cocreador: {firstname_co}
+Apellido de cocreador: {lastname_co}
