@@ -112,7 +112,7 @@ class SearchControllerCore extends FrontController
             echo '<div style="display:none">';
             echo '<div>'.$this->n.'</div>';
             echo '<div>'.$this->p.'</div>';
-            echo '<pre>'; print_r($search); echo '</pre></div>';
+            
             
 			if (is_array($search['result']))
 				foreach ($search['result'] as &$product)
@@ -121,7 +121,12 @@ class SearchControllerCore extends FrontController
 			Hook::exec('actionSearch', array('expr' => $query, 'total' => $search['total']));
 			$nbProducts = $search['total'];
             
+            $itemPaginator = ($nbProducts / $this->n);
+            $this->p = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);
             
+            echo '<div>'.$this->p.'</div>';
+            echo '<pre>'; print_r($search); echo '</pre></div>';
+
 			$this->pagination($nbProducts);
 
 			$this->addColorsToProductList($search['result']);
