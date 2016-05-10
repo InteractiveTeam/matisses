@@ -27,10 +27,10 @@
 	<header class="panel-heading">
 		<i class="icon-bar-chart"></i> {l s='Products and Sales' mod='dashproducts'}
 		<span class="panel-heading-action">
-			<a class="list-toolbar-btn" href="#" onclick="toggleDashConfig('dashproducts'); return false;" title="configure">
+			<a class="list-toolbar-btn" href="javascript:void(0)" onclick="toggleDashConfig('dashproducts'); return false;" title="configure">
 				<i class="process-icon-configure"></i>
 			</a>
-			<a class="list-toolbar-btn" href="#"  onclick="refreshDashboard('dashproducts'); return false;"  title="refresh">
+			<a class="list-toolbar-btn" href="javascript:void(0)"  onclick="refreshDashboard('dashproducts'); return false;"  title="refresh">
 				<i class="process-icon-refresh"></i>
 			</a>
 		</span>

@@ -89,7 +89,7 @@ $('document').ready(function(){
 				</div>
 				<p class="submit">
 					<input id="id_product_comment_send" name="id_product" type="hidden" value="{$stf_product->id}" />
-					<a href="#" onclick="$.fancybox.close();">{l s='Cancel' mod='sendtoafriend'}</a>&nbsp;{l s='or' mod='sendtoafriend'}&nbsp;
+					<a href="javascript:void(0)" onclick="$.fancybox.close();">{l s='Cancel' mod='sendtoafriend'}</a>&nbsp;{l s='or' mod='sendtoafriend'}&nbsp;
 					<input id="sendEmail" class="button" name="sendEmail" type="submit" value="{l s='Send' mod='sendtoafriend'}" />
 				</p>
 			</div>

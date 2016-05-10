@@ -13,7 +13,7 @@
 				</div>
 			    <div class="grid_7 right-w">
 					<p>{$config.confgaran_terminos} </p>
-					<a class="grid_12 alpha omega view-more" href="#">{l s='Ver más' mod='matisses'}</a>
+					<a class="grid_12 alpha omega view-more" href="javascript:void(0)">{l s='Ver más' mod='matisses'}</a>
 					<form class="grid_12 alpha omega" method="post" action="" name="form1" id="step1">
 						<input type="hidden" value="submitStep1" name="submitStep1" />
 						<input type="checkbox" checked="checked" name="accept" id="accept" value="1">

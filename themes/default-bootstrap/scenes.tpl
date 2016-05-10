@@ -61,7 +61,7 @@
 	{if isset($scenes.1)}
 	<div class="thumbs_banner" style="height:{$thumbSceneImageType.height}px;">
 		<span class="space-keeper">
-			<a class="prev" href="#" style="height:{math equation='a+2' a=$thumbSceneImageType.height}px;">&nbsp;</a>
+			<a class="prev" href="javascript:void(0)" style="height:{math equation='a+2' a=$thumbSceneImageType.height}px;">&nbsp;</a>
 		</span>
 		<div id="scenes_list">
 			<ul style="width:{math equation='(a*b + (a-1)*10)' a=$scenes|@count b=$thumbSceneImageType.width}px; height:{$thumbSceneImageType.height}px;">

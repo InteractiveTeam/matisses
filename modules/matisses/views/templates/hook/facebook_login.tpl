@@ -12,7 +12,7 @@
 	    </p>
 	</div>
 	<div class="btn-facebook grid_12">
-    	<a class="btn btn-default" id="link-create-fb-account" href="#" onclick="fb_login()">
+    	<a class="btn btn-default" id="link-create-fb-account" href="javascript:void(0)" onclick="fb_login()">
 			<i class="fa fa-facebook"></i>
 			{l s='Connect' mod='matisses'}
 		</a>

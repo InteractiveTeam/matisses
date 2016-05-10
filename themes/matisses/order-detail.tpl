@@ -29,7 +29,7 @@
 	<form id="submitReorder" class="submitReorder" action="{if isset($opc) && $opc}{$link->getPageLink('order-opc', true)}{else}{$link->getPageLink('order', true)}{/if}" method="post" class="submit">
 			<input type="hidden" value="{$order->id}" name="id_order"/>
 			<input type="hidden" value="" name="submitReorder"/>
-				<a href="#" onclick="$(this).closest('form').submit(); return false;" class="btn btn-default btn-red">
+				<a href="javascript:void(0)" onclick="$(this).closest('form').submit(); return false;" class="btn btn-default btn-red">
 					{l s='Reorder'}
 				</a>
 				<p>
@@ -130,7 +130,7 @@
                 {/if}
                 <li>
                     <span class="address_ciy"><b>{l s='Ciudad:'}</b>
-                    {$address_delivery->city|escape:'html':'UTF-8'}
+                    {State::getNameById($address_delivery->id_state)|escape:'html':'UTF-8'}
                     </span>
                 </li>
                 <li>
@@ -189,8 +189,8 @@
                     </li>
                 {/if}
                 <li>
-                    <span class="address_ciy"><b>{l s='Ciudad:'}</b>
-                    {$address_invoice->city|escape:'html':'UTF-8'}
+                    <span class="address_city"><b>{l s='Ciudad:'}</b>
+                    {State::getNameById($address_invoice->id_state)|escape:'html':'UTF-8'}
                     </span>
                 </li>
                 <li>
@@ -312,8 +312,8 @@
 						<td>
 						<input class="order_qte_input form-control grey"  name="order_qte_input[{$smarty.foreach.products.index}]" type="text" size="2" value="{$product.customizationQuantityTotal|intval}" />
 							<div class="clearfix return_quantity_buttons">
-								<a href="#" class="return_quantity_down btn btn-default button-minus"><span><i class="icon-minus"></i></span></a>
-								<a href="#" class="return_quantity_up btn btn-default button-plus"><span><i class="icon-plus"></i></span></a>
+								<a href="javascript:void(0)" class="return_quantity_down btn btn-default button-minus"><span><i class="icon-minus"></i></span></a>
+								<a href="javascript:void(0)" class="return_quantity_up btn btn-default button-plus"><span><i class="icon-plus"></i></span></a>
 							</div>
 							<label for="cb_{$product.id_order_detail|intval}"><span class="order_qte_span editable">{$product.customizationQuantityTotal|intval}</span></label></td>
 						{if $order->hasProductReturned()}
@@ -373,8 +373,8 @@
 							<td>
 								<input class="order_qte_input form-control grey" name="customization_qty_input[{$customizationId|intval}]" type="text" size="2" value="{$customization.quantity|intval}" />
 								<div class="clearfix return_quantity_buttons">
-									<a href="#" class="return_quantity_down btn btn-default button-minus"><span><i class="icon-minus"></i></span></a>
-									<a href="#" class="return_quantity_up btn btn-default button-plus"><span><i class="icon-plus"></i></span></a>
+									<a href="javascript:void(0)" class="return_quantity_down btn btn-default button-minus"><span><i class="icon-minus"></i></span></a>
+									<a href="javascript:void(0)" class="return_quantity_up btn btn-default button-plus"><span><i class="icon-plus"></i></span></a>
 								</div>
 								<label for="cb_{$product.id_order_detail|intval}"><span class="order_qte_span editable">{$customization.quantity|intval}</span></label>
 							</td>
@@ -413,8 +413,8 @@
 						<td class="return_quantity">
 							<input class="order_qte_input form-control grey" name="order_qte_input[{$product.id_order_detail|intval}]" type="text" size="2" value="{$productQuantity|intval}" />
 							<div class="clearfix return_quantity_buttons">
-								<a href="#" class="return_quantity_down btn btn-default button-minus"><span><i class="icon-minus"></i></span></a>
-								<a href="#" class="return_quantity_up btn btn-default button-plus"><span><i class="icon-plus"></i></span></a>
+								<a href="javascript:void(0)" class="return_quantity_down btn btn-default button-minus"><span><i class="icon-minus"></i></span></a>
+								<a href="javascript:void(0)" class="return_quantity_up btn btn-default button-plus"><span><i class="icon-plus"></i></span></a>
 							</div>
 							<label for="cb_{$product.id_order_detail|intval}"><span class="order_qte_span editable">{$productQuantity|intval}</span></label></td>
 						{if $order->hasProductReturned()}

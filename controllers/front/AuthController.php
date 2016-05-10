@@ -394,7 +394,7 @@ class AuthControllerCore extends FrontController
 		}
 		
 		if(!Tools::getValue('charter'))
-			$this->errors[] = sprintf(Tools::displayError('The %s is required'),'<b>'.Tools::displayError('Charter').'</b>');
+			$this->errors[] = sprintf(Tools::displayError('%s es necesaria'),'<b>'.Tools::displayError('Charter').'</b>');
 		
 		if(Tools::getValue('charter'))
 		{
@@ -709,9 +709,10 @@ class AuthControllerCore extends FrontController
 	 */
 	protected function processSubmitCreate()
 	{
-		if (!Validate::isEmail($email = Tools::getValue('email_create')) || empty($email))
-			$this->errors[] = Tools::displayError('Invalid email address.');
-		elseif (Customer::customerExists($email))
+		if (!Validate::isEmail($email = Tools::getValue('email_create')) || empty($email)) {
+			$this->errors[] = Tools::displayError('Invalid email address.'); 
+        } 
+        elseif (Customer::customerExists($email))
 		{
 			$this->errors[] = Tools::displayError('An account using this email address has already been registered. Please enter a valid password or request a new one. ', false);
 			$_POST['email'] = Tools::getValue('email_create');

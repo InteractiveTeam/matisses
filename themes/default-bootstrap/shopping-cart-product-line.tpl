@@ -100,7 +100,7 @@
 				<span><i class="icon-minus"></i></span>
 				</a>
 				{else}
-					<a class="cart_quantity_down btn btn-default button-minus disabled" href="#" id="cart_quantity_down_{$product.id_product}_{$product.id_product_attribute}_{if $quantityDisplayed > 0}nocustom{else}0{/if}_{$product.id_address_delivery|intval}" title="{l s='You must purchase a minimum of %d of this product.' sprintf=$product.minimal_quantity}">
+					<a class="cart_quantity_down btn btn-default button-minus disabled" href="javascript:void(0)" id="cart_quantity_down_{$product.id_product}_{$product.id_product_attribute}_{if $quantityDisplayed > 0}nocustom{else}0{/if}_{$product.id_address_delivery|intval}" title="{l s='You must purchase a minimum of %d of this product.' sprintf=$product.minimal_quantity}">
 					<span><i class="icon-minus"></i></span>
 				</a>
 				{/if}

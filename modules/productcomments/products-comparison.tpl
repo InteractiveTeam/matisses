@@ -74,7 +74,7 @@
 	{foreach from=$list_ids_product item=id_product}
 	<td  width="{$width}%" class="{$classname} comparison_infos" align="center" >
 			{if isset($product_comments[$id_product]) AND $product_comments[$id_product]}
-		<a href="#" rel="#comments_{$id_product}" class="cluetip">{l s='view comments' mod='productcomments'}</a>
+		<a href="javascript:void(0)" rel="#comments_{$id_product}" class="cluetip">{l s='view comments' mod='productcomments'}</a>
 		<div style="display:none" id="comments_{$id_product}"> 
 		{foreach from=$product_comments[$id_product] item=comment}	
 			<div class="comment">

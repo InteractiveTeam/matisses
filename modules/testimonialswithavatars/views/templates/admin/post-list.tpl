@@ -58,14 +58,14 @@
 					</button>
 					<ul class="dropdown-menu">			
 						<li>
-							<a class="deletePost" href="#" onclick="event.preventDefault();">
+							<a class="deletePost" href="javascript:void(0)" onclick="event.preventDefault();">
 								<i class="icon icon-trash"></i>
 								{l s='Delete' mod='testimonialswithavatars'}
 							</a>
 						</li>			
 					</ul>
 				</div>
-				<a class="activatePost list-action-enable action-{if $post.active}enabled{else}disabled{/if} pull-right" href="#" title="{l s='Activate/Deactivate' mod='testimonialswithavatars'}">
+				<a class="activatePost list-action-enable action-{if $post.active}enabled{else}disabled{/if} pull-right" href="javascript:void(0)" title="{l s='Activate/Deactivate' mod='testimonialswithavatars'}">
 					<i class="icon-check"></i>
 					<i class="icon-remove"></i>
 					<input type="hidden" name="active" value="{$post.active|intval}">

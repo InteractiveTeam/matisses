@@ -23,6 +23,6 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-	<a class="addToWishlist wishlistProd_{$product.id_product|intval}" data-product="{$product.id_product|intval}" href="#">
+	<a class="addToWishlist wishlistProd_{$product.id_product|intval}" data-product="{$product.id_product|intval}" href="javascript:void(0)">
 		<i class="fa fa-heart-o"></i><span>{l s='To wishlist'}</span>
 	</a>

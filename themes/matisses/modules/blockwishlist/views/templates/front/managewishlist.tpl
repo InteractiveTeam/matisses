@@ -27,28 +27,28 @@
     {if !$refresh}
         <div class="wishlistLinkTop">
             <div class="order-close grid_12">
-                <a id="hideSendWishlist" href="#" onclick="WishlistVisibility('wishlistLinkTop', 'SendWishlist'); return false;" rel="nofollow" title="{l s='Close this wishlist' mod='blockwishlist'}">
+                <a id="hideSendWishlist" href="javascript:void(0)" onclick="WishlistVisibility('wishlistLinkTop', 'SendWishlist'); return false;" rel="nofollow" title="{l s='Close this wishlist' mod='blockwishlist'}">
                     <i class="fa fa-times"></i>
                 </a>
             </div>
             <div class="display_list grid_12 alpha omega">
                 <ul class="cf">
                     <li>
-                        <a  id="hideBoughtProducts" class="button_account" href="#" onclick="WishlistVisibility('wlp_bought', 'BoughtProducts'); return false;" title="{l s='Hide products' mod='blockwishlist'}">
+                        <a  id="hideBoughtProducts" class="button_account" href="javascript:void(0)" onclick="WishlistVisibility('wlp_bought', 'BoughtProducts'); return false;" title="{l s='Hide products' mod='blockwishlist'}">
                             {l s='Ocultar productos' mod='blockwishlist'}
                             <i class="fa fa-sort-asc"></i>
                         </a>
-                        <a id="showBoughtProducts" class="button_account" href="#" onclick="WishlistVisibility('wlp_bought', 'BoughtProducts'); return false;" title="{l s='Show products' mod='blockwishlist'}">
+                        <a id="showBoughtProducts" class="button_account" href="javascript:void(0)" onclick="WishlistVisibility('wlp_bought', 'BoughtProducts'); return false;" title="{l s='Show products' mod='blockwishlist'}">
                             {l s='Mostrar productos' mod='blockwishlist'}
                             <i class="fa fa-sort-desc"></i>
                         </a>
                     </li>
                     {if count($productsBoughts)}
                         <!-- <li>
-                            <a id="hideBoughtProductsInfos" class="button_account" href="#" onclick="WishlistVisibility('wlp_bought_infos', 'BoughtProductsInfos'); return false;" title="{l s='Hide products' mod='blockwishlist'}">
+                            <a id="hideBoughtProductsInfos" class="button_account" href="javascript:void(0)" onclick="WishlistVisibility('wlp_bought_infos', 'BoughtProductsInfos'); return false;" title="{l s='Hide products' mod='blockwishlist'}">
                                 {l s="Ocultar información del producto comprado" mod='blockwishlist'}
                             </a>
-                            <a id="showBoughtProductsInfos" class="button_account" href="#" onclick="WishlistVisibility('wlp_bought_infos', 'BoughtProductsInfos'); return false;" title="{l s='Show products' mod='blockwishlist'}">
+                            <a id="showBoughtProductsInfos" class="button_account" href="javascript:void(0)" onclick="WishlistVisibility('wlp_bought_infos', 'BoughtProductsInfos'); return false;" title="{l s='Show products' mod='blockwishlist'}">
                                 {l s="Mostrar información de productos comprados" mod='blockwishlist'}
                             </a>
                         </li> -->
@@ -60,7 +60,7 @@
                 <input type="text" class="form-control" value="{$link->getModuleLink('blockwishlist', 'view', ['token' => $token_wish])|escape:'html':'UTF-8'}" readonly="readonly"/>
             </div>
             <div class="submit grid_12 hidden">
-                <a id="showSendWishlist" class="btn btn-default btn-red" href="#" onclick="WishlistVisibility('wl_send', 'SendWishlist'); return false;" title="{l s='Send this wishlist' mod='blockwishlist'}">
+                <a id="showSendWishlist" class="btn btn-default btn-red" href="javascript:void(0)" onclick="WishlistVisibility('wl_send', 'SendWishlist'); return false;" title="{l s='Send this wishlist' mod='blockwishlist'}">
                     {l s='Send this wishlist' mod='blockwishlist'}
                 </a>
             </div>

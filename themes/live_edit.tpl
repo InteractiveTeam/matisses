@@ -56,7 +56,7 @@
 </form>
 	<div style="float:right;margin-right:20px;" id="live_edit_feed_back"></div>
 </div>
-<a href="#" style="display:none;" id="fancy"></a>
+<a href="javascript:void(0)" style="display:none;" id="fancy"></a>
 <div id="live_edit_feedback" style="width:400px"> 
 	<p id="live_edit_feedback_str">
 	</p> 

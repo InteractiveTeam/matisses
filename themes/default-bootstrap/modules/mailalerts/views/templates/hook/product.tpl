@@ -29,7 +29,7 @@
 			<input type="text" id="oos_customer_email" name="customer_email" size="20" value="{l s='your@email.com' mod='mailalerts'}" class="mailalerts_oos_email form-control" />
     	</p>
     {/if}
-	<a href="#" title="{l s='Notify me when available' mod='mailalerts'}" id="mailalert_link" rel="nofollow">{l s='Notify me when available' mod='mailalerts'}</a>
+	<a href="javascript:void(0)" title="{l s='Notify me when available' mod='mailalerts'}" id="mailalert_link" rel="nofollow">{l s='Notify me when available' mod='mailalerts'}</a>
 	<span id="oos_customer_email_result" style="display:none; display: block;"></span>
 {strip}
 {addJsDef oosHookJsCodeFunctions=array('oosHookJsCodeMailAlert')}

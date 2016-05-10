@@ -146,7 +146,7 @@ var moderation_active = {$moderation_active};
 					<p class="fl required"><sup>*</sup> {l s='Required fields' mod='productcomments'}</p>
 					<p class="fr">
 						<button id="submitNewMessage" name="submitMessage" type="submit">{l s='Send' mod='productcomments'}</button>&nbsp;
-						{l s='or' mod='productcomments'}&nbsp;<a href="#" onclick="$.fancybox.close();">{l s='Cancel' mod='productcomments'}</a>
+						{l s='or' mod='productcomments'}&nbsp;<a href="javascript:void(0)" onclick="$.fancybox.close();">{l s='Cancel' mod='productcomments'}</a>
 					</p>
 					<div class="clearfix"></div>
 				</div>

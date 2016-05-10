@@ -121,7 +121,7 @@
 					<div id="thumbs_list">
 						<ul id="thumbs_list_frame">
 						{if isset($images)}
-                        {*$first_key = key($images)*}
+                        {$first_key = key($images)}
 							{foreach from=$images item=image name=thumbnails}
 								{assign var=imageIds value="`$product->id`-`$image.id_image`"}
 								{if !empty($image.legend)}
@@ -129,8 +129,8 @@
 								{else}
 									{assign var=imageTitle value=$product->name|escape:'html':'UTF-8'}
 								{/if}
-								<li id="thumbnail_{$image.id_image}"{if $smarty.foreach.thumbnails.last} class="last{/if}
-                                {*if $images[$first_key]['id_product_attribute'] != $image.id_product_attribute} hidden{/if*}">
+								<li id="thumbnail_{$image.id_image}"  class="{if $smarty.foreach.thumbnails.last}last{/if}
+                                {if $images[$first_key]['id_product_attribute'] != $image.id_product_attribute}ax-hide-temp{/if}">
 									<a{if $jqZoomEnabled && $have_image && !$content_only} href="javascript:void(0);" rel="{literal}{{/literal}gallery: 'gal1', smallimage: '{$link->getImageLink($product->link_rewrite, $imageIds, 'large_default')|escape:'html':'UTF-8'}',largeimage: '{$link->getImageLink($product->link_rewrite, $imageIds, 'thickbox_default')|escape:'html':'UTF-8'}'{literal}}{/literal}"{else} href="{$link->getImageLink($product->link_rewrite, $imageIds, 'thickbox_default')|escape:'html':'UTF-8'}"	data-fancybox-group="other-views" class="fancybox{if $image.id_image == $cover.id_image} shown{/if}"{/if} title="{$imageTitle}">
 										<img class="img-responsive" id="thumb_{$image.id_image}" src="{$link->getImageLink($product->link_rewrite, $imageIds, 'medium_default')|escape:'html':'UTF-8'}" alt="{$imageTitle}" title="{$imageTitle}" itemprop="image" />
 									</a>

@@ -637,11 +637,12 @@ class matisses extends Module
             $skuattr = array();
             
             // attributes
+            /*echo "<pre>"; print_r($attr); echo "</pre>"; die();*/
             foreach($attr as $row){
                 if ($row['group_name'] == 'Color') {
                     array_push($attrcolors,$row['attribute_name']);
                 }
-                
+                 
                 $tempattr = array();        
                 $tempattr['sku'] = $row['reference'];
                 $tempattr['specs'] = array('color' => $row['attribute_name']);
@@ -657,6 +658,15 @@ class matisses extends Module
                 if (isset($hexcolor)) {
                     $tempattr['hex_color'] = $hexcolor[0]['color'];   
                 }
+                
+                $images = $product->_getAttributeImageAssociations($row['id_product_attribute']);
+                
+                if (isset($images)) {
+                    $tempattr['images'] = array('default' => $link->getImageLink($product->link_rewrite[1], $images[0]));   
+                }
+                
+                $tempattr['images'] = $imgreference;
+                
                 array_push($skuattr,$tempattr);
             }
             
@@ -1084,6 +1094,7 @@ class matisses extends Module
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname']);
 		$infoxml[0]['email']			= $InfCustomer[0]['email'];
 		$infoxml[0]['gender']			= 3;
+		$infoxml[0]['birthday']			= $InfCustomer[0]['birthday'];
         $infoxml[0]['salesPersonCode'] 	= ""; // se envia vacio esto se llena por default en sap;
 		if(sizeof($InfAddresses)>0)
 		{
@@ -1150,6 +1161,7 @@ class matisses extends Module
 		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['secondname']);
         $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname']);
+        $infoxml[0]['birthday']			= $InfCustomer[0]['birthday'];
 		
 		if(sizeof($Adresses)> 0)
 		{

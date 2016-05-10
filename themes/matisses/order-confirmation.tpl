@@ -44,7 +44,7 @@
 <form id="submitReorder" class="submitReorder" action="{$link->getPageLink('order', true)}" method="post" class="submit">
     <input id="txtIDorder" type="hidden" value="" name="id_order"/>
     <input type="hidden" name="submitReorder"/>
-    <a href="#" onclick="$('#submitReorder').submit(); return false;" class="btn btn-default btn-red">
+    <a href="javascript:void(0)" onclick="$('#submitReorder').submit(); return false;" class="btn btn-default btn-red">
         {l s='Pedir de nuevo'}
     </a>
 </form>

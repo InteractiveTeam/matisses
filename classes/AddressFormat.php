@@ -357,6 +357,7 @@ class AddressFormatCore extends ObjectModel
 			}
 		AddressFormat::cleanOrderedAddress($addressFormat);
 		// Free the instanciate objects
+        $tab['city'] = State::getNameById($address->id_state);
 		foreach ($temporyObject as &$object)
 			unset($object);
 		return $tab;

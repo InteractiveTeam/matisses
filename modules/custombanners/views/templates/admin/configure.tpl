@@ -41,13 +41,13 @@
 	<h3><i class="icon icon-cogs"></i> {l s='General settings' mod='custombanners'}</h3>
 	<div class="col-lg-6">
 		{foreach $custom_files as $type => $name}
-			<a href="#" class="custom-code" data-toggle="modal" data-target="#custom-{$type|escape:'html'}-form" title="{$name|escape:'html'}">
+			<a href="javascript:void(0)" class="custom-code" data-toggle="modal" data-target="#custom-{$type|escape:'html'}-form" title="{$name|escape:'html'}">
 				<span class="monospace">{ldelim}{rdelim}</span> {$name|escape:'html'}
 			</a>
 		{/foreach}
 	</div>
 	<div class="col-lg-6 importer pull-right text-right">
-		<a href="#" data-toggle="modal" data-target="#modal_importer_info" title="{l s='About the importer' mod='custombanners'}">
+		<a href="javascript:void(0)" data-toggle="modal" data-target="#modal_importer_info" title="{l s='About the importer' mod='custombanners'}">
 			<i class="icon-info-circle importer-info"></i>
 		</a>
 		<form action="" method="post">
@@ -87,9 +87,9 @@
 		<div class="col-lg-6 hook-settings">
 			<i class="icon icon-wrench"></i>
 			{l s='Hook settings' mod='custombanners'}:
-			<a href="#" class="callSettings" data-settings="exceptions">{l s='page exceptions' mod='custombanners'}</a> |
-			<a href="#" class="callSettings" data-settings="positions">{l s='module positions' mod='custombanners'}</a> |
-			<a href="#" class="callSettings" data-settings="carousel">{l s='carousel' mod='custombanners'}</a>
+			<a href="javascript:void(0)" class="callSettings" data-settings="exceptions">{l s='page exceptions' mod='custombanners'}</a> |
+			<a href="javascript:void(0)" class="callSettings" data-settings="positions">{l s='module positions' mod='custombanners'}</a> |
+			<a href="javascript:void(0)" class="callSettings" data-settings="carousel">{l s='carousel' mod='custombanners'}</a>
 		</div>
 		<div class="col-lg-2 additional-add hidden">
 			<button type="button" class="addBanner btn btn-default pull-right">
@@ -169,25 +169,25 @@
 			{l s='Bulk actions' mod='custombanners'} <span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu">
-			<li><a href="#"	class="bulk-select"><i class="icon-check-sign"></i> {l s='Select all' mod='custombanners'}</a></li>
-			<li><a href="#" class="bulk-unselect"><i class="icon-check-empty"></i> {l s='Unselect all' mod='custombanners'}</a></li>
+			<li><a href="javascript:void(0)"	class="bulk-select"><i class="icon-check-sign"></i> {l s='Select all' mod='custombanners'}</a></li>
+			<li><a href="javascript:void(0)" class="bulk-unselect"><i class="icon-check-empty"></i> {l s='Unselect all' mod='custombanners'}</a></li>
 			<li class="divider"></li>
-			<li><a href="#" data-bulk-act="enable"><i class="icon-check on"></i> {l s='Enable' mod='custombanners'}</a></li>
-			<li><a href="#" data-bulk-act="disable"><i class="icon-times off"></i> {l s='Disable' mod='custombanners'}</a></li>
+			<li><a href="javascript:void(0)" data-bulk-act="enable"><i class="icon-check on"></i> {l s='Enable' mod='custombanners'}</a></li>
+			<li><a href="javascript:void(0)" data-bulk-act="disable"><i class="icon-times off"></i> {l s='Disable' mod='custombanners'}</a></li>
 			<li class="dont-hide">
-				<a href="#" class="toggle-hook-list"><i class="icon icon-copy"></i> {l s='Copy to hook' mod='custombanners'}</a>
+				<a href="javascript:void(0)" class="toggle-hook-list"><i class="icon icon-copy"></i> {l s='Copy to hook' mod='custombanners'}</a>
 				<div class="dynamic-hook-list" style="display:none;">
 					<button class="btn btn-default" data-bulk-act="copy">{l s='OK' mod='custombanners'}</button>
 				</div>
 			</li>
 			<li class="dont-hide">
-				<a href="#" class="toggle-hook-list"><i class="icon icon-arrow-left"></i> {l s='Move to hook' mod='custombanners'}</a>
+				<a href="javascript:void(0)" class="toggle-hook-list"><i class="icon icon-arrow-left"></i> {l s='Move to hook' mod='custombanners'}</a>
 				<div class="dynamic-hook-list" style="display:none;">
 					<button class="btn btn-default" data-bulk-act="move">{l s='OK' mod='custombanners'}</button>
 				</div>
 			</li>
 			<li class="divider"></li>
-			<li><a href="#" data-bulk-act="delete"><i class="icon-trash"></i> {l s='Delete' mod='custombanners'}</a></li>
+			<li><a href="javascript:void(0)" data-bulk-act="delete"><i class="icon-trash"></i> {l s='Delete' mod='custombanners'}</a></li>
 		</ul>
 	</div>
 	<button type="button" class="addBanner btn btn-default bottom">
