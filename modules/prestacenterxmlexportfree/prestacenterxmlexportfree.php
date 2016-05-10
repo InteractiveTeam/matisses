@@ -49,6 +49,7 @@ class PrestaCenterXmlExportFree extends Module
 		'online_only'		=> array(),
 		'url'				=> array('key' => 'id_lang', 'helper' => 'escape|strip', ),
 		'img_url'			=> array('key' => 'id_lang', 'helper' => 'escape|strip', ),
+		'img_prod'			=> array('key' => 'id_lang', 'helper' => 'escape|strip', ),
 		'days'				=> array('key' => 'id_lang'),
 		'availability'		=> array('helper' => 'availability|clean|escape'),
 		'reference'			=> array('helper' => 'clean|escape', ),
@@ -418,6 +419,7 @@ class PrestaCenterXmlExportFree extends Module
                     $tmp['categoriesmeta']	= array();
                     $tmp['link_rewrite']	= array();
                     $tmp['img_url']			= array();
+                    $tmp['img_prod']		= array();
                     $tmp['description']		= array();
                     $tmp['description_short']	= array();
                     $tmp['price_vat']		= array();
@@ -515,6 +517,10 @@ class PrestaCenterXmlExportFree extends Module
                 if (isset($hexcolor)) {
                     $tmp['hexcolor'] = $hexcolor[0]['color'];
                 }
+                
+                // image
+                $images = $product->_getAttributeImageAssociations($inrefer['id_product_attribute']);                
+                $tmp['img_prod'][$row['id_lang']] = $this->context->link->getImageLink($row['link_rewrite'], $images[0]);
                 
                 $tmp['name'][$row['id_lang']] = $row['name'];
                 $tmp['description'][$row['id_lang']] = $row['description'];

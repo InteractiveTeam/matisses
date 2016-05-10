@@ -637,11 +637,12 @@ class matisses extends Module
             $skuattr = array();
             
             // attributes
+            /*echo "<pre>"; print_r($attr); echo "</pre>"; die();*/
             foreach($attr as $row){
                 if ($row['group_name'] == 'Color') {
                     array_push($attrcolors,$row['attribute_name']);
                 }
-                
+                 
                 $tempattr = array();        
                 $tempattr['sku'] = $row['reference'];
                 $tempattr['specs'] = array('color' => $row['attribute_name']);
@@ -657,6 +658,13 @@ class matisses extends Module
                 if (isset($hexcolor)) {
                     $tempattr['hex_color'] = $hexcolor[0]['color'];   
                 }
+                
+                $images = $product->_getAttributeImageAssociations($row['id_product_attribute']);
+                
+                if (isset($images)) {
+                    $tempattr['images'] = array('default' => $link->getImageLink($product->link_rewrite[1], $images[0]));   
+                }
+                
                 array_push($skuattr,$tempattr);
             }
             
