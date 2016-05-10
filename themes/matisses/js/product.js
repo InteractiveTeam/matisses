@@ -401,7 +401,7 @@ function findCombination(firstTime)
 			updateDisplay();
 
 			if (typeof(firstTime) != 'undefined' && firstTime)
-				refreshProductImages(0);
+				refreshProductImages($("#idCombination").val());
 			else
 				refreshProductImages(combinations[combination]['idCombination']);
 			//leave the function because combination has been found
