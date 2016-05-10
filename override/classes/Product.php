@@ -5,7 +5,7 @@ class Product extends ProductCore
 	{
         $att = Product::getProductAttributesIds($this->id);
         $sql = '
-                SELECT image_shop.`cover`, i.`id_image`, il.`legend`, i.`position`
+                SELECT image_shop.`cover`, i.`id_image`, il.`legend`, i.`position`, id_product_attribute
                 FROM `'._DB_PREFIX_.'image` i
                 '.Shop::addSqlAssociation('image', 'i').'
                 LEFT JOIN `'._DB_PREFIX_.'image_lang` il ON (i.`id_image` = il.`id_image` AND il.`id_lang` = '.(int)$id_lang.')
