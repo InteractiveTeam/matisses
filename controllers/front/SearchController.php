@@ -123,6 +123,7 @@ class SearchControllerCore extends FrontController
             
             $itemPaginator = ($nbProducts / $this->n);
             $this->p = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);
+            $_GET['p'] = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);
             
             echo '<div>'.$this->p.'</div>';
             echo '<pre>'; print_r($search); echo '</pre></div>';
