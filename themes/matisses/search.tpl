@@ -37,7 +37,7 @@ class="page-heading {if !isset($instant_search) || (isset($instant_search) && !$
         </span>
     {/if}
     {if isset($instant_search) && $instant_search}
-        <a href="#" class="close">
+        <a href="javascript:void(0)" class="close">
             {l s='Return to the previous page'}
         </a>
     {else}

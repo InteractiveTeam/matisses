@@ -135,7 +135,7 @@
                     </div>
                 </div>
                 {elseif $data['id_cocreator'] != $cookie->customer->id}
-                <a href="#">Quitar co-creador</a>
+                <a href="javascript:void(0)">Quitar co-creador</a>
                 {/if}
                 {if $edit}{if !empty($data['id_cocreator']) && $data['id_cocreator'] == $cookie->customer->id}
                 {$info_cocreator = Tools::JsonDecode($data['info_cocreator'])}

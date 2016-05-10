@@ -30,7 +30,7 @@
 			<a class="list-toolbar-btn" href="{$link->getAdminLink('AdminDashboard')|escape:'html':'UTF-8'}&amp;profitability_conf=1" title="{l s='Configure' mod='dashtrends'}">
 				<i class="process-icon-configure"></i>
 			</a>
-			<a class="list-toolbar-btn" href="#" onclick="refreshDashboard('dashtrends'); return false;" title="{l s='Refresh' mod='dashtrends'}">
+			<a class="list-toolbar-btn" href="javascript:void(0)" onclick="refreshDashboard('dashtrends'); return false;" title="{l s='Refresh' mod='dashtrends'}">
 				<i class="process-icon-refresh"></i>
 			</a>
 		</span>

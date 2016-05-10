@@ -27,9 +27,9 @@
     <div id="offers" class="offers-products">
 		<div class="container">
 			<div class="btn-title cf">
-				<h1><a href="#">{l s='Usted ha visitado'}</a></h1>
+				<h1><a href="javascript:void(0)">{l s='Usted ha visitado'}</a></h1>
 				<div class="btn-view-products">
-					<a href="#" title="Ver todos los destacados" class="btn btn-default button button-small">Ver todos</a>
+					<a href="javascript:void(0)" title="Ver todos los destacados" class="btn btn-default button button-small">Ver todos</a>
 				</div>
 			</div>
 			<div class="info">

@@ -50,7 +50,7 @@ param_product_url = '';
 									{if isset($filter.slider)}
 										{if $smarty.foreach.f_values.first}
 											<li>
-												<a href="#" data-rel="layered_{$filter.type}_slider" title="{l s='Cancel' mod='blocklayered'}">x</a>
+												<a href="javascript:void(0)" data-rel="layered_{$filter.type}_slider" title="{l s='Cancel' mod='blocklayered'}">x</a>
 												{if $filter.format == 1}
 													{l s='%1$s: %2$s - %3$s'|sprintf:$filter.name:{displayPrice price=$filter.values[0]}:{displayPrice price=$filter.values[1]}|escape:html:'UTF-8' mod='blocklayered'}
 												{else}
@@ -64,7 +64,7 @@ param_product_url = '';
 												{$sizearr[] = $id_value}
                                                 <li>
                                                 
-													<a href="#" data-rel="layered_{$filter.type_lite}_{$id_value}" title="{l s='Cancel' mod='blocklayered'}">x</a>
+													<a href="javascript:void(0)" data-rel="layered_{$filter.type_lite}_{$id_value}" title="{l s='Cancel' mod='blocklayered'}">x</a>
 													{l s='%1$s: %2$s' mod='blocklayered' sprintf=[$filter.name, $value.name]}
 												</li>
 											{/if}
@@ -86,7 +86,7 @@ param_product_url = '';
 						<div>
 						{/if}
 						<span class="layered_subtitle">{$filter.name|escape:html:'UTF-8'}</span>
-						<span class="layered_close"><a href="#" data-rel="ul_layered_{$filter.type}_{$filter.id_key}">v</a></span>
+						<span class="layered_close"><a href="javascript:void(0)" data-rel="ul_layered_{$filter.type}_{$filter.id_key}">v</a></span>
 						<div class="clear"></div>
 						<ul id="ul_layered_{$filter.type}_{$filter.id_key}">
 						{if !isset($filter.slider)}

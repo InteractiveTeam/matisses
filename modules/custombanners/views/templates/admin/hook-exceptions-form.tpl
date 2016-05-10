@@ -33,9 +33,9 @@
 		{l s='Check pages, where this hook shouldn\'t be displayed' mod='custombanners'}
 	</div>
 	<div class="exc_panel" style="/*display:none;*/">
-		<a href="#" class="chk-action checkall">{l s='Check all' mod='custombanners'}</a>
-		<a href="#" class="chk-action uncheckall">{l s='Unheck all' mod='custombanners'}</a>
-		<a href="#" class="chk-action invert">{l s='Invert selection' mod='custombanners'}</a>
+		<a href="javascript:void(0)" class="chk-action checkall">{l s='Check all' mod='custombanners'}</a>
+		<a href="javascript:void(0)" class="chk-action uncheckall">{l s='Unheck all' mod='custombanners'}</a>
+		<a href="javascript:void(0)" class="chk-action invert">{l s='Invert selection' mod='custombanners'}</a>
 		{foreach $settings item=exc_group}
 			<div class="exc-group clearfix">
 				<h4>{$exc_group.group_name|escape:'html'}</h4>

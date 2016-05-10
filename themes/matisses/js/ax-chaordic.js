@@ -309,6 +309,8 @@ ax = {
             if (data.emailsubscribe) {
                 chaordic.push(['updateUserEmail', { email: data.emailsubscribe }]);    
             }
+            
+            chaordic.initialize();
         });
     }, setCart: function() {
         chaordic_meta.cart = {};

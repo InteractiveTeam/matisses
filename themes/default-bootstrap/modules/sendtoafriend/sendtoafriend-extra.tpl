@@ -70,7 +70,7 @@
 							<span>{l s='Send' mod='sendtoafriend'}</span>
 						</button>&nbsp;
 						{l s='or' mod='sendtoafriend'}&nbsp;
-						<a class="closefb" href="#">
+						<a class="closefb" href="javascript:void(0)">
 							{l s='Cancel' mod='sendtoafriend'}
 						</a>
 					</p>

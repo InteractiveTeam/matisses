@@ -49,7 +49,7 @@
 					<div class="footer-account">
                     <form id="getPedido" method="get" action="{$link->getPageLink('history', true)|escape:'html':'UTF-8'}">
 						<input type="text" name="pedidonro">
-						<a class="btn btn-default btn-red" href="#" onclick="$('#getPedido').submit()" title="{l s='Buscar'}"> {l s='Buscar' mod='matisses'}</a>
+						<a class="btn btn-default btn-red" href="javascript:void(0)" onclick="$('#getPedido').submit()" title="{l s='Buscar'}"> {l s='Buscar' mod='matisses'}</a>
                     </form>
 					</div>
 				</div>
@@ -84,22 +84,22 @@
 					<div class="footer-account">
 						<input type="text">
 						<input type="text">
-						<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
-						<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
+						<a class="btn btn-default btn-red" href="javascript:void(0)" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
+						<a class="btn btn-default btn-red" href="javascript:void(0)" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
 					</div>
 				</div>
 				<div class="grid_3 dates-account">
 					<h3>{l s='Crear'}</h3>
 					<p>{l s='Piensa en grande y cra la lista de regalos.'}</p>
 					<div class="footer-account">
-						<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
+						<a class="btn btn-default btn-red" href="javascript:void(0)" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
 					</div>
 				</div>
 				<div class="grid_3 dates-account">
 					<h3>{l s='Administrar'}</h3>
 					<p>{l s='Ver, editar o añadir una lista'}</p>
 					<div class="footer-account">
-						<a class="btn btn-default btn-red" href="#" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
+						<a class="btn btn-default btn-red" href="javascript:void(0)" title="Buscar"> {l s='Buscar' mod='matisses'}</a>
 					</div>
 				</div>
 			</div>

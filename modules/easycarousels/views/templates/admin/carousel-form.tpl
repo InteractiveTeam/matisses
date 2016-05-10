@@ -62,7 +62,7 @@
 			{/if}
 		</span>
 		<span class="actions pull-right">
-			<a class="activateCarousel list-action-enable action-{if $carousel.active == 1}enabled{else}disabled{/if}" href="#" title="{l s='Activate/Deactivate' mod='easycarousels'}">
+			<a class="activateCarousel list-action-enable action-{if $carousel.active == 1}enabled{else}disabled{/if}" href="javascript:void(0)" title="{l s='Activate/Deactivate' mod='easycarousels'}">
 				<i class="icon-check"></i>
 				<i class="icon-remove"></i>
 			</a>
@@ -78,7 +78,7 @@
 				</button>
 				<ul class="dropdown-menu">
 					<li>
-						<a class="deleteCarousel" href="#" onclick="event.preventDefault();">
+						<a class="deleteCarousel" href="javascript:void(0)" onclick="event.preventDefault();">
 							<i class="icon icon-trash"></i>
 							{l s='Delete' mod='easycarousels'}
 						</a>
@@ -227,7 +227,7 @@
 						<ul class="dropdown-menu">
 							{foreach from=$languages item=lang}
 							<li>
-								<a href="#" class="lang_switcher" data-id-lang="{$lang.id_lang|intval}" onclick="event.preventDefault();">
+								<a href="javascript:void(0)" class="lang_switcher" data-id-lang="{$lang.id_lang|intval}" onclick="event.preventDefault();">
 									{$lang.name|escape:'html'}
 								</a>
 							</li>

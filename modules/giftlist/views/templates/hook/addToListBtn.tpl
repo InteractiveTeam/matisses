@@ -74,7 +74,7 @@
 	</div>
 	<div class="col-md-12">
 		<a class="keep-buy btn btn-default pull-left">Continuar comprando</a>
-		<a href="#" class="see-list btn btn-default pull-right">Ver listas de regalos</a>
+		<a href="javascript:void(0)" class="see-list btn btn-default pull-right">Ver listas de regalos</a>
 	</div>
 </div>
 

@@ -372,10 +372,10 @@
 							<h2>Cantidad</h2>
 							<input type="text" name="qty" id="quantity_wanted" class="text" value="{if isset($quantityBackup)}{$quantityBackup|intval}{else}{if $product->minimal_quantity > 1}{$product->minimal_quantity}{else}1{/if}{/if}" />
 							<div class="wrap_up_down">
-							<a href="#" data-field-qty="qty" class="button-plus product_quantity_up">
+							<a href="javascript:void(0)" data-field-qty="qty" class="button-plus product_quantity_up">
 								<i class="icon-plus">+</i>
 							</a>
-							<a href="#" data-field-qty="qty" class="button-minus product_quantity_down">
+							<a href="javascript:void(0)" data-field-qty="qty" class="button-minus product_quantity_down">
 								<i class="icon-minus">-</i>
 							</a>
 							</div>

@@ -35,7 +35,7 @@
 				<input type="checkbox" name="in_carousel" value="1" class="toggleable_param"{if $banner.in_carousel} checked{/if}>
 				{l s='In carousel' mod='custombanners'}
 			</label>
-			<a class="activateBanner list-action-enable action-{if $banner.active}enabled{else}disabled{/if}" href="#" title="{l s='Active' mod='custombanners'}">
+			<a class="activateBanner list-action-enable action-{if $banner.active}enabled{else}disabled{/if}" href="javascript:void(0)" title="{l s='Active' mod='custombanners'}">
 				<i class="icon-check"></i>
 				<i class="icon-remove"></i>
 				<input type="checkbox" name="active" value="1" class="toggleable_param hidden"{if $banner.active} checked{/if}>
@@ -53,19 +53,19 @@
 				</button>
 				<ul class="dropdown-menu">
 					<li class="dont-hide">
-						<a href="#" class="toggle-hook-list"><i class="icon-copy"></i> {l s='Copy to hook' mod='custombanners'}</a>
+						<a href="javascript:void(0)" class="toggle-hook-list"><i class="icon-copy"></i> {l s='Copy to hook' mod='custombanners'}</a>
 						<div class="dynamic-hook-list" style="display:none;">
 							<button class="btn btn-default copyToAnotherHook">{l s='OK' mod='custombanners'}</button>
 						</div>
 					</li>
 					<li class="dont-hide">
-						<a href="#" class="toggle-hook-list"><i class="icon-arrow-left"></i> {l s='Move to hook' mod='custombanners'}</a>
+						<a href="javascript:void(0)" class="toggle-hook-list"><i class="icon-arrow-left"></i> {l s='Move to hook' mod='custombanners'}</a>
 						<div class="dynamic-hook-list" style="display:none;">
 							<button class="btn btn-default moveToAnotherHook">{l s='OK' mod='custombanners'}</button>
 						</div>
 					</li>
 					<li>
-						<a class="deleteBanner" href="#" onclick="event.preventDefault();">
+						<a class="deleteBanner" href="javascript:void(0)" onclick="event.preventDefault();">
 							<i class="icon icon-trash"></i>
 							{l s='Delete' mod='custombanners'}
 						</a>
@@ -89,7 +89,7 @@
 				{if isset($field.tooltip)}
 					</span>
 				{/if}
-				<a href="#" class="show-field" title="{l s='Add' mod='custombanners'}"><i class="icon-plus"></i></a>
+				<a href="javascript:void(0)" class="show-field" title="{l s='Add' mod='custombanners'}"><i class="icon-plus"></i></a>
 			</label>
 			<div class="col-lg-10 clearfix">
 			{foreach from=$languages item=lang}
@@ -105,7 +105,7 @@
 						<div class="img-uploader">
 							<i class="icon-file-image-o"></i>
 							{l s='Drag your image here, or' mod='custombanners'}
-							<a href="#" class="img-browse">{l s='browse' mod='custombanners'}</a>
+							<a href="javascript:void(0)" class="img-browse">{l s='browse' mod='custombanners'}</a>
 							<input type="file" name="banner_img_{$id_lang|intval}" style="display:none;">
 							<input type="hidden" class="banner_img_name" name="banner_data[{$id_lang|intval}][img]" value="{if $value}{basename($value)|escape:'html'}{/if}">
 						</div>
@@ -181,7 +181,7 @@
 					<ul class="dropdown-menu">
 						{foreach from=$languages item=lang}
 						<li>
-							<a href="#" onclick="event.preventDefault(); selectLanguage($(this), {$lang.id_lang|intval})">
+							<a href="javascript:void(0)" onclick="event.preventDefault(); selectLanguage($(this), {$lang.id_lang|intval})">
 								{$lang.name|escape:'html'}
 							</a>
 						</li>

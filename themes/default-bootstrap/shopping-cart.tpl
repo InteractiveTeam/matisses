@@ -382,7 +382,7 @@
 												<a
 													id="cart_quantity_down_{$product.id_product}_{$product.id_product_attribute}_{$id_customization}"
 													class="cart_quantity_down btn btn-default button-minus disabled"
-													href="#"
+													href="javascript:void(0)"
 													title="{l s='Subtract'}">
 													<span><i class="icon-minus"></i></span>
 												</a>

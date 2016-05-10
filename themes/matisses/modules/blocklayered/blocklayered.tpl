@@ -49,7 +49,7 @@ param_product_url = '';
 									{if isset($filter.slider)}
 										{if $smarty.foreach.f_values.first}
 											<li>
-												<a href="#" data-rel="layered_{$filter.type}_slider" title="{l s='Cancel' mod='blocklayered'}"></a>
+												<a href="javascript:void(0)" data-rel="layered_{$filter.type}_slider" title="{l s='Cancel' mod='blocklayered'}"></a>
 												{if $filter.format == 1}
 													{l s='%1$s: %2$s - %3$s'|sprintf:$filter.name:{displayPrice price=$filter.values[0]}:{displayPrice price=$filter.values[1]}|escape:html:'UTF-8' mod='blocklayered'} 2
 												{else}
@@ -61,7 +61,7 @@ param_product_url = '';
 										{foreach from=$filter.values key=id_value item=value}
 											{if $id_value == $filter_key && !is_numeric($filter_value) && ($filter.type eq 'id_attribute_group' || $filter.type eq 'id_feature') || $id_value == $filter_value && $filter.type neq 'id_attribute_group' && $filter.type neq 'id_feature'}
 												<li>
-													<a href="#" data-rel="layered_{$filter.type_lite}_{$id_value}" title="{l s='Cancel' mod='blocklayered'}"></a>
+													<a href="javascript:void(0)" data-rel="layered_{$filter.type_lite}_{$id_value}" title="{l s='Cancel' mod='blocklayered'}"></a>
 													{l s='%1$s' mod='blocklayered' sprintf=[$value.name]}
 												</li>
 											{/if}
@@ -79,7 +79,7 @@ param_product_url = '';
 					<div id="enabled_filters" class="enabled-filters">
                         <ul>
                             <li>
-                                <a href="#" data-rel="layered_id_feature_146" title="Cancelar"></a>
+                                <a href="javascript:void(0)" data-rel="layered_id_feature_146" title="Cancelar"></a>
                                 {assign var="categoria" value=Category::getCategorybyId(Tools::getValue('id_category'))}
                                 {if $categoria}
                                 	{$categoria}
@@ -131,7 +131,7 @@ param_product_url = '';
 
 													<ul>
 		                                                <li>
-		                                                    <a href="#" data-rel="layered_{$s_filter.type}_slider" title="{l s='Cancel' mod='blocklayered'}"></a>
+		                                                    <a href="javascript:void(0)" data-rel="layered_{$s_filter.type}_slider" title="{l s='Cancel' mod='blocklayered'}"></a>
                                                                 {l s='%1s %2s - %3s'|sprintf:'':{displayPrice price=$s_filter.values[0]}:{displayPrice price=$s_filter.values[1]}|escape:html:'UTF-8' mod='blocklayered'}
 		                                                </li>
 		                                             </ul>
@@ -144,7 +144,7 @@ param_product_url = '';
 														<ul>
                                                    			<li>
                                                             	{$filterssel[$id_value] = $id_value}
-                                                        		<a href="#" data-rel="layered_{$s_filter.type_lite}_{$id_value}" title="{l s='Cancel' mod='blocklayered'}"></a>
+                                                        		<a href="javascript:void(0)" data-rel="layered_{$s_filter.type_lite}_{$id_value}" title="{l s='Cancel' mod='blocklayered'}"></a>
                                                         		{l s='%1$s' mod='blocklayered' sprintf=[$value.name]}
                                                     		</li>
                                                         </ul>
@@ -163,7 +163,7 @@ param_product_url = '';
 					{/foreach}
 
        {/if}
-                        <span class="layered_close"><a href="#" data-rel="ul_layered_{$filter.type}_{$filter.id_key}">v</a></span>
+                        <span class="layered_close"><a href="javascript:void(0)" data-rel="ul_layered_{$filter.type}_{$filter.id_key}">v</a></span>
 						<div class="{if !isset($filter.slider)} scroll-left scroll-pane {/if}">
 						<ul id="ul_layered_{$filter.type}_{$filter.id_key}" class="{Tools::link_rewrite($filter.name)}">
 						{if !isset($filter.slider)}
