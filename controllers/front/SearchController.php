@@ -104,15 +104,30 @@ class SearchControllerCore extends FrontController
 			$this->productSort();
 			$this->n = abs((int)(Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE'))));
 			$this->p = abs((int)(Tools::getValue('p', 1)));
+
 			$original_query = $query;
 			$query = Tools::replaceAccentedChars(urldecode($query));
 			$search = Search::find($this->context->language->id, $query, $this->p, $this->n, $this->orderBy, $this->orderWay);
+            
+            echo '<div style="display:none">';
+            echo '<div>'.$this->n.'</div>';
+            echo '<div>'.$this->p.'</div>';
+            
+            
 			if (is_array($search['result']))
 				foreach ($search['result'] as &$product)
 					$product['link'] .= (strpos($product['link'], '?') === false ? '?' : '&').'search_query='.urlencode($query).'&results='.(int)$search['total'];
 
 			Hook::exec('actionSearch', array('expr' => $query, 'total' => $search['total']));
 			$nbProducts = $search['total'];
+            
+            $itemPaginator = ($nbProducts / $this->n);
+            $this->p = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);
+            $_GET['p'] = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);
+            
+            echo '<div>'.$this->p.'</div>';
+            echo '<pre>'; print_r($search); echo '</pre></div>';
+
 			$this->pagination($nbProducts);
 
 			$this->addColorsToProductList($search['result']);

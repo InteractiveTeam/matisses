@@ -1,0 +1,54 @@
+Productos que no tienen unidades disponibles en inventario:
+{foreach from=$products item=c}
+
+Nombre: {$c['name']}
+
+Color: {$c['color']}
+
+Precio: {$c['price']}
+
+Und. Solicitadas: {$c['wanted']}
+
+Und. Faltantes: {$c['missing']}
+
+{/if}
+
+{/foreach}
+
+
+Productos que fueron comprados:
+
+{foreach from=$products item=c}
+{if $c['bond'] == 1}
+
+Nombre: {$c['name']}
+
+Precio: {$c['price']}
+
+Comprador: {$c['buyer']}
+
+Nombre: {$c['name']}
+
+Und. Compradas: {$c['bought']}
+
+{else}
+
+Nombre: {$c['name']}
+
+Color: {$c['color']}
+
+Precio: {$c['price']}
+
+Comprador: {$c['buyer']}
+
+Nombre: {$c['name']}
+
+Und. Compradas: {$c['bought']}
+
+Und. Solicitadas: {$c['wanted']}
+
+Und. Faltantes: {$c['missing']}
+
+{/if}
+
+{/foreach}
