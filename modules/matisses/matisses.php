@@ -665,6 +665,8 @@ class matisses extends Module
                     $tempattr['images'] = array('default' => $link->getImageLink($product->link_rewrite[1], $images[0]));   
                 }
                 
+                $tempattr['images'] = $imgreference;
+                
                 array_push($skuattr,$tempattr);
             }
             
@@ -1092,7 +1094,7 @@ class matisses extends Module
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname']);
 		$infoxml[0]['email']			= $InfCustomer[0]['email'];
 		$infoxml[0]['gender']			= 3;
-        $infoxml[0]['birthday']         = $InfCustomer[0]['birthday'];
+		$infoxml[0]['birthday']			= $InfCustomer[0]['birthday'];
         $infoxml[0]['salesPersonCode'] 	= ""; // se envia vacio esto se llena por default en sap;
 		if(sizeof($InfAddresses)>0)
 		{
@@ -1159,6 +1161,7 @@ class matisses extends Module
 		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['secondname']);
         $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname']);
+        $infoxml[0]['birthday']			= $InfCustomer[0]['birthday'];
 		
 		if(sizeof($Adresses)> 0)
 		{
