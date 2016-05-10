@@ -20,6 +20,7 @@
 					
 					<email><tmpl_var name="email"></email>
 					<gender><tmpl_var name="gender"></gender>
+					<birthday><tmpl_var name="birthday"></birthday>
 					<salesPersonCode><tmpl_var name="salesPersonCode"></salesPersonCode>
 					<tmpl_if name="addresses">
 						<tmpl_loop name="addresses">
