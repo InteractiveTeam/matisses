@@ -118,7 +118,7 @@ class SearchControllerCore extends FrontController
                     $product['link'] .= (strpos($product['link'], '?') === false ? '?' : '&').'search_query='.urlencode($query).'&results='.(int)$search['total'];
 
                     if($banderaRef && $product['reference'] !== trim($query)){
-                        unset($search['result'][$key]);
+                        //unset($search['result'][$key]); 
                     }
                 }
             }
