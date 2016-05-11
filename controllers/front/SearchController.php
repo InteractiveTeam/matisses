@@ -111,6 +111,7 @@ class SearchControllerCore extends FrontController
 			$original_query = $query;
 			$query = Tools::replaceAccentedChars(urldecode($query));
 			$search = Search::find($this->context->language->id, $query, $this->p, $this->n, $this->orderBy, $this->orderWay);
+            //$search = Search::getAttributes(Db::getInstance(),$query,$this->context->language->id);
             
 
             if (is_array($search['result'])){
