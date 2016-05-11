@@ -665,8 +665,6 @@ class matisses extends Module
                     $tempattr['images'] = array('default' => $link->getImageLink($product->link_rewrite[1], $images[0]));   
                 }
                 
-                $tempattr['images'] = $imgreference;
-                
                 array_push($skuattr,$tempattr);
             }
             
