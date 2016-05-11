@@ -105,7 +105,7 @@ class SearchControllerCore extends FrontController
             
 			$this->productSort();
 			$this->n = abs((int)(Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE'))));
-            $this->n = ($this->n==1)?6:$this->n;
+            //$this->n = ($this->n==1)?6:$this->n;
 			$this->p = abs((int)(Tools::getValue('p', 1)));
 
 			$original_query = $query;
@@ -118,7 +118,7 @@ class SearchControllerCore extends FrontController
                     $product['link'] .= (strpos($product['link'], '?') === false ? '?' : '&').'search_query='.urlencode($query).'&results='.(int)$search['total'];
 
                     if($banderaRef && $product['reference'] !== trim($query)){
-                        //unset($search['result'][$key]);
+                        unset($search['result'][$key]);
                     }
                 }
             }
