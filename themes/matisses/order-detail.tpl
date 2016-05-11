@@ -235,7 +235,7 @@
 			</tr>
 		</thead>
 		<tfoot>
-			{if $priceDisplay && $use_tax}
+			{*if $priceDisplay && $use_tax}
 				<tr class="item">
 				    <td colspan="{if $order->hasProductReturned()}5{else}{if $garantias}6{else}6{/if}{/if}">
 						<strong>{l s='Items (tax excl.)'}</strong>
@@ -244,7 +244,7 @@
 						<span class="price">{displayWtPriceWithCurrency price=$order->getTotalProductsWithoutTaxes() currency=$currency}</span>
 					</td>
 				</tr>
-			{/if}
+			{/if*}
 			<tr class="item">
 				<td colspan="{if $order->hasProductReturned()}5{else}{if $garantias}6{else}6{/if}{/if}">
 					<strong>{l s='Items'} {if $use_tax}{l s='(tax incl.)'}{/if} </strong>

@@ -5306,3 +5306,8 @@ a.newPrint:hover {
 .cart_total_tax {
     display:none;
 }
+
+.ax-iva {
+    color: #545454;
+    display: inline;
+}
