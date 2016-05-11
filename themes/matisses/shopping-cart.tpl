@@ -261,7 +261,6 @@
 				{/if}
 
 				{if $total_shipping_tax_exc <= 0 && !isset($virtualCart)}
-				{print_r($current_step)}
 					<tr class="cart_total_delivery" style="{if !isset($carrier->id) || is_null($carrier->id)}display:none;{/if}">
 						<td colspan="{$col_span_subtotal}" class="text-right">{l s='Shipping'}</td>
 						{if $current_step=='payment'}

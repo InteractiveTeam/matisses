@@ -47,6 +47,7 @@
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="{$css_dir}bootstrap.min.css" type="text/css" media="all" />
 <link rel="stylesheet" href="{$css_dir}grid.css" type="text/css" media="all" />
+<link rel="stylesheet" href="{$css_dir}tooltipster.css" type="text/css" media="all" />
 <link rel="shortcut icon" type="image/x-icon" href="/themes/matisses/img/favicon/apple-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="57x57" href="/themes/matisses/img/favicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/themes/matisses/img/favicon/apple-icon-60x60.png">
@@ -81,6 +82,9 @@
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 		<![endif]-->
 		
+<!--ToolTipster-->		
+<script type="text/javascript" src="{$js_dir}jquery.tooltipster.min.js"></script>
+
 <!--Chaordic-->		
 <script type="text/javascript" src="{$js_dir}ax-chaordic.js"></script>
 {literal}
@@ -186,6 +190,7 @@
 </div>
 {/if}
 <div id="page">
+
 <div class="header-container">
   	<header id="header">
     	<div class="main_panel cf">
