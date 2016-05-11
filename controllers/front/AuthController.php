@@ -470,6 +470,9 @@ class AuthControllerCore extends FrontController
 					$this->processCustomerNewsletter($customer);
 
 				$customer->firstname = Tools::ucwords($customer->firstname);
+				$customer->secondname = Tools::ucwords($customer->secondname);
+				$customer->lastname = Tools::ucwords($customer->lastname);
+				$customer->surname = Tools::ucwords($customer->surname);
 				$customer->birthday = (empty($_POST['years']) ? '' : (int)Tools::getValue('years').'-'.(int)Tools::getValue('months').'-'.(int)Tools::getValue('days'));
 				if (!Validate::isBirthDate($customer->birthday))
 					$this->errors[] = Tools::displayError('Invalid date of birth.');
