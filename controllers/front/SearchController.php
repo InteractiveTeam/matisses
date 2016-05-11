@@ -100,7 +100,7 @@ class SearchControllerCore extends FrontController
                 $query = str_replace('*','0000000000000',$query);
                 $banderaRef = true;
             }else if(is_numeric($query) && strlen($query) == 20){
-                //$banderaRef = true;
+                $banderaRef = true;
             }
             
 			$this->productSort();
@@ -111,7 +111,6 @@ class SearchControllerCore extends FrontController
 			$original_query = $query;
 			$query = Tools::replaceAccentedChars(urldecode($query));
 			$search = Search::find($this->context->language->id, $query, $this->p, $this->n, $this->orderBy, $this->orderWay);
-            //$search = Search::getAttributes(Db::getInstance(),$query,$this->context->language->id);
             
 
             if (is_array($search['result'])){
@@ -124,8 +123,8 @@ class SearchControllerCore extends FrontController
                 }
             }
             
-            /*$search['result'] = array_values($search['result']);
-            $search['total'] = count($search['result']);*/
+            $search['result'] = array_values($search['result']);
+            $search['total'] = count($search['result']);
             
             echo '<div style="display:none">';
             echo '<div>'.$query.'</div>';
@@ -136,11 +135,12 @@ class SearchControllerCore extends FrontController
             
 			Hook::exec('actionSearch', array('expr' => $query, 'total' => $search['total']));
 			$nbProducts = $search['total'];
-            //$_SESSION['search_custom'] = $_GET;
+            $_SESSION['search_custom'] = $_GET;
             //print_r($_SESSION['search_custom']);
             $itemPaginator = ($nbProducts / $this->n);
             /*$this->p = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);
-            $_GET['p'] = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);            
+            $_GET['p'] = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);*/
+            
             $myfile = fopen("test_search.txt", "a");
             
             $txt = (Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE')));            
@@ -149,7 +149,7 @@ class SearchControllerCore extends FrontController
             fwrite($myfile, $txt);
             $txt = json_encode($_SESSION['search_custom']);
             fwrite($myfile, $txt);
-            fclose($myfile);*/
+            fclose($myfile);
             
 			$this->pagination($nbProducts);
 
