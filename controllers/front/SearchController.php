@@ -99,6 +99,8 @@ class SearchControllerCore extends FrontController
             if(preg_match('/[0-9]{3}[*\b][0-9]{4}/',trim($query))){
                 $query = str_replace('*','0000000000000',$query);
                 $banderaRef = true;
+            }else if(is_numeric($query) && strlen($query) == 20){
+                $banderaRef = true;
             }
             
 			$this->productSort();
@@ -114,7 +116,7 @@ class SearchControllerCore extends FrontController
             if (is_array($search['result'])){
                 foreach ($search['result'] as $key => $product){
                     $product['link'] .= (strpos($product['link'], '?') === false ? '?' : '&').'search_query='.urlencode($query).'&results='.(int)$search['total'];
-                    
+
                     if($banderaRef && $product['reference'] !== trim($query)){
                         unset($search['result'][$key]);
                     }
