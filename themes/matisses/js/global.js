@@ -23,6 +23,16 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 //global variables
+
+
+$(window).load(function() {
+    var timerStart = Date.now();
+    $('.ax-preload .ax-text').css({transform: 'scale(0.7) ', opacity :'0'});
+    $('.ax-cont-preload').fadeOut();
+    $('.ax-preload').delay((Date.now()-timerStart)).fadeOut('slow'); 
+    $('body').delay((Date.now()-timerStart)).css({'overflow':'visible'});
+})
+
 var responsiveflag = false;
 
 $(document).ready(function(){

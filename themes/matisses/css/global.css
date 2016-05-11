@@ -37,6 +37,56 @@ font-weight: normal;
 font-style: normal;
 }
 
+@keyframes mientrasM {
+    0% {transform:scale(1); opacity: 0.85}
+    50% {transform:scale(1.015); opacity: 1}
+    100% {transform:scale(1); opacity: 0.85}
+}
+
+.ax-cont-preload {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background: #fff;
+    overflow: hidden;
+}
+
+.ax-preload {
+    width: 300px;
+    height: 100px;
+    position: fixed;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto !important;
+    animation: mientrasM infinite 1s;
+    transition: all 0.8s ease;
+    -webkit-transition: all 0.8s ease;
+}
+
+.ax-preload .ax-text {
+    background: url(../img/preload-letter.png) no-repeat;
+    width: 287px;
+    height: 79px;
+    transition: all 0.8s ease;
+    -webkit-transition: all 0.8s ease;
+    transform-origin: 85px;
+}
+
+.ax-preload .ax-icon {
+    position: absolute;
+    background: url(../img/preload-icon.png) no-repeat;
+    width: 45px;
+    height: 45px;
+    top: 16px;
+    left: 68px;
+    background-size: 100% 100%;
+    transition: all 0.8s ease;
+    -webkit-transition: all 0.8s ease;
+}
+
 /*General styles*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -4954,9 +5004,12 @@ color:#fff;
 #order-confirmation table tr td {
     background: #fbfbfb;
     color: #231f20;
-    text-transform: capitalize;
     font-family: "condensed";
     font-size: 1.125rem;
+}
+
+#order-confirmation table tr td:first-child {
+	text-transform: capitalize;
 }
 
 #order-confirmation table tr td {
