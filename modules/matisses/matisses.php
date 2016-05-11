@@ -1161,7 +1161,7 @@ class matisses extends Module
 		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['secondname']);
         $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname']);
-        $infoxml[0]['birthday']			= $InfCustomer[0]['birthday'];
+        $infoxml[0]['birthDate']		= $InfCustomer[0]['birthday'];
 		
 		if(sizeof($Adresses)> 0)
 		{
