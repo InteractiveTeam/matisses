@@ -63,6 +63,11 @@ class SearchControllerCore extends FrontController
             $original_query = $query;
         }
         
+        echo '<div style="display:none">';
+        echo '<div>'.(Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE'))).'</div>';
+        echo '<div>'.(Tools::getValue('p', 1)).'</div>';
+
+        echo '<pre>'; echo '</pre></div>';
 		
 		if ($this->ajax_search)
 		{
@@ -73,7 +78,6 @@ class SearchControllerCore extends FrontController
 
 			$this->ajaxDie(Tools::jsonEncode($searchResults));
 		}
-
 		//Only controller content initialization when the user use the normal search
 		parent::initContent();
 
@@ -109,9 +113,6 @@ class SearchControllerCore extends FrontController
 			$query = Tools::replaceAccentedChars(urldecode($query));
 			$search = Search::find($this->context->language->id, $query, $this->p, $this->n, $this->orderBy, $this->orderWay);
             
-            echo '<div style="display:none">';
-            echo '<div>'.$this->n.'</div>';
-            echo '<div>'.$this->p.'</div>';
             
             
 			if (is_array($search['result']))
@@ -121,13 +122,18 @@ class SearchControllerCore extends FrontController
 			Hook::exec('actionSearch', array('expr' => $query, 'total' => $search['total']));
 			$nbProducts = $search['total'];
 
-            /* $itemPaginator = ($nbProducts / $this->n);
-            $this->p = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);
+            $itemPaginator = ($nbProducts / $this->n);
+            /*$this->p = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);
             $_GET['p'] = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);*/
             
-            echo '<div>'.$this->p.'</div>';
-            echo '<pre>'; print_r($search); echo '</pre></div>';
-
+            $myfile = fopen("test_search.txt", "w");
+            
+            $txt = (Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE')));            
+            fwrite($myfile, $txt);
+            $txt = (Tools::getValue('p', 1));
+            fwrite($myfile, $txt);
+            fclose($myfile);
+            
 			$this->pagination($nbProducts);
 
 			$this->addColorsToProductList($search['result']);

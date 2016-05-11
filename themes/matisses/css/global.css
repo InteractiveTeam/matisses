@@ -4654,9 +4654,15 @@ body.new-products {
         float: none;
     } 
 
-    .content_sortPagiBar.bottom_pagi {
+    .content_sortPagiBar.bottom_pagi{
         position: absolute;
         width: 877.5px;
+    }
+    .sortPagiBar.bottom_pagi{
+        position: absolute;
+    }
+    .search .content_sortPagiBar{
+        height: 35px;
     }
 
     .center_column .product_list {
