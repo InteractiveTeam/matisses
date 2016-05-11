@@ -4954,9 +4954,12 @@ color:#fff;
 #order-confirmation table tr td {
     background: #fbfbfb;
     color: #231f20;
-    text-transform: capitalize;
     font-family: "condensed";
     font-size: 1.125rem;
+}
+
+#order-confirmation table tr td:first-child {
+	text-transform: capitalize;
 }
 
 #order-confirmation table tr td {

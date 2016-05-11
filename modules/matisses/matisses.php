@@ -1487,7 +1487,7 @@ class matisses extends Module
 		//print_r($result);
 		return $result;	 			
 	}
-	public function wsmatisses_registrar($params)
+	public function wsmatisses_registrar($params) 
 	{
 /*		echo "<pre>";
 		print_r($params);
