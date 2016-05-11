@@ -121,7 +121,8 @@ class SearchControllerCore extends FrontController
 
 			Hook::exec('actionSearch', array('expr' => $query, 'total' => $search['total']));
 			$nbProducts = $search['total'];
-
+            $_SESSION['search_custom'] = $_GET;
+            print_r($_SESSION['search_custom']);
             $itemPaginator = ($nbProducts / $this->n);
             /*$this->p = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);
             $_GET['p'] = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);*/
@@ -131,6 +132,8 @@ class SearchControllerCore extends FrontController
             $txt = (Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE')));            
             fwrite($myfile, $txt);
             $txt = (Tools::getValue('p', 1));
+            fwrite($myfile, $txt);
+            $txt = json_encode($_SESSION['search_custom']);
             fwrite($myfile, $txt);
             fclose($myfile);
             
