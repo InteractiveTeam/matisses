@@ -69,7 +69,7 @@ class="page-heading {if !isset($instant_search) || (isset($instant_search) && !$
         </p>
     {/if}
     <div class="content_sortPagiBar cf grid_12 alpha omega">
-        <div class="sortPagiBar grid_9 alpha omega {if isset($instant_search) && $instant_search} instant_search{/if}">
+        <div class="sortPagiBar grid_9 alpha omega bottom_pagi {if isset($instant_search) && $instant_search} instant_search{/if}">
             {include file="./product-compare.tpl"}
             {include file="./product-sort.tpl"}
             {if !isset($instant_search) || (isset($instant_search) && !$instant_search)}
@@ -84,7 +84,7 @@ class="page-heading {if !isset($instant_search) || (isset($instant_search) && !$
 	</div>
 	{include file="$tpl_dir./product-list.tpl" products=$search_products}
     <div class="content_sortPagiBar cf grid_12 alpha omega">
-        <div class="sortPagiBar grid_9 alpha omega">
+        <div class="sortPagiBar grid_9 alpha omega bottom_pagi">
             {include file="./product-compare.tpl"}
             {include file="./product-sort.tpl"}
             {if !isset($instant_search) || (isset($instant_search) && !$instant_search)}

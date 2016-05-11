@@ -62,7 +62,6 @@ class SearchControllerCore extends FrontController
             $query = str_replace('*','0000000000000',$query);
             $original_query = $query;
         }
-        
 		
 		if ($this->ajax_search)
 		{
@@ -73,7 +72,6 @@ class SearchControllerCore extends FrontController
 
 			$this->ajaxDie(Tools::jsonEncode($searchResults));
 		}
-
 		//Only controller content initialization when the user use the normal search
 		parent::initContent();
 
@@ -97,37 +95,62 @@ class SearchControllerCore extends FrontController
 				'instant_search' => $this->instant_search,
 				'homeSize' => Image::getSize(ImageType::getFormatedName('home'))));
 		} elseif (($query = Tools::getValue('search_query', Tools::getValue('ref'))) && !is_array($query)) {
+            $banderaRef =  false;
             if(preg_match('/[0-9]{3}[*\b][0-9]{4}/',trim($query))){
                 $query = str_replace('*','0000000000000',$query);
+                $banderaRef = true;
+            }else if(is_numeric($query) && strlen($query) == 20){
+                $banderaRef = true;
             }
             
 			$this->productSort();
 			$this->n = abs((int)(Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE'))));
+            $this->n = ($this->n==1)?6:$this->n;
 			$this->p = abs((int)(Tools::getValue('p', 1)));
 
 			$original_query = $query;
 			$query = Tools::replaceAccentedChars(urldecode($query));
 			$search = Search::find($this->context->language->id, $query, $this->p, $this->n, $this->orderBy, $this->orderWay);
             
-            echo '<div style="display:none">';
-            echo '<div>'.$this->n.'</div>';
-            echo '<div>'.$this->p.'</div>';
-            
-            
-			if (is_array($search['result']))
-				foreach ($search['result'] as &$product)
-					$product['link'] .= (strpos($product['link'], '?') === false ? '?' : '&').'search_query='.urlencode($query).'&results='.(int)$search['total'];
 
+            if (is_array($search['result'])){
+                foreach ($search['result'] as $key => $product){
+                    $product['link'] .= (strpos($product['link'], '?') === false ? '?' : '&').'search_query='.urlencode($query).'&results='.(int)$search['total'];
+
+                    if($banderaRef && $product['reference'] !== trim($query)){
+                        //unset($search['result'][$key]);
+                    }
+                }
+            }
+            
+            $search['result'] = array_values($search['result']);
+            $search['total'] = count($search['result']);
+            
+            echo '<div style="display:none">';
+            echo '<div>'.$query.'</div>';
+            echo '<div>'.(Tools::getValue('p', 1)).'</div>';
+            echo '<pre>';
+            print_r($search);
+            echo '</pre></div>';
+            
 			Hook::exec('actionSearch', array('expr' => $query, 'total' => $search['total']));
 			$nbProducts = $search['total'];
-
-            /* $itemPaginator = ($nbProducts / $this->n);
-            $this->p = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);
+            $_SESSION['search_custom'] = $_GET;
+            //print_r($_SESSION['search_custom']);
+            $itemPaginator = ($nbProducts / $this->n);
+            /*$this->p = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);
             $_GET['p'] = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);*/
             
-            echo '<div>'.$this->p.'</div>';
-            echo '<pre>'; print_r($search); echo '</pre></div>';
-
+            $myfile = fopen("test_search.txt", "a");
+            
+            $txt = (Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE')));            
+            fwrite($myfile, $txt);
+            $txt = (Tools::getValue('p', 1));
+            fwrite($myfile, $txt);
+            $txt = json_encode($_SESSION['search_custom']);
+            fwrite($myfile, $txt);
+            fclose($myfile);
+            
 			$this->pagination($nbProducts);
 
 			$this->addColorsToProductList($search['result']);
