@@ -126,7 +126,7 @@ class SearchControllerCore extends FrontController
             /*$this->p = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);
             $_GET['p'] = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);*/
             
-            $myfile = fopen("test_search.txt", "w");
+            $myfile = fopen("test_search.txt", "a");
             
             $txt = (Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE')));            
             fwrite($myfile, $txt);
