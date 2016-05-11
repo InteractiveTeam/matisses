@@ -35,6 +35,11 @@ $(window).load(function() {
     $('body').delay((Date.now()-timerStart)).css({'overflow':'visible'});
 })
 */
+
+$(window).load(function() {
+    $('body').animate({'opacity':'1'}, 1500 );
+})
+
 var responsiveflag = false;
 
 $(document).ready(function(){

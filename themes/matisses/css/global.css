@@ -37,6 +37,10 @@ font-weight: normal;
 font-style: normal;
 }
 
+body {
+    opacity: 0;
+}
+
 @keyframes mientrasM {
     0% {transform:scale(1); opacity: 1}
     50% {transform:scale(0.95); opacity: 0.7}
