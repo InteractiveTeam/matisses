@@ -36,6 +36,7 @@
 
 {if !$opc}
 <!-- Steps -->
+<p>{$current_step}</p>
 <ul class="step cf" id="order_step">
 	<li class="{if $current_step=='summary'}step_current {elseif $current_step=='login'}step_done_last step_done{else}{if $current_step=='payment' || $current_step=='shipping' || $current_step=='address' || $current_step=='login'}step_done{else}step_todo{/if}{/if} first">
 		{if $current_step=='payment' || $current_step=='shipping' || $current_step=='address' || $current_step=='login'}
