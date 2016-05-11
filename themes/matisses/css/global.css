@@ -38,9 +38,9 @@ font-style: normal;
 }
 
 @keyframes mientrasM {
-    0% {transform:scale(1); opacity: 0.85}
-    50% {transform:scale(1.015); opacity: 1}
-    100% {transform:scale(1); opacity: 0.85}
+    0% {transform:scale(1); opacity: 1}
+    50% {transform:scale(0.95); opacity: 0.7}
+    100% {transform:scale(1); opacity: 1}
 }
 
 .ax-cont-preload {
@@ -48,7 +48,7 @@ font-style: normal;
     width: 100%;
     height: 100%;
     z-index: 99;
-    background: #fff;
+    background: rgba(255,255,255,0.95);
     overflow: hidden;
 }
 
@@ -61,7 +61,7 @@ font-style: normal;
     bottom: 0;
     left: 0;
     margin: auto !important;
-    animation: mientrasM infinite 1s;
+    animation: mientrasM infinite 1.5s;
     transition: all 0.8s ease;
     -webkit-transition: all 0.8s ease;
 }
