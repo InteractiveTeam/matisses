@@ -128,7 +128,7 @@
 											{/if}
 										{else}
 											<tr class="cart_total_delivery"{if $shippingCost <= 0} style="display:none"{/if}>
-												<td colspan="4" class="text-right">{l s='Total shipping'}</td>
+												<td colspan="4" class="text-right">{l s='Total shipping (tax incl.)'}/td>
 												<td colspan="2" class="price" id="total_shipping" >{displayPrice price=$shippingCostTaxExc}</td>
 											</tr>
 										{/if}
@@ -204,7 +204,7 @@
 											</td>
 										{/if}
 										<td colspan="{if !$voucherAllowed}3{else}2{/if}" class="text-right total_price_container">
-											<span>{l s='Total'}</span>
+											<span>{l s='Total (tax incl.)'}</span>
 										</td>
 										<td colspan="1" class="price total_price_container" id="total_price_container">
 											<span id="total_price">{displayPrice price=$total_price_without_tax}</span>
