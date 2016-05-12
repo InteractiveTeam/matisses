@@ -123,6 +123,15 @@ class SearchControllerCore extends FrontController
                 }
             }
             
+            $dataProduct = Product::searchByName($this->context->language->id,$query);
+            $dataProduct2 = new Product(163);
+            
+            echo '<div style="display:none">';            
+                echo '<pre>'; print_r($dataProduct);echo '</pre>';
+                echo '<pre>'; print_r($search['result']);echo '</pre>';
+                echo '<pre>'; print_r($dataProduct2);echo '</pre>';                        
+            echo '</div>';
+            
             /*$search['result'] = array_values($search['result']);
             $search['total'] = count($search['result']);
             
@@ -151,6 +160,7 @@ class SearchControllerCore extends FrontController
             fwrite($myfile, $txt);
             fclose($myfile);*/
             
+            $nbProducts = $search['total'];
 			$this->pagination($nbProducts);
 
 			$this->addColorsToProductList($search['result']);
