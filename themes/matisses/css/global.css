@@ -4735,6 +4735,7 @@ body.new-products {
     font-family: 'gothic';
     padding: 0.725rem 0.9375rem;
     font-weight: bold;
+    line-height: 1.35rem;
     }
     .parrilla-productos div.pagination {
     float: right;
