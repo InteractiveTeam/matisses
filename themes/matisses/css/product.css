@@ -649,6 +649,7 @@ a.fancybox-nav {
 	display: inline-block;
 	position: relative;
 	margin-bottom: 0;
+    vertical-align: middle;
 	}
 	#reduction_percent span,
 	#reduction_amount span {
