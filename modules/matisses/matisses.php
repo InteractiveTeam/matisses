@@ -3,7 +3,22 @@ class matisses extends Module
 {
 	
 	private $_uploadfile = 'matisses';
-	
+	public static $moduleRoutes =array(
+        'module-matisses-experiences' => array(
+            'controller' => 'experiences',
+            //'rule' =>  'news/new/{id_news}-{cat_news}-{page_cat}/{cat_rewrite}/{rewrite}.html',
+            'rule' =>  'blogs/{id_experiencia}.html',
+            'keywords' => array(
+                'id_experiencia'   => array('regexp' => '[0-9]+',   'param' => 'id_experiencia')
+            ),
+            'params' => array(
+                'fc' => 'module',
+                'module' => 'matisses',
+                'controller' => 'experiences',
+            )
+        )
+    );
+    
 	public function __construct()
 	{
 		$this->name 			= basename(__FILE__,'.php');
@@ -23,6 +38,10 @@ class matisses extends Module
 		
 	}
 	
+    public function hookmoduleRoutes() {
+        return self::$moduleRoutes;
+    }
+    
 	/***********************************************
 	* BACKEND
 	***********************************************/
@@ -529,8 +548,8 @@ class matisses extends Module
 	}
 	
 	
-	public function hookmoduleRoutes() {
-		/*return [
+	/*public function hookmoduleRoutes() {
+		return [
             'module-matisses-experiences' => [
                 'controller' => 'experiences',
                 'rule' =>  'experiencias/{id_experciencia}',
@@ -542,8 +561,8 @@ class matisses extends Module
                     'controller' => 'experiences',
                 ]        	 
     	     ]
-        ];*/
-    }	
+        ];
+    }*/
 	
 	public function hookHeader($params)
 	{
