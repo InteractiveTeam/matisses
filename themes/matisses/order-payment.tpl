@@ -108,7 +108,7 @@
 											{/if}
 										</td>
 									</tr>
-                                    <pre>{$shippingCost}</pre>
+									
 									{if $total_shipping_tax_exc <= 0 && !isset($virtualCart)}
 										<tr class="cart_total_delivery">
 											{if $shippingCost > 0}
