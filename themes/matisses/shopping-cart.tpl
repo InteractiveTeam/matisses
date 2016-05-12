@@ -501,7 +501,7 @@
 							<li class="address_name">{$invoice->firstname|escape:'html':'UTF-8'} {$invoice->lastname|escape:'html':'UTF-8'}&nbsp;</li>
 							<li class="address_address1">{$invoice->address1|escape:'html':'UTF-8'}&nbsp;</li>
 							{if $invoice->address2}<li class="address_address2">{$invoice->address2|escape:'html':'UTF-8'}&nbsp;</li>{/if}
-							<li class="address_city">{$invoice->postcode|escape:'html':'UTF-8'} {$invoice->city|escape:'html':'UTF-8'}&nbsp;</li>
+							<li class="address_city">{$delivery->postcode|escape:'html':'UTF-8'} {State::getNameById($delivery->id_state)|escape:'html':'UTF-8'}&nbsp;</li>
 							<li class="address_country">{$invoice->country|escape:'html':'UTF-8'} {if $invoice_state}({$invoice_state|escape:'html':'UTF-8'}){/if}&nbsp;</li>
 						</ul>
 					</div>
