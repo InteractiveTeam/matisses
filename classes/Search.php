@@ -366,21 +366,17 @@ class SearchCore
 	}
 
 	public static function getAttributes($db, $id_product, $id_lang)
-	{
-		if (!Combination::isFeatureActive())
-			return '';
-
-		$attributes = '';
-		$attributesArray = $db->executeS('
-		SELECT al.name FROM '._DB_PREFIX_.'product_attribute pa
-		INNER JOIN '._DB_PREFIX_.'product_attribute_combination pac ON pa.id_product_attribute = pac.id_product_attribute
-		INNER JOIN '._DB_PREFIX_.'attribute_lang al ON (pac.id_attribute = al.id_attribute AND al.id_lang = '.(int)$id_lang.')
-		'.Shop::addSqlAssociation('product_attribute', 'pa').'
-		WHERE pa.id_product = '.(int)$id_product);
-		foreach ($attributesArray as $attribute)
-			$attributes .= $attribute['name'].' ';
-		return $attributes;
-	}
+    {
+        $attributes = '';
+        $attributesArray = $db->ExecuteS('
+        SELECT al.name, pa.reference FROM '._DB_PREFIX_.'product_attribute pa
+        INNER JOIN '._DB_PREFIX_.'product_attribute_combination pac ON pa.id_product_attribute = pac.id_product_attribute
+        INNER JOIN '._DB_PREFIX_.'attribute_lang al ON (pac.id_attribute = al.id_attribute AND al.id_lang = '.(int)$id_lang.')
+        WHERE pa.id_product = '.(int)$id_product);
+        foreach ($attributesArray AS $attribute)
+            $attributes .= $attribute['name'].' '.($attribute['reference'] != "" ? $attribute['reference'].' ' : '');
+        return $attributes;
+    }
 
 	public static function getFeatures($db, $id_product, $id_lang)
 	{
@@ -574,7 +570,7 @@ class SearchCore
                              for($i = 5; $i < 14; $i++) {
                                  if(strlen($value) > $i)  {
                                     $words[]=substr($value,0,$i);
-                                }      
+                                }
                              } 
                         }
                         
