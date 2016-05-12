@@ -3803,7 +3803,7 @@ box-sizing: border-box;
 	}
 
 /*Pagina Pedidos - Orden*/
-#order #center_column, #authentication #center_column, #password #center_column, #order-confirmation #center_column, #module-blockwishlist-view #center_column {
+#order #center_column, #authentication #center_column, #password #center_column, #order-confirmation #center_column, #module-blockwishlist-view #center_column, #guest-tracking #center_column {
 	width: 100%;
 	max-width: 75rem;
 	margin: 0 auto;
@@ -4722,6 +4722,8 @@ body.new-products {
     .center_column .product_list {
         clear: both;
         margin: 20px 0;
+        transition: all 0.4s ease;
+        -webkit-transition: all 0.4s ease;
     }
 
     /*.content_sortPagiBar .top-pagination-content ul{
@@ -5172,15 +5174,18 @@ a.ayo-btn{
 #product #at3win{top: 7%;}
 .ax-shareContent.ax-shareContentProduct{float: none;padding-top:15px;}
 .ax-shareContent p{display: inline-block}
-.ax-shareContent .newTopActions,.ax-shareContent #share{display: inline-block;vertical-align: top;}
+.ax-shareContent .newTopActions,.ax-shareContent #share{ float: left; vertical-align: top;}
 .ax-shareContentProduct .productPrint{float: right;margin-left: 6px;}
 #share {
     display: inline;
-    height: 49px;
 }
 
 #share p:first-child a {
     margin-left:0;
+}
+
+.ax-shareContent .newTopActions {
+    margin-right: 5px;
 }
 
 .shareFacebook {
@@ -5213,6 +5218,10 @@ a.ayo-btn{
     background: #777;
     width: auto;
     height: 38px;
+}
+
+.ax-shareContent a.newPrint {
+    margin-right:5px !important; 
 }
 
 .addthis_default_style .at300b {
@@ -5373,4 +5382,16 @@ a.newPrint:hover {
 .ax-iva {
     color: #545454;
     display: inline;
+}
+
+#guestTracking .form-group {
+    overflow: inherit !important;
+}
+
+#guestTracking label, #guestTracking .form-control {
+    float: none !important;
+}
+
+#center_column .category_list.product_list.grid.row > p {
+    display: none;
 }

@@ -221,16 +221,10 @@
 </div>
 
     <div class="footer_links grid_12 alpha omega">
-        <ul class="cf">
-            <li>
-                <button type="submit" name="submitIdentity" onclick="$('form#identity').submit()" class="btn btn-default btn-red">
-                    {l s='Save'}
-                </button>
-            </li>
-        	<li>
-                <a class="btn btn-default btn-red" href="{$link->getPageLink('my-account', true)}">
-                    <i class="fa fa-chevron-left"></i>{l s='Volver a mi cuenta'}
-                </a>
-            </li>
-        </ul>
+        <a class="btn btn-default btn-red" href="{$link->getPageLink('my-account', true)}">
+            <i class="fa fa-chevron-left"></i>{l s='Volver a mi cuenta'}
+        </a>
+        <button type="submit" name="submitIdentity" onclick="$('form#identity').submit()" class="btn btn-default btn-red">
+            {l s='Save'}
+        </button>
     </div>

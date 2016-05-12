@@ -36,8 +36,8 @@ $(window).load(function() {
 })
 */
 
-$(window).load(function() {
-    $('body').animate({'opacity':'1'}, 1500 );
+$(document).ready(function() {
+    $('body').animate({'opacity':'1'}, 1000 );
 })
 
 var responsiveflag = false;
