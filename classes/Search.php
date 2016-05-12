@@ -569,6 +569,15 @@ class SearchCore
 					if (strncmp($key, 'id_', 3) && isset($weight_array[$key]))
 					{
 						$words = explode(' ', Search::sanitize($value, (int)$product['id_lang'], true, $product['iso_code']));
+                        
+                        if($key == 'reference') {
+                             for($i = 5; $i < 14; $i++) {
+                                 if(strlen($value) > $i)  {
+                                    $words[]=substr($value,0,$i);
+                                }      
+                             } 
+                        }
+                        
 						foreach ($words as $word)
 							if (!empty($word))
 							{
