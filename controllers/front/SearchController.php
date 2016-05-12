@@ -99,66 +99,42 @@ class SearchControllerCore extends FrontController
             if(preg_match('/[0-9]{3}[*\b][0-9]{4}/',trim($query))){
                 $query = str_replace('*','0000000000000',$query);
                 $banderaRef = true;
-            }else if(is_numeric($query) && strlen($query) == 20){
-                //$banderaRef = true;
             }
             
 			$this->productSort();
-			$this->n = abs((int)(Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE'))));
-            //$this->n = ($this->n==1)?6:$this->n;
+			$this->n = abs((int)(Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE'))));            
 			$this->p = abs((int)(Tools::getValue('p', 1)));
+            
+            session_start();
+            
+            if($this->n  > $_SESSION['search_custom']['lista'] && isset($_SESSION['search_custom'])){
+                $result = ($_SESSION['search_custom']['total'] / $this->n);
+                $itemPaginator = round($result, 0, PHP_ROUND_HALF_DOWN);
+
+                if($itemPaginator < $this->p){
+                    $this->p = (!$itemPaginator)?1:$itemPaginator;
+                    $_GET['p'] = $this->p;
+                }
+            }
 
 			$original_query = $query;
 			$query = Tools::replaceAccentedChars(urldecode($query));
 			$search = Search::find($this->context->language->id, $query, $this->p, $this->n, $this->orderBy, $this->orderWay);
             
-
             if (is_array($search['result'])){
                 foreach ($search['result'] as $key => $product){
-                    $product['link'] .= (strpos($product['link'], '?') === false ? '?' : '&').'search_query='.urlencode($query).'&results='.(int)$search['total'];
-
-                    if($banderaRef && $product['reference'] !== trim($query)){
-                        //unset($search['result'][$key]); 
-                    }
+                    $product['link'] .= (strpos($product['link'], '?') === false ? '?' : '&').'search_query='.urlencode($query).'&results='.(int)$search['total'];                   
                 }
             }
             
-            $dataProduct = Product::searchByName($this->context->language->id,$query);
-            $dataProduct2 = new Product(163);
-            
-            echo '<div style="display:none">';            
-                echo '<pre>'; print_r($dataProduct);echo '</pre>';
-                echo '<pre>'; print_r($search['result']);echo '</pre>';
-                echo '<pre>'; print_r($dataProduct2);echo '</pre>';                        
-            echo '</div>';
-            
-            /*$search['result'] = array_values($search['result']);
-            $search['total'] = count($search['result']);
+            $_SESSION['search_custom'] = $_GET;
+            $auxGet = array('total'=>$search['total'],'lista'=>$this->n,'page'=>$this->p);
+            $_SESSION['search_custom'] = array_merge($_SESSION['search_custom'],$auxGet);
             
             echo '<div style="display:none">';
-            echo '<div>'.$query.'</div>';
-            echo '<div>'.(Tools::getValue('p', 1)).'</div>';
             echo '<pre>';
-            print_r($search);
+            print_r($_SESSION['search_custom']);
             echo '</pre></div>';
-            
-			Hook::exec('actionSearch', array('expr' => $query, 'total' => $search['total']));
-			$nbProducts = $search['total'];
-            $_SESSION['search_custom'] = $_GET;
-            //print_r($_SESSION['search_custom']);
-            $itemPaginator = ($nbProducts / $this->n);
-            //$this->p = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);
-            //$_GET['p'] = round($itemPaginator, 0, PHP_ROUND_HALF_DOWN);
-            
-            $myfile = fopen("test_search.txt", "a");
-            
-            $txt = (Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE')));            
-            fwrite($myfile, $txt);
-            $txt = (Tools::getValue('p', 1));
-            fwrite($myfile, $txt);
-            $txt = json_encode($_SESSION['search_custom']);
-            fwrite($myfile, $txt);
-            fclose($myfile);*/
             
             $nbProducts = $search['total'];
 			$this->pagination($nbProducts);
