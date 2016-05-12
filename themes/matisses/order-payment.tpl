@@ -112,8 +112,8 @@
 									{if $total_shipping_tax_exc <= 0 && !isset($virtualCart)}
 										<tr class="cart_total_delivery">
 											{if $shippingCost > 0}
-											    <td colspan="4" class="text-right">{if $display_tax_label}{l s='Total shipping (tax excl.)'}{else}{l s='Total shipping'}{/if}</td>
-													<td colspan="2" class="price" id="total_shipping">{displayPrice price=$shippingCostTaxExc}</td>
+											    <td colspan="4" class="text-right">{if $display_tax_label}{l s='Total shipping (tax incl.)'}{else}{l s='Total shipping'}{/if}</td>
+													<td colspan="2" class="price" id="total_shipping" >{displayPrice price=$shippingCost}</td>
 											{else}
                                                 <td colspan="4" class="text-right">{l s='Shipping:'}</td>
 											    <td colspan="2" class="price" id="total_shipping">{l s='Free Shipping'}</td>
