@@ -849,6 +849,10 @@ a.fancybox-nav {
 	padding-bottom: 1.5rem;
 	margin-bottom: 1.5rem;
 	}
+    .wrap_quan .tooltip {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    }
 	.pb-right-column li {
 	list-style: none;
 	}

@@ -6,5 +6,6 @@
         <option value="{$store.id_store}">{$store.name}</option>
         {/foreach}
     </select>
-    <i class="fa fa-question-circle"></i>
+    
+    <i class="tooltipDetail fa fa-question-circle" title="Recuerda verificar el saldo comunicándote a nuestras tiendas"></i>
 </div>
