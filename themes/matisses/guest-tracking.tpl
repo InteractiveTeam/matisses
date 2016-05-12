@@ -106,14 +106,14 @@
                     <div class="text form-group">
                         <label>{l s='Order Reference:'} </label>
                         <input class="form-control" type="text" name="order_reference" value="{if isset($smarty.get.id_order)}{$smarty.get.id_order|escape:'html':'UTF-8'}{else}{if isset($smarty.post.id_order)}{$smarty.post.id_order|escape:'html':'UTF-8'}{/if}{/if}" size="8" />
-                        <i>{l s='For example: QIIXJXNUI or QIIXJXNUI#1'}</i>
+                        <!--<i>{l s='For example: QIIXJXNUI or QIIXJXNUI#1'}</i>-->
                     </div>
                     <div class="text form-group">
                         <label>{l s='Email:'}</label>
                         <input class="form-control" type="text" name="email" value="{if isset($smarty.get.email)}{$smarty.get.email|escape:'html':'UTF-8'}{else}{if isset($smarty.post.email)}{$smarty.post.email|escape:'html':'UTF-8'}{/if}{/if}" />
                     </div>
 			<p>
-                <button type="submit" name="submitGuestTracking" class="button btn btn-default button-medium"><span>{l s='Send'}<i class="icon-chevron-right right"></i></span></button>
+                <button type="submit" name="submitGuestTracking" class="button btn btn-default button-medium btn-red"><span>{l s='Send'}<i class="icon-chevron-right right"></i></span></button>
             </p>
 		</fieldset>
 	</form>

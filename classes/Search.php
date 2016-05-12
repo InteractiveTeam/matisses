@@ -24,7 +24,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 
-define('PS_SEARCH_MAX_WORD_LENGTH', 15);
+define('PS_SEARCH_MAX_WORD_LENGTH', 20);
 
 /* Copied from Drupal search module, except for \x{0}-\x{2f} that has been replaced by \x{0}-\x{2c}\x{2e}-\x{2f} in order to keep the char '-' */
 define('PREG_CLASS_SEARCH_EXCLUDE',
@@ -199,7 +199,7 @@ class SearchCore
 				$word = str_replace('_', '\\_', $word);
 				$start_search = Configuration::get('PS_SEARCH_START') ? '%': '';
 				$end_search = Configuration::get('PS_SEARCH_END') ? '': '%';
-
+                
 				$intersect_array[] = 'SELECT si.id_product
 					FROM '._DB_PREFIX_.'search_word sw
 					LEFT JOIN '._DB_PREFIX_.'search_index si ON sw.id_word = si.id_word
@@ -565,15 +565,7 @@ class SearchCore
 					if (strncmp($key, 'id_', 3) && isset($weight_array[$key]))
 					{
 						$words = explode(' ', Search::sanitize($value, (int)$product['id_lang'], true, $product['iso_code']));
-                        
-                        if($key == 'reference') {
-                             for($i = 5; $i < 14; $i++) {
-                                 if(strlen($value) > $i)  {
-                                    $words[]=substr($value,0,$i);
-                                }
-                             } 
-                        }
-                        
+
 						foreach ($words as $word)
 							if (!empty($word))
 							{
