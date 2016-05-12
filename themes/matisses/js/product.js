@@ -406,7 +406,9 @@ function findCombination(firstTime)
 				refreshProductImages(combinations[combination]['idCombination']);
 			//leave the function because combination has been found
 			return;
-		}
+		}else {
+            refreshProductImages($("#idCombination").val());
+        }
 	}
 
 	//this combination doesn't exist (not created in back office)

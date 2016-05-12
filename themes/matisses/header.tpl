@@ -47,6 +47,7 @@
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="{$css_dir}bootstrap.min.css" type="text/css" media="all" />
 <link rel="stylesheet" href="{$css_dir}grid.css" type="text/css" media="all" />
+<link rel="stylesheet" href="{$css_dir}tooltipster.css" type="text/css" media="all" />
 <link rel="shortcut icon" type="image/x-icon" href="/themes/matisses/img/favicon/apple-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="57x57" href="/themes/matisses/img/favicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/themes/matisses/img/favicon/apple-icon-60x60.png">
@@ -81,6 +82,9 @@
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 		<![endif]-->
 		
+<!--ToolTipster-->		
+<script type="text/javascript" src="{$js_dir}jquery.tooltipster.min.js"></script>
+
 <!--Chaordic-->		
 <script type="text/javascript" src="{$js_dir}ax-chaordic.js"></script>
 {literal}
@@ -177,6 +181,13 @@
 </script>
 {/if}
 </head>
+<!--
+<div class="ax-cont-preload">
+    <div class="ax-preload">
+        <div class="ax-text"></div>
+        <div class="ax-icon"></div>
+    </div>
+</div>-->
 <body{if isset($page_name)} id="{$page_name|escape:'html':'UTF-8'}"{/if} class="{if isset($page_name)}{$page_name|escape:'html':'UTF-8'}{/if}{if isset($body_classes) && $body_classes|@count} {implode value=$body_classes separator=' '}{/if}{if $hide_left_column} hide-left-column{/if}{if $hide_right_column} hide-right-column{/if}{if isset($content_only) && $content_only} content_only{/if} lang_{$lang_iso}" itemscope itemtype="http://schema.org/WebPage">
 	{if !isset($content_only) || !$content_only}
 		{if isset($restricted_country_mode) && $restricted_country_mode}
@@ -186,6 +197,7 @@
 </div>
 {/if}
 <div id="page">
+
 <div class="header-container">
   	<header id="header">
     	<div class="main_panel cf">
