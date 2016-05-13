@@ -1848,7 +1848,7 @@ class matisses extends Module
 													 
 			$result = $client->call('callService', $s);
 			
-			
+			die(print_r($result));
 			
  			if($result && $result['return']['code']=='0201001')
 			{
@@ -1862,7 +1862,7 @@ class matisses extends Module
 																	'0201905'=>'',
 																	'0201906'=>'',
 																	'0201907'=>''))){
-					echo $this->l($result['return']['code'].' - Lo siento! - se ha presentado un error durante la operaci�n, no se puede continuar con el proceso de compra');
+					echo $this->l($result['return']['code'].' - Lo siento! - se ha presentado un error durante la operación, no se puede continuar con el proceso de compra');
 					echo '<p>'.$result['return']['detail'].'</p>';
 					exit;
 				}
