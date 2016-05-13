@@ -649,6 +649,7 @@ a.fancybox-nav {
 	display: inline-block;
 	position: relative;
 	margin-bottom: 0;
+    vertical-align: middle;
 	}
 	#reduction_percent span,
 	#reduction_amount span {
@@ -849,6 +850,10 @@ a.fancybox-nav {
 	padding-bottom: 1.5rem;
 	margin-bottom: 1.5rem;
 	}
+    .wrap_quan .tooltip {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    }
 	.pb-right-column li {
 	list-style: none;
 	}

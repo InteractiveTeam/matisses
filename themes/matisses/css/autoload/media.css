@@ -3139,6 +3139,10 @@
     .top-pagination-content .pagination > li > a, .top-pagination-content .pagination > li > span {
         padding: 0 0.9375rem;
     }
+    
+    .wrap_quan #product_store_available_chosen a {
+        width: 13.625rem;
+	}
 }
 
 @media screen and (max-width :360px) {

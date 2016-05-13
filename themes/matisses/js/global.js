@@ -129,6 +129,8 @@ $(document).ready(function(){
 	{
 		$('.owl-controls').addClass('hidden')
 	}
+    
+     $('.tooltipDetail').tooltip();
 });
 
 function highdpiInit()
