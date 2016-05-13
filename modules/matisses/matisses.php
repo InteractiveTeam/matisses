@@ -1848,8 +1848,6 @@ class matisses extends Module
 													 
 			$result = $client->call('callService', $s);
 			
-			die(print_r($result));
-			
  			if($result && $result['return']['code']=='0201001')
 			{
 				if($result['return']['code']=='0201902')
