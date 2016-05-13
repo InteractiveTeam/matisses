@@ -171,7 +171,7 @@
 											</tr>
 										{/if}
 										<tr class="cart_total_price">
-											<td colspan="4" class="total_price_container text-right"><span>{l s='Total'}</span></td>
+											<td colspan="4" class="total_price_container text-right"><span>{l s='Total (tax incl.)'}</span></td>
 											<td colspan="2" class="price" id="total_price_container">
 												<span id="total_price">{displayPrice price=$total_price}</span>
 											</td>
