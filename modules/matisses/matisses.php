@@ -480,7 +480,7 @@ class matisses extends Module
 				
 				$salesWarehouseDTO = $this->array_to_xml($salesWarehouseDTO,false);
 				$response 	= $this->wsmatisses_get_data('inventoryItem','quoteShipping','pruebas',$salesWarehouseDTO,true);
-				if($response['return']['code']=='0101001')
+				if($response['return']['code']=='0101002')
 					$shipping_cost = $response['return']['detail'];
 			}
 			return $shipping_cost;

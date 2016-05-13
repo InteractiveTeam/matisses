@@ -133,7 +133,7 @@
 									{/if}
 								{/if}
 							</td>
-							<td colspan="{$col_span_subtotal}" class="text-right">{if $display_tax_label}{l s='Total products'}{else}{l s='Total products'}{/if}</td>
+							<td colspan="{$col_span_subtotal}" class="text-right">{*if $display_tax_label}{l s='Total products'}{else}{l s='Total products (tax incl.)'}{/if*}{l s='Total products (tax incl.)'}</td>
 							<td colspan="2" class="price" id="total_product">{displayPrice price=$total_products}</td>
 						</tr>
 					{else}
@@ -165,7 +165,7 @@
 									{/if}
 								{/if}
 							</td>
-							<td colspan="{$col_span_subtotal}" class="text-right">{if $display_tax_label}{l s='Total products (tax incl.)'}{else}{l s='Total products'}{/if}</td>
+							<td colspan="{$col_span_subtotal}" class="text-right">{*if $display_tax_label}{l s='Total products (tax incl.)'}{else}{l s='Total products'}{/if*}{l s='Total (tax incl.)'}</td>
 							<td colspan="2" class="price" id="total_product">{displayPrice price=$total_products_wt}</td>
 						</tr>
 					{/if}
@@ -200,7 +200,7 @@
 								{/if}
 							{/if}
 						</td>
-						<td colspan="{$col_span_subtotal}" class="text-right">{l s='Total products'}</td>
+						<td colspan="{$col_span_subtotal}" class="text-right">{l s='Total products (tax incl.)'}</td>
 						<td colspan="2" class="price" id="total_product">{displayPrice price=$total_products}</td>
 					</tr>
 				{/if}

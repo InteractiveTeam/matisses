@@ -81,7 +81,7 @@
 										</tr>
 									{/if*}
                                     <tr class="cart_total_price">
-                                        <td colspan="4" class="text-right">{if $display_tax_label}{l s='Total products (tax incl.)'}{else}{l s='Total products'}{/if}</td>
+                                        <td colspan="4" class="text-right">{*if $display_tax_label}{l s='Total products (tax incl.)'}{else}{l s='Total products'}{/if*}{l s='Total products (tax incl.)'}</td>
                                         <td colspan="2" class="price" id="total_product">{displayPrice price=$total_products_wt}</td>
                                     </tr>
 									<tr class="cart_total_voucher" {if $total_wrapping == 0}style="display:none"{/if}>
