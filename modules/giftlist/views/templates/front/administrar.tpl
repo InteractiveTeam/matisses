@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <label for="event_date">Fecha del evento</label> <input
                         type="text" name="event_date" class="form-control"
-                        id="event_date" placeholder="Fecha del evento" value="{if $edit}{date("m/d/Y H:i",strtotime($data['event_date']))}{/if}">
+                        id="event_date" placeholder="Fecha del evento" value="{if $edit}{date("d/m/Y H:i",strtotime($data['event_date']))}{/if}">
                 </div>
             </div>
             <div class="col-md-6">
@@ -66,8 +66,16 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="guest_number">Imagen</label> <input type="file"
+                    <label for="image">Imagen</label> <input type="file"
                         name="image" id="image">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="profile_img">Imagen de perfil</label> <input type="file"
+                        name="profile_img" id="profile_img">
                 </div>
             </div>
         </div>

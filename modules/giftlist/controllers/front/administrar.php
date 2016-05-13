@@ -63,8 +63,23 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 			if(!$file || empty($file) || !in_array($file['mime'], $mimeType))
 				return false;
 			else {
-				move_uploaded_file($file['tmp_name'], $this->uploadDir . Db::getInstance()->Insert_ID(). ".". $sqlExtension);
-				$image_name = Db::getInstance()->Insert_ID(). ".". $sqlExtension;
+				move_uploaded_file($file['tmp_name'], $this->uploadDir . $id. ".". $sqlExtension);
+				$image_name = $id. ".". $sqlExtension;
+			}
+			return isset($image_name) ?_PS_UPLOAD_DIR_."giftlist/" . $image_name : false;
+		}
+		return false;
+	}
+    private function _uploadProfileImage($id = 0){
+		if ($_FILES['profile_img']['name'] != '') {
+			$file = Tools::fileAttachment('profile_img');
+			$sqlExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
+			$mimeType = array('image/png', 'image/x-png','image/jpeg','image/gif');
+			if(!$file || empty($file) || !in_array($file['mime'], $mimeType))
+				return false;
+			else {
+				move_uploaded_file($file['tmp_name'], $this->uploadDir ."prof_".$id. ".". $sqlExtension);
+				$image_name = "prof_".$id. ".". $sqlExtension;
 			}
 			@unlink($file);
 			return isset($image_name) ?_PS_UPLOAD_DIR_."giftlist/" . $image_name : false;
@@ -122,7 +137,8 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 		$id == 0 ? $list->created_at = date ( "Y-m-d H:i:s" ) : $list->updated_at = date ( "Y-m-d H:i:s" );
 		try {
 			if ($list->save()){
-				$list->image = !$this->_uploadImage($id) ? $list->image : $this->_uploadImage($id);
+				$list->image = !$this->_uploadImage($list->id) ? $list->image : $this->_uploadImage($list->id);
+				$list->profile_img = !$this->_uploadProfileImage($list->id) ? $list->profile_img : $this->_uploadProfileImage($list->id);
                 $list->id_cocreator = $list->setCocreator($list-id,Tools::getValue ( 'email_cocreator' ));
                 $dirCC =  array(
                     'country' => "Colombia",

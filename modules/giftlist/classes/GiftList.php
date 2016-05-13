@@ -12,6 +12,7 @@ class GiftListModel extends ObjectModel
 	public $url;
 	public $message;
 	public $image;
+	public $profile_img;
 	public $min_amount;
 	public $info_creator;
 	public $info_cocreator;
@@ -41,6 +42,7 @@ class GiftListModel extends ObjectModel
 			'url' => array('type' => self::TYPE_STRING, 'size' => 100),
 			'message' => array('type' => self::TYPE_STRING),
 			'image' => array('type' => self::TYPE_STRING, 'size' => 255),
+			'profile_img' => array('type' => self::TYPE_STRING, 'size' => 255),
 			'recieve_bond' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
 			'min_amount' => array('type' => self::TYPE_INT),
 			'info_creator' => array('type' => self::TYPE_STRING),
