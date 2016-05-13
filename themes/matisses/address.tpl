@@ -188,13 +188,12 @@
 			{if isset($back)}<input type="hidden" name="back" value="{$back}" />{/if}
 			{if isset($mod)}<input type="hidden" name="mod" value="{$mod}" />{/if}
 			{if isset($select_address)}<input type="hidden" name="select_address" value="{$select_address|intval}" />{/if}
+			<a class="btn btn-default button btn-red" href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}"> <i class="fa fa-chevron-left"></i> {l s='Volver a mis direcciones'}
+			</a>
 			<input type="hidden" name="token" value="{$token}" />
 			<button type="submit" name="submitAddress" id="submitAddress" class="btn btn-default button btn-red">
 			{l s='Save'}
 			</button>
-
-			<a class="btn btn-default button btn-red" href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}"> <i class="fa fa-chevron-left"></i> {l s='Volver a mis direcciones'}
-			</a>
 		</div>
 	</form>
 	</div>
