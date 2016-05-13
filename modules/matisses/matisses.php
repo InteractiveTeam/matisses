@@ -1178,7 +1178,7 @@ class matisses extends Module
 		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['secondname']);
         $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname']);
-        $infoxml[0]['birthDate']		= $InfCustomer[0]['birthday'];
+        $infoxml[0]['birthday']		= $InfCustomer[0]['birthday'];
 		
 		if(sizeof($Adresses)> 0)
 		{
@@ -1251,7 +1251,6 @@ class matisses extends Module
 			
 				
 			$response 	= $this->wsmatisses_get_data('inventoryItem','listWebEnabledStock','sap',$this->array_to_xml(array('inventoryItemDTO'=>array('itemCode'=>$reference)),false));
-			
 			$reference	= $response['inventoryItemDTO']['itemCode'];
 			require_once dirname(__FILE__)."/wsclasses/ws_product.php";
 			$ws_product = new ws_product();
