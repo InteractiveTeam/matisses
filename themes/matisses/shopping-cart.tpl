@@ -484,7 +484,7 @@
 								<span class="address_alias">({$delivery->alias})&nbsp;</span>
 							</h2>
 							</li>
-							{if $delivery->company}<li class="address_company">{$delivery->company|escape:'html':'UTF-8'}&nbsp;</li>{/if}
+							{*if $delivery->company}<li class="address_company">{$delivery->company|escape:'html':'UTF-8'}&nbsp;</li>{/if*}
 							<li class="address_name">{$delivery->firstname|escape:'html':'UTF-8'} {$delivery->lastname|escape:'html':'UTF-8'}&nbsp;</li>
 							<li class="address_address1">{$delivery->address1|escape:'html':'UTF-8'}&nbsp;</li>
 							{if $delivery->address2}<li class="address_address2">{$delivery->address2|escape:'html':'UTF-8'}&nbsp;</li>{/if}
@@ -497,7 +497,7 @@
 					<div class="grid_6">
 						<ul id="invoice_address" class="address alternate_item box"> 
 							<li><h2 class="page-subheading">{l s='Invoice address'}&nbsp;<span class="address_alias">({$invoice->alias})</span></h2>&nbsp;</li>
-							{if $invoice->company}<li class="address_company">{$invoice->company|escape:'html':'UTF-8'}</li>{/if}
+							{*if $invoice->company}<li class="address_company">{$invoice->company|escape:'html':'UTF-8'}</li>{/if*}
 							<li class="address_name">{$invoice->firstname|escape:'html':'UTF-8'} {$invoice->lastname|escape:'html':'UTF-8'}&nbsp;</li>
 							<li class="address_address1">{$invoice->address1|escape:'html':'UTF-8'}&nbsp;</li>
 							{if $invoice->address2}<li class="address_address2">{$invoice->address2|escape:'html':'UTF-8'}&nbsp;</li>{/if}
