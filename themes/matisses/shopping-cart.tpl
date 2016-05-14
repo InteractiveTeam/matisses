@@ -133,7 +133,7 @@
 									{/if}
 								{/if}
 							</td>
-							<td colspan="{$col_span_subtotal}" class="text-right">{if $display_tax_label}{l s='Total products'}{else}{l s='Total products'}{/if}</td>
+							<td colspan="{$col_span_subtotal}" class="text-right">{*if $display_tax_label}{l s='Total products'}{else}{l s='Total products (tax incl.)'}{/if*}{l s='Total products (tax incl.)'}</td>
 							<td colspan="2" class="price" id="total_product">{displayPrice price=$total_products}</td>
 						</tr>
 					{else}
@@ -165,7 +165,7 @@
 									{/if}
 								{/if}
 							</td>
-							<td colspan="{$col_span_subtotal}" class="text-right">{if $display_tax_label}{l s='Total products (tax incl.)'}{else}{l s='Total products'}{/if}</td>
+							<td colspan="{$col_span_subtotal}" class="text-right">{*if $display_tax_label}{l s='Total products (tax incl.)'}{else}{l s='Total products'}{/if*}{l s='Total (tax incl.)'}</td>
 							<td colspan="2" class="price" id="total_product">{displayPrice price=$total_products_wt}</td>
 						</tr>
 					{/if}
@@ -200,7 +200,7 @@
 								{/if}
 							{/if}
 						</td>
-						<td colspan="{$col_span_subtotal}" class="text-right">{l s='Total products'}</td>
+						<td colspan="{$col_span_subtotal}" class="text-right">{l s='Total products (tax incl.)'}</td>
 						<td colspan="2" class="price" id="total_product">{displayPrice price=$total_products}</td>
 					</tr>
 				{/if}
@@ -289,7 +289,7 @@
 
 				<tr class="cart_total_price">
 					<td colspan="{$col_span_subtotal}" class="total_price_container text-right">
-						<span>{l s='Total'}</span>
+						<span>{l s='Total (tax incl.)'}</span>
 					</td>
 					{if $use_taxes}
 						<td colspan="2" class="price" id="total_price_container">
@@ -484,11 +484,10 @@
 								<span class="address_alias">({$delivery->alias})&nbsp;</span>
 							</h2>
 							</li>
-							{if $delivery->company}<li class="address_company">{$delivery->company|escape:'html':'UTF-8'}&nbsp;</li>{/if}
 							<li class="address_name">{$delivery->firstname|escape:'html':'UTF-8'} {$delivery->lastname|escape:'html':'UTF-8'}&nbsp;</li>
 							<li class="address_address1">{$delivery->address1|escape:'html':'UTF-8'}&nbsp;</li>
 							{if $delivery->address2}<li class="address_address2">{$delivery->address2|escape:'html':'UTF-8'}&nbsp;</li>{/if}
-							<li class="address_city">{$delivery->postcode|escape:'html':'UTF-8'} {State::getNameById($delivery->id_state)|escape:'html':'UTF-8'}&nbsp;</li>
+							<li class="address_city">{State::getNameById($delivery->id_state)|escape:'html':'UTF-8'}&nbsp;</li>
 							<li class="address_country">{$delivery->country|escape:'html':'UTF-8'} {if $delivery_state}({$delivery_state|escape:'html':'UTF-8'}){/if}&nbsp;</li>
 						</ul>
 					</div>
@@ -497,11 +496,10 @@
 					<div class="grid_6">
 						<ul id="invoice_address" class="address alternate_item box"> 
 							<li><h2 class="page-subheading">{l s='Invoice address'}&nbsp;<span class="address_alias">({$invoice->alias})</span></h2>&nbsp;</li>
-							{if $invoice->company}<li class="address_company">{$invoice->company|escape:'html':'UTF-8'}</li>{/if}
 							<li class="address_name">{$invoice->firstname|escape:'html':'UTF-8'} {$invoice->lastname|escape:'html':'UTF-8'}&nbsp;</li>
 							<li class="address_address1">{$invoice->address1|escape:'html':'UTF-8'}&nbsp;</li>
 							{if $invoice->address2}<li class="address_address2">{$invoice->address2|escape:'html':'UTF-8'}&nbsp;</li>{/if}
-							<li class="address_city">{$invoice->postcode|escape:'html':'UTF-8'} {$invoice->city|escape:'html':'UTF-8'}&nbsp;</li>
+							<li class="address_city">{State::getNameById($delivery->id_state)|escape:'html':'UTF-8'}&nbsp;</li>
 							<li class="address_country">{$invoice->country|escape:'html':'UTF-8'} {if $invoice_state}({$invoice_state|escape:'html':'UTF-8'}){/if}&nbsp;</li>
 						</ul>
 					</div>

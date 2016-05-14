@@ -2499,7 +2499,6 @@ box-sizing: border-box;
 
 	#cart_summary tfoot td.total_price_container span {
 	color: #555454;
-	text-transform: uppercase;
 	}
 	#cart_summary tfoot td#total_price_container {
 	color: #333333;
@@ -2690,7 +2689,7 @@ box-sizing: border-box;
 	display: inline;
 	}
 	.addresses .waitimage {
-	display: none;
+	display: none !important;
 	float: left;
 	width: 24px;
 	height: 24px;
@@ -3758,6 +3757,7 @@ box-sizing: border-box;
 	}
 	#address #id_country_chosen{
 	display: block;
+    width: 100% !important;
 	}
 	.checkbox.carrier{
 	padding-left: 15px;
@@ -3902,6 +3902,7 @@ box-sizing: border-box;
 	.footer-links-address {
     text-align: center;
     margin: 4.375rem 0;
+    font-size: 0;
     }
 
 /*Pag buscador*/
@@ -4691,7 +4692,7 @@ body.new-products {
     border-top: 1px solid #dbdbdb;
     border-bottom: 1px solid #dbdbdb;
     display: inline-block;
-    padding: 0.6375rem;
+    padding: 0.6rem;
     font-size: 1rem;
     text-transform: none;
     vertical-align: top;
@@ -5381,8 +5382,10 @@ a.newPrint:hover {
 }
 
 .ax-iva {
-    color: #545454;
+    color: #797979;
     display: inline;
+    vertical-align: middle;
+    margin-left: 5px;
 }
 
 #guestTracking .form-group {
@@ -5396,3 +5399,24 @@ a.newPrint:hover {
 #center_column .category_list.product_list.grid.row > p {
     display: none;
 }
+
+body#search .category_list.product_list.grid .ajax_block_product {
+    width: 25%;
+}
+
+.footer-links-address button.btn.btn-default.btn-red {
+    margin-left: 4px; padding: auto;
+}
+
+.wrap_quan .tooltip {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    border-radius: none;
+    -webkit-border-radius: none;
+    line-height: 1rem;
+}
+
+.tooltip-inner {
+     border-radius: 0;
+     padding: 10px;
+ }

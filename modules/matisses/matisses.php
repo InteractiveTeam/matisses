@@ -480,7 +480,7 @@ class matisses extends Module
 				
 				$salesWarehouseDTO = $this->array_to_xml($salesWarehouseDTO,false);
 				$response 	= $this->wsmatisses_get_data('inventoryItem','quoteShipping','pruebas',$salesWarehouseDTO,true);
-				if($response['return']['code']=='0101001')
+				if($response['return']['code']=='0101002')
 					$shipping_cost = $response['return']['detail'];
 			}
 			return $shipping_cost;
@@ -1178,7 +1178,7 @@ class matisses extends Module
 		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['secondname']);
         $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname']);
-        $infoxml[0]['birthDate']		= $InfCustomer[0]['birthday'];
+        $infoxml[0]['birthday']		= $InfCustomer[0]['birthday'];
 		
 		if(sizeof($Adresses)> 0)
 		{
@@ -1251,7 +1251,6 @@ class matisses extends Module
 			
 				
 			$response 	= $this->wsmatisses_get_data('inventoryItem','listWebEnabledStock','sap',$this->array_to_xml(array('inventoryItemDTO'=>array('itemCode'=>$reference)),false));
-			
 			$reference	= $response['inventoryItemDTO']['itemCode'];
 			require_once dirname(__FILE__)."/wsclasses/ws_product.php";
 			$ws_product = new ws_product();
@@ -1849,8 +1848,6 @@ class matisses extends Module
 													 
 			$result = $client->call('callService', $s);
 			
-			
-			
  			if($result && $result['return']['code']=='0201001')
 			{
 				if($result['return']['code']=='0201902')
@@ -1863,7 +1860,7 @@ class matisses extends Module
 																	'0201905'=>'',
 																	'0201906'=>'',
 																	'0201907'=>''))){
-					echo $this->l($result['return']['code'].' - Lo siento! - se ha presentado un error durante la operaci�n, no se puede continuar con el proceso de compra');
+					echo $this->l($result['return']['code'].' - Lo siento! - se ha presentado un error durante la operación, no se puede continuar con el proceso de compra');
 					echo '<p>'.$result['return']['detail'].'</p>';
 					exit;
 				}

@@ -169,13 +169,6 @@
                         {$address_invoice->lastname|escape:'html':'UTF-8'}
                     </span>
                 </li>
-                {if $address_invoice->company !=""}
-                    <li>
-                        <span class="address_address2"><b>{l s='Empresa:'}</b>
-                        {$address_invoice->company|escape:'html':'UTF-8'}
-                        </span>
-                    </li>
-                {/if}
                 <li>
                     <span class="address_address1"><b>{l s='Dirección 1:'}</b>
                     {$address_invoice->address1|escape:'html':'UTF-8'}
