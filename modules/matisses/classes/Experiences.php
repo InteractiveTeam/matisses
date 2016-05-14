@@ -59,9 +59,28 @@
 			return $ret;
 		}
 		
-		public function update($null_values = false)
-		{
+		public function update($null_values = false){                        
+            $data = json_decode($_POST['products']);
+            $id_prod  = $data->marker0->id_product;
+            
+             $sql = "SELECT * FROM "._DB_PREFIX_."product as a 
+                    INNER JOIN "._DB_PREFIX_."product_attribute as b
+                on a.id_product = b.id_product
+                WHERE a.reference = '".$id_prod."'
+                    or b.reference = '".$id_prod."'
+                    or a.id_product = '".$id_prod."'";
+			
+            $product = Db::getInstance()->getRow($sql);
+                        
+            $data->marker0->id_product = $product['id_product'];
+            $_POST['products'] = json_encode($data);
+            
 			$ret = parent::update($null_values);
+            
+            $sql = "UPDATE "._DB_PREFIX_."experiences SET products = '".$_POST['products']."' WHERE id_experience = ".$_POST['id_experience'];
+            
+            $result = Db::getInstance()->execute($sql);
+            
 			return $ret;
 		}
 		
