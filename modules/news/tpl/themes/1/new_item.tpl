@@ -67,6 +67,7 @@
             });
 
             </script>
+        <div class="newTitle"><h1>{$title}</h1></div>
         <div class="newImgsContent grid_12 alpha omega" >
             <div class="newSlideshow" id="newSlideshow" >
 
@@ -86,10 +87,59 @@
         </div>
         {/if}
         <div class="description-news grid_12 alpha omega">
-            <div class="newTitle"><h1>{$title}</h1></div>
-            <div class="new-author"><p>{if $autor}{$autor} {l s='on' mod='news'}{/if} </p></div>
-            <div class="news-date"><span>{$date}</span></div>
-            <div class="newText"><p> {$new}</p></div>
+            <div class="ax-news-category">
+                {l s="categoria" mod="news"}: <span>telas vendadas</span>
+                <div class="ax-cont-print"><a href="javascript:window.print()" class="newPrint"><i class="fa fa-print" aria-hidden="true"></i></a>Imprimir</div>
+            </div>
+            <div class="ax-container-blog grid_12">
+                <div class="grid_9">
+                    <div class="newText"><p>{$new}</p></div>
+                </div>
+                <div class="grid_3">
+                    <div class="ax-buscador-blog">
+                        <input type="search" placeholder="Buscar"/>
+                    </div>
+                    <div class="category-filter">
+                        <h4>Categorias</h4>
+                        <ul>
+                            <li><a href="#">categoria del blog</a></li>
+                            <li><a href="#">categoria del blog</a></li>
+                            <li><a href="#">categoria del blog</a></li>
+                            <li><a href="#">categoria del blog</a></li>
+                            <li><a href="#">categoria del blog</a></li>
+                            <li><a href="#">categoria del blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="ax-articulos-relacionados-blog">
+                        <h2>Artículos relacionados</h2>
+                        <ul>
+                            <li>
+                                <h3>Decoración, vida para tus espacios</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, tenetur tempora.</p>
+                            </li>
+                            <li>
+                                <h3>Decoración, vida para tus espacios</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, tenetur tempora.</p>
+                            </li>
+                            <li>
+                                <h3>Decoración, vida para tus espacios</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, tenetur tempora.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="ax-cont-autor grid_12">
+                <div class="grid_5">
+                    <p>Escrito por:</p>
+                    <div class="new-author"><p>Diana Villegas</p></div>
+                </div>
+                <div class="grid_5">
+                    <p>{l s="categoria" mod="news"}:<span>telas vendadas</span></p>
+                    <div class="ax-date"><i class="fa fa-clock-o"></i><span>{$date}</span></div>
+                </div>
+            </div>
+            
         </div>
         <div class="newContentTopRigthSocial grid_12 alpha omega">
             <!-- <div class="share shareFacebook">
@@ -111,7 +161,6 @@
             
             <div class="ax-shareContent">
                <div class="newTopActions">
-                    <a href="javascript:window.print()" class="newPrint"><i class="fa fa-print" aria-hidden="true"></i></a>
                     <!-- AddThis Button BEGIN -->
                         <p class="addthis_toolbox addthis_default_style ">
                             <a class="addthis_button_email" ></a>

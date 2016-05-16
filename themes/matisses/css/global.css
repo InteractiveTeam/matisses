@@ -5421,6 +5421,116 @@ body#search .category_list.product_list.grid .ajax_block_product {
      padding: 10px;
  }
 
+.ax-news-category, .ax-cont-autor {
+    font-family: 'condensed', sans-serif;
+    color: #666;
+    background: #F6F6F6;
+    display: block;
+    padding: 1.3125rem 2%;
+    margin: 0 auto;
+    width: 92%;
+    margin-top: -40px;
+    clear: both;
+}
+
+.ax-container-blog {
+    margin: 40px auto;
+    width: 92%;
+}
+
+.ax-news-category span {
+    font-family: 'condensed', sans-serif;
+    text-transform: uppercase;
+    color: #d9292e;
+}
+
+.newImgsContent .newSlideshow a img {
+    min-width: 100%;
+}
+
+.newContentInt div.newImgsContent {
+    margin: 0 1%;
+    width: 98%;
+    display: block;
+}
+
+.newContentInt .newTitle h1 {
+    border-bottom: #ccc solid 1px;
+    padding: 10px 0;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+}
+
+.description-news .ax-news-category .ax-cont-print {
+    float: right;
+    color: #d9292e;
+}
+
+.description-news .ax-news-category .newPrint {
+    float: none;
+    background: #777777;
+    color: #fff;
+    width: auto;
+    height: auto;
+    padding: 5px;
+    margin: 0 15px 0 0;
+}
+
+.ax-container-blog .grid_9 {
+    border-right: #e0e0e0 solid 1px;
+}
+
+.ax-buscador-blog {
+    border-bottom: #E0E0E0 solid 1px;
+    padding: 20px 0 20px 20px;
+    margin-left: -16px;
+    width: 113%;
+}
+
+.ax-buscador-blog input {
+    font-family: 'condensed', sans-serif;
+    border: none;
+    background: #EAEAEA;
+    padding: 12px;
+    width: 100%;
+}
+
+.ax-articulos-relacionados-blog h2 {
+    background: #EAEAEA;
+    color: #848484;
+    padding: 15px 28px;
+    margin-top: 40px;
+    margin-left: -30px;
+    width: 118%;
+}
+
+.ax-articulos-relacionados-blog h3 {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+.ax-cont-autor {
+    position: relative;
+}
+
+.ax-cont-autor:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 30px;
+    left: -30px;
+    width: 50px;
+    height: 2px;
+    background: #d9292e; 
+}
+
+.description-news .new-author p {
+    font-size: 2rem;
+    line-height: 1rem;
+    color: #000;
+    font-family: 'condensed', sans-serif;
+}
+
 /*estilos de buscador*/
 
     .parrilla-productos div.pagination {
