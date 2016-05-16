@@ -82,7 +82,9 @@ class="page-heading {if !isset($instant_search) || (isset($instant_search) && !$
             {/if}
         </div>
 	</div>
-	{include file="$tpl_dir./product-list.tpl" products=$search_products}
+	<div class="parrilla-productos">
+	    {include file="$tpl_dir./product-list.tpl" products=$search_products}    
+	</div>	
     <div class="content_sortPagiBar cf grid_12 alpha omega">
         <div class="sortPagiBar grid_9 alpha omega bottom_pagi">
             {include file="./product-compare.tpl"}
