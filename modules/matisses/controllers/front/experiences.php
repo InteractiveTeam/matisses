@@ -19,7 +19,7 @@ class matissesexperiencesModuleFrontController extends ModuleFrontController
 	{
 		parent::init();
 		include_once(dirname(__FILE__).'/../../classes/Experiences.php');
-		
+		$context = $this->context;
 		if (!$context)
 			$context = Context::getContext();
 		
