@@ -53,8 +53,7 @@
 			return Db::getInstance()->getValue('SELECT products FROM '._DB_PREFIX_.'experiences WHERE id_experience = "'.$id_experience.'" ');
 		}
 		
-		public function add($autodate = true, $null_values = false)
-		{
+		public function add($autodate = true, $null_values = false){
 			$ret = parent::add($autodate, $null_values);
 			return $ret;
 		}
@@ -71,14 +70,13 @@
                     or a.id_product = '".$id_prod."'";
 			
             $product = Db::getInstance()->getRow($sql);
-                        
+
             $data->marker0->id_product = $product['id_product'];
             $_POST['products'] = json_encode($data);
             
 			$ret = parent::update($null_values);
             
-            $sql = "UPDATE "._DB_PREFIX_."experiences SET products = '".$_POST['products']."' WHERE id_experience = ".$_POST['id_experience'];
-            
+            $sql = "UPDATE "._DB_PREFIX_."experiences SET products = '".$_POST['products']."' WHERE id_experience = ".$_POST['id_experience'];            
             $result = Db::getInstance()->execute($sql);
             
 			return $ret;
