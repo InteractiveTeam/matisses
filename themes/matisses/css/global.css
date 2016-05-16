@@ -5420,3 +5420,153 @@ body#search .category_list.product_list.grid .ajax_block_product {
      border-radius: 0;
      padding: 10px;
  }
+
+/*estilos de buscador*/
+
+    .parrilla-productos div.pagination {
+    float: right;
+    }
+    .parrilla-productos h2.product-name {
+    color: #d7162f;
+    background: none;
+    }
+    .parrilla-productos .product-price {
+    font-family: 'gothic';
+    color: #231f20;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    }
+    .parrilla-productos .wrap_content_price {
+    padding: 0 0.625rem 0.625rem;
+    }
+    .parrilla-productos .inner-product-list {
+    padding-bottom: 3.125rem;
+    }
+    .parrilla-productos li.list-btn {
+    margin-left: -0.25rem;
+    }
+    .parrilla-productos .product_list.grid .wrap_view {
+    top: 18%;
+    }
+    .parrilla-productos .product_list.grid .button-container{
+    margin-top: 0.9375rem;
+    }
+    .color-list-container ul li a {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+    }
+    .parrilla-productos .btn.btn-default {
+    padding: 0.3125rem 0.625rem;
+    margin-bottom: 0.625rem;
+    }
+    .color-list-container {
+    padding: 2.1875rem 0.625rem 0;
+    }
+    .color-list-container  ul{
+    display: table;
+    }
+    .color-list-container  ul li {
+    display: inline-block;
+    margin-right: 0.3125rem;
+    }
+    .color-list-container  ul li:last-child {
+    margin-right: 0;
+    }
+    .parrilla-productos .ajax_block_product {
+    padding-top: 2.5rem;
+    }
+    .layered-left .color-option {
+	border: 1px solid #7b7b7b;
+	width: 1.375rem;
+	height: 1.375rem;
+	}
+
+/*Pagina Categorias*/
+    .center_column .subcategories{
+    width: 100%;
+    max-width: 75rem;
+    margin: 0 auto;
+    float: none;
+    }
+    .subcategories ul li {
+    float: left;
+    width: 23%;
+    vertical-align: top;
+    margin: 10px;
+    border: 1px solid #ddd;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0 0 60px 0;
+    }
+
+.subcategories ul li:before, .subcategories ul li:after {
+    content: "";
+    display: block;
+    background: rgba(35,31,32,0.3);
+    position: absolute;
+    height:50%;
+    width: 100%;
+    z-index: 1;
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+}
+
+.subcategories ul li:before {
+    top:-50%;
+}
+
+.subcategories ul li:after {
+    bottom:-50%;
+}
+
+    .subcategories ul li:hover:before {
+        top:0;
+    }
+
+    .subcategories ul li:hover:after {
+        bottom:0;
+    }
+
+    .subcategories h2 {
+    position: absolute;
+    width: 100%;
+    font-family: 'gothic';
+    font-size: 22px;
+    color: #d7162f;
+    text-transform: uppercase;
+    padding: 15px;
+    text-align: center;
+    z-index: 3;
+    font-family: 'condensed';
+    }
+    .subcategories h2 a {
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    }
+    .subcategories ul li:hover h2 {
+    color: #fff;
+    font-size: 24px;
+    }
+    .subcategory-image {
+    border-bottom: none;
+    overflow: hidden;
+    position: relative;
+    }
+
+    .subcategory-image a {
+    display: block;
+    }
+    .subcategory-image a img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.35s;
+    transform-origin: 100% 50%;
+    }
+    .subcategory-image:hover:before {
+    opacity: 1;
+	}
+    .subcategories li:hover .subcategory-image img {
+    transform: translateX(5%) scale(1.125);
+	}
