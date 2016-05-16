@@ -912,8 +912,10 @@ class FrontControllerCore extends Controller
 		$default_products_per_page = max(1, (int)Configuration::get('PS_PRODUCTS_PER_PAGE'));
 		$nArray = array($default_products_per_page, $default_products_per_page * 2, $default_products_per_page * 5);
 
-		if ((int)Tools::getValue('n') && (int)$total_products > 0)
+		if ((int)$total_products > 0){
 			$nArray[] = $total_products;
+        }
+        
 		// Retrieve the current number of products per page (either the default, the GET parameter or the one in the cookie)
 		$this->n = $default_products_per_page;
 		if (isset($this->context->cookie->nb_item_per_page) && in_array($this->context->cookie->nb_item_per_page, $nArray))
@@ -945,8 +947,8 @@ class FrontControllerCore extends Controller
 		$stop = (int)($this->p + $range);
 		if ($stop > $pages_nb)
 			$stop = (int)$pages_nb;
-
-		$this->context->smarty->assign(array(
+        
+        $this->context->smarty->assign(array(
 			'nb_products' => $total_products,
 			'products_per_page' => $this->n,
 			'pages_nb' => $pages_nb,
