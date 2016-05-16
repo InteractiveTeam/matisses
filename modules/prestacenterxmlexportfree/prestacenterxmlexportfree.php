@@ -42,6 +42,7 @@ class PrestaCenterXmlExportFree extends Module
 		'manufacturer'		=> array('helper' => 'escape|strip'),
 		'categories'		=> array('key' => 'id_lang', 'helper' => 'clean|escape'),
 		'categoriesmeta'	=> array('helper' => 'escape|strip'),
+		'price_prod'		=> array('helper' => 'clean|escape', ),
 		'price_vat'			=> array('key' => 'id_currency', ),
 		'price_vat_local'	=> array('key' => 'id_currency', ),
 		'price_vat_iso'		=> array('key' => 'id_currency', ),
@@ -422,6 +423,7 @@ class PrestaCenterXmlExportFree extends Module
                     $tmp['img_prod']		= array();
                     $tmp['description']		= array();
                     $tmp['description_short']	= array();
+                    $tmp['price_prod']		= array();
                     $tmp['price_vat']		= array();
                     $tmp['price_vat_local'] = array();
                     $tmp['price_vat_iso']	= array();
@@ -519,7 +521,7 @@ class PrestaCenterXmlExportFree extends Module
                 }
                 
                 // image
-                $images = $product->_getAttributeImageAssociations($inrefer['id_product_attribute']);                
+                $images = $product->_getAttributeImageAssociations($inrefer['id_product_attribute']);  
                 $tmp['img_prod'][$row['id_lang']] = $this->context->link->getImageLink($row['link_rewrite'], $images[0]);
                 
                 $tmp['name'][$row['id_lang']] = $row['name'];
@@ -528,6 +530,7 @@ class PrestaCenterXmlExportFree extends Module
                 $tmp['available_now'][$row['id_lang']] = $row['available_now'];
                 $tmp['available_later'][$row['id_lang']] = $row['available_later'];
                 $tmp['link_rewrite'][$row['id_lang']] = $row['link_rewrite'];
+                $tmp['price_prod'] = $product->getPrice(true,$inrefer['id_product_attribute']);
                 $this->context->language = $this->languages[$row['id_lang']];
                 if ($this->exportInfo['rewrite'] == 1) {
                     $tmp['url'][$row['id_lang']] = $this->context->link->getProductLink($product, null, null, $row['ean13'], $row['id_lang'], null, 0, true);

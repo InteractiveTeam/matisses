@@ -243,7 +243,7 @@ class PcXmlFreeTemplate
 		.'<g:image_link>'.$this->helperEscape(38, $this->helperStrip(38, $product['img_prod'][$this->feedVars['id_lang']])).'</g:image_link>'
 		.'<g:condition>'.$this->helperEscape(39, $this->helperCondition(39, $this->helperClean(39, $product['condition'], 'new,used,refurbished'), 'new,used,refurbished')).'</g:condition>'
 		.'<g:availability>'.$this->helperEscape(40, $this->helperClean(40, $product['availability'], 'in stock, on order, sold out')).'</g:availability>'
-		.'<g:price>'.$this->helperEscape(41, $product['price_vat_iso'][$this->feedVars['id_currency']]).'</g:price>'
+		.'<g:price>'.$this->helperEscape(41, $this->helperClean(41, $product['price_prod'])).'</g:price>'
 		.'<g:gtin>'.$this->helperEscape(42, $product['ean']).'</g:gtin>'
 		.'<g:brand>'.$this->helperEscape(43, $this->helperStrip(43, $product['manufacturer'])).'</g:brand>'
 		.'<g:custom_label_0>'.$this->helperEscape(44, $this->helperClean(44, $product['hexcolor'])).'</g:custom_label_0>'
