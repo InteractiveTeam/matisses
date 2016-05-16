@@ -2052,6 +2052,7 @@ class CartCore extends ObjectModel
 			// Reset $best_price_carrier, it's now an array
 			$best_price_carrier = array();
 			$key = '';
+            $carrier_name = "";
 
 			// Get the delivery option with the lower price
 			foreach ($best_price_carriers as $id_package => $id_carrier)
@@ -2065,8 +2066,9 @@ class CartCore extends ObjectModel
 					$params['delivery_option']		= $delyvery_option;
 					$params['products_cart']		= $this->getProducts();
 					$total_shipping 				= Hook::exec('actionCalculateShipping',$params);
-					$carriers_price[$id_address][$id_package][$id_carrier]['with_tax'] = $total_shipping;
-					$carriers_price[$id_address][$id_package][$id_carrier]['without_tax'] = $total_shipping;
+                    $carrier_name = $total_shipping['shippingCompany'];
+					$carriers_price[$id_address][$id_package][$id_carrier]['with_tax'] = $total_shipping['total'];
+					$carriers_price[$id_address][$id_package][$id_carrier]['without_tax'] = $total_shipping['total'];
 				}
 				
 				
@@ -2096,7 +2098,6 @@ class CartCore extends ObjectModel
 				'is_best_grade' => false,
 				'unique_carrier' => (count($best_price_carrier) <= 1)
 			);
-
 			// Reset $best_grade_carrier, it's now an array
 			$best_grade_carrier = array();
 			$key = '';

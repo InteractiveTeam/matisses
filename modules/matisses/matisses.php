@@ -481,9 +481,9 @@ class matisses extends Module
 				$salesWarehouseDTO = $this->array_to_xml($salesWarehouseDTO,false);
 				$response 	= $this->wsmatisses_get_data('inventoryItem','quoteShipping','pruebas',$salesWarehouseDTO,true);
 				if($response['return']['code']=='0101002')
-					$shipping_cost = $response['return']['detail'];
+					$shipping_cost = $this->xml2array(utf8_encode($response['return']['detail']));
 			}
-			return $shipping_cost;
+			return $shipping_cost['shippingQuotationResultDTO'];
 		}else{
 				$shipping_cost;
 			 }
@@ -1663,13 +1663,8 @@ class matisses extends Module
 			return false;
 			
 		
-		if('0101002' == $result['return']['code'])
-		{
-			//echo ak;
-			$datos 		= $this->xml_to_array(utf8_encode($result['return']['detail']));
-		}else{
-				$datos 		= $this->xml_to_array(utf8_encode($result['return']['detail']));
-			 }
+
+		$datos 	= $this->xml_to_array(utf8_encode($result['return']['detail']));
 		
 		return $datos;
 	}
