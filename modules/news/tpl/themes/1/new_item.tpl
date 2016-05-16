@@ -130,11 +130,11 @@
                 </div>
             </div>
             <div class="ax-cont-autor grid_12">
-                <div class="grid_5">
+                <div class="grid_6 ax-name-autor">
                     <p>Escrito por:</p>
                     <div class="new-author"><p>Diana Villegas</p></div>
                 </div>
-                <div class="grid_5">
+                <div class="grid_6 ax-details-autor">
                     <p>{l s="categoria" mod="news"}:<span>telas vendadas</span></p>
                     <div class="ax-date"><i class="fa fa-clock-o"></i><span>{$date}</span></div>
                 </div>
