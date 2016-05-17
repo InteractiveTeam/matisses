@@ -1,13 +1,12 @@
-[{shop_url}] 
+[{shop_url}]
 
-Hola {firstname} {lastname}, 
+Hola {firstname} {lastname},
 
-{employee} quería enviar este mensaje para usted. 
+{employee} te envió este mensaje. 
 
 HISTORIAL DE LA CONVERSACIÓN: {messages}
 
-{employee} añadido "{comment}" 		 
+{employee} añadido "{comment}"
 
 {shop_name} [{shop_url}] creado por
-PrestaShop(tm) [http://www.prestashop.com/] 
-
+PrestaShop(tm) [http://www.prestashop.com/]

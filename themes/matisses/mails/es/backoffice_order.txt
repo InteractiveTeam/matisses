@@ -4,7 +4,7 @@ Hola {firstname} {lastname},
 
 Una nueva orden ha sido generada. 
 
-Por favor, vaya a {order_link} [{order_link}] para
+Por favor, dirígete a {order_link} [{order_link}] para
 finalizar el pago. 		 
 
 {shop_name} [{shop_url}] creado por

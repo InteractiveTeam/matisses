@@ -1,12 +1,11 @@
-[{shop_url}] 
+[{shop_url}]
 
-Hola, 
+Hola,
 
-{firstname} {lastname} indicó que puede interesarle ver su lista de
+{firstname} {lastname} indicó que puede interesarle ver tu lista de
 deseos: {wishlist}
 
-{wishlist} [{message}] 		 
+{wishlist} [{message}]
 
 {shop_name} [{shop_url}] creado por
-PrestaShop(tm) [http://www.prestashop.com/] 
-
+PrestaShop(tm) [http://www.prestashop.com/]

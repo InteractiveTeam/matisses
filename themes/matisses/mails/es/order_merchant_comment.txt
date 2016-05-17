@@ -1,12 +1,11 @@
-[{shop_url}] 
+[{shop_url}]
 
-Hola {firstname} {lastname}, 
+Hola {firstname} {lastname},
 
-Ha recibido un nuevo mensaje de {shop_name} en relación al pedido
+Has recibido un nuevo mensaje de {shop_name} en relación al pedido
 con la referencia {order_name}.
 
-MENSAJE: {message} 		 
+MENSAJE: {message}
 
 {shop_name} [{shop_url}] creado por
-PrestaShop(tm) [http://www.prestashop.com/] 
-
+PrestaShop(tm) [http://www.prestashop.com/]
