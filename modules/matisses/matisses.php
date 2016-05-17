@@ -453,13 +453,10 @@ class matisses extends Module
 	
 	public function hookactionCalculateShipping($params)
 	{
-		//echo "<pre>"; print_r($params); echo "</pre>";
-		$shipping_cost = $params['total_shipping'];
-		$id_address = key($params['delivery_option']);
+		//echo "<pre>"; print_r($params); echo "</pre>";die();
+		$id_address = $params['delivery_option'];
 		$id_carrier = str_replace(',','',current(array_values($params['delivery_option'])));
 		
-		if($id_carrier == 6)
-		{
 			if($id_address)
 			{
 				$Address = new Address($id_address);
@@ -476,17 +473,17 @@ class matisses extends Module
 				{
 					$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['itemCode'] = $product['reference'];
 					$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['quantity'] = $product['quantity'];
-				}
-				
+                }
 				$salesWarehouseDTO = $this->array_to_xml($salesWarehouseDTO,false);
 				$response 	= $this->wsmatisses_get_data('inventoryItem','quoteShipping','pruebas',$salesWarehouseDTO,true);
 				if($response['return']['code']=='0101002')
-					$shipping_cost = $this->xml2array(utf8_encode($response['return']['detail']));
+					$shipping_cost = $this->xml_to_array($response['return']['detail']);
 			}
-			return $shipping_cost['shippingQuotationResultDTO'];
-		}else{
-				$shipping_cost;
-			 }
+            $res = array(
+                'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
+                'shippingCompany' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany']
+            );
+			return json_encode($res);
 	}
 	
 	

@@ -1976,6 +1976,8 @@ class CartCore extends ObjectModel
 		$carriers_price = array();
 		$carrier_collection = array();
 		$package_list = $this->getPackageList();
+        
+       
 
 		// Foreach addresses
 		foreach ($package_list as $id_address => $packages)
@@ -2055,42 +2057,46 @@ class CartCore extends ObjectModel
             $carrier_name = "";
 
 			// Get the delivery option with the lower price
+            $params['total_shipping'] 		= $total_shipping;
+            $params['delivery_option_list']	= $delyvery_selected;
+            $params['delivery_option']		= $id_address;
+            $params['products_cart']		= $this->getProducts();
+            $total_shipping 				= Hook::exec('actionCalculateShipping',$params);
+            $total_shipping 				= (array)json_decode($total_shipping);
+            $id = Db::getInstance()->getRow('SELECT  `id_carrier` 
+                                                FROM  `ps_carrier` 
+                                                WHERE  `id_reference` = '.$total_shipping['shippingCompany'].'
+                                                AND  `deleted` =0');
+            $total_shipping['shippingCompany'] = $id['id_carrier'];
 			foreach ($best_price_carriers as $id_package => $id_carrier)
 			{
-				if($id_carrier == 6)
-				{
-					$delyvery_selected[$id_address][$id_carrier.','] = $id_address;
-					$delyvery_option[$id_address] = $id_carrier.',';
-					$params['total_shipping'] 		= $total_shipping;
-					$params['delivery_option_list']	= $delyvery_selected;
-					$params['delivery_option']		= $delyvery_option;
-					$params['products_cart']		= $this->getProducts();
-					$total_shipping 				= Hook::exec('actionCalculateShipping',$params);
+				
+					$delyvery_selected[$id_address][$total_shipping['shippingCompany'].','] = $total_shipping['shippingCompany'];
+					$delyvery_option[$id_address] = $total_shipping['shippingCompany'].',';
+					
                     $carrier_name = $total_shipping['shippingCompany'];
-					$carriers_price[$id_address][$id_package][$id_carrier]['with_tax'] = $total_shipping['total'];
-					$carriers_price[$id_address][$id_package][$id_carrier]['without_tax'] = $total_shipping['total'];
-				}
+					$carriers_price[$id_address][$id_package][$total_shipping['shippingCompany']]['with_tax'] = $total_shipping['total'];
+					$carriers_price[$id_address][$id_package][$total_shipping['shippingCompany']]['without_tax'] = $total_shipping['total'];
 				
-				
-				$key .= $id_carrier.',';
-				if (!isset($best_price_carrier[$id_carrier]))
-					$best_price_carrier[$id_carrier] = array(
-						'price_with_tax' => 0,
-						'price_without_tax' => 0,
-						'package_list' => array(),
-						'product_list' => array(),
-					);
-				$best_price_carrier[$id_carrier]['price_with_tax'] += $carriers_price[$id_address][$id_package][$id_carrier]['with_tax'];
-				$best_price_carrier[$id_carrier]['price_without_tax'] += $carriers_price[$id_address][$id_package][$id_carrier]['without_tax'];
-				$best_price_carrier[$id_carrier]['package_list'][] = $id_package;
-				$best_price_carrier[$id_carrier]['product_list'] = array_merge($best_price_carrier[$id_carrier]['product_list'], $packages[$id_package]['product_list']);
-				$best_price_carrier[$id_carrier]['instance'] = $carriers_instance[$id_carrier];
-				$real_best_price = !isset($real_best_price) || $real_best_price > $carriers_price[$id_address][$id_package][$id_carrier]['with_tax'] ?
-					$carriers_price[$id_address][$id_package][$id_carrier]['with_tax'] : $real_best_price;
-				$real_best_price_wt = !isset($real_best_price_wt) || $real_best_price_wt > $carriers_price[$id_address][$id_package][$id_carrier]['without_tax'] ?
-					$carriers_price[$id_address][$id_package][$id_carrier]['without_tax'] : $real_best_price_wt;
+                    $key .= $total_shipping['shippingCompany'].',';
+                    if (!isset($best_price_carrier[$total_shipping['shippingCompany']]))
+                        $best_price_carrier[$total_shipping['shippingCompany']] = array(
+                            'price_with_tax' => 0,
+                            'price_without_tax' => 0,
+                            'package_list' => array(),
+                            'product_list' => array(),
+                        );
+                    $best_price_carrier[$total_shipping['shippingCompany']]['price_with_tax'] += $carriers_price[$id_address][$id_package][$total_shipping['shippingCompany']]['with_tax'];
+                    $best_price_carrier[$total_shipping['shippingCompany']]['price_without_tax'] += $carriers_price[$id_address][$id_package][$total_shipping['shippingCompany']]['without_tax'];
+                    $best_price_carrier[$total_shipping['shippingCompany']]['package_list'][] = $id_package;
+                    $best_price_carrier[$total_shipping['shippingCompany']]['product_list'] = array_merge($best_price_carrier[$total_shipping['shippingCompany']]['product_list'], $packages[$id_package]['product_list']);
+                    $best_price_carrier[$total_shipping['shippingCompany']]['instance'] = $carriers_instance[$total_shipping['shippingCompany']];
+                    $real_best_price = !isset($real_best_price) || $real_best_price > $carriers_price[$id_address][$id_package][$total_shipping['shippingCompany']]['with_tax'] ?
+                        $carriers_price[$id_address][$id_package][$total_shipping['shippingCompany']]['with_tax'] : $real_best_price;
+                    $real_best_price_wt = !isset($real_best_price_wt) || $real_best_price_wt > $carriers_price[$id_address][$id_package][$total_shipping['shippingCompany']]['without_tax'] ?
+                        $carriers_price[$id_address][$id_package][$total_shipping['shippingCompany']]['without_tax'] : $real_best_price_wt;
+                
 			}
-
 			// Add the delivery option with best price as best price
 			$delivery_option_list[$id_address][$key] = array(
 				'carrier_list' => $best_price_carrier,
@@ -2103,7 +2109,7 @@ class CartCore extends ObjectModel
 			$key = '';
 
 			// Get the delivery option with the best grade
-			foreach ($best_grade_carriers as $id_package => $id_carrier)
+			/*foreach ($best_grade_carriers as $id_package => $id_carrier)
 			{
 				$key .= $id_carrier.',';
 				if (!isset($best_grade_carrier[$id_carrier]))
@@ -2127,10 +2133,10 @@ class CartCore extends ObjectModel
 					'is_best_price' => false,
 					'unique_carrier' => (count($best_grade_carrier) <= 1)
 				);
-			$delivery_option_list[$id_address][$key]['is_best_grade'] = true;
+			$delivery_option_list[$id_address][$key]['is_best_grade'] = true;*/
 
 			// Get all delivery options with a unique carrier
-			foreach ($common_carriers as $id_carrier)
+			/*foreach ($common_carriers as $id_carrier)
 			{
 				$key = '';
 				$package_list = array();
@@ -2164,7 +2170,7 @@ class CartCore extends ObjectModel
 					);
 				else
 					$delivery_option_list[$id_address][$key]['unique_carrier'] = (count($delivery_option_list[$id_address][$key]['carrier_list']) <= 1);
-			}
+			}*/
 		}
 
 		$cart_rules = CartRule::getCustomerCartRules(Context::getContext()->cookie->id_lang, Context::getContext()->cookie->id_customer, true, true, false, $this);
