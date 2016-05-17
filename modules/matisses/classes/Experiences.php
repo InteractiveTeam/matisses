@@ -60,24 +60,17 @@
 		
 		public function update($null_values = false){                        
             $data = json_decode($_POST['products']);
-//            $id_prod  = $data->marker0->id_product;
-            
-            
-            
+
             foreach($data as $key => $value){
                 if(strlen($value->id_product) == 20){
-                    $dataProduct = $this->consultIdproduct($value->id_product,$data->$key);
-                    $value->id_product = $dataProduct['id_product'];
+                    $dataProduct = $this->consultIdproduct(trim($value->id_product),$data->$key);
+                    $value->id_product = trim($dataProduct['id_product']);
                     $value->id_product_attribute = $dataProduct['id_product_attribute'];                    
                 }
             }
             
-
             $result = json_encode($data);
-            
-            /*echo '<pre>';print_r($dataProduct); echo '</pre>';
-            exit();*/
-            
+                        
             //Actualizamos el producto con el ID y no la referencia
             $sql = "UPDATE "._DB_PREFIX_."experiences SET products = '".$result."' WHERE id_experience = ".$_POST['id_experience'];            
             $result = Db::getInstance()->execute($sql);
