@@ -553,10 +553,6 @@ $.fn.ayoshare = function() {
         html += "<p><a class='houzz-share-button' data-url='"+b+"' data-hzid='Mat225' data-title='"+a+"' data-img='"+img+"' data-desc='"+desk+"' data-category='Category keywords ' data-showcount='1 ' href='https://www.houzz.com'></a></p>";
        (function(d,s,id){if(!d.getElementById(id)){var js=d.createElement(s);js.id=id;js.async=true;js.src="//platform.houzz.com/js/widgets.js?"+(new Date().getTime());var ss=d.getElementsByTagName(s)[0];ss.parentNode.insertBefore(js,ss);}})(document,"script","houzzwidget-js");
     }*/
-    
-    if (houzz == true) {
-        html += "<p><a class='ayo-btn ayo-houzz' href='http://www.houzz.es/pro/matisses/matisses' target='_blank'><i class='fa fa-houzz'></i></a></p>";
-    }
 
     $(this).html(html);
 
@@ -771,7 +767,6 @@ $(function() {
             reddit = false,
             vk = false,
             pocket = false,
-            twitter = true,
-            houzz = true
+            twitter = true
         ); 
     });

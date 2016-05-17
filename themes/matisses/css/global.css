@@ -4547,13 +4547,13 @@ line-height: 1.5;
 	border-bottom:none;
 }
 
-.fa-angle-left:before {
+.fa-angle-left:before, .fa-angle-right:before {
     font-weight: bold !important;
     font-size: 1.3rem;
     margin-right: 10px;
 	}
 
-	.fa-chevron-left {
+	.fa-chevron-left, .fa-chevron-right {
     padding-right: 0.625rem;
 	}
 
@@ -5201,7 +5201,7 @@ a.ayo-btn{
 
 .ax-pagination_article {
     clear: both;
-    padding-top:20px;
+    padding:120px 0 80px 0;
 }
 
 .ax-pagination_article .next {
@@ -5485,7 +5485,7 @@ body#search .category_list.product_list.grid .ajax_block_product {
     width: auto;
     height: auto;
     padding: 5px;
-    margin: 0 15px 0 0;
+    margin: -10px 15px 0 0;
 }
 
 .ax-container-blog .grid_9 {
@@ -5533,7 +5533,7 @@ body#search .category_list.product_list.grid .ajax_block_product {
     top: 30px;
     left: -30px;
     width: 50px;
-    height: 2px;
+    height: 1px;
     background: #d9292e; 
 }
 
@@ -5572,6 +5572,87 @@ body#search .category_list.product_list.grid .ajax_block_product {
     border-top: #ccc solid 1px;
     border-bottom: #ccc solid 1px;
     padding: 20px;
+}
+
+.ax-shareContent .text {
+    float: left;
+    margin: 10px 10px 0 0;
+    font-family: 'condensed', sans-serif;
+    color: #d9292e;
+}
+
+.center_column .newContent .row {
+    clear: both;
+}
+
+.newContent #form1 label {
+    font-size: 1.7rem;
+    width: 100%;
+    line-height: 1.3rem;
+    border-bottom: #CCCCCC solid 1px;
+    margin: 30px auto;
+    padding: 10px 1.5%;
+    color: #000;
+}
+
+.newContent #form1 textarea.form-control {
+    width: 97%;
+    background: #F6F6F6;
+    margin: 0 auto;
+    min-height: 80px;
+}
+
+.newContent .row #form1 button {
+    margin-left:4%; 
+}
+
+.ax-pagination_article {
+    text-align: center;
+}
+
+.ax-pagination_article .ax-more-article {
+    display: inline-block;
+    width: 40%;
+    vertical-align: middle;
+}
+
+.ax-pagination_article .ax-more-article:first-child {
+    border-right: #ccc solid 1px;
+}
+
+.ax-pagination_article .ax-left-article-blog, .ax-pagination_article .ax-right-article-blog {
+    display: table;
+}
+
+.ax-pagination_article .btn {
+    vertical-align: middle;
+}
+
+.ax-pagination_article .prev {
+    margin: 0 20px 0 0;
+    padding: 5px 5px 5px 15px;
+}
+
+.ax-pagination_article .next {
+    margin: 0 0 0 20px;
+    padding: 5px 5px 5px 15px;
+}
+
+.ax-pagination_article h4 {
+    vertical-align: middle;
+    display: table-cell;
+    width: 86%;
+    padding: 0 7%;
+}
+
+.ax-pagination_article .ax-left-article-blog h4 {
+    text-align: left;
+    font-size: 1.1rem;
+}
+
+.ax-pagination_article .ax-right-article-blog h4 {
+    text-align: right;
+    font-size: 1.1rem;
 }
 
 /*estilos de buscador*/
