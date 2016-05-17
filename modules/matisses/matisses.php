@@ -675,11 +675,16 @@ class matisses extends Module
                     $tempattr['hex_color'] = $hexcolor[0]['color'];   
                 }
                 
+                // images 
                 $images = $product->_getAttributeImageAssociations($row['id_product_attribute']);
                 
                 if (isset($images)) {
                     $tempattr['images'] = array('default' => $link->getImageLink($product->link_rewrite[1], $images[0]));   
                 }
+                
+                // price
+                $pricesku = $product->getPrice(true,$inrefer['id_product_attribute']);
+                $tempattr['price'] = $pricesku;
                 
                 array_push($skuattr,$tempattr);
             }

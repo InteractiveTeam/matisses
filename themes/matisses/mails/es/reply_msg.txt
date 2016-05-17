@@ -1,15 +1,14 @@
-[{shop_url}] 
+[{shop_url}]
 
-Hola {firstname} {lastname}, 
+Hola {firstname} {lastname},
 
-{reply} 
+{reply}
 
-Por favor, no conteste a este correo electrónico, no recibiremos su
-respuesta. 
+Por favor, no contestes a este correo electrónico, no recibiremos tu
+respuesta.
 
-Si desea contestar, por favor, use el siguiente enlace: {link}
-[{link}] 
+Si deseas contestar, por favor, usa el siguiente enlace: {link}
+[{link}]
 
 {shop_name} [{shop_url}] creado por
-PrestaShop(tm) [http://www.prestashop.com/] 
-
+PrestaShop(tm) [http://www.prestashop.com/]

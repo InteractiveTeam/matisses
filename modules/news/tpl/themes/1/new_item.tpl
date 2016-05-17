@@ -20,7 +20,7 @@
 {/if}
 
 <div class="newContent grid_12 omega alpha">
-    <div class="newContentInt">
+    <div class="newContentInt grid_12">
 
         {if $imgsObj}
             <script type="text/javascript">
@@ -159,16 +159,28 @@
             {/if}
             </div>-->
             
+            <div class="container">
+                <div class="info-chaordic">
+                     <img src="../../themes/matisses/img/displayed-category.jpg" alt="productos visualizados">
+                     <div class="mask">
+                      <h1>Espacio para Chaordic</h1>
+                     </div>
+                </div>
+           </div>
+            </br></br></br>
+            
             <div class="ax-shareContent">
                <div class="newTopActions">
-                    <!-- AddThis Button BEGIN -->
-                        <p class="addthis_toolbox addthis_default_style ">
-                            <a class="addthis_button_email" ></a>
-                        </p>
-                        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fd60a055ec70816"></script>
-                    <!-- AddThis Button END -->
+                <!-- AddThis Button BEGIN -->
+                <p class="text">{l s="Compartir" mod="news"}:</p>
+                <p class="addthis_toolbox addthis_default_style ">
+                    <a class="addthis_button_email" ></a>
+                </p>
+                <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fd60a055ec70816"></script>
+                <!-- AddThis Button END -->
                 </div>
                 <div id="share"></div>
+                <p><a class='ayo-btn ayo-houzz' href='http://www.houzz.es/pro/matisses/matisses' target='_blank'><i class='fa fa-houzz'></i></a></p>
             </div>
             {if $socialButtonHtml}
             <div>
@@ -176,32 +188,6 @@
             </div>
             {/if}
 
-        </div>
-
-        <div class="ax-pagination_article">
-        {if !empty($prev_id_news)}
-            <a class="prev btn btn-default btn-red" href="{$link->getModuleLink('news', 'new',
-                                        [
-                                            'id_news'  => "{$prev_id_news}",
-                                            'cat_news' => "{if $cat}{$cat}{/if}",
-                                            'page_cat'     => "{$page}",
-                                            'rewrite'  => "{$prev_rewrite}",
-                                            'cat_rewrite'  => "{$prev_cat_rewrite}"
-                                         ]
-                                         ,false)}"><i class="fa fa-angle-double-left"></i>&nbsp;{l s='Anterior' mod='news'}</a>
-        {/if}
-        
-        {if !empty($next_id_news)}
-            <a class="next btn btn-default btn-red" href="{$link->getModuleLink('news', 'new',
-                                        [
-                                            'id_news'  => "{$next_id_news}",
-                                            'cat_news' => "{if $cat}{$cat}{/if}",
-                                            'page_cat'     => "{$page}",
-                                            'rewrite'  => "{$next_rewrite}",
-                                            'cat_rewrite'  => "{$next_cat_rewrite}"
-                                         ]
-                                         ,false)}">{l s='Siguiente' mod='news'}&nbsp;<i class="fa fa-angle-double-right"></i></a>
-        {/if}
         </div>
 
         {if $tagsObj}
@@ -284,15 +270,15 @@
                   fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));</script>
                 <div class="fb-comments" data-href="{$link->getModuleLink('news', 'new',
-                                                            [
-                                                                'id_news'  => "{$id_news}",
-                                                                'cat_news' => 0,
-                                                                'page_cat'     => 0,
-                                                                'rewrite'  => "{$rewrite}",
-                                                                'cat_rewrite'  => ""
-                                                             ]
+                    [
+                        'id_news'  => "{$id_news}",
+                        'cat_news' => 0,
+                        'page_cat'     => 0,
+                        'rewrite'  => "{$rewrite}",
+                        'cat_rewrite'  => ""
+                     ]
 
-                                                            ,false)}" data-num-posts="20" data-width="{$newsWidth-10}"></div>
+                    ,false)}" data-num-posts="20" data-width="{$newsWidth-10}"></div>
             </div>
         {/if}
 
@@ -301,27 +287,26 @@
                 {if $prev_id_news}
                     <a class="button" style="float: left"
                        href="{$link->getModuleLink('news', 'new',
-                                                            [
-                                                                'id_news'  => "{$prev_id_news}",
-                                                                'cat_news' => "{$cat}",
-                                                                'page_cat'     => 0,
-                                                                'rewrite'  => "",
-                                                                'cat_rewrite'  => ""
-                                                             ]
-
-                                                            ,false)}"
+                        [
+                            'id_news'  => "{$prev_id_news}",
+                            'cat_news' => "{$cat}",
+                            'page_cat'     => 0,
+                            'rewrite'  => "",
+                            'cat_rewrite'  => ""
+                         ]
+                         ,false)}"
                        >{l s='< Previous' mod='news'}</a>
                 {/if}
                 {if $next_id_news}
                     <a class="button" style="float: right"
                        href="{$link->getModuleLink('news', 'new',
-                                                            [
-                                                                'id_news'  => "{$next_id_news}",
-                                                                'cat_news' => "{$cat}",
-                                                                'page_cat'     => 0,
-                                                                'rewrite'  => "",
-                                                                'cat_rewrite'  => ""
-                                                             ]
+                        [
+                            'id_news'  => "{$next_id_news}",
+                            'cat_news' => "{$cat}",
+                            'page_cat'     => 0,
+                            'rewrite'  => "",
+                            'cat_rewrite'  => ""
+                         ]
 
                                                             ,false)}"
                        >{l s='Next >' mod='news'}</a>
@@ -348,6 +333,42 @@
     </div>
 	</form>
 
+</div>
+
+<div class="ax-pagination_article">
+{if !empty($prev_id_news)}
+   <div class="ax-more-article">
+        <div class="ax-left-article-blog">
+           <a class="prev btn btn-default btn-red" href="{$link->getModuleLink('news', 'new',
+            [
+                'id_news'  => "{$prev_id_news}",
+                'cat_news' => "{if $cat}{$cat}{/if}",
+                'page_cat'     => "{$page}",
+                'rewrite'  => "{$prev_rewrite}",
+                'cat_rewrite'  => "{$prev_cat_rewrite}"
+             ]
+             ,false)}"><i class="fa fa-angle-left"></i></a>
+             <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+        </div>
+    </div>
+{/if}
+
+{if !empty($next_id_news)}
+   <div class="ax-more-article">
+        <div class="ax-right-article-blog">
+           <h4>Distinctio explicabo reprehenderit officiis itaque iste molestiae nihil tenetur fugit quia doloremque.</h4>
+            <a class="next btn btn-default btn-red" href="{$link->getModuleLink('news', 'new',
+            [
+                'id_news'  => "{$next_id_news}",
+                'cat_news' => "{if $cat}{$cat}{/if}",
+                'page_cat'     => "{$page}",
+                'rewrite'  => "{$next_rewrite}",
+                'cat_rewrite'  => "{$next_cat_rewrite}"
+             ]
+             ,false)}"><i class="fa fa-angle-right"></i></a>
+        </div>
+    </div>
+{/if}
 </div>
 
 {if $comments}

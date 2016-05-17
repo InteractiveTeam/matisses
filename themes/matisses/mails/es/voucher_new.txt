@@ -1,12 +1,11 @@
-[{shop_url}] 
+[{shop_url}]
 
-Hola {firstname} {lastname}, 
+Hola {firstname} {lastname},
 
 Código del cupón: {voucher_num}
 
-Copia y pegue este código durante el proceso de pago de su próxima
-orden. 		 
+Copia y pega este código durante el proceso de pago de tu próxima
+orden.
 
 {shop_name} [{shop_url}] creado por
-PrestaShop(tm) [http://www.prestashop.com/] 
-
+PrestaShop(tm) [http://www.prestashop.com/]

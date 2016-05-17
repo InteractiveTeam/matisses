@@ -2,9 +2,9 @@
 
 Hola {firstname} {lastname}, 
 
-ATENCIÓN: ha recibido un nuevo registro en su Back Office.
+ATENCIÓN: has recibido un nuevo registro en tu Back Office.
 
-Puede comprobarlo en "HERRAMIENTAS"&gt; "REGISTROS" de su Back Office.
+Puedes comprobarlo en "HERRAMIENTAS"&gt; "REGISTROS".
 
 {shop_name} [{shop_url}] creado por
 PrestaShop(tm) [http://www.prestashop.com/] 
