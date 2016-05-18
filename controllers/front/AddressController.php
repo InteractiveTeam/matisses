@@ -122,6 +122,8 @@ class AddressControllerCore extends FrontController
 	 */
 	protected function processSubmitAddress()
 	{
+        $_POST['firstname'] = ToolsCore::ucwords($_POST['firstname']);
+        $_POST['lastname'] = ToolsCore::ucwords($_POST['lastname']);
 		$address = new Address();
 		$this->errors = $address->validateController();
 		$address->id_customer = (int)$this->context->customer->id;
