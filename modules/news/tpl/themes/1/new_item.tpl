@@ -165,16 +165,6 @@
             {/if}
             </div>-->
             
-            <div class="container">
-                <div class="info-chaordic">
-                     <img src="../../themes/matisses/img/displayed-category.jpg" alt="productos visualizados">
-                     <div class="mask">
-                      <h1>Espacio para Chaordic</h1>
-                     </div>
-                </div>
-           </div>
-            </br></br></br>
-            
             <div class="ax-shareContent">
                <div class="newTopActions">
                 <!-- AddThis Button BEGIN -->
