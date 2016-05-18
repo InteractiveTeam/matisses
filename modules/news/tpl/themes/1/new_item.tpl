@@ -105,7 +105,7 @@
                         <ul>
                         {if $catObj}
                             {foreach from=$catObj item='relCat' name=myLoop}
-                            <li><a href="/blog/categoria/{$relCat->id}-{$relCat->rewrite}.html">{$relCat->title}</a></li>
+                            <li><a href="/blog/categoria/{$relCat->id}-{$relCat->rewrite}">{$relCat->title}</a></li>
                             {/foreach}
                         {/if}
                         </ul>
