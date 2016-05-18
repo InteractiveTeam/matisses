@@ -1218,6 +1218,10 @@
     .bottom-pagination-content ul.pagination li > span, .bottom-pagination-content ul.pagination li > a {
         padding: 0 0.9375rem;
     }
+    
+    .ax-tienda-item .ax-maps .ax-image {
+        width: 595px;
+    }
 
 }
 
@@ -1876,6 +1880,22 @@
     
     #view_wishlist .wlp_bought ul .col-md-4 {
         width: 33.3333%;
+    }
+    
+    .ax-tienda-item .ax-item-text {
+        padding-bottom: 60px;
+    }
+    
+    .ax-tienda-item .grid_5, .ax-tienda-item .grid_7 {
+        width: 100%;
+    }
+    
+    .ax-tienda-item .ax-maps .ax-image {
+        width: 96%;    
+    }
+    
+    .ax-btn-view-maps {
+        bottom: 30px;
     }
     
 }
@@ -3212,6 +3232,27 @@
     
     .ax-pagination_article h4 {
         width: 78%;
+    }
+    
+    .ax-tienda-item .ax-item-text {
+        padding: 20px 20px 60px 20px;
+    }
+    
+    .ax-tienda-item .ax-maps .ax-image {
+        width: 91%;
+        height: 300px;
+    }
+    
+    #stores #map {
+        height: 300px !important;
+    }
+    
+    .ax-tienda-item h1, .ax-tienda-item h2 {
+        margin: 0
+    }
+    
+    #stores h1, #stores h2 {
+        margin-bottom: 1.25rem;
     }
 }
 

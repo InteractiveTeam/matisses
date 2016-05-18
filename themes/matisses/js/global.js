@@ -38,6 +38,19 @@ $(window).load(function() {
 
 $(document).ready(function() {
     $('body').animate({'opacity':'1'}, 1000 );
+    var btnMaps = $(".ax-btn-view-maps");
+
+    btnMaps.on('click', function(){
+        $(this).parent().siblings('.ax-maps').find('.ax-image').fadeToggle();
+        $(this).find('i').toggleClass('fa-times');
+    })
+    
+    btnMaps.toggle(function() {
+      $(this).html("Cerrar mapa<i class='fa fa-times'></i>")
+    }, function() {
+      $(this).html("Ver mapa<i class='fa fa-angle-right'></i>")
+    });
+    
 })
 
 var responsiveflag = false;

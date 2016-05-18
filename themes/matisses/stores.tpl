@@ -33,13 +33,10 @@
 <div class="ax-tiendas">
     {foreach $stores as $store}
     <div class="ax-tienda-item grid_12">
-        <div class="ax-item-text grid_6">
-                <h2>{l s='Nombre:'} {$store.name|escape:'html':'UTF-8'}</h2>
-                <p>{l s='Ciudad:'} {$store.city|escape:'html':'UTF-8'}</p>
-                <p>{l s='Teléfono:'}</p>
-                </p> {$store.phone}</p>
-                <p>{l s='Dirección:'}
-                {assign value=$store.id_store var="id_store"}
+        <div class="ax-item-text grid_5">
+                <h2>{l s='Nombre:'} {$store.name|escape:'html':'UTF-8'}</h2>                
+                <p class="ax-text-description">{l s='Dirección:'}</p>
+                <p>{assign value=$store.id_store var="id_store"}
                 {foreach from=$addresses_formated.$id_store.ordered name=adr_loop item=pattern}
                     {assign var=addressKey value=" "|explode:$pattern}
                     {foreach from=$addressKey item=key name="word_loop"}
@@ -48,10 +45,13 @@
                     {/foreach}
                 {/foreach}
                 </p>
-                <h3>{l s='Horario de atención'} </h3>
+                <p class="ax-text-description">{l s='Ciudad:'}</p><p>{$store.city|escape:'html':'UTF-8'}</p>
+                <p class="ax-text-description">{l s='Teléfono:'}</p><p>345 65 87</p>
+                <p class="ax-text-description">{l s='Horario de atención'}</p>
                 {if isset($store.working_hours)}{$store.working_hours}{/if}
+            <span class="ax-btn-view-maps">Ver mapa<i class="fa fa-angle-right"></i></span>
         </div>
-        <div class="ax-maps grid_6">
+        <div class="ax-maps grid_7">
                 {if $store.has_picture}
                     <div class="store-image alpha">
                         <div style="background:url({$img_store_dir}{$store.id_store}.jpg)" alt="" class="ax-image"></div>
