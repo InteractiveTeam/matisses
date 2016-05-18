@@ -37,6 +37,7 @@ $(window).load(function() {
 */
 
 $(document).ready(function() {
+    
     $('body').animate({'opacity':'1'}, 1000 );
     var btnMaps = $(".ax-btn-view-maps");
 
@@ -50,7 +51,7 @@ $(document).ready(function() {
     }, function() {
       $(this).html("Ver mapa<i class='fa fa-angle-right'></i>")
     });
-    
+        
 })
 
 var responsiveflag = false;
@@ -461,8 +462,6 @@ $(window).scroll(function(){
 $(document).ready(function(){
     var elementFilterRp = $('<div></div>');
     elementFilterRp.addClass('ax-filterRp');
-
-    $("<div class='ax-btn-filter'><p>Filtrar por: <i class='fa fa-sliders'></i></p></div>").prependTo('.parrilla-productos');
     
     $('.ax-btn-filter').on('click', function(){
         $('.parrilla-productos #layered_block_left').slideToggle();
@@ -475,23 +474,12 @@ function FilterRp() {
     var widthPage = $(window).width();    
     
     if(widthPage < 768){
-        $('#layered_block_left').hide();
-        $('.ax-btn-filter').prependTo($('.parrilla-productos'));
         $('.ax-block-content').append($('.ax-blog-select-category'));
         $('.right-down-menu .search').prependTo($('.right-up-menu > ul'));
-        $('#layered_block_left #layered_form > div').append("<span class='ax-close-filter'>Cerrar filtro</span>");
     }else {
         $('.parrilla-productos #layered_block_left').show();
         $('.right-down-menu > ul li:eq(1)').after($('.right-up-menu .search'))
-        $('#layered_block_left #layered_form .ax-close-filter').empty();
     }
-    
-    $('.ax-close-filter').on('click', function(){
-        $('#layered_block_left').slideToggle();
-         $("html, body").animate({scrollTop:275+"px"});
-    })
-    
-    
 } 
 
 FilterRp()
@@ -783,3 +771,8 @@ $(function() {
             twitter = true
         ); 
     });
+
+function cerrarBoton() {
+    $('#layered_block_left').slideToggle();
+    $("html, body").animate({scrollTop:275+"px"});
+}

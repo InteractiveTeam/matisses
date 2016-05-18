@@ -22,7 +22,6 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registred Trademark & Property of PrestaShop SA
 *}
-
 <!-- Block layered navigation module -->
 {if $nbr_filterBlocks != 0}
 <script type="text/javascript">
@@ -34,7 +33,6 @@ param_product_url = '';
 {/if}
 </script>
 <div id="layered_block_left" class="layered-left grid_12 alpha omega">
-
 	<div class="block_content">
 		<form action="#" id="layered_form">
 			<div>
@@ -323,6 +321,7 @@ param_product_url = '';
 					{/foreach}
 				{/if}
 			{/foreach}
+			<span class='ax-close-filter' onclick="cerrarBoton()">Cerrar filtro</span>
 		</form>
 	</div>
 	<div id="layered_ajax_loader" style="display: none;">

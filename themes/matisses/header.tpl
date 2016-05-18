@@ -321,6 +321,7 @@
 		<!--Bloque2 Parrilla Productos-->
 		<div class="parrilla-productos">
 			<div class="container">
+			    <div class='ax-btn-filter'><p>Filtrar por: <i class='fa fa-sliders'></i></p></div>
 				<div id="left_column" class="column grid_{$left_column_size|intval} alpha ">{$HOOK_LEFT_COLUMN}</div>
 {/if}
 {if isset($left_column_size) && isset($right_column_size)}{assign var='cols' value=(12 - $left_column_size - $right_column_size)}{else}{assign var='cols' value=12}{/if}

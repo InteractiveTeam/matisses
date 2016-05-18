@@ -1060,7 +1060,9 @@
 		width: auto;
 	}
 	.menu-copyright ul li {
-		display: none;
+		border: none;
+        margin: 2.5px 0;
+        padding: 0;
 	}
 	.menu-copyright ul li a{
 		font-size: 0.875rem;
@@ -1763,7 +1765,11 @@
         display: inline-block;
         padding: 10px 14px;
         border: #ccc solid 1px;
-        margin: 15px;
+        margin-bottom: 10px;
+    }
+    
+    #layered_block_left span.ax-close-filter {
+        display: block;
     }
     
     .header-container .main_panel .grid_5 {
@@ -2587,7 +2593,7 @@
 
 	.logo-copyright {
 		float: left;
-		padding: 0.7rem 0px;
+        padding: 2.4rem 0px;
 	}
 
 	.logo-copyright img {
@@ -2595,7 +2601,6 @@
 	}
 
 	.menu-copyright{
-		float:left;
 		width: 75%;
 		text-align: left;
 	}
@@ -3132,6 +3137,7 @@
     .footer-down .container .menu-copyright {
         width: 71%;
         line-height: 18px;
+        padding: 0;
     }
     
     .block .products-block .item .products-block-image img {
@@ -3253,6 +3259,10 @@
     
     #stores h1, #stores h2 {
         margin-bottom: 1.25rem;
+    }
+    
+    #layered_block_left {
+        display: none;
     }
 }
 

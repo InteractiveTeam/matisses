@@ -684,6 +684,7 @@ box-sizing: border-box;
 	height: 100%;
 	position: absolute;
 	top: 0;
+    left: 0;
 	cursor: pointer;
 	-webkit-transition: all 0.6s ease;
 	transition: all 0.6s ease;
@@ -5271,7 +5272,7 @@ a.newPrint:hover {
 }
 
 #layered_block_left span.ax-close-filter {
-    display: block;
+    display: none;
     background: #8B8989;
     padding: 15px 0;
     color: #fff;
@@ -5448,6 +5449,10 @@ body#search .category_list.product_list.grid .ajax_block_product {
     margin: 40px auto;
     width: 92%;
     float: none;
+}
+
+.ax-container-blog .newText img {
+    width: 100%;
 }
 
 .ax-news-category span {
@@ -5697,6 +5702,7 @@ body#search .category_list.product_list.grid .ajax_block_product {
     height: 445px;
     position: absolute;
     z-index: 2;
+    background-size: auto 100% !important;
 }
 
 .ax-btn-view-maps {
@@ -5705,6 +5711,7 @@ body#search .category_list.product_list.grid .ajax_block_product {
     font-family: 'condensed';
     color: #d7162f;
     cursor: pointer;
+    bottom: 0px;
 }
 
 .ax-btn-view-maps i {
