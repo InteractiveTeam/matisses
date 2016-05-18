@@ -28,41 +28,50 @@
 <h1 class="page-heading">
     {l s='Our stores'}
 </h1>
+
+
+
 {if $simplifiedStoresDiplay}
     {if $stores|@count}
-<div class="ax-tiendas">
-    {foreach $stores as $store}
-    <div class="ax-tienda-item grid_12">
-        <div class="ax-item-text grid_6">
-                <h2>{l s='Nombre:'} {$store.name|escape:'html':'UTF-8'}</h2>
-                <p>{l s='Ciudad:'} {$store.city|escape:'html':'UTF-8'}</p>
-                <p>{l s='Teléfono:'}</p>
-                </p> {$store.phone}</p>
-                <p>{l s='Dirección:'}
-                {assign value=$store.id_store var="id_store"}
-                {foreach from=$addresses_formated.$id_store.ordered name=adr_loop item=pattern}
-                    {assign var=addressKey value=" "|explode:$pattern}
-                    {foreach from=$addressKey item=key name="word_loop"}
-                         {if isset($addresses_style[$key])} class="{$addresses_style[$key]}"{/if}
-                            {$addresses_formated.$id_store.formated[$key|replace:',':'']|escape:'html':'UTF-8'}
-                    {/foreach}
-                {/foreach}
-                </p>
-                <h3>{l s='Horario de atención'} </h3>
-                {if isset($store.working_hours)}{$store.working_hours}{/if}
-        </div>
-        <div class="ax-maps grid_6">
-                {if $store.has_picture}
-                    <div class="store-image alpha">
-                        <div style="background:url({$img_store_dir}{$store.id_store}.jpg)" alt="" class="ax-image"></div>
-                        <div id="map"></div>
-                    </div>
+
+    	<div id="map"></div>
+
+        <div id="accordion-resizer" class="ui-widget-content">
+          <div id="accordion-stores">
+          	{foreach $stores as $store}
+            <h2>{$store.name|escape:'html':'UTF-8'}</h2>
+            <div>
+
+               {if $store.has_picture}
+                <div class="store-image grid_4 alpha">
+                    <img src="{$img_store_dir}{$store.id_store}.jpg" alt="" />
+                </div>
                 {/if}
+                <div class="content-section grid_8 omega">
+                	<h3>{l s='Nombre:'} {$store.name|escape:'html':'UTF-8'}</h3>
+                    <p>{l s='Ciudad:'} {$store.city|escape:'html':'UTF-8'}</p>
+                    <p>{l s='Teléfono:'}</p>
+                    </p> {$store.phone}</p>
+                    <p>{l s='Dirección:'}
+                    {assign value=$store.id_store var="id_store"}
+                    {foreach from=$addresses_formated.$id_store.ordered name=adr_loop item=pattern}
+                        {assign var=addressKey value=" "|explode:$pattern}
+                        {foreach from=$addressKey item=key name="word_loop"}
+                             {if isset($addresses_style[$key])} class="{$addresses_style[$key]}"{/if}
+                                {$addresses_formated.$id_store.formated[$key|replace:',':'']|escape:'html':'UTF-8'}
+                        {/foreach}
+                    {/foreach}
+                    </p>
+                    <h4>{l s='Horario de atención'} </h4>
+                    {if isset($store.working_hours)}{$store.working_hours}{/if}
+                </div>
+            </div>
+            {/foreach}
+
+
+
+          </div>
         </div>
-    </div>
-    {/foreach}
-</div>
-<div style="clear:both"></div>
     {/if}
 {else}
 

@@ -5655,6 +5655,38 @@ body#search .category_list.product_list.grid .ajax_block_product {
     font-size: 1.1rem;
 }
 
+/*tiendas*/
+
+.ax-tienda-item {
+    background: #EFEFEF;
+    font-size: 0;
+    padding: 0;
+}
+
+.ax-tienda-item .grid_6 {
+    width: 50%;
+    margin: 0;
+    padding: 0;
+}
+
+.ax-tienda-item .ax-item-text {
+    padding: 30px;
+}
+
+.ax-tienda-item .ax-maps .store-image {
+    overflow: hidden;
+}
+
+.ax-tienda-item .ax-maps .ax-image {
+    width: 585px;
+    height: 445px;
+    position: absolute;
+}
+
+#stores #map {
+    margin-bottom: 0 !important;
+}
+
 /*estilos de buscador*/
 
     .parrilla-productos div.pagination {
