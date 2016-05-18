@@ -88,11 +88,12 @@
         {/if}
         <div class="description-news grid_12 alpha omega">
             <div class="ax-news-category">
-                {l s="categoria" mod="news"}: <span>telas vendadas</span>
+                {l s="categoria" mod="news"}: <span>{$category}</span>
                 <div class="ax-cont-print"><a href="javascript:window.print()" class="newPrint"><i class="fa fa-print" aria-hidden="true"></i></a>Imprimir</div>
             </div>
             <div class="ax-container-blog grid_12">
                 <div class="grid_9">
+                 
                     <div class="newText"><p>{$new}</p></div>
                 </div>
                 <div class="grid_3">
@@ -100,31 +101,36 @@
                         <input type="search" placeholder="Buscar"/>
                     </div>
                     <div class="category-filter">
-                        <h4>Categorias</h4>
+                        <h4>{l s='Categorías' mod='news'}</h4>
                         <ul>
-                            <li><a href="#">categoria del blog</a></li>
-                            <li><a href="#">categoria del blog</a></li>
-                            <li><a href="#">categoria del blog</a></li>
-                            <li><a href="#">categoria del blog</a></li>
-                            <li><a href="#">categoria del blog</a></li>
-                            <li><a href="#">categoria del blog</a></li>
+                        {if $catObj}
+                            {foreach from=$catObj item='relCat' name=myLoop}
+                            <li><a href="/blog/categoria/{$relCat->id}-{$relCat->rewrite}.html">{$relCat->title}</a></li>
+                            {/foreach}
+                        {/if}
                         </ul>
                     </div>
                     <div class="ax-articulos-relacionados-blog">
-                        <h2>Artículos relacionados</h2>
-                        <ul>
-                            <li>
-                                <h3>Decoración, vida para tus espacios</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, tenetur tempora.</p>
-                            </li>
-                            <li>
-                                <h3>Decoración, vida para tus espacios</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, tenetur tempora.</p>
-                            </li>
-                            <li>
-                                <h3>Decoración, vida para tus espacios</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, tenetur tempora.</p>
-                            </li>
+                    <h2>Artículos relacionados</h2>
+                    <ul>
+                    {if $relNewsObj}
+                        <div class="relNewsContent" >
+                        {foreach from=$relNewsObj item='rel' name=myLoop}
+                                <li><a class="relNews" href="{$link->getModuleLink('news', 'new', 
+                                                                    [
+                                                                        'id_news'  => "{$rel->id}",
+                                                                        'cat_news' => 0,
+                                                                        'page_cat'     => 0,
+                                                                        'rewrite'  => "{$rel->rewrite}",
+                                                                        'cat_rewrite'  => ""
+                                                                     ]
+
+                                            ,false)}" title="{$rel->title|escape:html:'UTF-8'|truncate:70:'...'}"><h3>{$rel->title|escape:html:'UTF-8'}</h3></a>
+                                            <p>{$rel->newText|escape:html:'UTF-8'|truncate:100:'...'}</p>
+                                            </li>
+                            {/foreach}
+                        </div>
+                    {/if}
                         </ul>
                     </div>
                 </div>
@@ -132,10 +138,10 @@
             <div class="ax-cont-autor grid_12">
                 <div class="grid_6 ax-name-autor">
                     <p>Escrito por:</p>
-                    <div class="new-author"><p>Diana Villegas</p></div>
+                    <div class="new-author"><p>{if $autor}{$autor}{/if}</p></div>
                 </div>
                 <div class="grid_6 ax-details-autor">
-                    <p>{l s="categoria" mod="news"}:<span>telas vendadas</span></p>
+                    <p>{l s="categoria" mod="news"}:<span> {$category}</span></p>
                     <div class="ax-date"><i class="fa fa-clock-o"></i><span>{$date}</span></div>
                 </div>
             </div>
@@ -240,25 +246,6 @@
         {/if}
 
 
-        {if $relNewsObj}
-            <div class="relNewsContent" >
-                <div class="relNewsTitle">{l s='Related' mod='news'}</div>
-                {foreach from=$relNewsObj item='rel' name=myLoop}
-                    <a class="relNews" href="{$link->getModuleLink('news', 'new',
-                                                            [
-                                                                'id_news'  => "{$rel->id}",
-                                                                'cat_news' => 0,
-                                                                'page_cat'     => 0,
-                                                                'rewrite'  => "{$rel->rewrite}",
-                                                                'cat_rewrite'  => ""
-                                                             ]
-
-                                                            ,false)}" title="{$rel->title|escape:html:'UTF-8'|truncate:70:'...'}"><span>{$rel->date}</span>  {$rel->title|escape:html:'UTF-8'}</a>
-                {/foreach}
-            </div>
-        {/if}
-
-
         {if $fbComments}
             <div class="newComments">
                 <div id="fb-root"></div>
@@ -348,7 +335,7 @@
                 'cat_rewrite'  => "{$prev_cat_rewrite}"
              ]
              ,false)}"><i class="fa fa-angle-left"></i></a>
-             <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+             <h4>{$prev_title}</h4>
         </div>
     </div>
 {/if}
@@ -356,7 +343,7 @@
 {if !empty($next_id_news)}
    <div class="ax-more-article">
         <div class="ax-right-article-blog">
-           <h4>Distinctio explicabo reprehenderit officiis itaque iste molestiae nihil tenetur fugit quia doloremque.</h4>
+           <h4>{$next_title}</h4>
             <a class="next btn btn-default btn-red" href="{$link->getModuleLink('news', 'new',
             [
                 'id_news'  => "{$next_id_news}",

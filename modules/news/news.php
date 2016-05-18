@@ -3748,6 +3748,12 @@ class News extends Module {
         $tag = (Tools::getValue('tag_news') ? intval(Tools::getValue('tag_news')) : 0);
         $cat = (Tools::getValue('cat_news') ? intval(Tools::getValue('cat_news')) : 0);
         $search_news = trim(Tools::getValue('search_news', ''));
+        $cat_id = Db::getInstance()->getRow('SELECT  `id_parent_category` 
+                                                FROM  `'._DB_PREFIX_.'news` 
+                                                WHERE  `id_news` = '.$id_news);
+        $category = Db::getInstance()->getRow('SELECT  `title` 
+                                                FROM  `'._DB_PREFIX_.'news_cats_lang` 
+                                                WHERE  `id_cat` = '.$cat_id['id_parent_category']);
 
         // get prev and next news
         $next_id_news = 0;
@@ -3843,6 +3849,8 @@ class News extends Module {
 		$date = (isset($news[0]['date']) ? ( $this->_months[date('n', $news[0]['date'])] . ' ' . date('j', $news[0]['date']) . ',' . date('Y', $news[0]['date']) ) : '');
 
         $this->smarty->assign(array(
+            'catObj' => (Configuration::get('NEWS_SIDE_CATEGORIES') == '1' ? $this->getCats($id_news, $id_lang) : array()),
+            'category' => $category['title'],
             'imgsObj' => $imgsObj,
             'tagsObj' => $this->getTags($id_news, $id_lang),
             'newsProductsObj' => (Configuration::get('NEWS_REL_PRODUCTS') ? $this->relProducts($params, $id_news) : Array()),
@@ -3869,7 +3877,9 @@ class News extends Module {
             'prev_id_news' => $prev_id_news,
             'next_id_news' => $next_id_news,
             'prev_rewrite' => Tools::str2url($prev_rewrite),
+            'prev_title' => $prev_rewrite,
             'next_rewrite' => Tools::str2url($next_rewrite),
+            'next_title' => $next_rewrite,
             'prev_cat_rewrite' => Tools::str2url($prev_cat_rewrite),
             'next_cat_rewrite' => Tools::str2url($next_cat_rewrite)
         ));
@@ -3905,6 +3915,7 @@ class News extends Module {
                     $obj->title = $trads[$id_lang]['title'];
                     $obj->rewrite = Tools::str2url($trads[$id_lang]['title']);
                     $obj->date = date('d/m/Y', $new['date']);
+                    $obj->newText = $trads[$id_lang]['new'];
                     $relNewsObj[] = $obj;
                 }
             }

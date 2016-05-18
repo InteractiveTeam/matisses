@@ -1,7 +1,5 @@
 <?php
 
-
-
 class newsnewModuleFrontController extends ModuleFrontController
 {
 
@@ -16,12 +14,6 @@ class newsnewModuleFrontController extends ModuleFrontController
 		parent::initContent();        
 		
         $new = str_replace('-',' ',Tools::getValue('rewrite'));
-        /*$dataCategory = Db::getInstance()->ExecuteS('SELECT * FROM  `ps_news_langs` 
-            WHERE  `title` LIKE  "%'.$new.'%"');
-        
-        $_GET['id_news'] = trim($dataCategory[0]['id_news']);
-        
-        echo Tools::getValue('id_news');*/
         
 		$cat 	 = (Tools::getValue('cat_news') ? intval(Tools::getValue('cat_news')) : 0);
 		$id_news = (Tools::getValue('id_news') ? intval(Tools::getValue('id_news')) : 0);
@@ -42,6 +34,7 @@ class newsnewModuleFrontController extends ModuleFrontController
 		$this->context->smarty->assign('path',$breadcrum);
 		$this->context->smarty->assign('id_new',Tools::getValue('id_news'));
         //$this->context->smarty->assign('id_new',8);
+
 		$this->setTemplate('index.tpl');
 
 
