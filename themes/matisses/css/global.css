@@ -2372,6 +2372,7 @@ box-sizing: border-box;
 	.nav-breadcrum {
 	background: #272727;
 	padding: 0.625rem;
+	margin-bottom: 1.75rem;
 	}
 	.breadcrumb {
 	display: block;
@@ -5506,7 +5507,7 @@ body#search .category_list.product_list.grid .ajax_block_product {
 .ax-buscador-blog input {
     font-family: 'condensed', sans-serif;
     border: none;
-    background: #EAEAEA;
+    background: #EAEAEA url(../img/icon-search.png) no-repeat 95% center;
     padding: 12px;
     width: 100%;
 }
@@ -5516,8 +5517,8 @@ body#search .category_list.product_list.grid .ajax_block_product {
     color: #848484;
     padding: 15px 28px;
     margin-top: 40px;
-    margin-left: -30px;
-    width: 118%;
+    margin-left: -20px;
+    width: 117%;
 }
 
 .ax-articulos-relacionados-blog h3 {
