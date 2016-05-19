@@ -602,7 +602,7 @@ class matisses extends Module
         }
         
         //Assign script Chaordic
-        $scriptChaordic = '<script async defer src="//static.chaordicsystems.com/static/loader.js" data-apikey="matisses" data-initialize="false"></script>';
+        $scriptChaordic = 'async defer data-initialize="false" data-apikey="matisses"';
         
         $this->context->smarty->assign(array(
             'idlanguage' => $this->context->language->id,

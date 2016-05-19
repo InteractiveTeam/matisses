@@ -166,9 +166,7 @@
          
 </script>
 {/literal}
-
-{$scriptChaordic}
-
+<script src="//static.chaordicsystems.com/static/loader.js" type="text/javascript" {$scriptChaordic}></script>
 {if $page_name == 'cms'}
 <script type="text/javascript">
     $(window).load(function() {
