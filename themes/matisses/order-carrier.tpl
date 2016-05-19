@@ -59,8 +59,13 @@
 				</div>
 			{/if}
 			<div class="delivery_options_address">
-            
-				{if isset($delivery_option_list)}
+				{if !isset($delivery_option_list)}
+                <p class="alert alert-warning" id="noCarrierWarning">
+
+                    {l s='No carriers available.'}
+
+                </p>
+                {else}
 					{foreach $delivery_option_list as $id_address => $option_list}
 						<p class="carrier_title">
 							{if isset($address_collection[$id_address])}
