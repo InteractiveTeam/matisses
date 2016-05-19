@@ -126,7 +126,7 @@
                                                                      ]
 
                                             ,false)}" title="{$rel->title|escape:html:'UTF-8'|truncate:70:'...'}"><h3>{$rel->title|escape:html:'UTF-8'}</h3></a>
-                                            <p>{$rel->newText|escape:html:'UTF-8'|truncate:100:'...'}</p>
+                                            <p>{$rel->newText|escape:html:'UTF-8'|truncate:100:'...'|strip_tags}</p>
                                             </li>
                             {/foreach}
                         </div>

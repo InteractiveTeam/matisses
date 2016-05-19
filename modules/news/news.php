@@ -3915,7 +3915,7 @@ class News extends Module {
                     $obj->title = $trads[$id_lang]['title'];
                     $obj->rewrite = Tools::str2url($trads[$id_lang]['title']);
                     $obj->date = date('d/m/Y', $new['date']);
-                    $obj->newText = $trads[$id_lang]['new'];
+                    $obj->newText = strip_tags($trads[$id_lang]['new']);
                     $relNewsObj[] = $obj;
                 }
             }
