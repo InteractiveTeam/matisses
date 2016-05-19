@@ -21,10 +21,10 @@
             	<table border="0" cellpadding="5" cellspacing="5">
                   <tr>
                     <td scope="col" width="70px">{l s='Izquierda' mod='matisses'}</td>
-                    <td scope="col"> <input checked type="radio" name="orientation" value="left" onClick="$('#orientation').val('left')"></td>
+                    <td scope="col"> <input checked type="radio" name="orientation" value="left" onClick="updatePosition($('#product').val(),'left')"></td>
                   </tr><tr>  
                     <td scope="col">{l s='Derecha' mod='matisses'}</td>
-                    <td scope="col"><input type="radio" name="orientation" value="right" onClick="$('#orientation').val('right')"></td>
+                    <td scope="col"><input type="radio" name="orientation" value="right" onClick="updatePosition($('#product').val(),'right')"></td>
                   </tr>
                 </table>
                 <input type="hidden" id="orientation" value="left">

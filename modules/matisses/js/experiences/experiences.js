@@ -223,3 +223,16 @@ $(document).ready(function(e) {
 		//$('.adminexperiences #image-images-thumbnails').append('<div class="experience_pointer" style="top:'+top+'%; left:'+left+'%" id="'+poid+'"></div>')
 	})
 });
+
+function updatePosition(id,value){
+    $('#orientation').val(value);
+    var objPositions =  JSON.parse($("#products").val());
+    var auxArray = $.map(objPositions, function(el) { return el; });
+    
+    var auxResult = auxArray.filter(function (el) {
+        return el.id_product == id;
+    });
+    
+    objPositions[auxResult[0].pointer].orientation = auxResult[0].orientation;
+    $("#products").val(JSON.stringify(objPositions));
+}
