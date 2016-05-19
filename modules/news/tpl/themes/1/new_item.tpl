@@ -312,7 +312,7 @@
 
 </div>
 
-<div class="ax-pagination_article">
+<div class="ax-pagination_article"> 
 {if !empty($prev_id_news)}
    <div class="ax-more-article">
         <div class="ax-left-article-blog">
