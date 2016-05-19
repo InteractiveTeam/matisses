@@ -224,15 +224,36 @@ $(document).ready(function(e) {
 	})
 });
 
-function updatePosition(id,value){
+function updatePosition(){    
+    var value = $('input[name=orientation]:checked', '#tbl_position').val();
     $('#orientation').val(value);
+    var id = $('#product').val();        
+    var auxResult = getMarker(id);
+    var objPositions = auxResult.objPositions;
+    auxResult = auxResult.auxResult;
+    
+    objPositions[auxResult[0].pointer].orientation = auxResult[0].orientation;
+    $("#products").val(JSON.stringify(objPositions));
+}
+
+function updateColor(){    
+    var value = $('input[name=Tag]:checked', '#tbl_color').val();
+    $('#market').val(value);
+    var id = $('#product').val();        
+    var auxResult = getMarker(id);
+    var objPositions = auxResult.objPositions;
+    auxResult = auxResult.auxResult;
+    
+    objPositions[auxResult[0].pointer].market = auxResult[0].market;
+    $("#products").val(JSON.stringify(objPositions));
+}
+
+function getMarker(id){    
     var objPositions =  JSON.parse($("#products").val());
     var auxArray = $.map(objPositions, function(el) { return el; });
     
     var auxResult = auxArray.filter(function (el) {
         return el.id_product == id;
-    });
-    
-    objPositions[auxResult[0].pointer].orientation = auxResult[0].orientation;
-    $("#products").val(JSON.stringify(objPositions));
+    });    
+    return {auxResult:auxResult,objPositions:objPositions};
 }
