@@ -9,9 +9,11 @@ ax = {
         
         $(window).load(function () {   
             
-            $("script[src$='chaordicsystems.com/static/loader.js']").attr('data-apikey','matisses');
-            $("script[src$='chaordicsystems.com/static/loader.js']").attr('async',0);
-            $("script[src$='chaordicsystems.com/static/loader.js']").attr('defer',0);         $("script[src$='chaordicsystems.com/static/loader.js']").attr('src','//static.chaordicsystems.com/static/loader.js');
+             var urlchd = '//static.chaordicsystems.com/static/loader.js';
+        $("script[src$='chaordicsystems.com/static/loader.js']").attr('data-apikey','matisses');
+        $("script[src$='chaordicsystems.com/static/loader.js']").attr('data-initialize','false');
+        $("script[src$='chaordicsystems.com/static/loader.js']").attr('async',0);
+        $("script[src$='chaordicsystems.com/static/loader.js']").attr('defer',0);     $("script[src$='chaordicsystems.com/static/loader.js']").attr('src',urlchd);
             
             jQuery('#newsletter').on('submit', function(){ window.chaordic.push(['updateUserEmail', { email: String(jQuery(this).find('[name=email]').val()) }]); });
             

@@ -3,22 +3,7 @@ class matisses extends Module
 {
 	
 	private $_uploadfile = 'matisses';
-	public static $moduleRoutes =array(
-        'module-matisses-experiences' => array(
-            'controller' => 'experiences',
-            //'rule' =>  'news/new/{id_news}-{cat_news}-{page_cat}/{cat_rewrite}/{rewrite}.html',
-            'rule' =>  'blogs/{id_experiencia}.html',
-            'keywords' => array(
-                'id_experiencia'   => array('regexp' => '[0-9]+',   'param' => 'id_experiencia')
-            ),
-            'params' => array(
-                'fc' => 'module',
-                'module' => 'matisses',
-                'controller' => 'experiences',
-            )
-        )
-    );
-    
+
 	public function __construct()
 	{
 		$this->name 			= basename(__FILE__,'.php');
@@ -38,9 +23,9 @@ class matisses extends Module
 		
 	}
 	
-    public function hookmoduleRoutes() {
+    /*public function hookmoduleRoutes() {
         return self::$moduleRoutes;
-    }
+    }*/
     
 	/***********************************************
 	* BACKEND
@@ -601,11 +586,11 @@ class matisses extends Module
 		    ));
         }
         
-        //Assign script Chaordic
-        $scriptChaordic = '<script async defer src="//static.chaordicsystems.com/static/loader.js" data-apikey="matisses" data-initialize="false"></script>';       
+        
         $this->context->smarty->assign(array(
             'idlanguage' => $this->context->language->id
-        ));        
+        ));
+        
         
         // Assing parent subcategories 
         if (in_array($this->page_name, array('category'))) {
@@ -1109,7 +1094,7 @@ class matisses extends Module
 		$infoxml[0]['id'] 				= $InfCustomer[0]['charter'].'CL';
 		$infoxml[0]['lastName1'] 		= strtoupper($InfCustomer[0]['lastname']);
 		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['secondname']);
-        $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
+        $infoxml[0]['legalName']		= strtoupper(($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname'].' ': '').$InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname']);
 		$infoxml[0]['email']			= $InfCustomer[0]['email'];
 		$infoxml[0]['gender']			= 3;
@@ -1178,7 +1163,7 @@ class matisses extends Module
 		$infoxml[0]['id'] 				= $InfCustomer[0]['charter'].'CL';
 		$infoxml[0]['lastName1'] 		= strtoupper($InfCustomer[0]['lastname']);
 		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['secondname']);
-        $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
+        $infoxml[0]['legalName']		= strtoupper(($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname'].' ': '').$InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname']);
         $infoxml[0]['birthday']		= $InfCustomer[0]['birthday'];
 		
