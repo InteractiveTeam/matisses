@@ -176,13 +176,6 @@
     });    
 </script>
 {/if}
-<script type="text/javascript">
-    $(window).load(function() {
-        $("script[src$='chaordicsystems.com/static/loader.js']").attr('data-apikey','matisses');
-        $("script[src$='chaordicsystems.com/static/loader.js']").attr('async',0);
-        $("script[src$='chaordicsystems.com/static/loader.js']").attr('defer',0);
-    });
-</script>
 </head>
 <!--
 <div class="ax-cont-preload">
