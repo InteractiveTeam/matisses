@@ -75,10 +75,22 @@
 					<input class="is_required validate form-control" data-validate="{$address_validation.$field_name.validate}" type="text" name="firstname" id="firstname" value="{if isset($smarty.post.firstname)}{$smarty.post.firstname}{else}{if isset($address->firstname)}{$address->firstname|escape:'html':'UTF-8'}{/if}{/if}" />
 				</div>
 			{/if}
+            {if $field_name eq 'secondname'}
+				<div class="required form-group grid_6 ">
+					<label for="secondname">{l s='Segundo Nombre'}</label>
+					<input class="form-control" type="text" name="secondname" id="secondname" value="{if isset($smarty.post.secondname)}{$smarty.post.secondname}{else}{if isset($address->secondname)}{$address->secondname|escape:'html':'UTF-8'}{/if}{/if}" />
+				</div>
+			{/if}
 			{if $field_name eq 'lastname'}
 				<div class="required form-group grid_6">
 					<label for="lastname">{l s='Last name'} <sup>*</sup></label>
 					<input class="is_required validate form-control" data-validate="{$address_validation.$field_name.validate}" type="text" id="lastname" name="lastname" value="{if isset($smarty.post.lastname)}{$smarty.post.lastname}{else}{if isset($address->lastname)}{$address->lastname|escape:'html':'UTF-8'}{/if}{/if}" />
+				</div>
+			{/if}
+            {if $field_name eq 'surname'}
+				<div class="required form-group grid_6 ">
+					<label for="surname">{l s='Segundo Apellido'}</label>
+					<input class="form-control" type="text" name="surname" id="surname" value="{if isset($smarty.post.surname)}{$smarty.post.surname}{else}{if isset($address->surname)}{$address->surname|escape:'html':'UTF-8'}{/if}{/if}" />
 				</div>
 			{/if}
 			{if $field_name eq 'address1'}
