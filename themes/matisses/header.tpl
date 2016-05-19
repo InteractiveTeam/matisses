@@ -176,15 +176,6 @@
     });    
 </script>
 {/if}
-<script type="text/javascript">
-    $(window).load(function() {
-        var urlchd = '//static.chaordicsystems.com/static/loader.js';
-        $("script[src$='chaordicsystems.com/static/loader.js']").attr('data-apikey','matisses');
-        $("script[src$='chaordicsystems.com/static/loader.js']").attr('data-initialize','false');
-        $("script[src$='chaordicsystems.com/static/loader.js']").attr('async',0);
-        $("script[src$='chaordicsystems.com/static/loader.js']").attr('defer',0);     $("script[src$='chaordicsystems.com/static/loader.js']").attr('src',urlchd);
-    });
-</script>
 </head>
 <!--
 <div class="ax-cont-preload">
