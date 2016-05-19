@@ -166,7 +166,7 @@
          
 </script>
 {/literal}
-<script async defer src="//static.chaordicsystems.com/static/loader.js" data-initialize="false" data-apikey="matisses"></script>
+<script async defer src="//static.chaordicsystems.com/static/loader.js" data-apikey="matisses" data-initialize="false"></script>
 {if $page_name == 'cms'}
 <script type="text/javascript">
     $(window).load(function() {
