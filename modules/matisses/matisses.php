@@ -601,11 +601,13 @@ class matisses extends Module
 		    ));
         }
         
+        //Assign script Chaordic
+        $scriptChaordic = '<script async defer src="//static.chaordicsystems.com/static/loader.js" data-apikey="matisses" data-initialize="false"></script>';
         
         $this->context->smarty->assign(array(
-            'idlanguage' => $this->context->language->id
-        ));
-        
+            'idlanguage' => $this->context->language->id,
+            'scriptChaordic' => $scriptChaordic
+        ));        
         
         // Assing parent subcategories 
         if (in_array($this->page_name, array('category'))) {
