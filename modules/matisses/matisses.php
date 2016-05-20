@@ -661,10 +661,10 @@ class matisses extends Module
                 }
                 
                 // images 
-                $images = $product->_getAttributeImageAssociations($row['id_product_attribute']);
+                $imag = $product->_getAttributeImageAssociations($row['id_product_attribute']);
                 
-                if (isset($images)) {
-                    $tempattr['images'] = array('default' => $link->getImageLink($product->link_rewrite[1], $images[0]));   
+                if (isset($imag)) {
+                    $tempattr['images'] = array('default' => $link->getImageLink($product->link_rewrite[1], $imag[0]));   
                 }
                 
                 // price

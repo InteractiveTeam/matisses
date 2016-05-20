@@ -521,8 +521,8 @@ class PrestaCenterXmlExportFree extends Module
                 }
                 
                 // image
-                $images = $product->_getAttributeImageAssociations($inrefer['id_product_attribute']);  
-                $tmp['img_prod'][$row['id_lang']] = $this->context->link->getImageLink($row['link_rewrite'], $images[0]);
+                $imag = $product->_getAttributeImageAssociations($inrefer['id_product_attribute']);  
+                $tmp['img_prod'][$row['id_lang']] = $this->context->link->getImageLink($row['link_rewrite'], $imag[0]);
                 
                 $tmp['name'][$row['id_lang']] = $row['name'];
                 $tmp['description'][$row['id_lang']] = $row['description'];
