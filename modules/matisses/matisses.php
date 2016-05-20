@@ -1804,6 +1804,7 @@ class matisses extends Module
 															'key_temporal'	=> $orderDTO['header']['prestashopOrderId']
 															));
             echo print_r($orderDTO);
+            echo Db::getInstance()->getMsgError();
 																
 			$response = Db::getInstance()->getRow("SELECT * FROM `" . _DB_PREFIX_ . "wsmatisses_pagos` 
 												WHERE customer_id=".$this->context->customer->id.
