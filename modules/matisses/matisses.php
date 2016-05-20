@@ -3,22 +3,7 @@ class matisses extends Module
 {
 	
 	private $_uploadfile = 'matisses';
-	public static $moduleRoutes =array(
-        'module-matisses-experiences' => array(
-            'controller' => 'experiences',
-            //'rule' =>  'news/new/{id_news}-{cat_news}-{page_cat}/{cat_rewrite}/{rewrite}.html',
-            'rule' =>  'blogs/{id_experiencia}.html',
-            'keywords' => array(
-                'id_experiencia'   => array('regexp' => '[0-9]+',   'param' => 'id_experiencia')
-            ),
-            'params' => array(
-                'fc' => 'module',
-                'module' => 'matisses',
-                'controller' => 'experiences',
-            )
-        )
-    );
-    
+
 	public function __construct()
 	{
 		$this->name 			= basename(__FILE__,'.php');
@@ -38,9 +23,9 @@ class matisses extends Module
 		
 	}
 	
-    public function hookmoduleRoutes() {
+    /*public function hookmoduleRoutes() {
         return self::$moduleRoutes;
-    }
+    }*/
     
 	/***********************************************
 	* BACKEND

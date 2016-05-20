@@ -112,8 +112,9 @@ class AddressControllerCore extends FrontController
 		elseif (!Validate::isLoadedObject($this->_address) && Validate::isLoadedObject($this->context->customer))
 		{
 			$_POST['firstname'] = $this->context->customer->firstname;
+			$_POST['secondname'] = $this->context->customer->secondname;
 			$_POST['lastname'] = $this->context->customer->lastname;
-			$_POST['company'] = $this->context->customer->company;
+			$_POST['surname'] = $this->context->customer->surname;
 		}
 	}
 
@@ -124,7 +125,11 @@ class AddressControllerCore extends FrontController
 	{
         $_POST['firstname'] = ToolsCore::ucwords($_POST['firstname']);
         $_POST['lastname'] = ToolsCore::ucwords($_POST['lastname']);
+        $_POST['secondname'] = ToolsCore::ucwords($_POST['secondname']);
+        $_POST['surname'] = ToolsCore::ucwords($_POST['surname']);
 		$address = new Address();
+        $address->secondname = $_POST['secondname'];
+        $address->surname = $_POST['surname'];
 		$this->errors = $address->validateController();
 		$address->id_customer = (int)$this->context->customer->id;
 

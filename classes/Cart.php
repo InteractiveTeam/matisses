@@ -2063,6 +2063,8 @@ class CartCore extends ObjectModel
             $params['products_cart']		= $this->getProducts();
             $total_shipping 				= Hook::exec('actionCalculateShipping',$params);
             $total_shipping 				= (array)json_decode($total_shipping);
+            if(empty($total_shipping['shippingCompany']))
+                return $cache[$this->id] = NULL;
             $id = Db::getInstance()->getRow('SELECT  `id_carrier` 
                                                 FROM  `ps_carrier` 
                                                 WHERE  `id_reference` = '.$total_shipping['shippingCompany'].'
