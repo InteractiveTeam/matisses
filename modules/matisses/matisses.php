@@ -1781,7 +1781,7 @@ class matisses extends Module
 												WHERE id_cart = '.$this->context->cookie->id_cart.' 	
 												');	
 
-        echo "lego1".print_r($Address);
+        echo "lego1".print_r($Addresses);
 		$this->hookactionCustomerAccountUpdate(array('email'=>$this->context->cookie->email),true, $Addresses,$this->context->cookie->id_customer);
         echo "llego 2";
 	
@@ -1797,6 +1797,7 @@ class matisses extends Module
 												WHERE customer_id=".$this->context->customer->id.
 												" AND id_shop = ". $this->context->customer->id_shop.
 												" AND cart_id = ".$this->context->cookie->id_cart);
+        print_r($response);
 		if(!$response)
 		{
 			Db::getInstance()->insert('wsmatisses_pagos', array(
