@@ -1531,7 +1531,7 @@ class matisses extends Module
 	
 	public function hookactionValidateProductsAvailableCart()
 	{
-		
+		echo "lego1";
 		$continue	= true;
 		$cart		= new Cart();
 		$cart->id 	= $this->context->cookie->id_cart;
@@ -1561,6 +1561,7 @@ class matisses extends Module
 				echo $this->l('Lo siento! - se ha presentado un error al intentar generar el pago');
 				exit;
 			 }
+        echo "lego2";
 		if($continue)
 			return $this->wsmatisses_createInvoice($products);
 	}
@@ -1787,7 +1788,7 @@ class matisses extends Module
 												FROM '._DB_PREFIX_.'cart as a
 												WHERE id_cart = '.$this->context->cookie->id_cart.' 	
 												');	
- 	
+ 	echo "lego1".$Address;
 		$this->hookactionCustomerAccountUpdate(array('email'=>$this->context->cookie->email),true, $Addresses,$this->context->cookie->id_customer);
 			
 	
