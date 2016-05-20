@@ -1795,7 +1795,10 @@ class matisses extends Module
 												WHERE customer_id=".$this->context->customer->id.
 												" AND id_shop = ". $this->context->customer->id_shop.
 												" AND cart_id = ".$this->context->cookie->id_cart);
-        echo "hoñ".print_r($response);
+        echo "SELECT * FROM `" . _DB_PREFIX_ . "wsmatisses_pagos` 
+												WHERE customer_id=".$this->context->customer->id.
+												" AND id_shop = ". $this->context->customer->id_shop.
+												" AND cart_id = ".$this->context->cookie->id_cart;
 		if(!$response)
 		{
 			Db::getInstance()->insert('wsmatisses_pagos', array(
