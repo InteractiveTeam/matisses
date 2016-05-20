@@ -1803,8 +1803,6 @@ class matisses extends Module
 															'cart_id'		=> $this->context->cookie->id_cart,
 															'key_temporal'	=> $orderDTO['orderDTO']['header']['prestashopOrderId']
 															));
-            echo print_r( $orderDTO['orderDTO']['header']['prestashopOrderId']);
-            echo Db::getInstance()->getMsgError();
 																
 			$response = Db::getInstance()->getRow("SELECT * FROM `" . _DB_PREFIX_ . "wsmatisses_pagos` 
 												WHERE customer_id=".$this->context->customer->id.
