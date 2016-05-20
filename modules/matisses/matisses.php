@@ -1768,11 +1768,17 @@ class matisses extends Module
 	
 	public function wsmatisses_createInvoice($products)
 	{
-		if(!is_array($products))
-			return false;
+		if(!is_array($products)){
+            echo "no hay productos";
+            exit;
+        }
+//			return false;
 		
-		if(!is_object($this->context->customer))
-			return false;
+		if(!is_object($this->context->customer)){
+            echo "no hay usuario";
+            exit;
+        }
+//			return false;
 			
 		
 		$Addresses = Db::getInstance()->getRow('SELECT 
