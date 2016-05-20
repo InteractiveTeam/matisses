@@ -17,7 +17,7 @@ $(document).ready(function(){
 	});
 	$(document).on('click',function(e){
 		 if ($(e.target).closest('.header_user_info').length) return;
- 		$('.dropdown_links').slideUp();
+ 		//$('.dropdown_links').slideUp();
  		$(".dropdown_links").removeClass("opened");
  		e.stopPropagation();
 	});

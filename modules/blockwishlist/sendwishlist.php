@@ -77,12 +77,23 @@ if ($context->customer->isLogged())
 				$to, $toName, $customer->email, $customer->firstname.' '.$customer->lastname, null, null, dirname(__FILE__).'/mails/'
 			))
 			{
-				echo $module->l('Se ha enviado la lista de deseos a:').' '.$to.'<br>';
+				
+				$mails[] = $to;
+				$send = true;
 			}else{
 					echo $module->l('No pudo enviarse la lista de deseos a:').' '.$to.'<br>';
 				 }
 		}
 	
 	}
-	//echo '<br>'.$module->l('Su lista de deseos se ha enviado');
+	
+	if(sizeof($mails)>0 && $send)
+	{
+		if(sizeof($mails)> 1)
+		{
+			echo "Se ha enviado la lista de deseos a:<br>".(implode('<br>',$mails)); 
+		}else{
+				echo "Se ha enviado la lista de deseos a:<br>".(implode('<br>',$mails));	
+			 }
+	}
 }

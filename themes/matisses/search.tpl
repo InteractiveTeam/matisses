@@ -24,6 +24,8 @@
 *}
 
 {capture name=path}{l s='Search'}{/capture}
+<!-- Chaordic Top -->
+<div chaordic="top"></div>
 
 <h1
 {if isset($instant_search) && $instant_search}id="instant_search_results"{/if}
@@ -35,7 +37,7 @@ class="page-heading {if !isset($instant_search) || (isset($instant_search) && !$
         </span>
     {/if}
     {if isset($instant_search) && $instant_search}
-        <a href="#" class="close">
+        <a href="javascript:void(0)" class="close">
             {l s='Return to the previous page'}
         </a>
     {else}
@@ -45,6 +47,9 @@ class="page-heading {if !isset($instant_search) || (isset($instant_search) && !$
         </span>
     {/if}
 </h1>
+
+<!-- Chaordic Middle -->
+<div chaordic="middle"></div>
 
 {include file="$tpl_dir./errors.tpl"}
 {if !$nbProducts}
@@ -64,7 +69,7 @@ class="page-heading {if !isset($instant_search) || (isset($instant_search) && !$
         </p>
     {/if}
     <div class="content_sortPagiBar cf grid_12 alpha omega">
-        <div class="sortPagiBar grid_9 alpha omega {if isset($instant_search) && $instant_search} instant_search{/if}">
+        <div class="sortPagiBar grid_9 alpha omega bottom_pagi {if isset($instant_search) && $instant_search} instant_search{/if}">
             {include file="./product-compare.tpl"}
             {include file="./product-sort.tpl"}
             {if !isset($instant_search) || (isset($instant_search) && !$instant_search)}
@@ -77,9 +82,11 @@ class="page-heading {if !isset($instant_search) || (isset($instant_search) && !$
             {/if}
         </div>
 	</div>
-	{include file="$tpl_dir./product-list.tpl" products=$search_products}
+	<div class="parrilla-productos">
+	    {include file="$tpl_dir./product-list.tpl" products=$search_products}    
+	</div>	
     <div class="content_sortPagiBar cf grid_12 alpha omega">
-        <div class="sortPagiBar grid_9 alpha omega">
+        <div class="sortPagiBar grid_9 alpha omega bottom_pagi">
             {include file="./product-compare.tpl"}
             {include file="./product-sort.tpl"}
             {if !isset($instant_search) || (isset($instant_search) && !$instant_search)}
@@ -93,3 +100,6 @@ class="page-heading {if !isset($instant_search) || (isset($instant_search) && !$
         </div>
     </div>
 {/if}
+
+<!-- Chaordic Bottom -->
+<div chaordic="bottom"></div>

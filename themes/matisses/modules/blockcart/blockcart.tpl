@@ -181,11 +181,12 @@
 							</div>
 							{if $use_taxes && $display_tax_label == 1 && $show_tax}
 								<p>
-								{if $priceDisplay == 0}
+								{*if $priceDisplay == 0}
 									{l s='Prices are tax included' mod='blockcart'}
 								{elseif $priceDisplay == 1}
 									{l s='Prices are tax excluded' mod='blockcart'}
-								{/if}
+								{/if*}
+                                {l s='Prices are tax included' mod='blockcart'}
 								</p>
 							{/if}
 						</div>
@@ -245,13 +246,14 @@
 				<div class="layer_cart_row">
 					<p><strong>
 						{l s='Total products' mod='blockcart'}
-						{if $display_tax_label}
+						{*if $display_tax_label}
 							{if $priceDisplay == 1}
-								{l s='(tax excl.)' mod='blockcart'}
+								{*l s='(tax excl.)' mod='blockcart'}
 							{else}
 								{l s='(tax incl.)' mod='blockcart'}
 							{/if}
-						{/if}
+						{/if*}
+                        {l s='(tax incl.)' mod='blockcart'}
 					</strong>
 					<span class="ajax_block_products_total">
 						{if $cart_qties > 0}
@@ -266,13 +268,14 @@
 					<div class="layer_cart_row">
 						<strong class="dark">
 							{l s='Wrapping' mod='blockcart'}
-							{if $display_tax_label}
-								{if $priceDisplay == 1}
-									{l s='(tax excl.)' mod='blockcart'}
-								{else}
-									{l s='(tax incl.)' mod='blockcart'}
-								{/if}
-							{/if}
+							{*if $display_tax_label}
+                                {if $priceDisplay == 1}
+                                    {*l s='(tax excl.)' mod='blockcart'}
+                                {else}
+                                    {l s='(tax incl.)' mod='blockcart'}
+                                {/if}
+                            {/if*}
+                            {l s='(tax incl.)' mod='blockcart'}
 						</strong>
 						<span class="price cart_block_wrapping_cost">
 							{if $priceDisplay == 1}
@@ -286,7 +289,7 @@
 				<div class="layer_cart_row">
 					<p>
 						<strong>
-							{l s='Total shipping' mod='blockcart'}&nbsp;{if $display_tax_label}{if $priceDisplay == 1}{l s='(tax excl.)' mod='blockcart'}{else}{l s='(tax incl.)' mod='blockcart'}{/if}{/if}
+							{l s='Total shipping' mod='blockcart'}&nbsp;{if $display_tax_label}{if $priceDisplay == 1}{*l s='(tax excl.)' mod='blockcart'*}{else}{l s='(tax incl.)' mod='blockcart'}{/if}{/if}
 						</strong>
 						<span class="ajax_cart_shipping_cost">
 							{if $shipping_cost_float == 0}
@@ -306,13 +309,14 @@
 				<div class="layer_cart_row">
 					<p><strong>
 						{l s='Total' mod='blockcart'}
-						{if $display_tax_label}
+						{*if $display_tax_label}
 							{if $priceDisplay == 1}
-								{l s='(tax excl.)' mod='blockcart'}
+								{*l s='(tax excl.)' mod='blockcart'}
 							{else}
 								{l s='(tax incl.)' mod='blockcart'}
 							{/if}
-						{/if}
+						{/if*}
+                        {l s='(tax incl.)' mod='blockcart'}
 					</strong>
 					<span class="ajax_block_cart_total">
 						{if $cart_qties > 0}

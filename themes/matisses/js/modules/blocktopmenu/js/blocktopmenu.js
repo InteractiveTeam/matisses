@@ -122,6 +122,8 @@ function mobileInit()
 		{
 			catSubUl.slideDown();
 			$(this).addClass('active');
+            $('.search-container').slideUp();
+            $('#search').removeClass('highlight-close');
 		}
 		else
 		{
@@ -203,7 +205,7 @@ $(document).ready(function(e){
 
 		function llamarMenu() {
 				var widthPage = $(window).width();
-	      if(widthPage < 321){
+	      if(widthPage < 481){
 						$('#menu-footer').append(contmenuFooter)
 						$.each(itemsMenuFooter, function(indice, objeto){
 								var itemFooter = $(objeto)
@@ -246,6 +248,8 @@ $(document).ready(function(e){
           });
         
         //list menu
+    
+        $(".submenu-container .hidden" ).remove();  
     
         var business = $('ul.submenu-container > li > ul');
         

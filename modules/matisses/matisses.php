@@ -4,7 +4,6 @@ class matisses extends Module
 	
 	private $_uploadfile = 'matisses';
 
-	
 	public function __construct()
 	{
 		$this->name 			= basename(__FILE__,'.php');
@@ -24,6 +23,10 @@ class matisses extends Module
 		
 	}
 	
+    /*public function hookmoduleRoutes() {
+        return self::$moduleRoutes;
+    }*/
+    
 	/***********************************************
 	* BACKEND
 	***********************************************/
@@ -35,7 +38,9 @@ class matisses extends Module
 		//$this->registerHook('displayExperiencesHome');
 		//$this->registerHook('displayCustomerAccount');
 		//$this->registerHook('actionSortFilters');
+		//$this->registerHook('actionMatChangeReference');	
 		//$install[] = $this->__installPage('module-matisses-garantias','garantias');
+		//$this->__installTabs('AdminTiposDanos','Tipos de daños',(int)Tab::getIdFromClassName('adminMatisses'));
 		//self::hookactionListInvoice();
 		if (Tools::isSubmit('updateApyKey'))
 		{
@@ -64,7 +69,6 @@ class matisses extends Module
 										? 'selected' : NULL);
 		}	
 		$this->context->smarty->assign('path',$this->name);
-
 		$this->context->smarty->assign('displayName',$this->displayName);
 		$this->context->smarty->assign('ApyKey',$ApyKey);
 		$this->context->smarty->assign('UrlWs',Configuration::get($this->name.'_UrlWs'));
@@ -90,7 +94,6 @@ class matisses extends Module
 		$install[] = $this->__installImageTypes('experiences-home',570,145);
 		
 		$install[] = $this->__installPage('module-matisses-experiences','experiencias');
-
 		
 		
 		$sql = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'highlights` (
@@ -238,7 +241,8 @@ class matisses extends Module
 			|| $this->registerHook('actioncalculateAditionalCosts')
 			|| $this->registerHook('actionOrderDetail')
 			|| $this->registerHook('actionCalculateShipping')
-			|| $this->registerHook('trackOrder')			
+			|| $this->registerHook('trackOrder')
+			|| $this->registerHook('actionMatChangeReference')			
 			
 			)
 			return false;
@@ -247,7 +251,6 @@ class matisses extends Module
 		return true;
 	}
 	
-
 	
 	private function __installPage($page=NULL,$title=NULL, $url_rewrite=NULL, $description=NULL)
 	{
@@ -279,7 +282,6 @@ class matisses extends Module
 				$page = Meta::getMetaByPage($page, $this->context->language->id);
 				if($page['id_meta'])
 					Db::getInstance()->delete('ps_meta', 'id_meta='.$page['id_meta']);
-
 				return true; 
 			}
 		}catch (Exception $e) {
@@ -360,7 +362,6 @@ class matisses extends Module
 			
 		if(file_exists(_PS_IMG_DIR_.'experiences'))
 			Tools::deleteDirectory(_PS_IMG_DIR_.'experiences');	
-
 		
 		if (!parent::uninstall() 
 			|| in_array(0,$uninstall) 
@@ -415,7 +416,6 @@ class matisses extends Module
 			return false;
 		}
 	}
-
 	/*********************************************
 	* WEB SERVICES
 	*********************************************/
@@ -431,15 +431,17 @@ class matisses extends Module
 	* HOOKS
 	*********************************************/
 	
+	public function hookactionMatChangeReference($params)
+	{
+		return str_replace('0000000000000','',$params['reference']);
+	}
+	
 	public function hookactionCalculateShipping($params)
 	{
-		//echo "<pre>"; print_r($params); echo "</pre>";
-		$shipping_cost = $params['total_shipping'];
-		$id_address = key($params['delivery_option']);
+		//echo "<pre>"; print_r($params); echo "</pre>";die();
+		$id_address = $params['delivery_option'];
 		$id_carrier = str_replace(',','',current(array_values($params['delivery_option'])));
 		
-		if($id_carrier == 6)
-		{
 			if($id_address)
 			{
 				$Address = new Address($id_address);
@@ -456,24 +458,22 @@ class matisses extends Module
 				{
 					$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['itemCode'] = $product['reference'];
 					$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['quantity'] = $product['quantity'];
-				}
-				
+                }
 				$salesWarehouseDTO = $this->array_to_xml($salesWarehouseDTO,false);
 				$response 	= $this->wsmatisses_get_data('inventoryItem','quoteShipping','pruebas',$salesWarehouseDTO,true);
-				if($response['return']['code']=='0101001')
-					$shipping_cost = $response['return']['detail'];
+				if($response['return']['code']=='0101002')
+					$shipping_cost = $this->xml_to_array($response['return']['detail']);
 			}
-			return $shipping_cost;
-		}else{
-				$shipping_cost;
-			 }
+            $res = array(
+                'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
+                'shippingCompany' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany']
+            );
+			return json_encode($res);
 	}
-
 	
 	
 	public function hookactionSortFilters($params)
 	{
-
 		$filters = $params['filters'];
 		
 		unset($keyfilter);
@@ -519,7 +519,6 @@ class matisses extends Module
 	{
 		require_once dirname(__FILE__)."/classes/Experiences.php";
 		$Experiences = new Experiences();
-
 		$list = $Experiences->getExperiences();
 		foreach($list as $k => $exp)
 		{
@@ -531,32 +530,26 @@ class matisses extends Module
 	}
 	
 	
-	public function hookmoduleRoutes() {
-	/*
-		return array(
-				'module-maticces-experiences' => array(
-                    'controller' => 'new',
-                    'rule' =>  'news/new/{id_news}-{cat_news}-{page_cat}/{cat_rewrite}/{rewrite}.html',
-                    'keywords' => array(
-                        'id_news'   => array('regexp' => '[0-9]+',   'param' => 'id_news'),
-                        'cat_news'  => array('regexp' => '[0-9]*',   'param' => 'cat_news'),
-                        'cat_rewrite'  => array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'cat_rewrite'),
-                        'page_cat'      => array('regexp' => '[0-9]*',   'param' => 'page_cat'),
-                        'rewrite'   => array('regexp' => '[_a-zA-Z0-9-\pL]*',   'param' => 'rewrite'),
-                    ),
-                    'params' => array(
-						'fc' => 'module',
-                        'module' => 'news',
-                        'controller' => 'new'
-                    )
-                )
-				 
-    	);	
-*/
-    }	
+	/*public function hookmoduleRoutes() {
+		return [
+            'module-matisses-experiences' => [
+                'controller' => 'experiences',
+                'rule' =>  'experiencias/{id_experciencia}',
+                'keywords' => [
+                    'id_experciencia'   => ['regexp' => '[0-9]+',   'param' => 'id_experciencia']
+                ],
+                'params' => [
+                    'fc' => 'module',
+                    'controller' => 'experiences',
+                ]        	 
+    	     ]
+        ];
+    }*/
 	
 	public function hookHeader($params)
 	{
+        global $smarty;
+        global $cookie;
 		$this->page_name = Dispatcher::getInstance()->getController();
 		$this->context->controller->addJS($this->_path.'js/fblogin.js');
 		
@@ -577,8 +570,379 @@ class matisses extends Module
 			$this->context->controller->addJqueryPlugin('bxslider');
 			$this->context->controller->addJS($this->_path.'js/experiences_home.js');
 		}
-		//echo "<pre>"; print_r($params); echo "</pre>";
+		//Assign cutomer information
+        if ($cookie->isLogged()) {
+            $id = (int)$this->context->cookie->id_customer;
+            $sql = "select id_customer,CONCAT_WS(' ',firstname, lastname) as 'name', email, charter, newsletter from "._DB_PREFIX_."customer ";
+            $sql .= "where id_customer = '".$id."'";
+            $res = Db::getInstance()->executeS($sql);
+            
+            $this->context->smarty->assign(array(
+                'idcustomer' => $res[0]['id_customer'],
+                'customername' => $res[0]['name'],
+                'customeremail' => $res[0]['email'],
+                'customercharter' => $res[0]['charter'],
+                'customernewsletter' => $res[0]['newsletter']
+		    ));
+        }
+        
+        
+        $this->context->smarty->assign(array(
+            'idlanguage' => $this->context->language->id
+        ));
+        
+        
+        // Assing parent subcategories 
+        if (in_array($this->page_name, array('category'))) {
+            $idcategory = Tools::getValue('id_category');
+            $cat = new Category($idcategory);
+            $parent = $cat->getParentsCategories($this->context->language->id);
+            $parents = array();
+            
+            foreach($parent as $row){
+                
+                if ($row['level_depth'] == 3) {
+                    array_push($parents,
+                               array(
+                                    'id' => $row['id_category'],
+                                    'name' => $row['name']
+                    ));   
+                } else if ($row['level_depth'] > 3) {
+                    array_push($parents,
+                               array(
+                                    'id' => $row['id_category'],
+                                    'name' => $row['name'],
+                                    'parents' => array($row['id_parent'])
+                    ));
+                }               
+            }
+
+            $this->context->smarty->assign(array(
+                'parents' => json_encode($parents)
+		    ));
+        }
+        
+        // Assing current product Chaordic
+        if (in_array($this->page_name, array('product'))) {
+            
+            $id_product = (int)Tools::getValue('id_product');
+            $link = new LinkCore();
+            $images = Image::getImages($this->context->language->id, $id_product);
+            $product = new Product($id_product);
+            $cat = Product::getProductCategoriesFull($product->id,$this->context->language->id);
+            $tags = Tag::getProductTags($id_product);
+            $categoriesp = array();
+            $tagsproduct = array();
+            $attr = $product->getAttributeCombinaisons($this->context->language->id);
+            $attrcolors = array();
+            $skuattr = array();
+            
+            // attributes
+            /*echo "<pre>"; print_r($attr); echo "</pre>"; die();*/
+            foreach($attr as $row){
+                if ($row['group_name'] == 'Color') {
+                    array_push($attrcolors,$row['attribute_name']);
+                }
+                 
+                $tempattr = array();        
+                $tempattr['sku'] = $row['reference'];
+                $tempattr['specs'] = array('color' => $row['attribute_name']);
+                
+                if ($row['quantity'] > 0) { 
+                    $tempattr['status'] = 'available';
+                } else {
+                    $tempattr['status'] = 'unavailable';
+                }
+                // color hexadecimal
+                $hexcolor = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'attribute WHERE id_attribute = "'.$row['id_attribute'].'"');
+                
+                if (isset($hexcolor)) {
+                    $tempattr['hex_color'] = $hexcolor[0]['color'];   
+                }
+                
+                // images 
+                $imag = $product->_getAttributeImageAssociations($row['id_product_attribute']);
+                
+                if (isset($imag)) {
+                    $tempattr['images'] = array('default' => $link->getImageLink($product->link_rewrite[1], $imag[0]));   
+                }
+                
+                // price
+                $pricesku = $product->getPrice(true,$inrefer['id_product_attribute']);
+                $tempattr['price'] = $pricesku;
+                
+                array_push($skuattr,$tempattr);
+            }
+            
+            if (!empty($attrcolors)) {
+                $this->context->smarty->assign(array(
+                    'productcolors' => json_encode($attrcolors)
+                ));
+            }
+            
+            if (!empty($skuattr)) {
+                $this->context->smarty->assign(array(
+                    'productskuattr' => json_encode($skuattr)
+                ));
+            }
+            
+            // categories
+            $categoriesForMeta = array();
+            
+            foreach($cat as $row){
+                $categ = new Category($row['id_category']);
+                $parent = $categ->getParentsCategories($this->context->language->id);
+                
+                if ($categ->level_depth > 2) {
+                    $exist = false;
+                    foreach($categoriesForMeta as $cf){
+                        if ($parent[2]['level_depth'] > 2) {
+                            if($cf['id'] == $parent[2]['id_category']){
+                                $exist = true;
+                            }
+                        }
+                    }
+                    if(!$exist){
+                        if ($parent[2]['level_depth'] > 2) {
+                            array_push($categoriesForMeta, array(
+                                'id' => $parent[2]['id_category'],
+                                'name' => $parent[2]['name']
+                            ));   
+                        }
+                    }
+                    $exist = false;
+                    foreach($categoriesForMeta as $cf){
+                        if ($parent[1]['level_depth'] > 2) {
+                            if($cf['id'] == $parent[1]['id_category']){
+                                $exist = true;
+                            }
+                        }
+                    }
+                    if(!$exist){
+                        if ($parent[1]['level_depth'] > 2) {
+                            array_push($categoriesForMeta, array(
+                                'id' => $parent[1]['id_category'],
+                                'name' => $parent[1]['name'],
+                                'parents' => array($parent[2]['id_category'])
+                            ));   
+                        }
+                    }
+                     if ($parent[0]['level_depth'] > 3) {
+                         array_push($categoriesForMeta, array(
+                            'id' => $parent[0]['id_category'],
+                            'name' => $parent[0]['name'],
+                            'parents' => array($parent[1]['id_category'])
+                        ));   
+                     } else {
+                         array_push($categoriesForMeta, array(
+                            'id' => $parent[0]['id_category'],
+                            'name' => $parent[0]['name'],
+                        ));
+                     }
+                }
+            }
+            
+            //tags
+            foreach($tags as $tag){
+                foreach ($tag as $item) {
+                    array_push($tagsproduct,array('name' => $item));
+                }
+            }
+            
+            // parent categories of product
+            $idcategory = $product->getDefaultCategory();
+            $categ = new Category($idcategory);
+            $parent = $categ->getParentsCategories($this->context->language->id);
+            $parents = array();
+            
+            foreach($parent as $row){
+                
+                if ($row['level_depth'] == 3) {
+                    array_push($parents,
+                               array(
+                                    'id' => $row['id_category'],
+                                    'name' => $row['name']
+                    ));   
+                } else if ($row['level_depth'] > 3) {
+                    array_push($parents,
+                               array(
+                                    'id' => $row['id_category'],
+                                    'name' => $row['name'],
+                                    'parents' => array($row['id_parent'])
+                    ));
+                } else {
+                    array_push($parents,
+                               array(
+                                    'id' => $row['id_category'],
+                                    'name' => $row['name']
+                    )); 
+                }  
+            }
+           
+            // assign data of product
+            $this->context->smarty->assign(array(
+                'idproduct' => $product->id,
+                'nameproduct' => $product->getProductName($product->id),
+                'linkproduct' => $product->getLink(),
+                'descproduct' => strip_tags($product->description[1]),
+				'imageproduct' => $link->getImageLink($product->link_rewrite[1], (int)$images[0]["id_image"], 'large_default'),
+				'priceproduct' => $product->getPriceWithoutReduct(),
+                'categoriesp' => json_encode($categoriesForMeta),
+                'tagsproduct' => json_encode($tagsproduct),
+				'statusproduct' => $product->getQuantity($product->id),
+                'productcondition' => $product->condition,
+                'parents' => json_encode($parents)
+		    ));
+        }
+        
+        // Assing cart info to Chaordic
+        if (in_array($this->page_name, array('order'))) {
+            $id_cart = $this->context->cart->id;
+            $cartbyurl = false;
+            // reconstruct cart
+            $getparams = $_SERVER['QUERY_STRING'];
+            
+            if (isset($getparams)) {
+                $cart = null;
+                $vars = explode('&',$getparams);
+                $urlproducts = array();
+                $cont = 0; 
+                
+                foreach($vars as $row) {
+                    $findsku = strchr($row,'sku');
+                    
+                    if ($findsku) {
+                        $cartbyurl = true;
+                        $sk = explode('=', $findsku);
+                        array_push($urlproducts,array(
+                            'sku' => $sk[1],
+                            'qty' => ''
+                        ));
+                    }
+                    
+                    $findqty = strchr($row,'qty'); 
+                    
+                    if ($findqty) {
+                        $qt = explode('=', $findqty);
+                        $urlproducts[$cont]['qty'] = $qt[1];
+                        $cont++;
+                    }
+                } 
+                
+                $idcus = (int)($this->context->cookie->id_customer);
+                if (!empty($idcustomer)) {
+                    $idcus = $idcustomer;
+                }
+                
+                // get cart id if exists
+                if ($this->context->cookie->id_cart)
+                {
+                    $cart = new Cart($this->context->cookie->id_cart);
+                }
+
+                // create new cart if needed
+                if (!isset($cart) || !$cart->id)
+                {
+                    $cart = new Cart();
+                    $cart->id_customer = $idcus;
+                    $cart->id_address_delivery = (int)  (Address::getFirstCustomerAddressId($cart->id_customer));
+                    $cart->id_address_invoice = $cart->id_address_delivery;
+                    $cart->id_lang = (int)($this->context->language->id);
+                    $cart->id_currency = (int)($this->context->cookie->id_currency);
+                    $cart->id_carrier = 1;
+                    $cart->recyclable = 0;
+                    $cart->gift = 0;
+                    $cart->add();
+                    $this->context->cookie->id_cart = (int)($cart->id);    
+                    $cart->update();
+                }
+                
+                foreach($urlproducts as $row) {
+                    $prod = Product::searchByName($this->context->language->id,$row['sku']);
+                    
+                    if ($prod) {
+                        $quant = $row['qty'];
+                        
+                        if (empty($quant)) {
+                            $quant = 1;
+                        }
+                        
+                        if ($prod[0]['quantity'] > 0) {
+                            $cart->updateQty($quant, $prod[0]['id_product']);
+                            $cart->update();
+                        }
+                    }
+                } 
+            }
+            
+            // Current products in shopping cart
+            $productsc = $params['cart']->getProducts(true);
+            $prodincart = array();
+            
+            foreach ($productsc as $row) {
+                array_push($prodincart, array(
+                        'product' => array(
+                                    'id' => (string)$row['id_product'],
+                                    'sku' => (string)$row['reference'],
+                                    'price' => (int)$row['price_wt']
+                        ),
+                        'quantity' => (int)$row['cart_quantity']
+                ));
+            }
+            
+            $this->context->smarty->assign(array(
+                'idcart' => $id_cart,
+                'cartbyurl' => $cartbyurl,
+                'prodincart' => json_encode($prodincart)
+		    ));
+        }
+        
+        // Get products in order confirmation
+        if (in_array($this->page_name, array('orderconfirmation'))) {
+            
+            if (isset($_GET['id_order'])) {
+                $order = new Order($_GET['id_order']);
+                $signature = $_GET['key'];
+                $productorders = $order->getProducts();
+                $result = array();
+                
+                foreach ($productorders as $prod) {
+                    $product = array();
+                    $product['product'] = array(
+                        "id" => $prod['product_id'],
+                        "sku" => $prod['product_reference'],
+                        "price" => $prod['product_price']
+                    );
+                    $product['quantity'] = (int)$prod['product_quantity'];
+                    array_push($result,$product);
+                }
+
+                $this->context->smarty->assign(array(
+                    'orderproducts' => json_encode($result),
+                    'signature' => md5($signature)
+                ));
+            }
+        }
 	}
+    
+    public function searchByReference($skus) {
+        $references = $skus;
+        
+        if (!empty($references)) {
+            $idproducts = array();
+            $idlanguage = $this->context->language->id;
+            
+            foreach ($references as $row) {
+                $prod = Product::searchByName($idlanguage,$row);
+                $idprod = $prod[0]['id_product'];
+                array_push($idproducts,$idprod);
+            }
+            
+            return $idproducts;   
+        } else {
+            return null;
+        }
+    }
 	
 	public function hookdisplayFooterProduct($params)
 	{
@@ -613,7 +977,6 @@ class matisses extends Module
 		
 		if($sketch)
 			$sketch = '/modules/'.$this->name.'/files/'.$params['product']->reference.'/plantilla/'.$sketch;
-
 		
 		$this->context->smarty->assign('schemas',array(
 			'sketch' => $sketch,
@@ -678,7 +1041,6 @@ class matisses extends Module
 		$this->context->cookie->is_guest = $customer->isGuest();
 		$this->context->cookie->passwd = $customer->passwd;
 		$this->context->cookie->email = $customer->email;
-
 		// Add customer to the context
 		$this->context->customer = $customer;
 		
@@ -687,34 +1049,27 @@ class matisses extends Module
 			$this->context->cart = new Cart($id_cart);
 			$this->context->cart->id_currency = 1;
 		}
-
 		$id_carrier = (int)$this->context->cart->id_carrier;
 		$this->context->cart->id_carrier = 0;
 		$this->context->cart->setDeliveryOption(null);
 		$this->context->cart->id_address_delivery = (int)Address::getFirstCustomerAddressId((int)($customer->id));
 		$this->context->cart->id_address_invoice = (int)Address::getFirstCustomerAddressId((int)($customer->id));
-
 		$this->context->cart->id_customer = (int)$customer->id;
 		$this->context->cart->secure_key = $customer->secure_key;
-
 		if ($this->ajax && isset($id_carrier) && $id_carrier && Configuration::get('PS_ORDER_PROCESS_TYPE'))
 		{
 			$delivery_option = array($this->context->cart->id_address_delivery => $id_carrier.',');
 			$this->context->cart->setDeliveryOption($delivery_option);
 		}
-
 		$this->context->cart->save();
 		$this->context->cookie->id_cart = (int)$this->context->cart->id;
 		$this->context->cookie->write();
 		$this->context->cart->autosetProductAddress();
-
 		// Login information have changed, so we check if the cart rules still apply
 		CartRule::autoRemoveFromCart($this->context);
 		CartRule::autoAddToCart($this->context);
-
 		return 'index.php?controller='.(($this->authRedirection !== false) ? urlencode($this->authRedirection) : $back);
 	}
-
 // FUNCIONES DE INTEGRACION CON CLIENTES
 	
 	/*******************************************************
@@ -738,13 +1093,13 @@ class matisses extends Module
 		$infoxml[0]['source'] 			= 'prestashop';
 		$infoxml[0]['id'] 				= $InfCustomer[0]['charter'].'CL';
 		$infoxml[0]['lastName1'] 		= strtoupper($InfCustomer[0]['lastname']);
-		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['secondname']);
-        $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
-        $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname']);
+		$infoxml[0]['lastName2']		= strtoupper(($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname']: ''));
+        $infoxml[0]['legalName']		= strtoupper(($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname'].' ': '').$InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
+        $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: ''));
 		$infoxml[0]['email']			= $InfCustomer[0]['email'];
 		$infoxml[0]['gender']			= 3;
+		$infoxml[0]['birthday']			= $InfCustomer[0]['birthday'];
         $infoxml[0]['salesPersonCode'] 	= ""; // se envia vacio esto se llena por default en sap;
-
 		if(sizeof($InfAddresses)>0)
 		{
 			$infoxml[0]['defaultBillingAddress'] = '';
@@ -807,9 +1162,10 @@ class matisses extends Module
 		$infoxml[0]['source'] 			= 'prestashop';
 		$infoxml[0]['id'] 				= $InfCustomer[0]['charter'].'CL';
 		$infoxml[0]['lastName1'] 		= strtoupper($InfCustomer[0]['lastname']);
-		$infoxml[0]['lastName2']		= strtoupper($InfCustomer[0]['secondname']);
-        $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
-        $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname']);
+		$infoxml[0]['lastName2']		= strtoupper(($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname']: ''));
+        $infoxml[0]['legalName']		= strtoupper(($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname'].' ': '').$InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
+        $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: ''));
+        $infoxml[0]['birthday']		= $InfCustomer[0]['birthday'];
 		
 		if(sizeof($Adresses)> 0)
 		{
@@ -820,8 +1176,6 @@ class matisses extends Module
 		$infoxml[0]['email']			= $InfCustomer[0]['email'];
         $infoxml[0]['salesPersonCode'] 	= ""; // se envia vacio esto se llena por default en sap;
 		
-
-
 		foreach($InfAddresses as $d => $v) 
 		{
 			$addresses[$d]['addressName']	= $InfAddresses[$d]['alias'];
@@ -836,14 +1190,12 @@ class matisses extends Module
             $addresses[$d]['phone']			= $InfAddresses[$d]['phone'];
 		}
 		$infoxml[0]['addresses'] = $addresses;
-
 		$xml = new Template(dirname(__FILE__)."/xml/sap_customer.xml");
 		$xml->addParam('infoxml',$infoxml);
 		$xml = $xml->output();
  		if($this->wsmatisses_client('customer',$infoxml[0]['operation'],'prestashop',$xml))
 			$this->wsmatisses_homologacion('customer','id',$customer->id,$infoxml[0]['id']); 
 	}
-
 // FUNCIONES DE INTEGRACION CON PRODUCTOS	
 	/*******************************************************
 	*	@author:	Sebastian casta�o
@@ -855,27 +1207,26 @@ class matisses extends Module
 	*******************************************************/
 	public function hookactionProductCartSave($params)
 	{
-		// solo se ejecuta desde el front
-		$headers = get_headers(Configuration::get($this->name.'_UrlWs'));
-
 		
+		$headers = get_headers(Configuration::get($this->name.'_UrlWs'));
+		
+		
+		/*
         if(is_soap_fault($headers) || empty($headers)){
             die(Tools::jsonEncode(array(
                 'hasError' => true,
                 'errors' => array("En este momento no es posible agregar al carrito"),
             )));
-        }
+        }*/
 		
 		if(!strstr($headers[0],'200'))
 			return false;
 			
-
 		//ini_set('display_errors',false);
 		//error_reporting(~E_NOTICE);
 		$id_cart 	= is_object($this->context->cart->id) ? $this->context->cart->id : $this->context->cookie->id_cart;
 		$products				= $params['id_product'];
 		$id_product_attribute	= $params['id_product_attribute'];
-
 		if($id_product_attribute!=0)
 		{
 			$reference = self::getReferenceByIdProductAttribute($id_product_attribute,$products);
@@ -887,7 +1238,6 @@ class matisses extends Module
 			
 				
 			$response 	= $this->wsmatisses_get_data('inventoryItem','listWebEnabledStock','sap',$this->array_to_xml(array('inventoryItemDTO'=>array('itemCode'=>$reference)),false));
-			
 			$reference	= $response['inventoryItemDTO']['itemCode'];
 			require_once dirname(__FILE__)."/wsclasses/ws_product.php";
 			$ws_product = new ws_product();
@@ -916,7 +1266,6 @@ class matisses extends Module
 				
 				if(is_array($products))
 				{
-
 				}else{
 						$product 	= new Product($products);
 						if(!$product->reference || empty($product->reference))
@@ -970,6 +1319,20 @@ class matisses extends Module
 		return $result['inventoryItemListDTO']['items'];
 		//echo "<pre>"; print_r($result); echo "</pre>";
 		//return $result['additionalCostsDTO']['installationCost'].'_'.$result['additionalCostsDTO']['deliveryCost']; 		
+	}
+    
+    public function wsmatissess_getVIPGift($params)
+	{
+		
+		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
+		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), array("trace"=>1,"exceptions"=>0));
+		$s 			= array('genericRequest' => array('data'		=>$params,
+														'object'	=>'gift',
+														'operation'	=>'get',
+														'source'	=>'pruebas')
+												);
+		$result = $client->call('callService', $s);
+        return $result;
 	}
 	
 	public function wsmatissess_calculateAditionalCosts($params)
@@ -1030,7 +1393,6 @@ class matisses extends Module
 			); 
 		}
 		
-
 		
 		echo '<br><br><pre>';print_r($datos);echo '</pre>';
 		$var = array();
@@ -1093,7 +1455,6 @@ class matisses extends Module
 		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), true);
 		$invoice['customerDTO']['id'] 		= $params['id'];	
 		$invoice 	= self::array_to_xml($invoice,false);
-
 		$s 			= array('genericRequest' => array('data'		=>$invoice,
 														'object'	=>'order',
 														'operation'	=>'listCustomerOrders',
@@ -1115,7 +1476,7 @@ class matisses extends Module
 		$garantia['serviceRequestDTO']['subject'] 		= $params['subject'];	
 		
 		foreach($params['images'] as $d => $v)
-			$garantia['serviceRequestDTO']['images'][]['imageName'] = $v; 
+			$garantia['serviceRequestDTO']['images'][]['imageName'] = $v;
 			
 		foreach($params['problems'] as $d => $v)
 			$garantia['serviceRequestDTO']['problems'][]['name'] = $v; 	
@@ -1131,12 +1492,10 @@ class matisses extends Module
 		//print_r($result);
 		return $result;	 			
 	}
-
-	public function wsmatisses_registrar($params)
+	public function wsmatisses_registrar($params) 
 	{
 /*		echo "<pre>";
 		print_r($params);
-
 		echo "</pre>";*/
 		
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
@@ -1205,7 +1564,6 @@ class matisses extends Module
 		if($continue)
 			return $this->wsmatisses_createInvoice($products);
 	}
-
 	// FUNCIONES DE COMUNICACION CON SAP	
 	public function wsmatisses_facturar($params)
 	{
@@ -1220,20 +1578,16 @@ class matisses extends Module
 														'source'	=>'prestashop')
 												); 
 		$result = $client->call('callService', $s); 
-
 		if(empty($result))
 		{
 			echo "<p>";print_r($result['return']['detail']);echo"</p>";
 			return false;	
 		}
-
-
 		if(substr($result['return']['code'],4,1)==9)
 		{
 			echo "<p>";print_r($result['return']['detail']);echo"</p>";
 			return false;
 		}else{
-
 				$sql = 'UPDATE `' . _DB_PREFIX_ . 'cart` set id_factura ="'.$result['return']['detail'].'" where id_cart = "'.$params['id_order'].'"';
 				Db::getInstance()->Execute($sql);
 				return true;
@@ -1271,7 +1625,6 @@ class matisses extends Module
 			$response = $ex->getMessage();
 			$return = false;
 		} 
-
 		$this->log($objeto,$operacion,$origen,$xml,$response,$status,$error);
 		return $boolean ? $return : $response;
 	}
@@ -1283,16 +1636,13 @@ class matisses extends Module
 		$client = new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
 		//echo "<pre>"; print_r($client); echo "</pre>";
 		//die();
-		$s 		= array('genericRequest' => array('data'=>$datos,'object'=>$objeto,'operation'=>$operacion,'source'=>$origen)); 
+		$s 		= array('genericRequest' => array('data'=>$datos,'object'=>$objeto,'operation'=>$operacion,'source'=>$origen));
 		
-
-
 		$result = $client->call('callService', $s);
 		if($client->error_str)
 		{
 			return array('error_string' => $client->error_str);
 		}
-
 		if($return)
 			return $result;  
 		
@@ -1300,13 +1650,8 @@ class matisses extends Module
 			return false;
 			
 		
-		if('0101002' == $result['return']['code'])
-		{
-			//echo ak;
-			$datos 		= $this->xml_to_array(utf8_encode($result['return']['detail']));
-		}else{
-				$datos 		= $this->xml_to_array(utf8_encode($result['return']['detail']));
-			 }
+
+		$datos 	= $this->xml_to_array(utf8_encode($result['return']['detail']));
 		
 		return $datos;
 	}
@@ -1358,7 +1703,6 @@ class matisses extends Module
 							 }
 					 }
 			}
-
 			require_once dirname(__FILE__)."/wsclasses/ws_loadProducts.php";
 			$ws_product = new ws_loadProducts();
 			$ws_product->_products = $products;
@@ -1381,7 +1725,6 @@ class matisses extends Module
 		$datos 		= $this->wsmatisses_get_data('inventoryItem','getItemInfo','prestashop',$this->array_to_xml($data,false));
 		return $datos['inventoryItemDTO']; 
 	}
-
 	public function wsmatisses_getModelInfo()
 	{
 		ini_set('display_errors',false);	
@@ -1487,9 +1830,6 @@ class matisses extends Module
 													 
 			$result = $client->call('callService', $s);
 			
-
-			
-			
  			if($result && $result['return']['code']=='0201001')
 			{
 				if($result['return']['code']=='0201902')
@@ -1502,7 +1842,7 @@ class matisses extends Module
 																	'0201905'=>'',
 																	'0201906'=>'',
 																	'0201907'=>''))){
-					echo $this->l($result['return']['code'].' - Lo siento! - se ha presentado un error durante la operaci�n, no se puede continuar con el proceso de compra');
+					echo $this->l($result['return']['code'].' - Lo siento! - se ha presentado un error durante la operación, no se puede continuar con el proceso de compra');
 					echo '<p>'.$result['return']['detail'].'</p>';
 					exit;
 				}
@@ -1536,8 +1876,6 @@ class matisses extends Module
 		}
 		return false; 
 	}
-
-
 	/*******************************************************
 	*	@author:	Sebastian casta�o
 	*	@package:	Matisses integracion (Funciones de Comunicacion sap)
@@ -1556,7 +1894,6 @@ class matisses extends Module
 		$operacion 	= empty($operacion) ? $datos['operation'] : $operacion;
 		$origen 	= empty($origen) ? $datos['source'] : $origen;
 		$datos 		= sizeof($datos)>1 ? $datos['data'] : $datos;
-
 		(!$objeto) ? array_push($response['error'],'Missing object param') : NULL;
 		(!$operacion) ? array_push($response['error'],'Missing object param') : NULL;
 		(!$origen) ? array_push($response['error'],'Missing object param') : NULL;
@@ -1604,9 +1941,7 @@ class matisses extends Module
 		$this->log($objeto,$operacion,$origen,$datos,$response,($errors !='' ? true : false),$errors); 	 
 		return $response;
 	}
-
 // FIN FUNCIONES DE AYUDA
-
 	/*******************************************************
 	*	@author:	Sebastian casta�o
 	*	@package:	Matisses integracion (Helpers)
@@ -1878,7 +2213,6 @@ class matisses extends Module
 	}
 	
 	/*******************************************************
-
 	*	@author:	Sebastian casta�o
 	*	@package:	Matisses integracion (Helpers)
 	*	@summary:	Metodo que apoya la funcionalidad del metodo
@@ -1972,7 +2306,6 @@ class matisses extends Module
 									,false, true,Db::INSERT_IGNORE,true
 									); 
 	}
-
 	public function getReferenceByIdProductAttribute($id_product_attribute,$id_product)
 	{
 		if(!$id_product_attribute)
@@ -1983,7 +2316,6 @@ class matisses extends Module
 											WHERE id_product ="'.$id_product.'"
 											AND id_product_attribute = "'.$id_product_attribute.'"');	
 	}
-
 	public function getbyisocity($city)
 	{
 		return Country::getByIso(trim($city));
@@ -1993,7 +2325,6 @@ class matisses extends Module
 	{
 		return State::getIdByIso(trim($state));
 	}
-
 	
 }	
 ?>

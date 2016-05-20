@@ -24,7 +24,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 
-define('PS_SEARCH_MAX_WORD_LENGTH', 15);
+define('PS_SEARCH_MAX_WORD_LENGTH', 20);
 
 /* Copied from Drupal search module, except for \x{0}-\x{2f} that has been replaced by \x{0}-\x{2c}\x{2e}-\x{2f} in order to keep the char '-' */
 define('PREG_CLASS_SEARCH_EXCLUDE',
@@ -199,7 +199,7 @@ class SearchCore
 				$word = str_replace('_', '\\_', $word);
 				$start_search = Configuration::get('PS_SEARCH_START') ? '%': '';
 				$end_search = Configuration::get('PS_SEARCH_END') ? '': '%';
-
+                
 				$intersect_array[] = 'SELECT si.id_product
 					FROM '._DB_PREFIX_.'search_word sw
 					LEFT JOIN '._DB_PREFIX_.'search_index si ON sw.id_word = si.id_word
@@ -366,21 +366,17 @@ class SearchCore
 	}
 
 	public static function getAttributes($db, $id_product, $id_lang)
-	{
-		if (!Combination::isFeatureActive())
-			return '';
-
-		$attributes = '';
-		$attributesArray = $db->executeS('
-		SELECT al.name FROM '._DB_PREFIX_.'product_attribute pa
-		INNER JOIN '._DB_PREFIX_.'product_attribute_combination pac ON pa.id_product_attribute = pac.id_product_attribute
-		INNER JOIN '._DB_PREFIX_.'attribute_lang al ON (pac.id_attribute = al.id_attribute AND al.id_lang = '.(int)$id_lang.')
-		'.Shop::addSqlAssociation('product_attribute', 'pa').'
-		WHERE pa.id_product = '.(int)$id_product);
-		foreach ($attributesArray as $attribute)
-			$attributes .= $attribute['name'].' ';
-		return $attributes;
-	}
+    {
+        $attributes = '';
+        $attributesArray = $db->ExecuteS('
+        SELECT al.name, pa.reference FROM '._DB_PREFIX_.'product_attribute pa
+        INNER JOIN '._DB_PREFIX_.'product_attribute_combination pac ON pa.id_product_attribute = pac.id_product_attribute
+        INNER JOIN '._DB_PREFIX_.'attribute_lang al ON (pac.id_attribute = al.id_attribute AND al.id_lang = '.(int)$id_lang.')
+        WHERE pa.id_product = '.(int)$id_product);
+        foreach ($attributesArray AS $attribute)
+            $attributes .= $attribute['name'].' '.($attribute['reference'] != "" ? $attribute['reference'].' ' : '');
+        return $attributes;
+    }
 
 	public static function getFeatures($db, $id_product, $id_lang)
 	{
@@ -569,6 +565,7 @@ class SearchCore
 					if (strncmp($key, 'id_', 3) && isset($weight_array[$key]))
 					{
 						$words = explode(' ', Search::sanitize($value, (int)$product['id_lang'], true, $product['iso_code']));
+
 						foreach ($words as $word)
 							if (!empty($word))
 							{

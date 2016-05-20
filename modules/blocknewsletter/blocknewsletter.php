@@ -376,15 +376,25 @@ class Blocknewsletter extends Module
 						return $this->error = $this->l('An error occurred during the subscription process.');
 
 					$this->sendVerificationEmail($email, $token);
-
+                    
+                    $this->context->smarty->assign(array(
+                        'emailsubscribe' => $email
+                    ));
+                    
 					return $this->valid = $this->l('A verification email has been sent. Please check your inbox.');
 				}
 				else
 				{
-					if ($this->register($email, $register_status))
-						$this->valid = $this->l('You have successfully subscribed to this newsletter.');
-					else
-						return $this->error = $this->l('An error occurred during the subscription process.');
+					if ($this->register($email, $register_status)) {
+                        $this->context->smarty->assign(array(
+                            'emailsubscribe' => $email
+                        ));
+                        
+                        $this->valid = $this->l('You have successfully subscribed to this newsletter.'); 
+                    }
+					else {
+                        return $this->error = $this->l('An error occurred during the subscription process.');   
+                    }
 
 					if ($code = Configuration::get('NW_VOUCHER_CODE'))
 						$this->sendVoucher($email, $code);

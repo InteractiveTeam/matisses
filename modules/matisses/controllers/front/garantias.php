@@ -1,5 +1,7 @@
 <?php
 
+require_once _PS_MODULE_DIR_ . "matisses/classes/Danos.php";
+
 class matissesgarantiasModuleFrontController extends ModuleFrontController
 {
 	//public $php_self = "experiences";
@@ -98,7 +100,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 													and a.id_customer = '.$this->context->customer->id.'
 												 	and a.id_order = '.$orderdetail[0].'	
 												 	and a.id_product = '.$orderdetail[1].'	
-												 	and a.id_product_attribute = '.$orderdetail[2]);		
+												 	and a.id_product_attribute = '.$orderdetail[2]);
 		$garantia['imgs'] = explode(',',$garantia['imgs']);	
 		return $garantia;										
 	}
@@ -175,6 +177,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 		$garantia = $this->getGarantia();
 		if(Tools::isSubmit('submitStep2'))
 		{
+            //echo "<pre>";print_r($_POST);echo "</pre>";die();
 			$this->context->smarty->assign(array(
 												'tipo' => Tools::getValue('tipo'),
 												'asunto' => Tools::getValue('asunto'),
@@ -196,13 +199,50 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 					$this->errors[] = Tools::displayError('Cargue almenos una imagen del daño');
 			}
 	
+	
+			if($_FILES['imagen']['name'][0])
+			{
+				$imagen = $_FILES['imagen'];
+				for($i=1; $i<=sizeof($imagen['name']); $i++)
+				{
+					if($imagen['name'][$i])
+					{
+						$imagenes[$i]['name'] 		= $imagen['name'][$i];
+						$imagenes[$i]['type'] 		= $imagen['type'][$i];
+						$imagenes[$i]['tmp_name'] 	= $imagen['tmp_name'][$i];
+						$imagenes[$i]['error']		= $imagen['error'][$i];
+						$imagenes[$i]['size']		= $imagen['size'][$i];
+					}
+				}
+				foreach($imagenes as $k => $imagen)
+				{
+					if(strtolower(trim(pathinfo($imagen['name'], PATHINFO_EXTENSION))) != 'jpg')
+					{
+						$this->errors[] = Tools::displayError('Una o mas imagenes no cumplen con el formato jpg');
+						break;
+					}
+					
+					if($imagen['error']!=0)
+					{
+						$this->errors[] = Tools::displayError('Una o mas imagenes presentaron error al cargar');
+						break;
+					}
+					
+					if($imagen['size']>Configuration::get("PS_PRODUCT_PICTURE_MAX_SIZE"))
+					{
+						$this->errors[] = Tools::displayError('Una o mas imagenes exceden el limite de carga permitido ').' '.(Configuration::get("PS_PRODUCT_PICTURE_MAX_SIZE")/(1024*1024)).'Mb';
+						break;
+					}
+				}				
+				
+			}	
 				
 			if(sizeof($this->errors)==0)
 			{
 				$imagen = $_FILES['imagen'];
 				if($imagen['name'][0])
 				{
-					for($i=1; $i<=sizeof($imagen['name']); $i++)
+					for($i=0; $i<=sizeof($imagen['name']); $i++)
 					{
 						if($imagen['name'][$i])
 						{
@@ -235,6 +275,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 						}
 					}
 				}
+
 					
 					if(sizeof($this->errors)==0)
 					{
@@ -263,14 +304,13 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							{
 								move_uploaded_file($imagen['tmp_name'],_PS_IMG_DIR_.'garantias/'.$id_insert.'_'.$k.'.jpg');
 								$imagesuploaded[] = $id_insert.'_'.$k;
-								$realimages[] =  'garantias/'.$id_insert.'_'.$k.'.jpg';
+								$realimages[] = _PS_BASE_URL_.__PS_BASE_URI__.'img/garantias/'.$id_insert.'_'.$k.'.jpg';
 							}
-							//echo "<pre>";
-							//print_r($imagesuploaded);
-							//echo "</pre>";
-							//echo "<pre>";
-							//print_r($realimages);
-							//echo "</pre>";
+
+//							echo "<pre>";
+//							print_r($realimages);
+//							echo "</pre>";
+//                            die();
 							
 							
 							$itemCode = Db::getInstance()->getValue('SELECT reference 
@@ -294,6 +334,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							$params['subject'] 			= Tools::getValue('asunto');	
 							$params['problems']			= explode(',',Tools::getValue('tipo'));
 							$params['images']			= $realimages;
+							$params['images_64']         = $uploadedImg;
 							
 							
 							$response = Hook::exec('actionAddGarantia', $params );
@@ -340,7 +381,23 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 					}
 				}			
 		}
-		
+        $data = explode("-",Tools::getValue("data"));
+        $prod = new ProductCore($data[1]);
+        $features = $prod->getFeatures();
+        $damages = array();
+        $i = 0;
+        foreach($features as $ft){
+            $m = FeatureValueCore::getFeatureValuesWithLang(1,$ft['id_feature']);
+            $f = FeatureCore::getFeature(1,$ft['id_feature']);
+            
+            $damages[$i] = array(
+                'material' => $m[0]['value'],
+                'id_value' => $m[0]['id_feature_value'],
+                'code' => str_replace("material_","",$f['name']),
+                'damages' => Danos::getDamages($f['id_feature'])
+            );
+            $i++;
+        }
 		$realdanos = array();
 		$danos = explode(',',$this->info['confgaran_nrdanos']);
 		
@@ -374,6 +431,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 												'nrodanos' => $nrodanos,
 												'rnrodanos' => $this->info['confgaran_danos'],
 												'errors' => $this->errors,
+                                                'materials' => $damages
 												
 											 ));
 		if($garantia)

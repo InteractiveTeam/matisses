@@ -53,17 +53,45 @@
 			return Db::getInstance()->getValue('SELECT products FROM '._DB_PREFIX_.'experiences WHERE id_experience = "'.$id_experience.'" ');
 		}
 		
-		public function add($autodate = true, $null_values = false)
-		{
+		public function add($autodate = true, $null_values = false){
 			$ret = parent::add($autodate, $null_values);
 			return $ret;
 		}
 		
-		public function update($null_values = false)
-		{
-			$ret = parent::update($null_values);
-			return $ret;
+		public function update($null_values = false){                        
+            $data = json_decode($_POST['products']);
+
+            foreach($data as $key => $value){
+                if(strlen($value->id_product) == 20){
+                    $dataProduct = $this->consultIdproduct(trim($value->id_product),$data->$key);
+                    $value->id_product = trim($dataProduct['id_product']);
+                    $value->id_product_attribute = $dataProduct['id_product_attribute'];                    
+                }
+            }
+            
+            $result = json_encode($data);
+                        
+            //Actualizamos el producto con el ID y no la referencia
+            $sql = "UPDATE "._DB_PREFIX_."experiences SET products = '".$result."' WHERE id_experience = ".$_POST['id_experience'];            
+            $result = Db::getInstance()->execute($sql);
+            
+            //$ret = parent::update($null_values);            
+			return $result;
 		}
+        
+        //Consultamos el ID del producto según la referrencia larga que no llega
+        private function consultIdproduct($id_prod,$marker){
+            $sql = "SELECT * FROM "._DB_PREFIX_."product as a 
+                    INNER JOIN "._DB_PREFIX_."product_attribute as b
+                on a.id_product = b.id_product
+                WHERE a.reference = '".$id_prod."'
+                    or b.reference = '".$id_prod."'
+                    or a.id_product = '".$id_prod."'";
+			
+            $product = Db::getInstance()->getRow($sql);
+                        
+            return $product;
+        }
 		
 		public function GetFirstExperience()
 		{

@@ -61,6 +61,8 @@ class AddressCore extends ObjectModel
 
 	/** @var string Firstname */
 	public $firstname;
+	public $secondname;
+	public $surname;
 
 	/** @var string Address first line */
 	public $address1;
@@ -117,12 +119,14 @@ class AddressCore extends ObjectModel
 			'alias' => 				array('type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'required' => true, 'size' => 32),
 			'company' => 			array('type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'size' => 64),
 			'lastname' => 			array('type' => self::TYPE_STRING, 'validate' => 'isName', 'required' => true, 'size' => 32),
-			'firstname' => 			array('type' => self::TYPE_STRING, 'validate' => 'isName', 'required' => true, 'size' => 32),
+			'firstname' => 			array('type' => self::TYPE_STRING, 'validate' => 'isName',  'size' => 32),
+			'secondname' => 			array('type' => self::TYPE_STRING, 'validate' => 'isName',  'size' => 32),
+			'surname' => 			array('type' => self::TYPE_STRING, 'validate' => 'isName', 'size' => 32),
 			'vat_number' =>	 		array('type' => self::TYPE_STRING, 'validate' => 'isGenericName'),
 			'address1' => 			array('type' => self::TYPE_STRING, 'validate' => 'isAddress', 'required' => true, 'size' => 128),
 			'address2' => 			array('type' => self::TYPE_STRING, 'validate' => 'isAddress', 'size' => 128),
 			'postcode' => 			array('type' => self::TYPE_STRING, 'validate' => 'isPostCode', 'size' => 12),
-			'city' => 				array('type' => self::TYPE_STRING, 'validate' => 'isCityName', 'required' => true, 'size' => 64),
+			'city' => 				array('type' => self::TYPE_STRING, 'validate' => 'isCityName', 'size' => 64),
 			'other' => 				array('type' => self::TYPE_STRING, 'validate' => 'isMessage', 'size' => 300),
 			'phone' => 				array('type' => self::TYPE_STRING, 'validate' => 'isPhoneNumber', 'size' => 32),
 			'phone_mobile' => 		array('type' => self::TYPE_STRING, 'validate' => 'isPhoneNumber', 'size' => 32),

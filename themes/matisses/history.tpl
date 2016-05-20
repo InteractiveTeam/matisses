@@ -40,11 +40,12 @@
 		<table id="order-list" class="table table-bordered footab">
 			<thead>
 				<tr>
-					<th data-sort-ignore="true"  class="first_item">{l s='Número de pedido'}</th>
-                    <th data-sort-ignore="true"  class="item">{l s='Date'}</th>
-                    <th data-sort-ignore="true"  class="item">{l s='Total de pedido'}</th>
+                	<th data-sort-ignore="true"  class="item">{l s='Fecha y hora'}</th>
+					<th data-sort-ignore="true"  class="first_item">{l s='Referencia'}</th>
+                    <th data-sort-ignore="true"  class="item">{l s='Autorización / CUS'}</th>
                     <th data-sort-ignore="true"  class="item">{l s='Status'}</th>
-                    <th data-sort-ignore="true"  class="item">{l s='Número de autorización'}</th>
+                    <th data-sort-ignore="true"  class="item">{l s='Valor'}</th>
+                    
                     <th data-sort-ignore="true"  class="item">{l s='Número de factura'}</th>
                     <!--
 					<th data-sort-ignore="true" data-hide="phone,tablet" class="item">{l s='Payment'}</th>
@@ -56,28 +57,40 @@
 			<tbody>
 				{foreach from=$orders item=order name=myLoop}
 					<tr class="{if $smarty.foreach.myLoop.first}first_item{elseif $smarty.foreach.myLoop.last}last_item{else}item{/if} {if $smarty.foreach.myLoop.index % 2}alternate_item{/if}">
-						
+                       <!-- fecha y hora -->
+                        <td data-value="{$order.date_add|regex_replace:"/[\-\:\ ]/":""}" class="history_date bold">
+							{dateFormat date=$order.date_add full=1}
+						</td>
+                        <!-- referencia -->						
                         <td class="history_link bold">
 							{$order.id_order}
 						</td>
-                        <td data-value="{$order.date_add|regex_replace:"/[\-\:\ ]/":""}" class="history_date bold">
-							{dateFormat date=$order.date_add full=0}
-						</td>
-                        
-                        <td class="history_price" data-value="{$order.total_paid}">
-							<span class="price">
-								{displayPrice price=$order.total_paid currency=$order.id_currency no_utf8=false convert=false}
-							</span>
-						</td>
-                        
+                        <!-- Autorizacion / CUS -->
+                        <td>{$order.cus}</td>
+						<!-- Estado -->
                         <td{if isset($order.order_state)} data-value="{$order.id_order_state}"{/if} class="history_state">
 							{if isset($order.order_state)}
 								<span class="label{if isset($order.order_state_color) && Tools::getBrightness($order.order_state_color) > 128} dark{/if}"{if isset($order.order_state_color) && $order.order_state_color} style="background-color:{$order.order_state_color|escape:'html':'UTF-8'}; border-color:{$order.order_state_color|escape:'html':'UTF-8'};"{/if}>
+                                {if $order.order_state eq 'Pago aceptado'}
+                                    {l s='Aprobada'}
+                                {elseif $order.order_state eq 'Error en el pago'}
+                                    {l s='Fallida'} 
+                                {elseif $order.order_state eq 'En espera de confirmación de pago por Place to Pay'}
+                                    {l s='Pendiente'}
+                                {elseif $order.order_state eq 'Cancelado'}
+                                    {l s='Rechazada'} 
+                                {else}
 									{$order.order_state|escape:'html':'UTF-8'}
+                                {/if}
 								</span>
 							{/if}
+						</td> 
+                                               
+                        <td class="history_price" data-value="{$order.total_paid}">
+							<span class="price">
+								{$currency->iso_code} {displayPrice price=$order.total_paid currency=$order.id_currency no_utf8=false convert=false}
+							</span>
 						</td>
-                        <td>{$order.cus}</td>
                         
                         <td class="history_link bold">
 							{if isset($order.invoice) && $order.invoice && isset($order.virtual) && $order.virtual}

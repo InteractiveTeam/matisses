@@ -25,9 +25,9 @@
 <div id="view_wishlist">
     {capture name=path}
         <a href="{$link->getPageLink('my-account', true)|escape:'html'}">{l s='My account' mod='blockwishlist'}</a>
-        <span class="navigation-pipe">{$navigationPipe}</span>
+        <i class="fa fa-angle-right"></i>
         <a href="{$link->getModuleLink('blockwishlist', 'mywishlist')|escape:'html'}">{l s='My wishlists' mod='blockwishlist'}</a>
-        <span class="navigation-pipe">{$navigationPipe}</span>
+        <i class="fa fa-angle-right"></i>
         {$current_wishlist.name}
     {/capture}
 
@@ -125,19 +125,19 @@
                                             {/if}
                                             <a
                                                     href="javascript:void(0);"
-                                                    class="button ajax_add_to_cart_button btn btn-default"
+                                                    class="button ajax_add_to_cart_button btn btn-default btn-red"
                                                     onclick="WishlistBuyProduct('{$token|escape:'html':'UTF-8'}', '{$product.id_product}', '{$product.id_product_attribute}', '{$product.id_product}_{$product.id_product_attribute}', this, {$ajax});"
                                                     title="{l s='Add to cart' mod='blockwishlist'}"
                                                     rel="nofollow">
                                                 <span>{l s='Add to cart' mod='blockwishlist'}</span>
                                             </a>
                                         {else}
-                                            <span class="button ajax_add_to_cart_button btn btn-default disabled">
+                                            <span class="button ajax_add_to_cart_button btn btn-default disabled btn-red">
 												<span>{l s='Add to cart' mod='blockwishlist'}</span>
 											</span>
                                         {/if}
                                         <a
-                                                class="button lnk_view btn btn-default"
+                                                class="button lnk_view btn btn-default btn-red"
                                                 href="{$link->getProductLink($product.id_product,  $product.link_rewrite, $product.category_rewrite)|escape:'html':'UTF-8'}"
                                                 title="{l s='View' mod='blockwishlist'}"
                                                 rel="nofollow">

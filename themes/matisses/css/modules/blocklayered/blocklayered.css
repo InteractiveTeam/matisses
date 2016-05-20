@@ -25,6 +25,7 @@
     }
     .bottom-pagination-content ul.pagination li > a, .bottom-pagination-content ul.pagination li > span{
     line-height: 130%;
+    font-weight: 100;
     }
 
     #enabled_filters .layered_subtitle {
@@ -403,7 +404,8 @@
     .parrilla-productos .product-price {
     font-family: 'gothic';
     color: #231f20;
-    font-size: 1.375rem;
+    font-size: 1.5rem;
+    font-weight: bolder;
     }
     .parrilla-productos .wrap_content_price {
     padding: 0 0.625rem 0.625rem;
@@ -463,37 +465,67 @@
     width: 23%;
     vertical-align: top;
     margin: 10px;
+    border: 1px solid #ddd;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0 0 60px 0;
     }
-    .subcategories h2{
+
+.subcategories ul li:before, .subcategories ul li:after {
+    content: "";
+    display: block;
+    background: rgba(35,31,32,0.3);
+    position: absolute;
+    height:50%;
+    width: 100%;
+    z-index: 1;
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+}
+
+.subcategories ul li:before {
+    top:-50%;
+}
+
+.subcategories ul li:after {
+    bottom:-50%;
+}
+
+    .subcategories ul li:hover:before {
+        top:0;
+    }
+
+    .subcategories ul li:hover:after {
+        bottom:0;
+    }
+
+    .subcategories h2 {
+    position: absolute;
+    width: 100%;
     font-family: 'gothic';
     font-size: 22px;
     color: #d7162f;
     text-transform: uppercase;
-    background: #eee;
     padding: 15px;
-    border-bottom: 2px solid #fff;
+    text-align: center;
+    z-index: 3;
+    font-family: 'condensed';
+    }
+    .subcategories h2 a {
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
     }
     .subcategories ul li:hover h2 {
-    color: #d7162f;
-    border-bottom: 2px solid;
+    color: #fff;
+    font-size: 24px;
     }
     .subcategory-image {
-    border: 1px solid #ddd;
     border-bottom: none;
     overflow: hidden;
     position: relative;
     }
-    .subcategory-image:before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    transition: opacity 0.35s;
-    background: linear-gradient(225deg, rgba(0,0,0,0.5) , rgba(0,0,0,0.025));
-    opacity: 0;
-    pointer-events: none;
-    }
+
     .subcategory-image a {
     display: block;
     }
@@ -501,10 +533,11 @@
     width: 100%;
     height: auto;
     transition: transform 0.35s;
+    transform-origin: 100% 50%;
     }
     .subcategory-image:hover:before {
     opacity: 1;
 	}
-    .subcategory-image:hover img {
+    .subcategories li:hover .subcategory-image img {
     transform: translateX(5%) scale(1.125);
 	}

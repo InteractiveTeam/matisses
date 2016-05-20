@@ -121,6 +121,7 @@
 					<div id="thumbs_list">
 						<ul id="thumbs_list_frame">
 						{if isset($images)}
+                        {$first_key = key($images)}
 							{foreach from=$images item=image name=thumbnails}
 								{assign var=imageIds value="`$product->id`-`$image.id_image`"}
 								{if !empty($image.legend)}
@@ -128,7 +129,8 @@
 								{else}
 									{assign var=imageTitle value=$product->name|escape:'html':'UTF-8'}
 								{/if}
-								<li id="thumbnail_{$image.id_image}"{if $smarty.foreach.thumbnails.last} class="last"{/if}>
+								<li id="thumbnail_{$image.id_image}"  class="{if $smarty.foreach.thumbnails.last}last{/if}
+                                {if $images[$first_key]['id_product_attribute'] != $image.id_product_attribute}ax-hide-temp{/if}">
 									<a{if $jqZoomEnabled && $have_image && !$content_only} href="javascript:void(0);" rel="{literal}{{/literal}gallery: 'gal1', smallimage: '{$link->getImageLink($product->link_rewrite, $imageIds, 'large_default')|escape:'html':'UTF-8'}',largeimage: '{$link->getImageLink($product->link_rewrite, $imageIds, 'thickbox_default')|escape:'html':'UTF-8'}'{literal}}{/literal}"{else} href="{$link->getImageLink($product->link_rewrite, $imageIds, 'thickbox_default')|escape:'html':'UTF-8'}"	data-fancybox-group="other-views" class="fancybox{if $image.id_image == $cover.id_image} shown{/if}"{/if} title="{$imageTitle}">
 										<img class="img-responsive" id="thumb_{$image.id_image}" src="{$link->getImageLink($product->link_rewrite, $imageIds, 'medium_default')|escape:'html':'UTF-8'}" alt="{$imageTitle}" title="{$imageTitle}" itemprop="image" />
 									</a>
@@ -162,11 +164,13 @@
 			{if $product->online_only}
 				<p class="online_only">{l s='Online only'}</p>
 			{/if}
-			<h1 itemprop="name">{$product->name|escape:'html':'UTF-8'}</h1>
+			<h1 itemprop="name">{$product->itemname|escape:'html':'UTF-8'}</h1>
             <li id="product_reference"{if empty($product->reference) || !$product->reference} style="display: none;"{/if}>
 				<label>{l s='Referencia:'} </label>
-				<span class="editable" itemprop="sku">{if !isset($groups)}{$product->reference|escape:'html':'UTF-8'}{/if}</span>
+				<span class="editable" itemprop="sku">{if !isset($groups)}{hook h="actionMatChangeReference" reference=$product->reference}{/if}</span>
 			</li>
+            
+         
 			<div class="rate_wrap"></div>
 
 			{if !$content_only}
@@ -287,7 +291,7 @@
 																	{if $img_color_exists}
 																		<img src="{$img_col_dir}{$id_attribute|intval}.jpg" alt="{$colors.$id_attribute.name|escape:'html':'UTF-8'}" title="{$colors.$id_attribute.name|escape:'html':'UTF-8'}" />
 																	{/if}
-																</a>
+																</a> 
 															</li>
 															{if ($group.default == $id_attribute)}
 																{$default_colorpicker = $id_attribute}
@@ -342,6 +346,7 @@
 										{l s='tax excl.'}
 									</span>
 								{/if}
+                                <p class="ax-iva">{l s='tax incl.'}</p>
 							</div> <!-- end prices -->
 							{if $packItems|@count && $productPrice < $product->getNoPackPrice()}
 								<p class="pack_price">{l s='Instead of'} <span style="text-decoration: line-through;">{convertPrice price=$product->getNoPackPrice()}</span></p>
@@ -368,7 +373,7 @@
 						{if !$PS_CATALOG_MODE}
 						<div id="quantity_wanted_p" class="grid_3 alpha"{if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
 							<h2>Cantidad</h2>
-							<input type="text" name="qty" id="quantity_wanted" class="text" value="{if isset($quantityBackup)}{$quantityBackup|intval}{else}{if $product->minimal_quantity > 1}{$product->minimal_quantity}{else}1{/if}{/if}" />
+							<input type="text" name="qty" id="quantity_wanted" class="text" value="{if isset($quantityBackup)}{$quantityBackup|intval}{else}{if $product->minimal_quantity > 1}{$product->minimal_quantity}{else}1{/if}{/if}" readonly="readonly" />
 							<div class="wrap_up_down">
 							<a href="#" data-field-qty="qty" class="button-plus product_quantity_up">
 								<i class="icon-plus">+</i>
@@ -414,7 +419,28 @@
 			</form>
 			{/if}
 			<div class="wrap_extra_right">
-			{if isset($HOOK_EXTRA_RIGHT) && $HOOK_EXTRA_RIGHT}{$HOOK_EXTRA_RIGHT}{/if}
+			{*if isset($HOOK_EXTRA_RIGHT) && $HOOK_EXTRA_RIGHT}{$HOOK_EXTRA_RIGHT}{/if*}
+			
+			<div class="ax-shareContent ax-shareContentProduct">
+               <div class="newTopActions">
+                    <a href="javascript:window.print()" class="productPrint"><i class="fa fa-print" aria-hidden="true"></i></a>
+                    <!-- AddThis Button BEGIN -->
+                        <p class="addthis_toolbox addthis_default_style">
+                            <a class="addthis_button_email" ></a>
+                        </p>
+                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57058c3b661b8e1a"></script>
+                    <!-- AddThis Button END -->
+                </div>
+                <div id="share" class="share-product"></div>
+                <p><a class='ayo-btn ayo-houzz' href='http://www.houzz.es/pro/matisses/matisses' target='_blank'><i class='fa fa-houzz'></i></a></p>
+                <p><a class='ayo-btn ayo-instagram' href='https://www.instagram.com/matisses/' target='_blank'><i class='fa fa-instagram'></i></a></p>
+            </div>
+            {if $socialButtonHtml}
+            <div>
+                {$socialButtonHtml}
+            </div>
+            {/if}
+            
 			</div>
 			<!-- Out of stock hook -->
 			<div id="oosHook"{if $product->quantity > 0} style="display: none;"{/if}>
@@ -431,6 +457,12 @@
 		</div>
 		<!-- end center infos-->
 	</div> <!-- end primary_block -->
+	
+	<div class="ax-showcase-product">
+	    <!--Chaordic Top-->
+	    <div chaordic="top"></div>
+	</div>
+	
 	{if !$content_only}
 		   {if $product->description || $features || $HOOK_PRODUCT_TAB || $attachments}
 			<!-- <div class="row"> -->
@@ -789,9 +821,16 @@
 			{include file="$tpl_dir./product-list.tpl" products=$packItems}
 		</section>
 		{/if}
+		
+            <!--Chaordic Middle-->
+            <div chaordic="middle"></div>		
 		</div>
-	{/if}
+	{/if}    
 </div> <!-- itemscope product wrapper -->
+<div class="container">
+    <!--Chaordic Bottom-->
+    <div chaordic="bottom"></div>
+</div>
 {strip}
 {if isset($smarty.get.ad) && $smarty.get.ad}
 	{addJsDefL name=ad}{$base_dir|cat:$smarty.get.ad|escape:'html':'UTF-8'}{/addJsDefL}

@@ -202,6 +202,15 @@ class CartController extends CartControllerCore
 	 */
 	protected function processChangeProductInCart()
 	{
+        $products = $this->context->cart->getProducts();
+        if(count($products) > 0){
+            foreach($products as $product){
+                if($product['id_giftlist'] != 0){
+                    $this->errors [] = Tools::displayError ( 'Recuerda que no puedes agregar productos del Ecommerce y de una Lista de regalos en un mismo carrito', ! Tools::getValue ( 'ajax' ) );
+                    return;
+                }
+            }
+        }
 		$mode = (Tools::getIsset('update') && $this->id_product) ? 'update' : 'add';
 		
 		$params['id_product'] = $this->id_product;
@@ -405,6 +414,18 @@ class CartController extends CartControllerCore
 	}
 
 	protected function processChangeProductInCartFromList() {
+        $products = $this->context->cart->getProducts();
+        if(count($products) > 0){
+            foreach($products as $product){
+                if($product['id_giftlist'] != 0 && $product['id_giftlist'] != $this->id_giftlist){
+                    $this->errors [] = Tools::displayError ( 'Recuerda que solo puedes agregar productos de una misma Lista de regalos a un solo carrito de compras', ! Tools::getValue ( 'ajax' ) );
+                    return;
+                }elseif($product['id_giftlist'] == 0){
+                    $this->errors [] = Tools::displayError ( 'Recuerda que no puedes agregar productos del Ecommerce y de una Lista de regalos en un mismo carrito', ! Tools::getValue ( 'ajax' ) );
+                    return;
+                }
+            }
+        }
 		$mode = (Tools::getIsset ( 'updateFromList' ) && $this->id_product) ? 'update' : 'add';
         $params['id_product'] = $this->id_product;
 		$params['id_product_attribute'] = $this->id_product_attribute;

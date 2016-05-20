@@ -1,6 +1,7 @@
+
 {capture name=path}
 		<a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Authentication'}">{l s='Mi Cuenta'}</a>
-		<span class="navigation-pipe">{$navigationPipe}</span>{l s='Garantias'}
+		<i class="fa fa-angle-right"></i>{l s='Garantias'}
 {/capture}
 <script>
 	var nrodanos = '{$rnrodanos}'
@@ -14,21 +15,33 @@
  		<h2 class="page-subheading"> {l s='Suministro de informacion' mod='matisses'}</h2>
 
  		<div class="grid_4">
-			<label>{l s='Seleccione el tipo de daño'}</label>
-			<span>{l s='Máximo %s daños' sprintf=[$nrodanos]}</span>
-			<div class="scroll-left scroll-pane">
-            <ul id="tipo-dano" class="damage">
-				{foreach from=$danos item=dano}
-				<li id="{$dano.coddano}" data-value="{$dano.dano}">{$dano.dano}</li>
-				{/foreach}
-			</ul>
-            </div>
-			<div class="form-group">
-				<label for="asunto">{l s='Tipo de dano Reportado:'}</label>  <a href="#" onclick="$('#tipo').val('')">{l s='Borrar'}</a>
-				<input type="text" name="tipo" id="tipo" readonly="readonly" class="form-control" value="{$tipo}" />
+        <label>{l s='Seleccione el tipo de daño'}</label>
+        <span>{l s='Máximo %s daños' sprintf=[$nrodanos]}</span>
+        {if !empty($materials)}
+        {foreach from=$materials item=row}
+            <div>
+                <a class="btn btn-default button btn-red material" data-id="{$row.id_value}" href="javascript:void(0)">
+                    {$row.material}
+                </a>
 			</div>
-		</div>
-
+            <div class="container-toggle danos{$row.id_value}" style="display:none">
+			     <div class="scroll-left scroll-pane">
+                    <ul id="tipo-dano" class="damage">
+                        {foreach from=$row.damages item=dano}
+                        <li id="{$dano.id_tipo}"  data-id="{$dano.acodigo}" data-value="{$row.material}-{$dano.aname}">{$dano.aname}</li>
+                        {/foreach}
+                    </ul>
+                </div>
+            </div>
+			
+            {/foreach}
+            
+            <div class="form-group">
+                <label for="asunto">{l s='Tipo de dano Reportado:'}</label>  <a href="javascript:void(0)" onclick="$('#tipo').val('')">{l s='Borrar'}</a>
+                <input type="text" name="tipo" id="tipo" readonly="readonly" class="form-control" value="{$tipo}" />
+            </div>  
+        {/if}
+		</div> 
 		<div class="grid_8">
 
 				<div class="form-group grid_12 alpha omega">

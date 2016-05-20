@@ -169,7 +169,7 @@
 								<span>{l s='Submit' mod='productcomments'}</span>
 							</button>&nbsp;
 							{l s='or' mod='productcomments'}&nbsp;
-							<a class="closefb" href="#">
+							<a class="closefb" href="javascript:void(0)">
 								{l s='Cancel' mod='productcomments'}
 							</a>
 						</p>

@@ -60,7 +60,7 @@ var ax_admin = {
                  format:"d/m/Y H:i",
                  mask: dateText.val() == "" ? true : false
             });
-            ax.validate();
+            ax_admin.validate();
             $('#tel').mask("000-00-00", {placeholder: "___-__-__"});
             $('#cel').mask("000-000-0000", {placeholder: "___-___-____"});
         });

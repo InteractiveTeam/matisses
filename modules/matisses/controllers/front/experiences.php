@@ -6,11 +6,20 @@ class matissesexperiencesModuleFrontController extends ModuleFrontController
 	protected $experience;
 	public $id_experience;
 	
+    public function __construct() {
+		$this->module = Module::getInstanceByName ( Tools::getValue ( 'module' ) );
+		if (! $this->module->active)
+			Tools::redirect ( 'index' );
+
+		$this->page_name = 'module-' . $this->module->name . '-' . Dispatcher::getInstance ()->getController ();
+		parent::__construct ();
+	}
+    
 	public function init()
 	{
 		parent::init();
 		include_once(dirname(__FILE__).'/../../classes/Experiences.php');
-		
+		$context = $this->context;
 		if (!$context)
 			$context = Context::getContext();
 		
@@ -31,6 +40,8 @@ class matissesexperiencesModuleFrontController extends ModuleFrontController
 					$this->experience->products[$k]['price'] 		= Product::getPriceStatic($this->experience->products[$k]['id_product'],true,$this->experience->products[$k]['id_product_attribute']);
 					$this->experience->products[$k]['link_rewrite']	= $Product->link_rewrite;
 					$this->experience->products[$k]['name']			= $Product->name;
+					$this->experience->products[$k]['left']			= (float) $this->experience->products[$k]['left'];
+					$this->experience->products[$k]['top']			= (float) $this->experience->products[$k]['top'];
 					if($this->experience->products[$k]['id_product_attribute']==1)
 					{
 						$this->experience->products[$k]['id_image'] 	= current(Product::getCover($this->experience->products[$k]['id_product'])); 
@@ -72,7 +83,7 @@ class matissesexperiencesModuleFrontController extends ModuleFrontController
 		
 		
 		$path[] = '<span class="navigation"><a href="/experiencias">Experiencias</a></span>';
-		$path[] = '<span class="navigation-pipe"> > </span>';
+		$path[] = '<i class="fa fa-angle-right"></i>';
 		$path[] = '<span class="navigation">'.$this->experience->name.'</span>';
 		
 		$experiences =  $this->experience->getExperiences();

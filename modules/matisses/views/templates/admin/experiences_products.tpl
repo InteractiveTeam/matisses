@@ -18,13 +18,13 @@
 		  <div class="form-group">
             <label class="control-label col-lg-3 required"> <span >{l s='Orientación' mod='matisses'}</span> </label>
             <div class="col-lg-9 ">
-            	<table border="0" cellpadding="5" cellspacing="5">
+            	<table border="0" cellpadding="5" cellspacing="5" id="tbl_position">
                   <tr>
                     <td scope="col" width="70px">{l s='Izquierda' mod='matisses'}</td>
-                    <td scope="col"> <input checked type="radio" name="orientation" value="left" onClick="$('#orientation').val('left')"></td>
+                    <td scope="col"> <input checked type="radio" name="orientation" value="left" onClick="updatePosition()"></td>
                   </tr><tr>  
                     <td scope="col">{l s='Derecha' mod='matisses'}</td>
-                    <td scope="col"><input type="radio" name="orientation" value="right" onClick="$('#orientation').val('right')"></td>
+                    <td scope="col"><input type="radio" name="orientation" value="right" onClick="updatePosition()"></td>
                   </tr>
                 </table>
                 <input type="hidden" id="orientation" value="left">
@@ -34,13 +34,13 @@
           <div class="form-group">
             <label class="control-label col-lg-3 required"> <span >{l s='Etiqueta' mod='matisses'}</span> </label>
             <div class="col-lg-9 ">
-            	<table border="0" cellpadding="5" cellspacing="5">
+            	<table border="0" cellpadding="5" cellspacing="5" id="tbl_color">
                   <tr>
                     <td scope="col" width="70px">{l s='Blanca' mod='matisses'}</td>
-                    <td scope="col"> <input checked type="radio" name="Tag" value="white" onClick="$('#market').val('white')"></td>
+                    <td scope="col"> <input checked type="radio" name="Tag" value="white" onClick="updateColor()"></td>
                   </tr><tr>  
                     <td scope="col">{l s='Negra' mod='matisses'}</td>
-                    <td scope="col"><input type="radio" name="Tag" value="black" onClick="$('#market').val('black')"></td>
+                    <td scope="col"><input type="radio" value="black" name="Tag" value="black" onClick="updateColor()"></td>
                   </tr>
                 </table>
                 <input type="hidden" id="market" value="white">

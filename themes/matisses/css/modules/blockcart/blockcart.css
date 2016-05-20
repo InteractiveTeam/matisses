@@ -25,10 +25,15 @@
 }
 .cart_block .cart_block_list .remove_link {
 	position: absolute;
-	right: 4px;
+	right: 0;
 	top: -5px;
 	line-height: 1;
 }
+
+.cart_block .cart_block_list .remove_link a {
+    padding: 0;
+}
+
 .cart_block .cart_block_list .remove_link a,
 .cart_block .cart_block_list .ajax_cart_block_remove_link {
   display: block;

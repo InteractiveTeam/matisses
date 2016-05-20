@@ -43,7 +43,7 @@
 										{if isset($filter.slider)}
 											{if $smarty.foreach.f_values.first}
 												<li>
-													<a href="#" rel="layered_{$filter.type}_slider" title="{l s='Cancel' mod='blocklayered'}"></a>
+													<a href="javascript:void(0)" rel="layered_{$filter.type}_slider" title="{l s='Cancel' mod='blocklayered'}"></a>
 													{if $filter.format == 1}
 														{l s='%1$s: %2$s - %3$s'|sprintf:$filter.name:{displayPrice price=$filter.values[0]}:{displayPrice price=$filter.values[1]}|escape:'html':'UTF-8' mod='blocklayered'}
 													{else}
@@ -55,7 +55,7 @@
 											{foreach from=$filter.values key=id_value item=value}
 												{if $id_value == $filter_key && !is_numeric($filter_value) && ($filter.type eq 'id_attribute_group' || $filter.type eq 'id_feature') || $id_value == $filter_value && $filter.type neq 'id_attribute_group' && $filter.type neq 'id_feature'}
 													<li>
-														<a href="#" rel="layered_{$filter.type_lite}_{$id_value}" title="{l s='Cancel' mod='blocklayered'}"><i class="icon-remove"></i></a>
+														<a href="javascript:void(0)" rel="layered_{$filter.type_lite}_{$id_value}" title="{l s='Cancel' mod='blocklayered'}"><i class="icon-remove"></i></a>
 														{l s='%1$s: %2$s' mod='blocklayered' sprintf=[$filter.name, $value.name]}
 													</li>
 												{/if}
@@ -78,7 +78,7 @@
                         <div class="layered_subtitle_heading">
                             <span class="layered_subtitle">{$filter.name|escape:'html':'UTF-8'}</span>
                             <!--<span class="layered_close">
-                            	<a href="#" rel="ul_layered_{$filter.type}_{$filter.id_key}"></a>
+                            	<a href="javascript:void(0)" rel="ul_layered_{$filter.type}_{$filter.id_key}"></a>
                             </span>-->
 						</div>
 						<ul id="ul_layered_{$filter.type}_{$filter.id_key}" class="col-lg-12 layered_filter_ul{if isset($filter.is_color_group) && $filter.is_color_group} color-group{/if}">

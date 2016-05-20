@@ -75,7 +75,7 @@
 		{if (isset($display_subcategories) && $display_subcategories eq 1) || !isset($display_subcategories) }
 		<!-- Subcategories -->
 		<div id="subcategories" class="subcategories">
-			<h1 class="subcategory-heading">{l s='Subcategories'}</h1>
+			<h1 class="subcategory-heading">{$category->name}</h1>
 			<ul class="cf">
 			{foreach from=$subcategories item=subcategory}
 				<li>
@@ -115,7 +115,7 @@
 			</div>
 		</div>
 			{include file="./product-list.tpl" products=$products categoryname=$category->name}
-			<div class="content_sortPagiBar cf grid_12 alpha omega">
+			<div class="content_sortPagiBar cf grid_12 alpha omega bottom_pagi">
 				<div class="sortPagiBar grid_9 alpha omega">
 					{include file="./product-compare.tpl" paginationId='bottom'}
 					{include file="./product-sort.tpl" paginationId='bottom'}

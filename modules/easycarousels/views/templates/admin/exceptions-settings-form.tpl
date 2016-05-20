@@ -30,9 +30,9 @@
 		{l s='Check pages, where this hook shouldn\'t be displayed' mod='easycarousels'}
 	</div>
 	<div class="exc_panel" style="/*display:none;*/">
-		<a href="#" class="chk-action checkall">{l s='Check all' mod='easycarousels'}</a>
-		<a href="#" class="chk-action uncheckall">{l s='Unheck all' mod='easycarousels'}</a>
-		<a href="#" class="chk-action invert">{l s='Invert selection' mod='easycarousels'}</a>
+		<a href="javascript:void(0)" class="chk-action checkall">{l s='Check all' mod='easycarousels'}</a>
+		<a href="javascript:void(0)" class="chk-action uncheckall">{l s='Unheck all' mod='easycarousels'}</a>
+		<a href="javascript:void(0)" class="chk-action invert">{l s='Invert selection' mod='easycarousels'}</a>
 		{foreach $settings item=exc_group}
 			<div class="exc_group clearfix">
 				<h4>{$exc_group.group_name|escape:'html'}</h4>

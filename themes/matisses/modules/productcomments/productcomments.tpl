@@ -97,7 +97,7 @@
 			{if (!$too_early AND ($is_logged OR $allow_guests))}
 			<p class="align_center">
 				<a id="new_comment_tab_btn" class="btn btn-default button button-small open-comment-form" href="#new_comment_form">
-					<span>{l s='Be the first to write your review' mod='productcomments'} !</span>
+					<span>{l s='Be the first to write your review' mod='productcomments'}</span>
 				</a>
 			</p>
 			{else}
@@ -134,7 +134,8 @@
 						<ul id="criterions_list">
 						{foreach from=$criterions item='criterion'}
 							<li>
-								<label>{$criterion.name|escape:'html':'UTF-8'}:</label>
+								{*<label>{$criterion.name|escape:'html':'UTF-8'}:</label>*}
+								<label>{l s='quality' mod='productcomments'}:</label>
 								<div class="star_content">
 									<input class="star" type="radio" name="criterion[{$criterion.id_product_comment_criterion|round}]" value="1" />
 									<input class="star" type="radio" name="criterion[{$criterion.id_product_comment_criterion|round}]" value="2" />
@@ -165,7 +166,7 @@
 				<div id="new_comment_form_footer">
 						<input id="id_product_comment_send" name="id_product" type="hidden" value='{$id_product_comment_form}' />
 						<div class="al_center col-xs-12">
-								<a class="closefb button grey_btn" href="#">
+								<a class="closefb button grey_btn" href="javascript:void(0)">
 									{l s='Cancel' mod='productcomments'}
 								</a>
 								<button id="submitNewMessage" name="submitMessage" type="submit" class="button">

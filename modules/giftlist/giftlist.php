@@ -16,7 +16,6 @@ class giftlist extends Module
 		$this->tab = "front_office_features";
 		$this->version = "1.0.0";
 		$this->author = "Arkix";
-        $this->token = Tools::getAdminTokenLite('AdminModules');
 		$this->need_instance = 0;
 		parent::__construct();
 
@@ -52,8 +51,8 @@ class giftlist extends Module
 			$this->dbstruct->addBondInProduct();
 			$this->__installTabs('giftlist', 'Lista de Regalos',0);
 			$parent = (int)Tab::getIdFromClassName('giftlist');
-			$this->__installTabs('adminGiftList', "Lista de Regalos", $parent , $this->name);
-			$this->__installTabs('adminEventType', "Tipo de Evento", $parent , $this->name);
+			$this->__installTabs('AdminGiftList', "Lista de Regalos", $parent , $this->name);
+			$this->__installTabs('AdminEventType', "Tipo de Evento", $parent , $this->name);
 			return true;
 		}
 		return false;

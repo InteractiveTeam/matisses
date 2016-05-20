@@ -2,14 +2,14 @@
 
 Hola {firstname} {lastname},
 
-Le agradecemos por realizar sus compras en {shop_name}! 
+Te agradecemos por realizar tus compras en {shop_name}! 
 
-Su pedido con la referencia {order_name} se ha realizado con
-éxito y será ENVIADO TAN PRONTO COMO RECIBAMOS SU PAGO. 
+Tu pedido con la referencia {order_name} se ha realizado con
+éxito y será ENVIADO TAN PRONTO COMO RECIBAMOS TU PAGO. 
 
-Por favor recuerde que ha seleccionado cheque como forma de pago. 
+Por favor recuerda que has seleccionado cheque como forma de pago. 
 
-Rellénelo con:
+Complétalo con:
 
 IMPORTE: {total_paid}
 
@@ -17,12 +17,12 @@ PÁGUESE A LA ORDEN DE: {cheque_name}
 
 POR FAVOR ENVÍE EL CHEQUE A: {cheque_address} 		 
 
-Usted puede revisar su pedido y descargar la factura desde
-"Historial de pedidos" [{history_url}] de su cuenta
-de cliente, haga clic en [{my_account_url}] en
+Puedes revisar tu pedido y descargar la factura desde
+"Historial de pedidos" [{history_url}] en tu cuenta
+de cliente, haz clic en [{my_account_url}] en
 nuestra tienda. 
 
-Si usted tiene una cuenta de invitado, puede seguir su pedido a
+Si tienes una cuenta de invitado, puedes seguir tu pedido a
 través del "Tracking Invitado"
 [{guest_tracking_url}] sección de nuestra tienda. 
 

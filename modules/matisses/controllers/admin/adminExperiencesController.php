@@ -491,7 +491,6 @@ class AdminExperiencesController extends ModuleAdminController
 				$pointers[$key]['top'] 			= $response[$poid]['top'];
 				$pointers[$key]['id_product'] 	= $product['id_product'];
 				$pointers[$key]['id_product_attribute'] 	= $product['id_product_attribute'];
-				$pointers[$key]['id_product_attribute'] 	= $product['id_product_attribute'];
 				$pointers[$key]['status'] 		= $_REQUEST['data']['status'];
 				$pointers[$key]['pointer'] 		= $key;
 

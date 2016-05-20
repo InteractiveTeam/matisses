@@ -114,7 +114,11 @@ $(document).ready(function(e) {
 		  for(i = 0; i < Object.keys(products).length; i++) { 
 		      $('#image-images-thumbnails').prepend('<div title="Modificar | Eliminar" data-pointer="'+products['marker'+i].pointer+'" class="experience-pointer '+products['marker'+i].market+'-'+products['marker'+i].orientation+'" style="left:'+$.trim(products['marker'+i].left)+'%; top:'+$.trim(products['marker'+i].top)+'%;"></div>');
 		  }
-		  $('.experience-pointer').draggable({revert: function(e){updatePointer(e);}});
+		  $('.experience-pointer').draggable({
+              stop: function(event, ui){
+                  updatePointer(ui);
+              }              
+          });
 	  }
 	
 	
@@ -219,3 +223,37 @@ $(document).ready(function(e) {
 		//$('.adminexperiences #image-images-thumbnails').append('<div class="experience_pointer" style="top:'+top+'%; left:'+left+'%" id="'+poid+'"></div>')
 	})
 });
+
+function updatePosition(){    
+    var value = $('input[name=orientation]:checked', '#tbl_position').val();
+    $('#orientation').val(value);
+    var id = $('#product').val();        
+    var auxResult = getMarker(id);
+    var objPositions = auxResult.objPositions;
+    auxResult = auxResult.auxResult;
+    
+    objPositions[auxResult[0].pointer].orientation = auxResult[0].orientation;
+    $("#products").val(JSON.stringify(objPositions));
+}
+
+function updateColor(){    
+    var value = $('input[name=Tag]:checked', '#tbl_color').val();
+    $('#market').val(value);
+    var id = $('#product').val();        
+    var auxResult = getMarker(id);
+    var objPositions = auxResult.objPositions;
+    auxResult = auxResult.auxResult;
+    
+    objPositions[auxResult[0].pointer].market = auxResult[0].market;
+    $("#products").val(JSON.stringify(objPositions));
+}
+
+function getMarker(id){    
+    var objPositions =  JSON.parse($("#products").val());
+    var auxArray = $.map(objPositions, function(el) { return el; });
+    
+    var auxResult = auxArray.filter(function (el) {
+        return el.id_product == id;
+    });    
+    return {auxResult:auxResult,objPositions:objPositions};
+}

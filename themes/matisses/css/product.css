@@ -89,6 +89,7 @@ a.fancybox-nav {
 	text-align: center;
 	border-style: solid;
 	border-width: 1px;
+    height: auto;
 	}
 .pb-left-column .wrap_scale{
 	display: block;
@@ -246,7 +247,7 @@ a.fancybox-nav {
     padding-right: 0.125rem;
 }
 .box-info-product .elem_butt {
-    width: 33%;
+    width: 34.2%;
     display: inline-block;
 	margin: 1.25rem 0.9375rem 0 0;
 }
@@ -489,10 +490,10 @@ a.fancybox-nav {
 	}
 
 #short_description_block {
-	padding-top: 0.625rem;
-	border-bottom: 1px solid #ccc;
-	padding-bottom: 1.5rem;
-	margin-bottom: 1.5rem;
+    padding-top: 0.625rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.8rem;
+    margin-bottom: 0.8rem;
 	}
 .pb-right-column #short_description_block .buttons_bottom_block {
 	display: none;
@@ -648,6 +649,7 @@ a.fancybox-nav {
 	display: inline-block;
 	position: relative;
 	margin-bottom: 0;
+    vertical-align: middle;
 	}
 	#reduction_percent span,
 	#reduction_amount span {
@@ -791,7 +793,7 @@ a.fancybox-nav {
 	}
 	.product h1{
 	font-size: 2.125rem;
-	color: #d7162f;
+	color: #636363;
 	margin-bottom: 0;
 	padding-bottom: 0;
 	border: none;
@@ -848,6 +850,10 @@ a.fancybox-nav {
 	padding-bottom: 1.5rem;
 	margin-bottom: 1.5rem;
 	}
+    .wrap_quan .tooltip {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    }
 	.pb-right-column li {
 	list-style: none;
 	}
@@ -861,8 +867,7 @@ a.fancybox-nav {
 	}
 	.product .rate_wrap {
 	border-bottom: 1px solid #ccc;
-	margin-bottom: 1.875rem;
-	padding: 1.25rem 0 0.9375rem;
+    padding: 0.7rem 0 0.7rem;
 	}
 	#product_condition {
 	margin-top: 0.9375rem;
@@ -889,7 +894,13 @@ a.fancybox-nav {
     border-left: 1px solid #dbdbdb;
 	height: 6.25rem;
 	background-color: #f8f8f8;
+    opacity: 0.4;
+    -webkit-opacity:0.4;
 	}
+    #product_schemes li.active {
+    opacity: 1;
+    -webkit-opacity:1;
+    }
 	#product_schemes li:hover{
 	background-color: #fff;
 	}
@@ -900,6 +911,7 @@ a.fancybox-nav {
 	#product_schemes li a img {
     margin: 0 auto;
 	}
+    
 	#product_schemes h3 {
     color: #231f20;
     font-size: 0.875rem;
@@ -998,7 +1010,7 @@ a.fancybox-nav {
 
 /*15-12-2015*/
 	.add_to_cart button {
-	width: 24.6875rem;
+	width: 25.5rem;
 	font-size: 1.5rem;
 	padding:0.3125rem;
 	font-family: 'condensed';

@@ -29,7 +29,7 @@
 
 	<td class="cart_description features">
 		<p class="product-name"><a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category, null, null, $product.id_shop, $product.id_product_attribute)|escape:'html':'UTF-8'}">{$product.name|escape:'html':'UTF-8'}</a></p>
-        {if $product.reference}<small class="cart_ref">{l s='SKU'} {$product.reference|escape:'html':'UTF-8'}</small>{/if}
+        {if $product.reference}<small class="cart_ref">{l s='SKU'} {hook h="actionMatChangeReference" reference=$product.reference}</small>{/if}
 		<!-- {if isset($product.attributes) && $product.attributes}<small><a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category, null, null, $product.id_shop, $product.id_product_attribute)|escape:'html':'UTF-8'}">{$product.attributes|escape:'html':'UTF-8'}</a></small>{/if} -->
             {if !isset($noDeleteButton) || !$noDeleteButton}
                 {if (!isset($customizedDatas.$productId.$productAttributeId) OR $quantityDisplayed > 0) && empty($product.gift)}
@@ -117,7 +117,7 @@
 						<span><i class="icon-minus">-</i></span>
 						</a>
 						{else}
-							<a class="product_quantity_down cart_quantity_down  disabled" href="#" id="cart_quantity_down_{$product.id_product}_{$product.id_product_attribute}_{if $quantityDisplayed > 0}nocustom{else}0{/if}_{$product.id_address_delivery|intval}" title="{l s='You must purchase a minimum of %d of this product.' sprintf=$product.minimal_quantity}">
+							<a class="product_quantity_down cart_quantity_down  disabled" href="javascript:void(0)" id="cart_quantity_down_{$product.id_product}_{$product.id_product_attribute}_{if $quantityDisplayed > 0}nocustom{else}0{/if}_{$product.id_address_delivery|intval}" title="{l s='You must purchase a minimum of %d of this product.' sprintf=$product.minimal_quantity}">
 							<span><i class="icon-minus">-</i></span>
 						</a>
 						{/if}

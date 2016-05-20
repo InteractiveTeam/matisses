@@ -30,7 +30,7 @@
     	<h1><span>{l s='404.'}</span></h1>
         <!--<h2>{l s='Page not found'}</h2>-->
         <p>
-            {l s='Parece que la página que estás buscando haya sido removida, haya cambiado de nombre o no está disponible temporalmente.'}
+            {l s='Parece que la página que estás buscando ha sido removida, ha cambiado de nombre o no está disponible temporalmente.'}
         </p>
     </div>
     <div class="optionDirection">
@@ -49,12 +49,8 @@
 <!--Bloque1 Visualizados-->
 	    <div id="displayed-category" class="displayed-category">
 			<div class="container">
-				<div class="info-chaordic">
-					<img src="../../themes/matisses/img/displayed-category.jpg" alt="productos visualizados">
-					<div class="mask">
-						<h1>Espacio para Chaordic</h1>
-					</div>
-				</div>
+				<!-- Chaordic Bottom -->
+                <div chaordic="bottom"></div>
 			</div>
 	    </div>
 		<!--Fin Bloque1 Visualizados-->

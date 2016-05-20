@@ -147,6 +147,8 @@ class CustomerCore extends ObjectModel
 	public $medio;
 	public $terms;
 	public $tratamiento;
+	public $customer_acount_type = 'default';
+	public $facbookid = 0;
 	
 
 	protected $webserviceParameters = array(
@@ -211,6 +213,8 @@ class CustomerCore extends ObjectModel
 			'medio' => 					array('type' => self::TYPE_STRING, 'validate' => 'isGenericName'),
 			'terms' => 					array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
 			'tratamiento' => 			array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
+			'customer_acount_type' => 	array('type' => self::TYPE_STRING,'required' => false  ),
+			'facbookid' => 	array('type' => self::TYPE_STRING,'required' => false), 
 		),
 	);
 

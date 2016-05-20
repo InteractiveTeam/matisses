@@ -1,12 +1,21 @@
 // JavaScript Document
 $(document).ready(function(e) {
 	
-		var slider = $('#resumen-garantia .slider').bxSlider({
-			startSlide: 0
+		var slider;
+		var sliders = new Array;
+		
+		$('.slider-result').bxSlider({
+				startSlide: 0,
+				infiniteLoop: false,
+				hideControlOnEnd: true,
+				minSlides: 4
 			});
 				
-				
 		$("#fileUpload").live('change', function () {
+			
+		if (typeof (slider) != "undefined") {
+			slider.destroySlider();
+		}
 	
 		 //Get count of selected files
 		 var countFiles = $(this)[0].files.length;
@@ -35,11 +44,9 @@ $(document).ready(function(e) {
 						
 					 }
 
-	
 					 image_holder.show();
 					 reader.readAsDataURL($(this)[0].files[i]);
 				 }
-	
 			 } else {
 				// alert("This browser does not support FileReader.");
 			 }
@@ -48,8 +55,13 @@ $(document).ready(function(e) {
 		 }
 		 
 		 setTimeout(function(){
-            slider.reloadSlider();
-		 },1000)
+            slider = $('.slider').bxSlider({
+				startSlide: 0,
+				infiniteLoop: false,
+				hideControlOnEnd: true,
+				minSlides: 4
+			});
+		 },500)
 		 
 	 });			
 	
@@ -99,11 +111,14 @@ $(document).ready(function(e) {
 		{
 			Id= '#'+Id;
 			$(Id).slideUp('slow','linear',function(){
+				$(' * #showdetail').show();
+				$(' * #closedetail').hide();
 			})
 		}
 	})
 	
 	$('.options #showdetail').live('click',function(e){
+
 		e.preventDefault();
 		$(' * .details').slideUp('slow');
 		$(' * #showdetail').show();
@@ -113,14 +128,37 @@ $(document).ready(function(e) {
 		var Id = $(this).attr('data-id');
 		if(Id)
 		{
+			
 			Id= '#'+Id;
+			
 			$(Id).slideDown('slow','linear',function(){
-				$(Id+' .slider').bxSlider({
-					  pagerCustom: Id+' .captions'
-				});
+				
+				if(!sliders[Id+'slider'])
+				{
+					sliders[Id+'slider'] = $(Id+' .slider').bxSlider({
+						  pagerCustom: Id+' .captions'
+					});
+				}else{
+						//sliders[Id+'slider'].reloadSlider();
+					 }
+					 
+				if(!sliders[Id+'captions'])
+				{
+					sliders[Id+'captions'] = $(Id+' .captions').bxSlider({
+						startSlide: 0,
+						infiniteLoop: false,
+						hideControlOnEnd: true,
+						minSlides: 4	
+					});
+				}else{
+						//sliders[Id+'captions'].reloadSlider();
+					 }
 			})
 		}
 	})
 	
-	
+	$(".material").click(function(){
+        var id_val = $(this).attr("data-id");
+        $(".danos"+id_val).slideToggle();
+    });
 });

@@ -24,8 +24,8 @@
 *}
 {if isset($orderby) AND isset($orderway)}
 <ul class="view display grid_2 alpha">
-    <li class="grid-btn hidden"><a rel="nofollow" href="#" title="{l s='Grid'}"><span></span></a></li>
-    <li class="list-btn hidden"><a rel="nofollow" href="#" title="{l s='List'}"><span></span></a></li>
+    <li class="grid-btn hidden"><a rel="nofollow" href="javascript:void(0)" title="{l s='Grid'}"><span></span></a></li>
+    <li class="list-btn hidden"><a rel="nofollow" href="javascript:void(0)" title="{l s='List'}"><span></span></a></li>
 </ul>
 {* On 1.5 the var request is setted on the front controller. The next lines assure the retrocompatibility with some modules *}
 {if !isset($request)}
@@ -40,7 +40,7 @@
 		{assign var='request' value=$link->getPaginationLink(false, false, false, true)}
 	{/if}
 {/if}
-<form class="grid_6 alpha category-right" id="productsSortForm{if isset($paginationId)}_{$paginationId}{/if}" action="{$request|escape:'html':'UTF-8'}" class="productsSortForm">
+<form class="grid_7 alpha category-right" id="productsSortForm{if isset($paginationId)}_{$paginationId}{/if}" action="{$request|escape:'html':'UTF-8'}" class="productsSortForm">
 	<div class="select selector1">
         <label for="selectProductSort{if isset($paginationId)}_{$paginationId}{/if}">{l s='Organizar por'}</label>
 		<select id="selectProductSort{if isset($paginationId)}_{$paginationId}{/if}" class="selectProductSort form-control">

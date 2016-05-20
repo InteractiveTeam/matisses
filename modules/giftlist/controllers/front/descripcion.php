@@ -3,13 +3,14 @@
 include_once __DIR__ . '/../../classes/GiftList.php';
 include_once __DIR__ . '/../../classes/ListProductBond.php';
 include_once __DIR__ . '/../../classes/Bond.php';
+include_once __DIR__ . _PS_MODULE_DIR_ . "matisses/matisses.php";
 include_once _PS_OVERRIDE_DIR_ ."controllers/front/CartController.php";
 define("_ERROR_","Ha ocurrido un error, vuelva a intentarlo mas tarde");
 define("_DELETED_","Elmininado Correctamente");
 define("_EDITED_","Se ha editado la informacion");
 
 class giftlistdescripcionModuleFrontController extends ModuleFrontController {
-	public $uploadDir = __DIR__. "../../../uploads/";
+	public $uploadDir =_PS_UPLOAD_DIR_."giftlist/uploads/";
 	public $module;
 	/**
 	* Select all event types
@@ -134,12 +135,15 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			$cart->id_currency = $this->context->currency->id;
 			$cart->save();
 		}
+        $mat = new Matisses();
+        $res = $mat->wsmatissess_getVIPGift($data['mount']);
+        $FreeVipBond = $res["return"]['detail'];
 		$bond = new BondModel();
 		$list = new GiftListModel($id_list);
 		$bond->id_list = $id_list;
 		$bond->value = $data['mount'];
 		$bond->message = $data['message'];
-		$bond->luxury_bond = isset($data['luxury_bond']) ? 1 : 0;
+		$bond->luxury_bond = ($FreeVipBond ? 1 : (isset($data['luxury_bond']) ? 1 : 0));
 		$bond->created_at = date( "Y-m-d H:i:s" );
 		$sql = "SELECT id_product FROM "._DB_PREFIX_."product WHERE reference = 'BOND-LIST'";
 		$id_product = Db::getInstance()->getValue($sql);
@@ -222,7 +226,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 				$image_name = Db::getInstance()->Insert_ID(). ".". $sqlExtension;
 			}
 			@unlink($file);
-			return isset($image_name) ?_MODULE_DIR_."giftlist/uploads/" . $image_name : false;
+			return isset($image_name) ?_PS_UPLOAD_DIR_."giftlist/uploads/" . $image_name : false;
 		}
 		return false;
 	}

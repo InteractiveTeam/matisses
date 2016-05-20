@@ -59,8 +59,13 @@
 				</div>
 			{/if}
 			<div class="delivery_options_address">
-            
-				{if isset($delivery_option_list)}
+				{if !isset($delivery_option_list)}
+                <p class="alert alert-warning" id="noCarrierWarning">
+
+                    {l s='No carriers available.'}
+
+                </p>
+                {else}
 					{foreach $delivery_option_list as $id_address => $option_list}
 						<p class="carrier_title">
 							{if isset($address_collection[$id_address])}
@@ -114,7 +119,7 @@
 												<td class="delivery_option_price">
 													<div class="delivery_option_price">
 														{if $option.total_price_with_tax && !$option.is_free && (!isset($free_shipping) || (isset($free_shipping) && !$free_shipping))}
-															{if $use_taxes == 1}
+															{*if $use_taxes == 1}
 																{if $priceDisplay == 1} 
 																	{convertPrice price=$option.total_price_without_tax}{if $display_tax_label} {l s='(tax excl.)'}{/if}
 																{else}
@@ -122,7 +127,8 @@
 																{/if}
 															{else}
 																{convertPrice price=$option.total_price_without_tax}
-															{/if}
+															{/if*}
+                                                            {convertPrice price=$option.total_price_with_tax}{if $display_tax_label} {l s='(tax incl.)'}{/if}
 														{else}
 															{l s='Free'}
 														{/if}

@@ -1897,7 +1897,7 @@
   ),
   'Dispatcher' => 
   array (
-    'path' => '',
+    'path' => 'override/classes/Dispatcher.php',
     'type' => 'class',
     'override' => false,
   ),
@@ -2401,7 +2401,7 @@
   ),
   'Link' => 
   array (
-    'path' => '',
+    'path' => 'override/classes/Link.php',
     'type' => 'class',
     'override' => false,
   ),
@@ -2985,6 +2985,18 @@
   array (
     'path' => 'classes/PaymentModule.php',
     'type' => 'abstract class',
+    'override' => false,
+  ),
+  'PcXmlFreeFeed' => 
+  array (
+    'path' => 'override/classes/PcXmlFreeFeed.php',
+    'type' => 'class',
+    'override' => false,
+  ),
+  'PcXmlFreeService' => 
+  array (
+    'path' => 'override/classes/PcXmlFreeService.php',
+    'type' => 'class',
     'override' => false,
   ),
   'PdfInvoiceController' => 

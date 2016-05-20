@@ -1,4 +1,4 @@
-{capture name=path} <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Authentication'}">{l s='Mi Cuenta'}</a> <span class="navigation-pipe">{$navigationPipe}</span>{l s='Garantias'}
+{capture name=path} <a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Authentication'}">{l s='Mi Cuenta'}</a> <i class="fa fa-angle-right"></i>{l s='Garantias'}
 {/capture}
 <script>
 	var nrodanos = '{$rnrodanos}'
@@ -10,7 +10,7 @@
     <h2 class="page-subheading"> {l s='Resumen de la garantia' mod='matisses'}</h2>
     <div class="grid_6">
       <h3>{l s="TICKET DE LA GARANTIA"} {$garantia.id_garantia}</h3>
-      <ul class="slider">
+      <ul class="slider slider-result">
       {foreach from=$garantia.imgs item=$img key=kimg}
         <li><img src="{$link->getImageLink($garantia.imgs[$kimg],'img/garantias')}" /></li>
       {/foreach}

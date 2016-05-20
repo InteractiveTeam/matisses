@@ -76,7 +76,7 @@
 						{section name=i loop=$wishlists}
 							<tr id="wishlist_{$wishlists[i].id_wishlist|intval}">
 								<td style="width:200px;">
-									<a href="#" onclick="javascript:event.preventDefault();WishlistManage('block-order-detail', '{$wishlists[i].id_wishlist|intval}');">
+									<a href="javascript:void(0)" onclick="javascript:event.preventDefault();WishlistManage('block-order-detail', '{$wishlists[i].id_wishlist|intval}');">
 										{$wishlists[i].name|truncate:30:'...'|escape:'html':'UTF-8'}
 									</a>
 								</td>
@@ -96,7 +96,7 @@
 								<td>{$wishlists[i].counter|intval}</td>
 								<td>{$wishlists[i].date_add|date_format:"%Y-%m-%d"}</td>
 								<td>
-									<a href="#" onclick="javascript:event.preventDefault();WishlistManage('block-order-detail', '{$wishlists[i].id_wishlist|intval}');">
+									<a href="javascript:void(0)" onclick="javascript:event.preventDefault();WishlistManage('block-order-detail', '{$wishlists[i].id_wishlist|intval}');">
 										{l s='View' mod='blockwishlist'}
 									</a>
 								</td>
@@ -106,13 +106,13 @@
 											<i class="icon icon-check-square"></i>
 										</p>
 									{else}
-										<a href="#" onclick="javascript:event.preventDefault();(WishlistDefault('wishlist_{$wishlists[i].id_wishlist|intval}', '{$wishlists[i].id_wishlist|intval}'));">
+										<a href="javascript:void(0)" onclick="javascript:event.preventDefault();(WishlistDefault('wishlist_{$wishlists[i].id_wishlist|intval}', '{$wishlists[i].id_wishlist|intval}'));">
 											<i class="icon icon-square"></i>
 										</a>
 									{/if}
 								</td>
 								<td class="wishlist_delete">
-									<a class="icon" href="#" onclick="javascript:event.preventDefault();return (WishlistDelete('wishlist_{$wishlists[i].id_wishlist|intval}', '{$wishlists[i].id_wishlist|intval}', '{l s='Do you really want to delete this wishlist ?' mod='blockwishlist' js=1}'));">
+									<a class="icon" href="javascript:void(0)" onclick="javascript:event.preventDefault();return (WishlistDelete('wishlist_{$wishlists[i].id_wishlist|intval}', '{$wishlists[i].id_wishlist|intval}', '{l s='Do you really want to delete this wishlist ?' mod='blockwishlist' js=1}'));">
 										<i class="icon-remove"></i>
 									</a>
 								</td>

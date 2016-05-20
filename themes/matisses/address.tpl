@@ -51,12 +51,6 @@
 		{assign var="mobilePhoneExist" value=false}
 		{assign var="atLeastOneExists" value=false}
 		{foreach from=$ordered_adr_fields item=field_name}
-			{if $field_name eq 'company'}
-				<div class="form-group grid_6">
-					<label for="company">{l s='Company'}</label>
-					<input class="form-control validate" data-validate="{$address_validation.$field_name.validate}" type="text" id="company" name="company" value="{if isset($smarty.post.company)}{$smarty.post.company}{else}{if isset($address->company)}{$address->company|escape:'html':'UTF-8'}{/if}{/if}" />
-				</div>
-			{/if}
 			{if $field_name eq 'vat_number'}
 				<div id="vat_area">
 					<div id="vat_number">
@@ -81,10 +75,22 @@
 					<input class="is_required validate form-control" data-validate="{$address_validation.$field_name.validate}" type="text" name="firstname" id="firstname" value="{if isset($smarty.post.firstname)}{$smarty.post.firstname}{else}{if isset($address->firstname)}{$address->firstname|escape:'html':'UTF-8'}{/if}{/if}" />
 				</div>
 			{/if}
+            {if $field_name eq 'secondname'}
+				<div class="required form-group grid_6 ">
+					<label for="secondname">{l s='Segundo Nombre'}</label>
+					<input class="form-control" type="text" name="secondname" id="secondname" value="{if isset($smarty.post.secondname)}{$smarty.post.secondname}{else}{if isset($address->secondname)}{$address->secondname|escape:'html':'UTF-8'}{/if}{/if}" />
+				</div>
+			{/if}
 			{if $field_name eq 'lastname'}
 				<div class="required form-group grid_6">
 					<label for="lastname">{l s='Last name'} <sup>*</sup></label>
 					<input class="is_required validate form-control" data-validate="{$address_validation.$field_name.validate}" type="text" id="lastname" name="lastname" value="{if isset($smarty.post.lastname)}{$smarty.post.lastname}{else}{if isset($address->lastname)}{$address->lastname|escape:'html':'UTF-8'}{/if}{/if}" />
+				</div>
+			{/if}
+            {if $field_name eq 'surname'}
+				<div class="required form-group grid_6 ">
+					<label for="surname">{l s='Segundo Apellido'}</label>
+					<input class="form-control" type="text" name="surname" id="surname" value="{if isset($smarty.post.surname)}{$smarty.post.surname}{else}{if isset($address->surname)}{$address->surname|escape:'html':'UTF-8'}{/if}{/if}" />
 				</div>
 			{/if}
 			{if $field_name eq 'address1'}
@@ -105,13 +111,6 @@
 					<label for="postcode">{l s='Zip/Postal Code'} <sup>*</sup></label>
 					<input class="is_required validate form-control" data-validate="{$address_validation.$field_name.validate}" type="text" id="postcode" name="postcode" value="{if isset($smarty.post.postcode)}{$smarty.post.postcode}{else}{if isset($address->postcode)}{$address->postcode|escape:'html':'UTF-8'}{/if}{/if}" />
 				</div>
-			{/if}
-			{if $field_name eq 'city'}
-				<div class="required form-group grid_6">
-					<label for="city">{l s='City'} <sup>*</sup></label>
-					<input class="is_required validate form-control" data-validate="{$address_validation.$field_name.validate}" type="text" name="city" id="city" value="{if isset($smarty.post.city)}{$smarty.post.city}{else}{if isset($address->city)}{$address->city|escape:'html':'UTF-8'}{/if}{/if}" maxlength="64" />
-				</div>
-				{* if customer hasn't update his layout address, country has to be verified but it's deprecated *}
 			{/if}
 			{if $field_name eq 'Country:name' || $field_name eq 'country'}
 				<div class="required form-group grid_6">
@@ -201,13 +200,12 @@
 			{if isset($back)}<input type="hidden" name="back" value="{$back}" />{/if}
 			{if isset($mod)}<input type="hidden" name="mod" value="{$mod}" />{/if}
 			{if isset($select_address)}<input type="hidden" name="select_address" value="{$select_address|intval}" />{/if}
+			<a class="btn btn-default button btn-red" href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}"> <i class="fa fa-chevron-left"></i> {l s='Volver a mis direcciones'}
+			</a>
 			<input type="hidden" name="token" value="{$token}" />
 			<button type="submit" name="submitAddress" id="submitAddress" class="btn btn-default button btn-red">
 			{l s='Save'}
 			</button>
-
-			<a class="btn btn-default button btn-red" href="{$link->getPageLink('addresses', true)|escape:'html':'UTF-8'}"> <i class="fa fa-chevron-left"></i> {l s='Volver a mis direcciones'}
-			</a>
 		</div>
 	</form>
 	</div>

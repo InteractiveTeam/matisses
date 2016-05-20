@@ -53,6 +53,7 @@ class DBStruct extends Module
 			`url` VARCHAR(100) NOT NULL,
 			`message` TEXT NULL,
 			`image` VARCHAR(255) NULL,
+			`profile_img` VARCHAR(255) NULL,
 			`recieve_bond` TINYINT(1) NOT NULL,
 			`min_amount` INT(11) NOT NULL,
 			`info_creator` TEXT NOT NULL,

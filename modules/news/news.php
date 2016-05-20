@@ -27,6 +27,7 @@ class News extends Module {
     private $_imageType = 'jpg'; // image type
     private $_maxImageSize = 2000000; // default max image size 2M
     private $_imagesSizes ;
+    public $page_name;
     public static $moduleRoutes =array(
 
              'module-news-list' => array(
@@ -51,7 +52,7 @@ class News extends Module {
 				'module' =>			array('regexp' => '[_a-zA-Z0-9_-]+', 'param' => 'module'),
 				'controller' =>		array('regexp' => '[_a-zA-Z0-9_-]+', 'param' => 'controller') ),
                     'params' => array(
-			'fc' => 'module',
+			            'fc' => 'module',
                         'module' => 'news',
                         'controller' => 'news'
                     )
@@ -63,7 +64,7 @@ class News extends Module {
 				'rss_news' =>			array('regexp' => '[0-9]*', 'param' => 'rss_news')
                             ),
                     'params' => array(
-			'fc' => 'module',
+			             'fc' => 'module',
                         'module' => 'news',
                         'controller' => 'rss'
                     )
@@ -71,7 +72,8 @@ class News extends Module {
        
                 'module-news-new' => array(
                     'controller' => 'new',
-                    'rule' =>  'news/new/{id_news}-{cat_news}-{page_cat}/{cat_rewrite}/{rewrite}.html',
+                    //'rule' =>  'news/new/{id_news}-{cat_news}-{page_cat}/{cat_rewrite}/{rewrite}.html',
+                    'rule' =>  'blog/{cat_rewrite}/{id_news}-{rewrite}.html',
                     'keywords' => array(
                         'id_news'   => array('regexp' => '[0-9]+',   'param' => 'id_news'),
                         'cat_news'  => array('regexp' => '[0-9]*',   'param' => 'cat_news'),
@@ -80,9 +82,9 @@ class News extends Module {
                         'rewrite'   => array('regexp' => '[_a-zA-Z0-9-\pL]*',   'param' => 'rewrite'),
                     ),
                     'params' => array(
-				'fc' => 'module',
+				        'fc' => 'module',
                         'module' => 'news',
-                        'controller' => 'new'
+                        'controller' => 'new',
                     )
                 )
 
@@ -791,7 +793,9 @@ class News extends Module {
             'cat' => $cat,
 			'catname' => $this->getCatName((int) ($cat), $id_lang),
             'cat_rewrite' => $this->getCatRewrite($cat, $id_lang),
-            'page' => $page
+            'page' => $page,
+			'populares' => $this->getPopulars(),
+			'commentados' => $this->getCommentados()
         ));
 
         return $this->display(__FILE__, 'tpl/news_list_category.tpl');
@@ -918,34 +922,32 @@ class News extends Module {
 	
 	
 	
-	public function getPopulars()
-	{
-
-		return Db::getInstance()->ExecuteS('SELECT b.title, c.title as category, viewed
-											FROM '._DB_PREFIX_.'news as a
-												 INNER JOIN	'._DB_PREFIX_.'news_langs as b
-												 INNER JOIN '._DB_PREFIX_.'news_cats_lang AS c
-												 	on a.id_news = b.id_news
-													and b.id_lang = c.id_lang
-											WHERE viewed !=0
-												and b.id_lang = '.$this->context->language->id.'
-											group by a.id_news  order by viewed desc
-											');
+	public function getPopulars(){        
+        $populars = Db::getInstance()->ExecuteS('SELECT news.id_news,news.viewed,nl.title,news.id_parent_category as id_cat,ncl.title as category,ncl.title as cat_rewrite
+            FROM '._DB_PREFIX_.'news AS news
+            INNER JOIN '._DB_PREFIX_.'news_cats_lang ncl ON ncl.id_cat = news.id_parent_category
+            INNER JOIN '._DB_PREFIX_.'news_langs nl ON nl.id_news = news.id_news');        
+        
+		foreach($populars as $d => $comment) {
+			$populars[$d]['cat_rewrite'] = $this->getCatRewrite($comment['id_cat'],$this->context->language->id);
+			$populars[$d]['rewrite'] = Tools::str2url($comment['title']);
+		}
+		return $populars;
 	}
 	
-	public function getCommentados()
-	{								
+	public function getCommentados(){
+        $comments = Db::getInstance()->ExecuteS('SELECT news.id_news, (SELECT count(*) FROM ps_news_comments WHERE id_news = news.id_news) as comentarios,news.id_parent_category as id_cat ,nl.title as title,ncl.title as category,ncl.title as cat_rewrite
+            FROM '._DB_PREFIX_.'news AS news 
+            INNER JOIN '._DB_PREFIX_.'news_comments nc ON news.id_news = nc.id_news
+            INNER JOIN '._DB_PREFIX_.'news_cats_lang ncl ON ncl.id_cat = news.id_parent_category
+            INNER JOIN '._DB_PREFIX_.'news_langs nl ON nl.id_news = news.id_news
+            GROUP BY nc.id_news');
 
-		return Db::getInstance()->ExecuteS('SELECT b.title, c.title as category, (SELECT count(*) FROM '._DB_PREFIX_.'news_comments WHERE id_news = a.id_news) as comentarios
-											FROM '._DB_PREFIX_.'news as a
-												 INNER JOIN	'._DB_PREFIX_.'news_langs as b
-												 INNER JOIN '._DB_PREFIX_.'news_cats_lang AS c
-												 	on a.id_news = b.id_news
-													and b.id_lang = c.id_lang
-											WHERE (SELECT count(*) FROM '._DB_PREFIX_.'news_comments WHERE id_news = a.id_news) !=0
-												and b.id_lang = '.$this->context->language->id.'
-											group by a.id_news  order by (SELECT count(*) FROM '._DB_PREFIX_.'news_comments WHERE id_news = a.id_news) desc
-											');
+        foreach($comments as $d => $comment){
+			$comments[$d]['cat_rewrite'] = $this->getCatRewrite($comment['id_cat'],$this->context->language->id);
+			$comments[$d]['rewrite'] = Tools::str2url($comment['title']);
+		}
+		return $comments;									
 	}
 	
 
@@ -1791,23 +1793,37 @@ class News extends Module {
 
         $ad = dirname($_SERVER["PHP_SELF"]);
         $this->_html .= '
+					<script type="text/javascript" src="' . __PS_BASE_URI__ . 'js/tiny_mce/tiny_mce.js"></script>
+			<script type="text/javascript" src="' . __PS_BASE_URI__ . 'js/tiny_mce/tinymce.min.js"></script>
+			<script type="text/javascript" src="' . __PS_BASE_URI__ . 'js/admin/tinymce.inc.js"></script>
 			<script type="text/javascript">
 
                         var iso = \'' . $iso . '\' ;
 			var pathCSS = \'' . _THEME_CSS_DIR_ . '\' ;
 			var ad = \'' . $ad . '\' ;
 
-	$(document).ready(function(){
-
-			tinySetup({
-				editor_selector :"autoload_rte",
-				theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull|cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,undo,redo",
-				theme_advanced_buttons2 : "link,unlink,anchor,image,cleanup,code,|,forecolor,backcolor,|,hr,removeformat,visualaid,|,charmap,media,|,ltr,rtl,|,fullscreen",
-				theme_advanced_buttons3 : "",
-				theme_advanced_buttons4 : ""
-			});
-
-	});
+			$(document).ready(function(){
+					
+						tinySetup({
+							editor_selector :"autoload_rte",
+							theme_advanced_buttons1 : "save,newdocument,bold,italic,underline,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect, fontselect,fontsizeselect",
+											  theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,search,replace,bullist,numlist,outdent,indent,blockquote,undo,redo,link,unlink,anchor,image,cleanup,help,codemagic,insertdate,inserttime,preview,forecolor,backcolor",
+											  theme_advanced_buttons3 : "code,tablecontrols,hr,removeformat,visualaid,sub,sup,charmap,emotions,iespell,media,advhr,print,ltr,rtl,fullscreen",
+											  theme_advanced_buttons4 : "styleprops,cite,abbr,acronym,del,ins,attribs,visualchars,nonbreaking,template,pagebreak,restoredraft,visualblocks",
+											  theme_advanced_toolbar_location : "top",
+											  theme_advanced_toolbar_align : "left",
+											  theme_advanced_statusbar_location : "bottom",
+											  theme_advanced_resizing : false,
+																extended_valid_elements: \'pre[*],script[*],style[*],article[*],figure[*],figcaption[*]\',
+																valid_children: "+body[style|script],pre[script|div|p|br|span|img|style|h1|h2|h3|h4|h5],article[class|name|id],figure[class|name|id],figcaption[class|name|id],*[*]",
+																valid_elements : \'*[*]\',
+																force_p_newlines : false,
+																cleanup: false,
+																forced_root_block : false,
+																force_br_newlines : true
+						});
+					
+				});
 			</script>
 			<script type="text/javascript" src="' . __PS_BASE_URI__ . 'js/tiny_mce/tiny_mce.js"></script>
 			<script type="text/javascript" src="' . __PS_BASE_URI__ . 'js/tinymce.inc.js"></script>';
@@ -3732,34 +3748,51 @@ class News extends Module {
         $tag = (Tools::getValue('tag_news') ? intval(Tools::getValue('tag_news')) : 0);
         $cat = (Tools::getValue('cat_news') ? intval(Tools::getValue('cat_news')) : 0);
         $search_news = trim(Tools::getValue('search_news', ''));
+        $cat_id = Db::getInstance()->getRow('SELECT  `id_parent_category` 
+                                                FROM  `'._DB_PREFIX_.'news` 
+                                                WHERE  `id_news` = '.$id_news);
+        $category = Db::getInstance()->getRow('SELECT  `title` 
+                                                FROM  `'._DB_PREFIX_.'news_cats_lang` 
+                                                WHERE  `id_cat` = '.$cat_id['id_parent_category']);
 
         // get prev and next news
         $next_id_news = 0;
         $prev_id_news = 0;
+        $prev_rewrite = '';
+        $next_rewrite = '';
+        $prev_cat_rewrite = '';
+        $next_cat_rewrite = '';
 
         if (empty($search_news) && $tag == 0) {
             if ($cat > 0) {
-                $extraQuery = ' AND id_news IN (
-                               SELECT DISTINCT(id_new) AS id_news FROM ' . _DB_PREFIX_ . 'news_cats_rel  WHERE id_cat ="' . $cat . '" ) ';
+                $extraQuery = ' AND news.id_news IN (
+                               SELECT DISTINCT(id_new) AS id_news FROM '._DB_PREFIX_.'news_cats_rel  WHERE id_cat ="' . $cat . '" ) ';
             } else {
-                $extraQuery = ' AND id_news IN (
-                               SELECT id_news FROM ' . _DB_PREFIX_ . 'news_langs  WHERE (title like "%' . Search::sanitize($search_news, (int) $id_lang) . '%"
+                $extraQuery = ' AND news.id_news IN (
+                               SELECT id_news FROM '._DB_PREFIX_.'news_langs  WHERE (title like "%' . Search::sanitize($search_news, (int) $id_lang) . '%"
                                OR new like "%' . Search::sanitize($search_news, (int) $id_lang) . '%")  AND
                                 id_lang = ' . (int) ($params['cookie']->id_lang) . ' )';
             }
 
             $news = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS('
-                SELECT id_news FROM ' . _DB_PREFIX_ . 'news  WHERE
-                     active="1" ' . $extraQuery . '
-                ORDER by pos ASC ');
-
+                SELECT news.id_news, nl.title as title, ncl.title as category, ncl.title as cat_rewrite 
+                FROM '._DB_PREFIX_.'news as news
+                INNER JOIN '._DB_PREFIX_.'news_cats_lang ncl ON ncl.id_cat = news.id_parent_category
+                INNER JOIN '._DB_PREFIX_.'news_langs nl ON nl.id_news = news.id_news
+                WHERE active="1" ' . $extraQuery . '
+                ORDER by news.pos ASC');
+            
             for ($i = 0; $i < count($news); $i++) {
                 if ($news[$i]['id_news'] == $id_news) {
                     if ($i > 0) {
                         $prev_id_news = $news[$i - 1]['id_news'];
+                        $prev_rewrite = $news[$i - 1]['title'];
+                        $prev_cat_rewrite = $news[$i - 1]['cat_rewrite'];
                     }
                     if (count($news) > ($i + 1)) {
                         $next_id_news = $news[$i + 1]['id_news'];
+                        $next_rewrite = $news[$i + 1]['title'];
+                        $next_cat_rewrite = $news[$i + 1]['cat_rewrite'];
                     }
                 }
             }
@@ -3816,6 +3849,8 @@ class News extends Module {
 		$date = (isset($news[0]['date']) ? ( $this->_months[date('n', $news[0]['date'])] . ' ' . date('j', $news[0]['date']) . ',' . date('Y', $news[0]['date']) ) : '');
 
         $this->smarty->assign(array(
+            'catObj' => (Configuration::get('NEWS_SIDE_CATEGORIES') == '1' ? $this->getCats($id_news, $id_lang) : array()),
+            'category' => $category['title'],
             'imgsObj' => $imgsObj,
             'tagsObj' => $this->getTags($id_news, $id_lang),
             'newsProductsObj' => (Configuration::get('NEWS_REL_PRODUCTS') ? $this->relProducts($params, $id_news) : Array()),
@@ -3841,7 +3876,12 @@ class News extends Module {
             'news_slideshow_height' => intval(Configuration::get('NEWS_SLIDESHOW_HEIGHT')),
             'prev_id_news' => $prev_id_news,
             'next_id_news' => $next_id_news,
-
+            'prev_rewrite' => Tools::str2url($prev_rewrite),
+            'prev_title' => $prev_rewrite,
+            'next_rewrite' => Tools::str2url($next_rewrite),
+            'next_title' => $next_rewrite,
+            'prev_cat_rewrite' => Tools::str2url($prev_cat_rewrite),
+            'next_cat_rewrite' => Tools::str2url($next_cat_rewrite)
         ));
 
         return $this->display(__FILE__, 'tpl/themes/' . Configuration::get('NEWS_THEME') . '/new_item.tpl');
@@ -3875,6 +3915,7 @@ class News extends Module {
                     $obj->title = $trads[$id_lang]['title'];
                     $obj->rewrite = Tools::str2url($trads[$id_lang]['title']);
                     $obj->date = date('d/m/Y', $new['date']);
+                    $obj->newText = strip_tags($trads[$id_lang]['new']);
                     $relNewsObj[] = $obj;
                 }
             }
@@ -4122,7 +4163,7 @@ class News extends Module {
 		foreach($comments as $k => $comment)
 		{
 			$comments[$k]['date'] = ($comment['date'] != 0 ? ( $this->_months[date('n', $comment['date'])] . ' ' . date('j', $comment['date']) . ', ' . date('Y', $comment['date']) ) : '');
-			$user = Db::getInstance()->getRow('SELECT firstname, lastname FROM '._DB_PREFIX.'customer WHERE id_customer ="'.$comment['id_customer'].'"');
+			$user = Db::getInstance()->getRow('SELECT firstname, lastname FROM '._DB_PREFIX_.'customer WHERE id_customer ="'.$comment['id_customer'].'"');
 			
 			$comments[$k]['id_customer'] = $user['firstname'].' '.$user['lastname'];
 		}

@@ -10,6 +10,7 @@ $(document).ready(function(e) {
 	  slideMargin: 10,
 	  pager: false,
 	  infiniteLoop: false,
+	  hideControlOnEnd:true,
 	  onSliderLoad: function(){
     		$('.experiences-list li').eq(0).addClass('slide-active');
 			$('.bx-prev').click(function(e) {

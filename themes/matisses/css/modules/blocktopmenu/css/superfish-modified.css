@@ -63,9 +63,9 @@
 	font-size:
 	}
 	.menu-content > li > a {
-    padding: 1.25rem 0 1.25rem 0;
+    padding: 0.9rem 0 14px 0;
     margin-left: 1.875rem;
-    display: block;
+    display: inline-block;
     position: relative;
 	}
 	.submenu-container {
@@ -123,7 +123,7 @@
     }
 
 	.submenu-container li > ul > li .SubCategory {
-    padding: 1.8rem 3.625rem;
+    padding: 1.2rem 3.625rem;
     position: absolute;
     margin-top: 0;
     top: 0 !important;
@@ -176,7 +176,7 @@
     }
 
 .category-thumbnail .wrap_scale {
-     width: 700px;
+    width: 900px;
     position: absolute;
     bottom: 0;
     right: 5.4%;

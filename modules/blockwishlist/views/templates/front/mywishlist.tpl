@@ -26,10 +26,10 @@
 <div id="mywishlist">
     {capture name=path}
         <a href="{$link->getPageLink('my-account', true)|escape:'html'}">{l s='My account' mod='blockwishlist'}</a>
-        <span class="navigation-pipe">{$navigationPipe}</span>
+        <i class="fa fa-angle-right"></i>
         <a href="{$link->getModuleLink('blockwishlist', 'mywishlist')|escape:'html'}">{l s='My wishlists' mod='blockwishlist'}</a>
 		{if isset($current_wishlist)}
-	        <span class="navigation-pipe">{$navigationPipe}</span>
+	        <i class="fa fa-angle-right"></i>
 	        {$current_wishlist.name}
 		{/if}
     {/capture}
@@ -94,7 +94,7 @@
 									<i class="icon icon-check-square"></i>
 								</p>
 							{else}
-								<a href="#" onclick="javascript:event.preventDefault();(WishlistDefault('wishlist_{$wishlists[i].id_wishlist|intval}', '{$wishlists[i].id_wishlist|intval}'));">
+								<a href="javascript:void(0)" onclick="javascript:event.preventDefault();(WishlistDefault('wishlist_{$wishlists[i].id_wishlist|intval}', '{$wishlists[i].id_wishlist|intval}'));">
 									<i class="icon icon-square"></i>
 								</a>
 							{/if}

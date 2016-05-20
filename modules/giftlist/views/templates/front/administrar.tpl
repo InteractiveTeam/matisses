@@ -2,7 +2,13 @@
 <a href="{$list_link}">{l s='giftlist' mod='giftlist'}</a><i class="fa fa-angle-right"></i>{if $edit}{$data['name']}{else}{l s='new' mod='giftlist'}{/if}
 {/capture}
 {if version_compare($smarty.const._PS_VERSION_,'1.6.0.0','<')}{include file="$tpl_dir./breadcrumb.tpl"}{/if}
-   
+{if $error}
+    <div class="alert alert-danger" role="alert">
+        <span aria-hidden="true"></span>
+        {$response}
+    </div>
+{/if}
+
 
 <form id="frmSaveList" role="form" action="" method="post" enctype="multipart/form-data">
     {* General *}
@@ -42,7 +48,7 @@
                 <div class="form-group">
                     <label for="event_date">Fecha del evento</label> <input
                         type="text" name="event_date" class="form-control"
-                        id="event_date" placeholder="Fecha del evento" value="{if $edit}{date("m/d/Y H:i",strtotime($data['event_date']))}{/if}">
+                        id="event_date" placeholder="Fecha del evento" value="{if $edit}{date("d/m/Y H:i",strtotime($data['event_date']))}{/if}">
                 </div>
             </div>
             <div class="col-md-6">
@@ -60,8 +66,16 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="guest_number">Imagen</label> <input type="file"
+                    <label for="image">Imagen</label> <input type="file"
                         name="image" id="image">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="profile_img">Imagen de perfil</label> <input type="file"
+                        name="profile_img" id="profile_img">
                 </div>
             </div>
         </div>
@@ -129,7 +143,7 @@
                     </div>
                 </div>
                 {elseif $data['id_cocreator'] != $cookie->customer->id}
-                <a href="#">Quitar co-creador</a>
+                <a href="javascript:void(0)">Quitar co-creador</a>
                 {/if}
                 {if $edit}{if !empty($data['id_cocreator']) && $data['id_cocreator'] == $cookie->customer->id}
                 {$info_cocreator = Tools::JsonDecode($data['info_cocreator'])}
@@ -181,6 +195,7 @@
             </div>
             {/if}
         </div>
+        <div class="g-recaptcha col-md-12" data-sitekey="6LdmTB4TAAAAAFX-jZj0FvdX0xyk4I0vBrfn2Zkh"></div>
         <div class="col-md-12">
             <input id="btnSave" type="submit" name="saveList"
                 class="btn btn-success pull-right" value="Guardar">

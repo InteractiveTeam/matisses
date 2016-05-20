@@ -29,49 +29,25 @@
     	{hook h="displayMatSlider"}
         {hook h="displayMatAdvertisingHome"}
     </div>
-
-
-
-    <div id="viewed-products" class="viewed-products">
-		<div class="container">
-    		{hook h="displayMatShowesProducts"}
-		</div>
-    </div>
-    <div id="new-products" class="new-products">
-		<div class="container">
-    		{hook h="displayMatNewProducts"}
-		</div>
-	</div>
+	
 	<div id="highlights" class="highlights">
 		<div class="container">
-			<div class="info-chaordic">
-				<img src="../../themes/matisses/img/highlights.jpg" alt="Destacados">
-				<div class="mask">
-					<h1>Espacio para Chaordic</h1>
-				</div>
-			</div>
+			<!-- Chaordic Top -->
+            <div chaordic="top"></div>
 		</div>
     </div>
 
     <div id="offers" class="offers-products">
 		<div class="container">
-			<div class="info-chaordic">
-				<img src="../../themes/matisses/img/offers-products.jpg" alt="Oferta de productos">
-				<div class="mask">
-					<h1>Espacio para Chaordic</h1>
-				</div>
-			</div>
+		    <!-- Chaordic Middle -->
+            <div chaordic="middle"></div>
 		</div>
     </div>
-
+    
     <div id="popular" class="popular">
 		<div class="container">
-			<div class="info-chaordic">
-				<img src="../../themes/matisses/img/popular.jpg" alt="Más populares">
-				<div class="mask">
-					<h1>Espacio para Chaordic</h1>
-				</div>
-			</div>
+		    <!-- Chaordic Bottom -->
+            <div chaordic="bottom"></div>
 		</div>
     </div>
 

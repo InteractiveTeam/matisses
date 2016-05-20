@@ -1,6 +1,6 @@
 {capture name=path}
 		<a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Authentication'}">{l s='Mi Cuenta'}</a>
-		<span class="navigation-pipe">{$navigationPipe}</span>{l s='Garantias'}
+		<i class="fa fa-angle-right"></i>{l s='Garantias'}
 {/capture}
 <div class="container">
 	<div class="warranty grid_12 alpha omega">
@@ -13,7 +13,7 @@
 				</div>
 			    <div class="grid_7 right-w">
 					<p>{$config.confgaran_terminos} </p>
-					<a class="grid_12 alpha omega view-more" href="#">{l s='Ver más' mod='matisses'}</a>
+					<a class="grid_12 alpha omega view-more" href="javascript:void(0)">{l s='Ver más' mod='matisses'}</a>
 					<form class="grid_12 alpha omega" method="post" action="" name="form1" id="step1">
 						<input type="hidden" value="submitStep1" name="submitStep1" />
 						<input type="checkbox" checked="checked" name="accept" id="accept" value="1">

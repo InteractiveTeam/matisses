@@ -33,7 +33,7 @@
                                                ]
 
                                               ,false)}"
-                                          title="{$destacados[1]->cat_name|truncate:50:'...'|escape:html:'UTF-8'}">
+                                          title="{$destacados[0]->cat_name|truncate:50:'...'|escape:html:'UTF-8'}">
                         <span>{$destacados[0]->cat_name}</span></a>
                     </div>
                     <div class="newsTitle">
@@ -63,7 +63,7 @@
                                 'cat_rewrite'  => "{$destacados[1]->cat_rewrite}"
                              ]
                              ,false)}"
-                           alt="{$destacados[0]->title}" > <img src="{$destacados[1]->img}" title="{$destacados[1]->title}" alt="{$destacados[1]->title}" ></a>
+                           alt="{$destacados[1]->title}" > <img src="{$destacados[1]->img}" title="{$destacados[1]->title}" alt="{$destacados[1]->title}" ></a>
                     </div>
                     <div class="right-article grid_6 omega">
                         <div class="category-news">
@@ -101,7 +101,7 @@
                                 'cat_rewrite'  => "{$destacados[1]->cat_rewrite}"
                              ]
                              ,false)}"
-                           alt="{$destacados[1]->title}" > <img src="{$destacados[2]->img}" title="{$destacados[2]->title}" alt="{$destacados[2]->title}" ></a>
+                           alt="{$destacados[1]->title}" > <img src="{$destacados[1]->img}" title="{$destacados[1]->title}" alt="{$destacados[1]->title}" ></a>
 
                     </div>
                     <div class="right-article grid_6 omega">
@@ -198,7 +198,16 @@
                                             <span>{$news->cat_name}</span>
                                         </div>
                                         <div class="newsTitle">
-                                            <h2>{$news->title|escape:html:'UTF-8'}</h2>
+                                            <a href="{$link->getModuleLink('news', 'new',
+                                        [
+                                            'id_news'  => "{$news->id_news}",
+                                            'cat_news' => "{if $cat}{$cat}{/if}",
+                                            'page_cat'     => "{$page}",
+                                            'rewrite'  => "{$news->rewrite}",
+                                            'cat_rewrite'  => "{$cat_rewrite}"
+                                         ]
+                                         ,false)}"
+                                                alt="{$news->title|escape:html:'UTF-8'}" class="newsListItem"><h2>{$news->title|escape:html:'UTF-8'}</h2></a>
                                         </div>
 
                                         <div class="date-author cf">
@@ -307,58 +316,64 @@
                 <div class="commented-popular grid_12 omega">
                     <div id="tabs-news" class="news-tabs">
                       <ul>
-                        <li><a href="#tabs-1">Comentados</a></li>
-                        <li><a href="#tabs-2">Populares</a></li>
+                        <li><a class="atab" href="#tabs-1">Comentados</a></li>
+                        <li><a class="atab" href="#tabs-2">Populares</a></li>
                       </ul>
-                      <div id="tabs-1" class="content-tabs">
+<div id="tabs-1" class="content-tabs">
+                        
+                        
                         <ul>
+                        	{foreach from=$commentados item=articulo}
                             <li>
                                 <div class="category-news">
-                                    <span>Categoria 1</span>
+                                    <span>{$articulo.category}</span>
                                 </div>
                                 <div class="newsTitle">
-                                    <h2>La iluminación perfecta para los hogares</h2>
+                                    <a href="{$link->getModuleLink('news', 'new',
+                                    [
+                                        'id_news'  => "{$articulo.id_news}",
+                                        'cat_news' => "{$articulo.id_cat}",
+                                        'page_cat'     => "{$page}",
+                                        'rewrite'  => "{$articulo.rewrite}",
+                                        'cat_rewrite'  => "{$articulo.cat_rewrite}"
+                                     ]
+                                     ,false)}"
+                                   alt="{$articulo.title}" >
+                                    
+                                    <h2>{$articulo.title}</h2></a>
                                 </div>
                             </li>
-                            <li>
-                                <div class="category-news">
-                                    <span>Categoria 1</span>
-                                </div>
-                                <div class="newsTitle">
-                                    <h2>La iluminación perfecta para los hogares</h2>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-news">
-                                    <span>Categoria 2</span>
-                                </div>
-                                <div class="newsTitle">
-                                    <h2>La iluminación perfecta para los hogares</h2>
-                                </div>
-                            </li>
+                            {/foreach}
                         </ul>
                       </div>
                       <div id="tabs-2" class="content-tabs">
                         <ul>
+                        	{foreach from=$populares item=articulo}
                             <li>
                                 <div class="category-news">
-                                    <span>Categoria 1</span>
+                                    <span>{$articulo.category}</span>
                                 </div>
                                 <div class="newsTitle">
-                                    <h2>La iluminación perfecta para los hogares</h2>
+                                    
+                                    <a href="{$link->getModuleLink('news', 'new',
+                                    [
+                                        'id_news'  => "{$articulo.id_news}",
+                                        'cat_news' => "{$articulo.id_cat}",
+                                        'page_cat'     => "{$page}",
+                                        'rewrite'  => "{$articulo.rewrite}",
+                                        'cat_rewrite'  => "{$articulo.cat_rewrite}"
+                                     ]
+                                     ,false)}"
+                                   alt="{$articulo.title}" >
+                                    	<h2>{$articulo.title}</h2>
+                                    </a>
+
                                 </div>
                             </li>
-                            <li>
-                                <div class="category-news">
-                                    <span>Categoria 1</span>
-                                </div>
-                                <div class="newsTitle">
-                                    <h2>La iluminación perfecta para los hogares</h2>
-                                </div>
-                            </li>
+                            {/foreach}
+
                         </ul>
-                      </div>
-                    </div>
+                      </div>                    </div>
                 </div>
             </div>
         </div>

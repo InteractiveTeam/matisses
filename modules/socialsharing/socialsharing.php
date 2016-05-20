@@ -29,7 +29,7 @@ if (!defined('_PS_VERSION_'))
 
 class SocialSharing extends Module
 {
-	protected static $networks = array('Facebook', 'Twitter', 'Google', 'Pinterest');
+	protected static $networks = array('Facebook', 'Twitter', 'Google', 'Pinterest', 'Houzz', 'Instagram', 'Email', 'Print' );
 	protected $html = '';
 
 	public function __construct()
@@ -88,8 +88,10 @@ class SocialSharing extends Module
 	{
 		$values = array();
 		foreach (self::$networks as $network)
+		{
 			$values['PS_SC_'.Tools::strtoupper($network)] = (int)Tools::getValue('PS_SC_'.Tools::strtoupper($network), Configuration::get('PS_SC_'.Tools::strtoupper($network)));
-
+			$values['PS_SC_'.Tools::strtoupper($network).'_URL'] = Tools::getValue('PS_SC_'.Tools::strtoupper($network).'_URL', Configuration::get('PS_SC_'.Tools::strtoupper($network).'_URL'));
+		}
 		return $values;
 	}
 
@@ -98,7 +100,10 @@ class SocialSharing extends Module
 		if (Tools::isSubmit('submitSocialSharing'))
 		{
 			foreach (self::$networks as $network)
+			{
 				Configuration::updateValue('PS_SC_'.Tools::strtoupper($network), (int)Tools::getValue('PS_SC_'.Tools::strtoupper($network)));
+				Configuration::updateValue('PS_SC_'.Tools::strtoupper($network).'_URL', Tools::getValue('PS_SC_'.Tools::strtoupper($network).'_URL'));
+			}
 			$this->html .= $this->displayConfirmation($this->l('Settings updated'));
 			Tools::clearCache(Context::getContext()->smarty, $this->getTemplatePath('socialsharing.tpl'));
 			Tools::clearCache(Context::getContext()->smarty, $this->getTemplatePath('socialsharing_compare.tpl'));
@@ -114,6 +119,7 @@ class SocialSharing extends Module
 
 		$fields = array();
 		foreach (self::$networks as $network)
+		{
 			$fields[] = array(
 				'type' => 'switch',
 				'label' => $network,
@@ -131,6 +137,15 @@ class SocialSharing extends Module
 					)
 				)
 			);
+			if(in_array($network,array('Facebook', 'Twitter', 'Google', 'Pinterest', 'Houzz', 'Instagram', 'Email')))
+			{
+				$fields[] = array(
+					'type' => 'text',
+					'label' => 'Url',
+					'name' => 'PS_SC_'.Tools::strtoupper($network).'_URL',
+				);
+			}
+		}
 
 		return $this->html.$helper->generateForm(array(
 			array(
@@ -199,7 +214,20 @@ class SocialSharing extends Module
 				'PS_SC_TWITTER' => Configuration::get('PS_SC_TWITTER'),
 				'PS_SC_GOOGLE' => Configuration::get('PS_SC_GOOGLE'),
 				'PS_SC_FACEBOOK' => Configuration::get('PS_SC_FACEBOOK'),
-				'PS_SC_PINTEREST' => Configuration::get('PS_SC_PINTEREST')
+				'PS_SC_PINTEREST' => Configuration::get('PS_SC_PINTEREST'),
+				'PS_SC_HOUZZ' => Configuration::get('PS_SC_HOUZZ'),
+				'PS_SC_INSTAGRAM' => Configuration::get('PS_SC_INSTAGRAM'),
+				'PS_SC_EMAIL' => Configuration::get('PS_SC_EMAIL'),
+				'PS_SC_PRINT' => Configuration::get('PS_SC_PRINT'),
+				
+				'PS_SC_TWITTER_URL' => Configuration::get('PS_SC_TWITTER_URL'),
+				'PS_SC_GOOGLE_URL' => Configuration::get('PS_SC_GOOGLE_URL'),
+				'PS_SC_FACEBOOK_URL' => Configuration::get('PS_SC_FACEBOOK_URL'),
+				'PS_SC_PINTEREST_URL' => Configuration::get('PS_SC_PINTEREST_URL'),
+				'PS_SC_HOUZZ_URL' => Configuration::get('PS_SC_HOUZZ_URL'),
+				'PS_SC_INSTAGRAM_URL' => Configuration::get('PS_SC_INSTAGRAM_URL'),
+				'PS_SC_EMAIL_URL' => Configuration::get('PS_SC_EMAIL_URL'),
+				
 			));
 		}
 
@@ -227,7 +255,19 @@ class SocialSharing extends Module
 				'PS_SC_TWITTER' => Configuration::get('PS_SC_TWITTER'),
 				'PS_SC_GOOGLE' => Configuration::get('PS_SC_GOOGLE'),
 				'PS_SC_FACEBOOK' => Configuration::get('PS_SC_FACEBOOK'),
-				'PS_SC_PINTEREST' => Configuration::get('PS_SC_PINTEREST')
+				'PS_SC_PINTEREST' => Configuration::get('PS_SC_PINTEREST'),
+				'PS_SC_HOUZZ' => Configuration::get('PS_SC_HOUZZ'),
+				'PS_SC_INSTAGRAM' => Configuration::get('PS_SC_INSTAGRAM'),
+				'PS_SC_EMAIL' => Configuration::get('PS_SC_EMAIL'),
+				'PS_SC_PRINT' => Configuration::get('PS_SC_PRINT'),
+				
+								'PS_SC_TWITTER_URL' => Configuration::get('PS_SC_TWITTER_URL'),
+				'PS_SC_GOOGLE_URL' => Configuration::get('PS_SC_GOOGLE_URL'),
+				'PS_SC_FACEBOOK_URL' => Configuration::get('PS_SC_FACEBOOK_URL'),
+				'PS_SC_PINTEREST_URL' => Configuration::get('PS_SC_PINTEREST_URL'),
+				'PS_SC_HOUZZ_URL' => Configuration::get('PS_SC_HOUZZ_URL'),
+				'PS_SC_INSTAGRAM_URL' => Configuration::get('PS_SC_INSTAGRAM_URL'),
+				'PS_SC_EMAIL_URL' => Configuration::get('PS_SC_EMAIL_URL'),
 			));
 		}
 
@@ -254,7 +294,19 @@ class SocialSharing extends Module
 			'PS_SC_TWITTER' => Configuration::get('PS_SC_TWITTER'),
 			'PS_SC_GOOGLE' => Configuration::get('PS_SC_GOOGLE'),
 			'PS_SC_FACEBOOK' => Configuration::get('PS_SC_FACEBOOK'),
-			'PS_SC_PINTEREST' => Configuration::get('PS_SC_PINTEREST')
+			'PS_SC_PINTEREST' => Configuration::get('PS_SC_PINTEREST'),
+			'PS_SC_HOUZZ' => Configuration::get('PS_SC_HOUZZ'),
+			'PS_SC_INSTAGRAM' => Configuration::get('PS_SC_INSTAGRAM'),
+			'PS_SC_EMAIL' => Configuration::get('PS_SC_EMAIL'),
+			'PS_SC_PRINT' => Configuration::get('PS_SC_PRINT'),
+			
+							'PS_SC_TWITTER_URL' => Configuration::get('PS_SC_TWITTER_URL'),
+				'PS_SC_GOOGLE_URL' => Configuration::get('PS_SC_GOOGLE_URL'),
+				'PS_SC_FACEBOOK_URL' => Configuration::get('PS_SC_FACEBOOK_URL'),
+				'PS_SC_PINTEREST_URL' => Configuration::get('PS_SC_PINTEREST_URL'),
+				'PS_SC_HOUZZ_URL' => Configuration::get('PS_SC_HOUZZ_URL'),
+				'PS_SC_INSTAGRAM_URL' => Configuration::get('PS_SC_INSTAGRAM_URL'),
+				'PS_SC_EMAIL_URL' => Configuration::get('PS_SC_EMAIL_URL'),
 		));
 
 		return $this->display(__FILE__, 'socialsharingexperiences.tpl');

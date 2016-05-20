@@ -1,12 +1,12 @@
-[{shop_url}] 
+[{shop_url}]
 
 Hola {firstname} {lastname},
 
-Le agradecemos por realizar sus compras en {shop_name}! 
+Te agradecemos por realizar tus compras en {shop_name}!
 
 PEDIDO: {order_name} Situado en {date}
 
-PAGO: {payment} 		 
+PAGO: {payment}
 
 REFERENCIA
 
@@ -18,52 +18,51 @@ CANTIDAD
 
 PRECIO TOTAL
 
-{products_txt} 
+{products_txt}
 
-{discounts} 
+{discounts}
 
-PRODUCTOS 
+PRODUCTOS
 
-{total_products} 
+{total_products}
 
-DESCUENTOS 
+DESCUENTOS
 
-{total_discounts} 
+{total_discounts}
 
-PAPEL DE REGALO 
+PAPEL DE REGALO
 
-{total_wrapping} 
+{total_wrapping}
 
-TRANSPORTE 
+TRANSPORTE
 
-{total_shipping} 
+{total_shipping}
 
-IMPUESTO TOTAL 
+IMPUESTO TOTAL
 
-{total_tax_paid} 
+{total_tax_paid}
 
-PAGO TOTAL 
+PAGO TOTAL
 
-{total_paid} 
+{total_paid}
 
 TRANSPORTISTA: {carrier}
 
-PAGO: {payment} 		 
+PAGO: {payment}
 
-{delivery_block_txt} 
+{delivery_block_txt}
 
-{invoice_block_txt} 
+{invoice_block_txt}
 
-Usted puede revisar su pedido y descargar la factura desde
-"Historial de pedidos" [{history_url}] de su cuenta
-de cliente, haga clic en [{my_account_url}] en
-nuestra tienda. 
+Puedes revisar tu pedido y descargar la factura desde
+"Historial de pedidos" [{history_url}] en tu cuenta
+de cliente, haz clic en [{my_account_url}] en
+nuestra tienda.
 
-Si tiene una cuenta de invitado, puede seguir su pedido desde la
+Si tienes una cuenta de invitado, puedes seguir tu pedido desde la
 sección: "Seguimiento de invitado"
 [{guest_tracking_url}?id_order={order_name}] en
-nuestra tienda. 
+nuestra tienda.
 
 {shop_name} [{shop_url}] creado por
-PrestaShop(tm) [http://www.prestashop.com/] 
-
+PrestaShop(tm) [http://www.prestashop.com/]

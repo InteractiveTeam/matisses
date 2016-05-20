@@ -40,42 +40,31 @@
 {if $page_name=='category'}
 
 <div id="purchased-block" class="purchased-block">
+    {if $category->level_depth < 5}
 	<div class="container">
-		<div class="info-chaordic">
-			<img src="../../themes/matisses/img/purchased-block.jpg" alt="comprados">
-			<div class="mask">
-				<h1>Espacio para Chaordic</h1>
-			</div>
-		</div>
+        <!-- Chaordic Top -->
+        <div chaordic="top"></div>
 	</div>
+	{/if}
 </div>
 
 <div id="popular" class="popular">
     <div class="container">
-        <div class="info-chaordic">
-            <img src="../../themes/matisses/img/popular.jpg" alt="Más populares">
-            <div class="mask">
-                <h1>Espacio para Chaordic</h1>
-            </div>
-        </div>
+        <!-- Chaordic Middle -->
+        <div chaordic="middle"></div>
     </div>
 </div>
 
 <div id="offers" class="offers-products">
 	<div class="container">
-		<div class="info-chaordic">
-			<img src="../../themes/matisses/img/offers-products-2.jpg" alt="Oferta de productos">
-			<div class="mask">
-				<h1>Espacio para Chaordic</h1>
-			</div>
-		</div>
+	    <!-- Chaordic Bottom -->
+        <div chaordic="bottom"></div>
 	</div>
 </div>
 
-
-
-    <div id="historical-block" class="historical-block">
-		<div class="container">
+<!--
+<div id="historical-block" class="historical-block">
+            <div class="container">
 
 			<div class="info-chaordic">
 				<img src="../../themes/matisses/img/historical-block.jpg" alt="Histórico">
@@ -84,7 +73,8 @@
 				</div>
 			</div>
 		</div>
-    </div>
+</div>
+-->
 
 {/if}
 
@@ -107,7 +97,7 @@
           </ul>
           <ul class="column-3 column grid_4 omega">
             <li><a href="{$link->getCMSLink(9)}">{l s='Métodos de envio'}</a></li>
-            <li><a href="{$link->getModuleLink('matisses','garantias')}/nueva">{l s='Garantías'}</a></li>
+            <li><a href="{$link->getCMSLink(14)}">{l s='Garantías'}</a></li>
             <li><a href="{$link->getCMSLink(10)}">{l s='Preguntas Frecuentes'}</a></li>
           </ul>
         </div>
@@ -152,7 +142,7 @@
   </div>
   <div class="copyright">
     <div class="container"> <a class="" href="http://www.prestapro.ru" title="{l s='Prestapro'}">© {$smarty.now|date_format:"%Y"} {l s='Created By'} <span>{l s='Prestapro.'}</span> {l s='All right reserved'}</a> </div>
-    <div id="back-top"> <a href="#"> <i class="font-up-open-big"></i> </a> </div>
+    <div id="back-top"> <a href="javascript:void(0)"> <i class="font-up-open-big"></i> </a> </div>
   </div>
 </footer>
 {/if}

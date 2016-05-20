@@ -43,14 +43,14 @@
 			</div>
 		{/if}
 	{foreachelse}
-		<a href="#" id="wishlist_button_nopop" onclick="WishlistCart('wishlist_block_list', 'add', '{$id_product|intval}', $('#idCombination').val(), document.getElementById('quantity_wanted').value); return false;" rel="nofollow"  title="{l s='Add to my wishlist' mod='blockwishlist'}">
+		<a href="javascript:void(0)" id="wishlist_button_nopop" onclick="WishlistCart('wishlist_block_list', 'add', '{$id_product|intval}', $('#idCombination').val(), document.getElementById('quantity_wanted').value); return false;" rel="nofollow"  title="{l s='Add to my wishlist' mod='blockwishlist'}">
 			{l s='Add to wishlist' mod='blockwishlist'}
 		</a>
 	{/foreach}
 	</div>
 
 <div class="wishlist">
-	<a class="addToWishlist wishlistProd_{$product.id_product|intval}" href="#" rel="{$product.id_product|intval}" onclick="WishlistCart('wishlist_block_list', 'add', '{$product.id_product|intval}', false, 1); return false;">
+	<a class="addToWishlist wishlistProd_{$product.id_product|intval}" href="javascript:void(0)" rel="{$product.id_product|intval}" onclick="WishlistCart('wishlist_block_list', 'add', '{$product.id_product|intval}', false, 1); return false;">
 		{l s="Add to Wishlist" mod='blockwishlist'}
 	</a>
 </div>

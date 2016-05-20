@@ -26,23 +26,23 @@
 {if $products}
 	{if !$refresh}
 	<div class="wishlistLinkTop">
-		<a href="#" id="hideWishlist" class="button_account" onclick="WishlistVisibility('wishlistLinkTop', 'Wishlist'); return false;" title="{l s='Close this wishlist' mod='blockwishlist'}" rel="nofollow">{l s='Close this wishlist' mod='blockwishlist'}</a>
+		<a href="javascript:void(0)" id="hideWishlist" class="button_account" onclick="WishlistVisibility('wishlistLinkTop', 'Wishlist'); return false;" title="{l s='Close this wishlist' mod='blockwishlist'}" rel="nofollow">{l s='Close this wishlist' mod='blockwishlist'}</a>
 		<ul class="cf display_list">
 			<li>
-				<a href="#" id="hideBoughtProducts" class="button_account"  onclick="WishlistVisibility('wlp_bought', 'BoughtProducts'); return false;" title="{l s='Hide products' mod='blockwishlist'}">{l s='Hide products' mod='blockwishlist'}</a>
-				<a href="#" id="showBoughtProducts" class="button_account"  onclick="WishlistVisibility('wlp_bought', 'BoughtProducts'); return false;" title="{l s='Show products' mod='blockwishlist'}">{l s='Show products' mod='blockwishlist'}</a>
+				<a href="javascript:void(0)" id="hideBoughtProducts" class="button_account"  onclick="WishlistVisibility('wlp_bought', 'BoughtProducts'); return false;" title="{l s='Hide products' mod='blockwishlist'}">{l s='Hide products' mod='blockwishlist'}</a>
+				<a href="javascript:void(0)" id="showBoughtProducts" class="button_account"  onclick="WishlistVisibility('wlp_bought', 'BoughtProducts'); return false;" title="{l s='Show products' mod='blockwishlist'}">{l s='Show products' mod='blockwishlist'}</a>
 			</li>
 			{if count($productsBoughts)}
 			<li>
-				<a href="#" id="hideBoughtProductsInfos" class="button_account" onclick="WishlistVisibility('wlp_bought_infos', 'BoughtProductsInfos'); return false;" title="{l s="Hide products" mod='blockwishlist'}">{l s="Hide bought products' info" mod='blockwishlist'}</a>
-				<a href="#" id="showBoughtProductsInfos" class="button_account"  onclick="WishlistVisibility('wlp_bought_infos', 'BoughtProductsInfos'); return false;" title="{l s="Show products" mod='blockwishlist'}">{l s="Show bought products' info" mod='blockwishlist'}</a>
+				<a href="javascript:void(0)" id="hideBoughtProductsInfos" class="button_account" onclick="WishlistVisibility('wlp_bought_infos', 'BoughtProductsInfos'); return false;" title="{l s="Hide products" mod='blockwishlist'}">{l s="Hide bought products' info" mod='blockwishlist'}</a>
+				<a href="javascript:void(0)" id="showBoughtProductsInfos" class="button_account"  onclick="WishlistVisibility('wlp_bought_infos', 'BoughtProductsInfos'); return false;" title="{l s="Show products" mod='blockwishlist'}">{l s="Show bought products' info" mod='blockwishlist'}</a>
 			</li>
 			{/if}
 		</ul>
 		<p class="wishlisturl">{l s='Permalink' mod='blockwishlist'}: <input type="text" value="{$link->getModuleLink('blockwishlist', 'view', ['token' => $token_wish])|escape:'html':'UTF-8'}" style="width:540px;" readonly="readonly" /></p>
 		<p class="submit">
 			<div id="showSendWishlist">
-				<a href="#" class="button_account exclusive" onclick="WishlistVisibility('wl_send', 'SendWishlist'); return false;" title="{l s='Send this wishlist' mod='blockwishlist'}">{l s='Send this wishlist' mod='blockwishlist'}</a>
+				<a href="javascript:void(0)" class="button_account exclusive" onclick="WishlistVisibility('wl_send', 'SendWishlist'); return false;" title="{l s='Send this wishlist' mod='blockwishlist'}">{l s='Send this wishlist' mod='blockwishlist'}</a>
 			</div>
 		</p>
 	{/if}
@@ -104,7 +104,7 @@
 	</div>
 	{if !$refresh}
 	<form method="post" class="wl_send std" onsubmit="return (false);" style="display: none;">
-		<a id="hideSendWishlist" class="button_account btn icon"  href="#" onclick="WishlistVisibility('wl_send', 'SendWishlist'); return false;" rel="nofollow" title="{l s='Close this wishlist' mod='blockwishlist'}">
+		<a id="hideSendWishlist" class="button_account btn icon"  href="javascript:void(0)" onclick="WishlistVisibility('wl_send', 'SendWishlist'); return false;" rel="nofollow" title="{l s='Close this wishlist' mod='blockwishlist'}">
 			<i class="icon-remove"></i>
 		</a>
 		<fieldset>

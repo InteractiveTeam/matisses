@@ -108,7 +108,7 @@ a:hover,.select2-container .select2-choice > .select2-chosen,#block_contact_info
 	color:#d7162f;
 }
 .socialsharing_product .btn.btn-default i{
-	color: #fff;
+	color: #fff !important;
 }
 .owl-prev,.owl-next,.tabs_carousel > li a,.product_list .product-container h5, .item_twits,
 .twits_cont .twitter_btn {
@@ -664,21 +664,30 @@ span.exclusive_large_disabled:before,
 
 /* social button */
 
-#social-share-compare .btn.btn-default.btn-twitter,.socialsharing_product .btn.btn-default.btn-twitter:before{
-	background-color: #B8B6B6;
+#social-share-compare .btn.btn-default.btn-twitter,.socialsharing_product .btn.btn-default.btn-twitter:before, .ayo-btn.ayo-twitter:hover {
+	background-color: #55acee;
 }
 #social-share-compare .btn.btn-default.btn-google-plus,.socialsharing_product .btn.btn-default.btn-google-plus:before{
-	background-color: #e04b34;
+	background-color: #dd4b39;
 }
-#social-share-compare .btn.btn-default.btn-pinterest,.socialsharing_product .btn.btn-default.btn-pinterest:before{
-	background-color: #dbdbdb;
+#social-share-compare .btn.btn-default.btn-pinterest,.socialsharing_product .btn.btn-default.btn-pinterest:before, .ayo-btn.ayo-pinterest:hover {
+	background-color: #cb2027;
 }
-#social-share-compare .btn.btn-default.btn-facebook,.socialsharing_product .btn.btn-default.btn-facebook:before {
-	background-color: #dbdbdb;
+#social-share-compare .btn.btn-default.btn-facebook,.socialsharing_product .btn.btn-default.btn-facebook:before, .ayo-btn.ayo-facebook:hover {
+	background-color: #3b5998;
+}
+#social-share-compare .btn.btn-default.btn-instagram,.socialsharing_product .btn.btn-default.btn-instagram:before {
+	background-color: #125688;
+}
+#social-share-compare .btn.btn-default.btn-houzz,.socialsharing_product .btn.btn-default.btn-houzz:before, .ayo-btn.ayo-houzz:hover {
+	background-color: #55a32a;
 }
 
 .socialsharing_product .btn.btn-default.btn-google-plus:hover,#social-share-compare .socialsharing_product .btn.btn-default.btn-google-plus{
 	border-color: #e04b34;
+}
+#social-share-compare .btn.btn-default.btn-instagram,.socialsharing_product .btn.btn-default.btn-instagram:before, .ayo-btn.ayo-instagram:hover {
+	background-color: #125688;
 }
 
 .btn-facebook i {

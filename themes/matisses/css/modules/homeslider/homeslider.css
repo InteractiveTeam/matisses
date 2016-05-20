@@ -38,7 +38,9 @@
     #homepage-slider .bx-wrapper img {
     display: block;
     max-width: 100%;
-    height: auto; }
+    height: auto;
+    width: 100%;
+    }
 
     #homepage-slider .bx-wrapper .bx-viewport {
     width: 100%; }

@@ -81,32 +81,109 @@
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 		<![endif]-->
 		
-<!--Chaordic loader-->		
-<script async defer src="//static.chaordicsystems.com/static/loader.js" data-apikey="matisses"></script>
-<script type="text/javascript" src="{$js_dir}ax-chaortic.js"></script>
+<!--Chaordic-->		
+<script type="text/javascript" src="{$js_dir}ax-chaordic.js"></script>
 {literal}
 <script type="text/javascript">
     var data = {};
     var page = '{/literal}{$page_name}{literal}';
+    var islogged = '{/literal}{if $logged}true{else}false{/if}{literal}';
     {/literal}
-        {if $category->level_depth == 5}
-            page = 'subcategory';
+        {if !empty($category)}
+            data.category = '{$category->name}';
+            data.idcategory = '{$category->id}';
+            data.leveldepth = {$category->level_depth};
+            data.parents = {$parents};
+        {/if}
+        {if $logged}
+            data.idcustomer = '{$idcustomer}';
+            data.customername = '{$customername}';
+            data.username = '{$customeremail}';
+            data.customeremail = '{$customeremail}';
+            data.customercharter = '{$customercharter}';
+            {if !empty($customernewsletter)}
+                var newl = {$customernewsletter};
+                if (newl == 1) {
+                    data.newsletter = true;   
+                } else {
+                    data.newsletter = false;
+                }
+            {else}
+                data.newsletter = false;
+            {/if}
+        {/if}
+        {if $page_name == 'index'}
+            data.emailsubscribe = '{$emailsubscribe}';
+        {/if}
+        {if $page_name == 'product'}
+            data.idproduct = '{$idproduct}';
+            data.nameproduct = '{$nameproduct}';
+            var linkp = '{$linkproduct}';
+            data.linkproduct = linkp.replace(/http:|https:/g,'');
+            data.descproduct = '{$descproduct}';
+            data.imageproduct = '{$imageproduct}';
+            data.categoriesp = {$categoriesp};
+            {if !empty($priceproduct)}
+                data.priceproduct = {$priceproduct};
+            {else}
+                data.priceproduct = 0;
+            {/if}
+            data.productcolors = {$productcolors};
+            data.productskuattr = {$productskuattr};
+            {if !empty($tagsproduct)}
+                data.tagsproduct = {$tagsproduct};
+            {/if}
+            {if $statusproduct > 0}
+                data.statusproduct = 'available';
+            {else}
+                data.statusproduct = 'unavailable';
+            {/if}
+            data.productcondition = '{$productcondition}';
+        {/if}
+        {if $page_name == 'search'}
+            data.search_q = '{$search_query}';
+        {/if}
+        {if $page_name == 'order' }
+            {if !empty($idcart)}
+                data.idcart = '{$idcart}';
+                data.prodincart = {$prodincart};
+            {/if}
+            {if !empty($cartbyurl)}
+                location.href = '{$base_dir}pedido';    
+                data.cartbyurl = {$cartbyurl};
+            {/if}
+        {/if}
+        {if $page_name == 'order-confirmation' }
+            {if !empty($orderproducts)}
+                data.orderproducts = {$orderproducts};
+                data.signature = '{$signature}';
+            {/if}
         {/if}
     {literal}
-    var islogged = '{/literal}{if $logged}true{else}false{/if}{literal}';
-    var categoria = '{/literal}{$category->name}{literal}';
-    var idcategoria = '{/literal}{$category->id}{literal}';
-    data.currentdate = '{/literal}{$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"}{literal}';
     data.page = page;
-    data.loggeduser = islogged;
-    data.category = categoria;
-    data.idcategory = idcategoria;
-    console.log('{/literal}{$cookie->id_customer} {$customerName} {$cookie->email} {$cookie->username} {$languages}{literal}');
-         
+    data.loggeduser = islogged;         
     ax.setChaordic(data);
+         
 </script>
 {/literal}
+<script src="//static.chaordicsystems.com/static/loader.js" type="text/javascript"></script>
+{if $page_name == 'cms'}
+<script type="text/javascript">
+    $(window).load(function() {
+        $('#lhnHelp-faqs').click(function() {
+            OpenLHNChat();
+        });
+    });    
+</script>
+{/if}
 </head>
+<!--
+<div class="ax-cont-preload">
+    <div class="ax-preload">
+        <div class="ax-text"></div>
+        <div class="ax-icon"></div>
+    </div>
+</div>-->
 <body{if isset($page_name)} id="{$page_name|escape:'html':'UTF-8'}"{/if} class="{if isset($page_name)}{$page_name|escape:'html':'UTF-8'}{/if}{if isset($body_classes) && $body_classes|@count} {implode value=$body_classes separator=' '}{/if}{if $hide_left_column} hide-left-column{/if}{if $hide_right_column} hide-right-column{/if}{if isset($content_only) && $content_only} content_only{/if} lang_{$lang_iso}" itemscope itemtype="http://schema.org/WebPage">
 	{if !isset($content_only) || !$content_only}
 		{if isset($restricted_country_mode) && $restricted_country_mode}
@@ -116,6 +193,7 @@
 </div>
 {/if}
 <div id="page">
+
 <div class="header-container">
   	<header id="header">
     	<div class="main_panel cf">
@@ -124,7 +202,7 @@
 	              <ul class="menu">
 	                <li id="tiendas"><a href="{$link->getPageLink('stores')}">{l s='Tiendas'}</a></li>
 	                <li id="metodos-envio"><a href="{$link->getCMSLink('9')}">{l s='Métodos de envío'}</a></li>
-	                <li id="garantias"><a href="{$link->getModuleLink('matisses','garantias')}/nueva">{l s='Garantías'}</a></li>
+	                <li id="garantias"><a href="{$link->getCMSLink(14)}">{l s='Garantías'}</a></li>
 	              </ul>
 	              {*$HOOK_TOP*}
 			  	</div>
@@ -134,7 +212,7 @@
 	              <ul id="menu" class="grid_10 menu-experiencias" style="color:black">
                     <li id="experiencias"><a href="{$link->getModuleLink('matisses','experiences')}">{l s='Experiencias'}</a></li>
 	                <li id="wishlist">{hook h="displayMatWishlist"}</li>
-	                <li id="giftlist"><a href="#"><span></span>{l s='Lista de regalos'}</a></li>
+	                <li id="giftlist"><a href="javascript:void(0)"><span></span>{l s='Lista de regalos'}</a></li>
 	              </ul>
             	</div>
           	</div>
@@ -158,25 +236,20 @@
 	            <div class="cf right-down-menu">
 	              	<ul>
 		                <li id="chat" class="chat">
-			            	<!-- This code must be installed within the body tags -->
-			            	<script type="text/javascript">
-			                var lhnAccountN = "27089-1";
-			                var lhnButtonN = 4827;
-			                var lhnChatPosition = 'righttab';
-			                var lhnInviteEnabled = 1;
-			                var lhnWindowN = 0;
-			                var lhnDepartmentN = 0;
-			                var lhnChatPositionYVal = 150;
-							var comparedProductsIds = 0;
-			            	</script>
-	            			<a href="http://www.livehelpnow.net/products/live-chat-system" target="_blank" id="lhnHelp">{l s='Chat'}</a>
-	            			<script src="//www.livehelpnow.net/lhn/widgets/chatbutton/lhnchatbutton-current.min.js" type="text/javascript" id="lhnscript"></script>
+                            <div id="lhnContainerDone" style="text-align: center; width: auto; top: 150px; right: 0px; position: fixed; z-index: 9999;">
+                                 <div id="lhnChatButton" style="width: auto;">
+                                     <a href="javascript:void(0)" onclick="OpenLHNChat();return false;" id="aLHNBTN">
+                                         <img id="lhnchatimg" border="0" alt="Live help" src="http://www.livehelpnow.net/lhn/functions/imageserver.ashx?lhnid=24694&amp;java=No&amp;zimg=4827&amp;sres=1920x1080&amp;sdepth=24&amp;custom1=&amp;custom2=&amp;custom3=&amp;t=t&amp;d=29011&amp;rnd=0.36317845692275763&amp;ck=true&amp;referrer=&amp;pagetitle=MATISSES&amp;pageurl=http%3A//www.matisses.co/">
+                                     </a>
+                             </div>
+                             <script type="text/javascript" src="http://www.livehelpnow.net/lhn/scripts/livehelpnow.aspx?lhnid=24694&amp;iv=1&amp;ivid=0&amp;d=29011&amp;ver=5.3&amp;rnd=0.8177507956510826"></script></div>
+  	            			<script src="//www.livehelpnow.net/lhn/widgets/chatbutton/lhnchatbutton-current.min.js" type="text/javascript" id="lhnscript"></script>
 						</li>
 		            	<li id="blog" class="blog">
 		                  	<a href="{$link->getModuleLink('news','list')}">{l s='Blog'}</a>
 						</li>
 		            	<li id="search" class="search">
-		                  	<a href="javascript:void(0)">{l s='Buscar'}</a>
+		                  	<a href="javascript:void(0)" class="fa fa-search"></a>
 						</li>
                         <li id="cart">{hook h='displayMatCart'}</li>
                         <li id="user">{hook h='displayMatUser'}</li>
@@ -234,14 +307,11 @@
 
     {if $page_name =='category'}
 		<!--Bloque1 Visualizados-->
+    
 	    <div id="displayed-category" class="displayed-category">
 			<div class="container">
-				<div class="info-chaordic">
-					<img src="../../themes/matisses/img/displayed-category.jpg" alt="productos visualizados">
-					<div class="mask">
-						<h1>Espacio para Chaordic</h1>
-					</div>
-				</div>
+			    <!-- Chaordic Top -->
+                <div chaordic="top"></div>
 			</div>
 	    </div>
 		<!--Fin Bloque1 Visualizados-->
@@ -251,9 +321,7 @@
 		<!--Bloque2 Parrilla Productos-->
 		<div class="parrilla-productos">
 			<div class="container">
-
-
-
+			    <div class='ax-btn-filter'><p>Filtrar por: <i class='fa fa-sliders'></i></p></div>
 				<div id="left_column" class="column grid_{$left_column_size|intval} alpha ">{$HOOK_LEFT_COLUMN}</div>
 {/if}
 {if isset($left_column_size) && isset($right_column_size)}{assign var='cols' value=(12 - $left_column_size - $right_column_size)}{else}{assign var='cols' value=12}{/if}

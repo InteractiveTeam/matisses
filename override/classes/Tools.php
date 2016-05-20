@@ -1090,7 +1090,7 @@ class ToolsCore
 				$n_categories = count($categories);
 				foreach ($categories as $category){					
 						$full_path .=
-						(($n < $n_categories || $link_on_the_item) ? '<a href="'.Tools::safeOutput($context->link->getCategoryLink((int)$category['id_category'], $category['link_rewrite'])).'" title="'.htmlentities($category['name'], ENT_NOQUOTES, 'UTF-8').'" data-gg="">' : '').
+						(($n < $n_categories || $link_on_the_item) ? '<a href="'.Tools::safeOutput($context->link->getCategoryLink((int)$category['id_category'], $category['link_rewrite'])).'" title="'.htmlentities($category['name'], ENT_NOQUOTES, 'UTF-8').'" data-c="'.$category['id_category'].'" data-n="'.$category['name'].'" data-gg="">' : '').
 						htmlentities($category['name'], ENT_NOQUOTES, 'UTF-8').
 						(($n < $n_categories || $link_on_the_item) ? '</a>' : '').
 						(($n++ != $n_categories || !empty($path)) ? '<i class="fa fa-angle-right"></i>' : '');                   

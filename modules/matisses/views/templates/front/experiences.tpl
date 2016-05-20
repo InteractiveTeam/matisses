@@ -9,12 +9,14 @@
             <div class="mask-exp"></div>
             {if $experience->products}
             	{foreach from=$experience->products item=pointer}
-                	<div class="pointer {$pointer.market}-{$pointer.orientation}" style="top:{$pointer.top}%;left:{$pointer.left}%">
+                	<div class="pointer {$pointer.market}-{$pointer.orientation}" style="top:{$pointer.top|strip}%;left:{$pointer.left|strip}%">
                     	<div class="pointer-detail grid_12 alpha omega">
                             <div class="pointer-detail-left grid_8">
                                 <h4>{$pointer.name}</h4>
                                 <p class="price">{convertPrice price=$pointer.price}</p>
-                                <a class="btn btn-default btn-red ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, 'add=1&amp;id_product={$pointer.id_product}&amp;id_product_attribute={$pointer.id_product_attribute}', false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$accessory.id_product|intval}">
+                                {assign var="button_url" value="add=1&amp;id_product=`$pointer.id_product`&amp;id_product_attribute=`$pointer.id_product_attribute`"} 
+                                
+                                <a class="btn btn-default btn-red ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, $button_url , false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$pointer.id_product|intval}">
                                     {l s='Comprar ahora'}
                                 </a>
                             </div>
