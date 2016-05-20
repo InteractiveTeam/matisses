@@ -428,10 +428,12 @@
                         <p class="addthis_toolbox addthis_default_style">
                             <a class="addthis_button_email" ></a>
                         </p>
-                        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fd60a055ec70816"></script>
+                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57058c3b661b8e1a"></script>
                     <!-- AddThis Button END -->
                 </div>
                 <div id="share" class="share-product"></div>
+                <p><a class='ayo-btn ayo-houzz' href='http://www.houzz.es/pro/matisses/matisses' target='_blank'><i class='fa fa-houzz'></i></a></p>
+                <p><a class='ayo-btn ayo-instagram' href='https://www.instagram.com/matisses/' target='_blank'><i class='fa fa-instagram'></i></a></p>
             </div>
             {if $socialButtonHtml}
             <div>

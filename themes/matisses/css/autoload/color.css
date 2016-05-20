@@ -686,6 +686,9 @@ span.exclusive_large_disabled:before,
 .socialsharing_product .btn.btn-default.btn-google-plus:hover,#social-share-compare .socialsharing_product .btn.btn-default.btn-google-plus{
 	border-color: #e04b34;
 }
+#social-share-compare .btn.btn-default.btn-instagram,.socialsharing_product .btn.btn-default.btn-instagram:before, .ayo-btn.ayo-instagram:hover {
+	background-color: #125688;
+}
 
 .btn-facebook i {
 	color: #435f9f;
