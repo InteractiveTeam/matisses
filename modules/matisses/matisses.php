@@ -1767,7 +1767,7 @@ class matisses extends Module
 	
 	public function wsmatisses_createInvoice($products)
 	{
-		if(!is_array($products)){
+		if(!is_array($products))
             return false;
 		
 		if(!is_object($this->context->customer))
@@ -1783,7 +1783,7 @@ class matisses extends Module
 
         echo "lego1".print_r($Address);
 		$this->hookactionCustomerAccountUpdate(array('email'=>$this->context->cookie->email),true, $Addresses,$this->context->cookie->id_customer);
-			
+        echo "llego 2";
 	
 		$orderDTO = array();
 		$orderDTO['orderDTO']['header']['prestashopOrderId']= $this->context->cookie->id_cart;
