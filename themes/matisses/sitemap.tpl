@@ -168,6 +168,7 @@
                         <a href="{$base_dir_ssl}" title="{$categoriesTree.name|escape:'html':'UTF-8'}"></a>
                     </div>
                     <ul class="tree">
+                        <pre>{print_r($categoriesTree.children)}</pre>
                     {if isset($categoriesTree.children)}
                         {foreach $categoriesTree.children as $child}
                             {if $child@last}
