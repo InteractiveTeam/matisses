@@ -5880,3 +5880,27 @@ body#search .category_list.product_list.grid .ajax_block_product {
     .subcategories li:hover .subcategory-image img {
     transform: translateX(5%) scale(1.125);
 	}
+
+p.ax-comment-msg {
+    padding: 10px 20px;
+    border: #DCDCDC solid 1px;
+    display: table;
+    width: auto;
+    clear: both;
+    margin: 0 auto;
+}
+
+p.ax-comment-msg a {
+    color: #D7162F;
+}
+
+p.ax-comment-msg a:hover {
+    text-decoration:underline; 
+}
+
+p.ax-comment-msg i {
+    color: #D7162F;
+    font-size: 24px;
+    margin: 0 10px 0 0;
+    vertical-align: middle;
+}
