@@ -1531,7 +1531,6 @@ class matisses extends Module
 	
 	public function hookactionValidateProductsAvailableCart()
 	{
-		echo "lego1";
 		$continue	= true;
 		$cart		= new Cart();
 		$cart->id 	= $this->context->cookie->id_cart;
@@ -1561,7 +1560,6 @@ class matisses extends Module
 				echo $this->l('Lo siento! - se ha presentado un error al intentar generar el pago');
 				exit;
 			 }
-        echo "lego2";
 		if($continue)
 			return $this->wsmatisses_createInvoice($products);
 	}
@@ -1770,16 +1768,10 @@ class matisses extends Module
 	public function wsmatisses_createInvoice($products)
 	{
 		if(!is_array($products)){
-            echo "no hay productos";
-            exit;
-        }
-//			return false;
+            return false;
 		
-		if(!is_object($this->context->customer)){
-            echo "no hay usuario";
-            exit;
-        }
-//			return false;
+		if(!is_object($this->context->customer))
+            return false;
 			
 		
 		$Addresses = Db::getInstance()->getRow('SELECT 
@@ -1788,13 +1780,8 @@ class matisses extends Module
 												FROM '._DB_PREFIX_.'cart as a
 												WHERE id_cart = '.$this->context->cookie->id_cart.' 	
 												');	
- 	echo 'SELECT 
-													(SELECT alias from '._DB_PREFIX_.'address WHERE id_address = a.id_address_delivery) as delivery, 
-													(SELECT alias from '._DB_PREFIX_.'address WHERE id_address = a.id_address_invoice) as invoice  
-												FROM '._DB_PREFIX_.'cart as a
-												WHERE id_cart = '.$this->context->cookie->id_cart.' 	
-												';	
-        echo "lego1".$Address;
+
+        echo "lego1".print_r($Address);
 		$this->hookactionCustomerAccountUpdate(array('email'=>$this->context->cookie->email),true, $Addresses,$this->context->cookie->id_customer);
 			
 	
