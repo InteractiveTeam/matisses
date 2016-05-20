@@ -311,7 +311,9 @@
 	</form>
 
 </div>
-
+{else}
+    <p class="ax-comment-msg">{l s="Si deseas comentar este artículo debes registrarte y/o iniciar sesión" mod="news"}</p>
+{/if}
 <div class="ax-pagination_article"> 
 {if !empty($prev_id_news)}
    <div class="ax-more-article">
@@ -352,6 +354,4 @@
 <div class="comments">
 	{$comments}
 </div>
-{/if}
-
 {/if}
