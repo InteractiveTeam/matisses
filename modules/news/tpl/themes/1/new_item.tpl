@@ -312,7 +312,7 @@
 
 </div>
 {else}
-    <p class="ax-comment-msg">{l s="Si deseas comentar este artículo debes registrarte y/o iniciar sesión" mod="news"}</p>
+    <p class="ax-comment-msg"><i class="fa fa-info-circle" aria-hidden="true"></i>{l s="Si deseas comentar este artículo debes registrarte y/o iniciar sesión" mod="news"}</p>
 {/if}
 <div class="ax-pagination_article"> 
 {if !empty($prev_id_news)}
