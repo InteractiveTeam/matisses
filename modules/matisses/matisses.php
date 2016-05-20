@@ -1788,12 +1788,12 @@ class matisses extends Module
 												FROM '._DB_PREFIX_.'cart as a
 												WHERE id_cart = '.$this->context->cookie->id_cart.' 	
 												');	
- 	echo "'SELECT 
+ 	echo 'SELECT 
 													(SELECT alias from '._DB_PREFIX_.'address WHERE id_address = a.id_address_delivery) as delivery, 
 													(SELECT alias from '._DB_PREFIX_.'address WHERE id_address = a.id_address_invoice) as invoice  
 												FROM '._DB_PREFIX_.'cart as a
 												WHERE id_cart = '.$this->context->cookie->id_cart.' 	
-												');	";
+												';	
         echo "lego1".$Address;
 		$this->hookactionCustomerAccountUpdate(array('email'=>$this->context->cookie->email),true, $Addresses,$this->context->cookie->id_customer);
 			
