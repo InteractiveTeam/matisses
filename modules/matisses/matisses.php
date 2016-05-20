@@ -1795,10 +1795,6 @@ class matisses extends Module
 												WHERE customer_id=".$this->context->customer->id.
 												" AND id_shop = ". $this->context->customer->id_shop.
 												" AND cart_id = ".$this->context->cookie->id_cart);
-        echo "SELECT * FROM `" . _DB_PREFIX_ . "wsmatisses_pagos` 
-												WHERE customer_id=".$this->context->customer->id.
-												" AND id_shop = ". $this->context->customer->id_shop.
-												" AND cart_id = ".$this->context->cookie->id_cart;
 		if(!$response)
 		{
 			Db::getInstance()->insert('wsmatisses_pagos', array(
@@ -1807,6 +1803,7 @@ class matisses extends Module
 															'cart_id'		=> $this->context->cookie->id_cart,
 															'key_temporal'	=> $orderDTO[$d]['header']['prestashopOrderId']
 															));
+            echo "c".$this->context->customer->id."s".$this->context->customer->id_shop."ca".$this->context->cookie->id_cart."k".$orderDTO[$d]['header']['prestashopOrderId'];
 																
 			$response = Db::getInstance()->getRow("SELECT * FROM `" . _DB_PREFIX_ . "wsmatisses_pagos` 
 												WHERE customer_id=".$this->context->customer->id.
