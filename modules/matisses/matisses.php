@@ -1801,9 +1801,9 @@ class matisses extends Module
 															'customer_id' 	=> $this->context->customer->id,
 															'id_shop' 		=> $this->context->customer->id_shop,
 															'cart_id'		=> $this->context->cookie->id_cart,
-															'key_temporal'	=> $orderDTO['header']['prestashopOrderId']
+															'key_temporal'	=> $orderDTO['orderDTO']['header']['prestashopOrderId']
 															));
-            echo print_r($orderDTO);
+            echo print_r( $orderDTO['orderDTO']['header']['prestashopOrderId']);
             echo Db::getInstance()->getMsgError();
 																
 			$response = Db::getInstance()->getRow("SELECT * FROM `" . _DB_PREFIX_ . "wsmatisses_pagos` 
