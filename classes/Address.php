@@ -121,7 +121,7 @@ class AddressCore extends ObjectModel
 			'lastname' => 			array('type' => self::TYPE_STRING, 'validate' => 'isName', 'required' => true, 'size' => 32),
 			'firstname' => 			array('type' => self::TYPE_STRING, 'validate' => 'isName',  'size' => 32),
 			'secondname' => 			array('type' => self::TYPE_STRING, 'validate' => 'isName',  'size' => 32),
-			'surname' => 			array('type' => self::TYPE_STRING, 'validate' => 'isName', 'required' => true, 'size' => 32),
+			'surname' => 			array('type' => self::TYPE_STRING, 'validate' => 'isName', 'size' => 32),
 			'vat_number' =>	 		array('type' => self::TYPE_STRING, 'validate' => 'isGenericName'),
 			'address1' => 			array('type' => self::TYPE_STRING, 'validate' => 'isAddress', 'required' => true, 'size' => 128),
 			'address2' => 			array('type' => self::TYPE_STRING, 'validate' => 'isAddress', 'size' => 128),
