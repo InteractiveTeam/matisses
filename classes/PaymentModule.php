@@ -451,7 +451,7 @@ abstract class PaymentModuleCore extends Module
 						$product_price = Product::getTaxCalculationMethod() == PS_TAX_EXC ? Tools::ps_round($price, 2) : $price_wt;
 
 						$product_var_tpl = array(
-							'reference' => $product['reference'],
+							'reference' => str_replace('0000000000000','',$product['reference']),
 							'name' => $product['name'].(isset($product['attributes']) ? ' - '.$product['attributes'] : ''),
 							'unit_price' => Tools::displayPrice($product_price, $this->context->currency, false),
 							'price' => Tools::displayPrice($product_price * $product['quantity'], $this->context->currency, false),
