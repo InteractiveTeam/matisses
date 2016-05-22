@@ -33,21 +33,12 @@
 	{l s='Sunday'}
 *}
 
-<div class="tbl-responsive">
-	<table class="time-table">
-		<thead>
-			<tr>
-	        	{foreach from=$days_datas  item=one_day}
-				<td>{l s=$one_day.day}</td>
-	            {/foreach}
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-	        	{foreach from=$days_datas  item=one_day}
-				<td>{$one_day.hours}</td>
-	            {/foreach}
-			</tr>
-		</tbody>
-	</table>
-</div>
+{foreach from=$days_datas  item=day key=key}        
+    {if $day.hours == $days_datas[$key+1]['hours']}
+        <div class="ax-content-horarios">
+            <p>{l s=$day.day} a {l s=$days_datas[$key+1]['day']}</p>
+            <p>{$day.hours}</p>
+        </div>
+    {/if}
+{/foreach}
+
