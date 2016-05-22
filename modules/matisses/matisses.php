@@ -1532,7 +1532,6 @@ class matisses extends Module
 	
 	public function hookactionValidateProductsAvailableCart()
 	{
-		
 		$continue	= true;
 		$cart		= new Cart();
 		$cart->id 	= $this->context->cookie->id_cart;
@@ -1770,10 +1769,10 @@ class matisses extends Module
 	public function wsmatisses_createInvoice($products)
 	{
 		if(!is_array($products))
-			return false;
+            return false;
 		
 		if(!is_object($this->context->customer))
-			return false;
+            return false;
 			
 		
 		$Addresses = Db::getInstance()->getRow('SELECT 
@@ -1782,9 +1781,8 @@ class matisses extends Module
 												FROM '._DB_PREFIX_.'cart as a
 												WHERE id_cart = '.$this->context->cookie->id_cart.' 	
 												');	
- 	
+
 		$this->hookactionCustomerAccountUpdate(array('email'=>$this->context->cookie->email),true, $Addresses,$this->context->cookie->id_customer);
-			
 	
 		$orderDTO = array();
 		$orderDTO['orderDTO']['header']['prestashopOrderId']= $this->context->cookie->id_cart;
@@ -1804,7 +1802,7 @@ class matisses extends Module
 															'customer_id' 	=> $this->context->customer->id,
 															'id_shop' 		=> $this->context->customer->id_shop,
 															'cart_id'		=> $this->context->cookie->id_cart,
-															'key_temporal'	=> $orderDTO[$d]['header']['prestashopOrderId']
+															'key_temporal'	=> $orderDTO['orderDTO']['header']['prestashopOrderId']
 															));
 																
 			$response = Db::getInstance()->getRow("SELECT * FROM `" . _DB_PREFIX_ . "wsmatisses_pagos` 

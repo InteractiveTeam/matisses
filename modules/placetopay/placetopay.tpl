@@ -60,7 +60,7 @@
 		</p>
 		<p>
 		{l s='For more information on the current state of your operation can contact our customer service line in' mod='placetopay'}
-		<b>{$storePhone}</b> {l s='or send your questions to' mod='placetopay'} <b>{$storeEmail}</b> {l s='and ask for the status of the transaction:' mod='placetopay'} <b>{$lastAuthorization|default:"N/D"}</b>.
+		<b>{$storePhone}</b> {l s='or send your questions to' mod='placetopay'} <b>{$storeEmail}</b> {l s='and ask for the status of the transaction:' mod='placetopay'}</b>.
 		</p>
 	{else}
 		<div id="contentPlaceToPay" class="cf">
