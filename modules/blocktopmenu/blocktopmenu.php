@@ -506,6 +506,7 @@ class Blocktopmenu extends Module
 			{
 				case 'CAT':
 					$this->_menu .= $this->generateCategoriesMenu(Category::getNestedCategories($id, $id_lang, false, $this->user_groups));
+                    
 					break;
 
 				case 'PRD':
