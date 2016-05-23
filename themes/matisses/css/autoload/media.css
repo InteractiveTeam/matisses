@@ -3274,6 +3274,8 @@
         height: 100px;
     }
     
+    .ax-maps div[id*="map"] .ax-modal-map{padding: 1px;}
+    
     #layered_block_left {
         display: none;
     }
