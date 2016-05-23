@@ -277,7 +277,9 @@ function initMap(){
 
         var map = new google.maps.Map(document.getElementById('map'+(j+1)), {
             zoom: 16,
-            center: myLatLng
+            navigationControl: true,
+            center: myLatLng,
+            draggable: true
         });
         
         var infowindow = new google.maps.InfoWindow({
@@ -291,6 +293,10 @@ function initMap(){
         });
         
         marker.addListener('mouseover', function() {
+            infowindow.open(map, marker);
+        });
+        
+        marker.addListener('click', function() {
             infowindow.open(map, marker);
         });
         
