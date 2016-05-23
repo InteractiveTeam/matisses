@@ -626,10 +626,15 @@ class Blocktopmenu extends Module
 	{
 		$html = '';
 		$cont = 0;
-		
+		$prod = new Product();
+        $id_lang = (int)Context::getContext()->language->id;
+        
 		foreach ($categories as $key => $category)
 		{
-            if ($category['active']) {
+            $prodscategory = $prod->getProducts($id_lang,0,10,'id_product','asc',$category['id_category'],true);
+            
+            if ($category['active'] && !empty($prodscategory)) {
+                
                 if ($category['level_depth'] > 1)
                 {
                     $cat = new Category($category['id_category']);
