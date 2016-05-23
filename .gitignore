@@ -23,6 +23,7 @@ admin-dev/import/
 download/
 /img/*
 !/img/mailing
+!/img/logo_marker2.png
 upload/
 
 # Excluir GiftList

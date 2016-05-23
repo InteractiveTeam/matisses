@@ -41,4 +41,3 @@
         </div>
     {/if}
 {/foreach}
-
