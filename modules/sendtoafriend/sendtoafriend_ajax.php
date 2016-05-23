@@ -60,11 +60,16 @@ if (Tools::getValue('action') == 'sendToMyFriend' && Tools::getValue('secure_key
 		/* Email generation */
 		$product = new Product((int)$id_product, false, $module->context->language->id);
 		$productLink = $module->context->link->getProductLink($product);
+    
+        $link = new Link();
+        $url = $link->getProductLink($product);
+    
 		$customer = $module->context->cookie->customer_firstname ? $module->context->cookie->customer_firstname.' '.$module->context->cookie->customer_lastname : $module->l('A friend', 'sendtoafriend_ajax');
 
 		$templateVars = array(
 			'{product}' => $product->name,
 			'{product_link}' => $productLink,
+            '{product_link2}' => $url,
 			'{customer}' => $customer,
 			'{name}' => Tools::safeOutput($friendName)
 		);
