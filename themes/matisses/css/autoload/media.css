@@ -3274,6 +3274,10 @@
         height: 100px;
     }
     
+    .ax-tienda-item .ax-maps div[id*="map"] {
+        width: 450px;        
+        height: 300px;
+    }
     .ax-maps div[id*="map"] .ax-modal-map{padding: 1px;}
     
     #layered_block_left {
@@ -3295,4 +3299,12 @@
     .header-container {
 		height: 215px;
 	}
+    .ax-tienda-item .ax-maps div[id*="map"] {
+        width: 350px;        
+        height: 300px;
+    }
+    .ax-maps div[id*="map"] .ax-modal-map img {
+        width: 98px;
+        height: 80px;
+    }
 }
