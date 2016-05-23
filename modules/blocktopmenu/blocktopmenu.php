@@ -629,87 +629,89 @@ class Blocktopmenu extends Module
 		
 		foreach ($categories as $key => $category)
 		{
-			if ($category['level_depth'] > 1)
-			{
-				$cat = new Category($category['id_category']);
-				$link = Tools::HtmlEntitiesUTF8($cat->getLink());
-			}
-			else
-				$link = $this->context->link->getPageLink('index');
-		
-			
-			if($category['id_category'] == 3)
-			{	
-				$html .= '<li id="parent-menu">';
-				$html .= '<a class="parent-link" href="javascript:void(0)" title="'.$category['name'].'">'.$category['name'].'</a>';	
-			}else{
-					/*
-					if($category['level_depth']>=5)
-						$cont++;
-					*/
-					    $show = '';
-						if($category['level_depth']>=2)
-							$show = $this->checkifshow($cat,0) ? '' : ' hidden ';
-						
-						
-						if($category['level_depth']<=4)
-							$html .= '<li class="'. $show .(($this->page_name == 'category' && (int)Tools::getValue('id_category') == (int)$category['id_category']) ? 'sfHoverForce"' : '').'">';
-						
-						$html .= '<a 
-									class="'. $show .'"
-									href="'.$link.'" 
-									title="'.$category['name'].'">'.$category['name'].'</a>';
-					
-					/*}
-					
-					if($cont==6)
-					{
-						$parentCat = new Category($category['id_parent']);
-						$linkparent = Tools::HtmlEntitiesUTF8($parentCat->getLink());
-						$html .= '<div class="view-menu"><a href="'.$linkparent.'" title="">'.$this->l('Ver mas').'</a>
-								<i class="fa fa-angle-double-right"></i></div>';
-					}
-					*/
-				 }
-			if (isset($category['children']) && !empty($category['children']))
-			{
-				if($category['level_depth']<=3)
-				{
-					$html .= '<ul style="display:none; overflow: hidden">';
-				}else{
-						$html .= '<div class="SubCategory">';
-					 }
-				$html .= $this->generateCategoriesMenu($category['children'], 1);
+            if ($category['active']) {
+                if ($category['level_depth'] > 1)
+                {
+                    $cat = new Category($category['id_category']);
+                    $link = Tools::HtmlEntitiesUTF8($cat->getLink());
+                }
+                else
+                    $link = $this->context->link->getPageLink('index');
 
-				if ((int)$category['level_depth'] > 1)
-				{
-					$files = scandir(_PS_CAT_IMG_DIR_);
 
-					if (count($files) > 0)
-					{
-						$html .= '<div class="category-thumbnail cf">';
+                if($category['id_category'] == 3)
+                {	
+                    $html .= '<li id="parent-menu">';
+                    $html .= '<a class="parent-link" href="javascript:void(0)" title="'.$category['name'].'">'.$category['name'].'</a>';	
+                }else{
+                        /*
+                        if($category['level_depth']>=5)
+                            $cont++;
+                        */
+                            $show = '';
+                            if($category['level_depth']>=2)
+                                $show = $this->checkifshow($cat,0) ? '' : ' hidden ';
 
-						foreach ($files as $file)
-							if (preg_match('/^'.$category['id_category'].'-([0-9])?_thumb.jpg/i', $file) === 1)
-								$html .= '<div><img src="'.$this->context->link->getMediaLink(_THEME_CAT_DIR_.$file)
-								.'" alt="'.Tools::SafeOutput($category['name']).'" title="'
-								.Tools::SafeOutput($category['name']).'" class="imgm" /></div>';
 
-						$html .= '</div>';
-					}
-				}
-				if($category['level_depth']<=3)
-				{
-					$html .= '</ul>';
-				} else{
-						$html .= '</div>';
-					  }
-			}
-			if($cont<=5)
-			{
-				if($category['level_depth']<=4)
-					$html .= '</li>';
-			}
+                            if($category['level_depth']<=4)
+                                $html .= '<li class="'. $show .(($this->page_name == 'category' && (int)Tools::getValue('id_category') == (int)$category['id_category']) ? 'sfHoverForce"' : '').'">';
+
+                            $html .= '<a 
+                                        class="'. $show .'"
+                                        href="'.$link.'" 
+                                        title="'.$category['name'].'">'.$category['name'].'</a>';
+
+                        /*}
+
+                        if($cont==6)
+                        {
+                            $parentCat = new Category($category['id_parent']);
+                            $linkparent = Tools::HtmlEntitiesUTF8($parentCat->getLink());
+                            $html .= '<div class="view-menu"><a href="'.$linkparent.'" title="">'.$this->l('Ver mas').'</a>
+                                    <i class="fa fa-angle-double-right"></i></div>';
+                        }
+                        */
+                     }
+                if (isset($category['children']) && !empty($category['children']))
+                {
+                    if($category['level_depth']<=3)
+                    {
+                        $html .= '<ul style="display:none; overflow: hidden">';
+                    }else{
+                            $html .= '<div class="SubCategory">';
+                         }
+                    $html .= $this->generateCategoriesMenu($category['children'], 1);
+
+                    if ((int)$category['level_depth'] > 1)
+                    {
+                        $files = scandir(_PS_CAT_IMG_DIR_);
+
+                        if (count($files) > 0)
+                        {
+                            $html .= '<div class="category-thumbnail cf">';
+
+                            foreach ($files as $file)
+                                if (preg_match('/^'.$category['id_category'].'-([0-9])?_thumb.jpg/i', $file) === 1)
+                                    $html .= '<div><img src="'.$this->context->link->getMediaLink(_THEME_CAT_DIR_.$file)
+                                    .'" alt="'.Tools::SafeOutput($category['name']).'" title="'
+                                    .Tools::SafeOutput($category['name']).'" class="imgm" /></div>';
+
+                            $html .= '</div>';
+                        }
+                    }
+                    if($category['level_depth']<=3)
+                    {
+                        $html .= '</ul>';
+                    } else{
+                            $html .= '</div>';
+                          }
+                }
+                if($cont<=5)
+                {
+                    if($category['level_depth']<=4)
+                        $html .= '</li>';
+                }
+            }
 		}
 
 		return $html;
