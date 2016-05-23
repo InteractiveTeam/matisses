@@ -5375,7 +5375,7 @@ a.newPrint:hover {
 }
 
 .fancybox-inner {
-    overflow: hidden !important;
+    overflow-x: scroll;
 }
 
 .cart_total_tax {
@@ -5694,7 +5694,29 @@ body#search .category_list.product_list.grid .ajax_block_product {
 }
 
 .ax-tienda-item .ax-maps .store-image {
-    overflow: hidden;
+    overflow: hidden;    
+}
+
+.ax-tienda-item .ax-maps div[id*="map"]{
+    width: 702px;
+    height: 445px;
+}
+
+.ax-maps div[id*="map"] .ax-modal-map{
+    padding: 8px;
+}
+.ax-maps div[id*="map"] .ax-map-detail{
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 16px;
+}
+
+.ax-maps div[id*="map"] .ax-map-detail p{
+    line-height: 1.5;
+}
+
+.ax-maps div[id*="map"] .ax-modal-map img{
+    width: auto;
 }
 
 .ax-tienda-item .ax-maps .ax-image {
@@ -5721,6 +5743,11 @@ body#search .category_list.product_list.grid .ajax_block_product {
 .ax-text-description {
     font-weight: bold;
     margin: 15px 0 5px 0;
+}
+
+.ax-content-horarios p {
+    display: inline-block;
+    width: 50%;
 }
 
 #stores #map {

@@ -3261,6 +3261,25 @@
         margin-bottom: 1.25rem;
     }
     
+    .ax-modal-map h2 {
+        font-size: 1.2em;
+    }
+    
+    .ax-modal-map p,.ax-modal-map span {
+        font-size: 1em;
+    }
+    
+    .ax-maps div[id*="map"] .ax-modal-map img{
+        width: 130px;
+        height: 100px;
+    }
+    
+    .ax-tienda-item .ax-maps div[id*="map"] {
+        width: 450px;        
+        height: 300px;
+    }
+    .ax-maps div[id*="map"] .ax-modal-map{padding: 1px;}
+    
     #layered_block_left {
         display: none;
     }
@@ -3280,4 +3299,12 @@
     .header-container {
 		height: 215px;
 	}
+    .ax-tienda-item .ax-maps div[id*="map"] {
+        width: 350px;        
+        height: 300px;
+    }
+    .ax-maps div[id*="map"] .ax-modal-map img {
+        width: 98px;
+        height: 80px;
+    }
 }

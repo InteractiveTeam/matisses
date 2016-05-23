@@ -129,7 +129,7 @@
 			{/if}
 			{if $field_name eq 'phone'}
 				{assign var="homePhoneExist" value=true}
-				<div class="form-group phone-number grid_6">
+				<div class="form-group required phone-number grid_6">
 					<label for="phone">{l s='Home phone'}{if isset($one_phone_at_least) && $one_phone_at_least} <sup>*</sup>{/if}</label>
 					{if isset($one_phone_at_least) && $one_phone_at_least}
 						{assign var="atLeastOneExists" value=true}

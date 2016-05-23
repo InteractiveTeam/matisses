@@ -30,7 +30,7 @@ $(document).ready(function(){
 });
 
 function drawMaps(){
-    map = new google.maps.Map(document.getElementById('map'), {
+    /*map = new google.maps.Map(document.getElementById('map'), {
 		center: new google.maps.LatLng(defaultLat, defaultLong),
 		zoom: 10,
 		mapTypeId: 'roadmap',
@@ -54,7 +54,7 @@ function drawMaps(){
 		searchLocations();
 	});
 
-	initMarkers();
+	initMarkers();*/
 }
 
 function initMarkers(){
@@ -249,14 +249,61 @@ function doNothing()
 
 $(window).load(function(){
     loadAPIMaps();
-    setTimeout(function(){
-        drawMaps();
-    },2000);
 });
 
 function loadAPIMaps(){
     var script = document.createElement("script");
-    script.src = "https://maps.googleapis.com/maps/api/js?v=3.exp;callback=loadMaps";
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAiGLNS4nDQ0a1ZFpflK1Y_RJjne-rJ1oc&callback=initMap";
     script.type = "text/javascript";
+    script.async = 'async';
+    script.defer = 'defer';
     document.getElementsByTagName("head")[0].appendChild(script);
+}
+
+function initMap(){
+    j = (arguments[0])?arguments[0]:0;
+    //mapOptions es el array que se llena en el stores.tpl con toda la info de cada tienda
+    if(j < (mapOptions.length)){
+        var contentString = '<div class="ax-modal-map">'+          
+            '<img src="'+mapOptions[j].image+'" width="152px" height="123px"/>'+
+            '<div class="ax-map-detail">'+
+                '<h2 class="ax-map-title">'+mapOptions[j].name+' - '+mapOptions[j].city+'</h2>'+
+                '<p>'+mapOptions[j].address+'</p>'+
+                '<p>'+mapOptions[j].phone+'</p>'+
+            '</div>'+
+        '</div>';
+
+        var myLatLng = {lat: Number(mapOptions[j].latitude), lng: Number(mapOptions[j].longitud)};
+
+        var map = new google.maps.Map(document.getElementById('map'+(j+1)), {
+            zoom: 16,
+            navigationControl: true,
+            center: myLatLng,
+            draggable: true
+        });
+        
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            icon: 'img/logo_marker2.png'
+        });
+        
+        marker.addListener('mouseover', function() {
+            infowindow.open(map, marker);
+        });
+        
+        marker.addListener('click', function() {
+            infowindow.open(map, marker);
+        });
+        
+        marker.addListener('mouseout', function() {
+            infowindow.close();
+        });
+
+       initMap((j + 1));
+    }
 }
