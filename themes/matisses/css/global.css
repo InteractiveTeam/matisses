@@ -2255,6 +2255,7 @@ box-sizing: border-box;
 	display: block;
 	padding: 0.9375rem;
 	position: relative;
+    z-index: 1 !important;
 	}
 	ul.step li.first {
 	padding-left: 10px !important;

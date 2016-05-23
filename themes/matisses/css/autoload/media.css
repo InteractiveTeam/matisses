@@ -1101,6 +1101,46 @@
 	}
 }
 
+@media only screen and (max-width: 639px) and (min-width:481px){    
+    body .header-container .main_panel .grid_2 {
+        width: 100%;
+    }
+    
+    #menu.menu-experiencias {
+        top: 250px;
+        left: 0;
+        right: 0;
+        bottom: 0px;
+        width: 130px;
+        margin: auto;
+    }
+    
+    .menu-content > li > a.parent-link:before {
+        display: none;
+    }
+    
+    #block_top_menu .sf-menu > li span {
+        float: left;
+        position: inherit;
+        margin: 14px 0px 14px 14px;
+    }
+    
+    .left-down-menu .sf-contener .menu-content > li > a {
+        margin: 0 !important;
+    }
+    
+    #block_top_menu .sf-menu > li span:after {
+        content: '\2630';
+        font-size: 1.25rem;
+        color: #000;
+        padding-right: 0.625rem;
+    }
+    
+    li#search {
+        right: 70%;
+    }
+}
+
 @media (min-width:768px) and (max-width :1024px){
 
 	/*Header*/
@@ -2297,7 +2337,7 @@
 	}
 
 	.header_user_info .content-user .logout {
-		top: 92px;
+		top: 88px;
 	}
 
 	.menu-experiencias {
@@ -2643,6 +2683,9 @@
 
 	.container .product_schemes {
 		width:100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
 	}
 
 	.tag.out {
@@ -3286,6 +3329,47 @@
     
     .menu-right #cart {
         background: url("../../img/shopping-rp.png") center 36% no-repeat transparent;
+    }
+    
+    .primary_block .pb-left-column #views_block {
+        height: 4.5rem;
+    }
+    
+    .primary_block .pb-left-column {
+        position: relative;
+        min-height: 385px;
+        margin-bottom: 30px;
+    }
+    
+    .ax-shareContent.ax-shareContentProduct p {
+        float: left;
+    }
+    
+    .ax-shareContent a, .ax-shareContent a.newPrint, .ax-shareContent a.newPrint:link {
+        padding: 5px 8.6px;
+        height: 31px;
+    }
+    
+    .addthis_default_style .at300b {
+        padding: 5px 8.6px !important;
+    }
+    
+    .ax-shareContent .newTopActions {
+        height: 30px;
+    }
+    
+    .ayo-btn.ayo-houzz {
+        width: 28px;
+    }
+    
+    .fa-houzz:before {
+        width: 20px;
+        height: 20px;
+        margin-left: -2px;
+     }
+    
+    .my-shopping .header-account h2 {
+        margin: 0;
     }
 }
 
