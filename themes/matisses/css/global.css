@@ -5711,6 +5711,10 @@ body#search .category_list.product_list.grid .ajax_block_product {
     padding-left: 16px;
 }
 
+.ax-maps div[id*="map"] .ax-map-detail p{
+    line-height: 1.5;
+}
+
 .ax-maps div[id*="map"] .ax-modal-map img{
     width: auto;
 }

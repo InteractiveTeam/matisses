@@ -269,7 +269,7 @@ function initMap(){
             '<div class="ax-map-detail">'+
                 '<h2 class="ax-map-title">'+mapOptions[j].name+' - '+mapOptions[j].city+'</h2>'+
                 '<p>'+mapOptions[j].address+'</p>'+
-                '<span>'+mapOptions[j].phone+'</span>'+
+                '<p>'+mapOptions[j].phone+'</p>'+
             '</div>'+
         '</div>';
 
@@ -300,9 +300,9 @@ function initMap(){
             infowindow.open(map, marker);
         });
         
-        /*marker.addListener('mouseout', function() {
+        marker.addListener('mouseout', function() {
             infowindow.close();
-        });*/
+        });
 
        initMap((j + 1));
     }
