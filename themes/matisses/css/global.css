@@ -5375,7 +5375,7 @@ a.newPrint:hover {
 }
 
 .fancybox-inner {
-    overflow: hidden !important;
+    overflow-x: scroll;
 }
 
 .cart_total_tax {
