@@ -2,7 +2,7 @@
 
 Hola {firstname} {lastname},
 
-Te agradecemos por realizar tus compras en {shop_name}! 
+¡Te agradecemos por realizar tus compras en {shop_name}! 
 
 Tu pedido con la referencia {order_name} se ha realizado con
 éxito y será ENVIADO TAN PRONTO COMO RECIBAMOS TU PAGO. 

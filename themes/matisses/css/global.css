@@ -270,6 +270,7 @@ box-sizing: border-box;
 	-o-transition:all .36s ease;
 	-moz-transition:all .36s ease;
 	transition:all .36s ease;
+    margin: 5px 0px;
 	}
 	.logo-sticky {
 	display: none;

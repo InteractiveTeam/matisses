@@ -2,7 +2,7 @@
 
 Hola {firstname} {lastname},
 
-Tu pedido ha sido enviado
+¡Tu pedido ha sido enviado!
 
 El pedido con la referencia {order_name} ha sido enviado.
 

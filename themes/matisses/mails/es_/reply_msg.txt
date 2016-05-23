@@ -1,0 +1,14 @@
+[{shop_url}]
+
+Hola {firstname} {lastname},
+
+{reply}
+
+Por favor, no contestes a este correo electrónico, no recibiremos tu
+respuesta.
+
+Si deseas contestar, por favor, usa el siguiente enlace: {link}
+[{link}]
+
+{shop_name} [{shop_url}] creado por
+PrestaShop(tm) [http://www.prestashop.com/]

@@ -3283,6 +3283,10 @@
     #layered_block_left {
         display: none;
     }
+    
+    .menu-right #cart {
+        background: url("../../img/shopping-rp.png") center 36% no-repeat transparent;
+    }
 }
 
 @media screen and (max-width :360px) {
