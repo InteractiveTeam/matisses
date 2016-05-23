@@ -31,7 +31,6 @@
 {if $simplifiedStoresDiplay}
     {if $stores|@count}
 <div class="ax-tiendas">
-   
     <script>var mapOptions = [];</script>
     {foreach $stores as $store}    
     <div class="ax-tienda-item grid_12">

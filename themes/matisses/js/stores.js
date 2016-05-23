@@ -289,7 +289,7 @@ function initMap(){
         var marker = new google.maps.Marker({
             position: myLatLng,
             map: map,
-            icon: 'img/logo_marker.png'
+            icon: 'img/logo_marker2.png'
         });
         
         marker.addListener('mouseover', function() {
@@ -300,9 +300,9 @@ function initMap(){
             infowindow.open(map, marker);
         });
         
-        marker.addListener('mouseout', function() {
+        /*marker.addListener('mouseout', function() {
             infowindow.close();
-        });
+        });*/
 
        initMap((j + 1));
     }
