@@ -34,7 +34,7 @@ $(document).ready(function() {
 			 }
 	})
 	 
-	$('#tabs-2').addClass('hidden'); 
+	$('#tabs-news #tabs-2').addClass('hidden'); 
 	$('#tabs-news a.atab').on('click',function(e){
 		e.preventDefault();
 		$('#tabs-news a').parent().removeClass('active');
