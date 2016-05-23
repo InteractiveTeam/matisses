@@ -31,7 +31,9 @@
 {if $simplifiedStoresDiplay}
     {if $stores|@count}
 <div class="ax-tiendas">
-    {foreach $stores as $store}
+   
+    <script>var mapOptions = [];</script>
+    {foreach $stores as $store}    
     <div class="ax-tienda-item grid_12">
         <div class="ax-item-text grid_5">
                 <h2>{l s='Nombre:'} {$store.name|escape:'html':'UTF-8'}</h2>                
@@ -46,7 +48,7 @@
                 {/foreach}
                 </p>
                 <p class="ax-text-description">{l s='Ciudad:'}</p><p>{$store.city|escape:'html':'UTF-8'}</p>
-                <p class="ax-text-description">{l s='Teléfono:'}</p><p>345 65 87</p>
+                <p class="ax-text-description">{l s='Teléfono:'}</p><p>{$store.phone|escape:'html':'UTF-8'}</p>
                 <p class="ax-text-description">{l s='Horario de atención'}</p>
                 {if isset($store.working_hours)}{$store.working_hours}{/if}
             <span class="ax-btn-view-maps">Ver mapa<i class="fa fa-angle-right"></i></span>
@@ -55,11 +57,22 @@
                 {if $store.has_picture}
                     <div class="store-image alpha">
                         <div style="background:url({$img_store_dir}{$store.id_store}.jpg)" alt="" class="ax-image"></div>
-                        <div id="map"></div>
+                        <div id="map{$store@iteration}"></div>
                     </div>
                 {/if}
         </div>
     </div>
+    <script>
+        mapOptions.push({
+            latitude:{$store.latitude},
+            longitud:{$store.longitude},
+            name:'{$store.name}',
+            address:'{$store.address1}',
+            phone:'{$store.phone}',
+            city:'{$store.city}',
+            image:'{$img_store_dir}{$store.id_store}.jpg' 
+        });
+    </script>
     {/foreach}
 </div>
 <div style="clear:both"></div>
@@ -113,6 +126,8 @@
     </table>
 
 {/if}
+
+
 {strip}
 {addJsDef map=''}
 {addJsDef markers=array()}
