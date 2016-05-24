@@ -3085,7 +3085,8 @@ class CartCore extends ObjectModel
 		$params['delivery_option_list']	= $delivery_option_list;
 		$params['delivery_option']		= $this->getDeliveryOption();
 		$params['products_cart']		= $this->getProducts();
-		$total_shipping_tax_exc 		= Hook::exec('actionCalculateShipping',$params);
+		$total_shipping 				= Hook::exec('actionCalculateShipping',$params);
+        $total_shipping 				= (array)json_decode($total_shipping);
 
 		return array(
 			'delivery' => $delivery,
