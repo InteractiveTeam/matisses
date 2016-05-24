@@ -179,8 +179,9 @@ class CategoryControllerCore extends FrontController
             // Get parent category's subcategories (which is current category's siblings, including it self).
             $category_siblings = $parent_category->getSubCategories((int)self::$cookie->id_lang);
             
+            //$subCategories,
 			$this->context->smarty->assign(array(
-				'subcategories' => $category_siblings,//$subCategories,
+				'subcategories' => $category_siblings,
 				'subcategories_nb_total' => count($subCategories),
 				'subcategories_nb_half' => ceil(count($subCategories) / 2),
                 'davinn' => $category_siblings
