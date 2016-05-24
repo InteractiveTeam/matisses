@@ -77,6 +77,8 @@
 		<div id="subcategories" class="subcategories">
 			<h1 class="subcategory-heading">{$category->name}</h1>
 			<ul class="cf">
+			<div style="display:none"><pre>{$subcategories}</pre></div>
+			<div style="display:none"><pre>{$davinn}</pre></div>
 			{foreach from=$subcategories item=subcategory}
 				<li>
 					<div class="subcategory-image">
