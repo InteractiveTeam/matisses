@@ -3325,6 +3325,9 @@
     .ax-maps div[id*="map"] .ax-map-detail{
          width: 55%;
     }
+    .ax-maps div[id*="map"] .ax-modal-map{
+        width: 294px;
+    }
     
     #layered_block_left {
         display: none;
@@ -3400,5 +3403,8 @@
     }
     .ax-maps div[id*="map"] .ax-map-detail{
          width: 58%;
+    }
+    .ax-maps div[id*="map"] .ax-modal-map{
+        width: 250px;
     }
 }
