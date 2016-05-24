@@ -464,10 +464,19 @@ class matisses extends Module
 				if($response['return']['code']=='0101002')
 					$shipping_cost = $this->xml_to_array($response['return']['detail']);
 			}
+            /************************************************************
+            EL SIGUIENTE CAMPO VIENE RELACIONADO CON LA INCIDENCIA 36948
+            PARA EFECTOS DE DEBUG EN FUTUROS CASOS DONDE SE NECESITE
+            CONOCER EL ERROR QUE SE PRESENTE AL MOMENTO DE CONSULTAR EL 
+            ENVIO            
+            ************************************************************/
+            $errorMessage = $shipping_cost['shippingQuotationResultDTO']['errorMessage'];
+            /***********************************************************/
             $res = array(
                 'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
                 'shippingCompany' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany']
             );
+        //die(var_dump($salesWarehouseDTO));
 			return json_encode($res);
 	}
 	
