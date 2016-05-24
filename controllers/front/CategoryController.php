@@ -184,7 +184,7 @@ class CategoryControllerCore extends FrontController
 				'subcategories' => $category_siblings,
 				'subcategories_nb_total' => count($subCategories),
 				'subcategories_nb_half' => ceil(count($subCategories) / 2),
-                'davinn' => $category_siblings
+                'davinn' => $id_category
 			));
 		}
 	}
