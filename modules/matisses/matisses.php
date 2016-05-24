@@ -1129,6 +1129,7 @@ class matisses extends Module
             $addresses[$d]['addressType']	= $cont ==0 ? 'F' : 'E'; //envio por defecto 
             $addresses[$d]['mobile']		= $InfAddresses[$d]['phone_mobile'];
             $addresses[$d]['phone']			= $InfAddresses[$d]['phone'];
+            $addresses[$d]['other']			= $InfAddresses[$d]['other'];
 			if($cont==1)
 				break;
 			$cont++;
@@ -1198,6 +1199,7 @@ class matisses extends Module
             $addresses[$d]['addressType']	= 'F'; //envio por defecto 
             $addresses[$d]['mobile']		= $InfAddresses[$d]['phone_mobile'];
             $addresses[$d]['phone']			= $InfAddresses[$d]['phone'];
+            $addresses[$d]['other']			= $InfAddresses[$d]['other'];
 		}
 		$infoxml[0]['addresses'] = $addresses;
 		$xml = new Template(dirname(__FILE__)."/xml/sap_customer.xml");
