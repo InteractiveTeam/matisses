@@ -60,16 +60,19 @@ if (Tools::getValue('action') == 'sendToMyFriend' && Tools::getValue('secure_key
 		/* Email generation */
 		$product = new Product((int)$id_product, false, $module->context->language->id);
 		$productLink = $module->context->link->getProductLink($product);
-    
-        $link = new Link();
-        $url = $link->getProductLink($product);
-    
+            
+        $id_image = Product::getCover((int)$id_product);
+        if (sizeof($id_image) > 0) {
+            $image = new Image($id_image['id_image']);
+            $image_url = _PS_BASE_URL_._THEME_PROD_DIR_.$image->getExistingImgPath().".jpg";
+        }
+        
 		$customer = $module->context->cookie->customer_firstname ? $module->context->cookie->customer_firstname.' '.$module->context->cookie->customer_lastname : $module->l('A friend', 'sendtoafriend_ajax');
 
 		$templateVars = array(
 			'{product}' => $product->name,
 			'{product_link}' => $productLink,
-            '{product_link2}' => $url,
+            '{image_url}' => $image_url,
 			'{customer}' => $customer,
 			'{name}' => Tools::safeOutput($friendName)
 		);

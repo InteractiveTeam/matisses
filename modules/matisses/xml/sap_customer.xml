@@ -35,6 +35,7 @@
 								<addressType><tmpl_var name="addressType"></addressType>
 								<mobile><tmpl_var name="mobile"></mobile>
 								<phone><tmpl_var name="phone"></phone>
+								<comments><tmpl_var name="other"></comments>
 							</addresses>
 						</tmpl_loop>
 					</tmpl_if>

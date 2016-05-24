@@ -464,10 +464,19 @@ class matisses extends Module
 				if($response['return']['code']=='0101002')
 					$shipping_cost = $this->xml_to_array($response['return']['detail']);
 			}
+            /************************************************************
+            EL SIGUIENTE CAMPO VIENE RELACIONADO CON LA INCIDENCIA 36948
+            PARA EFECTOS DE DEBUG EN FUTUROS CASOS DONDE SE NECESITE
+            CONOCER EL ERROR QUE SE PRESENTE AL MOMENTO DE CONSULTAR EL 
+            ENVIO            
+            ************************************************************/
+            $errorMessage = $shipping_cost['shippingQuotationResultDTO']['errorMessage'];
+            /***********************************************************/
             $res = array(
                 'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
                 'shippingCompany' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany']
             );
+        //die(var_dump($salesWarehouseDTO));
 			return json_encode($res);
 	}
 	
@@ -1120,6 +1129,7 @@ class matisses extends Module
             $addresses[$d]['addressType']	= $cont ==0 ? 'F' : 'E'; //envio por defecto 
             $addresses[$d]['mobile']		= $InfAddresses[$d]['phone_mobile'];
             $addresses[$d]['phone']			= $InfAddresses[$d]['phone'];
+            $addresses[$d]['other']			= $InfAddresses[$d]['other'];
 			if($cont==1)
 				break;
 			$cont++;
@@ -1189,6 +1199,7 @@ class matisses extends Module
             $addresses[$d]['addressType']	= 'F'; //envio por defecto 
             $addresses[$d]['mobile']		= $InfAddresses[$d]['phone_mobile'];
             $addresses[$d]['phone']			= $InfAddresses[$d]['phone'];
+            $addresses[$d]['other']			= $InfAddresses[$d]['other'];
 		}
 		$infoxml[0]['addresses'] = $addresses;
 		$xml = new Template(dirname(__FILE__)."/xml/sap_customer.xml");

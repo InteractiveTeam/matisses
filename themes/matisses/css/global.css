@@ -5730,7 +5730,8 @@ body#search .category_list.product_list.grid .ajax_block_product {
     height: 445px;
     position: absolute;
     z-index: 2;
-    background-size: auto 100% !important;
+    background-size: cover !important;
+    background-repeat: no-repeat;
 }
 
 .ax-btn-view-maps {

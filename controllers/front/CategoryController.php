@@ -169,12 +169,22 @@ class CategoryControllerCore extends FrontController
 	 */
 	protected function assignSubcategories()
 	{
-		if ($subCategories = $this->category->getSubCategories($this->context->language->id))
-		{
+		if ($subCategories = $this->category->getSubCategories($this->context->language->id)) {
+            $id_category = (int)Tools::getValue('id_category');
+            
+
+            // Get current category's parent.
+            $parent_category = new Category($id_category, $this->context->language->id);
+
+            // Get parent category's subcategories (which is current category's siblings, including it self).
+            $category_siblings = $parent_category->getSubCategories((int)self::$cookie->id_lang);
+            
+            //$subCategories,
 			$this->context->smarty->assign(array(
-				'subcategories' => $subCategories,
+				'subcategories' => $category_siblings,
 				'subcategories_nb_total' => count($subCategories),
-				'subcategories_nb_half' => ceil(count($subCategories) / 2)
+				'subcategories_nb_half' => ceil(count($subCategories) / 2),
+                'davinn' => $category_siblings
 			));
 		}
 	}
