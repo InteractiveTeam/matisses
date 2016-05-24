@@ -2,7 +2,7 @@
 
 Hola {firstname} {lastname},
 
-Te agradecemos por realizar tus compras en {shop_name}!
+¡Te agradecemos por realizar tus compras en {shop_name}!
 
 PEDIDO: {order_name} Situado en {date}
 

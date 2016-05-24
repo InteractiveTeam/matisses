@@ -4,7 +4,7 @@ Hola {firstname} {lastname},
 
 {reply}
 
-Por favor, no contestes a este correo electrónico, no recibiremos tu
+Por favor, no respondas a este correo electrónico, no recibiremos tu
 respuesta.
 
 Si deseas contestar, por favor, usa el siguiente enlace: {link}
