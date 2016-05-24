@@ -270,6 +270,7 @@ box-sizing: border-box;
 	-o-transition:all .36s ease;
 	-moz-transition:all .36s ease;
 	transition:all .36s ease;
+    margin: 5px 0px;
 	}
 	.logo-sticky {
 	display: none;
@@ -2254,6 +2255,7 @@ box-sizing: border-box;
 	display: block;
 	padding: 0.9375rem;
 	position: relative;
+    z-index: 1 !important;
 	}
 	ul.step li.first {
 	padding-left: 10px !important;
@@ -5375,7 +5377,7 @@ a.newPrint:hover {
 }
 
 .fancybox-inner {
-    overflow: hidden !important;
+    overflow-x: scroll;
 }
 
 .cart_total_tax {

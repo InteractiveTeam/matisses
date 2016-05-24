@@ -268,7 +268,7 @@ function initMap(){
             '<img src="'+mapOptions[j].image+'" width="152px" height="123px"/>'+
             '<div class="ax-map-detail">'+
                 '<h2 class="ax-map-title">'+mapOptions[j].name+' - '+mapOptions[j].city+'</h2>'+
-                '<p>'+mapOptions[j].address+'</p>'+
+                '<p>'+mapOptions[j].address+' '+mapOptions[j].city+'</p>'+
                 '<p>'+mapOptions[j].phone+'</p>'+
             '</div>'+
         '</div>';

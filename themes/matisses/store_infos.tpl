@@ -32,13 +32,18 @@
 	{l s='Saturday'}
 	{l s='Sunday'}
 *}
-
-{foreach from=$days_datas  item=day key=key}        
+{$days_datas|print_r}
+{foreach from=$days_datas  item=day key=key}
     {if $day.hours == $days_datas[$key+1]['hours']}
         <div class="ax-content-horarios">
             <p>{l s=$day.day} a {l s=$days_datas[$key+1]['day']}</p>
             <p>{$day.hours}</p>
         </div>
     {/if}
+    {if $day.day == 'Sunday'}
+        <div class="ax-content-horarios">
+            <p>{l s=$day.day} y {l s=Festivos}</p>
+            <p>{$day.hours}</p>
+        </div>
+    {/if}
 {/foreach}
-
