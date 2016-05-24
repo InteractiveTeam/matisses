@@ -60,8 +60,7 @@ if (Tools::getValue('action') == 'sendToMyFriend' && Tools::getValue('secure_key
 		/* Email generation */
 		$product = new Product((int)$id_product, false, $module->context->language->id);
 		$productLink = $module->context->link->getProductLink($product);
-        //$images = Image::getImages($module->context->language->id, (int)$product->id);
-    
+            
         $id_image = Product::getCover((int)$id_product);
         if (sizeof($id_image) > 0) {
             $image = new Image($id_image['id_image']);
