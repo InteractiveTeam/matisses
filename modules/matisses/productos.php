@@ -302,6 +302,7 @@
 			foreach($_Combinations as $k => $_Combination)
 			{
 				$_Quantity 			+= $_Combination['stock']['quantity'];
+                die(print_r($_Quantity));
 				$_Available_now[]	=  $_Combination['stock']['WarehouseCode'];
 				
 				if($_Combination['newFrom'])
