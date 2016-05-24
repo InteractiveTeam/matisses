@@ -5705,12 +5705,16 @@ body#search .category_list.product_list.grid .ajax_block_product {
 }
 
 .ax-maps div[id*="map"] .ax-modal-map{
-    padding: 8px;
+    padding: 6px;
 }
 .ax-maps div[id*="map"] .ax-map-detail{
     display: inline-block;
     vertical-align: top;
     padding-left: 16px;
+    width: 50%;
+}
+.ax-maps div[id*="map"] .ax-modal-map{
+    width: 480px;
 }
 
 .ax-maps div[id*="map"] .ax-map-detail p{
@@ -5726,7 +5730,8 @@ body#search .category_list.product_list.grid .ajax_block_product {
     height: 445px;
     position: absolute;
     z-index: 2;
-    background-size: auto 100% !important;
+    background-size: cover !important;
+    background-repeat: no-repeat;
 }
 
 .ax-btn-view-maps {

@@ -232,6 +232,7 @@ class wsmatisses extends Module
             $addresses[$d]['addressType']	= 'F'; //envio por defecto 
             $addresses[$d]['mobile']		= $InfAddresses[$d]['phone_mobile'];
             $addresses[$d]['phone']			= $InfAddresses[$d]['phone'];
+            $addresses[$d]['other']			= $InfAddresses[$d]['other'];
 		}
 		$infoxml[0]['addresses'] = $addresses;
 		$xml = new Template(dirname(__FILE__)."/xml/sap_customer.xml");
@@ -278,6 +279,7 @@ class wsmatisses extends Module
             $addresses[$d]['addressType']	= 'F'; //envio por defecto 
             $addresses[$d]['mobile']		= $InfAddresses[$d]['phone_mobile'];
             $addresses[$d]['phone']			= $InfAddresses[$d]['phone'];
+            $addresses[$d]['other']			= $InfAddresses[$d]['other'];
 		}
 		$infoxml[0]['addresses'] = $addresses;
 		$xml = new Template(dirname(__FILE__)."/xml/sap_customer.xml");

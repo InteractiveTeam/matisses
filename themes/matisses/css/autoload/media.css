@@ -3318,10 +3318,16 @@
     }
     
     .ax-tienda-item .ax-maps div[id*="map"] {
-        width: 450px;        
+        width: 395px;        
         height: 300px;
     }
     .ax-maps div[id*="map"] .ax-modal-map{padding: 1px;}
+    .ax-maps div[id*="map"] .ax-map-detail{
+         width: 55%;
+    }
+    .ax-maps div[id*="map"] .ax-modal-map{
+        width: 294px;
+    }
     
     #layered_block_left {
         display: none;
@@ -3388,11 +3394,17 @@
 		height: 215px;
 	}
     .ax-tienda-item .ax-maps div[id*="map"] {
-        width: 350px;        
+        width: 340px;        
         height: 300px;
     }
     .ax-maps div[id*="map"] .ax-modal-map img {
         width: 98px;
         height: 80px;
+    }
+    .ax-maps div[id*="map"] .ax-map-detail{
+         width: 58%;
+    }
+    .ax-maps div[id*="map"] .ax-modal-map{
+        width: 250px;
     }
 }
