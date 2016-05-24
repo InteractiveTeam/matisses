@@ -1234,7 +1234,11 @@
 		width: 17.1875rem;
 	}
 	.logo-copyright {
-		width: auto;
+		width: 214px;
+	}
+    
+    .logo-copyright img {
+		width: 100%;
 	}
 
 	/*Mi cuenta*/
@@ -1944,6 +1948,25 @@
         bottom: 30px;
     }
     
+    .logo-copyright {
+        width: 229px;
+        margin: 0 auto;
+        float: none;
+        display: block;
+    }
+    
+    .logo-copyright img {
+        width: auto;
+    }
+    
+    .footer-down .container .menu-copyright {
+        width: 100%;
+    }
+    
+    .menu-copyright ul li {
+        padding: 0 0.225rem;
+    }
+    
 }
 
 @media screen and (max-width :480px) {
@@ -2632,8 +2655,7 @@
 	}
 
 	.logo-copyright {
-		float: left;
-        padding: 2.4rem 0px;
+        padding: 0 0 1.4rem 0;
 	}
 
 	.logo-copyright img {
@@ -3376,6 +3398,15 @@
     
     .my-shopping .header-account h2 {
         margin: 0;
+    }
+    
+    .logo-copyright {
+        width: 270px;
+    }
+    
+    .footer-down .container .menu-copyright {
+        width: 100%;
+        text-align: center;
     }
 }
 
