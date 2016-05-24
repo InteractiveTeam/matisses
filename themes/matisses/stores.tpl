@@ -26,7 +26,7 @@
 {capture name=path}{l s='Our stores'}{/capture}
 
 <h1 class="page-heading">
-    {l s='Our stores'}
+    {l s='Tiendas'}
 </h1>
 {if $simplifiedStoresDiplay}
     {if $stores|@count}
@@ -35,20 +35,21 @@
     {foreach $stores as $store}    
     <div class="ax-tienda-item grid_12">
         <div class="ax-item-text grid_5">
-                <h2>{l s='Nombre:'} {$store.name|escape:'html':'UTF-8'}</h2>                
+                <h2>{$store.name|escape:'html':'UTF-8'} - {$store.city|escape:'html':'UTF-8'}</h2>                
                 <p class="ax-text-description">{l s='Dirección:'}</p>
-                <p>{assign value=$store.id_store var="id_store"}
+                <p>{$store.address1|escape:'html':'UTF-8'}
+                {**assign value=$store.id_store var="id_store"}
                 {foreach from=$addresses_formated.$id_store.ordered name=adr_loop item=pattern}
                     {assign var=addressKey value=" "|explode:$pattern}
                     {foreach from=$addressKey item=key name="word_loop"}
                          {if isset($addresses_style[$key])} class="{$addresses_style[$key]}"{/if}
                             {$addresses_formated.$id_store.formated[$key|replace:',':'']|escape:'html':'UTF-8'}
                     {/foreach}
-                {/foreach}
+                {/foreach**}
                 </p>
-                <p class="ax-text-description">{l s='Ciudad:'}</p><p>{$store.city|escape:'html':'UTF-8'}</p>
-                <p class="ax-text-description">{l s='Teléfono:'}</p><p>{$store.phone|escape:'html':'UTF-8'}</p>
-                <p class="ax-text-description">{l s='Horario de atención'}</p>
+                <p>{$store.city|escape:'html':'UTF-8'}</p>
+                <p class="ax-text-description">{l s='PBX:'}</p><p>{$store.phone|escape:'html':'UTF-8'}</p>
+                <p class="ax-text-description">{l s='Horario'}</p>
                 {if isset($store.working_hours)}{$store.working_hours}{/if}
             <span class="ax-btn-view-maps">Ver mapa<i class="fa fa-angle-right"></i></span>
         </div>
@@ -125,7 +126,6 @@
     </table>
 
 {/if}
-
 
 {strip}
 {addJsDef map=''}
