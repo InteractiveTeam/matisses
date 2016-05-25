@@ -633,7 +633,7 @@ class CategoryCore extends ObjectModel
 		$childrens = $this->getChildren($cat->id,Context::getContext()->language->id);
 		if(sizeof($childrens)>0)
 		{
-				
+
 			foreach($childrens as $k => $category)
 			{
 				$childcategory = new Category($category['id_category']); 
