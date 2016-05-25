@@ -592,9 +592,12 @@ class CategoryCore extends ObjectModel
 			$row['legend'] = 'no picture';
 			  
 		}
+        
+        $testArray = array();
 		foreach($result as $k => $category)
 		{
 			$cat = new Category($category['id_category']);
+            $testArray[] = array($this->checkifshow($cat,0),$category['id_category']);
 			if(!$this->checkifshow($cat,0))
 				unset($result[$k]);
 		}
@@ -610,11 +613,14 @@ class CategoryCore extends ObjectModel
             GROUP BY c.`id_category`
             ORDER BY `level_depth` ASC, category_shop.`position` ASC';
         echo '<div style="display:none">'.$test.'</div>';
+        echo '<div style="display:none"><pre>'; 
+            print_r($testArray);
+        echo '</div></pre>';
 		//exit();
 		return $result;
 	}
 	
-	private function checkifshow($cat,$sum)
+	public function checkifshow($cat,$sum)
 	{
 		$childrens = $this->getChildren($cat->id,Context::getContext()->language->id);
 		if(sizeof($childrens)>0)
