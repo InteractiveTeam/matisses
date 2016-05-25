@@ -178,9 +178,9 @@ class CategoryControllerCore extends FrontController
             // Get parent category's subcategories (which is current category's siblings, including it self).
             $category_siblings = $parent_category->checkifshow($parent_category,0);
             
-            $products = $category_siblings->getProducts($this->context->language->id,null,null,null,null, true, true);
-            $sum = '';
-            $products > 0  ? $sum = true : false;
+            //$products = $category_siblings->getProducts($this->context->language->id,null,null,null,null, true, true);
+            //$sum = '';
+            //$products > 0  ? $sum = true : false;
             
             //$subCategories,
 			$this->context->smarty->assign(array(
@@ -188,9 +188,9 @@ class CategoryControllerCore extends FrontController
 				'subcategories_nb_total' => count($subCategories),
 				'subcategories_nb_half' => ceil(count($subCategories) / 2),
                 'davin' => $id_category,
-                'davin_subcate' => $category_siblings,
-                'products_num' => $sum,
-                'products' => $products
+                'davin_subcate' => $category_siblings
+                //'products_num' => $sum,
+                //'products' => $products
 			));
 		}
 	}
