@@ -302,7 +302,7 @@
 			foreach($_Combinations as $k => $_Combination)
 			{
 				$_Quantity 			+= $_Combination['stock']['quantity'];
-                die(print_r($_Quantity));
+                
 				$_Available_now[]	=  $_Combination['stock']['WarehouseCode'];
 				
 				if($_Combination['newFrom'])
@@ -349,7 +349,13 @@
 			$_Product->quantity				= $_Quantity;
 			$_Product->stores				= implode(',',array_unique(array_filter($_Available_now)));
 			$_Product->available_now		= '';
-			$_Product->active				= true;	
+            
+            if ($_Quantity > 0) {
+                $_Product->active			= true;	
+            } else {
+                $_Product->active			= false;	
+            }
+			
 			$_Product->redirect_type		= '404';
 			$_Product->ean13				= '0';
 			
