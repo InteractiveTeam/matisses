@@ -592,12 +592,23 @@ class CategoryCore extends ObjectModel
 			$row['legend'] = 'no picture';
 			  
 		}
+        
+        echo '<div style="display:none"><pre>'; 
+            print_r($result);
+        echo '</div></pre>';
+        
+        $testArray = array();
 		foreach($result as $k => $category)
 		{
 			$cat = new Category($category['id_category']);
+            $testArray[] = array($this->checkifshow($cat,0),$category['id_category']);
 			if(!$this->checkifshow($cat,0))
 				unset($result[$k]);
 		}
+        
+        echo '<div style="display:none"><pre>'; 
+            print_r($result);
+        echo '</div></pre>';
         
         $test = 'SELECT c.*, cl.id_lang, cl.name, cl.description, cl.link_rewrite, cl.meta_title, cl.meta_keywords, cl.meta_description
             FROM `'._DB_PREFIX_.'category` c
@@ -610,11 +621,14 @@ class CategoryCore extends ObjectModel
             GROUP BY c.`id_category`
             ORDER BY `level_depth` ASC, category_shop.`position` ASC';
         echo '<div style="display:none">'.$test.'</div>';
+        echo '<div style="display:none"><pre>'; 
+            print_r($testArray);
+        echo '</div></pre>';
 		//exit();
 		return $result;
 	}
 	
-	private function checkifshow($cat,$sum)
+	public function checkifshow($cat,$sum)
 	{
 		$childrens = $this->getChildren($cat->id,Context::getContext()->language->id);
 		if(sizeof($childrens)>0)
