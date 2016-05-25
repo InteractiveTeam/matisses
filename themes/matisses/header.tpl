@@ -76,6 +76,7 @@
 {/foreach}
 {/if}
 		{$HOOK_HEADER}
+<link rel="stylesheet" type="text/css" href="/themes/matisses/css/autoload/print.css" media="print" />
 <!--[if IE 8]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>

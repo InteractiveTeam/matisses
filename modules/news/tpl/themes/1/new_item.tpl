@@ -88,7 +88,7 @@
         {/if}
         <div class="description-news grid_12 alpha omega">
             <div class="ax-news-category">
-                {l s="categoria" mod="news"}: <span>{$category}</span>
+                {l s="CATEGORÍA" mod="news"}: <span>{$category}</span>
                 <div class="ax-cont-print"><a href="javascript:window.print()" class="newPrint"><i class="fa fa-print" aria-hidden="true"></i></a>Imprimir</div>
             </div>
             <div class="ax-container-blog grid_12">
@@ -141,7 +141,7 @@
                     <div class="new-author"><p>{if $autor}{$autor}{/if}</p></div>
                 </div>
                 <div class="grid_6 ax-details-autor">
-                    <p>{l s="categoria" mod="news"}:<span> {$category}</span></p>
+                    <p>{l s="categoría" mod="news"}:<span> {$category}</span></p>
                     <div class="ax-date"><i class="fa fa-clock-o"></i><span>{$date}</span></div>
                 </div>
             </div>

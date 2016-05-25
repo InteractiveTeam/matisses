@@ -693,6 +693,7 @@ class PlacetoPay extends PaymentModule
 				`franchise` = \'' . pSQL($p2p->getFranchise()) . '\',
 				`franchise_name` = \'' . pSQL($p2p->getFranchiseName()) . '\',
 				`bank` = \'' . pSQL($p2p->getBankName()) . '\',
+				`credit_card` = \'' . $p2p->getCreditCardNumber() . '\',
 				`authcode` = \'' . pSQL($p2p->getAuthorization()) . '\',
 				`receipt` = \'' . pSQL($p2p->getReceipt()) . '\',
 				`conversion` = ' . $p2p->getPlatformConversionFactor() . '
