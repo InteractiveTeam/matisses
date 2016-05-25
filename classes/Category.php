@@ -598,7 +598,19 @@ class CategoryCore extends ObjectModel
 			if(!$this->checkifshow($cat,0))
 				unset($result[$k]);
 		}
-		
+        
+        $test = 'SELECT c.*, cl.id_lang, cl.name, cl.description, cl.link_rewrite, cl.meta_title, cl.meta_keywords, cl.meta_description
+            FROM `'._DB_PREFIX_.'category` c
+            '.Shop::addSqlAssociation('category', 'c').'
+            LEFT JOIN `'._DB_PREFIX_.'category_lang` cl ON (c.`id_category` = cl.`id_category` AND `id_lang` = '.(int)$id_lang.' '.Shop::addSqlRestrictionOnLang('cl').')
+            '.$sql_groups_join.'
+            WHERE `id_parent` = '.(int)$this->id.'
+            '.($active ? 'AND `active` = 1' : '').'
+            '.$sql_groups_where.'
+            GROUP BY c.`id_category`
+            ORDER BY `level_depth` ASC, category_shop.`position` ASC';
+        echo '<div style="display:none">'.$test.'</div>';
+		//exit();
 		return $result;
 	}
 	
