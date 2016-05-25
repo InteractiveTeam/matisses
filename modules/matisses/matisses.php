@@ -1514,6 +1514,7 @@ class matisses extends Module
 		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
 		$order['incomingPaymentDTO']['nroFactura'] = Db::getInstance()->getValue('SELECT id_factura FROM `' . _DB_PREFIX_ . 'cart` WHERE id_cart= "'.$params['id_order'].'"');
         $nroTarjeta = Db::getInstance()->getValue('SELECT credit_card FROM `' . _DB_PREFIX_ . 'payment_placetopay` WHERE id_order= "'.$params['id_order'].'"');
+        $nroTarjeta = str_replace('#',"",$nroTarjeta);
 		$order['incomingPaymentDTO']['nroTarjeta'] = $nroTarjeta;
 		$order['incomingPaymentDTO']['voucher']    = $params['receipt'];
 		$order['incomingPaymentDTO']['franquicia'] = $params['franchise_name'];
