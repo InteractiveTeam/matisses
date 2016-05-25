@@ -57,7 +57,7 @@ class HistoryControllerCore extends FrontController
 			{
 				$myOrder = new Order((int)$order['id_order']);
                 $factura = Db::getInstance()->getValue("SELECT id_factura FROM "._DB_PREFIX_."cart WHERE id_cart = ". $myOrder->id_cart);
-                $orders[$key]['reference'] = $factura;
+                $orders[$key]['id_factura'] = $factura;
                 //die(print_r($order));
 				if (Validate::isLoadedObject($myOrder))
 					$order['virtual'] = $myOrder->isVirtual(false);
