@@ -2011,7 +2011,7 @@
     #page .header-container .main_panel {
         min-height: 0;
         margin-bottom: 63px;
-        z-index: 2;
+        z-index: 99;
     }
     
     #menu.menu-experiencias {
