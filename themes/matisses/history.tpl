@@ -97,7 +97,7 @@
 								<img class="icon" src="{$img_dir}icon/download_product.gif"	alt="{l s='Products to download'}" title="{l s='Products to download'}" />
 							{/if}
 							<a class="color-myaccount" href="javascript:showOrder(1, {$order.id_order|intval}, '{$link->getPageLink('order-detail', true)|escape:'html':'UTF-8'}');">
-								{Order::getUniqReferenceOf($order.id_order)}
+								{if !empty($order.reference)}{$order.reference}{else}{Order::getUniqReferenceOf($order.id_order)} {/if}
 							</a>
 						</td>
 						
