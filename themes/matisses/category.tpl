@@ -79,7 +79,6 @@
 			
 			<div style="display:none"><pre>{$subcategories|print_r}</pre></div>
 			<div style="display:none"><pre>{$davin|print_r}</pre></div>
-			<div style="display:none"><pre>{$davin_subcate|print_r}</pre></div>
 			
 			<ul class="cf">			
 			{foreach from=$subcategories item=subcategory}
