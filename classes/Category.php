@@ -593,6 +593,10 @@ class CategoryCore extends ObjectModel
 			  
 		}
         
+        echo '<div style="display:none"><pre>'; 
+            print_r($result);
+        echo '</div></pre>';
+        
         $testArray = array();
 		foreach($result as $k => $category)
 		{
@@ -601,6 +605,10 @@ class CategoryCore extends ObjectModel
 			if(!$this->checkifshow($cat,0))
 				unset($result[$k]);
 		}
+        
+        echo '<div style="display:none"><pre>'; 
+            print_r($result);
+        echo '</div></pre>';
         
         $test = 'SELECT c.*, cl.id_lang, cl.name, cl.description, cl.link_rewrite, cl.meta_title, cl.meta_keywords, cl.meta_description
             FROM `'._DB_PREFIX_.'category` c
