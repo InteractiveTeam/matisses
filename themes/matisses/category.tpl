@@ -78,7 +78,7 @@
 			<h1 class="subcategory-heading">{$category->name}</h1>
 
 			<div style="display:none">davin_subcate<pre>{$davin_subcate|print_r}</pre></div>
-			<div style="display:none"><pre>{$products_num|print_r}</pre></div>
+			<div style="display:none">davin_subcate2<pre>{$products_num|print_r}</pre></div>
 			<div style="display:none"><pre>{$products|print_r}</pre></div>
 			
 			<ul class="cf">			
