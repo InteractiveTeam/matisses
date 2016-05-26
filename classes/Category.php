@@ -593,9 +593,9 @@ class CategoryCore extends ObjectModel
 			  
 		}
         
-        echo '<div style="display:none"><pre>'; 
+        /*echo '<div style="display:none"><pre>'; 
             print_r($result);
-        echo '</div></pre>';
+        echo '</div></pre>';*/
         
         $testArray = array();
 		foreach($result as $k => $category)
@@ -606,9 +606,9 @@ class CategoryCore extends ObjectModel
 				unset($result[$k]);
 		}
         
-        echo '<div style="display:none"><pre>'; 
+        /*echo '<div style="display:none"><pre>'; 
             print_r($result);
-        echo '</div></pre>';
+        echo '</div></pre>';*/
         
         $test = 'SELECT c.*, cl.id_lang, cl.name, cl.description, cl.link_rewrite, cl.meta_title, cl.meta_keywords, cl.meta_description
             FROM `'._DB_PREFIX_.'category` c
@@ -620,10 +620,10 @@ class CategoryCore extends ObjectModel
             '.$sql_groups_where.'
             GROUP BY c.`id_category`
             ORDER BY `level_depth` ASC, category_shop.`position` ASC';
-        echo '<div style="display:none">'.$test.'</div>';
+        /* echo '<div style="display:none">'.$test.'</div>';
         echo '<div style="display:none"><pre>'; 
             print_r($testArray);
-        echo '</div></pre>';
+        echo '</div></pre>';*/
 		//exit();
 		return $result;
 	}
@@ -665,7 +665,7 @@ class CategoryCore extends ObjectModel
 		if (!$context)
 			$context = Context::getContext();
 		if ($check_access && !$this->checkAccess($context->customer->id))
-			return false;
+			//return false;
 
 		$front = true;
 		if (!in_array($context->controller->controller_type, array('front', 'modulefront')))
