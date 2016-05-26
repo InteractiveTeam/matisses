@@ -603,10 +603,10 @@ class CategoryCore extends ObjectModel
 			$cat = new Category($category['id_category']);
             $testArray[] = array($this->checkifshow($cat,0),$category['id_category']);
 			if(!$this->checkifshow($cat,0)){
-                echo '<div style="display:none" data="davinn"><pre>'; 
+                echo '<div style="display:none" data="davin2"><pre>'; 
                     print_r($result[$k]);
                 echo '</div></pre>';
-				unset($result[$k]);
+				//unset($result[$k]);
             }
 		}
         
@@ -722,9 +722,9 @@ class CategoryCore extends ObjectModel
 					($active ? ' AND product_shop.`active` = 1' : '').
 					($id_supplier ? 'AND p.id_supplier = '.(int)$id_supplier : '');
             
-            /*echo '<div style="display:none"><pre>'; 
+            echo '<div style="display:none" data="davin1"><pre>'; 
                 print_r($sql); 
-            echo '</div></pre>';*/
+            echo '</div></pre>';
 			return (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 		}
 
@@ -778,7 +778,7 @@ class CategoryCore extends ObjectModel
 		if (!$result)
 			return array();
 
-        echo '<div style="display:none"><pre>';
+        echo '<div style="display:none" data="davin3"><pre>';
             print_r(Product::getProductsProperties($id_lang, $result));
         echo '</div></pre>';
 		/* Modify SQL result */
