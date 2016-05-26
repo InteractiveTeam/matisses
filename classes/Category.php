@@ -537,11 +537,7 @@ class CategoryCore extends ObjectModel
 
 			if (!isset($root_category))
 				$root_category = Category::getRootCategory()->id;
-            
-            echo '<div style="display:none" data="davin7"><pre>'; 
-                print_r($root_category);
-            echo '</div></pre>';
-
+        
 			foreach ($result as $row)
 			{
 				$current = &$buff[$row['id_category']];
@@ -661,26 +657,23 @@ class CategoryCore extends ObjectModel
 		return $result;
 	}
 	
-	public function checkifshow($cat,$sum)
-	{
+	public function checkifshow($cat,$sum)	{
 		$childrens = $this->getChildren($cat->id,Context::getContext()->language->id);
-		if(sizeof($childrens)>0)
-		{
-
-			foreach($childrens as $k => $category)
-			{
-				$childcategory = new Category($category['id_category']); 
-				return self::checkifshow($childcategory,$sum);
+		if(sizeof($childrens)>0) {
+			foreach($childrens as $k => $category) {
+				$childcategory = new Category($category['id_category']);
+                $sum = self::checkifshow($childcategory,$sum);                
+				//return self::checkifshow($childcategory,$sum);
 			}
 		}else{
-				$products = $cat->getProducts($this->context->language->id,null,null,null,null, true, true);
-                echo '<div style="display:none" data="davin4"><pre>'; 
-                    echo $products.' => ';
-                    echo $cat->id.'<br>'; 
-                echo '</div></pre>';
-				$products > 0  ? $sum = true : false;
-				return $sum;			
-			 }
+            $products = $cat->getProducts($this->context->language->id,null,null,null,null, true, true);
+            echo '<div style="display:none" data="davin4"><pre>'; 
+                echo $products.' => ';
+                echo $cat->id.'<br>'; 
+            echo '</div></pre>';
+            $products > 0  ? $sum = true : false;
+            return $sum;			
+         }
 		return $sum;	 
 	}
 
