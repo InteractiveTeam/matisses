@@ -83,6 +83,8 @@ class CategoryCore extends ObjectModel
 	public $id_shop_default;
 
 	public $groupBox;
+    
+    public $id_category_custom;
 
 	protected static $_links = array();
 
@@ -602,11 +604,12 @@ class CategoryCore extends ObjectModel
 		{
 			$cat = new Category($category['id_category']);
             $testArray[] = array($this->checkifshow($cat,0),$category['id_category']);
+            $this->id_category_custom = $category['id_category'];
 			if(!$this->checkifshow($cat,0)){
                 echo '<div style="display:none" data="davin2"><pre>'; 
                     print_r($result[$k]);
                 echo '</div></pre>';
-				//unset($result[$k]);
+				unset($result[$k]);
             }
 		}
         
@@ -757,7 +760,7 @@ class CategoryCore extends ObjectModel
 				LEFT JOIN `'._DB_PREFIX_.'manufacturer` m
 					ON m.`id_manufacturer` = p.`id_manufacturer`
 				WHERE product_shop.`id_shop` = '.(int)$context->shop->id.'
-					AND cp.`id_category` = '.(int)$this->id
+					AND cp.`id_category` = '.(int)$this->id_category_custom
 					.($active ? ' AND product_shop.`active` = 1' : '')
 					.($front ? ' AND product_shop.`visibility` IN ("both", "catalog")' : '')
 					.($id_supplier ? ' AND p.id_supplier = '.(int)$id_supplier : '')
