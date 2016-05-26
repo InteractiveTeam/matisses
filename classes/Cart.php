@@ -3080,11 +3080,11 @@ class CartCore extends ObjectModel
 
 		$params['total_shipping'] 		= $total_shipping;
 		$params['delivery_option_list']	= $delivery_option_list;
-		$params['delivery_option']		= $this->getDeliveryOption();
+		$params['delivery_option']		= $this->id_address_delivery;
 		$params['products_cart']		= $this->getProducts();
 		$total_shipping 				= Hook::exec('actionCalculateShipping',$params);
         $total_shipping 				= (array)json_decode($total_shipping);
-
+        
 		return array(
 			'delivery' => $delivery,
 			'delivery_state' => State::getNameById($delivery->id_state),
@@ -3103,7 +3103,7 @@ class CartCore extends ObjectModel
 			'total_shipping_tax_exc' => $total_shipping_tax_exc,
 			'total_products_wt' => $total_products_wt,
 			'total_products' => $total_products,
-			'total_price' => $base_total_tax_inc + $total_shipping_tax_exc,
+			'total_price' => $base_total_tax_inc/* + $total_shipping_tax_exc*/,
 			'total_tax' => $total_tax,
 			'total_price_without_tax' => $base_total_tax_exc,
 			'is_multi_address_delivery' => $this->isMultiAddressDelivery() || ((int)Tools::getValue('multi-shipping') == 1),

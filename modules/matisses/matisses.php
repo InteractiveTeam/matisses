@@ -475,7 +475,8 @@ class matisses extends Module
             /***********************************************************/
             $res = array(
                 'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
-                'shippingCompany' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany']
+                'shippingCompany' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany'],
+                'error' => $errorMessage
             );
         //die(var_dump($salesWarehouseDTO));
 			return json_encode($res);
