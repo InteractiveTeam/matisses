@@ -776,7 +776,10 @@ class CategoryCore extends ObjectModel
 			LIMIT '.(((int)$p - 1) * (int)$n).','.(int)$n;
 
         
-        echo $sql;
+        echo '<div style="display:none" data="davinQuery"><pre>'; 
+            print_r($sql);
+        echo '</div></pre>';
+        
 		$result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
         
         echo '<div style="display:none" data="davin33"><pre>'; 
