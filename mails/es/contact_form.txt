@@ -9,8 +9,6 @@ MENSAJE: {message}
 
 ID DEL PEDIDO: {order_name}
 
-PRODUCTO: {product_name}
-
 ARCHIVO ADJUNTO: {attached_file} 		 
 
 Le responderemos en el menor tiempo posible 

@@ -172,19 +172,26 @@ class CategoryControllerCore extends FrontController
 		if ($subCategories = $this->category->getSubCategories($this->context->language->id)) {
             $id_category = (int)Tools::getValue('id_category');
             
-
             // Get current category's parent.
-            $parent_category = new Category($id_category, $this->context->language->id);
+            $parent_category = new Category(65);
 
             // Get parent category's subcategories (which is current category's siblings, including it self).
-            $category_siblings = $parent_category->getSubCategories((int)self::$cookie->id_lang);
+            //$category_siblings = $parent_category->checkifshow($parent_category,0);            
+            $products = $parent_category->getProducts($this->context->language->id,null,null,null,null, true, true);
+            
+            $sum = '';
+            $products > 0  ? $sum = true : false;
+                        
             
             //$subCategories,
 			$this->context->smarty->assign(array(
-				'subcategories' => $category_siblings,
+				'subcategories' => $subCategories,
 				'subcategories_nb_total' => count($subCategories),
 				'subcategories_nb_half' => ceil(count($subCategories) / 2),
-                'davinn' => $id_category
+                'davin' => $id_category,
+                //'davin_subcate' => $category_siblings,
+                'products_num' => $sum,
+                'products' => $products
 			));
 		}
 	}

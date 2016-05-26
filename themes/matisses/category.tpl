@@ -76,9 +76,11 @@
 		<!-- Subcategories -->
 		<div id="subcategories" class="subcategories">
 			<h1 class="subcategory-heading">{$category->name}</h1>
+
 			
-			<div style="display:none"><pre>{$subcategories|print_r}</pre></div>
-			<div style="display:none"><pre>{$davinn|print_r}</pre></div>
+			<div style="display:none">davin2<pre>{$subcategories|print_r}</pre></div>
+			<div style="display:none"><pre>{$products|print_r}</pre></div>
+			<div style="display:none" data="davintpl2"></div>
 			
 			<ul class="cf">			
 			{foreach from=$subcategories item=subcategory}

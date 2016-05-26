@@ -441,7 +441,7 @@ class matisses extends Module
 		//echo "<pre>"; print_r($params); echo "</pre>";die();
 		$id_address = $params['delivery_option'];
 		$id_carrier = str_replace(',','',current(array_values($params['delivery_option'])));
-		
+		$shipping_cost = array();
 			if($id_address)
 			{
 				$Address = new Address($id_address);
@@ -451,6 +451,7 @@ class matisses extends Module
 									WHERE `id_state` = '.(int)$Address->id_state
 								);
 				
+				$salesWarehouseDTO['salesWarehouseDTO']['prestashopId'] = Context::getContext()->cart->id;
 				$salesWarehouseDTO['salesWarehouseDTO']['destinationCityCode'] = $State['iso_code'];
 				
 				
@@ -1513,7 +1514,9 @@ class matisses extends Module
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
 		$order['incomingPaymentDTO']['nroFactura'] = Db::getInstance()->getValue('SELECT id_factura FROM `' . _DB_PREFIX_ . 'cart` WHERE id_cart= "'.$params['id_order'].'"');
-		$order['incomingPaymentDTO']['nroTarjeta'] = '1111';
+        $nroTarjeta = Db::getInstance()->getValue('SELECT credit_card FROM `' . _DB_PREFIX_ . 'payment_placetopay` WHERE id_order= "'.$params['id_order'].'"');
+        $nroTarjeta = str_replace('#',"",$nroTarjeta);
+		$order['incomingPaymentDTO']['nroTarjeta'] = $nroTarjeta;
 		$order['incomingPaymentDTO']['voucher']    = $params['receipt'];
 		$order['incomingPaymentDTO']['franquicia'] = $params['franchise_name'];
 		$order['incomingPaymentDTO']['tipo']       = 'CREDITO';
@@ -1798,6 +1801,7 @@ class matisses extends Module
 		$orderDTO = array();
 		$orderDTO['orderDTO']['header']['prestashopOrderId']= $this->context->cookie->id_cart;
 		$orderDTO['orderDTO']['header']['customerId']		= $this->context->customer->charter;
+		//$orderDTO['orderDTO']['header']['comments']		= $this->context->customer->charter;
 		foreach($products as $d => $v)
 		{
 			$orderDTO['orderDTO']['detail'][$d]['itemCode'] = $products[$d]['reference'];

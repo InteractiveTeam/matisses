@@ -5126,9 +5126,14 @@ color:#fff;
     left:7.3%;
 }
 
+.addresses .adress_update {
+    margin-bottom: 20px;
+}
+
 .addresses .adress_update a.btn {
     padding-left: 0;
     padding-right: 0;
+    min-width: 32.9%;
 }
 
 .subcategories h2 {
@@ -5937,4 +5942,12 @@ p.ax-comment-msg i {
     font-size: 24px;
     margin: 0 10px 0 0;
     vertical-align: middle;
+}
+
+form[name="carrier_area"] .order_carrier_content .carrier_title {
+    margin-top: 20px;
+}
+
+.address-cont {
+    min-height: 230px;
 }
