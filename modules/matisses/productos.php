@@ -349,13 +349,7 @@
 			$_Product->quantity				= $_Quantity;
 			$_Product->stores				= implode(',',array_unique(array_filter($_Available_now)));
 			$_Product->available_now		= '';
-            
-            if ($_Quantity > 0) {
-                $_Product->active			= true;	
-            } else {
-                $_Product->active			= false;	
-            }
-			
+            $_Product->active			= true;	
 			$_Product->redirect_type		= '404';
 			$_Product->ean13				= '0';
 			
