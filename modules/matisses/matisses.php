@@ -1526,7 +1526,8 @@ class matisses extends Module
 														'object'	=>'order',
 														'operation'	=>'addPayment',
 														'source'	=>'prestashop')
-												); 
+												);
+        echo '<pre style="display:none">'; echo print_r($s); echo "</pre>";
 		$result = $client->call('callService', $s); 
 	}
 	
