@@ -770,7 +770,7 @@ class CategoryCore extends ObjectModel
 			LIMIT '.(((int)$p - 1) * (int)$n).','.(int)$n;
 
         
-        echo $sql;        
+        echo $sql;
 		$result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
 		if ($order_by == 'orderprice')
 			Tools::orderbyPrice($result, $order_way);
@@ -778,6 +778,9 @@ class CategoryCore extends ObjectModel
 		if (!$result)
 			return array();
 
+        echo '<div style="display:none"><pre>';
+            print_r(Product::getProductsProperties($id_lang, $result));
+        echo '</div></pre>';
 		/* Modify SQL result */
 		return Product::getProductsProperties($id_lang, $result);
 	}
