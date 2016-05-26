@@ -83,8 +83,6 @@ class CategoryCore extends ObjectModel
 	public $id_shop_default;
 
 	public $groupBox;
-    
-    public $id_category_custom;
 
 	protected static $_links = array();
 
@@ -537,11 +535,7 @@ class CategoryCore extends ObjectModel
 
 			if (!isset($root_category))
 				$root_category = Category::getRootCategory()->id;
-            
-            echo '<div style="display:none" data="davin7"><pre>'; 
-                print_r($root_category);
-            echo '</div></pre>';
-
+        
 			foreach ($result as $row)
 			{
 				$current = &$buff[$row['id_category']];
@@ -553,14 +547,6 @@ class CategoryCore extends ObjectModel
 					$buff[$row['id_parent']]['children'][$row['id_category']] = &$current;
 			}
 
-            echo '<div style="display:none" data="davin8"><pre>'; 
-                print_r($buff);
-            echo '</div></pre>';
-            
-            echo '<div style="display:none" data="davin9"><pre>'; 
-                print_r($categories);
-            echo '</div></pre>';
-            
 			Cache::store($cache_id, $categories);
 		}
 
@@ -621,66 +607,31 @@ class CategoryCore extends ObjectModel
 			$row['legend'] = 'no picture';  
 		}
         
-        echo '<div style="display:none" data="davin6"><pre>'; 
-            print_r($result);
-        echo '</div></pre>';
-        
-        $testArray = array();
 		foreach($result as $k => $category)
 		{
-			$cat = new Category($category['id_category']);
-            $testArray[] = array($this->checkifshow($cat,0),$category['id_category']);
-            $this->id_category_custom = $category['id_category'];
-			if(!$this->checkifshow($cat,0)){
-                echo '<div style="display:none" data="davin2"><pre>'; 
-                    print_r($result[$k]);
-                echo '</div></pre>';
+			$cat = new Category($category['id_category']);                        
+			if(!$this->checkifshow($cat,0)){                
 				unset($result[$k]);
             }
 		}
         
-        echo '<div style="display:none" data="davin5"><pre>';
-            print_r($result);
-        echo '</div></pre>';
-        
-        $test = 'SELECT c.*, cl.id_lang, cl.name, cl.description, cl.link_rewrite, cl.meta_title, cl.meta_keywords, cl.meta_description
-            FROM `'._DB_PREFIX_.'category` c
-            '.Shop::addSqlAssociation('category', 'c').'
-            LEFT JOIN `'._DB_PREFIX_.'category_lang` cl ON (c.`id_category` = cl.`id_category` AND `id_lang` = '.(int)$id_lang.' '.Shop::addSqlRestrictionOnLang('cl').')
-            '.$sql_groups_join.'
-            WHERE `id_parent` = '.(int)$this->id.'
-            '.($active ? 'AND `active` = 1' : '').'
-            '.$sql_groups_where.'
-            GROUP BY c.`id_category`
-            ORDER BY `level_depth` ASC, category_shop.`position` ASC';
-        /* echo '<div style="display:none">'.$test.'</div>';
-        echo '<div style="display:none"><pre>'; 
-            print_r($testArray);
-        echo '</div></pre>';*/
-		//exit();
 		return $result;
 	}
 	
-	public function checkifshow($cat,$sum)
-	{
+	public function checkifshow($cat,$sum)	{
 		$childrens = $this->getChildren($cat->id,Context::getContext()->language->id);
-		if(sizeof($childrens)>0)
-		{
-
-			foreach($childrens as $k => $category)
-			{
-				$childcategory = new Category($category['id_category']); 
-				return self::checkifshow($childcategory,$sum);
+		if(sizeof($childrens)>0) {
+			foreach($childrens as $k => $category) {
+				$childcategory = new Category($category['id_category']);
+                $sum = self::checkifshow($childcategory,$sum);                
+				//return self::checkifshow($childcategory,$sum);
 			}
 		}else{
-				$products = $cat->getProducts($this->context->language->id,null,null,null,null, true, true);
-                echo '<div style="display:none" data="davin4"><pre>'; 
-                    echo $products.' => ';
-                    echo $cat->id.'<br>'; 
-                echo '</div></pre>';
-				$products > 0  ? $sum = true : false;
-				return $sum;			
-			 }
+            $products = $cat->getProducts($this->context->language->id,null,null,null,null, true, true);
+            
+            $products > 0  ? $sum = true : false;
+            return $sum;			
+         }
 		return $sum;	 
 	}
 
@@ -701,9 +652,8 @@ class CategoryCore extends ObjectModel
 	{
 		if (!$context)
 			$context = Context::getContext();
-		if ($check_access && !$this->checkAccess($context->customer->id))
-            echo 'entro-davin-';
-			//return false;
+		if ($check_access && !$this->checkAccess($context->customer->id))            
+			return false;
 
 		$front = true;
 		if (!in_array($context->controller->controller_type, array('front', 'modulefront')))
@@ -753,11 +703,7 @@ class CategoryCore extends ObjectModel
 					($front ? ' AND product_shop.`visibility` IN ("both", "catalog")' : '').
 					($active ? ' AND product_shop.`active` = 1' : '').
 					($id_supplier ? 'AND p.id_supplier = '.(int)$id_supplier : '');
-            
-            
-            /*echo '<div style="display:none" data="davin1"><pre>'; 
-                print_r($sql); 
-            echo '</div></pre>';*/
+                        
 			return (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 		}
 
@@ -790,7 +736,7 @@ class CategoryCore extends ObjectModel
 				LEFT JOIN `'._DB_PREFIX_.'manufacturer` m
 					ON m.`id_manufacturer` = p.`id_manufacturer`
 				WHERE product_shop.`id_shop` = '.(int)$context->shop->id.'
-					AND cp.`id_category` = '.(int)$this->id_category_custom
+					AND cp.`id_category` = '.(int)$this->id
 					.($active ? ' AND product_shop.`active` = 1' : '')
 					.($front ? ' AND product_shop.`visibility` IN ("both", "catalog")' : '')
 					.($id_supplier ? ' AND p.id_supplier = '.(int)$id_supplier : '')
@@ -802,16 +748,9 @@ class CategoryCore extends ObjectModel
 			$sql .= ' ORDER BY '.(!empty($order_by_prefix) ? $order_by_prefix.'.' : '').'`'.bqSQL($order_by).'` '.pSQL($order_way).'
 			LIMIT '.(((int)$p - 1) * (int)$n).','.(int)$n;
 
-        
-        echo '<div style="display:none" data="davinQuery"><pre>'; 
-            print_r($sql);
-        echo '</div></pre>';
-        
 		$result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
         
-        echo '<div style="display:none" data="davin33"><pre>'; 
-            print_r(Product::getProductsProperties($id_lang, $result));
-        echo '</div></pre>';
+        
 		if ($order_by == 'orderprice')
 			Tools::orderbyPrice($result, $order_way);
 
