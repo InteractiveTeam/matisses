@@ -173,11 +173,10 @@ class CategoryControllerCore extends FrontController
             $id_category = (int)Tools::getValue('id_category');
             
             // Get current category's parent.
-            $parent_category = new Category(65); 
+            $parent_category = new Category(65);
 
             // Get parent category's subcategories (which is current category's siblings, including it self).
-            //$category_siblings = $parent_category->checkifshow($parent_category,0);
-            
+            //$category_siblings = $parent_category->checkifshow($parent_category,0);            
             $products = $parent_category->getProducts($this->context->language->id,null,null,null,null, true, true);
             
             $sum = '';

@@ -727,8 +727,9 @@ class CategoryCore extends ObjectModel
 					($active ? ' AND product_shop.`active` = 1' : '').
 					($id_supplier ? 'AND p.id_supplier = '.(int)$id_supplier : '');
             
+            
             echo '<div style="display:none" data="davin1"><pre>'; 
-                print_r($sql); 
+                print_r($sql);
             echo '</div></pre>';
 			return (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 		}

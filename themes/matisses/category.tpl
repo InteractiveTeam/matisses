@@ -80,6 +80,7 @@
 			
 			<div style="display:none">davin2<pre>{$subcategories|print_r}</pre></div>
 			<div style="display:none"><pre>{$products|print_r}</pre></div>
+			<div style="display:none" data="davintpl"></div>
 			
 			<ul class="cf">			
 			{foreach from=$subcategories item=subcategory}
