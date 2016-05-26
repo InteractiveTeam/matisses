@@ -532,15 +532,15 @@ class CategoryCore extends ObjectModel
 				'.($sql_sort == '' && $use_shop_restriction ? ', category_shop.`position` ASC' : '').'
 				'.($sql_limit != '' ? $sql_limit : '');
            
-            echo '<div style="display:none" data="davin7"><pre>'; 
-                print_r($result);
-            echo '</div></pre>';
-            
 			$categories = array();
 			$buff = array();
 
 			if (!isset($root_category))
 				$root_category = Category::getRootCategory()->id;
+            
+            echo '<div style="display:none" data="davin7"><pre>'; 
+                print_r($root_category);
+            echo '</div></pre>';
 
 			foreach ($result as $row)
 			{
@@ -553,6 +553,14 @@ class CategoryCore extends ObjectModel
 					$buff[$row['id_parent']]['children'][$row['id_category']] = &$current;
 			}
 
+            echo '<div style="display:none" data="davin8"><pre>'; 
+                print_r($buff);
+            echo '</div></pre>';
+            
+            echo '<div style="display:none" data="davin9"><pre>'; 
+                print_r($categories);
+            echo '</div></pre>';
+            
 			Cache::store($cache_id, $categories);
 		}
 
