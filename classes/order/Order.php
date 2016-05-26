@@ -847,11 +847,13 @@ class OrderCore extends ObjectModel
 			$context = Context::getContext();
 
 		if(Tools::getValue('pedidonro'))
-			$where = ' and  o.id_order = "'.pSQL(Tools::getValue('pedidonro')).'" ';
+			//$where = ' and  o.id_order = "'.pSQL(Tools::getValue('pedidonro')).'" ';
+            $where = ' and (c.id_factura = "'.pSQL(Tools::getValue('pedidonro')).'" OR o.id_order ="'.pSQL(Tools::getValue('pedidonro')).'") ';
 
 		$res = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('
 		SELECT o.*, (SELECT SUM(od.`product_quantity`) FROM `'._DB_PREFIX_.'order_detail` od WHERE od.`id_order` = o.`id_order`) nb_products
 		FROM `'._DB_PREFIX_.'orders` o
+            INNER JOIN '._DB_PREFIX_.'cart c ON o.id_cart = c.id_cart
 		WHERE o.`id_customer` = '.(int)$id_customer.' '.$where.'
 		GROUP BY o.`id_order`
 		ORDER BY o.`date_add` DESC');
