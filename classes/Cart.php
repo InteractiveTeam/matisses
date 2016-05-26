@@ -2057,6 +2057,7 @@ class CartCore extends ObjectModel
             $carrier_name = "";
 
 			// Get the delivery option with the lower price
+            $total_shipping = "";
             $params['total_shipping'] 		= $total_shipping;
             $params['delivery_option_list']	= $delyvery_selected;
             $params['delivery_option']		= $id_address;
@@ -2567,10 +2568,6 @@ class CartCore extends ObjectModel
 			else
 				$total_shipping += $delivery_option_list[$id_address][$key]['total_price_without_tax'];
 		}
-		
-
-		
-		
 		return $total_shipping;
 	}
 	/**
