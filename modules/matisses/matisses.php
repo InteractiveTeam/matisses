@@ -461,7 +461,6 @@ class matisses extends Module
 					$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['quantity'] = $product['quantity'];
                 }
 				$salesWarehouseDTO = $this->array_to_xml($salesWarehouseDTO,false);
-                die(var_dump($salesWarehouseDTO));
 				$response 	= $this->wsmatisses_get_data('inventoryItem','quoteShipping','pruebas',$salesWarehouseDTO,true);
 				if($response['return']['code']=='0101002')
 					$shipping_cost = $this->xml_to_array($response['return']['detail']);
