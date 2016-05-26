@@ -522,7 +522,7 @@ class Blocktopmenu extends Module
 	{
 		$html = '';
 		$cont = 0;
-		
+		        
 		foreach ($categories as $key => $category)
 		{
 			if ($category['level_depth'] > 1)
