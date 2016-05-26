@@ -190,7 +190,8 @@ class CategoryControllerCore extends FrontController
                 'davin' => $id_category,
                 'davin_subcate' => $category_siblings,
                 'products_num' => $sum,
-                'products' => $products
+                'products' => $products,
+                'davin2' => array(1)
 			));
 		}
 	}
