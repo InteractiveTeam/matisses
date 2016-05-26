@@ -1508,9 +1508,9 @@ class matisses extends Module
 	}
 	public function wsmatisses_registrar($params) 
 	{
-/*		echo "<pre>";
+		echo "<pre>";
 		print_r($params);
-		echo "</pre>";*/
+		echo "</pre>";
 		
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
@@ -1528,7 +1528,9 @@ class matisses extends Module
 														'source'	=>'prestashop')
 												);
         echo '<pre style="display:none">'; echo print_r($s); echo "</pre>";
-		$result = $client->call('callService', $s); 
+         echo '<pre style="display:none">'; echo print_r($order); echo "</pre>";
+		$result = $client->call('callService', $s);
+         echo '<pre style="display:none">'; echo print_r($result); echo "</pre>";
 	}
 	
 	public function wsmatisses_anular($params)
@@ -1543,7 +1545,7 @@ class matisses extends Module
 														'operation'	=>'voidInvoice',
 														'source'	=>'prestashop')
 												); 
-		$result = $client->call('callService', $s); 
+		$result = $client->call('callService', $s);
 	}
 	
 	public function hookactionValidateProductsAvailableCart()
