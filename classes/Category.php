@@ -516,7 +516,7 @@ class CategoryCore extends ObjectModel
 				'.($sql_sort == '' && $use_shop_restriction ? ', category_shop.`position` ASC' : '').'
 				'.($sql_limit != '' ? $sql_limit : '')
 			);
-
+           
 			$categories = array();
 			$buff = array();
 
@@ -594,7 +594,7 @@ class CategoryCore extends ObjectModel
 			$row['legend'] = 'no picture';  
 		}
         
-        echo '<div style="display:none" davin><pre>'; 
+        echo '<div style="display:none" data="davin6"><pre>'; 
             print_r($result);
         echo '</div></pre>';
         
@@ -612,9 +612,9 @@ class CategoryCore extends ObjectModel
             }
 		}
         
-        /*echo '<div style="display:none"><pre>'; 
+        echo '<div style="display:none" data="davin5"><pre>';
             print_r($result);
-        echo '</div></pre>';*/
+        echo '</div></pre>';
         
         $test = 'SELECT c.*, cl.id_lang, cl.name, cl.description, cl.link_rewrite, cl.meta_title, cl.meta_keywords, cl.meta_description
             FROM `'._DB_PREFIX_.'category` c
@@ -728,9 +728,9 @@ class CategoryCore extends ObjectModel
 					($id_supplier ? 'AND p.id_supplier = '.(int)$id_supplier : '');
             
             
-            echo '<div style="display:none" data="davin1"><pre>'; 
-                print_r($sql);
-            echo '</div></pre>';
+            /*echo '<div style="display:none" data="davin1"><pre>'; 
+                print_r($sql); 
+            echo '</div></pre>';*/
 			return (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 		}
 

@@ -441,7 +441,7 @@ class matisses extends Module
 		//echo "<pre>"; print_r($params); echo "</pre>";die();
 		$id_address = $params['delivery_option'];
 		$id_carrier = str_replace(',','',current(array_values($params['delivery_option'])));
-		
+		$shipping_cost = array();
 			if($id_address)
 			{
 				$Address = new Address($id_address);
@@ -451,6 +451,7 @@ class matisses extends Module
 									WHERE `id_state` = '.(int)$Address->id_state
 								);
 				
+				$salesWarehouseDTO['salesWarehouseDTO']['prestashopId'] = Context::getContext()->cart->id;
 				$salesWarehouseDTO['salesWarehouseDTO']['destinationCityCode'] = $State['iso_code'];
 				
 				
