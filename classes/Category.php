@@ -533,8 +533,8 @@ class CategoryCore extends ObjectModel
 				'.($sql_limit != '' ? $sql_limit : '');
            
             echo '<div style="display:none" data="davin7"><pre>'; 
-                    print_r($test);
-                echo '</div></pre>';
+                print_r($result);
+            echo '</div></pre>';
             
 			$categories = array();
 			$buff = array();
