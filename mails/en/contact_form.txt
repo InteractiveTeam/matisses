@@ -9,8 +9,6 @@ MESSAGE: {message}
 
 ORDER ID: {order_name}
 
-PRODUCT: {product_name}
-
 ATTACHED FILE: {attached_file} 		 
 
 We will answer as soon as possible. 
