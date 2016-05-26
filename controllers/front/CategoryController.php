@@ -176,7 +176,7 @@ class CategoryControllerCore extends FrontController
             $parent_category = new Category(65); 
 
             // Get parent category's subcategories (which is current category's siblings, including it self).
-            $category_siblings = $parent_category->checkifshow($parent_category,0);
+            //$category_siblings = $parent_category->checkifshow($parent_category,0);
             
             $products = $parent_category->getProducts($this->context->language->id,null,null,null,null, true, true);
             
@@ -190,7 +190,7 @@ class CategoryControllerCore extends FrontController
 				'subcategories_nb_total' => count($subCategories),
 				'subcategories_nb_half' => ceil(count($subCategories) / 2),
                 'davin' => $id_category,
-                'davin_subcate' => $category_siblings,
+                //'davin_subcate' => $category_siblings,
                 'products_num' => $sum,
                 'products' => $products
 			));

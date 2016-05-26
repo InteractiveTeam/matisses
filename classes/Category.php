@@ -593,7 +593,7 @@ class CategoryCore extends ObjectModel
 			  
 		}
         
-        /*echo '<div style="display:none"><pre>'; 
+        /*echo '<div style="display:none" davin><pre>'; 
             print_r($result);
         echo '</div></pre>';*/
         
@@ -602,8 +602,12 @@ class CategoryCore extends ObjectModel
 		{
 			$cat = new Category($category['id_category']);
             $testArray[] = array($this->checkifshow($cat,0),$category['id_category']);
-			if(!$this->checkifshow($cat,0))
+			if(!$this->checkifshow($cat,0)){
+                echo '<div style="display:none" data="davinn"><pre>'; 
+                    print_r($result[$k]);
+                echo '</div></pre>';
 				unset($result[$k]);
+            }
 		}
         
         /*echo '<div style="display:none"><pre>'; 
@@ -641,6 +645,7 @@ class CategoryCore extends ObjectModel
 			}
 		}else{
 				$products = $cat->getProducts($this->context->language->id,null,null,null,null, true, true);
+                //echo $products.' = DAVIN '.$cat->id.'<br>';
 				$products > 0  ? $sum = true : false;
 				return $sum;			
 			 }
@@ -665,6 +670,7 @@ class CategoryCore extends ObjectModel
 		if (!$context)
 			$context = Context::getContext();
 		if ($check_access && !$this->checkAccess($context->customer->id))
+            echo 'entro-davin-';
 			//return false;
 
 		$front = true;
@@ -702,8 +708,9 @@ class CategoryCore extends ObjectModel
 			die (Tools::displayError());
 
 		$id_supplier = (int)Tools::getValue('id_supplier');
-
+        
 		/* Return only the number of products */
+        
 		if ($get_total)
 		{
 			$sql = 'SELECT COUNT(cp.`id_product`) AS total
@@ -714,6 +721,10 @@ class CategoryCore extends ObjectModel
 					($front ? ' AND product_shop.`visibility` IN ("both", "catalog")' : '').
 					($active ? ' AND product_shop.`active` = 1' : '').
 					($id_supplier ? 'AND p.id_supplier = '.(int)$id_supplier : '');
+            
+            /*echo '<div style="display:none"><pre>'; 
+                print_r($sql); 
+            echo '</div></pre>';*/
 			return (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 		}
 
@@ -758,6 +769,8 @@ class CategoryCore extends ObjectModel
 			$sql .= ' ORDER BY '.(!empty($order_by_prefix) ? $order_by_prefix.'.' : '').'`'.bqSQL($order_by).'` '.pSQL($order_way).'
 			LIMIT '.(((int)$p - 1) * (int)$n).','.(int)$n;
 
+        
+        echo $sql;        
 		$result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
 		if ($order_by == 'orderprice')
 			Tools::orderbyPrice($result, $order_way);
