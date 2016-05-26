@@ -536,15 +536,19 @@ class wsmatisses extends Module
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
 		$order['incomingPaymentDTO']['nroFactura'] = Db::getInstance()->getValue('SELECT id_factura FROM `' . _DB_PREFIX_ . 'cart` WHERE id_cart= "'.$params['id_order'].'"');
-		$order['incomingPaymentDTO']['nroTarjeta'] = '1111';
-		$order['incomingPaymentDTO']['voucher'] = $params['receipt'];
+        $nroTarjeta = Db::getInstance()->getValue('SELECT credit_card FROM `' . _DB_PREFIX_ . 'payment_placetopay` WHERE id_order= "'.$params['id_order'].'"');
+        $nroTarjeta = str_replace('#',"",$nroTarjeta);
+		$order['incomingPaymentDTO']['nroTarjeta'] = $nroTarjeta;
+		$order['incomingPaymentDTO']['voucher']    = $params['receipt'];
+		$order['incomingPaymentDTO']['franquicia'] = $params['franchise_name'];
+		$order['incomingPaymentDTO']['tipo']       = 'CREDITO';
 		$order 		= self::array_to_xml($order,false);
 		$s 			= array('genericRequest' => array('data'		=>$order,
 														'object'	=>'order',
 														'operation'	=>'addPayment',
-														'source'	=>'prueba')
-												); 
-		$result = $client->call('callService', $s); 
+														'source'	=>'prestashop')
+												);
+		$result = $client->call('callService', $s);
 	}
 	
 	public function wsmatisses_anular($params)
