@@ -591,13 +591,12 @@ class CategoryCore extends ObjectModel
 		foreach ($result as &$row)
 		{
 			$row['id_image'] = Tools::file_exists_cache(_PS_CAT_IMG_DIR_.$row['id_category'].'.jpg') ? (int)$row['id_category'] : Language::getIsoById($id_lang).'-default';
-			$row['legend'] = 'no picture';
-			  
+			$row['legend'] = 'no picture';  
 		}
         
-        /*echo '<div style="display:none" davin><pre>'; 
+        echo '<div style="display:none" davin><pre>'; 
             print_r($result);
-        echo '</div></pre>';*/
+        echo '</div></pre>';
         
         $testArray = array();
 		foreach($result as $k => $category)
