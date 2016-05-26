@@ -33,7 +33,7 @@
 		<br>
 		{assign var="adrs_style" value=$addresses_style}
 	</div>
-	<div class="block_addresses grid_12 alpha omega">
+	<div class="block_addresses">
 	{foreach from=$multipleAddresses item=address name=myLoop}
     	<div class="grid_4">
 			<div class="address-cont {if $smarty.foreach.myLoop.last}last_item{elseif $smarty.foreach.myLoop.first}first_item{/if}{if $smarty.foreach.myLoop.index % 2} alternate_item{else} item{/if} box ">
