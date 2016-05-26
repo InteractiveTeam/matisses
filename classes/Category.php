@@ -772,15 +772,16 @@ class CategoryCore extends ObjectModel
         
         echo $sql;
 		$result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
+        
+        echo '<div style="display:none" data="davin3"><pre>';
+            print_r(Product::getProductsProperties($id_lang, $result));
+        echo '</div></pre>';
 		if ($order_by == 'orderprice')
 			Tools::orderbyPrice($result, $order_way);
 
 		if (!$result)
 			return array();
-
-        echo '<div style="display:none" data="davin3"><pre>';
-            print_r(Product::getProductsProperties($id_lang, $result));
-        echo '</div></pre>';
+        
 		/* Modify SQL result */
 		return Product::getProductsProperties($id_lang, $result);
 	}
