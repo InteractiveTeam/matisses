@@ -758,7 +758,7 @@ abstract class PaymentModuleCore extends Module
 						if (self::DEBUG_MODE)
 							PrestaShopLogger::addLog('PaymentModule::validateOrder - Mail is about to be sent', 1, null, 'Cart', (int)$id_cart, true);
 
-						if (Validate::isEmail($this->context->customer->email))
+						/*if (Validate::isEmail($this->context->customer->email))
 							Mail::Send(
 								(int)$order->id_lang,
 								'order_conf',
@@ -770,7 +770,7 @@ abstract class PaymentModuleCore extends Module
 								null,
 								$file_attachement,
 								null, _PS_MAIL_DIR_, false, (int)$order->id_shop
-							);
+							);*/
 					}
 
 					// updates stock in shops
