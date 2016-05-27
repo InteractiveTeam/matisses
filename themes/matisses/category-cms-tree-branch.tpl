@@ -38,14 +38,14 @@
 		{/foreach}
 		{if isset($node.cms) && $node.cms|@count > 0}
 			{foreach from=$node.cms item=cms name=cmsTreeBranch}
-				<li {if $smarty.foreach.cmsTreeBranch.last}class="last"{/if} ><a href="{$cms.link|escape:'html':'UTF-8'}" title="{$cms.meta_title|escape:'html':'UTF-8'}">{$cms.meta_title|escape:'html':'UTF-8'}</a></li>
+				{if $node.id > 2}<li {if $smarty.foreach.cmsTreeBranch.last}class="last"{/if} ><a href="{$cms.link|escape:'html':'UTF-8'}" title="{$cms.meta_title|escape:'html':'UTF-8'}">{$cms.meta_title|escape:'html':'UTF-8'}</a></li>{/if}
 			{/foreach}
 		{/if}
 		</ul>
 	{elseif isset($node.cms) && $node.cms|@count > 0}
 		<ul>
 		{foreach from=$node.cms item=cms name=cmsTreeBranch}
-			<li {if $smarty.foreach.cmsTreeBranch.last}class="last"{/if} ><a href="{$cms.link|escape:'html':'UTF-8'}" title="{$cms.meta_title|escape:'html':'UTF-8'}">{$cms.meta_title|escape:'html':'UTF-8'}</a></li>
+			{if $node.id > 2}<li {if $smarty.foreach.cmsTreeBranch.last}class="last"{/if} ><a href="{$cms.link|escape:'html':'UTF-8'}" title="{$cms.meta_title|escape:'html':'UTF-8'}">{$cms.meta_title|escape:'html':'UTF-8'}</a></li>{/if}
 		{/foreach}
 		</ul>
 	{/if}
