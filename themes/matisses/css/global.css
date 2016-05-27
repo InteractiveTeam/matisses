@@ -5250,7 +5250,7 @@ a.newPrint:hover {
 
 #image-block .wrap_image_block #view_full_size {
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 
 .pb-left-column #image-block .zoomPad {
@@ -5382,7 +5382,7 @@ a.newPrint:hover {
 }
 
 .fancybox-inner {
-    overflow-x: scroll;
+    overflow: hidden !important;
 }
 
 .cart_total_tax {
