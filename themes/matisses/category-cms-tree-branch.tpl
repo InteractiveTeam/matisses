@@ -22,7 +22,7 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-
+<pre>{$node|@print_r}</pre>
 <li {if isset($last) && $last == 'true'}class="last"{/if}>
 	<strong><a href="{$node.link|escape:'html':'UTF-8'}" title="{$node.name|escape:'html':'UTF-8'}">{$node.name|escape:'html':'UTF-8'}</a></strong>
 	{if isset($node.children) && $node.children|@count > 0}
