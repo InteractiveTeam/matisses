@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<li {if isset($last) && $last == 'true'}class="last"{/if}>
+{if $node.id > 3}<li {if isset($last) && $last == 'true'}class="last"{/if}>{/if}
 	<a href="{if $node.id > 3}{$node.link|escape:'html':'UTF-8'}{else}javascript:void(0){/if}" {if isset($currentCategoryId) && $node.id == $currentCategoryId}class="selected"{/if} title="{$node.desc|escape:'html':'UTF-8'}">{$node.name|escape:'html':'UTF-8'}</a>
 	{if $node.children|@count > 0}
 		<ul>
@@ -36,4 +36,4 @@
 		{/foreach}
 		</ul>
 	{/if}
-</li>
+{if $node.id > 3}</li>{/if}
