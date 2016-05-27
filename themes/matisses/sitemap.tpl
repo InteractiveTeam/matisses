@@ -108,27 +108,7 @@
             		</ul>
             	</div>
             </div>
-        </div>
-        <div id="listpage_content" class="cf">
-        	<div class="grid_6 alpha">
-        		<div class="categTree box">
-                    <h2 class="page-subheading">{l s='Categories'}</h2>
-                    <div class="tree_top">
-                        <a href="{$base_dir_ssl}" title="{$categoriesTree.name|escape:'html':'UTF-8'}"></a>
-                    </div>
-                    <ul class="tree">
-                    {if isset($categoriesTree.children)}
-                        {foreach $categoriesTree.children as $child}
-                            {if $child@last}
-                                {include file="$tpl_dir./category-tree-branch.tpl" node=$child last='true'}
-                            {else}
-                                {include file="$tpl_dir./category-tree-branch.tpl" node=$child}
-                            {/if}
-                        {/foreach}
-                    {/if}
-                    </ul>
-                </div>
-            </div>
+            
             <div class="grid_6 omega">
         		<div class="sitemap_block box">
                     <h2 class="page-subheading">{l s='Pages'}</h2>
@@ -164,6 +144,27 @@
                                 </a>
                             </li>
                         {/if}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="listpage_content" class="cf">
+        	<div class="grid_6 alpha">
+        		<div class="categTree box">
+                    <h2 class="page-subheading">{l s='Categories'}</h2>
+                    <div class="tree_top">
+                        <a href="{$base_dir_ssl}" title="{$categoriesTree.name|escape:'html':'UTF-8'}"></a>
+                    </div>
+                    <ul class="tree">
+                    {if isset($categoriesTree.children)}
+                        {foreach $categoriesTree.children as $child}
+                            {if $child@last}
+                                {include file="$tpl_dir./category-tree-branch.tpl" node=$child last='true'}
+                            {else}
+                                {include file="$tpl_dir./category-tree-branch.tpl" node=$child}
+                            {/if}
+                        {/foreach}
+                    {/if}
                     </ul>
                 </div>
             </div>

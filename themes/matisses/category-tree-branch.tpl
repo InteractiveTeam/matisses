@@ -28,7 +28,9 @@
 	{if $node.children|@count > 0}
 		<ul>
 		{foreach from=$node.children item=child name=categoryTreeBranch}
-			{if $node.id > 3}
+			{if $smarty.foreach.categoryTreeBranch.last}
+				{include file="$tpl_dir./category-tree-branch.tpl" node=$child last='true'}
+			{else}
 				{include file="$tpl_dir./category-tree-branch.tpl" node=$child last='false'}
 			{/if}
 		{/foreach}
