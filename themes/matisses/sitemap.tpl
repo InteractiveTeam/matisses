@@ -113,11 +113,6 @@
         		<div class="sitemap_block box">
                     <h2 class="page-subheading">{l s='Pages'}</h2>
                     <ul>
-                    	<li>
-                            <a href="{$categoriescmsTree.link|escape:'html':'UTF-8'}" title="{$categoriescmsTree.name|escape:'html':'UTF-8'}">
-                                {$categoriescmsTree.name|escape:'html':'UTF-8'}
-                            </a>
-                        </li>
                         {if isset($categoriescmsTree.children)}
                             {foreach $categoriescmsTree.children as $child}
                                 {if (isset($child.children) && $child.children|@count > 0) || $child.cms|@count > 0}
