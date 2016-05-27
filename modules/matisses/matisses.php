@@ -1784,7 +1784,7 @@ class matisses extends Module
 		return $result['return']['code']!='0101909' ? true : false;
 	}
 	
-	public function .($products)
+	public function ($products)
 	{
 		if(!is_array($products))
             return false;
