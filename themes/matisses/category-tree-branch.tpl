@@ -22,11 +22,9 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-<h2>{$node.id} {$node.name}</h2>
-<pre>{$node|@print_r}</pre>
-{if $node.id > 3}
+
 <li {if isset($last) && $last == 'true'}class="last"{/if}>
-	<a href="{$node.link|escape:'html':'UTF-8'}" {if isset($currentCategoryId) && $node.id == $currentCategoryId}class="selected"{/if} title="{$node.desc|escape:'html':'UTF-8'}">{$node.name|escape:'html':'UTF-8'}</a>
+	<a href="{if $node.id > 3}{$node.link|escape:'html':'UTF-8'}{else}javascript:void(0){/if}" {if isset($currentCategoryId) && $node.id == $currentCategoryId}class="selected"{/if} title="{$node.desc|escape:'html':'UTF-8'}">{$node.name|escape:'html':'UTF-8'}</a>
 	{if $node.children|@count > 0}
 		<ul>
 		{foreach from=$node.children item=child name=categoryTreeBranch}
@@ -39,4 +37,3 @@
 		</ul>
 	{/if}
 </li>
-{/if}
