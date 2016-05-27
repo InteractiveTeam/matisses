@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<li {if isset($last) && $last == 'true'}class="last"{/if}>
+{if $node.id > 2}<li {if isset($last) && $last == 'true'}class="last"{/if}>{/if}
     {if $node.id > 2}<strong><a href="{$node.link|escape:'html':'UTF-8'}" title="{$node.name|escape:'html':'UTF-8'}">{$node.name|escape:'html':'UTF-8'}</a></strong>{/if}
 	{if isset($node.children) && $node.children|@count > 0}
 		<ul>
@@ -49,4 +49,4 @@
 		{/foreach}
 		</ul>
 	{/if}
-</li>
+{if $node.id > 2}</li>{/if}
