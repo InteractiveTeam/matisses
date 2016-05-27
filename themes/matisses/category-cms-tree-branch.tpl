@@ -24,7 +24,7 @@
 *}
 
 {if $node.id > 2}<li {if isset($last) && $last == 'true'}class="last"{/if}>{/if}
-    {if $node.id > 2}<strong><a href="{$node.link|escape:'html':'UTF-8'}" title="{$node.name|escape:'html':'UTF-8'}">{$node.name|escape:'html':'UTF-8'}</a></strong>{/if}
+    {if $node.id > 2}<strong><a href="{$node.link|escape:'html':'UTF-8'}" title="{$node.name|escape:'html':'UTF-8'}">{$node.name|escape:'html':'UTF-8'}</a></strong>
 	{if isset($node.children) && $node.children|@count > 0}
 		<ul>
 		{foreach from=$node.children item=child name=categoryCmsTreeBranch}
@@ -43,6 +43,7 @@
 			{/foreach}
 		{/if}
 		</ul>
+    {/if}
 	{elseif isset($node.cms) && $node.cms|@count > 0}
 		<ul>
 		{foreach from=$node.cms item=cms name=cmsTreeBranch}
