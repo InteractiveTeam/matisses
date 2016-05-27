@@ -754,9 +754,11 @@ class matisses extends Module
             }
             
             //tags
-            foreach($tags as $tag){
-                foreach ($tag as $item) {
-                    array_push($tagsproduct,array('name' => $item));
+            if (!empty($tags)) {
+                foreach($tags as $tag){
+                    foreach ($tag as $item) {
+                        array_push($tagsproduct,array('name' => $item));
+                    }
                 }
             }
             
@@ -803,7 +805,7 @@ class matisses extends Module
 				'statusproduct' => $product->getQuantity($product->id),
                 'productcondition' => $product->condition,
                 'parents' => json_encode($parents)
-		    ));
+		    ));            
         }
         
         // Assing cart info to Chaordic
