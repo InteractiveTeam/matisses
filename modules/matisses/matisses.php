@@ -679,7 +679,7 @@ class matisses extends Module
                 }
                 
                 // price
-                $pricesku = $product->getPrice(true,$inrefer['id_product_attribute']);
+                $pricesku = $product->getPrice(true,$row['id_product_attribute']);
                 $tempattr['price'] = $pricesku;
                 
                 array_push($skuattr,$tempattr);
