@@ -58,6 +58,11 @@ class SearchControllerCore extends FrontController
 		$query = Tools::replaceAccentedChars(urldecode(Tools::getValue('q')));
         $original_query = Tools::getValue('q');
 
+        if (strlen(trim($query)) == 7){
+            $query = substr_replace($query, '0000000000000', 3, 0);
+            $original_query = $query;
+        }
+        
         if (preg_match('/[0-9]{3}[*\b][0-9]{4}/',trim($query))){
             $query = str_replace('*','0000000000000',$query);
             $original_query = $query;
@@ -96,11 +101,17 @@ class SearchControllerCore extends FrontController
 				'homeSize' => Image::getSize(ImageType::getFormatedName('home'))));
 		} elseif (($query = Tools::getValue('search_query', Tools::getValue('ref'))) && !is_array($query)) {
             $banderaRef =  false;
+
+            if (strlen(trim($query)) == 7){
+                $query = substr_replace($query, '0000000000000', 3, 0);
+                $banderaRef = true;
+            }
+            
             if(preg_match('/[0-9]{3}[*\b][0-9]{4}/',trim($query))){
                 $query = str_replace('*','0000000000000',$query);
                 $banderaRef = true;
             }
-            
+
 			$this->productSort();
 			$this->n = abs((int)(Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE'))));            
 			$this->p = abs((int)(Tools::getValue('p', 1)));
