@@ -175,7 +175,7 @@ class ContactControllerCore extends FrontController
 					if (isset($ct) && Validate::isLoadedObject($ct) && $ct->id_order)
 					{
 						$order = new Order((int)$ct->id_order);
-						$var_list['{order_name}'] = $order->getUniqReference();
+						$var_list['{order_name}'] = $order->getIdFacture();
 						$var_list['{id_order}'] = (int)$order->id;
 					}
 
