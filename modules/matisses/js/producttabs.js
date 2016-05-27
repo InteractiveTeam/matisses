@@ -6,14 +6,14 @@ $(document).ready(function(e) {
 		e.preventDefault();
 		url = $(this).attr('data-url');
 		if(url)
-			$.fancybox('<iframe src="'+window.location.origin+url+'"></iframe>');
+			$.fancybox('<iframe width="640" height="426" src="'+window.location.origin+url+'"></iframe>');
 	})
 	
 	$('.product-wow').on('click',function(e){
 		e.preventDefault();
 		url = $(this).attr('data-url');
 		if(url)
-			$.fancybox('<iframe width="420" height="315" src="'+url+'"></iframe>');
+			$.fancybox('<iframe scrolling="no" width="640" height="426" src="'+url+'"></iframe>');
 	})
 	
 	

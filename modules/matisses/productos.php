@@ -563,7 +563,7 @@
 			$_data['shortDescription']		= Tools::truncate(($_data['shortDescription']),190,'...');
 			$_data['meta_description']		= Tools::truncate(($_data['shortDescription']),130,'...');
 			$_data['meta_title']			= $_data['itemName'];
-			$_data['video']					= $_data['idYoutube']; 
+			$_data['video']					=  strstr($_data['itemCode'].'/animacion/'.basename(current(glob($path.'/animacion/*.html'))),'.html') ? $_data['itemCode'].'/animacion/'.basename(current(glob($path.'/animacion/*.html'))) : NULL;
 			
 			 
 			if($_data['newFrom'])

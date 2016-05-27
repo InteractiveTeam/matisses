@@ -64,6 +64,9 @@ class ProductCore extends ObjectModel
 	
 	/** @var string video */
 	public $video;
+    
+    /** @var string three_sixty */
+	public $three_sixty;
 	
 	/** @var string sketch */
 	public $sketch;

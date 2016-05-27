@@ -977,14 +977,17 @@ class matisses extends Module
 		return $this->display(__FILE__, 'views/templates/hook/product_available.tpl');
 	}
 	
-	public function hookdisplaySchemesProduct($params)
-	{
+	
+    public function hookdisplaySchemesProduct($params)	{
 		$sketch 		= $params['product']->sketch;
 		$video 			= $params['product']->video;
-		$three_sixty 	= $params['product']->three_sixty;
-		
+        $three_sixty 			= $params['product']->three_sixty;
+        
+        if($three_sixty)
+			$three_sixty = '/modules/'.$this->name.'/files/'.$three_sixty;
+        
 		if($video)
-			$video= 'https://www.youtube.com/embed/'.$video;
+			$video= '/modules/'.$this->name.'/files/'.$video;
 		
 		if($sketch)
 			$sketch = '/modules/'.$this->name.'/files/'.$params['product']->reference.'/plantilla/'.$sketch;
