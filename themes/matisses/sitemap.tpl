@@ -28,57 +28,6 @@
     <h1 class="page-heading"> {l s='Sitemap'} </h1>
     <div class="sitemap-page cf">
         <div id="sitemap_content" class="cf">
-        	<div class="grid_6 alpha">
-        		<div class="sitemap_block box">
-            		<h2 class="page-subheading">{l s='Our offers'}</h2>
-            		<ul>
-            			<li>
-                            <a
-                            href="{$link->getPageLink('new-products')|escape:'html':'UTF-8'}"
-                            title="{l s='View a new product'}">
-                                {l s='New products'}
-                            </a>
-                        </li>
-            			{if !$PS_CATALOG_MODE}
-            			{if $PS_DISPLAY_BEST_SELLERS}
-                			<li>
-                                <a
-                                href="{$link->getPageLink('best-sales')|escape:'html':'UTF-8'}"
-                                title="{l s='View top-selling products'}">
-                                    {l s='Best sellers'}
-                                </a>
-                            </li>
-                        {/if}
-                			<li>
-                                <a
-                                href="{$link->getPageLink('prices-drop')|escape:'html':'UTF-8'}"
-                                title="{l s='View products with a price drop'}">
-                                    {l s='Price drop'}
-                                </a>
-                            </li>
-            			{/if}
-            			{if $display_manufacturer_link OR $PS_DISPLAY_SUPPLIERS}
-                            <li>
-                                <a
-                                href="{$link->getPageLink('manufacturer')|escape:'html':'UTF-8'}"
-                                title="{l s='View a list of manufacturers'}">
-                                    {l s='Manufacturers'}
-                                </a>
-                            </li>
-                        {/if}
-            			{if $display_supplier_link OR $PS_DISPLAY_SUPPLIERS}
-                            <li>
-                                <a
-                                href="{$link->getPageLink('supplier')|escape:'html':'UTF-8'}"
-                                title="{l s='View a list of suppliers'}">
-                                    {l s='Suppliers'}
-                                </a>
-                            </li>
-                        {/if}
-            		</ul>
-        	   </div>
-            </div>
-
             <div class="grid_6 omega">
         		<div class="sitemap_block box">
             		<h2 class="page-subheading">
