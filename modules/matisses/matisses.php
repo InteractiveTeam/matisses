@@ -1519,8 +1519,8 @@ class matisses extends Module
         $nroTarjeta = str_replace('#',"",$nroTarjeta);
 		$order['incomingPaymentDTO']['nroTarjeta'] = $nroTarjeta;
 		$order['incomingPaymentDTO']['voucher']    = $params['receipt'];
-		$order['incomingPaymentDTO']['franquicia'] = $params['franchise_name'];
-		$order['incomingPaymentDTO']['tipo']       = 'CREDITO';
+		$order['incomingPaymentDTO']['franquicia'] = ($params['franchise'] == "_PSE_" ? $params['bank'] : $params['franchise_name']);
+		$order['incomingPaymentDTO']['tipo']       = ($params['franchise'] == "_PSE_" ? 'DEBITO' : 'CREDITO');
 		$order 		= self::array_to_xml($order,false);
 		$s 			= array('genericRequest' => array('data'		=>$order,
 														'object'	=>'order',
