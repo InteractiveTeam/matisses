@@ -2047,16 +2047,11 @@ class OrderCore extends ObjectModel
     	public function getIdFacture()
 	{
 		$query = new DbQuery();
-		$query->select('MIN(id_factura) as min, MAX(id_factura) as max');
+		$query->select('id_factura');
 		$query->from('cart');
 		$query->where('id_cart = '.(int)$this->id_cart);
 
-		$order = Db::getInstance()->getRow($query);
-
-		if ($order['min'] == $order['max'])
-			return $this->reference;
-		else
-			return $this->reference.'#'.($this->id + 1 - $order['min']);
+		$return Db::getInstance()->getValue($query);
 	}
 
 	/**
