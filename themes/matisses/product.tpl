@@ -263,6 +263,7 @@
 					<input type="hidden" name="add" value="1" />
 					<input type="hidden" name="id_product_attribute" id="idCombination" value="" />
 				</p>
+				
 				<div class="box-info-product">
 					<div class="product_attributes cf">
 						{if isset($groups)}

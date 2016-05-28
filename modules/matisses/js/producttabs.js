@@ -6,7 +6,7 @@ $(document).ready(function(e) {
 		e.preventDefault();
 		url = $(this).attr('data-url');
 		if(url)
-			$.fancybox('<iframe width="640" height="426" src="'+window.location.origin+url+'"></iframe>');
+			$.fancybox('<iframe width="650" height="500" src="'+window.location.origin+url+'"></iframe>');
 	})
 	
 	$('.product-wow').on('click',function(e){
