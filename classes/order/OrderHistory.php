@@ -440,7 +440,7 @@ class OrderHistoryCore extends ObjectModel
 					$file_attachement = null;
 
 				Mail::Send((int)$order->id_lang, $result['template'], $topic, $data, $result['email'], $result['firstname'].' '.$result['lastname'],
-					null, null, $file_attachement, null, _PS_MAIL_DIR_, false, (int)$order->id_shop);
+					null, null, /*$file_attachement*/ null, null, _PS_MAIL_DIR_, false, (int)$order->id_shop);
 			}
 
 			ShopUrl::resetMainDomainCache();

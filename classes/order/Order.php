@@ -2047,7 +2047,6 @@ class OrderCore extends ObjectModel
     public function getIdFacture()
 	{
 		$sql = "SELECT id_factura FROM ". _DB_PREFIX_ ."cart WHERE id_cart = ".(int)$this->id_cart;
-		echo "<pre>".$sql."</pre>";
 		return Db::getInstance()->getValue($sql);
 	}
 
