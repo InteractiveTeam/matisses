@@ -185,7 +185,7 @@ class MailCore extends ObjectModel
 				if (is_array($to_name) && $to_name && is_array($to_name) && Validate::isGenericName($to_name[$key]))
 					$to_name = $to_name[$key];
 
-				$to_name = (($to_name == null || $to_name == $addr) ? '' : self::mimeEncode($to_name));
+				$to_name = (($to_name == null || $to_name == $addr) ? '' : $to_name);
 				$to_list->addTo($addr, $to_name);
 			}
 			$to_plugin = $to[0];
@@ -194,7 +194,7 @@ class MailCore extends ObjectModel
 		{
 			/* Simple recipient, one address */
 			$to_plugin = $to;
-			$to_name = (($to_name == null || $to_name == $to) ? '' : self::mimeEncode($to_name));
+			$to_name = (($to_name == null || $to_name == $to) ? '' : $to_name);
 			$to_list->addTo($to, $to_name);
 		}
 		if (isset($bcc))

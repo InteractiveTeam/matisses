@@ -679,7 +679,7 @@ class matisses extends Module
                 }
                 
                 // price
-                $pricesku = $product->getPrice(true,$inrefer['id_product_attribute']);
+                $pricesku = $product->getPrice(true,$row['id_product_attribute']);
                 $tempattr['price'] = $pricesku;
                 
                 array_push($skuattr,$tempattr);
@@ -754,9 +754,11 @@ class matisses extends Module
             }
             
             //tags
-            foreach($tags as $tag){
-                foreach ($tag as $item) {
-                    array_push($tagsproduct,array('name' => $item));
+            if (!empty($tags)) {
+                foreach($tags as $tag){
+                    foreach ($tag as $item) {
+                        array_push($tagsproduct,array('name' => $item));
+                    }
                 }
             }
             
@@ -803,7 +805,7 @@ class matisses extends Module
 				'statusproduct' => $product->getQuantity($product->id),
                 'productcondition' => $product->condition,
                 'parents' => json_encode($parents)
-		    ));
+		    ));            
         }
         
         // Assing cart info to Chaordic
@@ -935,6 +937,37 @@ class matisses extends Module
             }
         }
 	}
+    
+    public function updateXML() {
+        
+        require_once _PS_MODULE_DIR_.'prestacenterxmlexportfree/prestacenterxmlexportfree.php';
+        $XML = new PrestaCenterXmlExportFree();
+            
+        $idservice = 0;
+        $idfeed = 0;
+            
+        // Obtengo el servicio de Matisses
+        $servicexml = Db::getInstance()->ExecuteS('SELECT id_pc_xmlfree_service as id_service FROM '._DB_PREFIX_.'pc_xmlfree_service WHERE name = "Matisses"');
+            
+        if (is_array($servicexml) && !empty($servicexml)) {
+            $idservice = $servicexml[0]['id_service'];
+        }
+            
+        // Obtengo el feed XML
+        $feedxml = Db::getInstance()->ExecuteS('SELECT id_pc_xmlfree_feed as id_feed FROM '._DB_PREFIX_.'pc_xmlfree_feed WHERE id_pc_xmlfree_service = "'.$idservice.'"');
+            
+        if (is_array($feedxml) && !empty($feedxml)) {
+            $idfeed = $feedxml[0]['id_feed'];
+        }
+            
+        // Asigno el id del feed xml y tipo de imagen
+        $settings = array(
+			'feedIds' => array($idfeed),
+			'imgType' => 'large_default'
+		);
+            
+        $XML->createExportFiles($settings);
+    }
     
     public function searchByReference($skus) {
         $references = $skus;
@@ -1808,7 +1841,7 @@ class matisses extends Module
 		$orderDTO = array();
 		$orderDTO['orderDTO']['header']['prestashopOrderId']= $this->context->cookie->id_cart;
 		$orderDTO['orderDTO']['header']['customerId']		= $this->context->customer->charter;
-		$orderDTO['orderDTO']['header']['comments']		= Db::getInstance()->getValue('SELECT message FROM '._DB_PREFIX_." WHERE id_cart = ".$this->context->cookie->id_cart);
+		$orderDTO['orderDTO']['header']['comments']		= Db::getInstance()->getValue('SELECT message FROM '._DB_PREFIX_."message WHERE id_cart = ".$this->context->cookie->id_cart);
 		foreach($products as $d => $v)
 		{
 			$orderDTO['orderDTO']['detail'][$d]['itemCode'] = $products[$d]['reference'];

@@ -566,7 +566,7 @@ abstract class PaymentModuleCore extends Module
 									'{firstname}' => $this->context->customer->firstname,
 									'{lastname}' => $this->context->customer->lastname,
 									'{id_order}' => $order->reference,
-									'{order_name}' => $order->getUniqReference()
+									'{order_name}' => $order->getIdFacture()
 								);
 								Mail::Send(
 									(int)$order->id_lang,
@@ -726,7 +726,7 @@ abstract class PaymentModuleCore extends Module
 						'{invoice_state}' => $invoice->id_state ? $invoice_state->name : '',
 						'{invoice_phone}' => ($invoice->phone) ? $invoice->phone : $invoice->phone_mobile,
 						'{invoice_other}' => $invoice->other,
-						'{order_name}' => $order->getUniqReference(),
+						'{order_name}' => $order->getIdFacture(),
 						'{date}' => Tools::displayDate(date('Y-m-d H:i:s'), null, 1),
 						'{carrier}' => ($virtual_product || !isset($carrier->name)) ? Tools::displayError('No carrier') : $carrier->name,
 						'{payment}' => Tools::substr($order->payment, 0, 32),
@@ -768,7 +768,7 @@ abstract class PaymentModuleCore extends Module
 								$this->context->customer->firstname.' '.$this->context->customer->lastname,
 								null,
 								null,
-								$file_attachement,
+								null,
 								null, _PS_MAIL_DIR_, false, (int)$order->id_shop
 							);
 					}
