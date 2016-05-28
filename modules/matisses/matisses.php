@@ -938,35 +938,126 @@ class matisses extends Module
         }
 	}
     
-    public function updateXML() {
+    public function createXML() {
         
-        require_once _PS_MODULE_DIR_.'prestacenterxmlexportfree/prestacenterxmlexportfree.php';
-        $XML = new PrestaCenterXmlExportFree();
+        $shopname = Configuration::get('PS_SHOP_NAME');
+        $shopurl = _PS_BASE_URL_;
+        $updatefeed = date('Y-m-d H:i:s a', time());
+        $idlang = $this->context->language->id;
+        
+        $xml = '<?xml version="1.0" encoding="UTF-8"?><rss xmlns:date="http://exslt.org/dates-and-times" xmlns:g="http://base.google.com/ns/1.0" xmlns:c="http://www.chaordic.com.br/ns/catalog/1.0" version="2.0">
+        <channel>
+        <title>'.$shopname.'</title>
+        <link>'.$shopurl.'</link>
+        <last_build_date>'.$updatefeed.'</last_build_date>';
+        
+        $objprod = new Product();
+        $link = new LinkCore();
+        $products = $objprod->getProducts($idlang,'0','10000','id_product','asc');
+        
+        foreach ($products as $product) {
+            $prod = new Product($product['id_product']);
+            $allrefer = $prod->getAttributeCombinaisons($idlang);
+            $cat = $objprod->getProductCategoriesFull($prod->id,$idlang);
+            $categoriesForMeta = array();
+            $categoriesprod = '';
+            $images = Image::getImages($idlang, $prod->id);
+            $quantity = $prod->getQuantity($prod->id);
+            $stock = '';
+            if ($quantity > 0) {
+                $stock = 'in stock';
+            } else {
+                $stock = 'out of stock';
+            }
+            $manufacturer = new Manufacturer($prod->id_manufacturer, $idlang);
+            $marca = $manufacturer->name;
+            $price = explode(".", $prod->price);
             
-        $idservice = 0;
-        $idfeed = 0;
+            foreach($cat as $row){
+                $categ = new Category($row['id_category']);
+                $parent = $categ->getParentsCategories($this->context->language->id);
+                
+                if ($categ->level_depth > 2) {
+                    $exist = false;
+                    foreach($categoriesForMeta as $cf){
+                        if ($parent[2]['level_depth'] > 2) {
+                            if($cf['id'] == $parent[2]['id_category']){
+                                $exist = true;
+                            }
+                        }
+                    }
+                    if(!$exist){
+                        if ($parent[2]['level_depth'] > 2) {
+                            array_push($categoriesForMeta, array(
+                                'id' => $parent[2]['id_category'],
+                                'name' => $parent[2]['name']
+                            ));   
+                        }
+                    }
+                    $exist = false;
+                    foreach($categoriesForMeta as $cf){
+                        if ($parent[1]['level_depth'] > 2) {
+                            if($cf['id'] == $parent[1]['id_category']){
+                                $exist = true;
+                            }
+                        }
+                    }
+                    if(!$exist){
+                        if ($parent[1]['level_depth'] > 2) {
+                            array_push($categoriesForMeta, array(
+                                'id' => $parent[1]['id_category'],
+                                'name' => $parent[1]['name'],
+                                'parents' => array($parent[2]['id_category'])
+                            ));   
+                        }
+                    }
+                     if ($parent[0]['level_depth'] > 3) {
+                         array_push($categoriesForMeta, array(
+                            'id' => $parent[0]['id_category'],
+                            'name' => $parent[0]['name'],
+                            'parents' => array($parent[1]['id_category'])
+                        ));   
+                     } else {
+                         array_push($categoriesForMeta, array(
+                            'id' => $parent[0]['id_category'],
+                            'name' => $parent[0]['name'],
+                        ));
+                     }
+                }
+            }
             
-        // Obtengo el servicio de Matisses
-        $servicexml = Db::getInstance()->ExecuteS('SELECT id_pc_xmlfree_service as id_service FROM '._DB_PREFIX_.'pc_xmlfree_service WHERE name = "Matisses"');
+            foreach ($categoriesForMeta as $categ) {
+                if (isset($categ['parents'][0])) {
+                    $categoriesprod .= '<c:category c:id="'.$categ['id'].'" c:parentId="'.$categ['parents'][0].'">'.$categ['name'].'</c:category>';   
+                } else {
+                    $categoriesprod .= '<c:category c:id="'.$categ['id'].'">'.$categ['name'].'</c:category>';
+                }
+            }
             
-        if (is_array($servicexml) && !empty($servicexml)) {
-            $idservice = $servicexml[0]['id_service'];
+            foreach($allrefer as $refer) {
+                
+                $hexcolor = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'attribute WHERE id_attribute = "'.$refer['id_attribute'].'"');
+                
+                $xml .= '<item>
+                        <g:item_group_id>'.$prod->id.'</g:item_group_id>
+                        <g:id>'.$refer['reference'].'</g:id>
+                        <title>'.$prod->getProductName($prod->id).'</title>
+                        <description>'.strip_tags($prod->description[1]).'</description>
+                        <c:categories>'.$categoriesprod.'</c:categories>
+                        <link>'.$prod->getLink().'</link>
+                        <g:image_link>'.$link->getImageLink($prod->link_rewrite[1], (int)$images[0]["id_image"], "large_default").'</g:image_link>
+                        <g:condition>'.$prod->condition.'</g:condition>
+                        <g:availability>'.$stock.'</g:availability>
+                        <g:price>'.$price[0].'</g:price>
+                        <g:gtin>0</g:gtin>
+                        <g:brand>'.$marca.'</g:brand>
+                        <g:custom_label_0>'.$hexcolor[0]['color'].'</g:custom_label_0>
+                    </item>';   
+            }
         }
-            
-        // Obtengo el feed XML
-        $feedxml = Db::getInstance()->ExecuteS('SELECT id_pc_xmlfree_feed as id_feed FROM '._DB_PREFIX_.'pc_xmlfree_feed WHERE id_pc_xmlfree_service = "'.$idservice.'"');
-            
-        if (is_array($feedxml) && !empty($feedxml)) {
-            $idfeed = $feedxml[0]['id_feed'];
-        }
-            
-        // Asigno el id del feed xml y tipo de imagen
-        $settings = array(
-			'feedIds' => array($idfeed),
-			'imgType' => 'large_default'
-		);
-            
-        $XML->createExportFiles($settings);
+        
+        $xml .= '</channel></rss>';       
+        return $xml;
     }
     
     public function searchByReference($skus) {
