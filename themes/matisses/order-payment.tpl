@@ -131,7 +131,7 @@
 											{/if}
 										{else}
 											<tr class="cart_total_delivery"{if $shippingCost <= 0} style="display:none"{/if}>
-												<td colspan="4" class="text-right">{l s='Total shipping (tax incl.)'}/td>
+												<td colspan="4" class="text-right">{l s='Total shipping (tax incl.)'}</td>
 												<td colspan="2" class="price" id="total_shipping" >{displayPrice price=$shippingCostTaxExc}</td>
 											</tr>
 										{/if}
