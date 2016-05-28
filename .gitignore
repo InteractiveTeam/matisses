@@ -42,3 +42,7 @@ cache/class_index.php
 config/xml/modules_native_addons.xml
 #Excluir imagenes, WOW y 360 de los productos
 modules/matisses/files/*
+
+#traducciones 
+/themes/matisses/modules/*/translations/es.php
+themes/matiises/lang/es.php
