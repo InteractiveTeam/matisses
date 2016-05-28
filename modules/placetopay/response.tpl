@@ -1,3 +1,4 @@
+<pre style="display:none">{$transaction|print_r}</pre>
 {if $status eq 'ok'}
 	<h2>{l s='Completed payment' mod='placetopay'}</h2>
 	<p>{l s='Estimado cliente, se aprobó el pago gracias por su compra.' mod='placetopay'}</p>
