@@ -268,20 +268,26 @@ class ContactControllerCore extends FrontController
 
 			$products = array();
 			$result = Db::getInstance()->executeS('
-			SELECT id_order
-			FROM '._DB_PREFIX_.'orders
+			SELECT id_factura,id_cart
+			FROM '._DB_PREFIX_.'cart
 			WHERE id_customer = '.(int)$this->context->customer->id.' ORDER BY date_add');
 			$orders = array();
 
 			foreach ($result as $row)
 			{
-				$order = new Order($row['id_order']);
-				$date = explode(' ', $order->date_add);
-				$tmp = $order->getProducts();
-				foreach ($tmp as $key => $val)
-					$products[$row['id_order']][$val['product_id']] = array('value' => $val['product_id'], 'label' => $val['product_name']);
+                $ord = Db::getInstance()->getRow('
+                SELECT id_order
+                FROM '._DB_PREFIX_.'orders
+                WHERE id_cart = '.$row['id_cart']);
+                if($ord['id_order'] != ""){
+                    $order = new Order($ord['id_order']);
+                    $date = explode(' ', $order->date_add);
+                    $tmp = $order->getProducts();
+                    foreach ($tmp as $key => $val)
+                        $products[$row['id_factura']][$val['product_id']] = array('value' => $val['product_id'], 'label' => $val['product_name']);
 
-				$orders[] = array('value' => $order->id, 'label' => $order->getUniqReference().' - '.Tools::displayDate($date[0], null) , 'selected' => (int)$this->getOrder() == $order->id);
+                    $orders[] = array('value' => $order->id, 'label' => $order->getIdFacture().' - '.Tools::displayDate($date[0], null) , 'selected' => (int)$this->getOrder() == $order->id);
+                }
 			}
 
 			$this->context->smarty->assign('orderList', $orders);
