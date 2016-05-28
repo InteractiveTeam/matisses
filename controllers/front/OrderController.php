@@ -114,6 +114,9 @@ class OrderControllerCore extends ParentOrderController
 	public function initContent()
 	{
 		parent::initContent();
+        
+        
+        $this->context->smarty->assign('phone', Configuration::get('PS_SHOP_PHONE'));
 
 		if (Tools::isSubmit('ajax') && Tools::getValue('method') == 'updateExtraCarrier')
 		{

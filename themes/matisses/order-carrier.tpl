@@ -62,7 +62,7 @@
 				{if !isset($delivery_option_list)}
                 <p class="alert alert-warning" id="noCarrierWarning">
 
-                    {l s='No carriers available.'}
+                    {l s='No carriers available.'} {$phone} o escríbenos a servicioalcliente@matisses.co para coordinar tu envío.
 
                 </p>
                 {else}
