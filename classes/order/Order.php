@@ -2044,11 +2044,11 @@ class OrderCore extends ObjectModel
 			return $this->reference.'#'.($this->id + 1 - $order['min']);
 	}
     
-    	public function getIdFacture()
+    public function getIdFacture()
 	{
 		$sql = "SELECT id_factura FROM ". _DB_PREFIX ."cart WHERE id_cart = ".(int)$this->id_cart;
 		echo "<pre>".$sql."</pre>";
-		$return Db::getInstance()->getValue($sql);
+		return Db::getInstance()->getValue($sql);
 	}
 
 	/**
