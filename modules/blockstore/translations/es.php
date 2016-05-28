@@ -14,9 +14,9 @@ $_MODULE['<{blockstore}prestashop>blockstore_4d100d8b1b9bcb5a376f78365340cdbe'] 
 $_MODULE['<{blockstore}prestashop>blockstore_a34202cc413553fe0fe2d46f706db435'] = 'Texto para el bloque Localización de la Tienda';
 $_MODULE['<{blockstore}prestashop>blockstore_c9cc8cce247e49bae79f15173ce97354'] = 'Guardar';
 $_MODULE['<{blockstore}prestashop>blockstore_8c0caec5616160618b362bcd4427d97b'] = '¡Nuestra(s) tienda(s)!';
-$_MODULE['<{blockstore}prestashop>blockstore_28fe12f949fd191685071517628df9b3'] = 'Descubra nuestras tiendas';
+$_MODULE['<{blockstore}prestashop>blockstore_28fe12f949fd191685071517628df9b3'] = 'Descubre nuestras tiendas';
 $_MODULE['<{blockstore}prestashop>blockstore_34c869c542dee932ef8cd96d2f91cae6'] = 'Nuestras tiendas';
-$_MODULE['<{blockstore}prestashop>blockstore_61d5070a61ce6eb6ad2a212fdf967d92'] = 'Descubra nuestras tiendas';
+$_MODULE['<{blockstore}prestashop>blockstore_61d5070a61ce6eb6ad2a212fdf967d92'] = 'Descubre nuestras tiendas';
 
 
 return $_MODULE;

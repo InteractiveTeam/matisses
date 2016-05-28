@@ -3,8 +3,8 @@
 global $_MODULE;
 $_MODULE = array();
 
-$_MODULE['<{blocksocial}prestashop>blocksocial_3c3fcc2aa9705117ce4b589ed5a72853'] = 'Bloque social';
-$_MODULE['<{blocksocial}prestashop>blocksocial_094d3ac865853e0be9ba42e80f0f7ee7'] = 'Le permite agregar información sobre las cuentas de redes sociales de su marca.';
+$_MODULE['<{blocksocial}prestashop>blocksocial_3c3fcc2aa9705117ce4b589ed5a72853'] = 'Bloque de administración de redes sociales';
+$_MODULE['<{blocksocial}prestashop>blocksocial_094d3ac865853e0be9ba42e80f0f7ee7'] = 'Permite agregar información sobre las cuentas de las redes sociales de su marca.';
 $_MODULE['<{blocksocial}prestashop>blocksocial_f4f70727dc34561dfde1a3c529b6205c'] = 'Ajustes';
 $_MODULE['<{blocksocial}prestashop>blocksocial_76f8961bb8f4bb2b95c07650f30a7e7b'] = 'Facebook URL';
 $_MODULE['<{blocksocial}prestashop>blocksocial_c162369096f0fe5784f05052ceee6b47'] = 'Su página de fans en Facebook.';

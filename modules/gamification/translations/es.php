@@ -3,16 +3,16 @@
 global $_MODULE;
 $_MODULE = array();
 
-$_MODULE['<{gamification}prestashop>admingamificationcontroller_ca96b4f8d13722aac99da25f94ea1711'] = 'Su experiencia comercial';
+$_MODULE['<{gamification}prestashop>admingamificationcontroller_ca96b4f8d13722aac99da25f94ea1711'] = 'Experticia comercial';
 $_MODULE['<{gamification}prestashop>admingamificationcontroller_7258e7251413465e0a3eb58094430bde'] = 'Administración';
-$_MODULE['<{gamification}prestashop>admingamificationcontroller_3d4aafb2eedeba2fbf92e852f0af745a'] = 'Experiencia Comercial';
+$_MODULE['<{gamification}prestashop>admingamificationcontroller_3d4aafb2eedeba2fbf92e852f0af745a'] = 'Experiencia comercial';
 $_MODULE['<{gamification}prestashop>admingamificationcontroller_98f770b0af18ca763421bac22b4b6805'] = 'Funcionalidades';
 $_MODULE['<{gamification}prestashop>admingamificationcontroller_f5c7922da355fd289ec1d6469e0583a7'] = 'Logros';
 $_MODULE['<{gamification}prestashop>admingamificationcontroller_8189ecf686157db0c0274c1f49373318'] = 'Internacional';
 $_MODULE['<{gamification}prestashop>admingamificationcontroller_851f12a0c936baace7f0e734d5c624e7'] = 'Principiante';
 $_MODULE['<{gamification}prestashop>admingamificationcontroller_583981a16ea761fe852b64094d8a887e'] = 'Pro';
 $_MODULE['<{gamification}prestashop>admingamificationcontroller_38f7af7416ffcd1524d8a4acda756cbf'] = 'Experto';
-$_MODULE['<{gamification}prestashop>admingamificationcontroller_e7613fe56cdbeddfc9bb6276fd0f0d12'] = 'Mago';
+$_MODULE['<{gamification}prestashop>admingamificationcontroller_e7613fe56cdbeddfc9bb6276fd0f0d12'] = 'Mago';gamificacion
 $_MODULE['<{gamification}prestashop>admingamificationcontroller_8d03eaad7ff7babdd33c2c74fe479ed0'] = 'Gurú';
 $_MODULE['<{gamification}prestashop>admingamificationcontroller_e4be4f3e3ae4ee9dda6b60815bf774c1'] = 'Leyenda';
 $_MODULE['<{gamification}prestashop>gamification_3d4aafb2eedeba2fbf92e852f0af745a'] = 'Experiencia Comercial';
@@ -37,7 +37,7 @@ $_MODULE['<{gamification}prestashop>view_bt_6b766dc388ad21053bde0f8fd95d1e04'] =
 $_MODULE['<{gamification}prestashop>view_bt_21dc1cfc9ef1cdfbb665cab323d5e1a9'] = 'Ahora pinchando un botón podrá ver las características para mejorar sus ventas que puede estarse perdiedo. ¡Tome ventaja y échele un vistazo abajo!';
 $_MODULE['<{gamification}prestashop>view_bt_bcc5a331e758a60ad298b4b18a26d0e0'] = 'Nuestro equipo está disponible para ayudarle. ¡Contacte hoy con nosotros!';
 $_MODULE['<{gamification}prestashop>view_bt_bcc254b55c4a1babdf1dcb82c207506b'] = 'Teléfono';
-$_MODULE['<{gamification}prestashop>view_bt_4b566d4e657c8c4f133057c73d1c6860'] = 'Llamenos: +1 (888) 947-6543';
+$_MODULE['<{gamification}prestashop>view_bt_4b566d4e657c8c4f133057c73d1c6860'] = 'Llámenos: +1 (888) 947-6543';
 $_MODULE['<{gamification}prestashop>view_bt_ce8ae9da5b7cd6c3df2929543a9af92d'] = 'Correo electrónico';
 $_MODULE['<{gamification}prestashop>view_bt_7d6d8e6610fd23b684be7e95a6cc5c39'] = 'Rellene un formulario de contacto';
 $_MODULE['<{gamification}prestashop>view_bt_6b6ac7834d96afefbca5677814769109'] = 'Nivel completado';

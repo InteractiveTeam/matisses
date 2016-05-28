@@ -10,11 +10,11 @@ $_MODULE['<{blockbestsellers}prestashop>blockbestsellers_f4f70727dc34561dfde1a3c
 $_MODULE['<{blockbestsellers}prestashop>blockbestsellers_26986c3388870d4148b1b5375368a83d'] = 'Productos para mostrar';
 $_MODULE['<{blockbestsellers}prestashop>blockbestsellers_2b21378492166b0e5a855e2da611659c'] = 'Determina el número de productos para mostrar en este bloque';
 $_MODULE['<{blockbestsellers}prestashop>blockbestsellers_24ff4e4d39bb7811f6bdf0c189462272'] = 'Siempre muestra este bloque';
-$_MODULE['<{blockbestsellers}prestashop>blockbestsellers_84b0c5fdef19ab8ef61cd809f9250d85'] = 'Mostrar el bloque, incluso si no hay productos más vendidos disponibles.';
+$_MODULE['<{blockbestsellers}prestashop>blockbestsellers_84b0c5fdef19ab8ef61cd809f9250d85'] = 'Mostrar el bloque, incluso si no hay productos más vendidos disponibles';
 $_MODULE['<{blockbestsellers}prestashop>blockbestsellers_00d23a76e43b46dae9ec7aa9dcbebb32'] = 'Activado';
 $_MODULE['<{blockbestsellers}prestashop>blockbestsellers_b9f5c797ebbf55adccdd8539a65a0241'] = 'Desactivado';
 $_MODULE['<{blockbestsellers}prestashop>blockbestsellers_c9cc8cce247e49bae79f15173ce97354'] = 'Guardar';
-$_MODULE['<{blockbestsellers}prestashop>blockbestsellers-home_09a5fe24fe0fc9ce90efc4aa507c66e7'] = 'No hay productos más vendidos en este momento.';
+$_MODULE['<{blockbestsellers}prestashop>blockbestsellers-home_09a5fe24fe0fc9ce90efc4aa507c66e7'] = 'No hay productos más vendidos en este momento';
 $_MODULE['<{blockbestsellers}prestashop>blockbestsellers_1d0a2e1f62ccf460d604ccbc9e09da95'] = 'Ver los productos más vendidos';
 $_MODULE['<{blockbestsellers}prestashop>blockbestsellers_3cb29f0ccc5fd220a97df89dafe46290'] = '¡Lo más vendido!';
 $_MODULE['<{blockbestsellers}prestashop>blockbestsellers_eae99cd6a931f3553123420b16383812'] = 'Los productos más vendidos';

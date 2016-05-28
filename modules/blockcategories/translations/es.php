@@ -5,11 +5,11 @@ $_MODULE = array();
 
 $_MODULE['<{blockcategories}prestashop>blockcategories_8f0ed7c57fca428f7e3f8e64d2f00918'] = 'Bloque de categorías';
 $_MODULE['<{blockcategories}prestashop>blockcategories_15a6f5841d9e4d7e62bec3319b4b7036'] = 'Añdir un bloque que ofrezca categorías de productos';
-$_MODULE['<{blockcategories}prestashop>blockcategories_23e0d4ecc25de9b2777fdaca3e2f3193'] = 'Nivel máximo: Número incorrecto';
+$_MODULE['<{blockcategories}prestashop>blockcategories_23e0d4ecc25de9b2777fdaca3e2f3193'] = 'Nivel máximo: número incorrecto';
 $_MODULE['<{blockcategories}prestashop>blockcategories_0cf328636f0d607ac24a5c435866b94b'] = 'HTML dinámico: opción no válida';
 $_MODULE['<{blockcategories}prestashop>blockcategories_f4f70727dc34561dfde1a3c529b6205c'] = 'Ajustes';
 $_MODULE['<{blockcategories}prestashop>blockcategories_1379a6b19242372c1f23cc9adedfcdd6'] = 'Categoría raíz';
-$_MODULE['<{blockcategories}prestashop>blockcategories_c6d333d07d30f7b4c31a94bbd510bf88'] = 'Seleccione la categoría a mostrar en el bloque. La categoría actual es la que el visitante se encuentra navegando.';
+$_MODULE['<{blockcategories}prestashop>blockcategories_c6d333d07d30f7b4c31a94bbd510bf88'] = 'Selecciona la categoría a mostrar en el bloque. La categoría actual es la que el visitante se encuentra navegando.';
 $_MODULE['<{blockcategories}prestashop>blockcategories_89b278a71f2be5f620307502326587a0'] = 'Categoría de inicio';
 $_MODULE['<{blockcategories}prestashop>blockcategories_62381fc27e62649a16182a616de3f7ea'] = 'Categoría actual';
 $_MODULE['<{blockcategories}prestashop>blockcategories_52b68aaa602d202c340d9e4e9157f276'] = 'Categoría padre';
@@ -30,7 +30,7 @@ $_MODULE['<{blockcategories}prestashop>blockcategories_5f73e737cedf8f4ccf880473a
 $_MODULE['<{blockcategories}prestashop>blockcategories_c9cc8cce247e49bae79f15173ce97354'] = 'Guardar';
 $_MODULE['<{blockcategories}prestashop>blockcategories_footer_af1b98adf7f686b84cd0b443e022b7a0'] = 'Categorías';
 $_MODULE['<{blockcategories}prestashop>blockcategories_af1b98adf7f686b84cd0b443e022b7a0'] = 'Categorías';
-$_MODULE['<{blockcategories}prestashop>blockcategories_admin_c69d9eead832257f587f7c9ec0026fe2'] = 'Usted puede cargar un máximo de 3 imágenes.';
+$_MODULE['<{blockcategories}prestashop>blockcategories_admin_c69d9eead832257f587f7c9ec0026fe2'] = 'Puedes cargar un máximo de 3 imágenes';
 $_MODULE['<{blockcategories}prestashop>blockcategories_admin_acc66e14d297c1bfc20986bf593cb054'] = 'Miniaturas';
 
 

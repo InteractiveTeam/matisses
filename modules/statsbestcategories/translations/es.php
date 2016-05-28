@@ -10,7 +10,7 @@ $_MODULE['<{statsbestcategories}prestashop>statsbestcategories_eebfd2d9a7ea25b9e
 $_MODULE['<{statsbestcategories}prestashop>statsbestcategories_f3547ae5e06426d87312eff7dda775aa'] = 'Precio total venta';
 $_MODULE['<{statsbestcategories}prestashop>statsbestcategories_c13329e42ec01a10f84c0f950274b404'] = 'Total visto';
 $_MODULE['<{statsbestcategories}prestashop>statsbestcategories_6e3b3150807da868ebd33ad2c991b8d7'] = 'Mejores categorías';
-$_MODULE['<{statsbestcategories}prestashop>statsbestcategories_e5510869e31bbf721ca15dff21cf1169'] = 'Añade un listado de las mejores categorías al panel de control de Estadísticas.';
+$_MODULE['<{statsbestcategories}prestashop>statsbestcategories_e5510869e31bbf721ca15dff21cf1169'] = 'Añade un listado de las mejores categorías al panel de control de Estadísticas';
 $_MODULE['<{statsbestcategories}prestashop>statsbestcategories_998e4c5c80f27dec552e99dfed34889a'] = 'Exportar CSV';
 
 

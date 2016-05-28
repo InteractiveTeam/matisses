@@ -5,7 +5,7 @@ $_MODULE = array();
 
 $_MODULE['<{statsforecast}prestashop>statsforecast_240c994d8b61c7bd68ac1c5182bbdb2e'] = 'Tabla de mando de estadísticas';
 $_MODULE['<{statsforecast}prestashop>statsforecast_b17fbc0dacaf9964df883d8065118b98'] = 'Este es el módulo principal para el tablero de estadísticas. Muestra un resumen de todas las estadísticas actuales.';
-$_MODULE['<{statsforecast}prestashop>statsforecast_7a27f506c0104592dcb95c31e650cfed'] = 'Las cantidades indicadas no incluyen impuestos.';
+$_MODULE['<{statsforecast}prestashop>statsforecast_7a27f506c0104592dcb95c31e650cfed'] = 'Las cantidades indicadas no incluyen impuestos';
 $_MODULE['<{statsforecast}prestashop>statsforecast_0f65535c189c29b4a5326a319baa4a8d'] = 'Intervalo de tiempo';
 $_MODULE['<{statsforecast}prestashop>statsforecast_c512b685438f41daa7386329a3b8f8d3'] = 'Diariamente';
 $_MODULE['<{statsforecast}prestashop>statsforecast_6c25e6a6da95b3d583c6ec4c3f82ed4d'] = 'Semanalmente';
@@ -19,7 +19,7 @@ $_MODULE['<{statsforecast}prestashop>statsforecast_51f2b17f5537de83c8b52dc52867f
 $_MODULE['<{statsforecast}prestashop>statsforecast_688cb5b32405309351ee01da0ff3c3ac'] = 'Porcentaje de compras';
 $_MODULE['<{statsforecast}prestashop>statsforecast_54358a914f51e1af19df8520159fe607'] = 'Ingresos';
 $_MODULE['<{statsforecast}prestashop>statsforecast_96b0141273eabab320119c467cdcaf17'] = 'Total';
-$_MODULE['<{statsforecast}prestashop>statsforecast_b1897515d548a960afe49ecf66a29021'] = 'regular';
+$_MODULE['<{statsforecast}prestashop>statsforecast_b1897515d548a960afe49ecf66a29021'] = 'Regular';
 $_MODULE['<{statsforecast}prestashop>statsforecast_89c1265be62d3ba835a3d963db5956b0'] = 'Previsiones';
 $_MODULE['<{statsforecast}prestashop>statsforecast_3bb1503332637805beddb73a2dd1fe1b'] = 'Conversión';
 $_MODULE['<{statsforecast}prestashop>statsforecast_ae5d01b6efa819cc7a7c05a8c57fcc2c'] = 'Visitantes';

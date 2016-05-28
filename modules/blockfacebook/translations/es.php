@@ -3,7 +3,7 @@
 global $_MODULE;
 $_MODULE = array();
 
-$_MODULE['<{blockfacebook}prestashop>blockfacebook_43d541d80b37ddb75cde3906b1ded452'] = 'Bloque caja Facebook Me Gusta';
+$_MODULE['<{blockfacebook}prestashop>blockfacebook_43d541d80b37ddb75cde3906b1ded452'] = 'Bloque Me Gusta de Facebook ';
 $_MODULE['<{blockfacebook}prestashop>blockfacebook_e2887a32ddafab9926516d8cb29aab76'] = 'Muestra un bloque para suscribirse a su página de Facebook.';
 $_MODULE['<{blockfacebook}prestashop>blockfacebook_20015706a8cbd457cbb6ea3e7d5dc9b3'] = 'Configuración actualizada';
 $_MODULE['<{blockfacebook}prestashop>blockfacebook_f4f70727dc34561dfde1a3c529b6205c'] = 'Ajustes';

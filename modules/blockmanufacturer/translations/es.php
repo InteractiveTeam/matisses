@@ -14,8 +14,8 @@ $_MODULE['<{blockmanufacturer}prestashop>blockmanufacturer_a7c6946ecc7f4ed19c269
 $_MODULE['<{blockmanufacturer}prestashop>blockmanufacturer_00d23a76e43b46dae9ec7aa9dcbebb32'] = 'Activado';
 $_MODULE['<{blockmanufacturer}prestashop>blockmanufacturer_b9f5c797ebbf55adccdd8539a65a0241'] = 'Desactivado';
 $_MODULE['<{blockmanufacturer}prestashop>blockmanufacturer_2eef734f174a02ae3d7aaafefeeedb42'] = 'Número de elementos a mostrar';
-$_MODULE['<{blockmanufacturer}prestashop>blockmanufacturer_b0fa976774d2acf72f9c62e9ab73de38'] = 'Usar menu desplegable';
-$_MODULE['<{blockmanufacturer}prestashop>blockmanufacturer_56353167778d1520bfecc70c470e6d8a'] = 'Mostrar fabricantes en un menu desplegable.';
+$_MODULE['<{blockmanufacturer}prestashop>blockmanufacturer_b0fa976774d2acf72f9c62e9ab73de38'] = 'Usar menú desplegable';
+$_MODULE['<{blockmanufacturer}prestashop>blockmanufacturer_56353167778d1520bfecc70c470e6d8a'] = 'Mostrar fabricantes en un menú desplegable.';
 $_MODULE['<{blockmanufacturer}prestashop>blockmanufacturer_c9cc8cce247e49bae79f15173ce97354'] = 'Guardar';
 $_MODULE['<{blockmanufacturer}prestashop>blockmanufacturer_2377be3c2ad9b435ba277a73f0f1ca76'] = 'Fabricantes';
 $_MODULE['<{blockmanufacturer}prestashop>blockmanufacturer_c70ad5f80e4c6f299013e08cabc980df'] = 'Más acerca de %s';
