@@ -24,7 +24,7 @@
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
 	__MessaggeLog("INICIA PROCESO ".date('H:i:s')." - ".$time."\n");
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
-	
+    
 	// Consulto las referencias
 	unset($_SESSION['REFERENCES']);
 	unset($_References);
@@ -41,10 +41,7 @@
 */
 	$_References    = __getReferences($_Modelos);	 
 
-
-
-	if(Configuration::get('ax_simpleproduct_data')=='')
-	{
+	if(Configuration::get('ax_simpleproduct_data')=='')	{
 		$ModelsExists = implode('","',array_keys($_References));
 		Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
 		Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
@@ -318,14 +315,12 @@
 					$_processImages = true;
 				
 				
-				
 				foreach($_Combination['arraymaterials'] as $km => $material)
 					$featuresmaterials[$km] = 	$material;
 
 			}
 			// cargo las caracteristicas
 			
-	
 			
 			//$_Product->name 				= $_ProductData['webName'];
 			$_Product->name 				= $_ProductData['itemName'];
@@ -352,13 +347,11 @@
             $_Product->active			= true;	
 			$_Product->redirect_type		= '404';
 			$_Product->ean13				= '0';
-			
+            
+            $_Product->id_manufacturer = $_ProductData['manufacture']['id_manufacturer'];
 			
 			if(!$_Product->link_rewrite)
 				$_Product->link_rewrite = Tools::link_rewrite(trim($_Product->name));
-				
-			
-			//echo "<pre>"; print_r($_Product); echo "</pre>";
 			
 			if(sizeof($_Categories)>0)
 				$_Product->id_category_default = end($_Categories);
@@ -447,8 +440,7 @@
 		}
 	}
 	
-	function __getReferences($_Modelos)
-	{
+	function __getReferences($_Modelos)	{
 		global $_wsmatisses;
 		if(!$_wsmatisses)
 			$_wsmatisses 	= new matisses;
@@ -473,15 +465,12 @@
 		__MessaggeLog(' Modelos consultados Fin: '.date('H:i:s')." TOTAL: ".count($_Data)."\n");
 		$_Models 	= array();
 		//$_Data = array_slice($_Data, 0 , 10); 
-		$_Data2 = $_Data;
-		
-		foreach($_Data2 as $key => $_Model)
-		{
-			if(is_array($_Model['references']))
-			{
-				foreach($_Model['references'] as $k => $_Reference)
-				{
-					
+                
+		$_Data2 = $_Data;        
+        
+		foreach($_Data2 as $key => $_Model) {
+			if(is_array($_Model['references'])) {
+				foreach($_Model['references'] as $k => $_Reference) {					
 					 __MessaggeLog(' ------------ Consultando ('.$_Model['code'].') '.date('H:i:s').' '.$_Reference."\n");
 					$_data =  __parseData($_wsmatisses->wsmatisses_getInfoProduct($_Reference));
 					if($_data)
@@ -489,23 +478,20 @@
 			
 				}
 			}else{
-					__MessaggeLog(' ------------ Consultando ('.$_Model['code'].') '.date('H:i:s').' '.$_Model['references']."\n");
-					$_data =  __parseData($_wsmatisses->wsmatisses_getInfoProduct($_Model['references']));
-					//$_data =  $_wsmatisses->wsmatisses_getInfoProduct($_Model['references']);
-				 	if($_data)
-						$_Models[$_Model['code']][$_Model['references']] = $_data;
-				 }
-		} 
-		
+                __MessaggeLog(' ------------ Consultando ('.$_Model['code'].') '.date('H:i:s').' '.$_Model['references']."\n");
+                $_data =  __parseData($_wsmatisses->wsmatisses_getInfoProduct($_Model['references']));
+                //$_data =  $_wsmatisses->wsmatisses_getInfoProduct($_Model['references']);
+                if($_data)
+                    $_Models[$_Model['code']][$_Model['references']] = $_data;
+             }
+		}
+                
 		// desactivo los productos que no existen
-		foreach($_Data2 as $d => $v)
-		{
+		foreach($_Data2 as $d => $v) {
 			$code = $v['code'];
-			if(!array_key_exists($code,$_Models))
-			{
+			if(!array_key_exists($code,$_Models)) {
 				$_IdProduct = Db::getInstance()->getValue('SELECT id_product FROM '._DB_PREFIX_.'product WHERE model = "'.$code.'"');
-				if($_IdProduct)
-				{
+				if($_IdProduct) {
 					$_Product 		= new Product($_IdProduct,false,(int)Configuration::get('PS_SHOP_DEFAULT'),(int)Configuration::get('PS_LANG_DEFAULT'));
 					$_Product_attributes = $_Product->getProductAttributesIds($_IdProduct);
 					foreach($_Product_attributes as $key => $product_attribute)
@@ -517,24 +503,15 @@
 					$_Product->update();
 					
 				}
-			}
-			
-				
-		}
-		
+			}	
+		}		
 		__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
 		return $_Models;
 	}
 	
-	function __parseData($_data)
-	{
+	function __parseData($_data){        
 		if($_data['description'] && $_data['shortDescription'] && $_data['price'] && $_data['itemName'] && $_data['model'] && $_data['subgroupCode'] && $_data['webName'] && sizeof($_data['color'])==3)
 		{
-			
-			$_data['itemName'] 			= $_data['itemName'];
-			$_data['color']['name'] 	= $_data['color']['name'];
-			$_data['shortDescription'] 	= $_data['shortDescription'];
-			$_data['description']		= $_data['description'];
 				
 			$path		= dirname(__FILE__).'/files/'.$_data['itemCode'];	
 			$materials 	= $_data['materials'];
@@ -564,20 +541,18 @@
 			$_data['meta_description']		= Tools::truncate(($_data['shortDescription']),130,'...');
 			$_data['meta_title']			= $_data['itemName'];
 			$_data['video']					=  strstr($_data['itemCode'].'/animacion/'.basename(current(glob($path.'/animacion/*.html'))),'.html') ? $_data['itemCode'].'/animacion/'.basename(current(glob($path.'/animacion/*.html'))) : NULL;
+            
+            $_data['manufacture'] = saveManufacture($_data['brand']['code'],$_data['brand']['name']);
 			
-			 
-			if($_data['newFrom'])
-			{
+            
+			if($_data['newFrom']) {
 				unset($date);
 				$date = explode('-',date('Y-m-d',$_data['newFrom']/1000));
 				if(checkdate ( $date[1] , $date[2] , $date[0] ))
 					$_data['newFrom']	= date('Y-m-d',$_data['newFrom']/1000);
 			}
 				
-			if(sizeof($_data['materials'])>0)
-			{
-				
-				
+			if(sizeof($_data['materials'])>0) {
 				$cares = "";
 				unset($arraymaterials);
 				$arraymaterials = array();
@@ -594,12 +569,10 @@
 			}
 			
 			$stock = $_data['stock'];
-			if(sizeof($stock)>0)
-			{
+			if(sizeof($stock)>0) {
 				$quantity = 0;
 				$WarehouseCode = array();
-				foreach($stock as $d => $v)
-				{ 
+				foreach($stock as $d => $v) { 
 					$quantity+= (int)$stock[$d]['quantity'];
 					array_push($WarehouseCode,$stock[$d]['warehouseCode']);
 				}
@@ -608,8 +581,7 @@
 				$_data['stock']['WarehouseCode'] 	= implode(',',array_unique(array_filter($WarehouseCode)));
 			}
 			
-			if(!empty($_data['subgroupCode']))
-			{
+			if(!empty($_data['subgroupCode'])) {
 				$CategoriesProduct = array();
 				$sql = 'SELECT id_category 
 					FROM ' . _DB_PREFIX_ . 'category
@@ -624,15 +596,11 @@
 				unset($_data['subgroupCode']);	
 				$_data['subgroupCode'] = $CategoriesProduct;	
 			}
-			
-
-			if($_data['processImages']==1)
-			{
+			            
+			if($_data['processImages']==1) {
 				unset($images);
-				if(sizeof($images = glob($path.'/images/*.jpg'))>0)
-				{
-					foreach($images as $dd => $image)
-					{
+				if(sizeof($images = glob($path.'/images/*.jpg'))>0) {
+					foreach($images as $dd => $image) {
 						if(filesize($image)>Configuration::get("PS_PRODUCT_PICTURE_MAX_SIZE"))
 							unset($images[$dd]);
 					}
@@ -640,8 +608,7 @@
 				}
 			}
 			
-			if($_data['color']['code'])
-			{
+			if($_data['color']['code']) {
 				unset($color);
 				$color =  Db::getInstance()->getRow("SELECT * FROM "._DB_PREFIX_."attribute WHERE id_sap='".$_data['color']['code']."'");
 				if(sizeof($color)>1)
@@ -671,9 +638,34 @@
 			}
 			return $_data;
 		}else{
-				return NULL;
-			 }
+            return NULL;
+         }
 	}
-	
+
+    /*Creación de la marca en casi no existir
+    * $brandcode => brand code of matisses
+    * $nameBrand => brand name
+    */
+    function saveManufacture($brandcode,$brandName){
+        $row = Db::getInstance()->getRow('SELECT * FROM '._DB_PREFIX_.'manufacturer WHERE brandcode ="'.$brandcode.'"');
+        
+        if(!$row['id_manufacturer']){
+            Db::getInstance()->Execute('INSERT INTO '._DB_PREFIX_.'manufacturer VALUES (null,"'.$brandName.'",
+            "'.date('Y-m-d H:i:s').'", "'.date('Y-m-d H:i:s').'",1,"'.$brandcode.'")');
+ 
+            $row = Db::getInstance()->getRow('SELECT *,MAX(id_manufacturer) id_last FROM '._DB_PREFIX_.'manufacturer GROUP BY id_manufacturer DESC');
+
+            $attributes_list = array(
+                'id_manufacturer' => $row['id_last'],
+                'id_lang' => 1
+            );
+
+            Db::getInstance()->insert('manufacturer_lang', $attributes_list);
+
+            Db::getInstance()->insert('manufacturer_shop', array('id_manufacturer' => $row['id_last'],'id_shop'=>1));
+        }
+        
+        return $row;        
+    }
 	
 ?>

@@ -1,3 +1,4 @@
+<pre style="display:none">{$transaction|print_r}</pre>
 {if $status eq 'ok'}
 	<h2>{l s='Completed payment' mod='placetopay'}</h2>
 	<p>{l s='Estimado cliente, se aprobó el pago gracias por su compra.' mod='placetopay'}</p>
@@ -53,10 +54,31 @@
 	<td>{l s='Transaction date' mod='placetopay'}</td>
 	<td><b>{$transaction['date']}</b></td>
 </tr>
+{if $transaction['franchise'] eq "_PSE_"}
+<tr valing="top">
+    <td>{l s='status' mod='placetopay'}</td>
+    <td>
+        {if $status eq 'ok'}
+            <p>{l s='Transacción aprobada' mod='placetopay'}</p>
+        {elseif $status eq 'fail'}
+            <p>{l s='Transacción fallida' mod='placetopay'}</p>
+        {elseif $status eq 'rejected'}
+            <p>{l s='Transacción rechazada' mod='placetopay'}</p>
+        {elseif $status eq 'pending'}
+            <p>{l s='Transacción pendiente' mod='placetopay'}</p>
+        {/if}
+    <td>
+</tr>
+<tr valign="top">
+	<td>{l s='Motivo' mod='placetopay'}</td>
+	<td><b>{$transaction['reason_description']}</b></td>
+</tr>
+{else}
 <tr valign="top">
 	<td>{l s='Status' mod='placetopay'}</td>
 	<td><b>{$transaction['reason']} - {$transaction['reason_description']}</b></td>
 </tr>
+{/if}
 <tr valign="top">
 	<td>{l s='Total amount' mod='placetopay'}</td>
 	<td><b>COP{displayPrice price=$transaction['amount']}</b></td>

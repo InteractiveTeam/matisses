@@ -146,7 +146,7 @@ class OrderHistoryCore extends ObjectModel
 					'{lastname}' => $customer->lastname,
 					'{firstname}' => $customer->firstname,
 					'{id_order}' => (int)$order->id,
-					'{order_name}' => $order->getUniqReference(),
+					'{order_name}' => $order->getIdFacture(),
 					'{nbProducts}' => count($virtual_products),
 					'{virtualProducts}' => $links
 				);
@@ -397,7 +397,7 @@ class OrderHistoryCore extends ObjectModel
 				'{lastname}' => $result['lastname'],
 				'{firstname}' => $result['firstname'],
 				'{id_order}' => (int)$this->id_order,
-				'{order_name}' => $order->getUniqReference()
+				'{order_name}' => $order->getIdFacture()
 			);
 
 			if ($result['module_name'])
@@ -440,7 +440,7 @@ class OrderHistoryCore extends ObjectModel
 					$file_attachement = null;
 
 				Mail::Send((int)$order->id_lang, $result['template'], $topic, $data, $result['email'], $result['firstname'].' '.$result['lastname'],
-					null, null, $file_attachement, null, _PS_MAIL_DIR_, false, (int)$order->id_shop);
+					null, null, /*$file_attachement*/ null, null, _PS_MAIL_DIR_, false, (int)$order->id_shop);
 			}
 
 			ShopUrl::resetMainDomainCache();
