@@ -46,3 +46,4 @@ modules/matisses/files/*
 #traducciones 
 /themes/matisses/modules/*/translations/es.php
 themes/matiises/lang/es.php
+translations/es/*
