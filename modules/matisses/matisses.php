@@ -438,6 +438,9 @@ class matisses extends Module
 	
 	public function hookactionCalculateShipping($params)
 	{
+        $myfile = fopen("testfile.txt", "w");
+        $txt = $params['file'] . " hora " . date('Y-m-d H:i:s a', time()) . " user " . (int)$this->context->customer->id;
+        fwrite($myfile, $txt);
 		//echo "<pre>"; print_r($params); echo "</pre>";die();
 		$id_address = $params['delivery_option'];
 		$id_carrier = str_replace(',','',current(array_values($params['delivery_option'])));
@@ -478,6 +481,8 @@ class matisses extends Module
                 'shippingCompany' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany'],
                 'error' => (!empty($errorMessage) ? false : true)
             );
+        
+        
         //die(var_dump($salesWarehouseDTO));
 			return json_encode($res);
 	}

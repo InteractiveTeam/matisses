@@ -2062,6 +2062,7 @@ class CartCore extends ObjectModel
             $params['delivery_option_list']	= $delyvery_selected;
             $params['delivery_option']		= $id_address;
             $params['products_cart']		= $this->getProducts();
+            $params['file'] = "Cart 1 getDeliveryOptionList";
             $total_shipping 				= Hook::exec('actionCalculateShipping',$params);
             $total_shipping 				= (array)json_decode($total_shipping);
             if(empty($total_shipping['shippingCompany']))
@@ -3082,6 +3083,7 @@ class CartCore extends ObjectModel
 		$params['delivery_option_list']	= $delivery_option_list;
 		$params['delivery_option']		= $this->id_address_delivery;
 		$params['products_cart']		= $this->getProducts();
+        $params['file'] = "Cart 2 getSummaryDetails";
 		$total_shipping 				= Hook::exec('actionCalculateShipping',$params);
         $total_shipping 				= (array)json_decode($total_shipping);
         
