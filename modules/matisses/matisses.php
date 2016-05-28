@@ -440,10 +440,6 @@ class matisses extends Module
 	{
         if (in_array($this->page_name, array('orderconfirmation')) == false) {
             
-            $myfile = fopen("testfile.txt", "a+b");
-            $txt = $params['file'] . " hora " . date('Y-m-d H:i:s a', time()) . " user " . (int)$this->context->customer->id ."\n";
-            fwrite($myfile, $txt);
-            //echo "<pre>"; print_r($params); echo "</pre>";die();
             $id_address = $params['delivery_option'];
             $id_carrier = str_replace(',','',current(array_values($params['delivery_option'])));
             $shipping_cost = array();
@@ -484,9 +480,8 @@ class matisses extends Module
                 'error' => (!empty($errorMessage) ? false : true)
             );
         
+            return json_encode($res);
         
-        //die(var_dump($salesWarehouseDTO));
-			return json_encode($res);
         } else {
             return false;
         }

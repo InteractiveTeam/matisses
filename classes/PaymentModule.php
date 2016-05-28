@@ -311,7 +311,6 @@ abstract class PaymentModuleCore extends Module
                     
                     $params['products_cart']		= $this->context->cart->getProducts();
                     $params['delivery_option']		= $id_address;
-                    $params['file']  = "Payment";
                     $total_shipping 				= Hook::exec('actionCalculateShipping',$params);
                     $total_shipping 				= (array)json_decode($total_shipping);
 
