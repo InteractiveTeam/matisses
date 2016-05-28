@@ -475,7 +475,7 @@ class AdminOrdersControllerCore extends AdminController
 							'{lastname}' => $customer->lastname,
 							'{id_order}' => $order->id,
 							'{shipping_number}' => $order->shipping_number,
-							'{order_name}' => $order->getUniqReference()
+							'{order_name}' => $order->getIdFacture()
 						);
 						if (@Mail::Send((int)$order->id_lang, 'in_transit', Mail::l('Package in transit', (int)$order->id_lang), $templateVars,
 							$customer->email, $customer->firstname.' '.$customer->lastname, null, null, null, null,
@@ -615,7 +615,7 @@ class AdminOrdersControllerCore extends AdminController
 								'{lastname}' => $customer->lastname,
 								'{firstname}' => $customer->firstname,
 								'{id_order}' => $order->id,
-								'{order_name}' => $order->getUniqReference(),
+								'{order_name}' => $order->getidFacture(),
 								'{message}' => $message
 							);
 							if (@Mail::Send((int)$order->id_lang, 'order_merchant_comment',
@@ -769,7 +769,7 @@ class AdminOrdersControllerCore extends AdminController
 									$params['{lastname}'] = $customer->lastname;
 									$params['{firstname}'] = $customer->firstname;
 									$params['{id_order}'] = $order->id;
-									$params['{order_name}'] = $order->getUniqReference();
+									$params['{order_name}'] = $order->getidFacture();
 									$params['{voucher_amount}'] = Tools::displayPrice($cart_rule->reduction_amount, $currency, false);
 									$params['{voucher_num}'] = $cart_rule->code;
 									$customer = new Customer((int)$order->id_customer);
@@ -918,7 +918,7 @@ class AdminOrdersControllerCore extends AdminController
 							$params['{lastname}'] = $customer->lastname;
 							$params['{firstname}'] = $customer->firstname;
 							$params['{id_order}'] = $order->id;
-							$params['{order_name}'] = $order->getUniqReference();
+							$params['{order_name}'] = $order->getIdFacture();
 						}
 
 						// Generate credit slip
@@ -2204,7 +2204,7 @@ class AdminOrdersControllerCore extends AdminController
 			'{lastname}' => $order->getCustomer()->lastname,
 			'{firstname}' => $order->getCustomer()->firstname,
 			'{id_order}' => (int)$order->id,
-			'{order_name}' => $order->getUniqReference()
+			'{order_name}' => $order->getidFacture()
 		);
 
 		Mail::Send(
