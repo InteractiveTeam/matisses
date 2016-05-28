@@ -56,18 +56,18 @@
 </tr>
 {if $transaction['franchise'] eq "_PSE_"}
 <tr valing="top">
-    <td>{l s='status' mod='placetopay'}</td>
+    <td>{l s='Status' mod='placetopay'}</td>
     <td>
         {if $status eq 'ok'}
-            <p>{l s='Transacción aprobada' mod='placetopay'}</p>
+            <p>{l s='Aprobada' mod='placetopay'}</p>
         {elseif $status eq 'fail'}
-            <p>{l s='Transacción fallida' mod='placetopay'}</p>
+            <p>{l s='Fallida' mod='placetopay'}</p>
         {elseif $status eq 'rejected'}
-            <p>{l s='Transacción rechazada' mod='placetopay'}</p>
+            <p>{l s='Rechazada' mod='placetopay'}</p>
         {elseif $status eq 'pending'}
-            <p>{l s='Transacción pendiente' mod='placetopay'}</p>
+            <p>{l s='Pendiente' mod='placetopay'}</p>
         {/if}
-    <td>
+    </td>
 </tr>
 <tr valign="top">
 	<td>{l s='Motivo' mod='placetopay'}</td>
