@@ -314,9 +314,9 @@ abstract class PaymentModuleCore extends Module
                     $total_shipping 				= Hook::exec('actionCalculateShipping',$params);
                     $total_shipping 				= (array)json_decode($total_shipping);
 
-					$order->total_shipping_tax_excl = total['total'];
-					$order->total_shipping_tax_incl = total['total'];
-					$order->total_shipping = total['total'];
+					$order->total_shipping_tax_excl = $total_shipping['total'];
+					$order->total_shipping_tax_incl = $total_shipping['total'];
+					$order->total_shipping = $total_shipping['total'];
 
 					if (!is_null($carrier) && Validate::isLoadedObject($carrier))
 						$order->carrier_tax_rate = $carrier->getTaxesRate(new Address($this->context->cart->{Configuration::get('PS_TAX_ADDRESS_TYPE')}));
