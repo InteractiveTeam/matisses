@@ -36,6 +36,7 @@
     
     echo "Davinn => Modelos";
     print_r($_Modelos);
+    exit();
 
 	$_References    = __getReferences($_Modelos);	 
 
