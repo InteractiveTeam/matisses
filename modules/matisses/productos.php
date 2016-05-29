@@ -703,7 +703,7 @@
 
         echo  $sql;
         
-        $products = Db::getInstance()->ExecuteS($sql)
+        $products = Db::getInstance()->ExecuteS($sql);
         
         echo 'Davinnnnn11144444 <pre>';
             print_r($products);
