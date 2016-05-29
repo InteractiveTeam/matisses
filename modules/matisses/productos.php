@@ -36,7 +36,8 @@
     
     echo "Davinn => Modelos";
     print_r($_Modelos);
-    
+    exit();
+
 	$_References    = __getReferences($_Modelos);	 
 
 	if(Configuration::get('ax_simpleproduct_data')=='')	{
@@ -696,6 +697,7 @@
 	/* Obetenes las referencias por el modelo
     * $models => todos los modelos delimitados por ","
     */
+
     function getProductsByModel($models){
         $models = array_map(function($el) { return "'{$el}'";},explode(',',$models));
         
