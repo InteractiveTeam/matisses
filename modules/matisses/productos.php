@@ -446,7 +446,7 @@
 		__MessaggeLog(' -------- Consultando modelos Inicio: '.date('H:i:s'));
 		
 
-		if(sizeof($_Modelos[0])>0)
+		if(sizeof($_Modelos)>0)
 		{
 			$_Data = $_Modelos;
 			//echo "<pre>"; print_r($_Modelos); echo "</pre>";
@@ -454,6 +454,15 @@
             $_Data 		= $_wsmatisses->wsmatisses_getModelInfo();
          }
 
+        
+        echo 'davinn3333 <br>';
+            echo sizeof($_Modelos[0]);        
+        echo 'davinn3333 <br>';
+        
+        echo 'davinn5555 <br>';
+            echo sizeof($_Data);
+        echo 'davinn5555 <br>';
+        
 	  	if($_Data['error_string'])
 		{
 			__MessaggeLog("\n".$_Data['error_string']."\n");
@@ -465,7 +474,7 @@
 		//$_Data = array_slice($_Data, 0 , 10); 
                 
 		$_Data2 = $_Data;        
-        
+        exit();
 		foreach($_Data2 as $key => $_Model) {
 			if(is_array($_Model['references'])) {                
 				foreach($_Model['references'] as $k => $_Reference) {					
@@ -480,13 +489,19 @@
                 //$_data =  $_wsmatisses->wsmatisses_getInfoProduct($_Model['references']);
                 if($_data)
                     $_Models[$_Model['code']][$_Model['references']] = $_data;
+                
+                echo "Davinn2 => Modelos";
+                echo '<pre>';
+                    print_r($_Models);
+                echo '</pre>';
+                echo "Davinn2 => Modelos";
+                echo '<pre>';
+                    print_r($_Models);
+                echo '</pre>';
              }
 		}
         
-        echo "Davinn2 => Modelos";
-        echo '<pre>';
-            print_r($_Models);
-        echo '</pre>';
+        
         
 		// desactivo los productos que no existen
 		foreach($_Data2 as $d => $v) {
@@ -684,14 +699,18 @@
         if ($products = Db::getInstance()->ExecuteS($sql)){
             $auxProducts = array();
             
+            echo 'Davinnnnn144444 <pre>';
+                print_r($products);
+            echo '</pre>';
+            
             foreach ($products as $row){
                 $product = new Product($row['id_product']);
                 //validamos si tiene combinaciones el producto
-                $attr = $product->getAttributesGroups(1);
+                //$attr = $product->getAttributesGroups(1);
                 
-                foreach($attr as $row2){                    
-                    $auxProducts[] = array('code'=>$row['model'],'references'=>$row2['reference']);    
-                }                
+                //foreach($attr as $row2){                    
+                    $auxProducts[] = array('code'=>$row['model'],'references'=>$row['reference']);    
+                //}                
             }
         }
         return $auxProducts;
