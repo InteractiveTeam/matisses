@@ -29,14 +29,15 @@
 	unset($_SESSION['REFERENCES']);
 	unset($_References);
 	__MessaggeLog('---- Consultando Referencias Inicio: '.date('H:i:s')."\n");
+    
 
     if(isset($_POST['modelo']) && $_POST['modelo'] != ""){
+        print_r($_POST);
         $_Modelos = getProductsByModel($_POST['modelo']);
     }
     
     echo "Davinn => Modelos";
     print_r($_Modelos);
-    exit();
 
 	$_References    = __getReferences($_Modelos);	 
 
@@ -441,10 +442,6 @@
 	
 	function __getReferences($_Modelos)	{
         
-        echo 'davinn4444 <br>';
-            echo $_Modelos;
-        echo 'davinn4444 <br>';
-        
 		global $_wsmatisses;
 		if(!$_wsmatisses)
 			$_wsmatisses 	= new matisses;
@@ -455,19 +452,10 @@
 		if(sizeof($_Modelos)>0)
 		{
 			$_Data = $_Modelos;
-			echo "qqqqqqqqqq<pre>"; print_r($_Modelos); echo "</pre>";
 		}else{
             $_Data 		= $_wsmatisses->wsmatisses_getModelInfo();
          }
 
-        
-        echo 'davinn3333 <br>';
-            echo sizeof($_Modelos[0]);        
-        echo 'davinn3333 <br>';
-        
-        echo 'davinn5555 <br>';
-            echo sizeof($_Data);
-        echo 'davinn5555 <br>';
         
 	  	if($_Data['error_string'])
 		{
@@ -496,14 +484,6 @@
                 if($_data)
                     $_Models[$_Model['code']][$_Model['references']] = $_data;
                 
-                echo "Davinn2 => Modelos";
-                echo '<pre>';
-                    print_r($_Models);
-                echo '</pre>';
-                echo "Davinn2 => Modelos";
-                echo '<pre>';
-                    print_r($_Models);
-                echo '</pre>';
              }
 		}
         
@@ -702,16 +682,8 @@
         $models = array_map(function($el) { return "'{$el}'";},explode(',',$models));
         
         $sql = 'SELECT * FROM '._DB_PREFIX_.'product WHERE model IN ('.implode(',',$models).')';
-
-        echo  $sql;
         
-        $products = Db::getInstance()->ExecuteS($sql);
-        
-        echo 'Davinnnnn11144444 <pre>';
-            print_r($products);
-        echo '</pre>';
-        
-        if ($products){
+        if ($products = Db::getInstance()->ExecuteS($sql)){
             $auxProducts = array();
             
             foreach ($products as $row){
