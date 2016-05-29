@@ -465,7 +465,7 @@
 		//$_Data = array_slice($_Data, 0 , 10); 
                 
 		$_Data2 = $_Data;        
-        exit();
+
 		foreach($_Data2 as $key => $_Model) {
 			if(is_array($_Model['references'])) {                
 				foreach($_Model['references'] as $k => $_Reference) {					
