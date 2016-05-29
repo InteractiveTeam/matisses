@@ -36,9 +36,6 @@
         $_Modelos = getProductsByModel($_POST['modelo']);
     }
     
-    echo "Davinn => Modelos";
-    print_r($_Modelos);
-
 	$_References    = __getReferences($_Modelos);	 
 
 	if(Configuration::get('ax_simpleproduct_data')=='')	{
@@ -677,7 +674,6 @@
 	/* Obetenes las referencias por el modelo
     * $models => todos los modelos delimitados por ","
     */
-
     function getProductsByModel($models){
         $models = array_map(function($el) { return "'{$el}'";},explode(',',$models));
         
@@ -689,11 +685,7 @@
             foreach ($products as $row){
                 $product = new Product($row['id_product']);
                 //validamos si tiene combinaciones el producto
-                //$attr = $product->getAttributesGroups(1);
-                
-                //foreach($attr as $row2){                    
-                    $auxProducts[] = array('code'=>$row['model'],'references'=>$row['reference']);    
-                //}                
+                $auxProducts[] = array('code'=>$row['model'],'references'=>$row['reference']);
             }
         }
         return $auxProducts;
