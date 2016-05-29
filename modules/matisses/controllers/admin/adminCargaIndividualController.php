@@ -25,29 +25,4 @@ class AdminCargaIndividualController extends ModuleAdminController  {
     public function initProcess() {
 		parent::initProcess();
 	}
-    
-    public function renderForm() {
-		// Building the Add/Edit form
-        $this->fields_form = array(
-            'legend' => array(
-                'title' => $this->l('Test')
-            ),
-            'input' => array(
-                array(
-                    'type' => 'text',
-                    'label' => $this->l('name test:'),
-                    'name' => 'name',
-                    'size' => 33,
-                    'required' => true,
-                    'desc' => $this->l('A description'),
-                )
-            ),
-            'submit' => array(
-                'title' => $this->l('    Save   '),
-                'class' => 'button'
-            )
-        );
-        $more = $this->module->display($this->path, 'views/templates/admin/PostList.tpl'); 
-        return parent::renderForm().$more;
-	}
 }

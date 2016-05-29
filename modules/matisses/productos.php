@@ -15,8 +15,8 @@
 	require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 	require_once dirname(__FILE__)."/matisses.php";
 	
-	if(Configuration::get('ax_simpleproduct_data')!='')
-		$_Modelos		= Tools::jsonDecode(Configuration::get('ax_simpleproduct_data'),true);
+	//if(Configuration::get('ax_simpleproduct_data')!='')
+	//	$_Modelos		= Tools::jsonDecode(Configuration::get('ax_simpleproduct_data'),true);
 	
 	//define('_PS_MODE_DEV_', false);
 	$_wsmatisses 	= new matisses;
@@ -29,16 +29,13 @@
 	unset($_SESSION['REFERENCES']);
 	unset($_References);
 	__MessaggeLog('---- Consultando Referencias Inicio: '.date('H:i:s')."\n");
-/*
-	if($_SESSION['REFERENCES'])
-	{
-		$_References = $_SESSION['REFERENCES'];
-	}else{
-			$_References    = __getReferences($_Modelos);
-			$_SESSION['REFERENCES'] = $_References;
-		 }
 
-*/
+    if(isset($_POST['models']) && $_POST['models'] != ""){
+        $_Modelos = getProductsByModel($_POST['models']);
+    }
+
+    print_r($_Modelos);
+    
 	$_References    = __getReferences($_Modelos);	 
 
 	if(Configuration::get('ax_simpleproduct_data')=='')	{
@@ -448,13 +445,13 @@
 		__MessaggeLog(' -------- Consultando modelos Inicio: '.date('H:i:s'));
 		
 
-		if(sizeof($_Modelos)>0)
+		if(sizeof($_Modelos[0])>0)
 		{
 			$_Data = $_Modelos;
 			//echo "<pre>"; print_r($_Modelos); echo "</pre>";
 		}else{
-				$_Data 		= $_wsmatisses->wsmatisses_getModelInfo();
-			 }
+            $_Data 		= $_wsmatisses->wsmatisses_getModelInfo();
+         }
 
 	  	if($_Data['error_string'])
 		{
@@ -469,15 +466,14 @@
 		$_Data2 = $_Data;        
         
 		foreach($_Data2 as $key => $_Model) {
-			if(is_array($_Model['references'])) {
+			if(is_array($_Model['references'])) {                
 				foreach($_Model['references'] as $k => $_Reference) {					
 					 __MessaggeLog(' ------------ Consultando ('.$_Model['code'].') '.date('H:i:s').' '.$_Reference."\n");
 					$_data =  __parseData($_wsmatisses->wsmatisses_getInfoProduct($_Reference));
 					if($_data)
-						$_Models[$_Model['code']][$_Reference] =$_data;
-			
+						$_Models[$_Model['code']][$_Reference] =$_data;			
 				}
-			}else{
+			}else{                
                 __MessaggeLog(' ------------ Consultando ('.$_Model['code'].') '.date('H:i:s').' '.$_Model['references']."\n");
                 $_data =  __parseData($_wsmatisses->wsmatisses_getInfoProduct($_Model['references']));
                 //$_data =  $_wsmatisses->wsmatisses_getInfoProduct($_Model['references']);
@@ -485,7 +481,11 @@
                     $_Models[$_Model['code']][$_Model['references']] = $_data;
              }
 		}
-                
+        
+        echo '<pre>';
+            print_r($_Models);
+        echo '</pre>';
+        
 		// desactivo los productos que no existen
 		foreach($_Data2 as $d => $v) {
 			$code = $v['code'];
@@ -544,6 +544,10 @@
             
             $_data['manufacture'] = saveManufacture($_data['brand']['code'],$_data['brand']['name']);
 			
+            echo $_data['itemCode'].' => ';
+            echo '<pre>';                
+                print_r($_data['manufacture']);
+            echo '</pre>';
             
 			if($_data['newFrom']) {
 				unset($date);
@@ -647,7 +651,7 @@
     * $nameBrand => brand name
     */
     function saveManufacture($brandcode,$brandName){
-        $row = Db::getInstance()->getRow('SELECT * FROM '._DB_PREFIX_.'manufacturer WHERE brandcode ="'.$brandcode.'"');
+        $row = Db::getInstance()->getRow('SELECT * FROM '._DB_PREFIX_.'manufacturer WHERE brandcode ="'.trim($brandcode).'"');
         
         if(!$row['id_manufacturer']){
             Db::getInstance()->Execute('INSERT INTO '._DB_PREFIX_.'manufacturer VALUES (null,"'.$brandName.'",
@@ -667,5 +671,28 @@
         
         return $row;        
     }
-	
+	/* Obetenes las referencias por el modelo
+    * $models => todos los modelos delimitados por ","
+    */
+    function getProductsByModel($models){
+        $models = array_map(function($el) { return "'{$el}'";},explode(',',$models));
+        
+        $sql = 'SELECT * FROM '._DB_PREFIX_.'product WHERE model IN ('.implode(',',$models).')';
+
+        if ($products = Db::getInstance()->ExecuteS($sql)){
+            $auxProducts = array();
+            
+            foreach ($products as $row){
+                $product = new Product($row['id_product']);
+                //validamos si tiene combinaciones el producto
+                $attr = $product->getAttributesGroups(1);
+                
+                foreach($attr as $row2){                    
+                    $auxProducts[] = array('code'=>$row['model'],'references'=>$row2['reference']);    
+                }                
+            }
+        }
+        return $auxProducts;
+    }    
+
 ?>
