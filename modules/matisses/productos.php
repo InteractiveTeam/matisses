@@ -439,6 +439,11 @@
 	}
 	
 	function __getReferences($_Modelos)	{
+        
+        echo 'davinn4444 <br>';
+            echo $_Modelos;
+        echo 'davinn4444 <br>';
+        
 		global $_wsmatisses;
 		if(!$_wsmatisses)
 			$_wsmatisses 	= new matisses;
@@ -449,7 +454,7 @@
 		if(sizeof($_Modelos)>0)
 		{
 			$_Data = $_Modelos;
-			//echo "<pre>"; print_r($_Modelos); echo "</pre>";
+			echo "qqqqqqqqqq<pre>"; print_r($_Modelos); echo "</pre>";
 		}else{
             $_Data 		= $_wsmatisses->wsmatisses_getModelInfo();
          }
