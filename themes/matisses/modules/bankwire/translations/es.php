@@ -27,7 +27,7 @@ $_MODULE['<{bankwire}matisses>payment_execution_05adcee99142c1a60fb38bb1330bbbc1
 $_MODULE['<{bankwire}matisses>payment_execution_afda466128ee0594745d9f8152699b74'] = 'Ha elegido pagar por transferencia bancaria.';
 $_MODULE['<{bankwire}matisses>payment_execution_c884ed19483d45970c5bf23a681e2dd2'] = 'Aquí tiene un resumen de su pedido:';
 $_MODULE['<{bankwire}matisses>payment_execution_e2867a925cba382f1436d1834bb52a1c'] = 'El importe total de su pedido es';
-$_MODULE['<{bankwire}matisses>payment_execution_1f87346a16cf80c372065de3c54c86d9'] = '(impuestos inc.)';
+$_MODULE['<{bankwire}matisses>payment_execution_1f87346a16cf80c372065de3c54c86d9'] = '(IVA incluido)';
 $_MODULE['<{bankwire}matisses>payment_execution_b28be4c423d93e02081f4e79fe2434e8'] = 'Aceptamos diferentes monedas para la transferencia bancaria.';
 $_MODULE['<{bankwire}matisses>payment_execution_a7a08622ee5c8019b57354b99b7693b2'] = 'Elija una de las siguientes:';
 $_MODULE['<{bankwire}matisses>payment_execution_a854d894458d66d92cabf0411c499ef4'] = 'Aceptamos las siguientes monedas para las transferencias bancarias:';

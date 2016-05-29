@@ -26,7 +26,7 @@ $_MODULE['<{cheque}matisses>payment_execution_060bf2d587991d8f090a1309b285291c']
 $_MODULE['<{cheque}matisses>payment_execution_76ca011e4772bfcce26aecd42c598510'] = 'Ha elegido el pago por cheque.';
 $_MODULE['<{cheque}matisses>payment_execution_c884ed19483d45970c5bf23a681e2dd2'] = 'Aquí tiene un resumen de su pedido:';
 $_MODULE['<{cheque}matisses>payment_execution_3b3b41f131194e747489ef93e778ed0d'] = 'El importe total de su pedido asciende a';
-$_MODULE['<{cheque}matisses>payment_execution_1f87346a16cf80c372065de3c54c86d9'] = '(impuestos inc.)';
+$_MODULE['<{cheque}matisses>payment_execution_1f87346a16cf80c372065de3c54c86d9'] = '(IVA incluído)';
 $_MODULE['<{cheque}matisses>payment_execution_7b1c6e78d93817f61f2b1bbc2108a803'] = 'Aceptamos diferentes divisas para los cheques.';
 $_MODULE['<{cheque}matisses>payment_execution_a7a08622ee5c8019b57354b99b7693b2'] = 'Elija una de las siguientes:';
 $_MODULE['<{cheque}matisses>payment_execution_f73ad0f08052884ff465749bf48b55ce'] = 'Aceptamos la siguiente divisa para su pago:';
