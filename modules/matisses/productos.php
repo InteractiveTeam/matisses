@@ -30,8 +30,8 @@
 	unset($_References);
 	__MessaggeLog('---- Consultando Referencias Inicio: '.date('H:i:s')."\n");
 
-    if(isset($_POST['models']) && $_POST['models'] != ""){
-        $_Modelos = getProductsByModel($_POST['models']);
+    if(isset($_POST['modelo']) && $_POST['modelo'] != ""){
+        $_Modelos = getProductsByModel($_POST['modelo']);
     }
     
     echo "Davinn => Modelos";
@@ -701,12 +701,16 @@
         
         $sql = 'SELECT * FROM '._DB_PREFIX_.'product WHERE model IN ('.implode(',',$models).')';
 
-        if ($products = Db::getInstance()->ExecuteS($sql)){
+        echo  $sql;
+        
+        $products = Db::getInstance()->ExecuteS($sql)
+        
+        echo 'Davinnnnn11144444 <pre>';
+            print_r($products);
+        echo '</pre>';
+        
+        if ($products){
             $auxProducts = array();
-            
-            echo 'Davinnnnn144444 <pre>';
-                print_r($products);
-            echo '</pre>';
             
             foreach ($products as $row){
                 $product = new Product($row['id_product']);
