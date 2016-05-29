@@ -438,8 +438,9 @@ class matisses extends Module
 	
 	public function hookactionCalculateShipping($params)
 	{
-        if (in_array($this->page_name, array('orderconfirmation')) == false) {
-            
+        if (in_array($this->page_name, array('orderconfirmation'))) {
+            return null;        
+        } else {
             $id_address = $params['delivery_option'];
             $id_carrier = str_replace(',','',current(array_values($params['delivery_option'])));
             $shipping_cost = array();
@@ -481,9 +482,6 @@ class matisses extends Module
             );
         
             return json_encode($res);
-        
-        } else {
-            return false;
         }
 	}
 	
