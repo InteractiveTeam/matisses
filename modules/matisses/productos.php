@@ -33,9 +33,10 @@
     if(isset($_POST['models']) && $_POST['models'] != ""){
         $_Modelos = getProductsByModel($_POST['models']);
     }
-
-    print_r($_Modelos);
     
+    echo "Davinn => Modelos";
+    print_r($_Modelos);
+
 	$_References    = __getReferences($_Modelos);	 
 
 	if(Configuration::get('ax_simpleproduct_data')=='')	{
@@ -482,6 +483,7 @@
              }
 		}
         
+        echo "Davinn2 => Modelos";
         echo '<pre>';
             print_r($_Models);
         echo '</pre>';
@@ -674,6 +676,7 @@
 	/* Obetenes las referencias por el modelo
     * $models => todos los modelos delimitados por ","
     */
+
     function getProductsByModel($models){
         $models = array_map(function($el) { return "'{$el}'";},explode(',',$models));
         
