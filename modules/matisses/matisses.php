@@ -443,7 +443,6 @@ class matisses extends Module
 		$this->page_name = Dispatcher::getInstance()->getController();
         
         if ($this->page_name == 'orderconfirmation') {
-            die(print_r($this->page_name));
             return null;        
         } else {
             $id_address = $params['delivery_option'];
