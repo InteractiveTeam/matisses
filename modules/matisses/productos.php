@@ -32,8 +32,10 @@
     
 
     if(isset($_POST['modelo']) && $_POST['modelo'] != ""){
-        print_r($_POST);
+        
         $_Modelos = getProductsByModel($_POST['modelo']);
+        print_r($_POST);
+        print_r($_Modelos);
     }
     
 	$_References    = __getReferences($_Modelos);	 

@@ -26,7 +26,7 @@
         
         var http = new XMLHttpRequest(),
             url = "/modules/matisses/productos.php",
-            params = "models="+data;
+            params = "modelo="+data;
         
         http.open("POST", url, true);
 
