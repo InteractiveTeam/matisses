@@ -32,9 +32,13 @@
     
 
     $banderaPost = false;
-    if(isset($_POST['modelo']) && $_POST['modelo'] != ""){        
+    if(isset($_POST['modelo']) && $_POST['modelo'] != ""){
         $_Modelos = getProductsByModel($_POST['modelo']);
         $banderaPost = true;
+        if(sizeof($_Modelos)<1){
+            echo 'NO MODELS';
+            exit();
+        }
         print_r($_POST);
         print_r($_Modelos);
     }
@@ -98,10 +102,10 @@
 	
 	Search::indexation(true);
     
-    if($banderaPost){
+    /*if($banderaPost){
         return 'ok';
         exit();
-    }
+    }*/
 
 	$_success = Module::displayConfirmation('Carga completa!!');
     
