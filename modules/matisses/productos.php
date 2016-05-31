@@ -37,7 +37,7 @@
         print_r($_POST);
         print_r($_Modelos);
     }
-    
+    exit();
 	$_References    = __getReferences($_Modelos);	 
 
 	if(Configuration::get('ax_simpleproduct_data')=='')	{
