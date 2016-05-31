@@ -1,4 +1,8 @@
 <div class="bootstrap">
+   <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <span></span>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
@@ -35,16 +39,21 @@
         http.onreadystatechange = function() {
             if(http.readyState == 4 && http.status == 200) {
                 var str = http.responseText;
-                data.value = '';
+                var el = document.querySelectorAll(".alert span");
+                data.value = '';                
                 if(str.match(/NO MODELS/g)){
-                    alert('Algunas de los modelos no existe.');
-                }else if(str.match(/PRODUCTOS A CARGAR = 0/g)){
-                    alert('Algunas de las referencias no se actualizaron.');
-                } else{                    
-                    alert('Actualización exitosa.');                    
+                    el[0].innerText = 'Algunas de los modelos no existe.';
+                    el[0].parentNode.className += " alert-danger";
+                }else if(str.match(/PRODUCTOS A CARGAR = 0/g)){                    
+                    el[0].innerText = 'Algunas de las referencias no se actualizaron.';
+                    el[0].parentNode.className += " alert-danger";
+                } else{
+                    el[0].innerText = 'Actualización exitosa';
+                    el[0].parentNode.className += " alert-success";
                 }
             }
         }
+        
         http.send(params);
         
         return false;
