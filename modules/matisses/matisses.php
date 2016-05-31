@@ -441,7 +441,7 @@ class matisses extends Module
         $cart = $this->context->cart;
         $cant_prod = count($cart->getProducts());
         $cache = Cache::retrieve('cart_'.$cart->id);
-        if(!empty($cache) && $cache['cart_products'] == $cant_prod)
+        if(!empty($cache) && $cache['cart_products'] == $cant_prod && $cache['id_address'] == $params['delivery_option'])
             return json_encode($cache);
         
         echo "<pre>canditdad</pre>";
@@ -484,7 +484,8 @@ class matisses extends Module
             'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
             'shippingCompany' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany'],
             'error' => (!empty($errorMessage) ? false : true),
-            'cart_products' => count($cart->getProducts())
+            'cart_products' => count($cart->getProducts()),
+            'id_address' => $id_address
         );            
         Cache::store("cart_".$cart->id,$res);
 
