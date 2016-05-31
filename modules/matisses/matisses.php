@@ -442,7 +442,7 @@ class matisses extends Module
         global $cookie;
 		$this->page_name = Dispatcher::getInstance()->getController();
         
-        if (in_array($this->page_name, array('orderconfirmation'))) {
+        if ($this->page_name == 'orderconfirmation') {
             die(print_r($this->page_name));
             return null;        
         } else {
