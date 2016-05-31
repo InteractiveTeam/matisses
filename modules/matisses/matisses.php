@@ -441,6 +441,7 @@ class matisses extends Module
         $this->page_name = Dispatcher::getInstance()->getController();
         $cart = $this->context->cart;
         $cant_prod = count($cart->getProducts());
+        /*get cached shipping cost*/
         $cache = Cache::retrieve('cart_'.$cart->id);
         if(!empty($cache) && $cache['cart_products'] == $cant_prod && $cache['id_address'] == $params['delivery_option'])
             return json_encode($cache);
@@ -460,6 +461,7 @@ class matisses extends Module
 
             $salesWarehouseDTO['salesWarehouseDTO']['prestashopId'] = Context::getContext()->cart->id;
             $salesWarehouseDTO['salesWarehouseDTO']['destinationCityCode'] = $State['iso_code'];
+            $salesWarehouseDTO['salesWarehouseDTO']['invoiceNumber'] = $params['invoiceNumber'];
 
 
             foreach($params['products_cart'] as $k => $product)
