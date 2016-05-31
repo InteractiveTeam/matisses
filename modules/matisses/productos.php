@@ -31,13 +31,14 @@
 	__MessaggeLog('---- Consultando Referencias Inicio: '.date('H:i:s')."\n");
     
 
-    if(isset($_POST['modelo']) && $_POST['modelo'] != ""){
-        
+    $banderaPost = false;
+    if(isset($_POST['modelo']) && $_POST['modelo'] != ""){        
         $_Modelos = getProductsByModel($_POST['modelo']);
+        $banderaPost = true;
         print_r($_POST);
         print_r($_Modelos);
     }
-    exit();
+    
 	$_References    = __getReferences($_Modelos);	 
 
 	if(Configuration::get('ax_simpleproduct_data')=='')	{
@@ -70,8 +71,8 @@
 			unset($_References[$_Model]);
 		}
 	}else{
-			__MessaggeLog('SERVICIO SAP INACTIVO ---------------------------------------'."\n");
-		 }
+        __MessaggeLog('SERVICIO SAP INACTIVO ---------------------------------------'."\n");
+     }
 
 	Configuration::updateValue('ax_simpleproduct_data','');
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
@@ -96,7 +97,16 @@
 	');
 	
 	Search::indexation(true);
+    
+    if($banderaPost){
+        return 'ok';
+        exit();
+    }
+
 	$_success = Module::displayConfirmation('Carga completa!!');
+    
+    
+
 	if(sizeof($_Modelos)==0)
 		exit;
 		
