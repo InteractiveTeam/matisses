@@ -3958,7 +3958,7 @@ box-sizing: border-box;
 	.order-detail .price {
 	font-family: 'condensed';
 	color: #272727;
-	text-align: center;
+	text-align: right;
 	}
 	.fa-trash-o:before{
 	color: #d7162f;
@@ -4022,7 +4022,7 @@ box-sizing: border-box;
 	}
 	.order-detail td.cart_total {
     width: 11.25rem;
-	text-align: center;
+	text-align: right;
 	}
 	.order-detail tr.cart_total_tax {
     border-bottom: none;
@@ -4037,6 +4037,9 @@ box-sizing: border-box;
     width: 70%;
     border: none;
 	}
+    .order-detail thead tr th.cart_total.item {
+        text-align: center;
+    }
 	.cart_navigation a.standard-checkout, .cart_navigation button.standard-checkout {
     float: right;
 	}
