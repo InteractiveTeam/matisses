@@ -438,7 +438,12 @@ class matisses extends Module
 	
 	public function hookactionCalculateShipping($params)
 	{
+        global $smarty;
+        global $cookie;
+		$this->page_name = Dispatcher::getInstance()->getController();
+        
         if (in_array($this->page_name, array('orderconfirmation'))) {
+            die(print_r($this->page_name));
             return null;        
         } else {
             $id_address = $params['delivery_option'];
