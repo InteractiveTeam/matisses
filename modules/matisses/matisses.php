@@ -438,51 +438,58 @@ class matisses extends Module
 	
 	public function hookactionCalculateShipping($params)
 	{
-        if (in_array($this->page_name, array('orderconfirmation'))) {
-            return null;        
-        } else {
-            $id_address = $params['delivery_option'];
-            $id_carrier = str_replace(',','',current(array_values($params['delivery_option'])));
-            $shipping_cost = array();
-			if($id_address)
-			{
-				$Address = new Address($id_address);
-				$State 	 = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow('
-									SELECT *
-									FROM `'._DB_PREFIX_.'state`
-									WHERE `id_state` = '.(int)$Address->id_state
-								);
-				
-				$salesWarehouseDTO['salesWarehouseDTO']['prestashopId'] = Context::getContext()->cart->id;
-				$salesWarehouseDTO['salesWarehouseDTO']['destinationCityCode'] = $State['iso_code'];
-				
-				
-				foreach($params['products_cart'] as $k => $product)
-				{
-					$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['itemCode'] = $product['reference'];
-					$salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['quantity'] = $product['quantity'];
-                }
-				$salesWarehouseDTO = $this->array_to_xml($salesWarehouseDTO,false);
-				$response 	= $this->wsmatisses_get_data('inventoryItem','quoteShipping','pruebas',$salesWarehouseDTO,true);
-				if($response['return']['code']=='0101002')
-					$shipping_cost = $this->xml_to_array($response['return']['detail']);
-			}
-            /************************************************************
-            EL SIGUIENTE CAMPO VIENE RELACIONADO CON LA INCIDENCIA 36948
-            PARA EFECTOS DE DEBUG EN FUTUROS CASOS DONDE SE NECESITE
-            CONOCER EL ERROR QUE SE PRESENTE AL MOMENTO DE CONSULTAR EL 
-            ENVIO            
-            ************************************************************/
-            $errorMessage = $shipping_cost['shippingQuotationResultDTO']['errorMessage'];
-            /***********************************************************/
-            $res = array(
-                'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
-                'shippingCompany' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany'],
-                'error' => (!empty($errorMessage) ? false : true)
-            );
-        
-            return json_encode($res);
+        $this->page_name = Dispatcher::getInstance()->getController();
+        $cart = $this->context->cart;
+        $cant_prod = count($cart->getProducts());
+        $cache = Cache::retrieve('cart_'.$cart->id);
+        if(!empty($cache) && $cache['cart_products'] == $cant_prod && $cache['id_address'] == $params['delivery_option'])
+            return json_encode($cache);
+        if($this->page_name == 'orderconfirmation')
+            return null;
+        $id_address = $params['delivery_option'];
+        $id_carrier = str_replace(',','',current(array_values($params['delivery_option'])));
+        $shipping_cost = array();
+        if($id_address)
+        {
+            $Address = new Address($id_address);
+            $State 	 = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow('
+                                SELECT *
+                                FROM `'._DB_PREFIX_.'state`
+                                WHERE `id_state` = '.(int)$Address->id_state
+                            );
+
+            $salesWarehouseDTO['salesWarehouseDTO']['prestashopId'] = Context::getContext()->cart->id;
+            $salesWarehouseDTO['salesWarehouseDTO']['destinationCityCode'] = $State['iso_code'];
+
+
+            foreach($params['products_cart'] as $k => $product)
+            {
+                $salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['itemCode'] = $product['reference'];
+                $salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['quantity'] = $product['quantity'];
+            }
+            $salesWarehouseDTO = $this->array_to_xml($salesWarehouseDTO,false);
+            $response 	= $this->wsmatisses_get_data('inventoryItem','quoteShipping','pruebas',$salesWarehouseDTO,true);
+            if($response['return']['code']=='0101002')
+                $shipping_cost = $this->xml_to_array($response['return']['detail']);
         }
+        /************************************************************
+        EL SIGUIENTE CAMPO VIENE RELACIONADO CON LA INCIDENCIA 36948
+        PARA EFECTOS DE DEBUG EN FUTUROS CASOS DONDE SE NECESITE
+        CONOCER EL ERROR QUE SE PRESENTE AL MOMENTO DE CONSULTAR EL 
+        ENVIO            
+        ************************************************************/
+        $errorMessage = $shipping_cost['shippingQuotationResultDTO']['errorMessage'];
+        /***********************************************************/
+        $res = array(
+            'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
+            'shippingCompany' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany'],
+            'error' => (!empty($errorMessage) ? false : true),
+            'cart_products' => count($cart->getProducts()),
+            'id_address' => $id_address
+        );            
+        Cache::store("cart_".$cart->id,$res);
+
+        return json_encode($res);
 	}
 	
 	
