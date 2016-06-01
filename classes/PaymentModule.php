@@ -309,9 +309,9 @@ abstract class PaymentModuleCore extends Module
 					$order->total_discounts_tax_incl = (float)abs($this->context->cart->getOrderTotal(true, Cart::ONLY_DISCOUNTS, $order->product_list, $id_carrier));
 					$order->total_discounts = $order->total_discounts_tax_incl;
                     
-                    $params['delivery_option'] = (int) $id_address;
-                    $shipping_cost = hook::exec('actionCalculateShipping',$params);
-                    $shipping_cost = (array) json_decode($hipping_cost);
+                    $params['delivery_option']		= (int)$id_address;
+                    $total_shipping 				= Hook::exec('actionCalculateShipping',$params);
+                    $total_shipping 				= (array)json_decode($total_shipping);
                         
 
 					$order->total_shipping_tax_excl = $total_shipping['total'];
