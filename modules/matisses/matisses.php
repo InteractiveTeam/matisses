@@ -1820,6 +1820,7 @@ class matisses extends Module
 		{
 			require_once dirname(__FILE__)."/wsclasses/ws_product.php";
 			$ws_product = new ws_product();
+            echo "Davinnnn <pre>"; print_r($datos); echo "</pre>";
 			$ws_product->product_listStockChanges($datos);
 		}	
 	}
