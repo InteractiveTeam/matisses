@@ -159,6 +159,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 		foreach ($orders as &$order)
 		{
 			$myOrder = new Order((int)$order['id_order']);
+            $order['idFacture'] = $myOrder->getIdFacture();
 			if (Validate::isLoadedObject($myOrder))
 				$order['virtual'] = $myOrder->isVirtual(false);
 		}
