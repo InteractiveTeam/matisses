@@ -488,10 +488,6 @@ class matisses extends Module
             'cart_products' => count($cart->getProducts()),
             'id_address' => $id_address
         );
-        if(Tools::getValue('step') == 2 && Tools::getValue('controller') == 'order')
-            Db::getInstance()->update('cart',array(
-                'shipping_cost' => $shipping_cost['shippingQuotationResultDTO']['total']
-            ),'id_cart = '.$cart->id);
         Cache::store("cart_".$cart->id,$res);
 
         return json_encode($res);
