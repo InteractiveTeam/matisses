@@ -187,7 +187,6 @@ class ws_product extends matisses
 					//StockAvailable::setQuantity((int)$_Row['id_product'],(int)$_Row['id_product_attribute'],(int)$_Quantity);
                     StockAvailable::setQuantity((int)$_Row['id_product'],0,(int)$_Quantity);
 				}
-			 	echo $_Row['id_product']." - ".$_Row['id_product_attribute'].' - '.$v['itemCode'].' - '.$_Quantity."<br>";
 			}
 		}
 

@@ -4,7 +4,7 @@ global $_MODULE;
 $_MODULE = array();
 $_MODULE['<{statsforecast}matisses>statsforecast_240c994d8b61c7bd68ac1c5182bbdb2e'] = 'Tabla de mando de estadísticas';
 $_MODULE['<{statsforecast}matisses>statsforecast_b17fbc0dacaf9964df883d8065118b98'] = 'Este es el módulo principal para el tablero de estadísticas. Muestra un resumen de todas las estadísticas actuales.';
-$_MODULE['<{statsforecast}matisses>statsforecast_7a27f506c0104592dcb95c31e650cfed'] = 'Las cantidades indicadas no incluyen impuestos.';
+$_MODULE['<{statsforecast}matisses>statsforecast_7a27f506c0104592dcb95c31e650cfed'] = 'Las cantidades indicadas no incluyen impuestos';
 $_MODULE['<{statsforecast}matisses>statsforecast_0f65535c189c29b4a5326a319baa4a8d'] = 'Intervalo de tiempo';
 $_MODULE['<{statsforecast}matisses>statsforecast_c512b685438f41daa7386329a3b8f8d3'] = 'Diariamente';
 $_MODULE['<{statsforecast}matisses>statsforecast_6c25e6a6da95b3d583c6ec4c3f82ed4d'] = 'Semanalmente';

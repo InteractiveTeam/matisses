@@ -2,7 +2,7 @@
 
 global $_MODULE;
 $_MODULE = array();
-$_MODULE['<{dashgoals}matisses>dashgoals_50698c5b8ffaf2b7dd089898a244a668'] = 'Panel de Metas';
+$_MODULE['<{dashgoals}matisses>dashgoals_50698c5b8ffaf2b7dd089898a244a668'] = 'Panel de metas';
 $_MODULE['<{dashgoals}matisses>dashgoals_86f5978d9b80124f509bdb71786e929e'] = 'Enero';
 $_MODULE['<{dashgoals}matisses>dashgoals_659e59f062c75f81259d22786d6c44aa'] = 'Febrero';
 $_MODULE['<{dashgoals}matisses>dashgoals_fa3e5edac607a88d8fd7ecb9d6d67424'] = 'Marzo';

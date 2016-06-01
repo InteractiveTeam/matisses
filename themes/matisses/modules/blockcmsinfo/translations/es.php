@@ -3,9 +3,9 @@
 global $_MODULE;
 $_MODULE = array();
 $_MODULE['<{blockcmsinfo}matisses>blockcmsinfo_988659f6c5d3210a3f085ecfecccf5d3'] = 'Bloque de información CMS personalizado';
-$_MODULE['<{blockcmsinfo}matisses>blockcmsinfo_cd4abd29bdc076fb8fabef674039cd6e'] = 'Añade bloques de información personalizados en su tienda.';
-$_MODULE['<{blockcmsinfo}matisses>blockcmsinfo_86432715902fbaf53de469fed3fa6c53'] = 'Tiene que seleccionar al menos una tienda.';
-$_MODULE['<{blockcmsinfo}matisses>blockcmsinfo_d52eaeff31af37a4a7e0550008aff5df'] = 'Se produjo un error durante el guardado.';
+$_MODULE['<{blockcmsinfo}matisses>blockcmsinfo_cd4abd29bdc076fb8fabef674039cd6e'] = 'Añade bloques de información personalizados en tu tienda';
+$_MODULE['<{blockcmsinfo}matisses>blockcmsinfo_86432715902fbaf53de469fed3fa6c53'] = 'Tiene que seleccionar al menos una tienda';
+$_MODULE['<{blockcmsinfo}matisses>blockcmsinfo_d52eaeff31af37a4a7e0550008aff5df'] = 'Se produjo un error durante el guardado';
 $_MODULE['<{blockcmsinfo}matisses>blockcmsinfo_6f16c729fadd8aa164c6c47853983dd2'] = 'Nueva bloque CMS personalizado';
 $_MODULE['<{blockcmsinfo}matisses>blockcmsinfo_9dffbf69ffba8bc38bc4e01abf4b1675'] = 'Textos';
 $_MODULE['<{blockcmsinfo}matisses>blockcmsinfo_c9cc8cce247e49bae79f15173ce97354'] = 'Guardar';

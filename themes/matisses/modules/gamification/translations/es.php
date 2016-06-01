@@ -2,11 +2,11 @@
 
 global $_MODULE;
 $_MODULE = array();
-$_MODULE['<{gamification}matisses>gamification_3d4aafb2eedeba2fbf92e852f0af745a'] = 'Experiencia Comercial';
+$_MODULE['<{gamification}matisses>gamification_3d4aafb2eedeba2fbf92e852f0af745a'] = 'Experiencia comercial';
 $_MODULE['<{gamification}matisses>gamification_bacc1bf300527bad9c6ac2d3b875a8d8'] = '¡ Conviértase en un experto en e-commerce en un abrir y cerrar de ojos!';
-$_MODULE['<{gamification}matisses>admingamificationcontroller_ca96b4f8d13722aac99da25f94ea1711'] = 'Su experiencia comercial';
+$_MODULE['<{gamification}matisses>admingamificationcontroller_ca96b4f8d13722aac99da25f94ea1711'] = 'Tu experiencia comercial';
 $_MODULE['<{gamification}matisses>admingamificationcontroller_7258e7251413465e0a3eb58094430bde'] = 'Administración';
-$_MODULE['<{gamification}matisses>admingamificationcontroller_3d4aafb2eedeba2fbf92e852f0af745a'] = 'Experiencia Comercial';
+$_MODULE['<{gamification}matisses>admingamificationcontroller_3d4aafb2eedeba2fbf92e852f0af745a'] = 'Experiencia comercial';
 $_MODULE['<{gamification}matisses>admingamificationcontroller_98f770b0af18ca763421bac22b4b6805'] = 'Funcionalidades';
 $_MODULE['<{gamification}matisses>admingamificationcontroller_f5c7922da355fd289ec1d6469e0583a7'] = 'Logros';
 $_MODULE['<{gamification}matisses>admingamificationcontroller_8189ecf686157db0c0274c1f49373318'] = 'Internacional';
@@ -29,7 +29,7 @@ $_MODULE['<{gamification}matisses>filters_bt_5364259abab90e94890f2ed2481b9824'] 
 $_MODULE['<{gamification}matisses>filters_bt_dc450ba947e6adecbdbe68c25de03a1b'] = 'Sin validar';
 $_MODULE['<{gamification}matisses>filters_bt_07ad815187b53dc2ceaf5ad6e0a12bb1'] = 'Nivel:';
 $_MODULE['<{gamification}matisses>view_a0db49ba470c1c9ae2128c3470339153'] = 'Nivel';
-$_MODULE['<{gamification}matisses>view_2a0ab6a9172272d54f0d601b0ac157f3'] = '¡ Conviértase en un experto en e-commerce a pasos agigantados!';
+$_MODULE['<{gamification}matisses>view_2a0ab6a9172272d54f0d601b0ac157f3'] = '¡Conviértase en un experto en e-commerce a pasos agigantados!';
 $_MODULE['<{gamification}matisses>view_5cf06184f524aad72c14d3ec5d325c56'] = 'Con todas las importantes características y beneficios que ofrece PrestaShop, ¡Es importante seguir el ritmo!';
 $_MODULE['<{gamification}matisses>view_2c3193c85bb2555c333adfcfb824804a'] = 'El principal objetivo de todas las características que ofrecemos es ayudarle a que tenga éxito en el mundo del e-commerce. Para conseguir este objetivo hemos creado un sistema de medallas y puntos para  monitorizar fácilmente  su progreso como minorista.  Hemos desgranado el sistema en tres niveles, todos los cuales están integrados para triunfar en el mundo del e-commerce: (i) Uso de características clave del e-commerce en su tienda; (ii)  El desempeño de sus ventas; (iii) Su presencia en los mercados internacionales.';
 $_MODULE['<{gamification}matisses>view_6b766dc388ad21053bde0f8fd95d1e04'] = 'Cuanto más progreso haga su tienda, más medallas y puntos ganarás. No necesita enviar información o rellenar ningún formulario; nosotros sabemos que está ocupado, ¡todo es automático!';
@@ -56,12 +56,12 @@ $_MODULE['<{gamification}matisses>view_bt_6b6ac7834d96afefbca5677814769109'] = '
 $_MODULE['<{gamification}matisses>view_bt_82338dd23ce2fd2f6d3606c20f4ee96e'] = 'No hay medallas en esta sección';
 $_MODULE['<{gamification}matisses>notification_a0db49ba470c1c9ae2128c3470339153'] = 'Nivel';
 $_MODULE['<{gamification}matisses>notification_ca96b4f8d13722aac99da25f94ea1711'] = 'Su experiencia comercial';
-$_MODULE['<{gamification}matisses>notification_16a1daea9e8873542aec1e820798aa44'] = 'Última medalla :';
-$_MODULE['<{gamification}matisses>notification_15377177c0259c6f79341cc57da13f19'] = 'Siguiente medalla :';
+$_MODULE['<{gamification}matisses>notification_16a1daea9e8873542aec1e820798aa44'] = 'Última medalla:';
+$_MODULE['<{gamification}matisses>notification_15377177c0259c6f79341cc57da13f19'] = 'Siguiente medalla:';
 $_MODULE['<{gamification}matisses>notification_f8978f781f97e6f851e9c8f7059c37b2'] = 'Ver mi perfil completo';
 $_MODULE['<{gamification}matisses>notification_bt_a0db49ba470c1c9ae2128c3470339153'] = 'Nivel';
-$_MODULE['<{gamification}matisses>notification_bt_6153e612347ad743d65e4bbf06a2e404'] = '¿Quiere ocultar este consejo?';
-$_MODULE['<{gamification}matisses>notification_bt_ca96b4f8d13722aac99da25f94ea1711'] = 'Su experiencia comercial';
+$_MODULE['<{gamification}matisses>notification_bt_6153e612347ad743d65e4bbf06a2e404'] = '¿Quieres ocultar este consejo?';
+$_MODULE['<{gamification}matisses>notification_bt_ca96b4f8d13722aac99da25f94ea1711'] = 'Tu experiencia comercial';
 $_MODULE['<{gamification}matisses>notification_bt_16a1daea9e8873542aec1e820798aa44'] = 'Última medalla :';
 $_MODULE['<{gamification}matisses>notification_bt_15377177c0259c6f79341cc57da13f19'] = 'Siguiente medalla :';
 $_MODULE['<{gamification}matisses>notification_bt_f8978f781f97e6f851e9c8f7059c37b2'] = 'Ver mi perfil completo';

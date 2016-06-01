@@ -31,6 +31,6 @@ $_MODULE['<{statspersonalinfos}matisses>statspersonalinfos_e5884ca49180d38295ee4
 $_MODULE['<{statspersonalinfos}matisses>statspersonalinfos_62ce9f61153b331eabe9efc2fc7eb5c2'] = '35-49 años';
 $_MODULE['<{statspersonalinfos}matisses>statspersonalinfos_a7724f78dcdf2179c5ca651d15ed5b2c'] = '50-59 años';
 $_MODULE['<{statspersonalinfos}matisses>statspersonalinfos_6a239f88f1aeb0561e7786b6120d1d5e'] = '60 años y más';
-$_MODULE['<{statspersonalinfos}matisses>statspersonalinfos_73b0130037e21b76351aebfd29d0b9aa'] = 'distribución del país';
+$_MODULE['<{statspersonalinfos}matisses>statspersonalinfos_73b0130037e21b76351aebfd29d0b9aa'] = 'Distribución del país';
 $_MODULE['<{statspersonalinfos}matisses>statspersonalinfos_28e81c8343702f6c813cc31a7f90616a'] = 'Repartición por divisas';
 $_MODULE['<{statspersonalinfos}matisses>statspersonalinfos_f1dd68fb6a00d3e4d7f751deacde995d'] = 'Repartición por idiomas';
