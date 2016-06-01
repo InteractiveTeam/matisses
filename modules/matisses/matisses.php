@@ -1448,9 +1448,7 @@ class matisses extends Module
 		return self::wsmatissess_calculateAditionalCosts($params); 				
 	}
 	
-	public function wsmatissess_getReferencesByModel($params)
-	{
-		
+	public function wsmatissess_getReferencesByModel($params){        
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), array("trace"=>1,"exceptions"=>0)); 
 		$inventoryItemDTO['inventoryItemDTO']['model'] 		= $params;
@@ -1813,7 +1811,7 @@ class matisses extends Module
 	public function wsmatisses_listStockChanges()
 	{		
 		require_once dirname(__FILE__)."/classes/template.php";
-		$datos 		= $this->wsmatisses_get_data('inventoryItem','listStockChanges','sap',5);
+		$datos 		= $this->wsmatisses_get_data('inventoryItem','listStockChanges','sap',100);
 		if(is_array($datos))
 		{
 			require_once dirname(__FILE__)."/wsclasses/ws_product.php";

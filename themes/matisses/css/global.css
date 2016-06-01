@@ -2511,6 +2511,9 @@ box-sizing: border-box;
     #cart_summary .cart_total_delivery > td#total_shipping, #cart_summary .cart_total_price td#total_product, #cart_summary .cart_item td.cart_total {
     text-align: right;
     }
+    .table > thead > tr > th.cart_total.last_item {
+    text-align: center;
+    }
 	#cart_summary .stock-management-on tbody td.cart_description {
 	width: 480px;
 	}
@@ -4168,6 +4171,11 @@ box-sizing: border-box;
 	    padding-right: 0;
 	    line-height: inherit;
 	}
+
+    #header .cart_block {
+        max-height: 585px;
+        overflow-x: scroll;
+    }
 
 .main_panel	#cart .cart_block_list.expanded .cart-buttons a {
     color: #fff;
