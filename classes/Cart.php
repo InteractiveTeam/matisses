@@ -3092,6 +3092,9 @@ class CartCore extends ObjectModel
         $total_shipping 				= (array)json_decode($total_shipping);
         if($total_shipping['total'] == 0)
             $total_shipping['total'] = Db::getInstance()->getValue("SELECT shipping_cost FROM "._DB_PREFIX_."cart WHERE id_cart = ". $context->cart->id);
+        $fp = fopen('log_pagos.txt','a+');
+            fwrite($fp, json_encode($total_shipping));
+        fclose($fp);
         
 		return array(
 			'delivery' => $delivery,

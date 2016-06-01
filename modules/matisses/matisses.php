@@ -484,7 +484,7 @@ class matisses extends Module
         $res = array(
             'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
             'shippingCompany' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany'],
-            'error' => (!empty($errorMessage) ? false : true),
+            'error' => (!empty($errorMessage) ? true : false),
             'cart_products' => count($cart->getProducts()),
             'id_address' => $id_address
         );
