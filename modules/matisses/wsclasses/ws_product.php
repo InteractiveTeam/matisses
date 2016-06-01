@@ -177,25 +177,19 @@ class ws_product extends matisses
 			if($_Row['id_product']!='' && $_Row['id_product_attribute']!='')
 			{
 				//echo "<pre>"; print_r($_Row); echo "</pre>";
-				if(count(array_filter($v['stock'],'is_array'))==0)
-				{
+				if(count(array_filter($v['stock'],'is_array'))==0) {
 					$_Quantity = $v['stock']['quantity'];
 					StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],$_Quantity);
-				}
-				
-				if(count(array_filter($v['stock'],'is_array'))>0)
-				{
+				}else if(count($v['stock'])){//if(count(array_filter($v['stock'],'is_array'))>0)
 					$stock = $v['stock'];
-					foreach($stock  as $d => $vv)
-					{
+					foreach($stock  as $d => $vv) {
 						$_Quantity += $vv['quantity'];
 					}
 					StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],$_Quantity);
 				}
-			 	echo $_Row['id_product']." - ".$_Row['id_product_attribute'].' - '.$v['itemCode'].' - '.$_Quantity."<br>"; 
+			 	echo $_Row['id_product']." - ".$_Row['id_product_attribute'].' - '.$v['itemCode'].' - '.$_Quantity."<br>";
 			}
 		}
-		
 
 		return true;
 	}
