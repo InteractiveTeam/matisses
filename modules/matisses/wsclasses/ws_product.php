@@ -158,31 +158,31 @@ class ws_product extends matisses
 	}
 
 	public function product_listStockChanges($datos){                
-		if(!$_SESSION['datos'])
+		/*if(!$_SESSION['datos'])
 			$_SESSION['datos'] = $datos;
 			
-		//$datos = $_SESSION['datos'];	
+		$datos = $_SESSION['datos'];*/
 		
 		if(!is_array($datos))
 			return false;
 		
 		$inventario = $datos['inventoryChangesDTO']['changes'];
 		$stock = array();
-		echo "davinnnn4444<pre>"; print_r($inventario); echo "</pre>";
+		
 		foreach($inventario as $k => $v) {
 			$_Quantity  = 0;
 			$_Row 		= Db::getInstance()->getRow('SELECT id_product, id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.trim($v['itemCode']).'"');
 			//$isArray 	= filter_var($v['stock'],'array');
-            echo "davinnnn33333<pre>"; print_r(trim($v['itemCode'])); echo "</pre>";
+            
 			if($_Row['id_product']!='' && $_Row['id_product_attribute']!='') {
-				//echo "<pre>"; print_r($_Row); echo "</pre>";
+				
 				if(count(array_filter($v['stock'],'is_array'))==0) {
                     echo 'Davinsooooooon123456';
 					$_Quantity = $v['stock']['quantity'];
 					StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],$_Quantity);
 				}else if(count($v['stock'])){//if(count(array_filter($v['stock'],'is_array'))>0)
 					$stock = $v['stock'];
-                    echo 'Davinsooooooon';
+                    
 					foreach($stock  as $d => $vv) {
 						$_Quantity += $vv['quantity'];
 					}
