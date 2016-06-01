@@ -2064,9 +2064,6 @@ class CartCore extends ObjectModel
             $params['products_cart']		= $this->getProducts();
             $total_shipping 				= Hook::exec('actionCalculateShipping',$params);
             $total_shipping 				= (array)json_decode($total_shipping);
-            $fp = fopen('log_pagos.txt','a+');
-                fwrite($fp, json_encode($total_shipping));
-            fclose($fp);
         
             if($total_shipping['total'] == 0){
                  $row = Db::getInstance()->getRow("SELECT shipping_cost,shipping_company FROM "._DB_PREFIX_."cart WHERE id_cart = ". $this->id);

@@ -310,6 +310,9 @@ abstract class PaymentModuleCore extends Module
 					$order->total_discounts = $order->total_discounts_tax_incl;
                     
                     $total_shipping = Db::getInstance()->getValue("SELECT shipping_cost FROM "._DB_PREFIX_."cart WHERE id_cart = ". $order->id_cart);
+                    $fp = fopen('log_pagos.txt','a+');
+                        fwrite($fp, json_encode($total_shipping));
+                    fclose($fp);
 
 					$order->total_shipping_tax_excl = $total_shipping;
 					$order->total_shipping_tax_incl = $total_shipping;
