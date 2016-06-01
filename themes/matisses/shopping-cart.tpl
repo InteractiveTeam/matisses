@@ -106,7 +106,7 @@
 				{if $use_taxes}
 					{if $priceDisplay}
 						<tr class="cart_total_price">
-							<td rowspan="{+$total_discounts_num+$use_show_taxes+$total_wrapping_taxes_num}" colspan="3" id="cart_voucher" class="cart_voucher">
+							<td rowspan="{3+$total_discounts_num+$use_show_taxes+$total_wrapping_taxes_num}" colspan="3" id="cart_voucher" class="cart_voucher">
 								{if $voucherAllowed}
 									{if isset($errors_discount) && $errors_discount}
 										<ul class="alert alert-danger">
