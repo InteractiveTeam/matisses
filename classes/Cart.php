@@ -1586,9 +1586,9 @@ class CartCore extends ObjectModel
 			$order_total -= $order_total_discount;
 		}
 
-        /*if($shipping_fees == 0 && Tools::getValue('controller' == 'order')){
+        if($shipping_fees == 0 && Tools::getValue('controller' == 'order')){
             $shipping_fees = Db::getInstance()->getValue("SELECT shipping_cost FROM "._DB_PREFIX_."cart WHERE id_cart = ". $this->id);
-        }*/
+        }
         
 		if ($type == Cart::BOTH)
 			$order_total +=  $shipping_fees + $wrapping_fees;
