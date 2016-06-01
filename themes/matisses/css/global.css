@@ -4172,6 +4172,11 @@ box-sizing: border-box;
 	    line-height: inherit;
 	}
 
+    #header .cart_block {
+        max-height: 585px;
+        overflow-x: scroll;
+    }
+
 .main_panel	#cart .cart_block_list.expanded .cart-buttons a {
     color: #fff;
 }
