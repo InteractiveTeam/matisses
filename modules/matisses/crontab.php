@@ -11,8 +11,6 @@
 
 	$crontab	= pSQL(Tools::getValue('crontab'));
 
-	//$wsmatisses = new wsmatisses();
-
 	if($_POST['consultar'])
 	{
 		$objeto= 'customer';
@@ -67,7 +65,7 @@
 	}
 	switch($crontab)
 	{
-		case 'listStockChanges': $wsmatisses->wsmatisses_listStockChanges(); die('termine');  break;
+		case 'listStockChanges': $wsmatisses->wsmatisses_listStockChanges(); die('termine listStockChanges');  break;
 		case 'listDetailedLastDayStockChanges': $wsmatisses->wsmatisses_listDetailedLastDayStockChanges(); break;
 		case 'getStockChanges': 
 /* 		$ddf = fopen('error.log','a');

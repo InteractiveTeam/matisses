@@ -157,11 +157,11 @@ class ws_product extends matisses
 		return true;
 	}
 
-	public function product_listStockChanges($datos)
-	{
-		
-	
-				
+	public function product_listStockChanges($datos){
+        echo '<pre>';
+            print_r($datos);
+        echo '</pre>';
+        
 		if(!$_SESSION['datos'])
 			$_SESSION['datos'] = $datos;
 			
@@ -180,7 +180,7 @@ class ws_product extends matisses
 			$isArray 	= filter_var($v['stock'],'array');
 			if($_Row['id_product']!='' && $_Row['id_product_attribute']!='')
 			{
-				//echo "<pre>"; print_r($_Row); echo "</pre>";
+				echo "<pre>"; print_r($_Row); echo "</pre>";
 				if(count(array_filter($v['stock'],'is_array'))==0)
 				{
 					$_Quantity = $v['stock']['quantity'];
