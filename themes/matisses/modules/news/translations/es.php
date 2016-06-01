@@ -1,0 +1,36 @@
+<?php
+
+global $_MODULE;
+$_MODULE = array();
+$_MODULE['<{news}matisses>news_list_category_098b602d11d33a0ae6c7dc2203bb74a5'] = 'No se encontraron resultados para tu búsqueda:';
+$_MODULE['<{news}matisses>news_list_category_b460f0c249d3eaa77892150d17af1be8'] = 'No se encontraron artículos';
+$_MODULE['<{news}matisses>news_list_category_07182610017384c9d664dba18608a38d'] = 'Próximo artículo';
+$_MODULE['<{news}matisses>news_list_category_146ffe2fd9fa5bec3b63b52543793ec7'] = 'Mostrar más';
+$_MODULE['<{news}matisses>news_rss_be7ae9ee54f8cccf8aa188109cf983fa'] = 'Artículos';
+$_MODULE['<{news}matisses>news_sides_dd1ba1872df91985ed1ca4cde2dfe669'] = 'Artículos';
+$_MODULE['<{news}matisses>news_sides_c69dff324e81cb5dfa0382ff56e3a853'] = 'Más artículos';
+$_MODULE['<{news}matisses>news_sides_38bbe6038b6e595887b083ff3283c9c7'] = 'Todos';
+$_MODULE['<{news}matisses>new_item copy_8cf04a9734132302f96da8e113e80ce5'] = 'Inicio';
+$_MODULE['<{news}matisses>new_item copy_dd1ba1872df91985ed1ca4cde2dfe669'] = 'Artículos';
+$_MODULE['<{news}matisses>new_item copy_be53a0541a6d36f6ecb879fa2c584b08'] = 'Imagen';
+$_MODULE['<{news}matisses>new_item copy_8bf8854bebe108183caeb845c7676ae4'] = 'de';
+$_MODULE['<{news}matisses>new_item copy_ed2b5c0139cec8ad2873829dc1117d50'] = 'en';
+$_MODULE['<{news}matisses>new_item copy_5c45697740476e644d0e190c82449caf'] = 'Etiquetas';
+$_MODULE['<{news}matisses>new_item copy_347da0da598694c57fff1cbaa197d615'] = 'Productos relacionados';
+$_MODULE['<{news}matisses>new_item copy_4351cfebe4b61d8aa5efa1d020710005'] = 'Vista';
+$_MODULE['<{news}matisses>new_item copy_2d0f6b8300be19cf35e89e66f0677f95'] = 'Añadir al carrito';
+$_MODULE['<{news}matisses>new_item copy_9780790c790dbfd6d8036afeac3745b4'] = 'Relacionado';
+$_MODULE['<{news}matisses>new_item copy_1330988644c6dfe038e00e6384ac845a'] = '< Anterior';
+$_MODULE['<{news}matisses>new_item copy_dd9644efbcf9d41c5be6daed03514dd8'] = 'Siguiente >';
+$_MODULE['<{news}matisses>new_item_8cf04a9734132302f96da8e113e80ce5'] = 'Inicio';
+$_MODULE['<{news}matisses>new_item_dd1ba1872df91985ed1ca4cde2dfe669'] = 'Artículos';
+$_MODULE['<{news}matisses>new_item_be53a0541a6d36f6ecb879fa2c584b08'] = 'Imagen';
+$_MODULE['<{news}matisses>new_item_8bf8854bebe108183caeb845c7676ae4'] = 'de';
+$_MODULE['<{news}matisses>new_item_5c45697740476e644d0e190c82449caf'] = 'Etiquetas';
+$_MODULE['<{news}matisses>new_item_347da0da598694c57fff1cbaa197d615'] = 'Productos relacionados';
+$_MODULE['<{news}matisses>new_item_4351cfebe4b61d8aa5efa1d020710005'] = 'Vista ';
+$_MODULE['<{news}matisses>new_item_2d0f6b8300be19cf35e89e66f0677f95'] = 'Añadir al carrito';
+$_MODULE['<{news}matisses>new_item_1330988644c6dfe038e00e6384ac845a'] = '< Anterior';
+$_MODULE['<{news}matisses>new_item_dd9644efbcf9d41c5be6daed03514dd8'] = 'Siguiente >';
+$_MODULE['<{news}matisses>new_item_ed2b5c0139cec8ad2873829dc1117d50'] = 'en';
+$_MODULE['<{news}matisses>new_item_9780790c790dbfd6d8036afeac3745b4'] = 'Relacionado';

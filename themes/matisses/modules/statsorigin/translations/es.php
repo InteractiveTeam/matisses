@@ -12,7 +12,7 @@ $_MODULE['<{statsorigin}matisses>statsorigin_cec998cc46cd200fa97490137de2cc7f'] 
 $_MODULE['<{statsorigin}matisses>statsorigin_54f00c2c9a36e2b300b5bacc1bb7912c'] = 'El referente es la URL de la página anterior, desde la cual el visitante siguió el enlace a la tuya.';
 $_MODULE['<{statsorigin}matisses>statsorigin_7231fe46fc79eb2b3a269f790b79e01f'] = 'Un referente le permite saber qué palabras claves incorporan los visitantes en motores de búsqueda cuando intentan acceder a su tienda; y también optimizar su promoción en la Webrnrn.';
 $_MODULE['<{statsorigin}matisses>statsorigin_af19c8da1c414055c960a73d86471119'] = 'Un referente puede ser';
-$_MODULE['<{statsorigin}matisses>statsorigin_c227be237c874ba6b2f8771d7b66b90e'] = 'Alguien ha puesto un link de su tienda en su sitio Web';
+$_MODULE['<{statsorigin}matisses>statsorigin_c227be237c874ba6b2f8771d7b66b90e'] = 'Alguien ha puesto un enlace de tu tienda en tu sitio web';
 $_MODULE['<{statsorigin}matisses>statsorigin_ea87a2280d5cdb638a2727147a3dd85c'] = 'Un colaborador con quien intercambió enlaces para aumentar las ventas o para atraer nueva clientela.';
 $_MODULE['<{statsorigin}matisses>statsorigin_998e4c5c80f27dec552e99dfed34889a'] = 'Exportar CSV';
 $_MODULE['<{statsorigin}matisses>statsorigin_96b0141273eabab320119c467cdcaf17'] = 'Total';

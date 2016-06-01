@@ -27,8 +27,8 @@ $_MODULE['<{statsproduct}matisses>statsproduct_87017c9259838bb0918a2ab4f96016c0'
 $_MODULE['<{statsproduct}matisses>statsproduct_df644ae155e79abf54175bd15d75f363'] = 'Artículo';
 $_MODULE['<{statsproduct}matisses>statsproduct_2a0440eec72540c5b30d9199c01f348c'] = 'Cant.';
 $_MODULE['<{statsproduct}matisses>statsproduct_844c29394eea07066bb2efefc35784ec'] = 'Precio medio';
-$_MODULE['<{statsproduct}matisses>statsproduct_818f7defe18dbc97da82d054831df2ad'] = 'Haga clic en un producto para acceder a sus estadísticas.';
-$_MODULE['<{statsproduct}matisses>statsproduct_0173374ac20f5843d58b553d5b226ef6'] = 'Elija una categoría';
+$_MODULE['<{statsproduct}matisses>statsproduct_818f7defe18dbc97da82d054831df2ad'] = 'Haz clic en un producto para acceder a sus estadísticas';
+$_MODULE['<{statsproduct}matisses>statsproduct_0173374ac20f5843d58b553d5b226ef6'] = 'Elige una categoría';
 $_MODULE['<{statsproduct}matisses>statsproduct_b1c94ca2fbc3e78fc30069c8d0f01680'] = 'Todas';
 $_MODULE['<{statsproduct}matisses>statsproduct_6ccf03bc05e4b749b74b5d577c7e7d3a'] = 'Disponibilidad de los productos';
 $_MODULE['<{statsproduct}matisses>statsproduct_63d5049791d9d79d86e9a108b0a999ca'] = 'Referencia';
