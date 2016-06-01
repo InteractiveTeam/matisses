@@ -445,8 +445,6 @@ class matisses extends Module
         $cache = Cache::retrieve('cart_'.$cart->id);
         if(!empty($cache) && $cache['cart_products'] == $cant_prod && $cache['id_address'] == $params['delivery_option'])
             return json_encode($cache);
-        if($this->page_name == 'orderconfirmation')
-            return null;
         $id_address = $params['delivery_option'];
         $id_carrier = str_replace(',','',current(array_values($params['delivery_option'])));
         $shipping_cost = array();
@@ -1815,7 +1813,7 @@ class matisses extends Module
 	public function wsmatisses_listStockChanges()
 	{		
 		require_once dirname(__FILE__)."/classes/template.php";
-		$datos 		= $this->wsmatisses_get_data('inventoryItem','listStockChanges','sap',5000);
+		$datos 		= $this->wsmatisses_get_data('inventoryItem','listStockChanges','sap',5);
 		if(is_array($datos))
 		{
 			require_once dirname(__FILE__)."/wsclasses/ws_product.php";
