@@ -1598,11 +1598,7 @@ class CartCore extends ObjectModel
 
 		if ($type == Cart::ONLY_DISCOUNTS)
 			return $order_total_discount;
-        //die($order_total);
-
-        $fp = fopen('log_pagos.txt','a+');
-                    fwrite($fp, json_encode(array('davinson',$order_total,'shipping' => $shipping_fees, 'cart' => $this->id)));
-                    fclose($fp);
+        
 		return Tools::ps_round((float)$order_total, _PS_PRICE_COMPUTE_PRECISION_);
 	}
 
