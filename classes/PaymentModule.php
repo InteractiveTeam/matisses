@@ -321,9 +321,9 @@ abstract class PaymentModuleCore extends Module
 					$order->total_wrapping_tax_excl = (float)abs($this->context->cart->getOrderTotal(false, Cart::ONLY_WRAPPING, $order->product_list, $id_carrier));
 					$order->total_wrapping_tax_incl = (float)abs($this->context->cart->getOrderTotal(true, Cart::ONLY_WRAPPING, $order->product_list, $id_carrier));
 					$order->total_wrapping = $order->total_wrapping_tax_incl;
-
-					$order->total_paid_tax_excl = $order->total_paid_tax_incl + $order->total_shipping;
-					$order->total_paid_tax_incl = $order->total_paid_tax_incl + $order->total_shipping;
+                    
+                    $order->total_paid_tax_excl = (float)Tools::ps_round((float)$this->context->cart->getOrderTotal(false, Cart::BOTH, $order->product_list, $id_carrier), _PS_PRICE_COMPUTE_PRECISION_) + $order->total_shipping;
+					$order->total_paid_tax_incl = (float)Tools::ps_round((float)$this->context->cart->getOrderTotal(true, Cart::BOTH, $order->product_list, $id_carrier), _PS_PRICE_COMPUTE_PRECISION_) + $order->total_shipping;
 					$order->total_paid = $order->total_paid_tax_incl + $order->total_shipping;
 					$order->round_mode = Configuration::get('PS_PRICE_ROUND_MODE');
 
