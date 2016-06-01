@@ -461,7 +461,6 @@ class matisses extends Module
 
             $salesWarehouseDTO['salesWarehouseDTO']['prestashopId'] = Context::getContext()->cart->id;
             $salesWarehouseDTO['salesWarehouseDTO']['destinationCityCode'] = $State['iso_code'];
-            $salesWarehouseDTO['salesWarehouseDTO']['invoiceNumber'] = $params['invoiceNumber'];
 
 
             foreach($params['products_cart'] as $k => $product)
@@ -488,7 +487,11 @@ class matisses extends Module
             'error' => (!empty($errorMessage) ? false : true),
             'cart_products' => count($cart->getProducts()),
             'id_address' => $id_address
-        );            
+        );
+        if(Tools::getValue('step') == 2 && Tools::getValue('controller') == 'order')
+            Db::getInstance()->update('cart',array(
+                'shipping_cost' => $shipping_cost['shippingQuotationResultDTO']['total']
+            ),'id_cart = '.$cart->id);
         Cache::store("cart_".$cart->id,$res);
 
         return json_encode($res);
