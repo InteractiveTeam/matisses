@@ -33,7 +33,7 @@
 					{l s='Reorder'}
 				</a>
 				<p>
-					{l s='Order Reference %s - placed on' sprintf=$order->getUniqReference()} {dateFormat date=$order->date_add full=1}</strong>
+					{l s='Order Reference %s - placed on' sprintf=$order->getIdFacture()} {dateFormat date=$order->date_add full=1}</strong>
 				</p>
 	</form>
 </div>
