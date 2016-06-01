@@ -490,8 +490,7 @@ class matisses extends Module
         );
         if(Tools::getValue('step') == 2 && Tools::getValue('controller') == 'order')
             Db::getInstance()->update('cart',array(
-                'shipping_cost' => $shipping_cost['shippingQuotationResultDTO']['total'],
-                'shipping_company' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany']
+                'shipping_cost' => $shipping_cost['shippingQuotationResultDTO']['total']
             ),'id_cart = '.$cart->id);
         Cache::store("cart_".$cart->id,$res);
 
