@@ -1815,7 +1815,7 @@ class matisses extends Module
 	public function wsmatisses_listStockChanges()
 	{		
 		require_once dirname(__FILE__)."/classes/template.php";
-		$datos 		= $this->wsmatisses_get_data('inventoryItem','listStockChanges','sap',5000);
+		$datos 		= $this->wsmatisses_get_data('inventoryItem','listStockChanges','sap',5);
 		if(is_array($datos))
 		{
 			require_once dirname(__FILE__)."/wsclasses/ws_product.php";
