@@ -174,10 +174,8 @@ class ws_product extends matisses
 			$_Row 		= Db::getInstance()->getRow('SELECT id_product, id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.trim($v['itemCode']).'"');
 			//$isArray 	= filter_var($v['stock'],'array');
             
-			if($_Row['id_product']!='' && $_Row['id_product_attribute']!='') {
-				
+			if($_Row['id_product']!='' && $_Row['id_product_attribute']!='') {				
 				if(count(array_filter($v['stock'],'is_array'))==0) {
-                    echo 'Davinsooooooon123456';
 					$_Quantity = $v['stock']['quantity'];
 					StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],$_Quantity);
 				}else if(count($v['stock'])){//if(count(array_filter($v['stock'],'is_array'))>0)
@@ -186,7 +184,8 @@ class ws_product extends matisses
 					foreach($stock  as $d => $vv) {
 						$_Quantity += $vv['quantity'];
 					}
-					StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],$_Quantity);
+					//StockAvailable::setQuantity((int)$_Row['id_product'],(int)$_Row['id_product_attribute'],(int)$_Quantity);
+                    StockAvailable::setQuantity((int)$_Row['id_product'],0,(int)$_Quantity);
 				}
 			 	echo $_Row['id_product']." - ".$_Row['id_product_attribute'].' - '.$v['itemCode'].' - '.$_Quantity."<br>";
 			}
