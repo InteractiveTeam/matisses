@@ -157,15 +157,11 @@ class ws_product extends matisses
 		return true;
 	}
 
-	public function product_listStockChanges($datos)
-	{
-		
-	
-				
-		if(!$_SESSION['datos'])
+	public function product_listStockChanges($datos){                
+		/*if(!$_SESSION['datos'])
 			$_SESSION['datos'] = $datos;
 			
-		$datos = $_SESSION['datos'];	
+		$datos = $_SESSION['datos'];*/
 		
 		if(!is_array($datos))
 			return false;
@@ -173,33 +169,26 @@ class ws_product extends matisses
 		$inventario = $datos['inventoryChangesDTO']['changes'];
 		$stock = array();
 		
-		foreach($inventario as $k => $v)
-		{
+		foreach($inventario as $k => $v) {
 			$_Quantity  = 0;
-			$_Row 		= Db::getInstance()->getRow('SELECT id_product, id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.$v['itemCode'].'"');
-			$isArray 	= filter_var($v['stock'],'array');
-			if($_Row['id_product']!='' && $_Row['id_product_attribute']!='')
-			{
-				//echo "<pre>"; print_r($_Row); echo "</pre>";
-				if(count(array_filter($v['stock'],'is_array'))==0)
-				{
+			$_Row 		= Db::getInstance()->getRow('SELECT id_product, id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.trim($v['itemCode']).'"');
+			//$isArray 	= filter_var($v['stock'],'array');
+            
+			if($_Row['id_product']!='' && $_Row['id_product_attribute']!='') {				
+				if(count(array_filter($v['stock'],'is_array'))==0) {
 					$_Quantity = $v['stock']['quantity'];
 					StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],$_Quantity);
-				}
-				
-				if(count(array_filter($v['stock'],'is_array'))>0)
-				{
+				}else if(count($v['stock'])){//if(count(array_filter($v['stock'],'is_array'))>0)
 					$stock = $v['stock'];
-					foreach($stock  as $d => $vv)
-					{
+                    
+					foreach($stock  as $d => $vv) {
 						$_Quantity += $vv['quantity'];
 					}
-					StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],$_Quantity);
+					//StockAvailable::setQuantity((int)$_Row['id_product'],(int)$_Row['id_product_attribute'],(int)$_Quantity);
+                    StockAvailable::setQuantity((int)$_Row['id_product'],0,(int)$_Quantity);
 				}
-			 	//echo $_Row['id_product']." - ".$_Row['id_product_attribute'].' - '.$v['itemCode'].' - '.$_Quantity."<br>"; 
 			}
 		}
-		
 
 		return true;
 	}

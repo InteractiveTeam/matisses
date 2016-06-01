@@ -5,9 +5,11 @@
 	ini_set('display_error',true);
 	include_once('../../config/config.inc.php');
 	set_time_limit(0);
-	require_once dirname(__FILE__)."/wsmatisses.php";
+	require_once dirname(__FILE__)."/matisses.php";
+	
+	$wsmatisses = new matisses;
+
 	$crontab	= pSQL(Tools::getValue('crontab'));
-	$wsmatisses = new wsmatisses();
 
 	if($_POST['consultar'])
 	{
@@ -63,7 +65,7 @@
 	}
 	switch($crontab)
 	{
-		case 'listStockChanges': $wsmatisses->wsmatisses_listStockChanges(); die('termine');  break;
+		case 'listStockChanges': $wsmatisses->wsmatisses_listStockChanges(); die('termine listStockChanges');  break;
 		case 'listDetailedLastDayStockChanges': $wsmatisses->wsmatisses_listDetailedLastDayStockChanges(); break;
 		case 'getStockChanges': 
 /* 		$ddf = fopen('error.log','a');

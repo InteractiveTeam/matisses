@@ -488,11 +488,6 @@ class matisses extends Module
             'cart_products' => count($cart->getProducts()),
             'id_address' => $id_address
         );
-        if(Tools::getValue('step') == 2 && Tools::getValue('controller') == 'order')
-            Db::getInstance()->update('cart',array(
-                'shipping_cost' => $shipping_cost['shippingQuotationResultDTO']['total'],
-                'shipping_company' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany']
-            ),'id_cart = '.$cart->id);
         Cache::store("cart_".$cart->id,$res);
 
         return json_encode($res);
@@ -1820,11 +1815,11 @@ class matisses extends Module
 	public function wsmatisses_listStockChanges()
 	{		
 		require_once dirname(__FILE__)."/classes/template.php";
-		$datos 		= $this->wsmatisses_get_data('inventoryItem','listStockChanges','sap',5);
+		$datos 		= $this->wsmatisses_get_data('inventoryItem','listStockChanges','sap',5000);
 		if(is_array($datos))
 		{
 			require_once dirname(__FILE__)."/wsclasses/ws_product.php";
-			$ws_product = new ws_product();
+			$ws_product = new ws_product();            
 			$ws_product->product_listStockChanges($datos);
 		}	
 	}

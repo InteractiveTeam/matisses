@@ -205,7 +205,7 @@
 					</tr>
 				{/if}
 				<tr{if $total_wrapping == 0} style="display: none;"{/if}>
-					<td colspan="3" class="text-right">
+					<td colspan="4" class="text-right">
 						{if $use_taxes}
 							{if $display_tax_label}{l s='Total gift wrapping (tax incl.):'}{else}{l s='Total gift-wrapping cost:'}{/if}
 						{else}
