@@ -35,6 +35,7 @@
     if(isset($_POST['modelo']) && $_POST['modelo'] != ""){
         $_Modelos = getProductsByModel($_POST['modelo']);
         $banderaPost = true;
+        
         if(sizeof($_Modelos)<1){
             echo 'NO MODELS';
             exit();
@@ -109,8 +110,6 @@
 
 	$_success = Module::displayConfirmation('Carga completa!!');
     
-    
-
 	if(sizeof($_Modelos)==0)
 		exit;
 		
@@ -453,8 +452,7 @@
 		}
 	}
 	
-	function __getReferences($_Modelos)	{
-        
+	function __getReferences($_Modelos)	{        
 		global $_wsmatisses;
 		if(!$_wsmatisses)
 			$_wsmatisses 	= new matisses;
@@ -689,20 +687,24 @@
     * $models => todos los modelos delimitados por ","
     */
     function getProductsByModel($models){
-        $models = array_map(function($el) { return "'{$el}'";},explode(',',$models));
+        echo $models;
+        $_wsmatisses = new matisses;
         
-        $sql = 'SELECT * FROM '._DB_PREFIX_.'product WHERE model IN ('.implode(',',$models).')';
-        
-        if ($products = Db::getInstance()->ExecuteS($sql)){
-            $auxProducts = array();
-            
-            foreach ($products as $row){
-                $product = new Product($row['id_product']);
-                //validamos si tiene combinaciones el producto
-                $auxProducts[] = array('code'=>$row['model'],'references'=>$row['reference']);
-            }
+        $models = explode(',',$models);
+        $auxModels = array();
+        for($i = 0; $i < count($models);$i++){
+            $dataModel = $_wsmatisses->wsmatissess_getReferencesByModel($models[$i]);
+            if(!isset($dataModel['itemCode'])){
+                $auxRef = array();
+                for($j = 0; $j < count($dataModel);$j++){
+                    $auxRef[] = $dataModel[$j]['itemCode'];
+                }            
+                $auxModels[] = array('code'=>$models[$i],'references'=>$auxRef);
+            }else{
+                $auxModels[] = array('code'=>$models[$i],'references'=>$dataModel['itemCode']);
+            }            
         }
-        return $auxProducts;
+        return $auxModels;        
     }
     
     /*
