@@ -18,6 +18,9 @@
                             </div>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Enviar" onclick="return updateProduct();"> 
+                        <div class="alert" id="loaderCargaModel" style="display: none;">
+                            <img src="../img/admin/ajax-loader.gif" alt="">
+                        </div>
                     </form>                
                 </div>
             </div>
@@ -27,6 +30,8 @@
 <script>
     function updateProduct(){
         var data = document.getElementById('txt_models');
+        var loader = document.getElementById('loaderCargaModel');
+        loader.style.display = 'inline-block';
         
         var http = new XMLHttpRequest(),
             url = "/modules/matisses/productos.php",
@@ -38,6 +43,7 @@
 
         http.onreadystatechange = function() {
             if(http.readyState == 4 && http.status == 200) {
+                loader.style.display = 'none';
                 var str = http.responseText;
                 var el = document.querySelectorAll(".alert span");
                 data.value = '';                
