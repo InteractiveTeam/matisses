@@ -29,39 +29,44 @@
 </div>
 <script>
     function updateProduct(){
-        var data = document.getElementById('txt_models');
+        var data = document.getElementById('txt_models');        
         var loader = document.getElementById('loaderCargaModel');
+        var el = document.querySelectorAll(".alert span");
         loader.style.display = 'inline-block';
         
-        var http = new XMLHttpRequest(),
-            url = "/modules/matisses/productos.php",
-            params = "modelo="+data.value;
-        
-        http.open("POST", url, true);
+        if(data.value){
+            var http = new XMLHttpRequest(),
+                url = "/modules/matisses/productos.php",
+                params = "modelo="+data.value;
 
-        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            http.open("POST", url, true);
 
-        http.onreadystatechange = function() {
-            if(http.readyState == 4 && http.status == 200) {
-                loader.style.display = 'none';
-                var str = http.responseText;
-                var el = document.querySelectorAll(".alert span");
-                data.value = '';                
-                if(str.match(/NO MODELS/g)){
-                    el[0].innerText = 'Algunas de los modelos no existe.';
-                    el[0].parentNode.className += " alert-danger";
-                }else if(str.match(/PRODUCTOS A CARGAR = 0/g)){                    
-                    el[0].innerText = 'Algunas de las referencias no se actualizaron.';
-                    el[0].parentNode.className += " alert-danger";
-                } else{
-                    el[0].innerText = 'Actualización exitosa';
-                    el[0].parentNode.className += " alert-success";
+            http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            http.onreadystatechange = function() {
+                if(http.readyState == 4 && http.status == 200) {
+                    loader.style.display = 'none';
+                    var str = http.responseText;
+                    
+                    data.value = '';                
+                    if(str.match(/NO MODELS/g)){
+                        el[0].innerText = 'Algunas de los modelos no existe.';
+                        el[0].parentNode.className += " alert-danger";
+                    }else if(str.match(/PRODUCTOS A CARGAR = 0/g)){                    
+                        el[0].innerText = 'Algunas de las referencias no se actualizaron.';
+                        el[0].parentNode.className += " alert-danger";
+                    } else{
+                        el[0].innerText = 'Actualización exitosa';
+                        el[0].parentNode.className += " alert-success";
+                    }
                 }
             }
+            http.send(params);
+        }else{
+            el[0].innerText = 'El campo modelo es requerido.';
+            el[0].parentNode.className += " alert-danger";
+            loader.style.display = 'none';
         }
-        
-        http.send(params);
-        
         return false;
     }
     
