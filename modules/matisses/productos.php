@@ -734,7 +734,7 @@
                 //echo ' product => '.$value['reference'];
             }
         }
-        $query .= $query .' '.$queryCondition.'  END WHERE id_product IN ('.substr($str_ids,0,-1).')';        
+        $query = $query .' '.$queryCondition.'  END WHERE id_product IN ('.substr($str_ids,0,-1).')';        
         $query2 = str_replace(_DB_PREFIX_.'product',_DB_PREFIX_.'product_shop',$query);
                         
         echo $query;
