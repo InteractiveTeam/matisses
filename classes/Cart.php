@@ -1594,7 +1594,7 @@ class CartCore extends ObjectModel
 
 		if ($type == Cart::ONLY_DISCOUNTS)
 			return $order_total_discount;
-
+        //die($order_total);
 		return Tools::ps_round((float)$order_total, _PS_PRICE_COMPUTE_PRECISION_);
 	}
 
@@ -2064,6 +2064,9 @@ class CartCore extends ObjectModel
             $params['products_cart']		= $this->getProducts();
             $total_shipping 				= Hook::exec('actionCalculateShipping',$params);
             $total_shipping 				= (array)json_decode($total_shipping);
+            if($total_shipping['total'] == 0)
+                 $total_shipping['total'] = Db::getInstance()->getValue("SELECT shipping_cost FROM "._DB_PREFIX_."cart WHERE id_cart = ". $context->cart->id);
+        
             if(empty($total_shipping['shippingCompany']))
                 return $cache[$this->id] = NULL;
             $id = Db::getInstance()->getRow('SELECT  `id_carrier` 
