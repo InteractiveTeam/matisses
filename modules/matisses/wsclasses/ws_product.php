@@ -178,10 +178,12 @@ class ws_product extends matisses
 			{
 				//echo "<pre>"; print_r($_Row); echo "</pre>";
 				if(count(array_filter($v['stock'],'is_array'))==0) {
+                    echo 'Davinsooooooon123456';
 					$_Quantity = $v['stock']['quantity'];
 					StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],$_Quantity);
 				}else if(count($v['stock'])){//if(count(array_filter($v['stock'],'is_array'))>0)
 					$stock = $v['stock'];
+                    echo 'Davinsooooooon';
 					foreach($stock  as $d => $vv) {
 						$_Quantity += $vv['quantity'];
 					}
