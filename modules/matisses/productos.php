@@ -470,7 +470,7 @@
         }
         
         $_Data = validProductExist($_Data);
-                        
+        exit();
 	  	if($_Data['error_string'])
 		{
 			__MessaggeLog("\n".$_Data['error_string']."\n");
@@ -715,7 +715,7 @@
         $query = 'UPDATE '._DB_PREFIX_.'product SET active = CASE id_product ';
         $queryCondition = '';
         $str_ids = '';
-        
+                
         foreach ($productsPS as $key => $value){
             $bandera = false;
             foreach($productMat as $key2 => $value2){
@@ -731,12 +731,13 @@
             if(!$bandera){
                 $queryCondition .= ' WHEN '.$value['id_product'].' THEN 0';
                 $str_ids .= $value['id_product'].',';
-                echo ' product => '.$value['reference'];
+                //echo ' product => '.$value['reference'];
             }
         }
         $query .= $query .' '.$queryCondition.'  END WHERE id_product IN ('.substr($str_ids,0,-1).')';        
         $query2 = str_replace(_DB_PREFIX_.'product',_DB_PREFIX_.'product_shop',$query);
                         
+        echo $query;
         /*echo '<pre>';
         print_r($productMat);
         echo '</pre>';*/
