@@ -172,10 +172,10 @@ class ws_product extends matisses
 		foreach($inventario as $k => $v)
 		{
 			$_Quantity  = 0;
-			$_Row 		= Db::getInstance()->getRow('SELECT id_product, id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.$v['itemCode'].'"');
-			$isArray 	= filter_var($v['stock'],'array');
-			if($_Row['id_product']!='' && $_Row['id_product_attribute']!='')
-			{
+			$_Row 		= Db::getInstance()->getRow('SELECT id_product, id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.trim($v['itemCode']).'"');
+			//$isArray 	= filter_var($v['stock'],'array');
+            echo "davinnnn33333<pre>"; print_r($_Row); echo "</pre>";
+			if($_Row['id_product']!='' && $_Row['id_product_attribute']!='') {
 				//echo "<pre>"; print_r($_Row); echo "</pre>";
 				if(count(array_filter($v['stock'],'is_array'))==0) {
                     echo 'Davinsooooooon123456';
