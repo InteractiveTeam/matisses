@@ -168,7 +168,9 @@ class ws_product extends matisses
 		
 		$inventario = $datos['inventoryChangesDTO']['changes'];
 		$stock = array();
-		
+		echo '<pre>';
+            print_r($inventario);
+        echo '</pre>';
 		foreach($inventario as $k => $v) {
 			$_Quantity  = 0;
 			$_Row 		= Db::getInstance()->getRow('SELECT id_product, id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.trim($v['itemCode']).'"');
@@ -177,18 +179,18 @@ class ws_product extends matisses
 			if($_Row['id_product']!='' && $_Row['id_product_attribute']!='') {				
 				if(count(array_filter($v['stock'],'is_array'))==0) {
 					$_Quantity = $v['stock']['quantity'];
-					StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],$_Quantity);
+					StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);
 				}else if(count($v['stock'])){//if(count(array_filter($v['stock'],'is_array'))>0)
 					$stock = $v['stock'];
                     
 					foreach($stock  as $d => $vv) {
 						$_Quantity += $vv['quantity'];
 					}
-					//StockAvailable::setQuantity((int)$_Row['id_product'],(int)$_Row['id_product_attribute'],(int)$_Quantity);
+					//StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);
                     
-                    StockAvailable::setQuantity((int)$_Row['id_product'],(int)$_Row['id_product_attribute'],(int)$_Quantity);
+                    StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);
 				}
-                echo $_Row['id_product']. ' - '.$_Row['id_product_attribute'].' => '.$_Quantity;
+                echo $_Row['id_product']. ' - '.$_Row['id_product_attribute'].' => '.$_Quantity. ' <br>';
 			}
 		}
 
