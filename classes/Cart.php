@@ -3084,6 +3084,8 @@ class CartCore extends ObjectModel
 		$params['products_cart']		= $this->getProducts();
 		$total_shipping 				= Hook::exec('actionCalculateShipping',$params);
         $total_shipping 				= (array)json_decode($total_shipping);
+        if($total_shipping['total'] == 0)
+            $total_shipping['total'] = Db::getInstance()->getValue("SELECT shipping_cost FROM "._DB_PREFIX_."cart WHERE id_cart = ". $order->id_cart);
         
 		return array(
 			'delivery' => $delivery,
@@ -3099,8 +3101,8 @@ class CartCore extends ObjectModel
 			'total_discounts_tax_exc' => $total_discounts_tax_exc,
 			'total_wrapping' => $this->getOrderTotal(true, Cart::ONLY_WRAPPING),
 			'total_wrapping_tax_exc' => $this->getOrderTotal(false, Cart::ONLY_WRAPPING),
-			'total_shipping' => $total_shipping,
-			'total_shipping_tax_exc' => $total_shipping_tax_exc,
+			'total_shipping' => $total_shipping['total'],
+			'total_shipping_tax_exc' => $total_shipping['total'],
 			'total_products_wt' => $total_products_wt,
 			'total_products' => $total_products,
 			'total_price' => $base_total_tax_inc/* + $total_shipping_tax_exc*/,
