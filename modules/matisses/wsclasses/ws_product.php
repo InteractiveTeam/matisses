@@ -161,20 +161,19 @@ class ws_product extends matisses
 		if(!$_SESSION['datos'])
 			$_SESSION['datos'] = $datos;
 			
-		$datos = $_SESSION['datos'];	
+		//$datos = $_SESSION['datos'];	
 		
 		if(!is_array($datos))
 			return false;
 		
 		$inventario = $datos['inventoryChangesDTO']['changes'];
 		$stock = array();
-		echo "<pre>"; print_r($inventario); echo "</pre>";
-		foreach($inventario as $k => $v)
-		{
+		echo "davinnnn4444<pre>"; print_r($inventario); echo "</pre>";
+		foreach($inventario as $k => $v) {
 			$_Quantity  = 0;
 			$_Row 		= Db::getInstance()->getRow('SELECT id_product, id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.trim($v['itemCode']).'"');
 			//$isArray 	= filter_var($v['stock'],'array');
-            echo "davinnnn33333<pre>"; print_r($_Row); echo "</pre>";
+            echo "davinnnn33333<pre>"; print_r(trim($v['itemCode'])); echo "</pre>";
 			if($_Row['id_product']!='' && $_Row['id_product_attribute']!='') {
 				//echo "<pre>"; print_r($_Row); echo "</pre>";
 				if(count(array_filter($v['stock'],'is_array'))==0) {
