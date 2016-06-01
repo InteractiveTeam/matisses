@@ -1586,6 +1586,10 @@ class CartCore extends ObjectModel
 			$order_total -= $order_total_discount;
 		}
 
+        if($shipping_fees == 0){
+            $shipping_fees = Db::getInstance()->getValue("SELECT shipping_cost FROM "._DB_PREFIX_."cart WHERE id_cart = ". $this->id);
+        }
+        
 		if ($type == Cart::BOTH)
 			$order_total +=  $shipping_fees + $wrapping_fees;
 
@@ -1595,11 +1599,9 @@ class CartCore extends ObjectModel
 		if ($type == Cart::ONLY_DISCOUNTS)
 			return $order_total_discount;
         //die($order_total);
-        if($shipping_fees == 0){
-            $shipping_fees = Db::getInstance()->getValue("SELECT shipping_cost FROM "._DB_PREFIX_."cart WHERE id_cart = ". $this->id);
-        }
+
         $fp = fopen('log_pagos.txt','a+');
-                    fwrite($fp, json_encode(array('davinson',$order_total,'shipping' => $shipping_fees)));
+                    fwrite($fp, json_encode(array('davinson',$order_total,'shipping' => $shipping_fees, 'cart' => $this->id)));
                     fclose($fp);
 		return Tools::ps_round((float)$order_total, _PS_PRICE_COMPUTE_PRECISION_);
 	}
