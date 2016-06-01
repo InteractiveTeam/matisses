@@ -309,14 +309,11 @@ abstract class PaymentModuleCore extends Module
 					$order->total_discounts_tax_incl = (float)abs($this->context->cart->getOrderTotal(true, Cart::ONLY_DISCOUNTS, $order->product_list, $id_carrier));
 					$order->total_discounts = $order->total_discounts_tax_incl;
                     
-                    $params['products_cart']		= $this->context->cart->getProducts();
-                    $params['delivery_option']		= $id_address;
-                    $total_shipping 				= Hook::exec('actionCalculateShipping',$params);
-                    $total_shipping 				= (array)json_decode($total_shipping);
+                    $total_shipping = Db::getInstance()->getValue("SELECT shipping_cost FROM "._DB_PREFIX_."cart WHERE id_cart = ". $order->id_cart);
 
-					$order->total_shipping_tax_excl = $total_shipping['total'];
-					$order->total_shipping_tax_incl = $total_shipping['total'];
-					$order->total_shipping = $total_shipping['total'];
+					$order->total_shipping_tax_excl = $total_shipping;
+					$order->total_shipping_tax_incl = $total_shipping;
+					$order->total_shipping = $total_shipping;
 
 					if (!is_null($carrier) && Validate::isLoadedObject($carrier))
 						$order->carrier_tax_rate = $carrier->getTaxesRate(new Address($this->context->cart->{Configuration::get('PS_TAX_ADDRESS_TYPE')}));
@@ -325,8 +322,8 @@ abstract class PaymentModuleCore extends Module
 					$order->total_wrapping_tax_incl = (float)abs($this->context->cart->getOrderTotal(true, Cart::ONLY_WRAPPING, $order->product_list, $id_carrier));
 					$order->total_wrapping = $order->total_wrapping_tax_incl;
 
-					$order->total_paid_tax_excl = (float)Tools::ps_round((float)$this->context->cart->getOrderTotal(false, Cart::BOTH, $order->product_list, $id_carrier), _PS_PRICE_COMPUTE_PRECISION_);
-					$order->total_paid_tax_incl = (float)Tools::ps_round((float)$this->context->cart->getOrderTotal(true, Cart::BOTH, $order->product_list, $id_carrier), _PS_PRICE_COMPUTE_PRECISION_);
+					$order->$order->total_paid_tax_incl + $order->total_shipping;
+					$order->$order->total_paid_tax_incl + $order->total_shipping;
 					$order->total_paid = $order->total_paid_tax_incl + $order->total_shipping;
 					$order->round_mode = Configuration::get('PS_PRICE_ROUND_MODE');
 

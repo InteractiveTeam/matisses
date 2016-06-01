@@ -438,12 +438,15 @@ class matisses extends Module
 	
 	public function hookactionCalculateShipping($params)
 	{
+        $this->page_name = Dispatcher::getInstance()->getController();
         $cart = $this->context->cart;
         $cant_prod = count($cart->getProducts());
+        /*get cached shipping cost*/
         $cache = Cache::retrieve('cart_'.$cart->id);
         if(!empty($cache) && $cache['cart_products'] == $cant_prod && $cache['id_address'] == $params['delivery_option'])
             return json_encode($cache);
-
+        if($this->page_name == 'orderconfirmation')
+            return null;
         $id_address = $params['delivery_option'];
         $id_carrier = str_replace(',','',current(array_values($params['delivery_option'])));
         $shipping_cost = array();
@@ -484,7 +487,11 @@ class matisses extends Module
             'error' => (!empty($errorMessage) ? false : true),
             'cart_products' => count($cart->getProducts()),
             'id_address' => $id_address
-        );            
+        );
+        if(Tools::getValue('step') == 2 && Tools::getValue('controller') == 'order')
+            Db::getInstance()->update('cart',array(
+                'shipping_cost' => $shipping_cost['shippingQuotationResultDTO']['total']
+            ),'id_cart = '.$cart->id);
         Cache::store("cart_".$cart->id,$res);
 
         return json_encode($res);
