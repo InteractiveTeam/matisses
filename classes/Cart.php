@@ -1585,10 +1585,6 @@ class CartCore extends ObjectModel
 			$order_total_discount = min(Tools::ps_round($order_total_discount, 2), (float)$order_total_products) + (float)$order_shipping_discount;
 			$order_total -= $order_total_discount;
 		}
-
-        if($shipping_fees == 0){
-            $shipping_fees = Db::getInstance()->getValue("SELECT shipping_cost FROM "._DB_PREFIX_."cart WHERE id_cart = ". $this->id);
-        }
         
 		if ($type == Cart::BOTH)
 			$order_total +=  $shipping_fees + $wrapping_fees;
@@ -3089,8 +3085,6 @@ class CartCore extends ObjectModel
 		$params['products_cart']		= $this->getProducts();
 		$total_shipping 				= Hook::exec('actionCalculateShipping',$params);
         $total_shipping 				= (array)json_decode($total_shipping);
-        if($total_shipping['total'] == 0)
-            $total_shipping['total'] = Db::getInstance()->getValue("SELECT shipping_cost FROM "._DB_PREFIX_."cart WHERE id_cart = ". $context->cart->id);
    
 		return array(
 			'delivery' => $delivery,

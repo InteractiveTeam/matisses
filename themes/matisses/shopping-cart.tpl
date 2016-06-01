@@ -106,7 +106,7 @@
 				{if $use_taxes}
 					{if $priceDisplay}
 						<tr class="cart_total_price">
-							<td rowspan="{3+$total_discounts_num+$use_show_taxes+$total_wrapping_taxes_num}" colspan="3" id="cart_voucher" class="cart_voucher">
+							<td rowspan="{+$total_discounts_num+$use_show_taxes+$total_wrapping_taxes_num}" colspan="4" id="cart_voucher" class="cart_voucher">
 								{if $voucherAllowed}
 									{if isset($errors_discount) && $errors_discount}
 										<ul class="alert alert-danger">
@@ -205,7 +205,7 @@
 					</tr>
 				{/if}
 				<tr{if $total_wrapping == 0} style="display: none;"{/if}>
-					<td colspan="3" class="text-right">
+					<td colspan="4" class="text-right">
 						{if $use_taxes}
 							{if $display_tax_label}{l s='Total gift wrapping (tax incl.):'}{else}{l s='Total gift-wrapping cost:'}{/if}
 						{else}
