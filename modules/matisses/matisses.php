@@ -469,7 +469,7 @@ class matisses extends Module
                 $salesWarehouseDTO['salesWarehouseDTO']['items'][$k]['quantity'] = $product['quantity'];
             }
             $salesWarehouseDTO = $this->array_to_xml($salesWarehouseDTO,false);
-                    $fp = fopen('log_pagos.txt','a+');
+                    $fp = fopen('log_pagos.txt','w');
                     fwrite($fp, $salesWarehouseDTO);
                     fclose($fp);
             $response 	= $this->wsmatisses_get_data('inventoryItem','quoteShipping','pruebas',$salesWarehouseDTO,true);
