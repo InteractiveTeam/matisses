@@ -743,7 +743,7 @@
         if($queryCondition != ''){
             echo $query;
             Db::getInstance()->Execute($query);
-            Db::getInstance()->Execute($query2);
+            $result = Db::getInstance()->Execute($query2);
         }
         
         return $productMat;        
