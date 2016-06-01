@@ -3414,6 +3414,11 @@
         height: auto;
     }
     
+    #header .cart_block {
+        max-height: 555px;
+        overflow-x: scroll;
+    }
+    
 }
 
 @media screen and (max-width :360px) {
