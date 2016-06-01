@@ -2069,12 +2069,6 @@ class CartCore extends ObjectModel
             $total_shipping 				= Hook::exec('actionCalculateShipping',$params);
             $total_shipping 				= (array)json_decode($total_shipping);
         
-            if($total_shipping['total'] == 0){
-                 $row = Db::getInstance()->getRow("SELECT shipping_cost,shipping_company FROM "._DB_PREFIX_."cart WHERE id_cart = ". $this->id);
-                $total_shipping['total'] = $row['total'];
-                $total_shipping['shippingCompany'] = $row['shippingCompany'];
-            }
-        
             if(empty($total_shipping['shippingCompany']))
                 return $cache[$this->id] = NULL;
             $id = Db::getInstance()->getRow('SELECT  `id_carrier` 
