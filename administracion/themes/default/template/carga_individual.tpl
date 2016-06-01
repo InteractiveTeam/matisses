@@ -34,7 +34,7 @@
         var el = document.querySelectorAll(".alert span");
         loader.style.display = 'inline-block';
         
-        if(data.value != ""){
+        if(data.value){
             var http = new XMLHttpRequest(),
                 url = "/modules/matisses/productos.php",
                 params = "modelo="+data.value;
