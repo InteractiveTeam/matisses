@@ -69,7 +69,7 @@
         {/if}
     </td>
 </tr>
-{if $status eq 'ok' || $status eq 'fail'}
+{if $status != 'ok' && $status != 'fail'}
 <tr valign="top">
 	<td>{l s='Motivo' mod='placetopay'}</td>
 	<td><b>{$transaction['reason_description']}</b></td>
