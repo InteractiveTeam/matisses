@@ -168,7 +168,7 @@ class ws_product extends matisses
 		
 		$inventario = $datos['inventoryChangesDTO']['changes'];
 		$stock = array();
-		
+		echo "<pre>"; print_r($inventario); echo "</pre>";
 		foreach($inventario as $k => $v)
 		{
 			$_Quantity  = 0;
