@@ -176,7 +176,7 @@ class ws_product extends matisses
                 }
                 StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);
                 
-                echo 'REF '.$v['itemCode'].' => '.$_Row['id_product']. ' - '.$_Row['id_product_attribute'].' => '.$_Quantity. ' <br>';
+                //echo 'REF '.$v['itemCode'].' => '.$_Row['id_product']. ' - '.$_Row['id_product_attribute'].' => '.$_Quantity. ' <br>';
 			}
 		}
 
