@@ -240,7 +240,7 @@
                             <div id="lhnContainerDone" style="text-align: center; width: auto; top: 150px; right: 0px; position: fixed; z-index: 9999;">
                                  <div id="lhnChatButton" style="width: auto;">
                                      <a href="javascript:void(0)" onclick="OpenLHNChat();return false;" id="aLHNBTN">
-                                         <img id="lhnchatimg" border="0" alt="Live help" src="http://www.livehelpnow.net/lhn/functions/imageserver.ashx?lhnid=24694&amp;java=No&amp;zimg=4827&amp;sres=1920x1080&amp;sdepth=24&amp;custom1=&amp;custom2=&amp;custom3=&amp;t=t&amp;d=29011&amp;rnd=0.36317845692275763&amp;ck=true&amp;referrer=&amp;pagetitle=MATISSES&amp;pageurl=http%3A//www.matisses.co/">
+                                         <img id="lhnchatimg" border="0" alt="Live help" src="https://www.livehelpnow.net/lhn/functions/imageserver.ashx?lhnid=24694&amp;java=No&amp;zimg=4827&amp;sres=1920x1080&amp;sdepth=24&amp;custom1=&amp;custom2=&amp;custom3=&amp;t=t&amp;d=29011&amp;rnd=0.36317845692275763&amp;ck=true&amp;referrer=&amp;pagetitle=MATISSES&amp;pageurl=http%3A//www.matisses.co/">
                                      </a>
                              </div>
                              <script type="text/javascript" src="http://www.livehelpnow.net/lhn/scripts/livehelpnow.aspx?lhnid=24694&amp;iv=1&amp;ivid=0&amp;d=29011&amp;ver=5.3&amp;rnd=0.8177507956510826"></script></div>
