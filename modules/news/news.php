@@ -404,10 +404,6 @@ class News extends Module {
 		if(in_array($this->page_name, array('product')))
 			$this->context->controller->addJS(($this->_path) . 'js/jquery/ui/jquery.ui.widget.js', 'all');
 
-        if (!Tools::getValue('live_edit')) {
-            $this->context->controller->addJS(($this->_path) . 'js/jquery/ui/jquery.ui.tabs.js', 'all');
-        }
-
         if (Tools::getValue('cat_news') || Tools::getValue('id_news')) {
             if (Tools::getValue('id_news')) {
                 $id_lang = (int) ($params['cookie']->id_lang);
