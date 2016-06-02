@@ -112,7 +112,7 @@
             }(document, 'script', 'facebook-jssdk'));</script>
           <div class="share cf">
             <p>{l s='Síguenos en nuestras redes sociales'}</p>
-            <div class="fb-like" data-href="http://www.matisses.com/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+            <div class="fb-like" data-href="https://www.matisses.co/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
           </div>
         </div>
       </div>
@@ -141,7 +141,7 @@
     <div class="container"> {$HOOK_FOOTER} </div>
   </div>
   <div class="copyright">
-    <div class="container"> <a class="" href="http://www.prestapro.ru" title="{l s='Prestapro'}">© {$smarty.now|date_format:"%Y"} {l s='Created By'} <span>{l s='Prestapro.'}</span> {l s='All right reserved'}</a> </div>
+    <div class="container"> <a class="" href="https://www.prestapro.ru" title="{l s='Prestapro'}">© {$smarty.now|date_format:"%Y"} {l s='Created By'} <span>{l s='Prestapro.'}</span> {l s='All right reserved'}</a> </div>
     <div id="back-top"> <a href="javascript:void(0)"> <i class="font-up-open-big"></i> </a> </div>
   </div>
 </footer>

@@ -6,7 +6,7 @@
 * This source file is subject to the Academic Free License (AFL 3.0)
 * that is bundled with this package in the file LICENSE.txt.
 * It is also available through the world-wide-web at this URL:
-* http://opensource.org/licenses/afl-3.0.php
+* https://opensource.org/licenses/afl-3.0.php
 * If you did not receive a copy of the license and are unable to
 * obtain it through the world-wide-web, please send an email
 * to license@prestashop.com so we can send you a copy immediately.
@@ -15,11 +15,11 @@
 *
 * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
 * versions in the future. If you wish to customize PrestaShop for your
-* needs please refer to http://www.prestashop.com for more information.
+* needs please refer to https://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
 *  @copyright  2007-2014 PrestaShop SA
-*  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+*  @license    https://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
 //global variables
@@ -495,7 +495,7 @@ $(window).resize(
 /*********************************************************************
  * #### jQuery Awesome Sosmed Share Button / AyoShare.js v11 ####
  * Coded by Ican Bachors 2014.
- * http://ibacor.com/labs/jquery-awesome-sosmed-share-button/
+ * https://ibacor.com/labs/jquery-awesome-sosmed-share-button/
  * Updates will be posted to this site.
  *********************************************************************/
 
@@ -510,7 +510,7 @@ $.fn.ayoshare = function() {
 	var xxx = ($(this).attr('id') != null) ? '#'+$(this).attr('id') : '.'+$(this).attr('class');
     
 	if (facebook == true) {
-        html += '<p><a href="http://www.facebook.com/sharer/sharer.php?u=' + b + '" onclick="javascript:void window.open(\'http://www.facebook.com/sharer/sharer.php?u=' + b + '\',\'ibacor.com\',\'width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0\');return false;" class="ayo-btn ayo-facebook" title="Facebook"><i class="fa fa-facebook"></i></a></p>'
+        html += '<p><a href="https://www.facebook.com/sharer/sharer.php?u=' + b + '" onclick="javascript:void window.open(\'https://www.facebook.com/sharer/sharer.php?u=' + b + '\',\'ibacor.com\',\'width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0\');return false;" class="ayo-btn ayo-facebook" title="Facebook"><i class="fa fa-facebook"></i></a></p>'
         ayo_facebook(b, xxx)
     }
     if (twitter == true) {
@@ -522,7 +522,7 @@ $.fn.ayoshare = function() {
         ayo_google(b, xxx)
     }
     if (reddit == true) {
-        html += '<p><a href="http://reddit.com/submit?url=' + b + '&title=' + a + '+-+via @bachors" onclick="javascript:void window.open(\'http://reddit.com/submit?url=' + b + '&title=' + a + '+-+via @bachors\',\'ibacor.com\',\'width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0\');return false;" class="ayo-btn ayo-reddit" title="Reddit"><i class="fa fa-reddit"></i></a></p>'
+        html += '<p><a href="https://reddit.com/submit?url=' + b + '&title=' + a + '+-+via @bachors" onclick="javascript:void window.open(\'https://reddit.com/submit?url=' + b + '&title=' + a + '+-+via @bachors\',\'ibacor.com\',\'width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0\');return false;" class="ayo-btn ayo-reddit" title="Reddit"><i class="fa fa-reddit"></i></a></p>'
         ayo_reddit(b, xxx)
     }
     if (linkedin == true) {
@@ -530,11 +530,11 @@ $.fn.ayoshare = function() {
         ayo_linkedin(b, xxx)
     }
     if (pinterest == true) {
-        html += '<p><a href="http://pinterest.com/pin/create/button/?url=' + b + '&media=' + img + '&description=' + desk + '" onclick="javascript:void window.open(\'http://pinterest.com/pin/create/button/?url=' + b + '&media=' + img + '&description=' + desk + '\',\'ibacor.com\',\'width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0\');return false;" class="ayo-btn ayo-pinterest" title="Pinterest"><i class="fa fa-pinterest"></i></a></p>'
+        html += '<p><a href="https://pinterest.com/pin/create/button/?url=' + b + '&media=' + img + '&description=' + desk + '" onclick="javascript:void window.open(\'https://pinterest.com/pin/create/button/?url=' + b + '&media=' + img + '&description=' + desk + '\',\'ibacor.com\',\'width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0\');return false;" class="ayo-btn ayo-pinterest" title="Pinterest"><i class="fa fa-pinterest"></i></a></p>'
         ayo_pinterest(b, xxx)
     }
     if (stumbleupon == true) {
-        html += '<p><a href="http://www.stumbleupon.com/badge/?url=' + b + '" onclick="javascript:void window.open(\'http://www.stumbleupon.com/badge/?url=' + b + '\',\'ibacor.com\',\'width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0\');return false;" class="ayo-btn ayo-stumbleupon" title="Stumbleupon"><i class="fa fa-stumbleupon"></i></a></p>'
+        html += '<p><a href="https://www.stumbleupon.com/badge/?url=' + b + '" onclick="javascript:void window.open(\'https://www.stumbleupon.com/badge/?url=' + b + '\',\'ibacor.com\',\'width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0\');return false;" class="ayo-btn ayo-stumbleupon" title="Stumbleupon"><i class="fa fa-stumbleupon"></i></a></p>'
         ayo_stumbleupon(b, xxx)
     }
     if (bufferapp == true) {
@@ -542,7 +542,7 @@ $.fn.ayoshare = function() {
         ayo_bufferapp(b, xxx)
     }
     if (vk == true) {
-        html += '<p><a href="http://vk.com/share.php?url=' + b + '" onclick="javascript:void window.open(\'http://vk.com/share.php?url=' + b + '\',\'ibacor.com\',\'width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0\');return false;" class="ayo-btn ayo-vk" title="VK"><i class="fa fa-vk"></i></a></p>'
+        html += '<p><a href="https://vk.com/share.php?url=' + b + '" onclick="javascript:void window.open(\'https://vk.com/share.php?url=' + b + '\',\'ibacor.com\',\'width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0\');return false;" class="ayo-btn ayo-vk" title="VK"><i class="fa fa-vk"></i></a></p>'
         ayo_vk(b, xxx)
     }
     if (pocket == true) {
@@ -604,7 +604,7 @@ $.fn.ayoshare = function() {
 
     function ayo_pinterest(c, xxx) {
         $.ajax({
-            url: 'http://api.pinterest.com/v1/urls/count.json?url=' + c + '&callback=?',
+            url: 'https://api.pinterest.com/v1/urls/count.json?url=' + c + '&callback=?',
             crossDomain: true,
             dataType: 'json',
             success: function(a) {
@@ -623,9 +623,9 @@ $.fn.ayoshare = function() {
             dataType: "xml",
             url: "https://query.yahooapis.com/v1/public/yql",
             data: {
-                q: "SELECT content FROM data.headers WHERE url=\"http://vk.com/share.php?act=count&index=1&url=" + f + "\" and ua=\"#Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36\"",
+                q: "SELECT content FROM data.headers WHERE url=\"https://vk.com/share.php?act=count&index=1&url=" + f + "\" and ua=\"#Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36\"",
                 format: "xml",
-                env: "http://datatables.org/alltables.env"
+                env: "https://datatables.org/alltables.env"
             },
             success: function(a) {
                 var b = $(a).find("content").text();
@@ -642,7 +642,7 @@ $.fn.ayoshare = function() {
 
     function ayo_reddit(d, xxx) {
         $.ajax({
-            url: 'http://www.reddit.com/api/info.json?url=' + d,
+            url: 'https://www.reddit.com/api/info.json?url=' + d,
             crossDomain: true,
             dataType: 'json',
             success: function(a) {
@@ -664,7 +664,7 @@ $.fn.ayoshare = function() {
             data: {
                 q: "SELECT content FROM data.headers WHERE url=\"https://plusone.google.com/_/+1/fastbutton?url=" + e + "\" and ua=\"#Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36\"",
                 format: "xml",
-                env: "http://datatables.org/alltables.env"
+                env: "https://datatables.org/alltables.env"
             },
             success: function(a) {
                 var b = $(a).find("content").text();
@@ -684,9 +684,9 @@ $.fn.ayoshare = function() {
             dataType: "xml",
             url: "https://query.yahooapis.com/v1/public/yql",
             data: {
-                q: "SELECT content FROM data.headers WHERE url=\"http://www.stumbleupon.com/services/1.01/badge.getinfo?url=" + e + "\" and ua=\"#Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36\"",
+                q: "SELECT content FROM data.headers WHERE url=\"https://www.stumbleupon.com/services/1.01/badge.getinfo?url=" + e + "\" and ua=\"#Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36\"",
                 format: "xml",
-                env: "http://datatables.org/alltables.env"
+                env: "https://datatables.org/alltables.env"
             },
             success: function(a) {
                 var b = $(a).find("content").text();
@@ -708,7 +708,7 @@ $.fn.ayoshare = function() {
             data: {
                 q: "SELECT content FROM data.headers WHERE url=\"https://widgets.getpocket.com/v1/button?label=pocket&count=horizontal&v=1&url=" + e + "\" and ua=\"#Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36\"",
                 format: "xml",
-                env: "http://datatables.org/alltables.env"
+                env: "https://datatables.org/alltables.env"
             },
             success: function(a) {
                 var b = $(a).find("content").text();
@@ -724,7 +724,7 @@ $.fn.ayoshare = function() {
 
 	function ayo_twitter(d, xxx) {
 		$.ajax({
-			url: 'http://cdn.api.twitter.com/1/urls/count.json?url=' + d,
+			url: 'https://cdn.api.twitter.com/1/urls/count.json?url=' + d,
 			crossDomain: true,
 			dataType: 'jsonp',
             success: function(a) {

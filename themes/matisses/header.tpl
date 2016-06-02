@@ -177,15 +177,19 @@
     });    
 </script>
 {/if}
+{literal}
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61589842-2', 'auto');
+  ga('send', 'pageview');
+</script>
+{/literal}
 </head>
-<!--
-<div class="ax-cont-preload">
-    <div class="ax-preload">
-        <div class="ax-text"></div>
-        <div class="ax-icon"></div>
-    </div>
-</div>-->
-<body{if isset($page_name)} id="{$page_name|escape:'html':'UTF-8'}"{/if} class="{if isset($page_name)}{$page_name|escape:'html':'UTF-8'}{/if}{if isset($body_classes) && $body_classes|@count} {implode value=$body_classes separator=' '}{/if}{if $hide_left_column} hide-left-column{/if}{if $hide_right_column} hide-right-column{/if}{if isset($content_only) && $content_only} content_only{/if} lang_{$lang_iso}" itemscope itemtype="http://schema.org/WebPage">
+<body{if isset($page_name)} id="{$page_name|escape:'html':'UTF-8'}"{/if} class="{if isset($page_name)}{$page_name|escape:'html':'UTF-8'}{/if}{if isset($body_classes) && $body_classes|@count} {implode value=$body_classes separator=' '}{/if}{if $hide_left_column} hide-left-column{/if}{if $hide_right_column} hide-right-column{/if}{if isset($content_only) && $content_only} content_only{/if} lang_{$lang_iso}" itemscope itemtype="https://schema.org/WebPage">
 	{if !isset($content_only) || !$content_only}
 		{if isset($restricted_country_mode) && $restricted_country_mode}
 			<div id="restricted-country">
@@ -240,10 +244,10 @@
                             <div id="lhnContainerDone" style="text-align: center; width: auto; top: 150px; right: 0px; position: fixed; z-index: 9999;">
                                  <div id="lhnChatButton" style="width: auto;">
                                      <a href="javascript:void(0)" onclick="OpenLHNChat();return false;" id="aLHNBTN">
-                                         <img id="lhnchatimg" border="0" alt="Live help" src="http://www.livehelpnow.net/lhn/functions/imageserver.ashx?lhnid=24694&amp;java=No&amp;zimg=4827&amp;sres=1920x1080&amp;sdepth=24&amp;custom1=&amp;custom2=&amp;custom3=&amp;t=t&amp;d=29011&amp;rnd=0.36317845692275763&amp;ck=true&amp;referrer=&amp;pagetitle=MATISSES&amp;pageurl=http%3A//www.matisses.co/">
+                                         <img id="lhnchatimg" border="0" alt="Live help" src="https://www.livehelpnow.net/lhn/functions/imageserver.ashx?lhnid=24694&amp;java=No&amp;zimg=4827&amp;sres=1920x1080&amp;sdepth=24&amp;custom1=&amp;custom2=&amp;custom3=&amp;t=t&amp;d=29011&amp;rnd=0.36317845692275763&amp;ck=true&amp;referrer=&amp;pagetitle=MATISSES&amp;pageurl=http%3A//www.matisses.co/">
                                      </a>
                              </div>
-                             <script type="text/javascript" src="http://www.livehelpnow.net/lhn/scripts/livehelpnow.aspx?lhnid=24694&amp;iv=1&amp;ivid=0&amp;d=29011&amp;ver=5.3&amp;rnd=0.8177507956510826"></script></div>
+                             <script type="text/javascript" src="https://www.livehelpnow.net/lhn/scripts/livehelpnow.aspx?lhnid=24694&amp;iv=1&amp;ivid=0&amp;d=29011&amp;ver=5.3&amp;rnd=0.8177507956510826"></script></div>
   	            			<script src="//www.livehelpnow.net/lhn/widgets/chatbutton/lhnchatbutton-current.min.js" type="text/javascript" id="lhnscript"></script>
 						</li>
 		            	<li id="blog" class="blog">

@@ -157,40 +157,26 @@ class ws_product extends matisses
 		return true;
 	}
 
-	public function product_listStockChanges($datos){                
-		/*if(!$_SESSION['datos'])
-			$_SESSION['datos'] = $datos;
-			
-		$datos = $_SESSION['datos'];*/
-		
+	public function product_listStockChanges($datos){
 		if(!is_array($datos))
 			return false;
 		
 		$inventario = $datos['inventoryChangesDTO']['changes'];
 		$stock = array();
-		echo '<pre>';
-            print_r($inventario);
-        echo '</pre>';
+		
 		foreach($inventario as $k => $v) {
 			$_Quantity  = 0;
-			$_Row 		= Db::getInstance()->getRow('SELECT id_product, id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.trim($v['itemCode']).'"');
-			//$isArray 	= filter_var($v['stock'],'array');
+			$_Row 		= Db::getInstance()->getRow('SELECT id_product, id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.trim($v['itemCode']).'"');			
             
-			if($_Row['id_product']!='' && $_Row['id_product_attribute']!='') {				
-				if(count(array_filter($v['stock'],'is_array'))==0) {
-					$_Quantity = $v['stock']['quantity'];
-					StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);
-				}else if(count($v['stock'])){//if(count(array_filter($v['stock'],'is_array'))>0)
-					$stock = $v['stock'];
-                    
-					foreach($stock  as $d => $vv) {
-						$_Quantity += $vv['quantity'];
-					}
-					//StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);
-                    
-                    StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);
-				}
-                echo $_Row['id_product']. ' - '.$_Row['id_product_attribute'].' => '.$_Quantity. ' <br>';
+			if($_Row['id_product']!='' && $_Row['id_product_attribute']!='') {
+                
+                $dataRef = parent::wsmatisses_getInfoProduct($v['itemCode']);
+                for($i = 0;$i < count($dataRef['stock']);$i++){
+                    $_Quantity += $dataRef['stock'][$i]['quantity'];
+                }
+                StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);
+                
+                //echo 'REF '.$v['itemCode'].' => '.$_Row['id_product']. ' - '.$_Row['id_product_attribute'].' => '.$_Quantity. ' <br>';
 			}
 		}
 
