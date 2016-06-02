@@ -4173,8 +4173,8 @@ box-sizing: border-box;
 	}
 
     #header .cart_block {
-        max-height: 585px;
-        overflow-x: scroll;
+        max-height: 369px;
+        overflow-y: scroll;
     }
 
 .main_panel	#cart .cart_block_list.expanded .cart-buttons a {
