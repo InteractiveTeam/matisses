@@ -60,6 +60,7 @@ function formatCurrency(price, currencyFormat, currencySign, currencyBlank)
 {
 	// if you modified this function, don't forget to modify the PHP function displayPrice (in the Tools.php class)
 	var blank = '';
+    price = parseFloat(price);
 	price = parseFloat(price.toFixed(10));
 	price = ps_round(price, priceDisplayPrecision);
 	if (currencyBlank > 0)
