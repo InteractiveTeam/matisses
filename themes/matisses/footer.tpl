@@ -112,7 +112,7 @@
             }(document, 'script', 'facebook-jssdk'));</script>
           <div class="share cf">
             <p>{l s='Síguenos en nuestras redes sociales'}</p>
-            <div class="fb-like" data-href="http://www.matisses.com/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+            <div class="fb-like" data-href="https://www.matisses.co/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
           </div>
         </div>
       </div>
