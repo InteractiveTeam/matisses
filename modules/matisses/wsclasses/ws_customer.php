@@ -101,7 +101,7 @@ class ws_customer extends matisses
 			$array['customerDTO']['id'] 			= $customerinfo->charter.'CL';
 			$array['customerDTO']['lastName1'] 		= $customerinfo->lastname;
 			$array['customerDTO']['lastName2'] 		= $customerinfo->secondname;
-			$array['customerDTO']['legalName']		= $customerinfo->company ? $customerinfo->company : $customerinfo->lastname.($customerinfo->secondname ? ' '.$customerinfo->secondname : NULL).' '.$customerinfo->firstname;
+			$array['customerDTO']['legalName']		= $customerinfo->company ? $customerinfo->company : $customerinfo->lastname.' '.$customerinfo->firstname.($customerinfo->secondname ? ' '.$customerinfo->secondname : NULL);
 			$array['customerDTO']['names']			= $customerinfo->firstname;
 			$array['customerDTO']['email']			= $customerinfo->email;
 			$array['customerDTO']['salesPersonCode']= '';

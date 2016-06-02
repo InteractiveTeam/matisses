@@ -213,7 +213,7 @@ class wsmatisses extends Module
 		$infoxml[0]['id'] 				= $InfCustomer[0]['customer_cedula'].'CL';
 		$infoxml[0]['lastName1'] 		= strtoupper($InfCustomer[0]['lastname']);
 		$infoxml[0]['lastName2']		= strtoupper(($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname']: ''));
-        $infoxml[0]['legalName']		= strtoupper(($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname'].' ': '').$InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
+        $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].' '.($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname'].' ': ' ').$InfCustomer[0]['firstname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname'] : ''));
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: ''));
 		$infoxml[0]['email']			= $InfCustomer[0]['email'];
 		$infoxml[0]['gender']			= $InfCustomer[0]['id_gender'];
@@ -262,7 +262,7 @@ class wsmatisses extends Module
 		$infoxml[0]['source'] 			= 'prestashop';
 		$infoxml[0]['lastName1'] 		= strtoupper($InfCustomer[0]['lastname']);
 		$infoxml[0]['lastName2']		= strtoupper(($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname']: ''));
-        $infoxml[0]['legalName']		= strtoupper(($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname'].' ': '').$InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
+        $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].' '.($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname'].' ': ' ').$InfCustomer[0]['firstname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname'] : ''));
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: ''));
 		$infoxml[0]['email']			= $InfCustomer[0]['email'];
         $infoxml[0]['gender']			= $InfCustomer[0]['id_gender'];

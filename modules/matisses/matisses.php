@@ -1241,7 +1241,7 @@ class matisses extends Module
 		$infoxml[0]['id'] 				= $InfCustomer[0]['charter'].'CL';
 		$infoxml[0]['lastName1'] 		= strtoupper($InfCustomer[0]['lastname']);
 		$infoxml[0]['lastName2']		= strtoupper(($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname']: ''));
-        $infoxml[0]['legalName']		= strtoupper(($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname'].' ': '').$InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
+        $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].' '.($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname'].' ': ' ').$InfCustomer[0]['firstname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname'] : ''));
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: ''));
 		$infoxml[0]['email']			= $InfCustomer[0]['email'];
 		$infoxml[0]['gender']			= $InfCustomer[0]['id_gender'];
@@ -1311,7 +1311,7 @@ class matisses extends Module
 		$infoxml[0]['id'] 				= $InfCustomer[0]['charter'].'CL';
 		$infoxml[0]['lastName1'] 		= strtoupper($InfCustomer[0]['lastname']);
 		$infoxml[0]['lastName2']		= strtoupper(($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname']: ''));
-        $infoxml[0]['legalName']		= strtoupper(($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname'].' ': '').$InfCustomer[0]['lastname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: '').' '.$InfCustomer[0]['firstname']);
+        $infoxml[0]['legalName']		= strtoupper($InfCustomer[0]['lastname'].' '.($InfCustomer[0]['surname'] ? $InfCustomer[0]['surname'].' ': ' ').$InfCustomer[0]['firstname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname'] : ''));
         $infoxml[0]['names']			= strtoupper($InfCustomer[0]['firstname'].($InfCustomer[0]['secondname'] ? ' '.$InfCustomer[0]['secondname']: ''));
         $infoxml[0]['birthday']		= $InfCustomer[0]['birthday'];
         $infoxml[0]['gender']			= $InfCustomer[0]['id_gender'];
