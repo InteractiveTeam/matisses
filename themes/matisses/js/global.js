@@ -604,7 +604,7 @@ $.fn.ayoshare = function() {
 
     function ayo_pinterest(c, xxx) {
         $.ajax({
-            url: 'http://api.pinterest.com/v1/urls/count.json?url=' + c + '&callback=?',
+            url: 'https://api.pinterest.com/v1/urls/count.json?url=' + c + '&callback=?',
             crossDomain: true,
             dataType: 'json',
             success: function(a) {
