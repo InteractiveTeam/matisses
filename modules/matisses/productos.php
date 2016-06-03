@@ -558,9 +558,8 @@
 			$_data['video']					=  strstr($_data['itemCode'].'/animacion/'.basename(current(glob($path.'/animacion/*.html'))),'.html') ? $_data['itemCode'].'/animacion/'.basename(current(glob($path.'/animacion/*.html'))) : NULL;
             
             $_data['manufacture'] = saveManufacture($_data['brand']['code'],$_data['brand']['name']);
-			$_data['status'] = ($status)?true:false;
-            
-            
+			$_data['status'] = ($status && $_data['processImages']==1)?true:false;
+                        
 			if($_data['newFrom']) {
 				unset($date);
 				$date = explode('-',date('Y-m-d',$_data['newFrom']/1000));
