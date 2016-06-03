@@ -174,12 +174,23 @@ class ws_product extends matisses
                 for($i = 0;$i < count($dataRef['stock']);$i++){
                     $_Quantity += $dataRef['stock'][$i]['quantity'];
                 }
-                StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);
-                
+                //StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);                
                 //echo 'REF '.$v['itemCode'].' => '.$_Row['id_product']. ' - '.$_Row['id_product_attribute'].' => '.$_Quantity. ' <br>';
+                
+                $qty = Product::getQuantity($_Row['id_product']);
+                if(!$qty){
+                    $str_ids .= $_Row['id_product'].',';
+                }
 			}
 		}
 
+        if($str_ids){
+            $query = 'UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product IN ('.substr($str_ids,0,-1).')';            
+            $query2 = str_replace(_DB_PREFIX_.'product',_DB_PREFIX_.'product_shop',$query);
+                        
+            Db::getInstance()->Execute($query);
+            Db::getInstance()->Execute($query2);
+        }
 		return true;
 	}
 	
