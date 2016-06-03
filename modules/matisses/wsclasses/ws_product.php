@@ -174,7 +174,7 @@ class ws_product extends matisses
                 for($i = 0;$i < count($dataRef['stock']);$i++){
                     $_Quantity += $dataRef['stock'][$i]['quantity'];
                 }
-                //StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);                
+                StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);                
                 //echo 'REF '.$v['itemCode'].' => '.$_Row['id_product']. ' - '.$_Row['id_product_attribute'].' => '.$_Quantity. ' <br>';
                 
                 $qty = Product::getQuantity($_Row['id_product']);
