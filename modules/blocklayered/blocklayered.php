@@ -3161,7 +3161,9 @@ class BlockLayered extends Module
 		else
 			$product_list = $smarty->fetch(_PS_THEME_DIR_.'product-list.tpl');
 
-
+        $translate = array();
+        $translate['price'] = $this->l('price');
+        $translate['weight'] = $this->l('weight');
 
 		$vars = array(
 			'filtersBlock' => utf8_encode($this->generateFiltersBlock($selected_filters)),
@@ -3175,7 +3177,8 @@ class BlockLayered extends Module
 			'current_friendly_url' => ((int)$n == (int)$nb_products) ? '#/show-all': '#'.$filter_block['current_friendly_url'],
 			'filters' => $filter_block['filters'],
 			'nbRenderedProducts' => (int)$nb_products,
-			'nbAskedProducts' => (int)$n
+			'nbAskedProducts' => (int)$n,
+            'blocklayeredSliderName' => $translate
 		);
 
 		if (version_compare(_PS_VERSION_, '1.6.0', '>=') === true)
