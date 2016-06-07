@@ -214,7 +214,8 @@ param_product_url = '';
 							{/if}
 						{/if}
 						{if count($filter.values) > $filter.filter_show_limit && $filter.filter_show_limit > 0 && $filter.filter_type != 2}
-							
+							<span class="hide-action more">{l s='Show more' mod='blocklayered'}</span>
+							<span class="hide-action less">{l s='Show less' mod='blocklayered'}</span>
 						{/if}
 						</ul>
 					</div>
