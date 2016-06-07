@@ -7,7 +7,7 @@
         <li><a href="#tabs-3">{l s='Reviews' mod='matisses'}</a></li>
       </ul>
       <div id="tabs-1">
-        <p> {$product->description_short} </p>
+        <p> {$product->description} </p>
       </div>
       <div id="tabs-2">
 		{$product->cuidados}
