@@ -76,7 +76,7 @@
             $result = Db::getInstance()->execute($sql);
             
             //$ret = parent::update($null_values);            
-			return $result;
+			return parent::update();
 		}
         
         //Consultamos el ID del producto según la referrencia larga que no llega
