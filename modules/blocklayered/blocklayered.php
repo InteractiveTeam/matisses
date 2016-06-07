@@ -2210,7 +2210,7 @@ class BlockLayered extends Module
 					) ';
 					$sql_query['group'] = '
 					GROUP BY lpa.id_attribute
-					ORDER BY ag.`position` ASC, a.`position` ASC';
+					ORDER BY ag.`position` ASC, al.`name` ASC';
 
 					if (!Configuration::get('PS_LAYERED_HIDE_0_VALUES'))
 					{
