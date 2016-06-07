@@ -51,5 +51,5 @@ $_MODULE['<{blockcart}matisses>blockcart_fc86c43dbffcadc193832a310f7a444a'] = 'H
 $_MODULE['<{blockcart}matisses>blockcart_db205f01b4fd580fb5daa9072d96849d'] = 'Total productos:';
 $_MODULE['<{blockcart}matisses>blockcart_1f87346a16cf80c372065de3c54c86d9'] = '(IVA incluido)';
 $_MODULE['<{blockcart}matisses>blockcart_f4e8b53a114e5a17d051ab84d326cae5'] = 'Total envío:';
-$_MODULE['<{blockcart}matisses>blockcart_300225ee958b6350abc51805dab83c24'] = 'Continuar la compra';
+$_MODULE['<{blockcart}matisses>blockcart_300225ee958b6350abc51805dab83c24'] = 'Continuar comprando';
 $_MODULE['<{blockcart}matisses>blockcart_7e0bf6d67701868aac3116ade8fea957'] = 'Pagar';
