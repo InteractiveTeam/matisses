@@ -86,10 +86,7 @@ class matissesexperiencesModuleFrontController extends ModuleFrontController
 		$path[] = '<i class="fa fa-angle-right"></i>';
 		$path[] = '<span class="navigation">'.$this->experience->name.'</span>';
 		
-		$experiences =  $this->experience->getExperiences();
-		
-		
-		
+		$experiences =  $this->experience->getExperiences();		
 		
 		if($this->id_experience)
 		{
@@ -110,6 +107,22 @@ class matissesexperiencesModuleFrontController extends ModuleFrontController
 				$cont++;	
 			}
 		}
+        if(!ToolsCore::getValue('id_experiencia')){
+            $metas = Db::getInstance()->getRow("SELECT (
+            SELECT id_meta
+            FROM "._DB_PREFIX_."meta
+            WHERE PAGE =  'module-matisses-experiences'
+            ) AS id_meta,  `title` ,  `description` ,  `keywords` 
+            FROM  `"._DB_PREFIX_."meta_lang` b
+            INNER JOIN  `ps_meta` a ON a.id_meta = b.id_meta
+            WHERE a.id_meta = ( 
+            SELECT id_meta
+            FROM "._DB_PREFIX_."meta
+            WHERE PAGE =  'module-matisses-experiences' ) 
+            ");
+            $this->experience->meta_title = $metas['title'];
+            $this->experience->meta_description = $metas['description'];
+        }
 		
 		ksort($realexpereinces);
 		$this->context->smarty->assign(array(
