@@ -4904,6 +4904,7 @@ margin-top:5px;
 
 .newImgsContent .newSlideshow {
     max-height: 452px;
+    overflow: hidden;
 }
 
 .newContent .grid_4 #addComment {
@@ -5485,6 +5486,7 @@ body#search .category_list.product_list.grid .ajax_block_product {
 
 .newImgsContent .newSlideshow a img {
     min-width: 100%;
+    margin-top: -25%;
 }
 
 .newContentInt div.newImgsContent {
