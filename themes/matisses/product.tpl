@@ -229,7 +229,7 @@
 			{if $product->description_short || $packItems|@count > 0}
 				<div id="short_description_block">
 					{if $product->description_short}
-						<div id="short_description_content" class="rte align_justify" itemprop="description">{$product->description_short}</div>
+						<div id="short_description_content" class="rte align_justify" itemprop="description">{$product->description_short|truncate:130}</div>
 					{/if}
 
 					{if $product->description}
