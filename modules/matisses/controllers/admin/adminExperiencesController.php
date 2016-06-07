@@ -295,8 +295,33 @@ class AdminExperiencesController extends ModuleAdminController
 					'class' => 'copy2friendlyUrl',
 					'hint' => $this->l('Invalid characters:').' <>;=#{}',
 				),
+                
+                array(
+					'type' => 'text',
+					'label' => $this->l('Meta título'),
+					'name' => 'meta_title',
+					'lang' => true,
+					'required' => true,
+					'hint' => $this->l('Invalid characters:').' <>;=#{}',
+				),
 				
 				array(
+					'type' => 'textarea',
+					'label' => $this->l('Meta descripción'),
+					'name' => 'meta_description',
+					'lang' => true,
+					'hint' => $this->l('Invalid characters:').' <>;=#{}'
+				),
+                
+                /*array(
+					'type' => 'textarea',
+					'label' => $this->l('Palabras clave'),
+					'name' => 'meta_keywords',
+					'lang' => true,
+					'hint' => $this->l('Invalid characters:').' <>;=#{}'
+				),*/
+                
+                array(
 					'type' => 'textarea',
 					'label' => $this->l('Descripción'),
 					'name' => 'description',
