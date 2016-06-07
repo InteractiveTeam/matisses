@@ -27,6 +27,7 @@ var ajaxQueries = new Array();
 var ajaxLoaderOn = 0;
 var sliderList = new Array();
 var slidersInit = false;
+var current_price_slider = '';
 
 $(document).ready(function(){
 	cancelFilter();
@@ -183,7 +184,9 @@ function initFilters()
 							from = ui.values[0] + $(event.target).data('unit');
 							to = ui.values[1] + $(event.target).data('unit');
 						}
-
+                        
+                        current_price_slider = 'price-'+ui.values[0]+'-'+ui.values[1];
+                        
 						$('#layered_' + $(event.target).data('type') + '_range').html('<span class="from">' + from + '</span>' + ' - ' + '<span class="to">' + to + '</span>');
 					},
 					stop: function () {
@@ -277,6 +280,7 @@ function initLayered()
 function paginationButton(nbProductsIn, nbProductOut) {
 	if (typeof(current_friendly_url) === 'undefined')
 		current_friendly_url = '#';
+    //current_friendly_url += current_price_slider;
 
 	$('div.pagination a').not(':hidden').each(function () {
 		if ($(this).attr('href').search(/(\?|&)p=/) == -1) {
@@ -286,7 +290,7 @@ function paginationButton(nbProductsIn, nbProductOut) {
 			var page = parseInt($(this).attr('href').replace(/^.*(\?|&)p=(\d+).*$/, '$2'));
 		}
 		var location = window.location.href.replace(/#.*$/, '');
-		$(this).attr('href', location+current_friendly_url.replace(/\/page-(\d+)/, '')+'/page-'+page);
+		$(this).attr('href', location+current_friendly_url.replace(/\/page-(\d+)/, '')+'/page-'+page+'/'+current_price_slider);
 	});
 	$('div.pagination li').not('.current, .disabled').each(function () {
 		var nbPage = 0;
@@ -606,15 +610,15 @@ function reloadContent(params_plus)
 							
 						if ($('#layered_'+sliderType+'_slider').slider('values', 0) != $('#layered_'+sliderType+'_slider').slider('option' , 'min')
 						|| $('#layered_'+sliderType+'_slider').slider('values', 1) != $('#layered_'+sliderType+'_slider').slider('option' , 'max'))
-							current_friendly_url += '/'+blocklayeredSliderName[sliderType].toLowerCase()+'-'+$('#layered_'+sliderType+'_slider').slider('values', 0)+'-'+$('#layered_'+sliderType+'_slider').slider('values', 1)
+							current_friendly_url += '/price'+'-'+$('#layered_'+sliderType+'_slider').slider('values', 0)+'-'+$('#layered_'+sliderType+'_slider').slider('values', 1)
 					}
 				}
 				else if ($('#layered_'+sliderType+'_range_min').length)
 				{
 					if(typeof blocklayeredSliderName == 'undefined')
-							var blocklayeredSliderName = new Array;
+							var blocklayeredSliderName = result.blocklayeredSliderName;
 					
-					current_friendly_url += '/'+blocklayeredSliderName[sliderType].toLowerCase()+'-'+$('#layered_'+sliderType+'_range_min').val()+'-'+$('#layered_'+sliderType+'_range_max').val();
+					current_friendly_url += '/price'+'-'+$('#layered_'+sliderType+'_range_min').val()+'-'+$('#layered_'+sliderType+'_range_max').val();
 				}
 			});
 
