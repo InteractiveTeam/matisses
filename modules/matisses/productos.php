@@ -116,7 +116,7 @@
 	function __setCombinations($_Combinations,$_Product)
 	{
 		if(!$_Combinations['processImages'])
-            return false;
+            return true;
         
 		$_currentCombinations = array();
 		foreach($_Combinations as $d => $_Combination)
