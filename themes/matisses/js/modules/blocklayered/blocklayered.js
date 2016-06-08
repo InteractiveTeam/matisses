@@ -28,6 +28,7 @@ var ajaxLoaderOn = 0;
 var sliderList = new Array();
 var slidersInit = false;
 var current_price_slider = '';
+var upCount = false;
 
 $(document).ready(function(){
 	cancelFilter();
@@ -142,6 +143,7 @@ $(document).ready(function(){
 
 	//Custom scroll
 	$(".scroll-pane").mCustomScrollbar();
+    reloadContent(true);
 });
 
 
@@ -280,7 +282,6 @@ function initLayered()
 function paginationButton(nbProductsIn, nbProductOut) {
 	if (typeof(current_friendly_url) === 'undefined')
 		current_friendly_url = '#';
-    //current_friendly_url += current_price_slider;
 
 	$('div.pagination a').not(':hidden').each(function () {
 		if ($(this).attr('href').search(/(\?|&)p=/) == -1) {
@@ -591,8 +592,6 @@ function reloadContent(params_plus)
 			initFilters();
 			initSliders();
 
-			current_friendly_url = result.current_friendly_url;
-
 			// Currente page url
 			if (typeof(current_friendly_url) === 'undefined')
 				current_friendly_url = '#';
@@ -633,10 +632,13 @@ function reloadContent(params_plus)
 
 			lockLocationChecking = true;
 
-			if(slideUp)
-				$.scrollTo('.product_list', 400);
+			if(slideUp == true && upCount == true)
+				$.scrollTo('.nav-breadcrum', 350);
+            
 			updateProductUrl();
 
+            upCount = true;
+            
 			$('.hide-action').each(function() {
 				hideFilterValueAction(this);
 			});
