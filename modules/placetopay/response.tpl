@@ -1,3 +1,23 @@
+{if $status eq 'ok'}
+<!-- Google Code for Compras en el sitio web Conversion Page -->
+<script type="text/javascript">
+/ <![CDATA[ /
+var google_conversion_id = 954237836;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "JmqbCI_LmmcQjIeCxwM";
+var google_remarketing_only = false;
+/ ]]> /
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/954237836/?label=JmqbCI_LmmcQjIeCxwM&guid=ON&script=0"/>
+</div>
+</noscript>
+{/if}
 <pre style="display:none">{$transaction|print_r}</pre>
 {if $status eq 'ok'}
 	<h2>{l s='Completed payment' mod='placetopay'}</h2>
