@@ -426,9 +426,6 @@
                <div class="newTopActions">
                     <a href="javascript:window.print()" class="productPrint"><i class="fa fa-print" aria-hidden="true"></i></a>
                     <!-- AddThis Button BEGIN -->
-                        <p class="addthis_toolbox addthis_default_style">
-                            <a class="addthis_button_email" ></a>
-                        </p>
                         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57058c3b661b8e1a"></script>
                     <!-- AddThis Button END -->
                 </div>
