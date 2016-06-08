@@ -58,7 +58,7 @@ class SearchControllerCore extends FrontController
 		$query = Tools::replaceAccentedChars(urldecode(Tools::getValue('q')));
         $original_query = Tools::getValue('q');
 
-        if (strlen(trim($query)) == 7){
+        if (strlen(trim($query)) == 7 && is_numeric(trim($query))){
             $query = substr_replace($query, '0000000000000', 3, 0);
             $original_query = $query;
         }
@@ -102,7 +102,7 @@ class SearchControllerCore extends FrontController
 		} elseif (($query = Tools::getValue('search_query', Tools::getValue('ref'))) && !is_array($query)) {
             $banderaRef =  false;
 
-            if (strlen(trim($query)) == 7){
+            if (strlen(trim($query)) == 7 && is_numeric(trim($query))){
                 $query = substr_replace($query, '0000000000000', 3, 0);
                 $banderaRef = true;
             }
