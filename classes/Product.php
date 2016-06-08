@@ -70,6 +70,9 @@ class ProductCore extends ObjectModel
 	
 	/** @var string sketch */
 	public $sketch;
+    
+    /** @var string date_new */
+	public $date_new;
 	
 	/** @var string itemname */
 	public $itemname;
@@ -326,6 +329,7 @@ class ProductCore extends ObjectModel
 			'date_add' => 					array('type' => self::TYPE_DATE, 'shop' => true, 'validate' => 'isDateFormat'),
 			'date_upd' => 					array('type' => self::TYPE_DATE, 'shop' => true, 'validate' => 'isDateFormat'),
 			'pack_stock_type' =>			array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedInt'),
+            'date_new' => 			array('type' => self::TYPE_DATE, 'shop' => true, 'validate' => 'isDateFormat'),
 
 			/* Lang fields */
 			'meta_description' => 			array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName', 'size' => 255),
@@ -2133,9 +2137,9 @@ class ProductCore extends ObjectModel
 
 		if ($page_number < 0) $page_number = 0;
 		if ($nb_products < 1) $nb_products = 10;
-		if (empty($order_by) || $order_by == 'position') $order_by = 'date_add';
+		if (empty($order_by) || $order_by == 'position') $order_by = 'date_new';
 		if (empty($order_way)) $order_way = 'DESC';
-		if ($order_by == 'id_product' || $order_by == 'price' || $order_by == 'date_add' || $order_by == 'date_upd')
+		if ($order_by == 'id_product' || $order_by == 'price' || $order_by == 'date_new' || $order_by == 'date_upd')
 			$order_by_prefix = 'p';
 		elseif ($order_by == 'name')
 			$order_by_prefix = 'pl';
@@ -2167,11 +2171,9 @@ class ProductCore extends ObjectModel
 					FROM `'._DB_PREFIX_.'product` p
 					'.Shop::addSqlAssociation('product', 'p').'
 					WHERE product_shop.`active` = 1
-					AND product_shop.`date_add` > "'.date('Y-m-d', strtotime('-'.(Configuration::get('PS_NB_DAYS_NEW_PRODUCT') ? (int)Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20).' DAY')).'"
+					AND product_shop.`date_new` > "'.date('Y-m-d', strtotime('-'.(Configuration::get('PS_NB_DAYS_NEW_PRODUCT') ? (int)Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20).' DAY')).'"
 					'.($front ? ' AND product_shop.`visibility` IN ("both", "catalog")' : '').'
 					'.$sql_groups;
-            
-            die($sql.Configuration::get('PS_NB_DAYS_NEW_PRODUCT'));
 			return (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 		}
 
@@ -2179,7 +2181,7 @@ class ProductCore extends ObjectModel
 		$sql->select(
 			'p.*, product_shop.*, stock.out_of_stock, IFNULL(stock.quantity, 0) as quantity, pl.`description`, pl.`description_short`, pl.`link_rewrite`, pl.`meta_description`,
 			pl.`meta_keywords`, pl.`meta_title`, pl.`name`, pl.`available_now`, pl.`available_later`, MAX(image_shop.`id_image`) id_image, il.`legend`, m.`name` AS manufacturer_name,
-			product_shop.`date_add` > "'.date('Y-m-d', strtotime('-'.(Configuration::get('PS_NB_DAYS_NEW_PRODUCT') ? (int)Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20).' DAY')).'" as new'.(Combination::isFeatureActive() ? ', MAX(product_attribute_shop.minimal_quantity) AS product_attribute_minimal_quantity' : '')
+			product_shop.`date_new` > "'.date('Y-m-d', strtotime('-'.(Configuration::get('PS_NB_DAYS_NEW_PRODUCT') ? (int)Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20).' DAY')).'" as new'.(Combination::isFeatureActive() ? ', MAX(product_attribute_shop.minimal_quantity) AS product_attribute_minimal_quantity' : '')
 		);
 
 		$sql->from('product', 'p');
@@ -2196,7 +2198,7 @@ class ProductCore extends ObjectModel
 		$sql->where('product_shop.`active` = 1');
 		if ($front)
 			$sql->where('product_shop.`visibility` IN ("both", "catalog")');
-		$sql->where('product_shop.`date_add` > "'.date('Y-m-d', strtotime('-'.(Configuration::get('PS_NB_DAYS_NEW_PRODUCT') ? (int)Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20).' DAY')).'"');
+		$sql->where('product_shop.`date_new` > "'.date('Y-m-d', strtotime('-'.(Configuration::get('PS_NB_DAYS_NEW_PRODUCT') ? (int)Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20).' DAY')).'"');
 		if (Group::isFeatureActive())
 		{
 			$sql->join('JOIN '._DB_PREFIX_.'category_product cp ON (cp.id_product = p.id_product)');
@@ -2215,7 +2217,6 @@ class ProductCore extends ObjectModel
 			$sql->join(Shop::addSqlAssociation('product_attribute', 'pa', false, 'product_attribute_shop.default_on = 1'));
 		}
 		$sql->join(Product::sqlStock('p', Combination::isFeatureActive() ? 'product_attribute_shop' : 0));
-
 		$result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
 
 		if ($order_by == 'price')
