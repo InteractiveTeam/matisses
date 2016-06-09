@@ -301,7 +301,7 @@ param_product_url = '';
 						</ul>
 						</div>
 					</div>
-
+                    
 					<script type="text/javascript">
 					{literal}
 						$('.layered_{/literal}{$filter.type}{literal}').show();
@@ -309,7 +309,25 @@ param_product_url = '';
 					</script>
 					{/if}
 				{/foreach}
-
+            <script type=text/javascript>
+            {literal}
+                $(function() {
+                    $.fn.sortList = function() {
+                    var mylist = $('#layered_form ul.material');
+                    var listitems = $('li', mylist).get();
+                    listitems.sort(function(a, b) {
+                        var compA = $(a).text().toUpperCase();
+                        var compB = $(b).text().toUpperCase();
+                        return (compA < compB) ? -1 : 1;
+                    });
+                    $.each(listitems, function(i, itm) {
+                        mylist.append(itm);
+                    });
+                   }
+                    $("#layered_form ul.material").sortList();
+                });
+            {/literal}
+            </script>
 			</div>
 			<input type="hidden" name="id_category_layered" value="{$id_category_layered}" />
 			{foreach from=$filters item=filter}
