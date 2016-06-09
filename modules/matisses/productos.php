@@ -33,6 +33,7 @@
 
     $banderaPost = false;
     if(isset($_POST['modelo']) && $_POST['modelo'] != ""){
+        
         $_Modelos = getProductsByModel($_POST['modelo']);
         $banderaPost = true;
         
@@ -44,7 +45,7 @@
         print_r($_Modelos);
     }
     
-	$_References    = __getReferences($_Modelos);	 
+	$_References    = __getReferences($_Modelos,$banderaPost);	 
 
 	if(Configuration::get('ax_simpleproduct_data')=='')	{
 		$ModelsExists = implode('","',array_keys($_References));
@@ -454,7 +455,7 @@
 		}
 	}
 	
-	function __getReferences($_Modelos)	{        
+	function __getReferences($_Modelos,$bandera)	{        
 		global $_wsmatisses;
 		if(!$_wsmatisses)
 			$_wsmatisses 	= new matisses;
@@ -468,8 +469,7 @@
 		}else{
             $_Data = $_wsmatisses->wsmatisses_getModelInfo();
         }
-        
-        $_Data = validProductExist($_Data);
+        $_Data = validProductExist($_Data,$bandera);
         
 	  	if($_Data['error_string'])
 		{
@@ -711,44 +711,52 @@
     /*
     * $productMat => obtiene todos los productos del servicio de matisess
     */
-    function validProductExist($productMat){
+    function validProductExist($productMat,$bandera){
         $productObj = new Product();
-        $productsPS = $productObj->getProducts((int)Configuration::get('PS_LANG_DEFAULT'), 0, 0, 'id_product', 'DESC',false,true);
+        
+        if(!$bandera){
+            $productsPS = $productObj->getProducts((int)Configuration::get('PS_LANG_DEFAULT'), 0, 0, 'id_product', 'DESC',false,true);
             
-        $query = 'UPDATE '._DB_PREFIX_.'product SET active = CASE id_product ';
-        $queryCondition = '';
-        $str_ids = '';
-                
-        foreach ($productsPS as $key => $value){
-            $bandera = false;
-            foreach($productMat as $key2 => $value2){
-                                
-                $references = (is_array($value2['references']))?$value2['references'][0]:trim($value2['references']);
-                    
-                if($references == trim($value['reference'])){
-                    $bandera = true;
-                    $productMat[$key2]['status'] = 'Existe';
-                    break;
+            $query = 'UPDATE '._DB_PREFIX_.'product SET active = CASE id_product ';
+            $queryCondition = '';
+            $str_ids = '';
+
+            foreach ($productsPS as $key => $value){
+                $bandera = false;
+                foreach($productMat as $key2 => $value2){
+
+                    $references = (is_array($value2['references']))?$value2['references'][0]:trim($value2['references']);
+
+                    if($references == trim($value['reference'])){
+                        $bandera = true;
+                        $productMat[$key2]['status'] = 'Existe';
+                        break;
+                    }
+                }
+                if(!$bandera){
+                    $queryCondition .= ' WHEN '.$value['id_product'].' THEN 0';
+                    $str_ids .= $value['id_product'].',';
+                    //echo ' product => '.$value['reference'];
                 }
             }
-            if(!$bandera){
-                $queryCondition .= ' WHEN '.$value['id_product'].' THEN 0';
-                $str_ids .= $value['id_product'].',';
-                //echo ' product => '.$value['reference'];
+            $query = $query .' '.$queryCondition.'  END WHERE id_product IN ('.substr($str_ids,0,-1).')';        
+            $query2 = str_replace(_DB_PREFIX_.'product',_DB_PREFIX_.'product_shop',$query);
+
+            /*echo '<pre>';
+            print_r($productMat);
+            echo '</pre>';*/
+            if($queryCondition != ''){
+                echo $query;
+                Db::getInstance()->Execute($query);
+                $result = Db::getInstance()->Execute($query2);
+            }
+        }else{
+            foreach($productMat as $key => $value){
+                $references = (is_array($value['references']))?$value['references'][0]:trim($value['references']);
+                if($productObj->existsRefInDatabase($references))
+                    $productMat[$key]['status'] = 'Existe';
             }
         }
-        $query = $query .' '.$queryCondition.'  END WHERE id_product IN ('.substr($str_ids,0,-1).')';        
-        $query2 = str_replace(_DB_PREFIX_.'product',_DB_PREFIX_.'product_shop',$query);
-        
-        /*echo '<pre>';
-        print_r($productMat);
-        echo '</pre>';*/
-        if($queryCondition != ''){
-            echo $query;
-            Db::getInstance()->Execute($query);
-            $result = Db::getInstance()->Execute($query2);
-        }
-        
-        return $productMat;        
+        return $productMat;
     }
 ?>
