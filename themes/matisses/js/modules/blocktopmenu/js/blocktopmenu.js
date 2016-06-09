@@ -64,12 +64,12 @@ $(document).ready(function(){
 // check resolution
 function responsiveMenu()
 {
-   if ($(document).width() <= 767 && responsiveflagMenu == false)
+   if ($(document).width() <= 1024 && responsiveflagMenu == false)
 	{
 		menuChange('enable');
 		responsiveflagMenu = true;
 	}
-	else if ($(document).width() >= 768)
+	else if ($(document).width() >= 1025)
 	{
 		menuChange('disable');
 		responsiveflagMenu = false;

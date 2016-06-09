@@ -154,7 +154,7 @@ box-sizing: border-box;
 	outline: none;
 	}
 	sup { top: -.2em; }
-	#page { overflow: hidden;}
+	/*#page { overflow: hidden;}*/
 	body.content_only {	background: none;}
 	textarea {resize: none;}
 
@@ -5983,4 +5983,8 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 
 .address-cont {
     min-height: 230px;
+}
+
+.fancybox-overlay .fancybox-wrap iframe {
+    width: 100% !important;
 }
