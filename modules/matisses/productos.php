@@ -121,8 +121,7 @@
 		{
 			try{
                     if(!$_Combination['processImages'])
-                         //return true;
-                        die("Holiii");
+                         return true;
 					// verifico si la combinacion esta para cambio de modelo
 					$_currentCombinations[] = $_Combination['itemCode'];
 					$id_product_attribute = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.$_Combination['itemCode'].'" and id_product = 0');
