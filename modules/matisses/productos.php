@@ -120,7 +120,6 @@
 		$_currentCombinations = array();
 		foreach($_Combinations as $d => $_Combination)
 		{
-            die(print_r());
 			try{
                     if(!$_Combination['processImages'] && !$_Product->getCombinationImages(1))
                          continue;
