@@ -827,6 +827,12 @@
 		left: auto;
 		right: -25px;
 	}
+    
+    #new_comment_form .product img {
+        width: 100%;
+        height: auto;
+    }
+    
 }
 @media (max-width: 419px){
 	#order-detail-content #cart_summary td.cart_product{
@@ -1792,6 +1798,10 @@
 	.search .center_column {
 		width:64rem;
 	}
+    
+    .menu-right #cart {
+        background: url("../../img/shopping-rp.png") center 36% no-repeat transparent;
+    }
 
 }
 
@@ -2530,7 +2540,7 @@
 
 	.search-container form {
 		position: absolute;
-		z-index: 9;
+		z-index: 99;
 		width:100%;
 	}
 
