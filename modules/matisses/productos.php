@@ -4,10 +4,7 @@
 		@date: 			mar-2015
 		@description:	Sonda para la carga de productos sap - prestashop
 			
-	*/  
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
+	*/
 
 	session_start();
 	mb_internal_encoding("UTF-8");
