@@ -649,6 +649,28 @@ function reloadContent(params_plus)
 				if (view && view != 'grid')
 					display(view);
 			}
+            
+            $('.chosen-drop .chosen-results .active-result').removeClass('result-selected highlighted');
+            
+            $('.selector1 .selector select[name=n]').children().each(function() {
+				if (result.nbAskedProducts == this.value) {
+                    $('.nbrItemPage .chosen-single span').empty();
+                    $('.nbrItemPage .chosen-single span').text(result.nbAskedProducts);
+                    $(this).attr('selected', 'selected');
+                } else {
+                    $(this).removeAttr('selected');
+                }
+            });
+            
+            $('.nbrItemPage .chosen-single').click(function() {                
+                $('.chosen-drop .chosen-results').children().each(function() {
+                    if (result.nbAskedProducts == $(this).text()) {
+                        $(this).addClass('result-selected highlighted');
+                    } else {
+                        $(this).removeClass('result-selected highlighted');
+                    }
+                });
+            });
 			
 			$(".scroll-pane").mCustomScrollbar();
 		}
