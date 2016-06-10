@@ -37,7 +37,6 @@
         
         $_Modelos = getProductsByModel($_POST['modelo']);
         $banderaPost = true;
-        
         if(sizeof($_Modelos)<1){
             echo 'NO MODELS';
             exit();
@@ -46,13 +45,13 @@
         print_r($_Modelos);
     }
     
-	$_References    = __getReferences($_Modelos,$banderaPost);	 
+	$_References    = __getReferences($_Modelos,$banderaPost);
 
-	if(Configuration::get('ax_simpleproduct_data')=='')	{
+	/*if(Configuration::get('ax_simpleproduct_data')=='')	{
 		$ModelsExists = implode('","',array_keys($_References));
 		Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
 		Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
-	}
+	}*/
 	
 	
 	
