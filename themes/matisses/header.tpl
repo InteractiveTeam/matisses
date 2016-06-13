@@ -81,7 +81,7 @@
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 		<![endif]-->
-		
+{if !$contentOnly}
 <!--Chaordic-->		
 <script type="text/javascript" src="{$js_dir}ax-chaordic.js"></script>
 {literal}
@@ -168,6 +168,8 @@
 </script>
 {/literal}
 <script src="//static.chaordicsystems.com/static/loader.js" type="text/javascript"></script>
+{/if}
+
 {if $page_name == 'cms'}
 <script type="text/javascript">
     $(window).load(function() {

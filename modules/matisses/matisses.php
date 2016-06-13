@@ -608,7 +608,8 @@ class matisses extends Module
         
         
         $this->context->smarty->assign(array(
-            'idlanguage' => $this->context->language->id
+            'idlanguage' => $this->context->language->id,
+            'contentOnly' => Tools::getValue('content_only')
         ));
         
         
