@@ -53,6 +53,8 @@ if (Tools::getValue('action') == 'sendToMyFriend' && Tools::getValue('secure_key
 			$friendMail = Tools::getValue('email');
 			$id_product = Tools::getValue('id_product');
 		}
+    
+        $mailFrom = 'productosweb@matisses.co';
 
 		if (!$friendName || !$friendMail || !$id_product)
 			die('0');
@@ -83,7 +85,7 @@ if (Tools::getValue('action') == 'sendToMyFriend' && Tools::getValue('secure_key
 				sprintf(Mail::l('%1$s sent you a link to %2$s', (int)$module->context->cookie->id_lang), $customer, $product->name),
 				$templateVars, $friendMail,
 				null,
-				($module->context->cookie->email ? $module->context->cookie->email : null),
+				$mailFrom,
 				($module->context->cookie->customer_firstname ? $module->context->cookie->customer_firstname.' '.$module->context->cookie->customer_lastname : null),
 				null,
 				null,
