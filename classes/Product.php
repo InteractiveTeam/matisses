@@ -2172,6 +2172,7 @@ class ProductCore extends ObjectModel
 					'.Shop::addSqlAssociation('product', 'p').'
 					WHERE product_shop.`active` = 1
 					AND product_shop.`date_new` > "'.date('Y-m-d', strtotime('-'.(Configuration::get('PS_NB_DAYS_NEW_PRODUCT') ? (int)Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20).' DAY')).'"
+                    AND product_shop.`date_new` <=  "'.date('Y-m-d').'"
 					'.($front ? ' AND product_shop.`visibility` IN ("both", "catalog")' : '').'
 					'.$sql_groups;
 			return (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
@@ -2198,7 +2199,7 @@ class ProductCore extends ObjectModel
 		$sql->where('product_shop.`active` = 1');
 		if ($front)
 			$sql->where('product_shop.`visibility` IN ("both", "catalog")');
-		$sql->where('product_shop.`date_new` > "'.date('Y-m-d', strtotime('-'.(Configuration::get('PS_NB_DAYS_NEW_PRODUCT') ? (int)Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20).' DAY')).'"');
+		$sql->where('product_shop.`date_new` > "'.date('Y-m-d', strtotime('-'.(Configuration::get('PS_NB_DAYS_NEW_PRODUCT') ? (int)Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20).' DAY')).'" AND product_shop.`date_new` <=  "'.date('Y-m-d').'"');
 		if (Group::isFeatureActive())
 		{
 			$sql->join('JOIN '._DB_PREFIX_.'category_product cp ON (cp.id_product = p.id_product)');
