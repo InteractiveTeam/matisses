@@ -735,9 +735,7 @@ class PlacetoPay extends PaymentModule
 				// busca la operación en PlacetoPay
 				$p2p = new PlacetoPayConnector();
 				$rc = $p2p->queryPayment($this->customerSiteID, $row['id_order'], $currency->iso_code, $row['amount']);
-                echo print_r($rc);
 				if (($rc == PlacetoPayConnector::P2P_ERROR) && ($p2p->getErrorCode() == 'HTTP')) {
-                    echo $row['id_order']."\n";
 					// no se realiza ninguna actualizacion, debido a que hay un error
 					// en el consumo del webservice
 					$params['status'] 			= 'fail'; 
@@ -752,7 +750,7 @@ class PlacetoPay extends PaymentModule
 						$order = new Order($orderID);
 						if (Validate::isLoadedObject($order))
 						{
-							$params['status'] 			= 'ok'; 
+							$params['status'] 			= ($rc == 2 || $rc = 0 ? 'fail' : 'ok'); 
 							$params['id_order']  		=  $row['id_order'];
 							$params['receipt']   		=  $row['amount'];
 							$params['franchise_name']	=  $row['franchise_name'];						
