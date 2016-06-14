@@ -417,7 +417,7 @@ function stopAjaxQuery() {
 	ajaxQueries = new Array();
 }
 
-function reloadContent(params_plus)
+function reloadContent(params_plus, num = null)
 {
 	stopAjaxQuery();
 
@@ -493,8 +493,9 @@ function reloadContent(params_plus)
 		});
 	}
 	
-	
-	
+	if (params_plus == true && num != null) {
+        n = '&n=' + num;
+    }
 	
 	ajaxQuery = $.ajax(
 	{
@@ -668,6 +669,9 @@ function reloadContent(params_plus)
                         $(this).addClass('result-selected highlighted');
                     } else {
                         $(this).removeClass('result-selected highlighted');
+                        $(this).bind('click', function() {
+                            reloadContent(true, $(this).text());
+                        });
                     }
                 });
             });
