@@ -735,6 +735,7 @@ class PlacetoPay extends PaymentModule
 				// busca la operación en PlacetoPay
 				$p2p = new PlacetoPayConnector();
 				$rc = $p2p->queryPayment($this->customerSiteID, $row['id_order'], $currency->iso_code, $row['amount']);
+                echo print_r($rc);
 				if (($rc == PlacetoPayConnector::P2P_ERROR) && ($p2p->getErrorCode() == 'HTTP')) {
                     echo $row['id_order']."\n";
 					// no se realiza ninguna actualizacion, debido a que hay un error
