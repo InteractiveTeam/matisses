@@ -189,8 +189,6 @@
   ga('create', 'UA-61589842-2', 'auto');
   ga('send', 'pageview');
 </script>
-{/literal}
-
 <!-- Facebook Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -205,6 +203,7 @@ fbq('track', "PageView");</script>
 src="https://www.facebook.com/tr?id=146264512398308&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Facebook Pixel Code -->
+{/literal}
 
 </head>
 <body{if isset($page_name)} id="{$page_name|escape:'html':'UTF-8'}"{/if} class="{if isset($page_name)}{$page_name|escape:'html':'UTF-8'}{/if}{if isset($body_classes) && $body_classes|@count} {implode value=$body_classes separator=' '}{/if}{if $hide_left_column} hide-left-column{/if}{if $hide_right_column} hide-right-column{/if}{if isset($content_only) && $content_only} content_only{/if} lang_{$lang_iso}" itemscope itemtype="https://schema.org/WebPage">
