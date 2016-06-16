@@ -1409,7 +1409,10 @@
     #header {
         position: inherit;
     }
-
+    
+    .category-thumbnail .wrap_scale .wrap_banner_item {
+        position: inherit;
+    }
 }
 
 @media only screen and (max-width :1366px) {

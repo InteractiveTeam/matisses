@@ -5423,6 +5423,7 @@ a.newPrint:hover {
 
 .fancybox-inner {
     overflow: hidden !important;
+    width: 100% !important;
 }
 
 .cart_total_tax {
@@ -5995,4 +5996,5 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 
 .fancybox-overlay .fancybox-wrap iframe {
     width: 100% !important;
+    height: 102%;
 }
