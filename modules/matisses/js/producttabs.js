@@ -1,3 +1,5 @@
+var iframeWidth = ($(document).width<769)?320:650;
+
 $(document).ready(function(e) {
 	setTimeout(function(){
 			window.location.hash = '';
@@ -10,8 +12,8 @@ $(document).ready(function(e) {
             $.fancybox({
                 href:window.location.origin+url,
                 type: 'iframe',
-                maxWidth:650,
-                width:650,
+                maxWidth:iframeWidth,
+                width:iframeWidth,
                 height:500,
                 scrolling:'no'
             });
@@ -25,8 +27,8 @@ $(document).ready(function(e) {
             $.fancybox({
                 href:window.location.origin+url,
                 type: 'iframe',
-                maxWidth:650,
-                width:650,
+                maxWidth:iframeWidth,
+                width:iframeWidth,
                 height:500,
                 scrolling:'no'
             });
