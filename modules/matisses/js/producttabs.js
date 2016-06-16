@@ -12,7 +12,8 @@ $(document).ready(function(e) {
                 type: 'iframe',
                 maxWidth:650,
                 width:650,
-                height:500
+                height:500,
+                scrolling:'no'
             });
 	})
 	
@@ -20,7 +21,15 @@ $(document).ready(function(e) {
 		e.preventDefault();
 		url = $(this).attr('data-url');
 		if(url)
-			$.fancybox('<iframe scrolling="no" width="640" height="426" src="'+url+'"></iframe>');
+			//$.fancybox('<iframe scrolling="no" width="640" height="426" src="'+url+'"></iframe>');
+            $.fancybox({
+                href:window.location.origin+url,
+                type: 'iframe',
+                maxWidth:650,
+                width:650,
+                height:500,
+                scrolling:'no'
+            });
 	})
 	
 	
