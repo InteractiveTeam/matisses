@@ -1603,7 +1603,7 @@ box-sizing: border-box;
 	}
 	.form-control {
     padding: 10px 10px 10px;
-    height: auto;
+    height: auto !important;
     line-height: 1.8rem;
 	background: none;
 	border-style: solid;
@@ -1615,7 +1615,8 @@ box-sizing: border-box;
 	-moz-transition:all .5s ease;
 	-o-transition:all .5s ease;
 	transition:all .5s ease;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Open Sans', sans-serif !important;
+    font-size: 1rem !important;
 	}
 
 	.table-bordered {

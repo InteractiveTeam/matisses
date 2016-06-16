@@ -816,6 +816,9 @@
 	}
 	#address .form-group .form-control, #identity .form-group .form-control, #account-creation_form .form-group .form-control, #new_account_form .form-group .form-control, #opc_account_form .form-group .form-control, #authentication .form-group .form-control{
 		max-width: none;
+        line-height: 1rem;
+        padding-top: 15px;
+        padding-bottom: 15px;
 	}
 	h2.title_main_section span:before, h2.title_main_section span:after,
 	h2.title_main_section strong:before, h2.title_main_section strong:after{
@@ -1385,7 +1388,27 @@
 	.category-thumbnail, .category-thumbnail .wrap_scale {
 		width:100%;
 	}
-
+    
+    .category-thumbnail .wrap_scale .banner_thumb {
+        background: #e3e3e3;
+    }
+    
+    .category-thumbnail .wrap_scale {
+        position: inherit;
+        right: 0;
+    }
+    
+    .category-thumbnail .wrap_scale .wrap_image_thumb img {
+        position: inherit !important;
+        width: auto;
+        height: auto;
+        display: block;
+        width: 50%;
+    }
+    
+    #header {
+        position: inherit;
+    }
 
 }
 
