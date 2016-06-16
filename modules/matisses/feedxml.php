@@ -6,6 +6,4 @@ $matisses = new matisses();
 header("Content-type: text/xml");
 echo $matisses->createXML();
 
-//echo "<pre>";print_r($matisses->createXML()); echo "</pre>";
-
 ?>

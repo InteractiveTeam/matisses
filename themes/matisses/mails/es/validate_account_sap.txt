@@ -1,0 +1,16 @@
+Hola
+
+Para continuar con el proceso de validación de la cuenta sigue el siguiente link:
+
+{link}
+
+Consejos de seguridad:
+
+* Mantén los datos de tu cuenta en un lugar seguro.
+
+* No compartas los detalles de tu cuenta con otras personas.
+
+* Cambia tu clave regularmente.
+
+* Si sospechas que alguien está usando ilegalmente tu cuenta,
+avísanos inmediatamente.

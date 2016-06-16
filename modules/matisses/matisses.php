@@ -1448,6 +1448,25 @@ class matisses extends Module
 	{
 		return self::wsmatissess_calculateAditionalCosts($params); 				
 	}
+    
+    public function wsmatissess_getCustomerbyEmail($email)
+	{
+		
+		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
+        $params = array();
+		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), array("trace"=>1,"exceptions"=>0));
+        
+        $params['customerDTO']['email'] = $email;
+        $params = self::array_to_xml($params,false);
+		$s 			= array('genericRequest' => array('data'		=>$params,
+														'object'	=>'customer',
+														'operation'	=>'getByEmail',
+														'source'	=>'prestashop')
+												);
+		$result = $client->call('callService', $s);
+        $result = $this->xml_to_array($result['return']['detail']);
+        return $result;
+	}
 	
 	public function wsmatissess_getReferencesByModel($params){        
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
