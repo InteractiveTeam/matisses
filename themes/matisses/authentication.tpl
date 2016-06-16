@@ -29,9 +29,7 @@
 	{/if}
 {/capture}
 <h1 class="page-heading">{if !isset($email_create)}{l s='Authentication'}{else}{l s='Registro'}{/if}</h1>
-{if isset($email_send)}
-<div class="alert alert-success" style=""><li>Hemos enviado un link de verificación a tu correo</li></div>
-{/if}
+<div id="successNotification"></div>
 {if isset($back) && preg_match("/^http/", $back)}{assign var='current_step' value='login'}{include file="$tpl_dir./order-steps.tpl"}{/if}
 {include file="$tpl_dir./errors.tpl"}
 {assign var='stateExist' value=false}

@@ -23,22 +23,77 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 $(document).ready(function(){
-
+    
+    validateToken();
+    
 	$(document).on('submit', '#create-account_form', function(e){
 		e.preventDefault();
-		submitFunction();
+        validateEmailSap();
+		//submitFunction();
 	});
 	$('.is_customer_param').hide();
 
 });
 
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+    vars[key] = value;
+    });
+    return vars;
+}
 
+function validateToken() {
+    var token = getUrlVars()["skey"];
+    
+    if(typeof token != false && token.length > 0) {
+        alert(token);
+    }
+}
 
+function validateEmailSap() {
+    $.ajax({
+		type: 'POST',
+		url: baseUri+'modules/registerwithsap/validatewithsap.php',
+		async: true,
+		cache: false,
+		dataType : "json",
+		data: 
+		{
+			email: $('#email_create').val()
+		},
+		success: function(jsonData)
+		{
+			if (jsonData.trueProcess) {
+                $('#successNotification').html('<div class="alert alert-success"><li>Hemos enviado un link de verificación a tu correo</li></div>').show();   
+            } 
+            else if (jsonData.failSend) {
+                $('#create_account_error').html('<ol><li>Error en el envió de correo</li></ol>').show();
+            }
+            else if (jsonData.errorToken) {
+                $('#create_account_error').html('<ol><li>Error al generar la clave de seguridad</li></ol>').show();
+            }
+            else if (jsonData.notExistSap) {
+                submitFunction();
+            }
+            else if (jsonData.emailFalse) {
+                $('#create_account_error').html('<ol><li>El correo no es válido</li></ol>').show();
+            } else {
+                console.log(jsonData);
+                submitFunction();
+            }
+		},
+		error: function(textStatus, errorThrown)
+		{
+			console.log(errorThrown);
+            submitFunction();
+		}
+	});
+}
 
 function submitFunction()
 {
-	$('#create_account_error').html('').hide();
-	
+	$('#create_account_error').html('').hide();	
 
 	$.ajax({
 		type: 'POST',
