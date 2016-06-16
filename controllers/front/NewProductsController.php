@@ -62,6 +62,18 @@ class NewProductsControllerCore extends FrontController
 
 		$products = Product::getNewProducts($this->context->language->id, (int)$this->p - 1, (int)$this->n, false, $this->orderBy, $this->orderWay);
 		$this->addColorsToProductList($products);
+        
+        foreach ($products as &$product)
+		{
+			if (isset($product['id_product_attribute']) && $product['id_product_attribute'] && isset($product['product_attribute_minimal_quantity']))
+				$product['minimal_quantity'] = $product['product_attribute_minimal_quantity'];
+			
+			$product['reference'] = Hook::exec('actionMatChangeReference', array('reference' => $product['reference']));
+            if($product['date_new'] > date('Y-m-d', strtotime('-'.(Configuration::get('PS_NB_DAYS_NEW_PRODUCT') ? (int)Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20).' DAY')) && $product['date_new'] <= date('Y-m-d')){
+                $product['new'] = true;
+                $product['allow_oosp'] = true;
+            }
+        }
 
 		$this->context->smarty->assign(array(
 			'products' => $products,
