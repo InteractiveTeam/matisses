@@ -121,7 +121,7 @@
 		foreach($_Combinations as $d => $_Combination)
 		{
 			try{
-                    if(!$_Combination['processImages'] && !$_Product->getCombinationImages(1))
+                    if(!$_Combination['processImages'] || !$_Product->getCombinationImages(1))
                          continue;
 					// verifico si la combinacion esta para cambio de modelo
 					$_currentCombinations[] = $_Combination['itemCode'];
