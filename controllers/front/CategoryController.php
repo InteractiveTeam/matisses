@@ -215,8 +215,13 @@ class CategoryControllerCore extends FrontController
 				$product['minimal_quantity'] = $product['product_attribute_minimal_quantity'];
 			
 			$product['reference'] = Hook::exec('actionMatChangeReference', array('reference' => $product['reference']));
-			//echo "<pre>"; print_r($product); echo "</pre>";
+            if($product['date_new'] > date('Y-m-d', strtotime('-'.(Configuration::get('PS_NB_DAYS_NEW_PRODUCT') ? (int)Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20).' DAY')) && $product['date_new'] <= date('Y-m-d')){
+                $product['new'] = true;
+                $product['allow_oosp'] = true;
+            }
 		}
+        
+        //echo "<pre>"; print_r($this->cat_products); echo "</pre>";die();
 		$this->addColorsToProductList($this->cat_products);
 
 		$this->context->smarty->assign('nb_products', $this->nbProducts);
