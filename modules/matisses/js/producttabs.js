@@ -37,7 +37,11 @@ $(document).ready(function(e) {
 		e.preventDefault();
 		url = $(this).attr('data-url');
 		if(url)
-			$.fancybox('<img src="'+window.location.origin+url+'">');
+			//$.fancybox('<img src="'+window.location.origin+url+'">');
+            $.fancybox({
+                href:window.location.origin+url,
+                type: 'image'
+            });
 	})
 	
 	
