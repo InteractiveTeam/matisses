@@ -1243,6 +1243,13 @@ box-sizing: border-box;
 	font-size: 1.125rem;
 	padding-bottom: 5px;
 	}
+    .alert-success li {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 1.125rem;
+    padding-bottom: 5px;
+    list-style: none;
+    margin-left: 25px;
+    }
     a.link {
     text-decoration: underline;
     color:#d7162f;
