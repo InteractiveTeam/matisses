@@ -1,3 +1,4 @@
+var iframeWidth = ($(document).width<769)?320:650;
 
 $(document).ready(function(e) {
 	setTimeout(function(){
