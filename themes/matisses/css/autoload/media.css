@@ -1410,7 +1410,7 @@
         position: inherit;
     }
     
-    .category-thumbnail .wrap_scale .wrap_banner_item {
+    .category-thumbnail .wrap_scale {
         position: inherit;
     }
 }
