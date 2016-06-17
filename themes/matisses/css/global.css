@@ -1603,7 +1603,7 @@ box-sizing: border-box;
 	}
 	.form-control {
     padding: 10px 10px 10px;
-    height: auto !important;
+    height: auto;
     line-height: 1.8rem;
 	background: none;
 	border-style: solid;

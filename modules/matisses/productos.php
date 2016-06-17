@@ -121,7 +121,7 @@
 		foreach($_Combinations as $d => $_Combination)
 		{
 			try{
-                    if(!$_Combination['processImages'] || !$_Product->getCombinationImages(1))
+                    if(!$_Combination['processImages'] && $_Product->getCombinationImages(1))
                          continue;
 					// verifico si la combinacion esta para cambio de modelo
 					$_currentCombinations[] = $_Combination['itemCode'];
@@ -222,7 +222,7 @@
 							$SpecificPrice = new SpecificPrice();
 							$SpecificPrice->id_product				= $_Product->id;
 							$SpecificPrice->id_specific_price_rule 	= 0;
-							$SpecificPrice->id_cart 				= 0;
+							 $SpecificPrice->id_cart 				= 0;
 							$SpecificPrice->id_product_attribute	= $id_product_attribute;
 							$SpecificPrice->id_shop					= (int)Context::getContext()->shop->id;
 							$SpecificPrice->id_shop_group			= Context::getContext()->shop->id_shop_group;
@@ -530,7 +530,7 @@
 		if($_data['description'] && $_data['shortDescription'] && $_data['price'] && $_data['itemName'] && $_data['model'] && $_data['subgroupCode'] && $_data['webName'] && sizeof($_data['color'])==3)
 		{
 				
-			$path		= dirname(__FILE__).'/files/'.$_data['itemCode'];	
+			$path		= dirname(__FILE__).'/files/'.$_data['itemCode'];
 			$materials 	= $_data['materials'];
 			//echo "Materiales  ".count(array_filter($materials,'is_array'));
 			if(count(array_filter($_data['materials'],'is_array'))==0)
