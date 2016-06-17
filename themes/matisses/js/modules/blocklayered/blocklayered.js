@@ -29,6 +29,7 @@ var sliderList = new Array();
 var slidersInit = false;
 var current_price_slider = '';
 var upCount = false;
+var current_sort = '--';
 
 $(document).ready(function(){
 	cancelFilter();
@@ -650,6 +651,25 @@ function reloadContent(params_plus, num = null)
 				if (view && view != 'grid')
 					display(view);
 			}
+            
+            $('#selectProductSort_chosen').click(function() {
+                $('#selectProductSort_chosen .chosen-results li').each(function() {
+                    $(this).bind('click', function() {
+                       current_sort = $(this).text();
+                    });
+                });
+            });
+            
+            $('#selectProductSort_bottom_chosen').click(function() {
+                $('#selectProductSort_bottom_chosen .chosen-results li').each(function() {
+                    $(this).bind('click', function() {
+                       current_sort = $(this).text();
+                    });
+                });
+            });
+            
+            $('#selectProductSort_chosen span').text(current_sort);
+            $('#selectProductSort_bottom_chosen span').text(current_sort);
             
             $('.chosen-drop .chosen-results .active-result').removeClass('result-selected highlighted');
             
