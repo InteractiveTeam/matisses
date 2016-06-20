@@ -2,7 +2,7 @@
 	{l s="add to gift list" mod="add to gift list"} <span class="icon-plus"></span>
 </a>
 
-<div class="hidden">
+<div>
 	<div id="frmAddGiftList">
 		<h2>Añadir producto</h2>
 		<div class="container">

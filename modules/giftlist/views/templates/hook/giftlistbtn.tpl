@@ -1,5 +1,5 @@
 <!-- Block  giftlist -->
-<li class="my-giftlist row alpha omega hidden">
+<li class="my-giftlist row alpha omega">
 	<div class="header-account">
 		<a href="{$gift_link}" title="{l s='Mis Lista de regalos'}">
 			<h2>{l s='Mis Lista de regalos'}</h2>
