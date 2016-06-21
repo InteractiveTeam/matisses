@@ -5,6 +5,7 @@
 {if version_compare($smarty.const._PS_VERSION_,'1.6.0.0','<')}{include file="$tpl_dir./breadcrumb.tpl"}{/if}
 {*List info*}
 <div class="container">
+    <h1>{$list_desc['name']}</h1>
 	{if isset($response)}
 	<div class="alert {if $error == true} alert-danger{else} alert-success{/if}  alert-dismissible" role="alert">
 		<button type="button" data-dismiss="alert" id="closeMsg" class="close" 
@@ -12,56 +13,38 @@
 		{$response}
 	</div>
 	{/if}
-	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-	  <div class="panel panel-default">
-	    <div class="panel-heading" role="tab" id="headingOne">
-	      <h2 class="panel-title">
-	        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-	          {$list_desc['name']}
-	        </a>
-	      </h2>
-	    </div>
-	    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-	      <div class="panel-body">
-	         <div class="container">
-	         	<div class="row">
-	         		<div class="col-md-3">
-	         			<div id="list-img-container" 
-						style="background-image: 
-							{if !empty($list_desc['image'])} 
-								url('{$list_desc['image']}'); 
-							{else}
-								 url('{$content_dir}giftlist/uploads/not-found.jpg')
-							{/if}
-							">
-						</div>
-	         		</div>
-	         		<div class="col-md-3">
-	         			{if $list_desc['public'] == 1}
-							<span class="label label-success">Publico <span class="icon-unlock"></span></span>
-						{else}
-							<span class="label label-danger">Privado <span class="icon-lock"></span></span>
-						{/if}
-						<p>
-							Dirección de envio:
-							<span>{$address->address} - {$address->town}, {$address->city}</span>
-						</p>
-						<p>{$event_type['name']}</p>
-	         		</div>
-	         		<div class="col-md-3">
-	         			<p>Mensaje: {$list_desc['message']}</p>
-	         		</div>
-	         		<div class="col-md-3">
-	         			<p><b>Fecha:</b> {date("d/m/Y H:i", strtotime($list_desc['event_date']))}</p>
-						<p><b>Cantidad de invitados:</b> {$list_desc['guest_number']}</p>
-						<a class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Editar" href="{$admin_link}">Editar <span class="icon-pencil"></span></a>
-	         		</div>
-	         	</div>
-	         </div>
-	      </div>
-	    </div>
-	  </div>
-	</div>
+    <pre>
+    </pre>
+	<div class="ax-general-info">
+        <div class="ax-header-info">
+            <h2>{l s='Información general' mod='giftlist'}</h2>
+        </div>
+        <div class="ax-content-info">
+            <table> 
+                <thead>
+                    <tr>
+                        <th>{l s='Creadores' mod='giftlist'}</th> 
+                        <th>{l s='Código' mod='giftlist'}</th> 
+                        <th>{l s='Evento' mod='giftlist'}</th> 
+                        <th>{l s='Días para el evento' mod='giftlist'}</th> 
+                        <th>{l s='Fecha' mod='giftlist'}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>{$creator}</p>
+                            <p>{$cocreator}</p>
+                        </td>
+                        <td>{$list_desc['code']}</td>
+                        <td>{$event_type}</td>
+                        <td>{$days}</td>
+                        <td>{date("d-m-Y",strtotime($list_desc['event_date']))}</td>    
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 	
 	{*Products asociated to the list*}
 	

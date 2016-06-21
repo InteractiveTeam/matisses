@@ -42,11 +42,12 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			'form_edit' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/form_edit_list.php",
 			'form_cocreator' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/cocreator_info.php",
 			'bond_form' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/bond_form.php",
-			'creator' => $creator,
-			'cocreator' => $cocreator,
+			'creator' => $creator['firstname'] . " " . $creator['lastname'],
+			'cocreator' => ($cocreator ? $cocreator['firstname'] . " " . $cocreator['lastname'] : "-"),
 			'products' => $lpd->getProductsByList($res['id']),
-			'event_type' => Db::getInstance()->getRow($ev),
-            'bond' => $lpd->getBondsByList($res['id'])
+			'event_type' => Db::getInstance()->getValue($ev),
+            'bond' => $lpd->getBondsByList($res['id']),
+            'days' => $list->getMissingDays($res['event_date'])
 		) );
 
 		if($this->context->customer->isLogged()){

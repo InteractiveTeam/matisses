@@ -140,15 +140,20 @@ class GiftListModel extends ObjectModel
             }
             $ev = new EventTypeModel($l['event_type']);
             $lists[$key]['event'] = $ev->name;
-            $d1 = new DateTime($l['event_date']);
-            $d2 = new DateTime(date('Y-m-d'));
-            $interval = $d1->diff($d2);
-            $lists[$key]['days'] = $interval->format("%a");
+            
+            $lists[$key]['days'] = $this->getMissingDays($l['event_date']);
             $lists[$key]['products'] = Db::getInstance()->getValue("SELECT COUNT( id ) FROM `ps_list_product_bond`  WHERE  `id_list` =" . $l['id']);
             $lists[$key]['products_bought'] = Db::getInstance()->getValue("SELECT COUNT( id ) FROM `ps_list_product_bond`  WHERE  `id_list` = " . $l['id'] . " AND  `bought` =1");
         }
         return $lists;
 	}
+    
+    public function getMissingDays($d1){
+        $d1 = new DateTime($d1);
+        $d2 = new DateTime(date('Y-m-d'));
+        $interval = $d1->diff($d2);
+        return $interval->format("%a");
+    }
 
 	public function getSharedListByCoCreatorId($id){
 		return Db::getInstance ()->executeS ( "SELECT * FROM `" . _DB_PREFIX_ . "gift_list` WHERE `id_cocreator` =". $id );
