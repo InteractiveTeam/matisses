@@ -158,7 +158,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 			}
 			else
 				$this->context->smarty->assign ( array (
-						'response' => _ERROR_,
+						'response' => _ERROR_ . Db::getInstance()->getMsgError(),
 						'error' => true
 				));
 		} catch ( Exception $e ) {
@@ -167,6 +167,6 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 					'error' => true
 			));
 		}
-        Tools::redirect($this->context->link->getModuleLink('giftlist', 'descripcion',array("url" => $list->url)));
+        //Tools::redirect($this->context->link->getModuleLink('giftlist', 'descripcion',array("url" => $list->url)));
 	}
 }

@@ -1,4 +1,4 @@
-<a id="btn_gift_list" href="#frmAddGiftList" class="btn btn-success hidden">
+<a id="btn_gift_list" href="#frmAddGiftList" class="btn btn-success">
 	{l s="add to gift list" mod="add to gift list"} <span class="icon-plus"></span>
 </a>
 
@@ -77,14 +77,17 @@
 		<a href="javascript:void(0)" class="see-list btn btn-default pull-right">Ver listas de regalos</a>
 	</div>
 </div>
-
+{literal}
 <style>
 	#btn_gift_list {
 		margin: 7px 25%;
 	}
+    #frmAddGiftList {
+        display:none;
+    }
 </style>
 
-{literal}
+
 <script type="text/javascript">
 var url_desc = {/literal}'{$desc_link}'{literal};
 </script>

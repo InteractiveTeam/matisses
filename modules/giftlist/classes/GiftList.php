@@ -1,4 +1,6 @@
 <?php
+
+include_once __DIR__ . '/EventType.php';
 class GiftListModel extends ObjectModel
 {
 	public $id_creator;
@@ -125,15 +127,31 @@ class GiftListModel extends ObjectModel
 	}
 
 	public function getListByCreatorId($id){
-		return Db::getInstance ()->executeS ( "SELECT * FROM `" . _DB_PREFIX_ . "gift_list` WHERE `id_creator` =". $id );
+		$lists = Db::getInstance ()->executeS ( "SELECT * FROM `" . _DB_PREFIX_ . "gift_list` WHERE `id_creator` =". $id . " OR `id_cocreator` =". $id);
+        
+        foreach($lists as $key => $l){
+            $c = new CustomerCore($l['id_creator']);
+            $lists[$key]['creator_name'] = $c->firstname . " " . $c->lastname;
+            if($l['id_cocreator'] != 0){
+                $cc = new CustomerCore($l['id_cocreator']);
+                $lists[$key]['cocreator_name'] = $cc->firstname . " " . $cc->lastname;
+            }else{
+                $lists[$key]['cocreator_name'] = "-";
+            }
+            $ev = new EventTypeModel($l['event_type']);
+            $lists[$key]['event'] = $ev->name;
+            $d1 = new DateTime($l['event_date']);
+            $d2 = new DateTime(date('Y-m-d'));
+            $interval = $d1->diff($d2);
+            $lists[$key]['days'] = $interval->format("%a");
+            $lists[$key]['products'] = Db::getInstance()->getValue("SELECT COUNT( id ) FROM `ps_list_product_bond`  WHERE  `id_list` =" . $l['id']);
+            $lists[$key]['products_bought'] = Db::getInstance()->getValue("SELECT COUNT( id ) FROM `ps_list_product_bond`  WHERE  `id_list` = " . $l['id'] . " AND  `bought` =1");
+        }
+        return $lists;
 	}
 
 	public function getSharedListByCoCreatorId($id){
 		return Db::getInstance ()->executeS ( "SELECT * FROM `" . _DB_PREFIX_ . "gift_list` WHERE `id_cocreator` =". $id );
-	}
-
-	public function getListById($id){
-		return Db::getInstance()->getRow('SELECT * FROM '._DB_PREFIX_.'gift_list WHERE id = ' . $id);
 	}
 
 	/**

@@ -21,7 +21,6 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 		$_SESSION['event'] = $event_type;
 		$this->context->smarty->assign ( array (
 			'all_lists' => $list->getListByCreatorId($this->context->customer->id),
-			'shared_lists' => $list->getSharedListByCoCreatorId($this->context->customer->id),
             'admin_link' => $this->context->link->getModuleLink('giftlist', 'administrar',array("url"=> "nuevo")),
 			'description_link' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => "")),
 			'form' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/form_save_list.php",
