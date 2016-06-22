@@ -140,13 +140,19 @@ class GiftListModel extends ObjectModel
             }
             $ev = new EventTypeModel($l['event_type']);
             $lists[$key]['event'] = $ev->name;
-            
+            $prod = $this->getNumberProductsByList($l['id']);
             $lists[$key]['days'] = $this->getMissingDays($l['event_date']);
-            $lists[$key]['products'] = Db::getInstance()->getValue("SELECT COUNT( id ) FROM `ps_list_product_bond`  WHERE  `id_list` =" . $l['id']);
-            $lists[$key]['products_bought'] = Db::getInstance()->getValue("SELECT COUNT( id ) FROM `ps_list_product_bond`  WHERE  `id_list` = " . $l['id'] . " AND  `bought` =1");
+            $lists[$key]['products'] = $prod['products'];
+            $lists[$key]['products_bought'] = $prod['products_bought'];
         }
         return $lists;
 	}
+    
+    public function getNumberProductsByList($id){
+        $res['products'] = Db::getInstance()->getValue("SELECT COUNT( id ) FROM `ps_list_product_bond`  WHERE  `id_list` =" . $id);
+        $res['products_bought'] = Db::getInstance()->getValue("SELECT COUNT( id ) FROM `ps_list_product_bond`  WHERE  `id_list` = " . $id . " AND  `bought` =1");
+        return $res;
+    }
     
     public function getMissingDays($d1){
         $d1 = new DateTime($d1);

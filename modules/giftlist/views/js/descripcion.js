@@ -63,8 +63,47 @@ $(document).ready(function() {
                 $("#mount").attr("min",$("#min_amount").val());
  			}
 	});
+    
+    $("#ax-edit").click(function(){
+        var mc = $("#ax-message-content");
+        var m = mc.text();
+        mc.hide();
+        var bedit = $("#ax-edit");
+        var bdelete = $("#ax-delete");
+        bedit.hide();
+        bdelete.hide();
+        var textdiv = '<div id="changemessage"><textarea class="ax-new-message">'+m+'</textarea><a href="javascript:void(0);" id="ax-save">Guardar</a></div>';
+        $(".ax-message").on('click','#ax-save',saveMessage);
+        $(".ax-message").append(textdiv);
+    });
 });
 
+function saveMessage(){
+    var message = $(".ax-new-message").val();
+    $(".ax-new-message").remove();
+    $("#ax-save").remove();
+    var mc = $("#ax-message-content");
+    $.ajax({
+        method: 'post',
+        data: {
+            ajax: true,
+            method: "saveMessage",
+            id_list: $(".products-associated").attr('data-id'),
+            message: message,
+        },
+        success: function(res){
+            console.log("gol");
+        },
+        error: function(res){
+            console.log("no :(");
+        }, 
+    }).always(function(){
+            mc.text(message);
+            mc.show();
+            $("#ax-edit").show();
+            $("#ax-delete").show();
+        });
+}
 function validateBondForm(){
 	$("#bond_form").validate({
 		rules:{
@@ -94,15 +133,15 @@ function validateBondForm(){
 				$("#message").text(result.msg);
                 ajaxCart.refresh();
 				$.fancybox({
-						 'autoScale': true,
-						 'transitionIn': 'elastic',
-						 'transitionOut': 'elastic',
-						 'speedIn': 500,
-						 'speedOut': 300,
-						 'autoDimensions': true,
-						 'centerOnScroll': true,
-						 'href' : '#contentdiv'
-					});
+                     'autoScale': true,
+                     'transitionIn': 'elastic',
+                     'transitionOut': 'elastic',
+                     'speedIn': 500,
+                     'speedOut': 300,
+                     'autoDimensions': true,
+                     'centerOnScroll': true,
+                     'href' : '#contentdiv'
+                });
 			}
 		});
 		e.preventDefault();

@@ -13,8 +13,6 @@
 		{$response}
 	</div>
 	{/if}
-    <pre>
-    </pre>
 	<div class="ax-general-info">
         <div class="ax-header-info">
             <h2>{l s='Información general' mod='giftlist'}</h2>
@@ -23,22 +21,25 @@
             <table> 
                 <thead>
                     <tr>
-                        <th>{l s='Creadores' mod='giftlist'}</th> 
-                        <th>{l s='Código' mod='giftlist'}</th> 
-                        <th>{l s='Evento' mod='giftlist'}</th> 
-                        <th>{l s='Días para el evento' mod='giftlist'}</th> 
+                        <th>{l s='Código' mod='giftlist'}</th>
+                        <th>{l s='Días para el evento' mod='giftlist'}</th>
+                        <th>{l s='Tus regalos' mod='giftlist'}</th>
+                        <th>{l s='Regalos restantes' mod='giftlist'}</th>
+                        <th>{l s='Registrante' mod='giftlist'}</th>
+                        <th>{l s='Tipo de evento' mod='giftlist'}</th> 
                         <th>{l s='Fecha' mod='giftlist'}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
+                        <td>{$list_desc['code']}</td>
+                        <td>{$days}</td>
+                        <td>{$numberProducts.products}</td>
+                        <td>{$numberProducts.products_bought}</td>
                         <td>
                             <p>{$creator}</p>
-                            <p>{$cocreator}</p>
                         </td>
-                        <td>{$list_desc['code']}</td>
                         <td>{$event_type}</td>
-                        <td>{$days}</td>
                         <td>{date("d-m-Y",strtotime($list_desc['event_date']))}</td>    
                     </tr>
                 </tbody>
@@ -47,6 +48,16 @@
     </div>
 	
 	{*Products asociated to the list*}
+    
+    <pre>{$list_desc|print_r}</pre>
+
+    {* ImagenesSSS *}
+    <div class="ax-message">
+        <h2>{l s='Mensaje de bienvenida' mod='giftlist'}</h2>
+        <p id="ax-message-content">{$list_desc['message']}</p>
+        <a href="javascript:void(0);" id="ax-edit">{l s='Editar mensaje' mod='giftlist'}</a>
+        <a href="javascript:void(0);" id="ax-delete">{l s='Eliminar mensaje' mod='giftlist'}</a>
+    </div>
 	
 	<div class="products-associated" data-id="{$list_desc['id']}">
 		<h2>Productos</h2>

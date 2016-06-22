@@ -3,7 +3,7 @@
 include_once __DIR__ . '/../../classes/GiftList.php';
 include_once __DIR__ . '/../../classes/ListProductBond.php';
 include_once __DIR__ . '/../../classes/Bond.php';
-include_once __DIR__ . _PS_MODULE_DIR_ . "matisses/matisses.php";
+include_once _PS_MODULE_DIR_ . "matisses/matisses.php";
 include_once _PS_OVERRIDE_DIR_ ."controllers/front/CartController.php";
 define("_ERROR_","Ha ocurrido un error, vuelva a intentarlo mas tarde");
 define("_DELETED_","Elmininado Correctamente");
@@ -47,7 +47,8 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			'products' => $lpd->getProductsByList($res['id']),
 			'event_type' => Db::getInstance()->getValue($ev),
             'bond' => $lpd->getBondsByList($res['id']),
-            'days' => $list->getMissingDays($res['event_date'])
+            'days' => $list->getMissingDays($res['event_date']),
+            'numberProducts' => $list->getNumberProductsByList($res['id'])
 		) );
 
 		if($this->context->customer->isLogged()){
@@ -74,10 +75,19 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 					case "addBond":
 						$this->_addBond(Tools::getValue('id_list'), Tools::getValue('data'));
 						break;
+                    case "saveMessage":
+                        $this->_saveMessaage(Tools::getValue('id_list'), Tools::getValue('message'));
 				}
 			}
 		}
 	}
+    
+    private function _saveMessaage($id, $message){
+        if(Db::getInstance()->update('gift_list', array('message' => $message),"id = ".$id))
+            return Tools::jsonEncode("Se ha actalizado el mensaje");
+        else
+            return Tools::jsonEncode("Ha ocurrido un error");
+    }
 
 	public function setMedia() {
 		parent::setMedia ();
