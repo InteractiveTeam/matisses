@@ -167,7 +167,7 @@
          
 </script>
 {/literal}
-<script src="//static.chaordicsystems.com/static/loader.js" type="text/javascript"></script>
+{$chaordicScript}
 {/if}
 
 {if $page_name == 'cms'}

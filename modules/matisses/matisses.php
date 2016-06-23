@@ -571,7 +571,13 @@ class matisses extends Module
         global $smarty;
         global $cookie;
 		$this->page_name = Dispatcher::getInstance()->getController();
-		$this->context->controller->addJS($this->_path.'js/fblogin.js');
+        
+        $chaordic = '<script async src="//static.chaordicsystems.com/static/loader.js" data-apikey="matisses" data-initialize="false" defer type="text/javascript"></script>';
+        $this->context->smarty->assign(array(
+            'chaordicScript' => $chaordic
+        ));
+		
+        $this->context->controller->addJS($this->_path.'js/fblogin.js');
 		
 		if(in_array($this->page_name, array('category')))
 		{
@@ -1461,6 +1467,25 @@ class matisses extends Module
 		$s 			= array('genericRequest' => array('data'		=>$params,
 														'object'	=>'customer',
 														'operation'	=>'getByEmail',
+														'source'	=>'prestashop')
+												);
+		$result = $client->call('callService', $s);
+        $result = $this->xml_to_array($result['return']['detail']);
+        return $result;
+	}
+    
+    public function wsmatissess_getOrdersByCharter($charter)
+	{
+		
+		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
+        $params = array();
+		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), array("trace"=>1,"exceptions"=>0));
+        
+        $params['customerDTO']['id'] = $charter.'CL';
+        $params = self::array_to_xml($params,false);
+		$s 			= array('genericRequest' => array('data'		=>$params,
+														'object'	=>'order',
+														'operation'	=>'listCustomerOrders',
 														'source'	=>'prestashop')
 												);
 		$result = $client->call('callService', $s);
