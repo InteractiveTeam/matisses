@@ -29,14 +29,7 @@
     	{hook h="displayMatSlider"}
         {hook h="displayMatAdvertisingHome"}
     </div>
-	
-	<div class="highlights">
-		<div class="container">
-			<!-- Chaordic Feature -->
-            <div class="chaordic featured"> <div> 
-		</div>
-    </div>
-	
+
 	<div id="highlights" class="highlights">
 		<div class="container">
 			<!-- Chaordic Top -->
