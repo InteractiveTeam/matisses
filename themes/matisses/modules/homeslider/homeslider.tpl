@@ -33,10 +33,12 @@
 			<ul id="homeslider"{if isset($smarty.capture.height) && $smarty.capture.height} style="max-height:{$smarty.capture.height}px;"{/if}>
 				{foreach from=$homeslider_slides item=slide}
 					{if $slide.active}
-                    	{if $slide.videoid}
-                            <li class="homeslider-container">
-                            
-                            	<iframe src="{$slide.videoid}" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                    	{if $slide.videoid}                           
+                            <li class="homeslider-container">                                
+                            	<!--<iframe id="video-sliderhome" src="{$slide.videoid}" width="1920" height="500" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>-->
+                                <video width="100%" height="500px" controls>
+                                    <source src="{$slide.videoid}" type="video/mp4">
+                                </video>
                                 {if isset($slide.description) && trim($slide.description) != ''}
                                     <div class="homeslider-description">{$slide.description}</div>
                                 {/if} 
