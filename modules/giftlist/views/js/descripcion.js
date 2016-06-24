@@ -13,7 +13,7 @@ $(document).ready(function() {
             $('#tel_co').mask("000-00-00", {placeholder: "___-__-__"});
             $('#cel_co').mask("000-000-0000", {placeholder: "___-___-____"});
             $("#id_list").val($(".products-associated").attr("data-id"));
-            if(typeof address_cocreator != 'undefinded' && address_cocreator != ""){
+            if(typeof address_cocreator != 'undefined' && address_cocreator !== ""){
                 $("#city_co").val(address_cocreator.city);
                 $("#town_co").val(address_cocreator.town);
                 $("#address_co").val(address_cocreator.address);
@@ -37,6 +37,20 @@ $(document).ready(function() {
 		$(this).find(".add_container").toggle();
 	});
 
+    $(".share-list").fancybox({
+		'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	600, 
+		'speedOut'		:	200, 
+		'overlayShow'	:	false,
+		'type'			: 	'ajax',
+		afterShow		: 	validateShareList
+	});
+	
+	$(".share-list").click(function(){
+		$(this).addClass("clicked");
+	});
+    
 	//add to cart
 
 	$(".add-to-cart").click(function(e){
@@ -82,6 +96,10 @@ $(document).ready(function() {
     $("#ax-cover-up").change(function(){
         uploadImage(false,$(this));
     });
+    
+    $("body").on('submit','#share-email',function(e){
+		callAjaxSend(e);
+	});
 });
 
 function uploadImage(prof,input){
@@ -252,4 +270,38 @@ function addFromList(idProduct, idCombination, quantity, callerElement,id_list){
 			$('#add_to_cart input').removeAttr('disabled').addClass('exclusive').removeClass('exclusive_disabled');
 		}
 	});
+}
+
+
+function validateShareList(){
+	$("#share-email").validate({
+		rules:{
+			email: {
+				email:true,
+				required:true
+			}
+		}
+	});
+}
+
+function callAjaxSend(e){
+	e.preventDefault();
+	var id_list = $(".products-associated").attr('data-id');
+	$(".clicked").removeClass("clicked");
+	$.ajax({
+		url:'',
+		type: 'POST',
+		data: {
+			ajax: true,
+			method: "share",
+			id_list: id_list,
+			email: $("#email").val()
+		},
+		headers: { "cache-control": "no-cache" },
+		success: function(result){
+			alert(result);
+		}
+	}).always(function(){
+        $.fancybox.close();
+    });
 }

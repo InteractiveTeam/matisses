@@ -52,7 +52,6 @@
                 
                 <a href="{$description_link }/{$row['url']}" data-id="{$row['id']}" data-toggle="tooltip" data-placement="bottom" title="{l s='Ver lista' mod='giftlist'}" class="btn-edit btn btn-default btn-sm">{l s='Ver lista' mod='giftlist'} <span class="icon-pencil"></span></a>
             </form>
-                {*<a href="{$share_list}" data-id="{$row['id']}" data-toggle="tooltip" data-placement="bottom" title="Compartir" class="share-list btn btn-default btn-sm">Compartir <span class="icon-mail-forward"></span></a>*}
             </div>
         </div>
 	</div>

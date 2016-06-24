@@ -4,7 +4,8 @@
 {if version_compare($smarty.const._PS_VERSION_,'1.6.0.0','<')}{include file="$tpl_dir./breadcrumb.tpl"}{/if}
 {if !$lists}
 <div class="col-md-12">
-	<h3>Buscar lista</h3>
+	<h3>{l s='Resultado de la lista'}</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 	<form action="" method="post" name="searchList">
 	<div class="row">
 		<div class="col-md-3">
@@ -22,7 +23,9 @@
 		<button class="btn btn-default button" data-toggle="tooltip" data-placement="bottom" title="Buscar" id="search" >Buscar</button>
 	</div>
 	</form>
-	
+    {if $parameters}
+    <p>{l s='Resultados para'} {$parameter}</p>
+	{/if}
 	<div id="lists">
 	<div class="jplist-panel panel-over">
 		<div class="text-filter-box">
@@ -43,8 +46,7 @@
 			/>
 		</div>	
 	</div>
-	<div class="list">	
-
+	<div class="list">
 	</div>
 	 <!-- no results found -->
    <div class="jplist-no-results">
@@ -113,40 +115,9 @@
 	</div>
 	<div class="list">	
 	{foreach from=$lists item=row}
-		<div class="row list-item list-item-container" data-id="{$row['id']}" id="list-{$row['id']}">
-			<div class="col-md-12">
-				<div class="row">
-					<div class="col-md-3">
-						<div id="list-img-container" 
-						style="background-image: 
-							{if !empty($row['image'])} 
-								url('{$row['image']}'); 
-							{else}
-								 url('{$modules_dir}giftlist/uploads/not-found.jpg')
-							{/if}
-							">
-						</div>
-					</div>
-					<div class="col-md-3 vCenter">
-						<h4><b class="title-list">{$row['name']}</b></h4>
-						<p><b>Fecha:</b> {date("d/m/Y H:i", strtotime($row['event_date']))}</p>
-						<p><b>Cantidad de invitados:</b> {$row['guest_number']}</p>
-					</div>
-					<div class="col-md-3 vCenter">
-						<p>{$row['message']}</p>
-					</div>
-					<div class="col-md-3 text-center">
-						<form id="action-{$row['id']}" class="actions" action="{$request_uri}" 
-						role="form" method="post">
-							<div class="row">
-								<a href="{$description_link}/{$row['url']}" data-toggle="tooltip" data-placement="bottom" title="Ver" data-id="{$row['id']}" 
-								class="btn-view btn btn-default btn-sm">Ver</a>
-							</div>
-						</form> 
-					</div>
-				</div>
-			</div>
-		</div>
+    <div class="row list-item list-item-container" data-id="{$row['id']}" id="list-{$row['id']}">
+		a
+    </div>
 	{/foreach}
 	</div>
 	 <!-- no results found -->

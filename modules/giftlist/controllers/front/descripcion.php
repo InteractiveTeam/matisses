@@ -18,6 +18,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	* Set template by condicion
 	*/
 	public function initContent() {
+        global $cookie;
 		parent::initContent ();
 		$list = new GiftListModel();
 		$lpd = new ListProductBondModel();
@@ -48,7 +49,9 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			'event_type' => Db::getInstance()->getValue($ev),
             'bond' => $lpd->getBondsByList($res['id']),
             'days' => $list->getMissingDays($res['event_date']),
-            'numberProducts' => $list->getNumberProductsByList($res['id'])
+            'numberProducts' => $list->getNumberProductsByList($res['id']),
+			'share_list' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/share_email.php",
+            'cats' => Category::getCategories( (int)($cookie->id_lang), true, false  )
 		) );
 
 		if($this->context->customer->isLogged()){
@@ -79,6 +82,8 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
                         $this->_saveMessaage(Tools::getValue('id_list'), Tools::getValue('message'));
                     case "uploadImage":
                         $this->_uploadImage(Tools::getValue('id_list'), Tools::getValue('prof'));
+                    case "share":
+						$this->_shareList();
 				}
 			}
 		}
@@ -245,5 +250,36 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			die(isset($image_name) ? "/upload/giftlist/" . $image_name : false);
 		}
 		return false;
+	}
+    
+    private function _shareList(){
+		$id_shop = (int)Context::getContext()->shop->id;
+		$id_lang = $this->context->language->id;
+		$list = new GiftListModel (Tools::getValue('id_list'));
+		$currency = $this->context->currency;
+		$customer = new CustomerCore($list->id_creator);
+		$params = array(
+			'{lastname}' => $customer->lastname,
+			'{firstname}' => $customer->firstname,
+			'{code}' => $list->code,
+			'{description_link}' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url))
+		);
+
+		if(!empty($list->id_cocreator)){
+			$customer = new CustomerCore($list->id_cocreator);
+			$params['firstname_co'] = $customer->firstname;
+			$params['lastname_co'] = $customer->lastname;
+
+			MailCore::Send($id_lang, 'share-list', sprintf(
+			MailCore::l('Te han compartido una lista'), 1),
+			$params, Tools::getValue('email'), $customer->firstname.' '.$customer->lastname,
+			null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
+			die("Se ha compartido la lista");
+		}
+		MailCore::Send($id_lang, 'share-list-no-cocreator', sprintf(
+		MailCore::l('Te han compartido una lista'), 1),
+		$params, Tools::getValue('email'), $customer->firstname.' '.$customer->lastname,
+		null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
+		die("Se ha compartido la lista");
 	}
 }

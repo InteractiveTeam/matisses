@@ -46,10 +46,6 @@
             </table>
         </div>
     </div>
-	
-	{*Products asociated to the list*}
-    
-    <pre>{$list_desc|print_r}</pre>
 
     <div id="ax-img-container">
         <img class="ax-cover-img" src="{$list_desc['image']}" width="920" height="300">
@@ -69,6 +65,49 @@
         <p id="ax-message-content">{$list_desc['message']}</p>
         <a href="javascript:void(0);" id="ax-edit">{l s='Editar mensaje' mod='giftlist'}</a>
         <a href="javascript:void(0);" id="ax-delete">{l s='Eliminar mensaje' mod='giftlist'}</a>
+    </div>
+    
+    <div clas="ax-address">
+        <h2>{l s='Direcciones' mod='giftlist'}</h2>
+        <a href="javascript:void(0);">{l s='Editar direcciones' mod='giftlist'}</a>
+        <div class="row">
+            <div class="col-md-6">
+            {l s='Antes del evento' mod='giftlist'}
+            {if $list_desc['address_before'] == "creator"}
+               <p>{$address->address} {$address->town}, {$address->country}</p>
+            {else}
+                <p>{$address_cocreator->address} {$address_cocreator->town}, {$address_cocreator->country}</p>
+            {/if}
+            </div>
+            <div class="col-md-6">
+            {l s='Despúes del evento' mod='giftlist'}
+            {if $list_desc['address_after'] == "creator"}
+               <p>{$address->address} {$address->town}, {$address->country}</p>
+            {else}
+                <p>{$address_cocreator->address} {$address_cocreator->town}, {$address_cocreator->country}</p>
+            {/if}
+            </div>
+        </div>
+    </div>
+    
+    <div class="ax-categories">
+        <ul class="slider">
+            {foreach item=cat from=$cats}
+                {if $cat.id_parent == 3}
+                {assign var="cat_img" value="/img/c/{$cat.id}-categories_home.jpg"}
+                <li>
+                    <a href="/{$cat.id_category}-{$cat.link_rewrite}">
+                    {if file_exists($cat_img)} 
+                        <img class="replace-2x" src="{$cat_img}" alt="" />
+                    {else}
+                        <img class="replace-2x" src="/img/c/nl-default-categories_home.jpg" alt="" />
+                    {/if}
+                    <p>{$cat.name}</p>
+                    </a>
+                </li>
+                {/if}
+            {/foreach}
+        </ul>
     </div>
 	
 	<div class="products-associated" data-id="{$list_desc['id']}">
@@ -103,6 +142,8 @@
         <span>Total de bonos Regalados: {$bond['total_qty']}        
 	</div>
 </div>
+
+<a href="{$share_list}" data-id="{$row['id']}" data-toggle="tooltip" data-placement="bottom" title="{l s='Compartir' mod='giftlist'}" class="share-list btn btn-default btn-sm">{l s='Compartir' mod='giftlist'} <span class="icon-mail-forward"></span></a>
 
 <div class="hidden">
 {literal} 

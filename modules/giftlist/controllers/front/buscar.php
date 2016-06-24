@@ -8,8 +8,8 @@ class giftlistbuscarModuleFrontController extends ModuleFrontController {
 	public function initContent() {
 		parent::initContent ();
 		$list = new GiftListModel();
+            if(!empty(Tools::getValue("name")) && !empty(Tools::getValue("lastname"))){
 		$res = false;
-		if(!empty(Tools::getValue("name")) && !empty(Tools::getValue("lastname"))){
 			$res = $list->searchByCustomerNames(Tools::getValue("name"),Tools::getValue("lastname"));
 		}elseif(!empty(Tools::getValue("code"))){
 			$res = $list->searchByCode(Tools::getValue("code"));
@@ -20,7 +20,8 @@ class giftlistbuscarModuleFrontController extends ModuleFrontController {
 		}
 			
 		$this->context->smarty->assign ( array (
-			"lists" => $res,
+            "lists" => $res,
+            'parameter' => Tools::getValue("name") . Tools::getValue("lastname"),
 			'description_link' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => "")),
 			'items_per_page' => 20
 		) );
