@@ -8,9 +8,8 @@ class giftlistbuscarModuleFrontController extends ModuleFrontController {
 	public function initContent() {
 		parent::initContent ();
 		$list = new GiftListModel();
-            if(!empty(Tools::getValue("name")) && !empty(Tools::getValue("lastname"))){
-		$res = false;
-			$res = $list->searchByCustomerNames(Tools::getValue("name"),Tools::getValue("lastname"));
+        if(!empty(Tools::getValue("name")) && !empty(Tools::getValue("lastname"))){
+            $res = $list->searchByCustomerNames(Tools::getValue("name"),Tools::getValue("lastname"));
 		}elseif(!empty(Tools::getValue("code"))){
 			$res = $list->searchByCode(Tools::getValue("code"));
 			if($res != ""){
