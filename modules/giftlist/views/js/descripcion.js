@@ -76,7 +76,40 @@ $(document).ready(function() {
         $(".ax-message").on('click','#ax-save',saveMessage);
         $(".ax-message").append(textdiv);
     });
+    $("#ax-prof-up").change(function(){
+        uploadImage(true,$(this));
+    });
+    $("#ax-cover-up").change(function(){
+        uploadImage(false,$(this));
+    });
 });
+
+function uploadImage(prof,input){
+    var data = new FormData();
+    $.each(input[0].files, function(i, file) {
+        data.append('file-'+i, file);
+    });
+    data.append('ajax',true);
+    data.append('prof',prof);
+    data.append('method',"uploadImage");
+    data.append('id_list', $(".products-associated").attr('data-id'));
+    $.ajax({
+        type: 'POST',
+        data: data,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(res){
+            var today = new Date();
+            console.log(res+"?"+today.getTime());
+            if(prof)
+                $(".ax-profile-img").attr("src",res+"?"+today.getTime());
+            else
+                $(".ax-cover-img").attr("src",res+"?"+today.getTime());
+        }
+    });
+}
 
 function saveMessage(){
     var message = $(".ax-new-message").val();
@@ -92,17 +125,24 @@ function saveMessage(){
             message: message,
         },
         success: function(res){
-            console.log("gol");
-        },
-        error: function(res){
-            console.log("no :(");
+            $("#message").text(JSON.parse(res));
+            $.fancybox({
+                 'autoScale': true,
+                 'transitionIn': 'elastic',
+                 'transitionOut': 'elastic',
+                 'speedIn': 500,
+                 'speedOut': 300,
+                 'autoDimensions': true,
+                 'centerOnScroll': true,
+                 'href' : '#contentdiv'
+            });
         }, 
     }).always(function(){
-            mc.text(message);
-            mc.show();
-            $("#ax-edit").show();
-            $("#ax-delete").show();
-        });
+        mc.text(message);
+        mc.show();
+        $("#ax-edit").show();
+        $("#ax-delete").show();
+    });
 }
 function validateBondForm(){
 	$("#bond_form").validate({

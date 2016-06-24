@@ -51,7 +51,19 @@
     
     <pre>{$list_desc|print_r}</pre>
 
-    {* ImagenesSSS *}
+    <div id="ax-img-container">
+        <img class="ax-cover-img" src="{$list_desc['image']}" width="920" height="300">
+        <img class="ax-profile-img" width="300" src="{$list_desc['profile_img']}">
+        <div class="ax-prof-buttons">
+            <input type="file" id="ax-prof-up" />
+            <a href="javascript:void(0);" id="ax-prof-delete">{l s='Eliminar imagen' mod='giftlist'}</a>
+        </div>
+        <div class="ax-cover-buttons">
+            <input type="file" id="ax-cover-up" />
+            <a href="javascript:void(0);" id="ax-cover-delete">{l s='Eliminar imagen' mod='giftlist'}</a>
+        </div>
+    </div>
+
     <div class="ax-message">
         <h2>{l s='Mensaje de bienvenida' mod='giftlist'}</h2>
         <p id="ax-message-content">{$list_desc['message']}</p>

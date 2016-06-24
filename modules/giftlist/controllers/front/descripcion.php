@@ -10,7 +10,7 @@ define("_DELETED_","Elmininado Correctamente");
 define("_EDITED_","Se ha editado la informacion");
 
 class giftlistdescripcionModuleFrontController extends ModuleFrontController {
-	public $uploadDir =_PS_UPLOAD_DIR_."giftlist/uploads/";
+	public $uploadDir = _PS_UPLOAD_DIR_."giftlist/";
 	public $module;
 	/**
 	* Select all event types
@@ -77,6 +77,8 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 						break;
                     case "saveMessage":
                         $this->_saveMessaage(Tools::getValue('id_list'), Tools::getValue('message'));
+                    case "uploadImage":
+                        $this->_uploadImage(Tools::getValue('id_list'), Tools::getValue('prof'));
 				}
 			}
 		}
@@ -225,19 +227,22 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	* upload image from list
 	* @return boolean|string|NULL
 	*/
-	private function _uploadImage(){
-		if ($_FILES['image']['name'] != '') {
-			$file = Tools::fileAttachment('image');
+	private function _uploadImage($id, $prof){
+        $prof = ($prof == "true" ? true : false);
+		if ($_FILES['file-0']['name'] != '') {
+			$file = Tools::fileAttachment('file-0');
 			$sqlExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
 			$mimeType = array('image/png', 'image/x-png','image/jpeg','image/gif');
 			if(!$file || empty($file) || !in_array($file['mime'], $mimeType))
 				return false;
 			else {
-				move_uploaded_file($file['tmp_name'], $this->uploadDir . Db::getInstance()->Insert_ID(). ".". $sqlExtension);
-				$image_name = Db::getInstance()->Insert_ID(). ".". $sqlExtension;
+				move_uploaded_file($file['tmp_name'], $this->uploadDir . ($prof ? "prof_" : "") . $id. ".". $sqlExtension);
+                $image_name = ($prof ? "prof_" : "") . $id. ".". $sqlExtension;
+                $sql = "UPDATE "._DB_PREFIX_."gift_list SET ". ($prof ? "profile_img":"image") .' = "/upload/giftlist/'.$image_name.'" WHERE id = '.$id;
+                Db::getInstance()->execute($sql);
 			}
 			@unlink($file);
-			return isset($image_name) ?_PS_UPLOAD_DIR_."giftlist/uploads/" . $image_name : false;
+			die(isset($image_name) ? "/upload/giftlist/" . $image_name : false);
 		}
 		return false;
 	}

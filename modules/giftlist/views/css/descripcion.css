@@ -24,15 +24,17 @@ Fixes generalres
     z-index: 10430!important;
 }
 
-
-
-#message {
+#message, #center_column {
     width: 100%;
 }
 
 #saveInfo{
     width: 500px;
     margin: 0 auto;
+}
+
+#left_column, #right_column {
+    display:none;
 }
 
 
