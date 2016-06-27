@@ -176,7 +176,7 @@ class giftlist extends Module
                     $lpd->save();
                     $bond = new BondModel($product['id_bond']);
                     $list = new GiftListModel($product['id_giftlist']);
-                    $creator = $list->getCreator();
+                    $creator = $list->getCreator($list->id_creator);
                     $params = array(
                         '{creator}' =>  $creator->firstname,
                         '{value}' => $bond->value,
@@ -191,7 +191,7 @@ class giftlist extends Module
                     $lpd->save();
                     $prod = new ProductCore($product['id_product']);
                     $list = new GiftListModel($product['id_giftlist']);
-                    $creator = $list->getCreator();
+                    $creator = $list->getCreator($list->getCreator($list->id_creator));
                     $qty = Tools::jsonDecode($lpd->group);
                     $params = array(
                         '{creator}' =>  $creator->firstname,

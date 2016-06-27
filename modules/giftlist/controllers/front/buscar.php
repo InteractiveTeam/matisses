@@ -22,7 +22,7 @@ class giftlistbuscarModuleFrontController extends ModuleFrontController {
             "lists" => $res,
             'parameter' => Tools::getValue("name") . Tools::getValue("lastname"),
 			'description_link' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => "")),
-			'items_per_page' => 20
+			'items_per_page' => 5
 		) );
 		$this->setTemplate ( 'searchList.tpl' );
 	}

@@ -257,15 +257,30 @@ class GiftListModel extends ObjectModel
 		if(count($res) > 0){
             foreach($res as $row){
                 $sql = "SELECT * FROM "._DB_PREFIX_.'gift_list WHERE id_creator = '. $row['id_customer']
-			     .' or id_cocreator = '. $row['id_customer'];
-			     array_push($return,Db::getInstance()->executeS($sql));
+			     .' OR id_cocreator = '. $row['id_customer'];
+                $ret = Db::getInstance()->executeS($sql);
+                foreach($ret as $list);
+			         array_push($return,$list);
             }
 		}
+        
+        foreach($return as $key => $row){
+            $creator = $this->getCreator($row['id_creator']);
+            $cocreator = ($row['id_cocreator'] ? $this->getCoCreator($row['id_cocreator']) : false);
+            $return[$key]['creator'] = $creator->firstname . " " . $creator->lastname;
+            $return[$key]['cocreator'] = ($cocreator ? $cocreator->firstname . " " . $cocreator->lastname : " - ");
+            $return[$key]['event_type'] = Db::getInstance()->getValue("SELECT name FROM "._DB_PREFIX_."event_type WHERE id =".$row['event_type']);
+            $return[$key]['link'] = $this->context->link->getModuleLink('giftlist', 'descripcion', ['url' => $row['url']]);
+        }
 		return $return;
 	}
     
-    public function getCreator(){
-        return new CustomerCore($this->id_creator);
+    public function getCreator($id){
+        return new CustomerCore($id);
+    }
+    
+    public function getCoCreator($id){
+        return new CustomerCore($id);
     }
     
     public function getCartProductsByList($id){
