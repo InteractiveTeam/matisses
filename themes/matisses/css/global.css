@@ -5998,3 +5998,24 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     width: 100% !important;
     height: 102%;
 }
+
+/*lista de regalos*/
+
+.my-giftlist .ax-form-lista-deseos .form-control {
+    display: inline-block;
+    width: 160px;
+    margin: 10px 10px 10px 0;
+    padding: 6px 8px;
+    background: #f8f8f8;
+}
+
+.my-giftlist .ax-form-lista-deseos .form-control.code {
+    margin: 10px;
+} 
+
+.my-giftlist .ax-form-lista-deseos p {
+    display: inline-block;
+}
+.my-giftlist .text-option-list {
+    margin-bottom: 10px;
+}
