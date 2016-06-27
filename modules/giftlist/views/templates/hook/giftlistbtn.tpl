@@ -18,7 +18,7 @@
 				<input type="text" class="form-control" name="lastname" placeholder="{l s='Apellido' mod='giftlist'}"/>
 					<p>{l s='ó' mod='giftlist'}</p>
 					<input type="text" class="form-control code" name="code" placeholder="{l s='Código' mod='giftlist'}"/>
-				<button class="btn btn-default button">{l s='Buscar' mod='giftlist'}</button>
+				<button class="btn btn-default button btn-red">{l s='Buscar' mod='giftlist'}</button>
 			</div>
 			</form>
 		</div>
