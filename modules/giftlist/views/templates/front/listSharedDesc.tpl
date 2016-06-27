@@ -1,6 +1,5 @@
 {* Shared List *}
 {capture name=path}
-<a href="{$all_link}">{l s='giftlist' mod='giftlist'}</a><i class="fa fa-angle-right"></i>{$list_desc['name']}
 {/capture}
 <div class="container">
 {if isset($response)}

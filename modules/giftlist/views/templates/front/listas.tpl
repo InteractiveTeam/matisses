@@ -1,4 +1,4 @@
-{capture name=path}{l s='Administrar listas' mod='giftlist'}{/capture}
+{capture name=path}<a href="{$link->getModuleLink('giftlist','empezar')}">{l s='Lista de regalos' mod='giftlist'}</a><i class="fa fa-angle-right"></i>{l s='Administrar listas' mod='giftlist'}{/capture}
 {if version_compare($smarty.const._PS_VERSION_,'1.6.0.0','<')}{include file="$tpl_dir./breadcrumb.tpl"}{/if}
 <div class="container">
 	{if isset($response)}
