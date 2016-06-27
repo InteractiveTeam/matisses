@@ -25,7 +25,7 @@
 		<div class="col-md-2">
 			<h3>{l s='Crear' mod='giftlist'}</h3>
 			<p class="text-option-list">{l s='Piensa en grande y crea la lista de regalos ...' mod='giftlist'}</p>
-			<a href="{$gift_link}" class="btn btn-default btn-red">Empezar</a>
+			<a href="{$create_link}" class="btn btn-default btn-red">Empezar</a>
 		</div>
 		<div class="col-md-2">
 			<h3>{l s='Administrar lista' mod='giftlist'}</h3>

@@ -85,7 +85,8 @@ class giftlist extends Module
 	  $this->context->smarty->assign(
 	  		array(
 	  			'gift_link' =>  $this->context->link->getModuleLink('giftlist', 'listas'),
-  				'search_link' => $this->context->link->getModuleLink('giftlist', 'buscar')
+  				'search_link' => $this->context->link->getModuleLink('giftlist', 'buscar'),
+  				'create_link' => $this->context->link->getModuleLink('giftlist', 'administrar',array('url'=>"nuevo")),
 	  		));
 	  return $this->display(__FILE__, 'giftlistbtn.tpl');
 	}
@@ -342,6 +343,14 @@ class giftlist extends Module
                 'keywords' => [
 					'url' => ['regexp' => '[_a-zA-Z0-9_-]+', 'param' => 'url']
 				],
+				'params' => [
+						'fc' => 'module',
+						'module' => 'giftlist'
+				]
+			],
+            'module-giftlist-empezar' => [
+				'controller' => 'empezar',
+				'rule' => 'lista-de-regalos',
 				'params' => [
 						'fc' => 'module',
 						'module' => 'giftlist'
