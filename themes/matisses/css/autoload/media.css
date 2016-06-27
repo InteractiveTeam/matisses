@@ -1413,6 +1413,16 @@
     .category-thumbnail .wrap_scale {
         position: inherit;
     }
+    
+    .my-giftlist .ax-form-lista-deseos .form-control {
+        width: 143px;
+        margin: 5px 5px 5px 0;
+        padding: 5px 7px;
+    }
+    
+    .my-giftlist .ax-form-lista-deseos .form-control.code {
+        margin: 5px 0 5px 5px;
+    }
 }
 
 @media only screen and (max-width :1366px) {

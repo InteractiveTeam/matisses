@@ -6,76 +6,32 @@
 <h3>{l s='Resultado de la lista'}</h3>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <form action="" method="post" name="searchList">
-<div class="row">
-    <div class="col-md-3">
-        <input type="text" class="form-control" name="name" id="name" placeholder="Nombre"/>
-    </div>
-    <div class="col-md-3">
-        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellido"/>
-    </div>
-    <div class="col-md-1">
-        ó
-    </div>
-    <div class="col-md-3">
-        <input type="text" class="form-control" name="code" id="code" placeholder="Código"/>
-    </div>
-    <button class="btn btn-default button" id="search" >Buscar</button>
+<div class="row ax-form-data-search">
+    <span><label for="name">Nombre</label><input type="text" class="form-control" name="name" id="name"/></span>
+    <span><label for="lastname">Apellido</label><input type="text" class="form-control" name="lastname" id="lastname"/></span>
+    <p>ó</p>
+    <span><label for="code">Código</label><input type="text" class="form-control" name="code" id="code"/></span>
+    <button class="btn btn-default button btn-lista-regalos" id="search" >Buscar</button>
 </div>
 </form>
 
-<div class="jplist-panel panel-over">
-		<div class="text-filter-box">
-			<i class="icon-pencil jplist-icon"></i>
-					   
-			<!--[if lt IE 10]>
-			<div class="jplist-label">Filter by Title:</div>
-			<![endif]-->
-			<input 
-			data-path=".title-list" 
-			type="text" 
-			value="" 
-			placeholder="Filtrar por nombre" 
-			data-event-name="keyup"
-			data-control-type="textbox" 
-			data-control-name="title-filter" 
-			data-control-action="filter"
-			/>
-		</div>	
-	</div>
+<div class="ax-text-result-list ax-details-list">
+    <p>Resultados para <span>Carolina María Saldarriaga</span></p>
+</div>
 
-
-<div id="lists">
-	<div class="list">
-    {foreach from=$lists item=row}
-        <div class="row list-item list-item-container" data-id="{$row['id']}" id="list-{$row['id']}">
-            <table>
-                <thead>
-                    <tr>
-                        <th>{l s='Creador' mod='giftlist'}</th>
-                        <th>{l s='Cocreador' mod='giftlist'}</th>
-                        <th>{l s='Código' mod='giftlist'}</th>
-                        <th>{l s='Nombre del evento' mod='giftlist'}</th>
-                        <th>{l s='Topo de evento' mod='giftlist'}</th>
-                        <th>{l s='fecha' mod='giftlist'}</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{$row['creator']}</td>
-                        <td>{$row['cocreator']}</td>
-                        <td>{$row['code']}</td>
-                        <td>{$row['name']}</td>
-                        <td>{$row['event_type']}</td>
-                        <td>{date("d/m/Y", strtotime($row['event_date']))}</td>
-                        <td>
-                            <a href="{$row['link']}">{l s='Ver lista' mod='giftlist'}</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-	{/foreach}
+<div id="lists" class="ax-cont-list">
+    <div class="row list-item list-item-container" data-id="{$row['id']}" id="list-{$row['id']}">
+        {foreach from=$lists item=row}
+                <div class="ax-item">
+                    <div class="part">{l s='Creador' mod='giftlist'}<span>{$row['creator']}</span></div>
+                    <div class="part">{l s='Cocreador' mod='giftlist'}<span>{$row['cocreator']}</span></div>
+                    <div class="part">{l s='Código' mod='giftlist'}<span>{$row['code']}</span></div>
+                    <div class="part">{l s='Nombre del evento' mod='giftlist'}<span>{$row['name']}</span></div>
+                    <div class="part">{l s='Tipo de evento' mod='giftlist'}<span>{$row['event_type']}</span></div>
+                    <div class="part">{l s='fecha' mod='giftlist'}<span>{date("d/m/Y", strtotime($row['event_date']))}</span></div>
+                    <div class="part ax-read-more"><a href="{$row['link']}">{l s='Ver lista' mod='giftlist'}</a></div></Resultado>
+                </div>
+        {/foreach}
     </div>
         <!-- no results found -->
     <div class="jplist-no-results">
