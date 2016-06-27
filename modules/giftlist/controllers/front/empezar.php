@@ -19,7 +19,9 @@ class giftlistempezarModuleFrontController extends ModuleFrontController {
     
     public function setMedia() {
 		parent::setMedia ();
-		/*$this->addJS ( array () );*/
+		$this->addJS ( array (
+            _MODULE_DIR_ . '/giftlist/views/js/ax-empezar.js'
+        ) );
 		$this->addCSS ( array (
 			_MODULE_DIR_ . '/giftlist/views/css/ax-lista-de-regalos.css'
 		) );
