@@ -6,9 +6,6 @@ class giftlistempezarModuleFrontController extends ModuleFrontController {
         parent::initContent ();
         $this->display_column_left = false;
         $this->display_column_right = false;
-        if(!$this->context->customer->isLogged()){
-            Tools::redirect("index");
-        }
         
         $this->context->smarty->assign(
 	  		array(
