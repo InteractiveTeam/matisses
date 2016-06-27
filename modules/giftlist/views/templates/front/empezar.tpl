@@ -22,14 +22,14 @@
     <div class="col-md-6">
         <h3>{l s='Buscar' mod='giftlist'}</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <form action="{$search_link}" method="post">
+        <form id="ax-buscar" action="{$search_link}" method="post">
 			<div class="row ax-form-lista-deseos">
                 <label for="name">{l s='Nombre' mod='giftlist'}</label>
-				<input type="text" class="form-control" name="name" id="name"/>
+				<input type="text" class="form-control" name="name" id="name" required/>
                 <label for="lastname">{l s='Apellido' mod='giftlist'}</label>
-				<input type="text" class="form-control" name="lastname" id="lastname"/>
+				<input type="text" class="form-control" name="lastname" id="lastname" required/>
                 <label for="code">{l s='Código' mod='giftlist'}</label>
-                <input type="text" class="form-control code" name="code" id="code"/>
+                <input type="text" class="form-control code" name="code" id="code" required/>
 				<button class="btn btn-default button btn-red">{l s='Buscar' mod='giftlist'}</button>
 			</div>
 			</form>
