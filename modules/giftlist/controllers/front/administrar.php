@@ -43,7 +43,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 		) );
 		$this->addCSS ( array (
             _MODULE_DIR_ . '/giftlist/views/css/vendor/datetimepicker/jquery.datetimepicker.css',
-            _MODULE_DIR_ . '/giftlist/views/css/ax-administrar.css'
+            _MODULE_DIR_ . '/giftlist/views/css/ax-lista-de-regalos.css'
 		) );
 	}
     

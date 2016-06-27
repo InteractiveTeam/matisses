@@ -55,7 +55,7 @@ class giftlistbuscarModuleFrontController extends ModuleFrontController {
 			_MODULE_DIR_ . '/giftlist/views/css/vendor/jplist/jplist.core.min.css',
 			_MODULE_DIR_ . '/giftlist/views/css/vendor/jplist/jplist.pagination-bundle.min.css',
 			_MODULE_DIR_ . '/giftlist/views/css/vendor/jplist/jplist.textbox-filter.min.css',
-			_MODULE_DIR_ . '/giftlist/views/css/listas.css'
+			_MODULE_DIR_ . '/giftlist/views/css/ax-lista-de-regalos.css'
 		) );
 	}
 	
