@@ -20,6 +20,8 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	public function initContent() {
         global $cookie;
 		parent::initContent ();
+        $this->display_column_left = false;
+        $this->display_column_right = false;
 		$list = new GiftListModel();
 		$lpd = new ListProductBondModel();
 		if(!$res = $list->getListBySlug(Tools::getValue('url')))

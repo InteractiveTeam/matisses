@@ -7,6 +7,8 @@ class giftlistbuscarModuleFrontController extends ModuleFrontController {
 
 	public function initContent() {
 		parent::initContent ();
+        $this->display_column_left = false;
+        $this->display_column_right = false;
 		$list = new GiftListModel();
         if(!empty(Tools::getValue("name")) && !empty(Tools::getValue("lastname"))){
             $res = $list->searchByCustomerNames(Tools::getValue("name"),Tools::getValue("lastname"));

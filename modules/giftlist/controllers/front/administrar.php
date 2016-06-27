@@ -8,6 +8,8 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 			Tools::redirect('my-account');
 		}
 		parent::initContent ();
+        $this->display_column_left = false;
+        $this->display_column_right = false;
 		$list = new GiftListModel();
         $edit = 0;
         $res = null;

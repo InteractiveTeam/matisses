@@ -4,6 +4,8 @@ class giftlistempezarModuleFrontController extends ModuleFrontController {
 
     public function initContent(){
         parent::initContent ();
+        $this->display_column_left = false;
+        $this->display_column_right = false;
         if(!$this->context->customer->isLogged()){
             Tools::redirect("index");
         }

@@ -16,6 +16,8 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 			Tools::redirect('my-account');
 		}
 		parent::initContent ();
+        $this->display_column_left = false;
+        $this->display_column_right = false;
 		$list = new GiftListModel();
 		$event_type = Db::getInstance ()->executeS ( "SELECT * FROM `" . _DB_PREFIX_ . "event_type`" );
 		$_SESSION['event'] = $event_type;
