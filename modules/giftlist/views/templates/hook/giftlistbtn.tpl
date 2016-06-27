@@ -7,7 +7,6 @@
 	</div>
 	<div class="content-account row">
 		<div class="col-md-2">
-			<img src="{$shop_url}img/regalo.png" />
 		</div>
 		<div class="col-md-6">
 			<h3>{l s='Buscar lista' mod='giftlist'}</h3>
