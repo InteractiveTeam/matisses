@@ -27,7 +27,7 @@
                     <div class="part">{l s='Nombre del evento' mod='giftlist'}<span>{$row['name']}</span></div>
                     <div class="part">{l s='Tipo de evento' mod='giftlist'}<span>{$row['event_type']}</span></div>
                     <div class="part">{l s='fecha' mod='giftlist'}<span>{date("d/m/Y", strtotime($row['event_date']))}</span></div>
-                    <div class="part ax-read-more"><a href="{$row['link']}">{l s='Ver lista' mod='giftlist'}</a></div></Resultado>
+                    <div class="part ax-read-more"><a href="{$row['link']}">{l s='Ver lista' mod='giftlist'}</a></div>
                 </div>
         {/foreach}
     </div>
