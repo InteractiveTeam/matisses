@@ -79,8 +79,9 @@ class ListProductBondModel extends ObjectModel
 					'data' => $my_prod->getAttributeCombinations(1),
 					'image' =>  $link->getImageLink($my_prod->link_rewrite[1], (int)$images[0]['id_image'], 'home_default'),
 					'price' => $my_prod->getPrice(),
-					'group' => $row['group'],
-					'options' => Tools::jsonDecode($row['option'])
+					'group' => Tools::jsonDecode($row['group']),
+					'options' => Tools::jsonDecode($row['option']),
+                    'favorite' => $row['favorite']
 				];
 		 }
 		 return $prod;

@@ -111,20 +111,27 @@
     </div>
 	
 	<div class="products-associated" data-id="{$list_desc['id']}">
-		<h2>Productos</h2>
+		<h2>{l s='Mi lista' mod='giftlist'}</h2>
+        <a href="javascript::void(0);">{l s='Editar lista' mod='giftlist'}</a>
 		<div class="row">
-		{foreach from=$products item=row }
+            <div class="product-card col-md-3" data-id="{$list_desc['id']}">
+                <img src="http://lorempixel.com/282/262/">
+                <span>{l s='Total bonos' mod='giftlist'} : {convertPrice price=$bond['total']}</span> <br>       
+            </div>
+		{foreach from=$products item=row}
 		{$atribute_group = $row['options'][3]->value}
 			<div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}">
 				<div class="img-container" style="background-image: url('http://{$row['image']}')">
 				</div>
+                <i class="fa fa-heart" aria-hidden="true" {if $row['favorite']}style="color: red;"{/if}></i>
 				<p>{$row['name']}</p>
 				{foreach from=$row['data'] item=att_group}
 					{if $att_group['id_product_attribute'] == $atribute_group}
 						<p>{$att_group['group_name']} : {$att_group['attribute_name']}</p>
 					{/if}
 				{/foreach}
-				{$row['price']}
+                {convertPrice price=$row['price']}
+                <p>{l s='Cantidad:'} {$row['group']->wanted}</p>
 				<button class="delete-product" data-toggle="tooltip" data-placement="bottom" title="Quitar producto">Quitar producto</button>
 			</div>
 		{/foreach}
@@ -132,18 +139,7 @@
 	</div>
 </div>
 
-{*Bonds asociated to the list*}
-	
-<div class="bonds-associated" data-id="{$list_desc['id']}">
-    <h2>Bonos</h2>
-    <div class="row">
-        <img src="asdf" >
-        <span>Total : ${$bond['total']}</span> <br>
-        <span>Total de bonos Regalados: {$bond['total_qty']}        
-	</div>
-</div>
-
-<a href="{$share_list}" data-id="{$row['id']}" data-toggle="tooltip" data-placement="bottom" title="{l s='Compartir' mod='giftlist'}" class="share-list btn btn-default btn-sm">{l s='Compartir' mod='giftlist'} <span class="icon-mail-forward"></span></a>
+<a href="{$share_list}" data-id="{$row['id']}" data-toggle="tooltip" data-placement="bottom" title="{l s='Compartir lista' mod='giftlist'}" class="share-list btn btn-default btn-sm">{l s='Compartir' mod='giftlist'} <span class="icon-mail-forward"></span></a>
 
 <div class="hidden">
 {literal} 

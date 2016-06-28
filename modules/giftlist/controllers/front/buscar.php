@@ -17,7 +17,7 @@ class giftlistbuscarModuleFrontController extends ModuleFrontController {
 			if($res != ""){
 				Tools::redirect($this->context->link->getModuleLink('giftlist', 'descripcion', $res));
 			}
-			$res = false;
+			$res = array();
 		}
 			
 		$this->context->smarty->assign ( array (
