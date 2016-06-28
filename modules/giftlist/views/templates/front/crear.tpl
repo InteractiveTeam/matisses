@@ -1,5 +1,5 @@
 {capture name=path}
-<a href="{$list_link}">{l s='giftlist' mod='giftlist'}</a><i class="fa fa-angle-right"></i>{if $edit}{$data['name']}{else}{l s='new' mod='giftlist'}{/if}
+<a href="{$list_link}">{l s='Lista de regalos' mod='giftlist'}</a><i class="fa fa-angle-right"></i>{if $edit}{$data['name']}{else}{l s='Crear lista de regalos' mod='giftlist'}{/if}
 {/capture}
 {if version_compare($smarty.const._PS_VERSION_,'1.6.0.0','<')}{include file="$tpl_dir./breadcrumb.tpl"}{/if}
 {if $error}
@@ -14,7 +14,7 @@
     {* General *}
     <div class="container">
         <div class="row">
-            <h2 id="form-title">{if !$edit}{l s='Create List' mod='giftlist'}{else}{l s='Edit ist' mod='giftlist'}{/if}</h2>
+            <h1 id="form-title">{if !$edit}{l s='Crear lista de regalos' mod='giftlist'}{else}{l s='Edit ist' mod='giftlist'}{/if}</h1>
         </div>
         <div class="row">
             <div class="col-md-6">

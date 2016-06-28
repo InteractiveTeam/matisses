@@ -11,22 +11,11 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
         $this->display_column_left = false;
         $this->display_column_right = false;
 		$list = new GiftListModel();
-        $edit = 0;
-        $res = null;
-        if(Tools::getValue("url") != "nuevo"){
-            $edit = 1;
-            if(!$res = $list->getListBySlug(Tools::getValue('url')))
-            {
-                Tools::redirect($this->context->link->getModuleLink('giftlist', 'listas'));
-            }
-        }
 		$this->context->smarty->assign (array(
             'event_type' => Db::getInstance ()->executeS ( "SELECT * FROM `" . _DB_PREFIX_ . "event_type`" ),
-            'list_link' => $this->context->link->getmoduleLink("giftlist","listas"),
-            'edit' => $edit,
-            'data' => $res
+            'list_link' => $this->context->link->getmoduleLink("giftlist","empezar"),
 		));
-		$this->setTemplate ( 'administrar.tpl' );
+		$this->setTemplate ( 'crear.tpl' );
 	}
     
     public function init(){
@@ -40,7 +29,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/validation/jquery.validate.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/validation/messages_es.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/mask/jquery.mask.min.js',
-            _MODULE_DIR_ . '/giftlist/views/js/ax-administrar.js',
+            _MODULE_DIR_ . '/giftlist/views/js/ax-crear.js',
             'https://www.google.com/recaptcha/api.js'
 		) );
 		$this->addCSS ( array (
@@ -97,7 +86,6 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 	}
     
     private function _saveList($id = 0){
-        //echo "<pre>";echo print_r($_POST);die("</pre>");
 		if($id != 0){
 			$list = new GiftListModel ($id);
 		}else{

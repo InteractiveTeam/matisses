@@ -320,7 +320,7 @@ class giftlist extends Module
 		return [
 			'module-giftlist-descripcion' => [
 				'controller' => 'descripcion',
-				'rule' => 'giftlist/descripcion{/:url}',
+				'rule' => 'lista-de-regalos/lista{/:url}',
 				'keywords' => [
 					'url' => ['regexp' => '[_a-zA-Z0-9_-]+', 'param' => 'url']
 				],
@@ -331,7 +331,7 @@ class giftlist extends Module
 			],
 			'module-giftlist-listas' => [
 				'controller' => 'listas',
-				'rule' => 'giftlist/listas',
+				'rule' => 'lista-de-regalos/listas',
 				'params' => [
 						'fc' => 'module',
 						'module' => 'giftlist'
@@ -339,10 +339,7 @@ class giftlist extends Module
 			],
 			'module-giftlist-administrar' => [
 				'controller' => 'administrar',
-				'rule' => 'giftlist/listas{/:url}',
-                'keywords' => [
-					'url' => ['regexp' => '[_a-zA-Z0-9_-]+', 'param' => 'url']
-				],
+				'rule' => 'lista-de-regalos/crear',
 				'params' => [
 						'fc' => 'module',
 						'module' => 'giftlist'
@@ -351,6 +348,14 @@ class giftlist extends Module
             'module-giftlist-empezar' => [
 				'controller' => 'empezar',
 				'rule' => 'lista-de-regalos',
+				'params' => [
+						'fc' => 'module',
+						'module' => 'giftlist'
+				]
+			],
+            'module-giftlist-buscar' => [
+				'controller' => 'empezar',
+				'rule' => 'lista-de-regalos/buscar',
 				'params' => [
 						'fc' => 'module',
 						'module' => 'giftlist'
