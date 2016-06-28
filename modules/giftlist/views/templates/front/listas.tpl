@@ -13,50 +13,35 @@
 			<h1>{l s='Administrar listas' mod='giftlist'}</h1>
 		</div>
 	</div>
+	<div class="ax-cont-admin-listas-regalos">
 	{foreach from=$all_lists item=row}
 	<div class="row list-item-container" data-id="{$row['id']}" id="list-{$row['id']}">
-		<div class="header-item col-lg-12">
+		<div class="header-item ax-text-result-list">
             <h2>{$row['name']}</h2>
         </div>
-        <div class="info-item col-lg-12">
-            <table>
-                <thead>
-                    <tr>
-                        <th>{l s='Creador' mod='giftlist'}</th>
-                        <th>{l s='Cocreador' mod='giftlist'}</th>
-                        <th>{l s='Tipo de evento' mod='giftlist'}</th>
-                        <th>{l s='Código' mod='giftlist'}</th>
-                        <th>{l s='Fecha' mod='giftlist'}</th>
-                        <th>{l s='Días para tu evento' mod='giftlist'}</th>
-                        <th>{l s='Tus regalos' mod='giftlist'}</th>
-                        <th>{l s='Regalos restantes' mod='giftlist'}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{$row['creator_name']}</td>
-                        <td>{$row['cocreator_name']}</td>
-                        <td>{$row['event']}</td>
-                        <td>{$row['code']}</td>
-                        <td>{date("d/m/Y", strtotime($row['event_date']))}</td>
-                        <td>{$row['days']}</td>
-                        <td>{$row['products']}</td>
-                        <td>{$row['products'] - $row['products_bought']}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="col-lg-12 ax-cont-list">
+            <div class="ax-item">
+                <div class="part">{l s='Creador' mod='giftlist'}<span>{$row['creator_name']}</span></div>
+                <div class="part">{l s='Cocreador' mod='giftlist'}<span>{$row['cocreator_name']}</span></div>
+                <div class="part">{l s='Tipo de evento' mod='giftlist'}<span>{$row['event']}</span></div>
+                <div class="part">{l s='Código' mod='giftlist'}<span>{$row['code']}</span></div>
+                <div class="part">{l s='fecha' mod='giftlist'}<span>{date("d/m/Y", strtotime($row['event_date']))}</span></div>
+                <div class="part">{l s='Días para tu evento' mod='giftlist'}<span>{$row['days']}</span></div>
+                <div class="part">{l s='Tus regalos' mod='giftlist'}<span>{$row['products']}</span></div>
+                <div class="part">{l s='Regalos restantes' mod='giftlist'}<span>{$row['products'] - $row['products_bought']}</span></div>
+            </div>
         </div>
         <div class="footer-item col-lg-12">
             <form id="action-{$row['id']}" class="actions" action="{$request_uri}" role="form" method="post">
-                <button name="delete-list" data-toggle="tooltip" data-placement="bottom" title="{l s='Borrar lista' mod='giftlist'}" value="{$row['id']}" class="delete-list btn btn-default btn-sm">{l s='Borrar lista' mod='giftlist'} <span class="icon-eraser"></span></button>
+                <button name="delete-list" data-toggle="tooltip" data-placement="bottom" title="{l s='Borrar lista' mod='giftlist'}" value="{$row['id']}" class="delete-list btn btn-default btn-lista-regalos-sample">{l s='Borrar lista' mod='giftlist'} <span class="icon-eraser"></span></button>
                 
-                <a href="{$description_link }/{$row['url']}" data-id="{$row['id']}" data-toggle="tooltip" data-placement="bottom" title="{l s='Ver lista' mod='giftlist'}" class="btn-edit btn btn-default btn-sm">{l s='Ver lista' mod='giftlist'} <span class="icon-pencil"></span></a>
+                <a href="{$description_link }/{$row['url']}" data-id="{$row['id']}" data-toggle="tooltip" data-placement="bottom" title="{l s='Ver lista' mod='giftlist'}" class="btn-edit btn btn-default btn-lista-regalos">{l s='Ver lista' mod='giftlist'} <span class="icon-pencil"></span></a>
             </form>
-            </div>
         </div>
 	</div>
 	{/foreach}
-    <div class="col-md-2">
-        <a class="btn btn-success" href="{$admin_link}" data-toggle="tooltip" data-placement="bottom" title="{l s='Crear lista' mod='giftlist'}">{l s='Crear lista' mod='giftlist'}</a>
+   </div>
+    <div class="ax-btn-creat-list">
+        <a class="btn-success btn btn-default btn-lista-regalos" href="{$admin_link}" data-toggle="tooltip" data-placement="bottom" title="{l s='Crear lista' mod='giftlist'}">{l s='Crear lista' mod='giftlist'}</a>
     </div>
 </div>

@@ -170,7 +170,6 @@ Fixes generalres
 }
 
 .ax-form-data-search .btn.btn-default.btn-lista-regalos {
-    padding: 9px 20px;
     margin-bottom: 4px;
     display: inline-block;
 }
@@ -180,6 +179,21 @@ Fixes generalres
     color: #eac78f;
     border: none;
     font-family: initial;
+    padding: 8px 25px;
+}
+
+.ax-form-data-search .btn.btn-default.btn-lista-regalos-sample {
+    margin-bottom: 4px;
+    display: inline-block;
+}
+
+.btn.btn-default.btn-lista-regalos-sample {
+    background: transparent;
+    color: #272727;
+    border: none;
+    font-family: initial;
+    text-decoration: underline;
+    padding: 8px 25px;
 }
 
 .ax-text-result-list {
@@ -195,7 +209,7 @@ Fixes generalres
     border-bottom: transparent solid 22px;
 }
 
-.ax-text-result-list p {
+.ax-text-result-list p, .ax-text-result-list h2 {
     font-family: initial;
     font-weight: bold;
     color: #292929;
@@ -205,18 +219,23 @@ Fixes generalres
     left: 15px;
 }
 
+.ax-text-result-list h2 {
+    text-transform: capitalize;
+    color:#242021;
+}
+
 .ax-text-result-list p span {
     color:#7d7d7d;
 }
 
-.module-giftlist-buscar .ax-cont-list .ax-item {
+.module-giftlist-buscar .ax-cont-list .ax-item, .ax-cont-admin-listas-regalos .ax-cont-list .ax-item {
     border-bottom: #dcdcdc solid 1px;
     display:table;
     width: 100%;
     padding: 30px 0 15px 0;
 }
 
-.module-giftlist-buscar .ax-cont-list .part {
+.module-giftlist-buscar .ax-cont-list .part, .ax-cont-admin-listas-regalos .ax-cont-list .part {
     text-align: center;
     display: table-cell;
     font-weight: 700;
@@ -224,7 +243,7 @@ Fixes generalres
     font-size: 16px;
 }
 
-.module-giftlist-buscar .part span {
+.module-giftlist-buscar .part span, .ax-cont-admin-listas-regalos .part span {
     display: block;
     font-weight: 100;
     color:#a8a8a8; 
@@ -251,28 +270,41 @@ Fixes generalres
     color: #5e534d;
 } 
 
-button.button:hover:after, a.button_mini:hover:after, a.button_small:hover:after, a.button:hover:after, a.button_large:hover:after, a.exclusive_mini:hover:after, a.exclusive_small:hover:after, a.exclusive:hover:after, a.exclusive_large:hover:after, span.button_mini:hover:after, span.button_small:hover:after, span.button:hover:after, span.button_large:hover:after, span.exclusive_mini:hover:after, span.exclusive_small:hover:after, span.exclusive:hover:after, span.exclusive_large:hover:after, span.exclusive_large_disabled:hover:after, .btn.btn-default:hover:after, button.button:hover:before, a.button_mini:hover:before, a.button_small:hover:before, a.button:hover:before, a.button_large:hover:before, a.exclusive_mini:hover:before, a.exclusive_small:hover:before, a.exclusive:hover:before, a.exclusive_large:hover:before, span.button_mini:hover:before, span.button_small:hover:before, span.button:hover:before, span.button_large:hover:before, span.exclusive_mini:hover:before, span.exclusive_small:hover:before, span.exclusive:hover:before, span.exclusive_large:hover:before, span.exclusive_large_disabled:hover:before, .btn.btn-default:hover:before {
-    background: #eac78f;
+.ax-cont-admin-listas-regalos .footer-item {
+    text-align: right;
+    margin: 20px 0;
 }
+
+.btn.btn-lista-regalos:hover:after, .btn.btn-lista-regalos:hover:before {
+    background: #eac78f !important;
+}
+
+.ax-btn-creat-list {
+    border-top: #ccc solid 1px;
+    padding: 20px 15px;
+    text-align: right;
+}
+
+
 
 @media screen and (max-width:768px) {
     
-    .module-giftlist-buscar .ax-cont-list .ax-item {
+    .module-giftlist-buscar .ax-cont-list .ax-item, .ax-cont-admin-listas-regalos .ax-cont-list .ax-item {
         border: none;
     }
     
-    .module-giftlist-buscar .ax-cont-list .ax-item:nth-child(even) {
+    .module-giftlist-buscar .ax-cont-list .ax-item:nth-child(even), .ax-cont-admin-listas-regalos .ax-cont-list .ax-item:nth-child(even) {
         background: #fafafa;
     }
     
-    .module-giftlist-buscar .ax-cont-list .part {
+    .module-giftlist-buscar .ax-cont-list .part, .ax-cont-admin-listas-regalos .ax-cont-list .part {
         width: 33.3%;
         display: inline-block;
         padding: 25px;
         border-bottom: #dcdcdc solid 1px;
     }
     
-    .module-giftlist-buscar .ax-cont-list .ax-read-more {
+    .module-giftlist-buscar .ax-cont-list .ax-read-more, .ax-cont-admin-listas-regalos .ax-cont-list .ax-read-more {
         border: none;
         width: 100%;
     }
@@ -312,6 +344,11 @@ button.button:hover:after, a.button_mini:hover:after, a.button_small:hover:after
         border-bottom: transparent solid 35px;
     }
     
+    .ax-cont-admin-listas-regalos .ax-text-result-list {
+        border-top: transparent solid 25px;
+        border-bottom: transparent solid 25px;
+    }
+    
     .ax-text-result-list p {
         top: -20px;
     }
@@ -320,7 +357,7 @@ button.button:hover:after, a.button_mini:hover:after, a.button_small:hover:after
         display: block;        
     }
     
-    .module-giftlist-buscar .ax-cont-list .part {
+    .module-giftlist-buscar .ax-cont-list .part, .ax-cont-admin-listas-regalos .ax-cont-list .part {
         width: 50%;
         text-align: left;
     }
