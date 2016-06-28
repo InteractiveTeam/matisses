@@ -180,6 +180,11 @@ Fixes generalres
     border: none;
     font-family: initial;
     padding: 8px 25px;
+    letter-spacing: 1.5px;
+}
+
+.module-giftlist-empezar .btn-lista-regalos {
+    margin:10px 0;
 }
 
 .ax-form-data-search .btn.btn-default.btn-lista-regalos-sample {
@@ -207,9 +212,12 @@ Fixes generalres
     border-top: transparent solid 22px;
     border-right: #fff solid 15px;
     border-bottom: transparent solid 22px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-.ax-text-result-list p, .ax-text-result-list h2 {
+.ax-text-result-list p, .ax-text-result-list h2, .ax-text-result-list h3 {
     font-family: initial;
     font-weight: bold;
     color: #292929;
@@ -219,9 +227,9 @@ Fixes generalres
     left: 15px;
 }
 
-.ax-text-result-list h2 {
+.ax-text-result-list h2, .ax-text-result-list h3  {
     text-transform: capitalize;
-    color:#242021;
+    color:#262626;
 }
 
 .ax-text-result-list p span {
@@ -252,7 +260,11 @@ Fixes generalres
     margin: 4px 0; 
 }
 
-.module-giftlist-buscar .part span, .ax-cont-admin-listas-regalos .part .ax-day {
+.module-giftlist-buscar .part span {
+
+}
+
+.ax-cont-admin-listas-regalos .part .ax-day {
     color: #ecb072;
     font-size: 2rem;
     font-family: serif;
@@ -294,6 +306,32 @@ Fixes generalres
     border-top: #ccc solid 1px;
     padding: 20px 15px;
     text-align: right;
+}
+
+/*index*/
+
+.module-giftlist-empezar .ax-img-cont {
+    width: 100%;
+}
+
+.module-giftlist-empezar .col-md-6 {
+    width: 48%;
+    padding-right: 25px;
+    padding-left: 25px;
+}
+
+.ax-text-description-lista {
+    width: 80%;
+    margin: 20px auto;
+}
+
+.ax-search-home .ax-form-data-search input {
+    width: 151px;
+}
+
+.ax-search-home button {
+    float: right;
+    margin: 10px 0;
 }
 
 /*perfil*/
@@ -383,6 +421,19 @@ Fixes generalres
     border: #fff solid 5px;
 }
 
+@media screen and (max-width:1024px) {
+     
+    .ax-search-home .ax-form-data-search input {
+        width: 123px;
+    }  
+    
+    .module-giftlist-empezar .col-md-6 {
+        width: 98%;
+    }
+    
+}
+
+
 @media screen and (max-width:768px) {
     
     .module-giftlist-buscar .ax-cont-list .ax-item, .ax-cont-admin-listas-regalos .ax-cont-list .ax-item {
@@ -407,6 +458,10 @@ Fixes generalres
     
     .ax-form-data-search input {
         width: 185px;
+    }
+    
+    .ax-search-home .ax-form-data-search input {
+       width: 205px;
     }
     
 }
@@ -458,5 +513,32 @@ Fixes generalres
         text-align: left;
     }
     
+    .ax-search-home .ax-form-data-search input {
+       width: 100%;
+    }
+    
+    .ax-search-home .btn.btn-default.btn-lista-regalos {
+        margin-top: 35px;
+    }
+    
+    .module-giftlist-empezar .col-md-6 {
+        width: 100%;
+        padding: 0;
+    }    
 
+}
+
+@media screen and (max-width:320px) {
+    .ax-text-result-list h3 {
+        top: -20px;
+    }
+    
+    .ax-form-data-search span {
+        width: 100%;
+    }
+    
+    .ax-search-home .btn.btn-default.btn-lista-regalos {
+        margin-top: 15px;
+    }
+    
 }
