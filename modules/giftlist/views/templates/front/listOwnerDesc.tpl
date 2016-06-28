@@ -91,6 +91,7 @@
     </div>
     
     <div class="ax-categories">
+    <h3>{l s='Añadir productos' mod='giftlist'}</h3>
         <ul class="slider">
             {foreach item=cat from=$cats}
                 {if $cat.id_parent == 3}
@@ -131,8 +132,8 @@
 					{/if}
 				{/foreach}
                 {convertPrice price=$row['price']}
-                <p>{l s='Cantidad:'} {$row['group']->wanted}</p>
-				<button class="delete-product" data-toggle="tooltip" data-placement="bottom" title="Quitar producto">Quitar producto</button>
+                {*<p>{l s='Cantidad:'} {$row['group']->wanted}</p>
+				<button class="delete-product" data-toggle="tooltip" data-placement="bottom" title="Quitar producto">Quitar producto</button>*}
 			</div>
 		{/foreach}
 		</div>
