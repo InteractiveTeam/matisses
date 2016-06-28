@@ -30,23 +30,26 @@
         {hook h="displayMatAdvertisingHome"}
     </div>
 
-	<div id="highlights" class="highlights">
+	<div class="offers-products">
 		<div class="container">
-			<!-- Chaordic Top -->
             <div chaordic="top"></div>
 		</div>
     </div>
 
-    <div id="offers" class="offers-products">
+    <div class="highlights">
 		<div class="container">
-		    <!-- Chaordic Middle -->
+            <div class="chaordic featured"></div>
+		</div>
+    </div>
+    
+    <div class="offers-products">
+		<div class="container">
             <div chaordic="middle"></div>
 		</div>
     </div>
     
-    <div id="popular" class="popular">
+    <div class="highlights">
 		<div class="container">
-		    <!-- Chaordic Bottom -->
             <div chaordic="bottom"></div>
 		</div>
     </div>

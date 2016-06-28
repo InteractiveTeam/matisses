@@ -976,7 +976,7 @@ box-sizing: border-box;
 
 	/*Destacados*/
 	.highlights {
-	/*padding: 4.0625rem 0;*/
+	padding: 3rem 0;
 	}
 	.highlights .info img {
 	width: 100%;
@@ -984,6 +984,7 @@ box-sizing: border-box;
 
 	/*Oferta de productos*/
 	.offers-products{
+    padding: 3rem 0;
 	background-color: #f2f2f2;
 	}
 
