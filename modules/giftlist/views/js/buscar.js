@@ -2,8 +2,8 @@ $('document').ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
    //check all jPList javascript options
    $('#lists').jplist({				
-      itemsBox: '.list' 
-      ,itemPath: '.list-item' 
+      itemsBox: '.list-item' 
+      ,itemPath: '.ax-item' 
       ,panelPath: '.jplist-panel'	
    });
    

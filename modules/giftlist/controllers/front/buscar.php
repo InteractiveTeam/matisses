@@ -10,6 +10,8 @@ class giftlistbuscarModuleFrontController extends ModuleFrontController {
         $this->display_column_left = false;
         $this->display_column_right = false;
 		$list = new GiftListModel();
+        if(empty(Tools::getValue("name")) && empty(Tools::getValue("lastname")) && empty(Tools::getValue("code")))
+           Tools::redirect($this->context->link->getModuleLink('giftlist', 'empezar'));
         if(!empty(Tools::getValue("name")) && !empty(Tools::getValue("lastname"))){
             $res = $list->searchByCustomerNames(Tools::getValue("name"),Tools::getValue("lastname"));
 		}elseif(!empty(Tools::getValue("code"))){

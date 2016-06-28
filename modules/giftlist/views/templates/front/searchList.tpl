@@ -1,22 +1,20 @@
-{capture name=path}
-<a href="{$all_link}">{l s='giftlist' mod='giftlist'}</a> <span class="bread">{l s='search' mod='giftlist'}</span>
+{capture name=path}<a href="{$link->getmoduleLink('giftlist','empezar')}">{l s='giftlist' mod='giftlist'}</a><i class="fa fa-angle-right"></i><span class="bread">{l s='Resultado de la busqueda' mod='giftlist'}</span>
 {/capture}
 {if version_compare($smarty.const._PS_VERSION_,'1.6.0.0','<')}{include file="$tpl_dir./breadcrumb.tpl"}{/if}
 
-<h3>{l s='Resultado de la lista'}</h3>
+<h1>{l s='Resultado de busqueda'}</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <form action="" method="post" name="searchList">
 <div class="row ax-form-data-search">
     <span><label for="name">Nombre</label><input type="text" class="form-control" name="name" id="name"/></span>
     <span><label for="lastname">Apellido</label><input type="text" class="form-control" name="lastname" id="lastname"/></span>
-    <p>ó</p>
     <span><label for="code">Código</label><input type="text" class="form-control" name="code" id="code"/></span>
     <button class="btn btn-default button btn-lista-regalos" id="search" >Buscar</button>
 </div>
 </form>
 
 <div class="ax-text-result-list ax-details-list">
-    <p>Resultados para <span>Carolina María Saldarriaga</span></p>
+    <p>{l s='Resultados para' mod='giftlist'} <span>{Tools::getValue('name')} {Tools::getValue('lastname')}</span></p>
 </div>
 
 <div id="lists" class="ax-cont-list">
@@ -33,26 +31,27 @@
                 </div>
         {/foreach}
     </div>
-        <!-- no results found -->
-    <div class="jplist-no-results">
-      <p>{l s='No results found' mod='No results found'}</p>
+    
+    <!-- no results found -->
+<div class="jplist-no-results">
+  <p>{l s='No se encontraron resultados' mod='giftlist'}</p>
+</div>
+<div class="jplist-panel">
+    <div 
+    class="jplist-pagination" 
+    data-control-type="pagination" 
+    data-control-name="paging" 
+    data-control-action="paging"
+    data-items-per-page="{$items_per_page}">
     </div>
-    <div class="jplist-panel">
-        <div 
-        class="jplist-pagination" 
-        data-control-type="pagination" 
-        data-control-name="paging" 
-        data-control-action="paging"
-        data-items-per-page="{$items_per_page}">
-        </div>
-        {literal}
-        <div 
-        class="jplist-label" 
-        data-type="Página {current} de {pages}" 
-        data-control-type="pagination-info" 
-        data-control-name="paging" 
-        data-control-action="paging">
-        </div>
-        {/literal}
+    {literal}
+    <div 
+    class="jplist-label" 
+    data-type="{current} de {pages}" 
+    data-control-type="pagination-info" 
+    data-control-name="paging" 
+    data-control-action="paging">
     </div>
+    {/literal}
+</div>
 </div>
