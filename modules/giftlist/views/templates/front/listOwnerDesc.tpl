@@ -13,54 +13,45 @@
 		{$response}
 	</div>
 	{/if}
-	<div class="ax-general-info">
-        <div class="ax-header-info">
+	<div class="ax-general-info ax-cont-admin-listas-regalos">
+        <div class="ax-header-info ax-text-result-list">
             <h2>{l s='Información general' mod='giftlist'}</h2>
         </div>
-        <div class="ax-content-info">
-            <table> 
-                <thead>
-                    <tr>
-                        <th>{l s='Código' mod='giftlist'}</th>
-                        <th>{l s='Días para el evento' mod='giftlist'}</th>
-                        <th>{l s='Tus regalos' mod='giftlist'}</th>
-                        <th>{l s='Regalos restantes' mod='giftlist'}</th>
-                        <th>{l s='Registrante' mod='giftlist'}</th>
-                        <th>{l s='Tipo de evento' mod='giftlist'}</th> 
-                        <th>{l s='Fecha' mod='giftlist'}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{$list_desc['code']}</td>
-                        <td>{$days}</td>
-                        <td>{$numberProducts.products}</td>
-                        <td>{$numberProducts.products_bought}</td>
-                        <td>
-                            <p>{$creator}</p>
-                        </td>
-                        <td>{$event_type}</td>
-                        <td>{date("d-m-Y",strtotime($list_desc['event_date']))}</td>    
-                    </tr>
-                </tbody>
-            </table>
+        <div class="ax-cont-list">
+            <div class="ax-item">
+                <div class="part">{l s='Código' mod='giftlist'}<span>{$list_desc['code']}</span></div>
+                <div class="part">{l s='Días para el evento' mod='giftlist'}<span class="ax-day">{$days}</span></div>
+                <div class="part">{l s='Tus regalos' mod='giftlist'}<span>{$numberProducts.products}</span></div>
+                <div class="part">{l s='Regalos restantes' mod='giftlist'}<span>{$numberProducts.products_bought}</span></div>
+                <div class="part">{l s='Registrante' mod='giftlist'}<span>{$creator}</span></div>
+                <div class="part">{l s='Tipo de evento' mod='giftlist'}<span>{$event_type}</span></div>
+                <div class="part">{l s='Fecha' mod='giftlist'}<span>{date("d-m-Y",strtotime($list_desc['event_date']))}</span></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ax-avatar-content">
+        <div id="ax-cover-container">
+            <div class="cont-img">
+                <img class="ax-cover-img" src="{$list_desc['image']}" width="920" height="300">
+            </div>
+            <div class="ax-cover-buttons">
+                <input type="file" id="ax-cover-up" />
+                <a href="javascript:void(0);" id="ax-cover-delete">{l s='Eliminar imagen' mod='giftlist'}</a>
+            </div>
+        </div>
+        <div id="ax-prof-container">
+            <div class="cont-img">
+                <img class="ax-profile-img" width="180" src="{$list_desc['profile_img']}">
+            </div>
+            <div class="ax-prof-buttons">
+                <input type="file" id="ax-prof-up" />
+                <a href="javascript:void(0);" id="ax-prof-delete">{l s='Eliminar imagen' mod='giftlist'}</a>
+            </div>
         </div>
     </div>
 
-    <div id="ax-img-container">
-        <img class="ax-cover-img" src="{$list_desc['image']}" width="920" height="300">
-        <img class="ax-profile-img" width="300" src="{$list_desc['profile_img']}">
-        <div class="ax-prof-buttons">
-            <input type="file" id="ax-prof-up" />
-            <a href="javascript:void(0);" id="ax-prof-delete">{l s='Eliminar imagen' mod='giftlist'}</a>
-        </div>
-        <div class="ax-cover-buttons">
-            <input type="file" id="ax-cover-up" />
-            <a href="javascript:void(0);" id="ax-cover-delete">{l s='Eliminar imagen' mod='giftlist'}</a>
-        </div>
-    </div>
-
-    <div class="ax-message">
+    <div class="ax-message ax-text-result-list">
         <h2>{l s='Mensaje de bienvenida' mod='giftlist'}</h2>
         <p id="ax-message-content">{$list_desc['message']}</p>
         <a href="javascript:void(0);" id="ax-edit">{l s='Editar mensaje' mod='giftlist'}</a>
@@ -68,7 +59,9 @@
     </div>
     
     <div clas="ax-address">
-        <h2>{l s='Direcciones' mod='giftlist'}</h2>
+        <div class="ax-text-result-list ax-result-inline">
+            <h2>{l s='Direcciones' mod='giftlist'}</h2>
+        </div>
         <a href="javascript:void(0);">{l s='Editar direcciones' mod='giftlist'}</a>
         <div class="row">
             <div class="col-md-6">
@@ -91,7 +84,9 @@
     </div>
     
     <div class="ax-categories">
-    <h3>{l s='Añadir productos' mod='giftlist'}</h3>
+        <div class="ax-text-result-list ax-result-inline">
+        <h2>{l s='Añadir productos' mod='giftlist'}</h2>
+        </div>
         <ul class="slider">
             {foreach item=cat from=$cats}
                 {if $cat.id_parent == 3}

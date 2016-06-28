@@ -241,6 +241,7 @@ Fixes generalres
     font-weight: 700;
     color: #292929;
     font-size: 16px;
+    vertical-align: middle;
 }
 
 .module-giftlist-buscar .part span, .ax-cont-admin-listas-regalos .part span {
@@ -249,6 +250,16 @@ Fixes generalres
     color:#a8a8a8; 
     font-family: 'Open Sans', sans-serif;
     margin: 4px 0; 
+}
+
+.module-giftlist-buscar .part span, .ax-cont-admin-listas-regalos .part .ax-day {
+    color: #ecb072;
+    font-size: 2rem;
+    font-family: serif;
+}
+
+.ax-cont-list {
+    float: none;
 }
 
 .ax-cont-list .ax-read-more a {
@@ -275,7 +286,7 @@ Fixes generalres
     margin: 20px 0;
 }
 
-.btn.btn-lista-regalos:hover:after, .btn.btn-lista-regalos:hover:before {
+.btn.btn-lista-regalos:hover:after, .btn.btn-lista-regalos:hover:before, .btn.btn-lista-regalos-sample:hover:after, .btn.btn-lista-regalos-sample:hover:before {
     background: #eac78f !important;
 }
 
@@ -285,7 +296,92 @@ Fixes generalres
     text-align: right;
 }
 
+/*perfil*/
 
+.module-giftlist-descripcion .ax-cont-list {
+    margin: 20px 0;    
+}
+
+.module-giftlist-descripcion .ax-cont-list .ax-item {
+    padding: 15px 0;
+}
+
+.ax-avatar-content {
+    position: relative;
+}
+
+#ax-cover-container, #ax-cover-container .cont-img img {
+    width: 100%;
+}
+
+#ax-cover-container .cont-img {
+    overflow: hidden;
+    width: 100%;
+    height: 300px;
+}
+
+#ax-cover-container .cont-img img {
+    width: 100%;
+    height: auto;
+}
+
+#ax-cover-container {
+    text-align: right;
+}
+
+#ax-cover-container .ax-cover-buttons {
+    width: 200px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 10px;
+}
+
+#ax-cover-container .ax-cover-buttons a {
+    color: #c7c7c7;
+}
+
+.ax-avatar-content .ax-cover-buttons .action, .ax-avatar-content .ax-prof-buttons .action {
+    background: transparent;
+    color: #60534d;
+    display: block;
+    width: 100%;
+    font-family: serif;
+}
+
+.ax-avatar-content .ax-cover-buttons .uploader, .ax-avatar-content .ax-prof-buttons .uploader {
+    display: inline-block;
+    width: auto;
+    width: 150px;
+    height: 40px;
+}
+
+.ax-avatar-content .ax-cover-buttons .filename, .ax-avatar-content .ax-prof-buttons .filename {
+    display: none;
+}
+
+.ax-avatar-content .ax-cover-buttons #ax-cover-up, .ax-avatar-content .ax-prof-buttons #ax-cover-up {
+    width: 100%;
+    height: 40px;
+}
+
+
+.ax-avatar-content #ax-prof-container {
+    display: block;
+    position: absolute;
+    bottom: -8%;
+    left: 10%;
+    width: 180px;
+    text-align: center;
+}
+
+.ax-avatar-content #ax-prof-container .cont-img {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 190px;
+    height: 190px;
+    border: #fff solid 5px;
+}
 
 @media screen and (max-width:768px) {
     
