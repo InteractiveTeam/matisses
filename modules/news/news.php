@@ -28,7 +28,7 @@ class News extends Module {
     private $_maxImageSize = 2000000; // default max image size 2M
     private $_imagesSizes ;
     public $page_name;
-    public static $moduleRoutes =array(
+    public static $moduleRoutes = array(
 
              'module-news-list' => array(
                     'controller' => 'list',

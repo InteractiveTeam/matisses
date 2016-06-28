@@ -9,6 +9,68 @@ include_once __DIR__ . '/classes/ListProductBond.php';
 class giftlist extends Module
 {
 	private $dbstruct;
+    
+    public static $moduleRoutes = array(
+         'module-giftlist-descripcion' => array(
+                'controller' => 'descripcion',
+                'rule' =>  'lista-de-regalos/lista{/:url}',
+              'keywords' => array(
+                    'url'   => array('regexp' => '[_a-zA-Z0-9_-]+',   'param' => 'url'),
+                  ),
+                'params' => array(
+                    'fc' => 'module',
+                    'module' => 'giftlist',
+                    'controller' => 'descripcion'
+                )
+            ),
+
+            'module-giftlist-listas' => array(
+                'controller' => 'listas',
+                'rule' =>  'lista-de-regalos/listas',
+                'keywords' => array(),
+                'params' => array(
+                    'fc' => 'module',
+                    'module' => 'giftlist',
+                    'controller' => 'listas'
+                )
+            ), 
+             
+            'module-giftlist-administrar' => array(
+                'controller' => 'administrar',
+                'rule' =>  'lista-de-regalos/crear',
+                'keywords' => array(),
+                'params' => array(
+                    'fc' => 'module',
+                    'module' => 'giftlist',
+                    'controller' => 'administrar'
+                )
+            ),  
+             
+            'module-giftlist-empezar' => array(
+                'controller' => 'empezar',
+                'rule' =>  'lista-de-regalos',
+                'keywords' => array(),
+                'params' => array(
+                    'fc' => 'module',
+                    'module' => 'giftlist',
+                    'controller' => 'empezar'
+                )
+            ), 
+             
+            'module-giftlist-buscar' => array(
+                'controller' => 'empezar',
+                'rule' =>  'lista-de-regalos/buscar',
+                'keywords' => array(),
+                'params' => array(
+                    'fc' => 'module',
+                    'module' => 'giftlist',
+                    'controller' => 'buscar'
+                )
+            ), 
+    );
+    
+    
+    
 	public function __construct()
 	{
 		$this->dbstruct = new DBStruct();
@@ -86,7 +148,7 @@ class giftlist extends Module
 	  		array(
 	  			'gift_link' =>  $this->context->link->getModuleLink('giftlist', 'listas'),
   				'search_link' => $this->context->link->getModuleLink('giftlist', 'buscar'),
-  				'create_link' => $this->context->link->getModuleLink('giftlist', 'administrar',array('url'=>"nuevo")),
+  				'create_link' => $this->context->link->getModuleLink('giftlist', 'administrar'),
 	  		));
 	  return $this->display(__FILE__, 'giftlistbtn.tpl');
 	}
@@ -314,55 +376,10 @@ class giftlist extends Module
 			return false;
 		}
 	}
-
-	public function hookModuleRoutes($params)
-	{
-		return [
-			'module-giftlist-descripcion' => [
-				'controller' => 'descripcion',
-				'rule' => 'lista-de-regalos/lista{/:url}',
-				'keywords' => [
-					'url' => ['regexp' => '[_a-zA-Z0-9_-]+', 'param' => 'url']
-				],
-				'params' => [
-					'fc' => 'module',
-					'module' => 'giftlist'
-				]
-			],
-			'module-giftlist-listas' => [
-				'controller' => 'listas',
-				'rule' => 'lista-de-regalos/listas',
-				'params' => [
-						'fc' => 'module',
-						'module' => 'giftlist'
-				]
-			],
-			'module-giftlist-administrar' => [
-				'controller' => 'administrar',
-				'rule' => 'lista-de-regalos/crear',
-				'params' => [
-						'fc' => 'module',
-						'module' => 'giftlist'
-				]
-			],
-            'module-giftlist-empezar' => [
-				'controller' => 'empezar',
-				'rule' => 'lista-de-regalos',
-				'params' => [
-						'fc' => 'module',
-						'module' => 'giftlist'
-				]
-			],
-            'module-giftlist-buscar' => [
-				'controller' => 'empezar',
-				'rule' => 'lista-de-regalos/buscar',
-				'params' => [
-						'fc' => 'module',
-						'module' => 'giftlist'
-				]
-			],
-		];
-	}
+    
+    public function hookModuleRoutes() {
+        return self::$moduleRoutes;
+    }
 
 	public function hookDisplayBackOfficeHeader()
 	{

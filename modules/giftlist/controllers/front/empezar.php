@@ -11,7 +11,7 @@ class giftlistempezarModuleFrontController extends ModuleFrontController {
 	  		array(
                 'gift_link' =>  $this->context->link->getModuleLink('giftlist', 'listas'),
   				'search_link' => $this->context->link->getModuleLink('giftlist', 'buscar'),
-  				'create_link' => $this->context->link->getModuleLink('giftlist', 'administrar',array('url'=>"nuevo")),
+  				'create_link' => $this->context->link->getModuleLink('giftlist', 'administrar'),
         ));
         
         $this->setTemplate ('empezar.tpl');
