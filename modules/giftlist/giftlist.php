@@ -58,7 +58,7 @@ class giftlist extends Module
             ), 
              
             'module-giftlist-buscar' => array(
-                'controller' => 'empezar',
+                'controller' => 'buscar',
                 'rule' =>  'lista-de-regalos/buscar',
                 'keywords' => array(),
                 'params' => array(
