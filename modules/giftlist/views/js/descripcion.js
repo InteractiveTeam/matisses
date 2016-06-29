@@ -1,5 +1,22 @@
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
+    
+    $('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        nav:true,
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:3
+            },
+            1000:{
+                items:5
+            }
+        }
+    });
 
 	$('#btn-edit-info').fancybox({
 		'transitionIn'	:	'elastic',
@@ -10,8 +27,6 @@ $(document).ready(function() {
 		'type'			: 	'ajax',
 		afterShow		:   function(){
             $("#info_cocreator").validate();
-            $('#tel_co').mask("000-00-00", {placeholder: "___-__-__"});
-            $('#cel_co').mask("000-000-0000", {placeholder: "___-___-____"});
             $("#id_list").val($(".products-associated").attr("data-id"));
             if(typeof address_cocreator != 'undefined' && address_cocreator !== ""){
                 $("#city_co").val(address_cocreator.city);

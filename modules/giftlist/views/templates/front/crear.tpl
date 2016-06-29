@@ -9,25 +9,32 @@
     </div>
 {/if}
 
-
 <form id="frmSaveList" role="form" action="" method="post" enctype="multipart/form-data">
-    {* General *}
-    <div class="container">
-        <div class="row">
-            <h1 id="form-title">{if !$edit}{l s='Crear lista de regalos' mod='giftlist'}{else}{l s='Edit ist' mod='giftlist'}{/if}</h1>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="name">Nombre</label> 
-                    <input type="text" class="form-control" value="{if $edit}{$data['name']}{/if}" name="name" id="name" placeholder="Nombre">
+    <h1>{l s='Crear lista de regalos' mod='giftlist'}</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+    <div>
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li data-id="1" id="step1" role="presentation" class="active"><a href="#step-1" aria-controls="Paso 1" role="tab" data-toggle="tab">{l s='Paso 1' mod='giftlist'}</a></li>
+        <li data-id="2" id="step2" role="presentation"><a href="#" aria-controls="Paso 2" role="tab" data-toggle="tab">{l s='Paso 2' mod='giftlist'}</a></li>
+        <li data-id="3" id="step3" role="presentation"><a href="#" aria-controls="Paso 3" role="tab" data-toggle="tab">{l s='Paso 3' mod='giftlist'}</a></li>
+        <li data-id="4" id="step4" role="presentation"><a href="#" aria-controls="Paso 4" role="tab" data-toggle="tab">{l s='Paso 4' mod='giftlist'}</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div data-tab-id="1" role="tabpanel" class="tab-pane active" id="step-1">
+            <div class="col-md-4">
+                <h3>{l s='Información del evento' mod='giftlist'}</h3>
+                <div class="col-md-12">
+                    <label for="name">{l s='Nombre del evento' mod='giftlist'}<sup>*</sup></label> 
+                    <input type="text" required class="form-control" value="{if $edit}{$data['name']}{/if}" name="name" id="name">
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="event_type">Tipo de evento</label> <select
-                        id="event_type" name="event_type" class="form-control">
-                        <option value="0">--Seleccione--</option> 
+                <div class="col-md-12">
+                    <label for="event_type">{l s='Tipo de evento' mod='giftlist'}<sup>*</sup></label>
+                    <select id="event_type" name="event_type" class="form-control">
+                        <option value="0" selected="selected"></option> 
                         {foreach from=$event_type item=event}
                         {if $edit}
                             {if $data['event_type'] == $event['id']}
@@ -41,167 +48,120 @@
                         {/foreach}
                     </select>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="event_date">Fecha del evento</label> <input
-                        type="text" name="event_date" class="form-control"
-                        id="event_date" placeholder="Fecha del evento" value="{if $edit}{date("d/m/Y H:i",strtotime($data['event_date']))}{/if}">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="checkbox">
-                    <label>Publico <input type="checkbox" {if $edit}{if $data['public']}checked{/if}{else}checked{/if} id="public" name="public">
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="guest_number">Numero de invitados</label> <input type="number" class="form-control" name="guest_number" id="guest_number"  value="{if $edit}{$data['guest_number']}{else}0{/if}" placeholder="Numero de invitados">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="image">Imagen</label> <input type="file"
-                        name="image" id="image">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="profile_img">Imagen de perfil</label> <input type="file"
-                        name="profile_img" id="profile_img">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="checkbox">
-                    <label>Recibir bono <input type="checkbox" {if $edit}{if $data['recieve_bond']}checked{/if}{/if} id="recieve_bond"
-                        name="recieve_bond">
-                    </label>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="min_amount">Cantidad Minima</label> <input type="number" class="form-control" name="min_amount" value="{if $edit}{$data['min_amount']}{/if}" id="min_amount" placeholder="Cantidad Minima">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <label for="message">Mensaje</label>
-                <textarea placeholder="Mensaje" name="message" id="message">{if $edit}{$data['message']}{/if}</textarea>
-            </div>
-        </div>
-        {* info creator *}
-        <div class="row">
-            {if $edit}{$info_creator = Tools::JsonDecode($data['info_creator'])}{/if}
-            <h3>Informacion de Envio</h3>
-            <p>Primera direccion</p>
-            <div class="col-md-6">
                 <div class="col-md-12">
-                    <label for="country">Pais</label> <input type="text" id="country" class="form-control" value="Colombia" disabled />
-                </div>
-                <div class="col-md-12">
-                    <label for="city">Ciudad</label> <input type="text" id="city" class="form-control" name="city" placeholder="Ciudad"  value="{if $edit}{$info_creator->city}{/if}" />
-                </div>
-                <div class="col-md-12">
-                    <label for="town">Municipio</label> <input type="text" id="town"
-                        class="form-control" name="town"  value="{if $edit}{$info_creator->town}{/if}" placeholder="Municipio" />
-                </div>
-                <div class="col-md-12">
-                    <label for="address">Direccion</label> <input type="text" id="address" class="form-control" name="address"  value="{if $edit}{$info_creator->address}{/if}" placeholder="Direccion" />
-                </div>
-                <div class="col-md-12">
-                    <label for="address_2">Segunda Direccion</label> <input type="text" id="address_2" class="form-control" name="address_2"  value="{if $edit}{$info_creator->address_2}{/if}" placeholder="Segunda Direccion" />
-                </div>
-                <div class="col-md-12">
-                    <label for="tel">Telefono</label> <input type="text" id="tel" class="form-control" name="tel" placeholder="Telefono"  value="{if $edit}{$info_creator->tel}{/if}" />
-                </div>
-                <div class="col-md-12">
-                    <label for="cel">Celular</label> <input type="text" id="cel"  class="form-control" name="cel" placeholder="Celular" value="{if $edit}{$info_creator->cel}{/if}" />
-                </div>
-            </div>
-            {* co-creador *}
-            <div class="col-md-6">
-            {if empty($data['id_cocreator'])} 
-                <div class="col-md-12">
-                    <label for="email_cocreator">Co-Creador</label> <input type="email" id="email_cocreator"
-                        class="form-control" name="email_cocreator" placeholder="Email" />
-                </div>
-                <div class="col-md-12">
-                    <div class="checkbox">
-                        <label>¿Puede editar?<input type="checkbox" id="can_edit"
-                            name="can_edit">
-                        </label>
+                         {*
+                            {l s='January' mod='giftlist'}
+                            {l s='February' mod='giftlist'}
+                            {l s='March' mod='giftlist'}
+                            {l s='April' mod='giftlist'}
+                            {l s='May' mod='giftlist'}
+                            {l s='June' mod='giftlist'}
+                            {l s='July' mod='giftlist'}
+                            {l s='August' mod='giftlist'}
+                            {l s='September' mod='giftlist'}
+                            {l s='October' mod='giftlist'}
+                            {l s='November' mod='giftlist'}
+                            {l s='December' mod='giftlist'}
+                        *}
+                    <label>{l s='Fecha del evento' mod='giftlist'}<sup>*</sup></label>
+                    <div class="col-md-4">
+                        <select id="months" name="months" class="form-control">
+                            <option value="">{l s='Mes' mod='giftlist'}</option>
+                            {foreach from=$months key=k item=month}
+                                <option value="{$k}">{l s=$month}&nbsp;</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select id="days" name="days" class="form-control">
+                            <option value="">{l s='Día' mod='giftlist'}</option>
+                            {foreach from=$days item=day}
+                                <option value="{$day}" >{$day}&nbsp;&nbsp;</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select id="years" name="years" class="form-control">
+                            <option value="">{l s='Año' mod='giftlist'}</option>
+                            {for $i=$year to $limit}
+                                <option value="{$i}">{$i}&nbsp;&nbsp;</option>
+                            {/for}
+                        </select>
                     </div>
                 </div>
-                {elseif $data['id_cocreator'] != $cookie->customer->id}
-                <a href="javascript:void(0)">Quitar co-creador</a>
-                {/if}
-                {if $edit}{if !empty($data['id_cocreator']) && $data['id_cocreator'] == $cookie->customer->id}
-                {$info_cocreator = Tools::JsonDecode($data['info_cocreator'])}
-                <div class="col-md-12">
-                    <div class="col-md-12">
-                        <label for="country">Pais</label> <input type="text" id="country" class="form-control" value="Colombia" disabled />
+            </div>
+            <div class="col-md-8">
+                <h3>{l s='Información personal' mod='giftlist'}</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="firstname">{l s='Nombre' mod='giftlist'}<sup>*</sup></label> 
+                        <input type="text" class="form-control" name="firstname" id="firstname">
                     </div>
-                    <div class="col-md-12">
-                        <label for="city_co">Ciudad</label> <input type="text" id="city_co" class="form-control" name="city_co" placeholder="Ciudad" value="{if $edit}{$info_cocreator->city_co}{/if}" />
-                    </div>
-                    <div class="col-md-12">
-                        <label for="town_co">Municipio</label> <input type="text" id="town_co" class="form-control" name="town_co" placeholder="Municipio" value="{if $edit}{$info_cocreator->town_co}{/if}" />
-                    </div>
-                    <div class="col-md-12">
-                        <label for="address_co">Direccion</label> <input type="text" id="address_co" class="form-control" name="address_co" placeholder="Direccion" value="{if $edit}{$info_cocreator->address_co}{/if}" />
-                    </div>
-                    <div class="col-md-12">
-                        <label for="address_co_2">Segunda Direccion</label> <input type="text" id="address_co_2" class="form-control" name="address_co_2" placeholder="Segunda Direccion" value="{if $edit}{$info_cocreator->address_co_2}{/if}" />
-                    </div>
-                    <div class="col-md-12">
-                        <label for="tel_co">Telefono</label> <input type="text" id="tel_co" class="form-control" name="tel_co" placeholder="Telefono" value="{if $edit}{$info_cocreator->tel_co}{/if}"/>
-                    </div>
-                    <div class="col-md-12">
-                        <label for="cel_co">Ceular</label> <input type="text" id="cel_co" class="form-control" name="cel_co" placeholder="Celular" value="{if $edit}{$info_cocreator->cel_co}{/if}"/>
+                    <div class="col-md-6">
+                        <label for="country">{l s='País' mod='giftlist'}<sup>*</sup></label>
+                        <select id="country" name="country" class="form-control">
+                            <option value="0">{l s='Seleccione una opción' mod='giftlist'}</option>
+                            <option value="1">{l s='Colombía' mod='giftlist'}</option>
+                        </select>
                     </div>
                 </div>
-                {/if}{/if}
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="lastname">{l s='Apellido' mod='giftlist'}<sup>*</sup></label> 
+                        <input type="text" class="form-control" name="lastname" id="lastname">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="city">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
+                        <select id="city" name="city" class="form-control">
+                            <option value="0">{l s='Seleccione una opción' mod='giftlist'}</option>
+                            {foreach from=$countries item=c}
+                                <option value="{$c.id_country}">{$c.name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="telcity">{l s='Télefono' mod='giftlist'}<sup>*</sup></label> 
+                        <input type="text" class="form-control" name="telcity" id="telcity">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="required town unvisible">
+                            <label for="town">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
+                            <select id="town" name="city" class="form-control">
+                                <option value="">{l s='Seleccione una opción' mod='giftlist'}</option>
+                            </select>
+			            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="address">{l s='Dirección 1' mod='giftlist'}<sup>*</sup></label> <input type="text" id="address" class="form-control" name="address" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="address_2">{l s='Dirección 2' mod='giftlist'}</label> <input type="text" id="address_2" class="form-control" name="address_2" placeholder="{l s='Apto, oficina, interior, bodega...' mod='giftlist'}" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="email">{l s='Correo electrónico' mod='giftlist'}<sup>*</sup></label> <input type="email" id="email" class="form-control" name="email" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="conf_email">{l s='Confirmar correo electrónico 2' mod='giftlist'}<sup>*</sup></label> <input type="email" id="conf_email" class="form-control" name="conf_email" />
+                    </div>
+                </div>
+                <div class="row">
+                    <a href="javascript:void(0);" class="ax-next btn btn-default btn-lista-regalos">{l s='Siguiente' mod='giftlist'}</a>
+                </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="radio">
-                Enviar antes de la fecha a: 
-              <label><input type="radio" name="date_before" value="creator" {if $data['id_cocreator'] != 0}{if $data['address_after'] == "creator"}checked="checked"{/if}{else}checked="checked"{/if}>Direccion de creador</label>
-            </div>
-            {if isset($data['id_cocreator']) && $data['id_cocreator'] != 0}
-            <div class="radio">
-              <label><input type="radio" name="date_before" {if $data['id_cocreator'] != 0 && $data['address_after' == "cocreator"]}checked="checked"{/if}value="cocreator">Direccion de co-creador</label>
-            </div>
-            {/if}
-        </div>
-        <div class="col-md-12">
-            <div class="radio">
-                Enviar despues de la fecha a: 
-              <label><input type="radio" name="date_after" value="creator"  {if $data['id_cocreator'] != 0}{if $data['address_before'] == "creator"}checked="checked"{/if}{else}checked="checked"{/if}>Direccion de creador</label>
-            </div>
-            {if isset($data['id_cocreator']) && $data['id_cocreator'] != 0}
-            <div class="radio">
-              <label><input type="radio" name="date_after" value="cocreator" {if $data['id_cocreator'] != 0 && $data['address_before' == "cocreator"]}checked="checked"{/if}>Direccion de co-creador</label>
-            </div>
-            {/if}
-        </div>
-        <div class="g-recaptcha col-md-12" data-sitekey="6LdmTB4TAAAAAFX-jZj0FvdX0xyk4I0vBrfn2Zkh"></div>
-        <div class="col-md-12">
-            <input id="btnSave" type="submit" name="saveList"
-                class="btn btn-success pull-right" value="Guardar">
-            <button id="btnCancel"
-                class="popup-modal-dismiss btn btn-danger pull-left">Cancelar</button>
-        </div>
-        <input type="hidden" name="id_list" id="id_list" value="{if $edit}{$data['id']}{/if}">
+        <div data-tab-id="2" role="tabpanel" class="tab-pane" id="step-2">sdf</div>
+        <div data-tab-id="3" role="tabpanel" class="tab-pane" id="step-3">dfg</div>
+        <div data-tab-id="4" role="tabpanel" class="tab-pane" id="step-4">fgh</div>
+      </div>
+
     </div>
 </form>
+{if isset($countries)}
+	{addJsDef countries=$countries}
+{/if}

@@ -52,6 +52,7 @@ var dates = {
 
 
 var ax_admin = {
+    form: '',
     init: function(){
         $(document).ready(function(){
             var dateText = $('#event_date');
@@ -63,7 +64,35 @@ var ax_admin = {
             ax_admin.validate();
             $('#tel').mask("000-00-00", {placeholder: "___-__-__"});
             $('#cel').mask("000-000-0000", {placeholder: "___-___-____"});
+            $("#city").on('change',function(){
+                ax_admin.setTown($("#city option:selected").val());
+            });
+            $(".ax-next").on('click',function(){
+                ax_admin.changeTab();
+            });
         });
+    },
+    setTown: function (id_state){
+	   var states = countries[id_state].states;
+        $("#town").empty().append($('<option>', {
+            value: 0,
+            text: "Seleccione una opción"
+        }));
+        for(i = 0; i < states.length; i++){
+            $('#town').append($('<option>', {
+                value: states[i].id_state,
+                text: states[i].name
+            }));
+            $("#town_chosen .chosen-drop .chosen-results").append('<li class="active-result" data-option-array-index="'+states[i].id_state+'">'+states[i].name+'</li>');
+        }
+    },
+    changeTab:function(){
+        var active = $(".nav-tabs li.active a");
+        var next = parseInt(active.parent().attr("data-id")) + 1;
+        if(ax_admin.form.form()){
+            $("#step"+next+" a").attr("href","#step-"+next);
+            $("#step"+next+" a").tab("show");
+        }
     },
     validate: function(){
         $.validator.addMethod("selectRequired",function(value,element){
@@ -88,7 +117,7 @@ var ax_admin = {
             return (dates.compare(t,now) == 1 ? true : false);
         }, "La fecha seleccionada en este campo debe ser posterior a la fecha actual.");
 
-        $("#frmSaveList").validate({
+        ax_admin.form = $("#frmSaveList").validate({
             lang: 'es',
             rules:{
                 name: {
@@ -96,13 +125,16 @@ var ax_admin = {
                     noSpaceStart:true,
                     noSpaceEnd:true
                 },
-                event_type: "selectRequired",
-                event_date: {
+                firstname: {
                     required:true,
                     noSpaceStart:true,
-                    noSpaceEnd:true,
-                    noTodayDate:true
+                    noSpaceEnd:true
+                },lastname: {
+                    required:true,
+                    noSpaceStart:true,
+                    noSpaceEnd:true
                 },
+                event_type: "selectRequired",
                 guest_number: {
                     required: true,
                     number:true,
@@ -111,16 +143,9 @@ var ax_admin = {
                 message: {
                     maxlength:1000
                 },
-                city:{
-                    required:true,
-                    noSpaceStart:true,
-                    noSpaceEnd:true
-                },
-                town:{
-                    required:true,
-                    noSpaceStart:true,
-                    noSpaceEnd:true
-                },
+                country:"selectRequired",
+                city:"selectRequired",
+                town:"selectRequired",
                 tel:{
                     required:true,
                     noSpaceStart:true,

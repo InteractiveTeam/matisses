@@ -25,7 +25,7 @@
                 <div class="part">{l s='Regalos restantes' mod='giftlist'}<span>{$numberProducts.products_bought}</span></div>
                 <div class="part">{l s='Registrante' mod='giftlist'}<span>{$creator}</span></div>
                 <div class="part">{l s='Tipo de evento' mod='giftlist'}<span>{$event_type}</span></div>
-                <div class="part">{l s='Fecha' mod='giftlist'}<span>{date("d-m-Y",strtotime($list_desc['event_date']))}</span></div>
+                <div class="part">{l s='Fecha' mod='giftlist'}<span>{date("d/m/Y",strtotime($list_desc['event_date']))}</span></div>
             </div>
         </div>
     </div>
@@ -92,19 +92,13 @@
         <h2>{l s='Añadir productos' mod='giftlist'}</h2>
         </div>
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-  </ol>
 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
+  <div class="owl-carousel">
     {foreach item=cat from=$cats}
         {if $cat.id_parent == 3}
         {assign var="cat_img" value="/img/c/{$cat.id}-categories_home.jpg"}
-        <div class="item active">
+        <div class="item">
+        {assign var="first" value=0}
             
             {if file_exists($cat_img)} 
                 <img class="replace-2x" src="{$cat_img}" alt="" />
@@ -112,23 +106,11 @@
                 <img class="replace-2x" src="/img/c/nl-default-categories_home.jpg" alt="" />
             {/if}
             <p>{$cat.name}</p>
-           
         </div>
         {/if}
     {/foreach}
   </div>
-
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
 </div>
-    </div>
 	
 	<div class="products-associated" data-id="{$list_desc['id']}">
 		<h2>{l s='Mi lista' mod='giftlist'}</h2>

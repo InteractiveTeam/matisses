@@ -103,12 +103,13 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 		$this->addJS ( array (
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/datetimepicker/jquery.datetimepicker.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/validation/jquery.validate.min.js',
-			_MODULE_DIR_ . '/giftlist/views/js/vendor/mask/jquery.mask.min.js',
+			_MODULE_DIR_ . '/giftlist/views/js/vendor/owl/owl.carousel.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/serializeObject/jquery.serializeObject.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/descripcion.js'
 		) );
 		$this->addCSS ( array (
 			_MODULE_DIR_ . '/giftlist/views/css/vendor/datetimepicker/jquery.datetimepicker.css',
+            _MODULE_DIR_ . '/giftlist/views/css/vendor/owl/owl.carousel.css',
 			_MODULE_DIR_ . '/giftlist/views/css/ax-lista-de-regalos.css'
 		) );
 	}

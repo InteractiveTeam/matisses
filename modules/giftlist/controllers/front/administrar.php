@@ -11,9 +11,16 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
         $this->display_column_left = false;
         $this->display_column_right = false;
 		$list = new GiftListModel();
+		$months = Tools::dateMonths();
+		$days = Tools::dateDays();
 		$this->context->smarty->assign (array(
             'event_type' => Db::getInstance ()->executeS ( "SELECT * FROM `" . _DB_PREFIX_ . "event_type`" ),
             'list_link' => $this->context->link->getmoduleLink("giftlist","empezar"),
+            'months' => $months,
+            'days' => $days,
+            'countries' => CountryCore::getCountries($this->context->language->id),
+            'year' => date('Y'),
+            'limit' => date('Y') + 20,
 		));
 		$this->setTemplate ( 'crear.tpl' );
 	}
