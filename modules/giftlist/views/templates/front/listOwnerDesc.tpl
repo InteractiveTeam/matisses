@@ -51,29 +51,33 @@
         </div>
     </div>
 
-    <div class="ax-message ax-text-result-list">
-        <h2>{l s='Mensaje de bienvenida' mod='giftlist'}</h2>
-        <p id="ax-message-content">{$list_desc['message']}</p>
-        <a href="javascript:void(0);" id="ax-edit">{l s='Editar mensaje' mod='giftlist'}</a>
-        <a href="javascript:void(0);" id="ax-delete">{l s='Eliminar mensaje' mod='giftlist'}</a>
+    <div class="ax-message">
+        <div class="ax-text-result-list">
+            <h2>{l s='Mensaje de bienvenida' mod='giftlist'}</h2>
+        </div>
+        <p id="ax-message-content" class="ax-message-content">{$list_desc['message']}</p>
+            <div id="ax-message-content" class="ax-message-content">
+                <a href="javascript:void(0);" id="ax-edit" class="ax-edit">{l s='Editar mensaje' mod='giftlist'}</a>
+                <a href="javascript:void(0);" id="ax-delete" class="ax-delete">{l s='Eliminar mensaje' mod='giftlist'}</a>
+            </div>
     </div>
-    
-    <div clas="ax-address">
+
+    <div class="ax-address">
         <div class="ax-text-result-list ax-result-inline">
             <h2>{l s='Direcciones' mod='giftlist'}</h2>
         </div>
         <a href="javascript:void(0);">{l s='Editar direcciones' mod='giftlist'}</a>
         <div class="row">
-            <div class="col-md-6">
-            {l s='Antes del evento' mod='giftlist'}
+            <div class="col-md-4">
+            <p class="ax-title">{l s='Antes del evento' mod='giftlist'}</p>
             {if $list_desc['address_before'] == "creator"}
                <p>{$address->address} {$address->town}, {$address->country}</p>
             {else}
                 <p>{$address_cocreator->address} {$address_cocreator->town}, {$address_cocreator->country}</p>
             {/if}
             </div>
-            <div class="col-md-6">
-            {l s='Despúes del evento' mod='giftlist'}
+            <div class="col-md-4">
+            <p class="ax-title">{l s='Despúes del evento' mod='giftlist'}</p>
             {if $list_desc['address_after'] == "creator"}
                <p>{$address->address} {$address->town}, {$address->country}</p>
             {else}
@@ -87,23 +91,43 @@
         <div class="ax-text-result-list ax-result-inline">
         <h2>{l s='Añadir productos' mod='giftlist'}</h2>
         </div>
-        <ul class="slider">
-            {foreach item=cat from=$cats}
-                {if $cat.id_parent == 3}
-                {assign var="cat_img" value="/img/c/{$cat.id}-categories_home.jpg"}
-                <li>
-                    <a href="/{$cat.id_category}-{$cat.link_rewrite}">
-                    {if file_exists($cat_img)} 
-                        <img class="replace-2x" src="{$cat_img}" alt="" />
-                    {else}
-                        <img class="replace-2x" src="/img/c/nl-default-categories_home.jpg" alt="" />
-                    {/if}
-                    <p>{$cat.name}</p>
-                    </a>
-                </li>
-                {/if}
-            {/foreach}
-        </ul>
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    {foreach item=cat from=$cats}
+        {if $cat.id_parent == 3}
+        {assign var="cat_img" value="/img/c/{$cat.id}-categories_home.jpg"}
+        <div class="item active">
+            
+            {if file_exists($cat_img)} 
+                <img class="replace-2x" src="{$cat_img}" alt="" />
+            {else}
+                <img class="replace-2x" src="/img/c/nl-default-categories_home.jpg" alt="" />
+            {/if}
+            <p>{$cat.name}</p>
+           
+        </div>
+        {/if}
+    {/foreach}
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
     </div>
 	
 	<div class="products-associated" data-id="{$list_desc['id']}">

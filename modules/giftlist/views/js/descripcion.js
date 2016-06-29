@@ -305,3 +305,4 @@ function callAjaxSend(e){
         $.fancybox.close();
     });
 }
+    

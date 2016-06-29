@@ -184,7 +184,7 @@ Fixes generalres
 }
 
 .module-giftlist-empezar .btn-lista-regalos {
-    margin:10px 0;
+    margin:20px 0 10px 0;
 }
 
 .ax-form-data-search .btn.btn-default.btn-lista-regalos-sample {
@@ -203,18 +203,37 @@ Fixes generalres
 
 .ax-text-result-list {
     background: #f6f6f6;
-    padding: 0 30px;
     font-family: initial;
     clear: both;
     position: relative;
     margin: 30px 0;
-    border-left: #fff solid 15px;
-    border-top: transparent solid 22px;
-    border-right: #fff solid 15px;
-    border-bottom: transparent solid 22px;
+    padding: 20px 30px;
+}
+
+.ax-text-result-list .before-line {
+    display: block;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    box-sizing: border-box; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top:transparent solid;
+    border-bottom:transparent solid;
+    border-left:#fff solid 20px;
+}
+
+.ax-text-result-list .after-line {
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;  
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top:transparent solid;
+    border-bottom:transparent solid;
+    border-right:#fff solid 20px;
 }
 
 .ax-text-result-list p, .ax-text-result-list h2, .ax-text-result-list h3 {
@@ -222,9 +241,7 @@ Fixes generalres
     font-weight: bold;
     color: #292929;
     font-size: larger;
-    position: absolute;
-    top: -10px;
-    left: 15px;
+    margin: 0;
 }
 
 .ax-text-result-list h2, .ax-text-result-list h3  {
@@ -365,6 +382,7 @@ Fixes generalres
 
 #ax-cover-container {
     text-align: right;
+    margin-bottom: 80px;
 }
 
 #ax-cover-container .ax-cover-buttons {
@@ -409,16 +427,58 @@ Fixes generalres
     position: absolute;
     bottom: -8%;
     left: 10%;
-    width: 180px;
+    width: 192px;
     text-align: center;
 }
 
 .ax-avatar-content #ax-prof-container .cont-img {
     border-radius: 50%;
     overflow: hidden;
-    width: 190px;
-    height: 190px;
-    border: #fff solid 5px;
+    width: 192px;
+    height: 192px;
+    border: #fff solid 6px;
+}
+
+.ax-message-content {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.ax-message-content .ax-edit, .ax-message-content .ax-delete {
+    margin-top: 20px;
+    display: inline-block;
+    text-decoration: underline;
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.ax-message-content .ax-delete {
+    opacity: 0.6;
+}
+
+.ax-message-content .ax-delete:hover {
+    opacity: 1;
+}
+
+.module-giftlist-descripcion .ax-text-result-list {
+    padding: 20px 40px;
+}
+
+.ax-address .ax-text-result-list {
+    display: inline-block;
+}
+
+.ax-address > a{
+    margin-left: 20px;
+    font-size: 18px;
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.ax-address .ax-title {
+    font-weight: 600;
+    font-size: 18px;
+    font-family: serif;
 }
 
 @media screen and (max-width:1024px) {
@@ -427,12 +487,7 @@ Fixes generalres
         width: 123px;
     }  
     
-    .module-giftlist-empezar .col-md-6 {
-        width: 98%;
-    }
-    
 }
-
 
 @media screen and (max-width:768px) {
     
@@ -462,6 +517,10 @@ Fixes generalres
     
     .ax-search-home .ax-form-data-search input {
        width: 205px;
+    }
+    
+    .module-giftlist-empezar .col-md-6 {
+        width: 98%;
     }
     
 }
