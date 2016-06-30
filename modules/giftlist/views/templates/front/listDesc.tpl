@@ -28,31 +28,33 @@
 </div>
 
 <div class="products-associated" data-id="{$list_desc['id']}">
-		<h2>{l s='Mi lista' mod='giftlist'}</h2>
+	    <div class="ax-text-result-list ax-result-inline">
+         <h2>{l s='Mi lista' mod='giftlist'}</h2>
+        </div>
+		
+        <a href="javascript::void(0);">{l s='Editar lista' mod='giftlist'}</a>
 		<div class="row">
             <div class="product-card col-md-3" data-id="{$list_desc['id']}">
-                <img src="http://lorempixel.com/282/262/">
-                <span>{l s='Total bonos' mod='giftlist'} : {convertPrice price=$bond['total']}</span> <br>       
+                <img src="{$modules_dir}/giftlist/views/img/details-lista.png">
+                <span>{l s='Total bonos' mod='giftlist'}: {convertPrice price=$bond['total']}</span> <br>       
             </div>
-		{foreach from=$products item=row}
-		{$atribute_group = $row['options'][3]->value}
-			<div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}">
-				<div class="img-container" style="background-image: url('http://{$row['image']}')">
-				</div>
-                <i class="fa fa-heart" aria-hidden="true" {if $row['favorite']}style="color: red;"{/if}></i>
-				<p>{$row['name']}</p>
-				{foreach from=$row['data'] item=att_group}
-					{if $att_group['id_product_attribute'] == $atribute_group}
-						<p>{$att_group['group_name']} : {$att_group['attribute_name']}</p>
-					{/if}
-				{/foreach}
-                {convertPrice price=$row['price']}
-                {*<p>{l s='Cantidad:'} {$row['group']->wanted}</p>
-				<button class="delete-product" data-toggle="tooltip" data-placement="bottom" title="Quitar producto">Quitar producto</button>*}
-			</div>
-		{/foreach}
+            {foreach from=$products item=row}
+                {$atribute_group = $row['options'][3]->value}
+                    <div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}">
+                        <div class="img-container" style="background-image: url('http://{$row['image']}')">
+                        </div>
+                        <div class="ax-info-list">
+                        <i class="fa fa-heart  {if $row['favorite']}ax-favorite{/if}" aria-hidden="true"></i>
+                        <p class="ax-name-list">{$row['name']}</p>
+                        <p class="ax-price-list">{convertPrice price=$row['price']}</p>
+                        {foreach from=$row['data'] item=att_group}
+                            {if $att_group['id_product_attribute'] == $atribute_group}
+                                <p>{$att_group['group_name']}: {$att_group['attribute_name']}</p>
+                            {/if}
+                        {/foreach}}
+                    </div>
+                </div>
+            {/foreach}
 		</div>
 	</div>
 </div>
-
-<a href="{$share_list}" data-id="{$row['id']}" data-toggle="tooltip" data-placement="bottom" title="{l s='Compartir lista' mod='giftlist'}" class="share-list btn btn-default btn-sm">{l s='Compartir' mod='giftlist'} <span class="icon-mail-forward"></span></a>

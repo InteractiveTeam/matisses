@@ -121,8 +121,8 @@
         <a href="javascript::void(0);">{l s='Editar lista' mod='giftlist'}</a>
 		<div class="row">
             <div class="product-card col-md-3" data-id="{$list_desc['id']}">
-                <img src="http://lorempixel.com/236/294/">
-                <span>{l s='Total bonos' mod='giftlist'} : {convertPrice price=$bond['total']}</span> <br>       
+                <img src="{$modules_dir}/giftlist/views/img/details-lista.png">
+                <span>{l s='Total bonos' mod='giftlist'}: {convertPrice price=$bond['total']}</span> <br>       
             </div>
             {foreach from=$products item=row}
                 {$atribute_group = $row['options'][3]->value}
@@ -135,7 +135,7 @@
                         <p class="ax-price-list">{convertPrice price=$row['price']}</p>
                         {foreach from=$row['data'] item=att_group}
                             {if $att_group['id_product_attribute'] == $atribute_group}
-                                <p>{$att_group['group_name']} : {$att_group['attribute_name']}</p>
+                                <p>{$att_group['group_name']}: {$att_group['attribute_name']}</p>
                             {/if}
                         {/foreach}
                     {*<p>{l s='Cantidad:'} {$row['group']->wanted}</p>
