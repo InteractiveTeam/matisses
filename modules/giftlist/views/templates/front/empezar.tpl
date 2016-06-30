@@ -4,7 +4,7 @@
 {if version_compare($smarty.const._PS_VERSION_,'1.6.0.0','<')}{include file="$tpl_dir./breadcrumb.tpl"}{/if}
 <h1>{l s='Lista de regalos' mod='giftlist'}</h1>
 <div class=ax-img-cont">
-    <img src="http://lorempixel.com/1110/253" width=1110" heigth="253"/>
+    <img src="{$modules_dir}/giftlist/views/img/banner.jpg" width=1110" heigth="253"/>
     <p class="ax-text-description-lista">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </div>
 <div class="row">

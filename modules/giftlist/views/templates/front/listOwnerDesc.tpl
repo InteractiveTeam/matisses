@@ -33,7 +33,7 @@
     <div class="ax-avatar-content">
         <div id="ax-cover-container">
             <div class="cont-img">
-                <img class="ax-cover-img" src="{$list_desc['image']}" width="920" height="300">
+                <img class="ax-cover-img" src="{if !empty({$list_desc['image'])}{$list_desc['image']}{else}{$modules_dir}/giftlist/views/img/banner.jpg{/if}" width="920" height="300">
             </div>
             <div class="ax-cover-buttons">
                 <input type="file" id="ax-cover-up" />
@@ -42,7 +42,7 @@
         </div>
         <div id="ax-prof-container">
             <div class="cont-img">
-                <img class="ax-profile-img" width="180" src="{$list_desc['profile_img']}">
+                <img class="ax-profile-img" width="180" src="{if !empty({$list_desc['image'])}{$list_desc['profile_img']}{else}{$modules_dir}/giftlist/views/img/avatar.png{/if}">
             </div>
             <div class="ax-prof-buttons">
                 <input type="file" id="ax-prof-up" />
@@ -117,7 +117,7 @@
         <a href="javascript::void(0);">{l s='Editar lista' mod='giftlist'}</a>
 		<div class="row">
             <div class="product-card col-md-3" data-id="{$list_desc['id']}">
-                <img src="http://lorempixel.com/282/262/">
+                <img src="{$modules_dir}/giftlist/views/img/details-lista.png">
                 <span>{l s='Total bonos' mod='giftlist'} : {convertPrice price=$bond['total']}</span> <br>       
             </div>
 		{foreach from=$products item=row}
@@ -125,7 +125,7 @@
 			<div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}">
 				<div class="img-container" style="background-image: url('http://{$row['image']}')">
 				</div>
-                <i class="fa fa-heart" aria-hidden="true" {if $row['favorite']}style="color: red;"{/if}></i>
+                <i class="fa fa-heart" aria-hidden="true {if $row['favorite']}ax-favorite{/if}"></i>
 				<p>{$row['name']}</p>
 				{foreach from=$row['data'] item=att_group}
 					{if $att_group['id_product_attribute'] == $atribute_group}

@@ -19,7 +19,6 @@
         <li data-id="1" id="step1" role="presentation" class="active"><a href="#step-1" aria-controls="Paso 1" role="tab" data-toggle="tab">{l s='Paso 1' mod='giftlist'}</a></li>
         <li data-id="2" id="step2" role="presentation"><a href="#" aria-controls="Paso 2" role="tab" data-toggle="tab">{l s='Paso 2' mod='giftlist'}</a></li>
         <li data-id="3" id="step3" role="presentation"><a href="#" aria-controls="Paso 3" role="tab" data-toggle="tab">{l s='Paso 3' mod='giftlist'}</a></li>
-        <li data-id="4" id="step4" role="presentation"><a href="#" aria-controls="Paso 4" role="tab" data-toggle="tab">{l s='Paso 4' mod='giftlist'}</a></li>
       </ul>
 
       <!-- Tab panes -->
@@ -155,11 +154,89 @@
                 </div>
             </div>
         </div>
-        <div data-tab-id="2" role="tabpanel" class="tab-pane" id="step-2">sdf</div>
-        <div data-tab-id="3" role="tabpanel" class="tab-pane" id="step-3">dfg</div>
-        <div data-tab-id="4" role="tabpanel" class="tab-pane" id="step-4">fgh</div>
+        <div data-tab-id="2" role="tabpanel" class="tab-pane" id="step-2">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="image-prof">{l s='Seleccione foto de perfil' mod='giftlist'}</label>
+                    <input type="file" name="image-prof" id="image-prof">
+                </div>
+                <div class="col-md-6">
+                    <label for="image-p">{l s='Seleccione foto de portada' mod='giftlist'}</label>
+                    <input type="file" name="image-p" id="image-p">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="message">{l s='Mensaje' mod='giftlist'}</label>
+                    <textarea name="message" class="form-control" id="message"></textarea>
+                </div>
+                <div class="col-md-6">
+                    <label for="guest_number">{l s='Número de invitados' mod='giftlist'}</label>
+                    <input type="number" class="form-control" name="guest_number" id="guest_number">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="dir_1">{l s='Dirección antes' mod='giftlist'}</label>
+                    <input type="text" class="form-control" name="dir_1" id="dir_1">
+                </div>
+                <div class="col-md-6">
+                    <label for="dir_2">{l s='Dirección despues' mod='giftlist'}</label>
+                    <input type="text" class="form-control" name="dir_2" id="dir_2">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="checkbox">
+					   <label>
+                        {l s='Cocreador'}
+                        <input type="checkbox" id="cocreator">
+					   </label>
+				    </div>
+                </div>
+                <div class="col-md-6 hidden">
+                    <label for="email-co">{l s='Correo electronico' mod='giftlist'}</label>
+                    <input type="email" class="form-control" name="email-co" id="email-co">
+                </div>
+                <div class="row">
+                    <a href="javascript:void(0);" class="ax-next btn btn-default btn-lista-regalos">{l s='Siguiente' mod='giftlist'}</a>
+                </div>
+            </div>
+        </div>
+        <div data-tab-id="3" role="tabpanel" class="tab-pane" id="step-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="checkbox">
+					   <label>
+                        {l s='Recibir bono'}
+                        <input type="checkbox" id="recieve_bond">
+					   </label>
+				    </div>
+                </div>
+                <div class="col-md-6 hidden">
+                    <label for="min_ammount">{l s='Monto mínimo' mod='giftlist'}</label>
+                    <input type="number" class="form-control" name="min_ammount" id="min_ammount">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="radio-inline">
+					   <label>
+                        {l s='Tipo de lista' mod='giftlist'}
+                        <input type="radio" id="list_type" name="list_type" value="1">{l s='Público' mod='giftlist'}
+                        <input type="radio" id="list_type" name="list_type" value="0">{l s='Privado' mod='giftlist'}
+					   </label>
+				    </div>
+                </div>
+                    <label for="url">{l s='Url' mod='giftlist'}</label>
+                    <input type="text" class="form-control" name="url" id="url">
+                </div>
+                <div class="row">
+                    <a href="javascript:void(0);" class="ax-prev btn btn-default btn-lista-regalos">{l s='Atrás' mod='giftlist'}</a>
+                </div>
+            </div>
+        </div>
       </div>
-
     </div>
 </form>
 {if isset($countries)}
