@@ -52,7 +52,7 @@
     </div>
 
     <div class="ax-message">
-        <div class="ax-text-result-list">
+        <div class="ax-text-result-list ax-result-inline">
             <h2>{l s='Mensaje de bienvenida' mod='giftlist'}</h2>
         </div>
         <p id="ax-message-content" class="ax-message-content">{$list_desc['message']}</p>
@@ -91,57 +91,63 @@
         <div class="ax-text-result-list ax-result-inline">
         <h2>{l s='Añadir productos' mod='giftlist'}</h2>
         </div>
+        
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <div class="owl-carousel">
+            {foreach item=cat from=$cats}
+                {if $cat.id_parent == 3}
+                {assign var="cat_img" value="/img/c/{$cat.id}-categories_home.jpg"}
+                <div class="item">
+                {assign var="first" value=0}
 
-  <div class="owl-carousel">
-    {foreach item=cat from=$cats}
-        {if $cat.id_parent == 3}
-        {assign var="cat_img" value="/img/c/{$cat.id}-categories_home.jpg"}
-        <div class="item">
-        {assign var="first" value=0}
-            
-            {if file_exists($cat_img)} 
-                <img class="replace-2x" src="{$cat_img}" alt="" />
-            {else}
-                <img class="replace-2x" src="/img/c/nl-default-categories_home.jpg" alt="" />
-            {/if}
-            <p>{$cat.name}</p>
+                    {if file_exists($cat_img)} 
+                        <img class="replace-2x" src="{$cat_img}" alt="" />
+                    {else}
+                        <img class="replace-2x" src="/img/c/nl-default-categories_home.jpg" alt="" />
+                    {/if}
+                    <p>{$cat.name}</p>
+                </div>
+                {/if}
+            {/foreach}
+            </div>
         </div>
-        {/if}
-    {/foreach}
-  </div>
-</div>
+    </div>
 	
 	<div class="products-associated" data-id="{$list_desc['id']}">
-		<h2>{l s='Mi lista' mod='giftlist'}</h2>
+	    <div class="ax-text-result-list ax-result-inline">
+         <h2>{l s='Mi lista' mod='giftlist'}</h2>
+        </div>
+		
         <a href="javascript::void(0);">{l s='Editar lista' mod='giftlist'}</a>
 		<div class="row">
             <div class="product-card col-md-3" data-id="{$list_desc['id']}">
-                <img src="http://lorempixel.com/282/262/">
+                <img src="http://lorempixel.com/236/294/">
                 <span>{l s='Total bonos' mod='giftlist'} : {convertPrice price=$bond['total']}</span> <br>       
             </div>
-		{foreach from=$products item=row}
-		{$atribute_group = $row['options'][3]->value}
-			<div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}">
-				<div class="img-container" style="background-image: url('http://{$row['image']}')">
-				</div>
-                <i class="fa fa-heart" aria-hidden="true" {if $row['favorite']}style="color: red;"{/if}></i>
-				<p>{$row['name']}</p>
-				{foreach from=$row['data'] item=att_group}
-					{if $att_group['id_product_attribute'] == $atribute_group}
-						<p>{$att_group['group_name']} : {$att_group['attribute_name']}</p>
-					{/if}
-				{/foreach}
-                {convertPrice price=$row['price']}
-                {*<p>{l s='Cantidad:'} {$row['group']->wanted}</p>
-				<button class="delete-product" data-toggle="tooltip" data-placement="bottom" title="Quitar producto">Quitar producto</button>*}
-			</div>
-		{/foreach}
+            {foreach from=$products item=row}
+                {$atribute_group = $row['options'][3]->value}
+                    <div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}">
+                        <div class="img-container" style="background-image: url('http://{$row['image']}')">
+                        </div>
+                        <div class="ax-info-list">
+                        <i class="fa fa-heart" aria-hidden="true" {if $row['favorite']}style="color: red;"{/if}></i>
+                        <p class="ax-name-list">{$row['name']}</p>
+                        <p class="ax-price-list">{convertPrice price=$row['price']}</p>
+                        {foreach from=$row['data'] item=att_group}
+                            {if $att_group['id_product_attribute'] == $atribute_group}
+                                <p>{$att_group['group_name']} : {$att_group['attribute_name']}</p>
+                            {/if}
+                        {/foreach}
+                    {*<p>{l s='Cantidad:'} {$row['group']->wanted}</p>
+                    <button class="delete-product" data-toggle="tooltip" data-placement="bottom" title="Quitar producto">Quitar producto</button>*}
+                    </div>
+                </div>
+            {/foreach}
 		</div>
 	</div>
 </div>
 
-<a href="{$share_list}" data-id="{$row['id']}" data-toggle="tooltip" data-placement="bottom" title="{l s='Compartir lista' mod='giftlist'}" class="share-list btn btn-default btn-sm">{l s='Compartir' mod='giftlist'} <span class="icon-mail-forward"></span></a>
+<a href="{$share_list}" data-id="{$row['id']}" data-toggle="tooltip" data-placement="bottom" title="{l s='Compartir lista' mod='giftlist'}" class="share-list btn btn-default btn-lista-regalos">{l s='Compartir lista' mod='giftlist'} <span class="icon-mail-forward"></span></a>
 
 <div class="hidden">
 {literal} 
