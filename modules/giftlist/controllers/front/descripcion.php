@@ -93,9 +93,9 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
     
     private function _saveMessaage($id, $message){
         if(Db::getInstance()->update('gift_list', array('message' => $message),"id = ".$id))
-            return Tools::jsonEncode("Se ha actalizado el mensaje");
+            die(Tools::jsonEncode("Se ha actalizado el mensaje"));
         else
-            return Tools::jsonEncode("Ha ocurrido un error");
+            die(Tools::jsonEncode("Ha ocurrido un error"));
     }
 
 	public function setMedia() {
