@@ -228,6 +228,7 @@
 					   </label>
 				    </div>
                 </div>
+                <div class="col-md-6">
                     <label for="url">{l s='Url' mod='giftlist'}</label>
                     <input type="text" class="form-control" name="url" id="url">
                 </div>
