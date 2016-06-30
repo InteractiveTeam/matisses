@@ -138,9 +138,9 @@
                                 <p>{$att_group['group_name']}: {$att_group['attribute_name']}</p>
                             {/if}
                         {/foreach}
-                    {*<p>{l s='Cantidad:'} {$row['group']->wanted}</p>
-                    <button class="delete-product" data-toggle="tooltip" data-placement="bottom" title="Quitar producto">Quitar producto</button>*}
+                    <p>{l s='Cantidad:'} {$row['group']->wanted}</p>
                     </div>
+                    <a class="delete-product" data-toggle="tooltip" data-placement="bottom" title="Quitar producto"><i class="fa fa-close"></i></a>
                 </div>
             {/foreach}
 		</div>

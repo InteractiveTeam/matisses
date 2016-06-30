@@ -421,7 +421,6 @@ Fixes generalres
     height: 40px;
 }
 
-
 .ax-avatar-content #ax-prof-container {
     display: block;
     position: absolute;
@@ -574,7 +573,7 @@ Fixes generalres
     position: relative;
 }
 
-.products-associated .product-card .ax-info-list i {
+.products-associated .product-card i.fa-heart   {
     position: absolute;
     top: -34px;
     right: 10px;
@@ -582,8 +581,23 @@ Fixes generalres
     color: #a5a5a5;
 }
 
+.products-associated .product-card i.fa-close:before {
+    content: "\f00d";
+    color: #fff;
+}
+
 .products-associated .product-card .ax-favorite {
-    color: #e10025
+    color: #e10025;
+}
+
+.products-associated .product-card .delete-product {
+    background: #d9292e;
+    border-radius: 50%;
+    display: inline-block;
+    padding: 3px 5px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
 }
 
 .products-associated .product-card p {
@@ -690,6 +704,33 @@ Fixes generalres
     .ax-avatar-content {
         position: relative;
     }
+    
+    .ax-address, .ax-message, .ax-categories, .products-associated {
+        text-align: center;
+        position: relative;
+        margin: 20px 0;
+    }
+    
+    .ax-categories {
+        margin: 40px 0 20px 0
+    }
+    
+    .ax-address > a {
+        position: absolute;
+        top: 105%;
+        margin: auto;
+        left: 0;
+        right: 0;
+    }
+    
+    .module-giftlist-descripcion .product-card.col-md-3 {
+        width: 33.3%;
+        float: left;
+    }
+    
+    .module-giftlist-descripcion .parrilla-productos .btn-lista-regalos {
+        margin: 20px 0 0 25px;
+    }
 
 }
 
@@ -717,16 +758,6 @@ Fixes generalres
         width: 49%;
     }
     
-    .ax-text-result-list {
-        border-top: transparent solid 35px;
-        border-bottom: transparent solid 35px;
-    }
-    
-    .ax-cont-admin-listas-regalos .ax-text-result-list {
-        border-top: transparent solid 25px;
-        border-bottom: transparent solid 25px;
-    }
-    
     .ax-text-result-list p {
         top: -20px;
     }
@@ -751,11 +782,20 @@ Fixes generalres
     .module-giftlist-empezar .col-md-6 {
         width: 100%;
         padding: 0;
-    }    
+    }   
+    
+    .module-giftlist-descripcion .product-card.col-md-3 {
+        width: 48%;
+    }
 
 }
 
 @media screen and (max-width:320px) {
+    
+    #columns .parrilla-productos {
+        margin: 0;
+    }
+    
     .ax-text-result-list h3 {
         top: -20px;
     }
@@ -766,6 +806,120 @@ Fixes generalres
     
     .ax-search-home .btn.btn-default.btn-lista-regalos {
         margin-top: 15px;
+    }
+    
+    .module-giftlist-descripcion h1, .module-giftlist-descripcion h2 {
+        font-size: 1.7rem;
+    }
+    
+    .module-giftlist-descripcion .ax-text-result-list {
+        padding: 15px 30px;
+        display: block;
+        margin: 30px 0;
+    }
+    
+    .module-giftlist-descripcion .ax-text-result-list p, .module-giftlist-descripcion .ax-text-result-list h2, .module-giftlist-descripcion .ax-text-result-list h3 {
+        font-size: 1.3em;
+    }
+    
+    .module-giftlist-descripcion .container {
+        padding: 0;
+        width: 98%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .module-giftlist-buscar .ax-cont-list .part, .ax-cont-admin-listas-regalos .ax-cont-list .part {
+        padding: 20px 10px;
+    }
+    
+    .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(even) {
+        text-align: right;
+    }
+    
+    .ax-cont-admin-listas-regalos .ax-cont-list .part:last-child {
+        width: 100%;
+    }
+    
+    .ax-cont-admin-listas-regalos .part .ax-day {
+        color: #ecb072;
+        font-size: 1.7rem;
+    }
+    
+    .ax-text-result-list {
+        margin: 10px 0;
+    }
+    
+    .module-giftlist-descripcion .ax-cont-list .ax-item {
+        padding: 0;
+    }
+    
+    #ax-cover-container .cont-img {
+        height: 200px;
+    }
+    
+    .ax-avatar-content #ax-prof-container .cont-img {
+        width: 122px;
+        height: 122px;
+    }
+    
+    .ax-avatar-content #ax-prof-container {
+        width: 122px;
+    }
+    
+     .ax-avatar-content .ax-prof-buttons .uploader {
+         width: 117px;
+    }
+    
+    .ax-message-content {
+        margin: 10px auto;
+    }
+    
+    .ax-message-content .ax-edit, .ax-message-content .ax-delete {
+        margin: 10px;
+        font-size: 1.1rem;
+    }
+    
+    .ax-avatar-content {
+        margin-top: 75px;
+    }
+    
+    .ax-address .col-md-4 {
+        margin: 20px 0;
+    }
+    
+    .ax-categories {
+        margin: 80px 0 20px 0;
+    }
+    
+    .module-giftlist-descripcion #carousel-example-generic {
+        width: 80%;
+    }
+    
+    .module-giftlist-descripcion .owl-nav .owl-prev, .module-giftlist-descripcion .owl-nav .owl-next {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .module-giftlist-descripcion .owl-nav .owl-prev {
+        left: -24px;
+    }
+    
+    .module-giftlist-descripcion .owl-nav .owl-next {
+        right: -24px;
+    }
+    
+    .products-associated .ax-text-result-list {
+        display: inline-block;
+        padding: 15px 50px;
+    }
+    
+    .module-giftlist-descripcion .product-card.col-md-3 {
+        width: 100%;
+    }
+    
+    .products-associated .product-card .ax-info-list {
+        text-align: left;
     }
     
 }
