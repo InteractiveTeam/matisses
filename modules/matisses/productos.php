@@ -527,8 +527,11 @@
 	}
 	
 	function __parseData($_data,$status = null){        
-		if($_data['description'] && $_data['shortDescription'] && $_data['price'] && $_data['itemName'] && $_data['model'] && $_data['subgroupCode'] && $_data['webName'] && sizeof($_data['color'])==3)
+		if($_data['description'] && $_data['shortDescription'] && $_data['price'] && $_data['itemName'] && $_data['model'] && $_data['subgroupCode'] && sizeof($_data['color'])==3)
 		{
+            if(empty($_data['webName'])) {
+               $_data['webName'] = ""; 
+            }
 				
 			$path		= dirname(__FILE__).'/files/'.$_data['itemCode'];
 			$materials 	= $_data['materials'];
