@@ -55,17 +55,10 @@ var ax_admin = {
     form: '',
     init: function(){
         $(document).ready(function(){
-            var dateText = $('#event_date');
-            dateText.datetimepicker({
-                 minDate:'-1969/12/31',
-                 format:"d/m/Y H:i",
-                 mask: dateText.val() == "" ? true : false
-            });
             ax_admin.validate();
-            $('#tel').mask("000-00-00", {placeholder: "___-__-__"});
-            $('#cel').mask("000-000-0000", {placeholder: "___-___-____"});
             $("#city").on('change',function(){
                 ax_admin.setTown($("#city option:selected").val());
+                $("#town").trigger("chosen:updated");
             });
             $(".ax-next").on('click',function(){
                 ax_admin.changeTab();
@@ -103,13 +96,6 @@ var ax_admin = {
             return value > 1;
         }, "El valor ingresado en este campo debe ser un número entero mayor que 1.");
 
-        $.validator.addMethod("noSpaceStart", function(value, element) {
-            return value.indexOf(" ") != 0;
-        }, "El campo es requerido");
-
-        $.validator.addMethod("noSpaceEnd", function(value, element) {
-            return value.lastIndexOf(" ") != value.length - 1;
-        }, "El campo es requerido");
         $.validator.addMethod("noTodayDate", function(value, element) {
             var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
             var t = new Date(value.replace(pattern,'$3-$2-$1'));
@@ -122,19 +108,15 @@ var ax_admin = {
             rules:{
                 name: {
                     required:true,
-                    noSpaceStart:true,
-                    noSpaceEnd:true
                 },
                 firstname: {
                     required:true,
-                    noSpaceStart:true,
-                    noSpaceEnd:true
                 },lastname: {
                     required:true,
-                    noSpaceStart:true,
-                    noSpaceEnd:true
                 },
-                event_type: "selectRequired",
+                event_type: {
+                    selectRequired: true,
+                },
                 guest_number: {
                     required: true,
                     number:true,
@@ -148,21 +130,24 @@ var ax_admin = {
                 town:"selectRequired",
                 tel:{
                     required:true,
-                    noSpaceStart:true,
-                    noSpaceEnd:true
                 },
                 cel:{
                     required:true,
-                    noSpaceStart:true,
-                    noSpaceEnd:true
-                }
+                },
+                email:{
+                    required:true,
+                },
+                conf_email:{
+                    required:true,
+                    equalTo: "#email"
+                },
+                address:{
+                    required:true,
+                },
             },
             message:{
                 required:"El campo es requerido"
-            }/*,
-            submitHandler: function(form) {
-                $(form).submit();
-            }*/
+            }
         });
     }
 };
