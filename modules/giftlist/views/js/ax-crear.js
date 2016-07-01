@@ -60,10 +60,37 @@ var ax_admin = {
                 ax_admin.setTown($("#city option:selected").val());
                 $("#town").trigger("chosen:updated");
             });
+            $("select").on('change',function(){
+                $(this).parent().find("label.error").remove();
+            });
             $(".ax-next").on('click',function(){
                 ax_admin.changeTab();
             });
+            
+            $("#cocreator").click(function(){
+                if($(this).attr('checked') == "checked")
+                    $("#cocreator-div").removeClass("hidden");
+                else
+                    $("#cocreator-div").addClass("hidden");
+            });
+            
+            $("#recieve_bond").click(function(){
+                if($(this).attr('checked') == "checked")
+                    $("#ammount_div").removeClass("hidden");
+                else
+                    $("#ammount_div").addClass("hidden");
+            });
         });
+    },
+    validateSelect : function(element){
+        var ret = true;
+        $("select").each(function(){
+            if($(this).val() === "0"){
+                $(this).parent().append('<label id="event_type-error" class="error">EL CAMPO ES REQUERIDO</label>');
+                ret = false; 
+            }
+        });
+        return ret;
     },
     setTown: function (id_state){
 	   var states = countries[id_state].states;
@@ -82,9 +109,21 @@ var ax_admin = {
     changeTab:function(){
         var active = $(".nav-tabs li.active a");
         var next = parseInt(active.parent().attr("data-id")) + 1;
+        
         if(ax_admin.form.form()){
+            if(!ax_admin.validateSelect())
+                return;
+            if($(".tab-pane.active").attr("data-tab-id") === "1"){
+                var dir = $("#address").val();
+                $("#dir_after").val(dir);
+                $("#dir_before").val(dir);
+            }
+            
+
             $("#step"+next+" a").attr("href","#step-"+next);
             $("#step"+next+" a").tab("show");
+        }else{
+            ax_admin.validateSelect();
         }
     },
     validate: function(){
@@ -142,6 +181,21 @@ var ax_admin = {
                     equalTo: "#email"
                 },
                 address:{
+                    required:true,
+                },
+                dir_before:{
+                    required:true,
+                },
+                dir_after:{
+                    required:true,
+                },
+                email_co:{
+                    required:true,
+                },
+                min_ammount:{
+                    required:true,
+                },
+                url:{
                     required:true,
                 },
             },

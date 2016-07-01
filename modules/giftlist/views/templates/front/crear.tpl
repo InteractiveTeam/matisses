@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-md-12">
                     <label for="event_type">{l s='Tipo de evento' mod='giftlist'}<sup>*</sup></label>
-                    <select id="event_type" name="event_type" class="form-control">
+                    <select id="event_type" name="event_type" class="form-control ax-select" data-placeholder=" ">
                         <option value="0" selected="selected"></option> 
                         {foreach from=$event_type item=event}
                         {if $edit}
@@ -64,24 +64,24 @@
                         *}
                     <label>{l s='Fecha del evento' mod='giftlist'}<sup>*</sup></label>
                     <div class="col-md-4 ax-date-event">
-                        <select id="months" name="months" class="form-control">
-                            <option value="">{l s='Mes' mod='giftlist'}</option>
+                        <select id="months" name="months" class="form-control ax-select">
+                            <option value="0">{l s='Mes' mod='giftlist'}</option>
                             {foreach from=$months key=k item=month}
                                 <option value="{$k}">{l s=$month}&nbsp;</option>
                             {/foreach}
                         </select>
                     </div>
                     <div class="col-md-4 ax-date-event">
-                        <select id="days" name="days" class="form-control">
-                            <option value="">{l s='Día' mod='giftlist'}</option>
+                        <select id="days" name="days" class="form-control ax-select">
+                            <option value="0">{l s='Día' mod='giftlist'}</option>
                             {foreach from=$days item=day}
                                 <option value="{$day}" >{$day}&nbsp;&nbsp;</option>
                             {/foreach}
                         </select>
                     </div>
                     <div class="col-md-4 ax-date-event">
-                        <select id="years" name="years" class="form-control">
-                            <option value="">{l s='Año' mod='giftlist'}</option>
+                        <select id="years" name="years" class="form-control ax-select">
+                            <option value="0">{l s='Año' mod='giftlist'}</option>
                             {for $i=$year to $limit}
                                 <option value="{$i}">{$i}&nbsp;&nbsp;</option>
                             {/for}
@@ -94,24 +94,24 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="firstname">{l s='Nombre' mod='giftlist'}<sup>*</sup></label> 
-                        <input type="text" class="form-control" name="firstname" id="firstname">
+                        <input type="text" class="form-control" name="firstname" id="firstname" value="{$cookie->customer_firstname}">
                     </div>
                     <div class="col-md-6">
                         <label for="country">{l s='País' mod='giftlist'}<sup>*</sup></label>
-                        <select id="country" name="country" class="form-control">
+                        <select id="country" name="country" class="form-control ax-select">
                             <option value="0">{l s='Seleccione una opción' mod='giftlist'}</option>
-                            <option value="1">{l s='Colombía' mod='giftlist'}</option>
+                            <option value="1">{l s='COLOMBIA' mod='giftlist'}</option>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label for="lastname">{l s='Apellido' mod='giftlist'}<sup>*</sup></label> 
-                        <input type="text" class="form-control" name="lastname" id="lastname">
+                        <input type="text" class="form-control" name="lastname" id="lastname" value="{$cookie->customer_lastname}">
                     </div>
                     <div class="col-md-6">
                         <label for="city">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
-                        <select id="city" name="city" class="form-control">
+                        <select id="city" name="city" class="form-control ax-select">
                             <option value="0">{l s='Seleccione una opción' mod='giftlist'}</option>
                             {foreach from=$countries item=c}
                                 <option value="{$c.id_country}">{$c.name}</option>
@@ -127,8 +127,8 @@
                     <div class="col-md-6">
                         <div class="required town unvisible">
                             <label for="town">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
-                            <select id="town" name="city" class="form-control">
-                                <option value="">{l s='Seleccione una opción' mod='giftlist'}</option>
+                            <select id="town" name="town" class="form-control ax-select">
+                                <option value="0">{l s='Seleccione una opción' mod='giftlist'}</option>
                             </select>
 			            </div>
                     </div>
@@ -171,18 +171,18 @@
                     <textarea name="message" class="form-control" id="message"></textarea>
                 </div>
                 <div class="col-md-6">
-                    <label for="guest_number">{l s='Número de invitados' mod='giftlist'}</label>
+                    <label for="guest_number">{l s='Número de invitados' mod='giftlist'}<sup>*</sup></label>
                     <input type="number" class="form-control" name="guest_number" id="guest_number">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <label for="dir_1">{l s='Dirección antes' mod='giftlist'}</label>
-                    <input type="text" class="form-control" name="dir_1" id="dir_1">
+                    <label for="dir_before">{l s='Antes del evento' mod='giftlist'}<sup>*</sup></label>
+                    <input type="text" class="form-control" name="dir_before" id="dir_before">
                 </div>
                 <div class="col-md-6">
-                    <label for="dir_2">{l s='Dirección despues' mod='giftlist'}</label>
-                    <input type="text" class="form-control" name="dir_2" id="dir_2">
+                    <label for="dir_after">{l s='Después del evento' mod='giftlist'}<sup>*</sup></label>
+                    <input type="text" class="form-control" name="dir_after" id="dir_after">
                 </div>
             </div>
             <div class="row">
@@ -194,9 +194,9 @@
 					   </label>
 				    </div>
                 </div>
-                <div class="col-md-6 hidden">
-                    <label for="email-co">{l s='Correo electronico' mod='giftlist'}</label>
-                    <input type="email" class="form-control" name="email-co" id="email-co">
+                <div class="col-md-6 hidden" id="cocreator-div">
+                    <label for="email_co">{l s='Correo electronico' mod='giftlist'}</label>
+                    <input type="email" class="form-control" name="email_co" id="email_co">
                 </div>
                 <div class="row">
                     <a href="javascript:void(0);" class="ax-next btn btn-default btn-lista-regalos">{l s='Siguiente' mod='giftlist'}</a>
@@ -208,13 +208,13 @@
                 <div class="col-md-6">
                     <div class="checkbox">
 					   <label>
-                        <span>{l s='Recibir bono'}</span>
+                        <span>{l s='Recibir bono' mod='giftlist'}</span>
                         <input type="checkbox" id="recieve_bond">
 					   </label>
 				    </div>
                 </div>
-                <div class="col-md-6 hidden">
-                    <label for="min_ammount">{l s='Monto mínimo' mod='giftlist'}</label>
+                <div class="col-md-6 hidden" id="ammount_div">
+                    <label for="min_ammount">{l s='Monto mínimo' mod='giftlist'}<sup>*</sup></label>
                     <input type="number" class="form-control" name="min_ammount" id="min_ammount">
                 </div>
             </div>
@@ -237,7 +237,7 @@
 				    </div>
                 </div>
                 <div class="col-md-6">
-                    <label for="url">{l s='Url' mod='giftlist'}</label>
+                    <label for="url">{l s='Url' mod='giftlist'}<sup>*</sup></label>
                     <input type="text" class="form-control" name="url" id="url">
                 </div>
                 <div class="row">
