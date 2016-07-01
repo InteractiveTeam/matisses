@@ -935,6 +935,21 @@ Fixes generalres
     .module-giftlist-descripcion .product-card.col-md-3 {
         width: 48%;
     }
+       
+    #frmSaveList .nav-tabs {
+        display: table;
+        width: 100%;
+    }
+
+    #frmSaveList .nav-tabs li a {
+        padding: 10px;
+        display: table-cell;
+    }
+    
+    .ax-text-pp-create {
+        padding: 0;
+        display: inline-block;
+    }
 
 }
 
