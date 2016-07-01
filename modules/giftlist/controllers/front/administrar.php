@@ -31,6 +31,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 			if(!empty(Tools::getValue("method"))){
 				switch(Tools::getValue("method")){
 					case "saveList":
+						$this->_saveList(Tools::getValue("form"),Tools::getValue("img"));
 						break;
 				}
 			}
@@ -92,6 +93,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 		return false;
 	}
     
+    private function _saveList($form,$img){
         //Tools::redirect($this->context->link->getModuleLink('giftlist', 'descripcion',array("url" => $list->url)));
 	}
 }
