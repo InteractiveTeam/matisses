@@ -260,6 +260,14 @@ Fixes generalres
     padding: 30px 0 15px 0;
 }
 
+.ax-cont-list.desc .ax-item {
+    border-top: #dcdcdc solid 1px;
+}
+
+.module-giftlist-descripcion .ax-cont-list.desc .ax-item {
+    padding: 20px 0;
+}
+
 .module-giftlist-buscar .ax-cont-list .part, .ax-cont-admin-listas-regalos .ax-cont-list .part {
     text-align: center;
     display: table-cell;
@@ -622,6 +630,24 @@ Fixes generalres
 
 .module-giftlist-descripcion .parrilla-productos .btn-lista-regalos {
     margin: 40px 0 0 25px;
+}
+
+/* crear listas */
+
+#frmSaveList .nav-tabs {
+    padding: 0;
+    margin: 0;
+}
+
+#frmSaveList .nav-tabs li a {
+    background: #5e534d;
+    color: #ffd594;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    border: none;
+    padding: 10px 90px;
+    margin: 0;
 }
 
 

@@ -17,7 +17,7 @@
 <p class="ax-text-description-lista">{$list_desc['message']}</p>
 
 <div class="ax-general-info ax-cont-admin-listas-regalos">
-    <div class="ax-cont-list">
+    <div class="ax-cont-list desc">
         <div class="ax-item">
             <div class="part">{l s='Creadores' mod='giftlist'}<span>{$creator}</span><br><span>{$cocreator}</span></div>
             <div class="part">{l s='Código' mod='giftlist'}<span>{$list_desc['code']}</span></div><div class="part">{l s='Evento' mod='giftlist'}<span>{$event_type}</span></div>

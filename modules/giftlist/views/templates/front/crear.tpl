@@ -15,10 +15,10 @@
     <div>
 
       <!-- Nav tabs -->
-      <ul class="nav nav-tabs" role="tablist">
-        <li data-id="1" id="step1" role="presentation" class="active"><a href="#step-1" aria-controls="Paso 1" role="tab" data-toggle="tab">{l s='Paso 1' mod='giftlist'}</a></li>
-        <li data-id="2" id="step2" role="presentation"><a href="#" aria-controls="Paso 2" role="tab" data-toggle="tab">{l s='Paso 2' mod='giftlist'}</a></li>
-        <li data-id="3" id="step3" role="presentation"><a href="#" aria-controls="Paso 3" role="tab" data-toggle="tab">{l s='Paso 3' mod='giftlist'}</a></li>
+      <ul class="nav nav-tabs ax-text-result-list" role="tablist">
+        <li data-id="1" id="step1" role="presentation" class="active"><a href="#step-1" aria-controls="Paso 1" role="tab" data-toggle="tab" class="ax-text-result-list">{l s='Paso 1' mod='giftlist'}</a></li>
+        <li data-id="2" id="step2" role="presentation"><a href="#" aria-controls="Paso 2" role="tab" data-toggle="tab" class="ax-text-result-list">{l s='Paso 2' mod='giftlist'}</a></li>
+        <li data-id="3" id="step3" role="presentation"><a href="#" aria-controls="Paso 3" role="tab" data-toggle="tab" class="ax-text-result-list">{l s='Paso 3' mod='giftlist'}</a></li>
       </ul>
 
       <!-- Tab panes -->
