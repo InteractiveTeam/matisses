@@ -121,8 +121,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="telcity">{l s='Télefono' mod='giftlist'}<sup>*</sup></label> 
-                        <input type="text" class="form-control" name="telcity" id="telcity">
+                        <label for="tel">{l s='Télefono' mod='giftlist'}<sup>*</sup></label> 
+                        <input type="text" class="form-control" name="tel" id="tel">
                     </div>
                     <div class="col-md-6">
                         <div class="required town unvisible">
@@ -146,7 +146,7 @@
                         <label for="email">{l s='Correo electrónico' mod='giftlist'}<sup>*</sup></label> <input type="email" id="email" class="form-control" name="email" />
                     </div>
                     <div class="col-md-6">
-                        <label for="conf_email">{l s='Confirmar correo electrónico 2' mod='giftlist'}<sup>*</sup></label> <input type="email" id="conf_email" class="form-control" name="conf_email" />
+                        <label for="conf_email">{l s='Confirmar correo electrónico' mod='giftlist'}<sup>*</sup></label> <input type="email" id="conf_email" class="form-control" name="conf_email" />
                     </div>
                 </div>
                 <div class="row">
@@ -200,6 +200,7 @@
                 </div>
                 <div class="row">
                     <a href="javascript:void(0);" class="ax-next btn btn-default btn-lista-regalos">{l s='Siguiente' mod='giftlist'}</a>
+                    <a href="javascript:void(0);" class="ax-prev btn btn-default btn-lista-regalos">{l s='Atrás' mod='giftlist'}</a>
                 </div>
             </div>
         </div>
@@ -240,9 +241,28 @@
                     <label for="url">{l s='Url' mod='giftlist'}<sup>*</sup></label>
                     <input type="text" class="form-control" name="url" id="url">
                 </div>
-                <div class="row">
-                    <a href="javascript:void(0);" class="ax-prev btn btn-default btn-lista-regalos">{l s='Atrás' mod='giftlist'}</a>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="checkbox">
+					   <label>
+                        <span>{l s='Notificaciones en tiempo real' mod='giftlist'}</span>
+                        <input name="real_not" type="checkbox" id="real_not">
+					   </label>
+				    </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="checkbox">
+					   <label>
+                        <span>{l s='Notificaciones en consolidado' mod='giftlist'}</span>
+                        <input name="cons_not" type="checkbox" id="cons_not">
+					   </label>
+				    </div>
+                </div>
+            </div>
+            <div class="row">
+                <a href="javascript:void(0);" class="ax-save btn btn-default btn-lista-regalos">{l s='Guardar' mod='giftlist'}</a>
+                <a href="javascript:void(0);" class="ax-prev btn btn-default btn-lista-regalos">{l s='Atrás' mod='giftlist'}</a>
             </div>
         </div>
       </div>
