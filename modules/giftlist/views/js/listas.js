@@ -101,4 +101,20 @@ $(document).ready(function() {
 	setTimeout(function() {
 		$("#closeMsg").parent().remove();
 	}, 8000);
+    
+        if($(window).width() <= 568) {
+            tabRpListAdmin()
+        }else {
+            $('.tab-rp-listas-rega').next().show();
+        }
+
+    function tabRpListAdmin(){
+        $('.tab-rp-listas-rega').next().hide();
+
+        $('.tab-rp-listas-rega').on('click', function(){
+            $(this).next().slideToggle();
+            $(this).toggleClass('active-tab-list');
+        })
+    }
+    
 });
