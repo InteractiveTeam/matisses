@@ -767,6 +767,11 @@ Fixes generalres
         background: #5e534d;
     }
 
+    #center_column .ax-img-cont img {
+        width: 100% !important;
+    }
+
+
 @media screen and (max-width:1024px) {
      
     .ax-search-home .ax-form-data-search input {
@@ -883,6 +888,7 @@ Fixes generalres
 }
 
 @media screen and (max-width:568px) {
+    
     .ax-form-data-search span {
         width: 49.4%;
     }
@@ -940,20 +946,35 @@ Fixes generalres
         display: table;
         width: 100%;
     }
-
-    #frmSaveList .nav-tabs li a {
-        padding: 10px;
+   
+    #frmSaveList .nav-tabs li {
         display: table-cell;
+        float: none;
+        text-align: center;
+    }
+    
+    #frmSaveList .nav-tabs li a {
+        padding: 10px 20px;
     }
     
     .ax-text-pp-create {
-        padding: 0;
+        padding: 10px;
         display: inline-block;
+    }
+    
+    .ax-text-description-lista {
+        width: 100%;
+        margin: 0;
+        padding: 0;
     }
 
 }
 
-@media screen and (max-width:320px) {
+@media screen and (max-width:380px) {
+    
+    .container {
+        padding: 0;
+    }
     
     #columns .parrilla-productos {
         margin: 0;
@@ -993,7 +1014,11 @@ Fixes generalres
     }
     
     .module-giftlist-buscar .ax-cont-list .part, .ax-cont-admin-listas-regalos .ax-cont-list .part {
-        padding: 20px 10px;
+        padding: 20px 0;
+    }
+    
+    .module-giftlist-listas .ax-cont-list .part:last-child {
+        width: 50% !important;
     }
     
     .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(even) {
@@ -1011,6 +1036,7 @@ Fixes generalres
     
     .ax-text-result-list {
         margin: 10px 0;
+        padding: 10px 30px;
     }
     
     .module-giftlist-descripcion .ax-cont-list .ax-item {
@@ -1083,6 +1109,26 @@ Fixes generalres
     
     .products-associated .product-card .ax-info-list {
         text-align: left;
+    }
+    
+    .tab-content {
+        padding: 20px 0;
+    }
+    
+    .module-giftlist-administrar .col-md-12, .module-giftlist-administrar .col-md-4, .module-giftlist-administrar .col-md-6 {
+        padding: 5px 10px;
+    }
+    
+    #frmSaveList label {
+        padding: 0.5rem 0 0.2rem 0;
+    }
+    
+    #frmSaveList .nav-tabs li a {
+        font-size: 0.9rem;
+    }
+    
+    #frmSaveList div.uploader span.action {
+        font-size: 0.8rem;
     }
     
 }
