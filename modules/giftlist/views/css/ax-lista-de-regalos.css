@@ -1036,6 +1036,7 @@ Fixes generalres
     
     .ax-text-result-list {
         margin: 10px 0;
+        padding: 10px 30px;
     }
     
     .module-giftlist-descripcion .ax-cont-list .ax-item {
