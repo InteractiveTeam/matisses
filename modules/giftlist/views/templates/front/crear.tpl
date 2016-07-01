@@ -11,7 +11,7 @@
 
 <form id="frmSaveList" role="form" action="" method="post" enctype="multipart/form-data">
     <h1>{l s='Crear lista de regalos' mod='giftlist'}</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+    <p class="ax-text-pp-create">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
     <div>
 
       <!-- Nav tabs -->
@@ -22,7 +22,7 @@
       </ul>
 
       <!-- Tab panes -->
-      <div class="tab-content">
+      <div class="tab-content row">
         <div data-tab-id="1" role="tabpanel" class="tab-pane active" id="step-1">
             <div class="col-md-4">
                 <h3>{l s='Información del evento' mod='giftlist'}</h3>
@@ -63,7 +63,7 @@
                             {l s='December' mod='giftlist'}
                         *}
                     <label>{l s='Fecha del evento' mod='giftlist'}<sup>*</sup></label>
-                    <div class="col-md-4">
+                    <div class="col-md-4 ax-date-event">
                         <select id="months" name="months" class="form-control">
                             <option value="">{l s='Mes' mod='giftlist'}</option>
                             {foreach from=$months key=k item=month}
@@ -71,7 +71,7 @@
                             {/foreach}
                         </select>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 ax-date-event">
                         <select id="days" name="days" class="form-control">
                             <option value="">{l s='Día' mod='giftlist'}</option>
                             {foreach from=$days item=day}
@@ -79,7 +79,7 @@
                             {/foreach}
                         </select>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 ax-date-event">
                         <select id="years" name="years" class="form-control">
                             <option value="">{l s='Año' mod='giftlist'}</option>
                             {for $i=$year to $limit}
@@ -208,7 +208,7 @@
                 <div class="col-md-6">
                     <div class="checkbox">
 					   <label>
-                        {l s='Recibir bono'}
+                        <span>{l s='Recibir bono'}</span>
                         <input type="checkbox" id="recieve_bond">
 					   </label>
 				    </div>
@@ -220,12 +220,20 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="radio-inline">
-					   <label>
-                        {l s='Tipo de lista' mod='giftlist'}
-                        <input type="radio" id="list_type" name="list_type" value="1">{l s='Público' mod='giftlist'}
-                        <input type="radio" id="list_type" name="list_type" value="0">{l s='Privado' mod='giftlist'}
-					   </label>
+                    <div class="form-group gender-line">
+                        <h3>{l s='Tipo de lista' mod='giftlist'}</h3>
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" id="list_type" name="list_type" value="1" checked="checked">
+                                {l s='Público' mod='giftlist'}
+                            </label>
+                        </div>
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" id="list_type" name="list_type" value="0">
+                                {l s='Privado' mod='giftlist'}
+                            </label>
+                        </div>
 				    </div>
                 </div>
                 <div class="col-md-6">

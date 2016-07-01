@@ -637,19 +637,135 @@ Fixes generalres
 #frmSaveList .nav-tabs {
     padding: 0;
     margin: 0;
+    border: none;
+}
+
+#frmSaveList .nav-tabs>span {
+    z-index: 2;
 }
 
 #frmSaveList .nav-tabs li a {
-    background: #5e534d;
-    color: #ffd594;
     font-size: 1.4rem;
     font-weight: 600;
     letter-spacing: 0.05rem;
     border: none;
-    padding: 10px 90px;
+    padding: 10px 89.8px;
     margin: 0;
 }
 
+#frmSaveList .nav-tabs li.active a, #frmSaveList div.uploader span.action {
+    background: #5e534d;
+    color: #ffd594;
+}
+
+#frmSaveList div.uploader span.action {
+    font-family: serif;
+    font-weight: 700;    
+}
+
+#frmSaveList .nav-tabs li a span {
+    display: none;
+}
+
+#frmSaveList .nav-tabs li.active a span {
+    display: block;
+}
+
+#frmSaveList .nav-tabs li.active .ax-text-result-list .after-line {
+    border-right-color: #f6f6f6 !important;
+}
+
+#frmSaveList .nav-tabs li.active .ax-text-result-list .before-line {
+    border-left-color: #f6f6f6 !important;
+}
+
+#frmSaveList .nav-tabs>li>a:hover, #frmSaveList .nav-tabsli>a:focus {
+    background-color: inherit;
+    color: #636363;
+}
+
+#frmSaveList .nav-tabs li.active a:hover {
+    background: #5e534d;
+    color: #ffd594;
+}
+
+.ax-text-pp-create {
+    padding: 40px;
+}
+
+.tab-content {
+    border: #ccc solid 1px;
+    margin: 0;
+    padding: 20px;
+    border-top: 0;
+}
+
+.tab-content *, #frmSaveList h3 {
+    font-family: serif;
+    text-transform: inherit;
+    color: #464646;
+}
+
+#frmSaveList h3 {
+    padding-bottom: 10px;
+    border-bottom: #ccc solid 1px;
+    font-weight: 700;
+    margin: 0;
+}
+
+#frmSaveList label {
+    font-weight: 700;
+    padding: 1rem 0 0.2rem 0;
+}
+
+#frmSaveList label sup {
+    color: #ffd594;
+}
+
+#frmSaveList input, #frmSaveList .chosen-container a, #frmSaveList  textarea {
+    background: #f8f8f8;
+    border: #dbdbdb solid 1px;
+    padding: 6px 12px;
+}
+
+#frmSaveList .chosen-container span {
+    color:#a2a2a2;
+    font-family: serif;
+    font-weight: 100;
+    line-height: 30px;
+}
+
+#frmSaveList div.uploader span.filename {
+    line-height: 38px;
+}
+
+#frmSaveList .btn.btn-default.btn-lista-regalos {
+    float: right;
+    margin: 16px;
+}
+
+#frmSaveList .radio-inline {
+    display: block;
+}
+
+#frmSaveList .radio-inline+.radio-inline {
+    margin-left: 0;
+}
+
+#frmSaveList .radio-inline,
+        .checkbox-inline {
+        padding-left: 0;
+    }
+    #frmSaveList .radio span {
+        border: 3px solid #5e534d;
+        width: 0.9375rem;
+        height: 0.9375rem;
+    }
+    #frmSaveList div.radio span.checked:before {
+        width: 0.5625rem;
+        height: 0.5625rem;
+        background: #5e534d;
+    }
 
 @media screen and (max-width:1024px) {
      
@@ -756,6 +872,12 @@ Fixes generalres
     
     .module-giftlist-descripcion .parrilla-productos .btn-lista-regalos {
         margin: 20px 0 0 25px;
+    }
+    
+    .module-giftlist-administrar .ax-date-event {
+        width: 33.3%;
+        float: left;
+        margin: 10px 0;
     }
 
 }
