@@ -1952,9 +1952,6 @@
 
 @media screen and (max-width :768px) {
 
-	#header{
-		position: fixed;
-	}
 	    
     #slider .bx-controls.bx-has-pager {
         bottom: 15%;
