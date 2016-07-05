@@ -3617,6 +3617,11 @@
 @media screen and (max-width :320px) {
 
 
+	#homepage-slider .bx-wrapper .bx-pager.bx-default-pager a {
+	    background: #eee;
+	}
+
+
 	#widget .title {
 	    padding-right: 85px;
 	}
