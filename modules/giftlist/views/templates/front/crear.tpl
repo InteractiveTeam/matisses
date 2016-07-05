@@ -99,7 +99,7 @@
                     <div class="col-md-6">
                         <label for="country">{l s='País' mod='giftlist'}<sup>*</sup></label>
                         <select id="country" name="country" class="form-control ax-select">
-                            <option value="0">{l s='Seleccione una opción' mod='giftlist'}</option>
+                            <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
                             <option value="1">{l s='COLOMBIA' mod='giftlist'}</option>
                         </select>
                     </div>
@@ -112,7 +112,7 @@
                     <div class="col-md-6">
                         <label for="town">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
                         <select id="city" name="city" class="form-control ax-select">
-                            <option value="0">{l s='Seleccione una opción' mod='giftlist'}</option>
+                            <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
                             {foreach from=$countries item=c}
                                 <option value="{$c.id_country}">{$c.name}</option>
                             {/foreach}
@@ -121,14 +121,14 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="tel">{l s='Télefono' mod='giftlist'}<sup>*</sup></label> 
+                        <label for="tel">{l s='Teléfono' mod='giftlist'}<sup>*</sup></label> 
                         <input type="text" class="form-control" name="tel" id="tel">
                     </div>
                     <div class="col-md-6">
                         <div class="required town unvisible">
                             <label for="city">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
                             <select id="town" name="town" class="form-control ax-select">
-                                <option value="0">{l s='Seleccione una opción' mod='giftlist'}</option>
+                                <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
                             </select>
 			            </div>
                     </div>
@@ -157,11 +157,11 @@
         <div data-tab-id="2" role="tabpanel" class="tab-pane" id="step-2">
             <div class="row">
                 <div class="col-md-6">
-                    <label for="image-prof">{l s='Seleccione foto de perfil' mod='giftlist'}</label>
+                    <label for="image-prof">{l s='Selecciona una foto de perfil' mod='giftlist'}</label>
                     <input type="file" class="up-img" name="image-prof" id="image-prof">
                 </div>
                 <div class="col-md-6">
-                    <label for="image-p">{l s='Seleccione foto de portada' mod='giftlist'}</label>
+                    <label for="image-p">{l s='Selecciona una foto de portada' mod='giftlist'}</label>
                     <input type="file" class="up-img" name="image-p" id="image-p">
                 </div>
             </div>
@@ -216,7 +216,7 @@
                 </div>
                 <div class="col-md-6 hidden" id="ammount_div">
                     <label for="min_ammount">{l s='Monto mínimo' mod='giftlist'}<sup>*</sup></label>
-                    <input type="number" class="form-control" name="min_ammount" id="min_ammount">
+                    <input type="number" class="form-control" name="min_ammount" id="min_ammount" step="20000">
                 </div>
             </div>
             <div class="row">
