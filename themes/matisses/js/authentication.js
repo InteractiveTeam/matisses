@@ -22,28 +22,133 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
-$(document).ready(function(){
+var userToken = {};
 
+$(document).ready(function(){
+    
+    validateToken();
+    
 	$(document).on('submit', '#create-account_form', function(e){
 		e.preventDefault();
-		submitFunction();
+        validateEmailSap($('#email_create').val());
+		//submitFunction();
 	});
 	$('.is_customer_param').hide();
 
 });
 
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+    vars[key] = value;
+    });
+    return vars;
+}
 
+function removeParam(key, sourceURL) {
+    var rtn = sourceURL.split("?")[0],
+        param,
+        params_arr = [],
+        queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
+    if (queryString !== "") {
+        params_arr = queryString.split("&");
+        for (var i = params_arr.length - 1; i >= 0; i -= 1) {
+            param = params_arr[i].split("=")[0];
+            if (param === key) {
+                params_arr.splice(i, 1);
+            }
+        }
+        rtn = rtn + "?" + params_arr.join("&");
+    }
+    return rtn;
+}
 
+function validateToken() {
+    var token = getUrlVars()["skey"];
+    
+    if(token) {
+        
+        $.ajax({
+            type: 'POST',
+            url: baseUri+'modules/registerwithsap/validatetoken.php',
+            cache: false,
+            async: true,
+            dataType : "json",
+            data: 
+            {
+                token: token
+            },
+            success: function(data)
+            {
+                if (data.token.exits) {
+                    userToken = data.token.user;
+                    submitFunction(data.token.user.email);
+                } else {
+                    $('#create_account_error').html('<ol><li>La clave ha expirado.</li></ol>').show();
+                }
+            },
+            error: function(data)
+            {
+                console.log(data);
+            }
+        });
+    }
+}
 
-function submitFunction()
+function validateEmailSap(email) {
+    
+    $('#create_account_error').html('').hide();	
+    $('#successNotification').empty();
+    
+    $.ajax({
+		type: 'POST',
+		url: baseUri+'modules/registerwithsap/validatewithsap.php',
+		async: true,
+		cache: false,
+		dataType : "json",
+		data: 
+		{
+			email: email
+		},
+		success: function(jsonData)
+		{
+			if (jsonData.trueProcess.response) {
+                $('#successNotification').html('<div class="alert alert-success"><li>Hemos enviado un link de verificación a tu correo</li></div></br>').show();   
+            } 
+            else if (jsonData.failSend.response) {
+                console.log('Error al enviar el correo'+jsonData);
+                submitFunction(email);
+            }
+            else if (jsonData.errorToken.response) {
+                console.log('Error al generar la clave'+jsonData);
+                submitFunction(email);
+            }
+            else if (jsonData.notExistSap.response) {
+                submitFunction(email);
+            }
+            else if (jsonData.emailFalse.response) {
+                $('#create_account_error').html('<ol><li>El correo no es válido</li></ol>').show();
+            } else {
+                console.log('Error general'+jsonData);
+                submitFunction(email);
+            }
+		},
+		error: function(data)
+		{
+			console.log(data);
+            submitFunction(email);
+		}
+	});
+}
+
+function submitFunction(email)
 {
-	$('#create_account_error').html('').hide();
-	
+	$('#create_account_error').html('').hide();	
 
 	$.ajax({
 		type: 'POST',
 		url: baseUri,
-		async: true,
+        async: true,
 		cache: false,
 		dataType : "json",
 		data: 
@@ -51,7 +156,7 @@ function submitFunction()
 			controller: 'authentication',
 			SubmitCreate: 1,
 			ajax: true,
-			email_create: $('#email_create').val(),
+			email_create: email,
 			back: $('input[name=back]').val(),
 			token: token
 		},
@@ -72,8 +177,7 @@ function submitFunction()
 				$('#center_column').html('<div id="noSlide">' + $('#center_column').html() + '</div>');
 				$('#noSlide').fadeOut('slow', function()
 				{
-					
-					$('#noSlide').html(jsonData.page);
+					$('#noSlide').html(jsonData.page);                    
 					$(this).fadeIn('slow', function()
 					{
 						if (typeof bindUniform !=='undefined')
@@ -82,6 +186,81 @@ function submitFunction()
 							bindStateInputAndUpdate();
 						document.location = '#account-creation';
 					});
+                    
+                    if (userToken) {
+                        setTimeout(function(){
+                            if (userToken.gender) { 
+                                $('#noSlide .radio-inline').find('#uniform-id_gender'+userToken.gender+' span').addClass('checked');
+                            }
+                            if (userToken.names) { 
+                                $('#noSlide #customer_firstname').val(userToken.names.split(' ')[0]); 
+                                $('#noSlide #customer_secondname').val(userToken.names.split(' ')[1]);
+                            }
+                            if (userToken.id) { 
+                                $('#noSlide #customer_charter').val(userToken.id.split('CL')[0]);
+                            }
+                            if (userToken.lastName1) { 
+                                $('#noSlide #customer_lastname').val(userToken.lastName1);
+                            }
+                            if (userToken.lastName2) { 
+                                $('#noSlide #customer_surname').val(userToken.lastName2);
+                            }
+                            if (userToken.email) { 
+                                $('#noSlide #email').val(userToken.email);
+                            }
+                            
+                            if (userToken.birthDate) {
+                                var birthdate = userToken.birthDate.split('-');
+                                var months = {01 : 'Enero', 02: 'Febrero',  03: 'Marzo',
+                                              04: 'Abril',  05: 'Mayo',     06: 'Junio', 
+                                              07: 'Julio',  08: 'Agosto',   09: 'Septiembre', 
+                                              10: 'Octubre',11: 'Noviembre',12: 'Diciembre'};
+
+                                $('#days_chosen span').text(birthdate[2]);
+                                $('#days option[value='+birthdate[2]+']').attr('selected',true);
+
+                                $('#days_chosen').click(function() {
+                                   $('#days_chosen .chosen-results .active-result').each(function() {
+                                        $(this).removeClass('result-selected');
+
+                                        if ($(this).text().trim() == birthdate[2]) {
+                                            $(this).addClass('result-selected');
+                                            $('#days_chosen .chosen-single span').text($(this).text().trim());
+                                        }  
+                                    }); 
+                                });
+
+                                $('#months_chosen span').text(months[parseInt(birthdate[1])]);
+                                $('#months option[value='+parseInt(birthdate[1])+']').attr('selected',true);
+
+                                $('#months_chosen').click(function(i, val) {
+                                   $('#months_chosen .chosen-results .active-result').each(function() {
+                                        $(this).removeClass('result-selected');
+
+                                        if ($(this).text().trim() == months[parseInt(birthdate[1])]) {
+                                            $(this).addClass('result-selected');
+                                            $('#months_chosen .chosen-single span').text($(this).text().trim());
+                                        }  
+                                    }); 
+                                });
+
+                                $('#years_chosen span').text(birthdate[0]);
+                                $('#years option[value='+parseInt(birthdate[0])+']').attr('selected',true);
+
+                                $('#years_chosen').click(function() {
+                                   $('#years_chosen .chosen-results .active-result').each(function() {
+                                        $(this).removeClass('result-selected');
+
+                                        if ($(this).text().trim() == birthdate[0]) {
+                                            $(this).addClass('result-selected');
+                                            $('#years_chosen .chosen-single span').text($(this).text().trim());
+                                        }  
+                                    }); 
+                                });   
+                            }
+                            
+                        }, 800);
+                    }
 				});
 			}
 		},

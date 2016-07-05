@@ -480,7 +480,7 @@ class AuthControllerCore extends FrontController
 				// New Guest customer
 				$customer->is_guest = (Tools::isSubmit('is_new_customer') ? !Tools::getValue('is_new_customer', 1) : 0);
 				$customer->active = 1;
-
+                
 				if (!count($this->errors))
 				{
 					if ($customer->add())
@@ -490,8 +490,19 @@ class AuthControllerCore extends FrontController
 								$this->errors[] = Tools::displayError('The email cannot be sent.');
 
 						$this->updateContext($customer);
-
 						$this->context->cart->update();
+                        
+                        Hook::exec('createOrders', array(
+								'idcustomer' => $customer->id,
+                                'firstname' => $customer->firstname,
+                                'secondname' => $customer->secondname,
+                                'lastname' => $customer->lastname,
+                                'surname' => $customer->surname,
+                                'email' => $customer->email,
+                                'charter' => $customer->charter,
+                                'securekey' => $customer->secure_key
+							));
+                        
 						Hook::exec('actionCustomerAccountAdd', array(
 								'_POST' => $_POST,
 								'newCustomer' => $customer
