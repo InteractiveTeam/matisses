@@ -110,7 +110,7 @@
                         <input type="text" class="form-control" name="lastname" id="lastname" value="{$cookie->customer_lastname}">
                     </div>
                     <div class="col-md-6">
-                        <label for="city">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
+                        <label for="town">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
                         <select id="city" name="city" class="form-control ax-select">
                             <option value="0">{l s='Seleccione una opción' mod='giftlist'}</option>
                             {foreach from=$countries item=c}
@@ -126,7 +126,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="required town unvisible">
-                            <label for="town">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
+                            <label for="city">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
                             <select id="town" name="town" class="form-control ax-select">
                                 <option value="0">{l s='Seleccione una opción' mod='giftlist'}</option>
                             </select>

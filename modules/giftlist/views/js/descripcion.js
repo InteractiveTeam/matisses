@@ -115,6 +115,20 @@ $(document).ready(function() {
     $("body").on('submit','#share-email',function(e){
 		callAjaxSend(e);
 	});
+    
+    $(".ax-list-edit").click(function(){
+        $(".delete-product").removeClass('hidden');
+        $(".delete-product").parent().addClass('ax-edit-list');
+        $(".ax-finish-edit").removeClass('hidden');
+        $(this).addClass("hidden");
+    });
+    
+    $(".ax-finish-edit").click(function(){
+        $(".delete-product").addClass('hidden');
+        $(".delete-product").parent().removeClass('ax-edit-list');
+        $(".ax-list-edit").removeClass('hidden');
+        $(this).addClass("hidden");
+    });
 });
 
 function uploadImage(prof,input){

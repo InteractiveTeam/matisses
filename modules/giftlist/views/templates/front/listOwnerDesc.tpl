@@ -83,21 +83,21 @@
         <div class="ax-text-result-list ax-result-inline">
         <h2>{l s='Añadir productos' mod='giftlist'}</h2>
         </div>
-        
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <div class="owl-carousel">
             {foreach item=cat from=$cats}
                 {if $cat.id_parent == 3}
                 {assign var="cat_img" value="/img/c/{$cat.id}-categories_home.jpg"}
                 <div class="item">
-                {assign var="first" value=0}
-
-                    {if file_exists($cat_img)} 
-                        <img class="replace-2x" src="{$cat_img}" alt="" />
-                    {else}
-                        <img class="replace-2x" src="/img/c/nl-default-categories_home.jpg" alt="" />
-                    {/if}
-                    <p>{$cat.name}</p>
+                    {assign var="first" value=0}
+                    <a href="/{$cat.id_category}-{$cat.link_rewrite}">
+                        {if file_exists($cat_img)} 
+                            <img class="replace-2x" src="{$cat_img}" alt="" />
+                        {else}
+                            <img class="replace-2x" src="/img/c/nl-default-categories_home.jpg" alt="" />
+                        {/if}
+                        <p>{$cat.name}</p>
+                    </a>
                 </div>
                 {/if}
             {/foreach}
@@ -110,7 +110,8 @@
          <h2>{l s='Mi lista' mod='giftlist'}</h2>
         </div>
 		
-        <a href="javascript::void(0);">{l s='Editar lista' mod='giftlist'}</a>
+        <a href="javascript:void(0);" class="ax-list-edit">{l s='Editar lista' mod='giftlist'}</a>
+        <a href="javascript:void(0);" class="ax-finish-edit hidden">{l s='Terminar edición' mod='giftlist'}</a>
 		<div class="row">
             <div class="product-card col-md-3" data-id="{$list_desc['id']}">
                 <img src="{$modules_dir}/giftlist/views/img/details-lista.png">
@@ -132,7 +133,7 @@
                         {/foreach}
                     <p>{l s='Cantidad:'} {$row['group']->wanted}</p>
                     </div>
-                    <a class="delete-product" data-toggle="tooltip" data-placement="bottom" title="Quitar producto"><i class="fa fa-close"></i></a>
+                    <a class="delete-product hidden" data-toggle="tooltip" data-placement="bottom" title="Quitar producto"><i class="fa fa-close"></i></a>
                 </div>
             {/foreach}
 		</div>
