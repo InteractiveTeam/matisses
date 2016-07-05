@@ -4,59 +4,59 @@
 
 <div>
 	<div id="frmAddGiftList">
-		<h2>Añadir producto</h2>
-		<div class="container">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="lists">Listas</label> <select
-						id="lists" >
-						<option value="0">--Seleccione--</option> 
-						{foreach from=$list item=row}
-						<option value="{$row['id']}">{$row['name']}</option> 
-						{/foreach}
-					</select>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="checkbox">
-					<label>¿Agrupar?<input type="checkbox" id="group">
-					</label>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="cant">Cantidad
-					<input type="number" id="cant" placeholder="Cantidad">
-					</label>
-				</div>
-			</div>
-			<div class="col-md-6" style="display: none;" id="group-options">
-				<div class="form-group">
-					<label for="cant_group">Cantidad por grupo
-					<input type="number" id="cant_group" placeholder="Cantidad">
-					</label>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="message">Mensaje</label>
-					<textarea id="message"></textarea>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="checkbox">
-					<label>¿favorito?<input type="checkbox" id="fav">
-					</label>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<button class="btn btn-success pull-right" id="add-list">Añadir</button>
-		</div>
+		<h2 class="page-subheading">Añadir producto</h2>
+            <div class="col-md-6">
+                <div class="cont">
+                    <div class="form-group">
+                        <label for="lists"><span>Listas</span><select
+                            id="lists" class="form-control">
+                            <option value="0">--Seleccione--</option> 
+                            {foreach from=$list item=row}
+                            <option value="{$row['id']}">{$row['name']}</option> 
+                            {/foreach}
+                        </select>
+                        </label>
+                    </div>
+                </div>
+                <div class="cont">
+                    <div class="form-group">
+                        <label for="cant"><span>Cantidad</span>
+                        <input type="number" id="cant" placeholder="Cantidad">
+                        </label>
+                    </div>
+                </div>
+                <div class="cont">
+                    <div class="form-group">
+                        <label for="message"><span>Mensajes</span>
+                            <textarea id="message"></textarea>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="cont">
+                    <div class="checkbox">
+                        <label>¿Agrupar?<input type="checkbox" id="group">
+                        </label>
+                    </div>
+                </div>
+                <div class="cont" style="display: none;" id="group-options">
+                    <div class="form-group">
+                        <label for="cant_group">Cantidad por grupo
+                        <input type="number" id="cant_group" placeholder="Cantidad">
+                        </label>
+                    </div>
+                </div>
+                <div class="cont">
+                    <div class="checkbox">
+                        <label>¿favorito?<input type="checkbox" id="fav">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="cont btn-list-regalos">
+                <button class="btn button btn btn-default btn-red" id="add-list">Añadir</button>
+            </div>
 	</div>
 </div>
 
@@ -73,8 +73,8 @@
 		</div>
 	</div>
 	<div class="col-md-12">
-		<a class="keep-buy btn btn-default pull-left">Continuar comprando</a>
-		<a href="javascript:void(0)" class="see-list btn btn-default pull-right">Ver listas de regalos</a>
+		<a class="keep-buy btn button btn btn-default btn-red">Continuar comprando</a>
+		<a href="javascript:void(0)" class="see-list btn btn-default btn-red pull-right">Ver listas de regalos</a>
 	</div>
 </div>
 {literal}

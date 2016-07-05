@@ -595,7 +595,7 @@ Fixes generalres
     color: #fff;
 }
 
-.products-associated .product-card .ax-favorite {
+.products-associated .product-card i.fa-heart.ax-favorite {
     color: #e10025;
 }
 
