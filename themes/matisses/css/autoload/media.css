@@ -3616,6 +3616,16 @@
 
 @media screen and (max-width :320px) {
 
+
+	#widget .title {
+	    padding-right: 85px;
+	}
+
+	#widget .item {
+	    padding: 0px 10px;
+	}
+
+
 	li#search{
 		right: 90%;
 		top: 0;
