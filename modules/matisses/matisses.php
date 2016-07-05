@@ -1060,7 +1060,7 @@ class matisses extends Module
                 $priceRefer = null;
                 
                 if (isset($objPrice['price']) && !empty($objPrice['price'])) {
-                    $priceRefer = explode(".",$objectPrice['price']);   
+                    $priceRefer = explode(".",$objPrice['price']);   
                 } else {
                     $priceRefer = $price;
                 }
