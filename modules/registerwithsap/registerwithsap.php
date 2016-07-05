@@ -125,27 +125,29 @@ class registerWithSap extends Module
                                 if ($item['quantity'] != 0) {
                                     $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
                                     
-                                    /*if (empty($prod)) {
+                                    if (empty($prod)) {
                                         $prodsap = $mat->wsmatisses_getInfoProduct($item['itemCode'], true);
                                         $modeloSAP = $prodsap['model'];
                                         include_once dirname(__FILE__).'/../matisses/productos.php';
                                         $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
                                         $product = new Product($prod[0]['id_product']);
                                         $product->quantity = $product->quantity+1;
+                                        $product->active = true;
                                         $product->update();
                                         $cart->updateQty($item['quantity'], $prod[0]['id_product']);    
                                     } else {
                                         $product = new Product($prod[0]['id_product']);
                                         $product->quantity = $product->quantity+1;
+                                        $product->active = true;
                                         $product->update();
                                         $cart->updateQty($item['quantity'], $prod[0]['id_product']);   
-                                    }*/
-                                    if (!empty($prod)) {
+                                    }
+                                    /*if (!empty($prod)) {
                                         $product = new Product($prod[0]['id_product']);
                                         $product->quantity = $product->quantity+1;
                                         $product->update();
                                         $cart->updateQty($item['quantity'], $prod[0]['id_product']);
-                                    }
+                                    }*/
                                 } else {
                                     unset($cart);
                                 }
@@ -154,27 +156,29 @@ class registerWithSap extends Module
                             if ($ordersap['items']['quantity'] != 0) {
                                 $prod = Product::searchByName($cart->id_lang, $ordersap['items']['itemCode']);
                                     
-                                /*if (empty($prod)) {
+                                if (empty($prod)) {
                                     $prodsap = $mat->wsmatisses_getInfoProduct($ordersap['items']['itemCode'], true);
                                     $modeloSAP = $prodsap['model'];
                                     include_once dirname(__FILE__).'/../matisses/productos.php';
                                     $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
                                     $product = new Product($prod[0]['id_product']);
                                     $product->quantity = $product->quantity+1;
+                                    $product->active = true;
                                     $product->update();
                                     $cart->updateQty($item['quantity'], $prod[0]['id_product']);     
                                 } else {
                                     $product = new Product($prod[0]['id_product']);
                                     $product->quantity = $product->quantity+1;
+                                    $product->active = true;
                                     $product->update();
                                     $cart->updateQty($ordersap['items']['quantity'], $prod[0]['id_product']);   
-                                }*/
-                                if (!empty($prod)) {
+                                }
+                                /*if (!empty($prod)) {
                                     $product = new Product($prod[0]['id_product']);
                                     $product->quantity = $product->quantity+1;
                                     $product->update();
                                     $cart->updateQty($ordersap['items']['quantity'], $prod[0]['id_product']);   
-                                }
+                                }*/
                             } else {
                                unset($cart);
                             }
