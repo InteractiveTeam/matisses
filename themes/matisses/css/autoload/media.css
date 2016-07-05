@@ -3616,6 +3616,21 @@
 
 @media screen and (max-width :320px) {
 
+
+	#homepage-slider .bx-wrapper .bx-pager.bx-default-pager a {
+	    background: #eee;
+	}
+
+
+	#widget .title {
+	    padding-right: 85px;
+	}
+
+	#widget .item {
+	    padding: 0px 10px;
+	}
+
+
 	li#search{
 		right: 90%;
 		top: 0;
