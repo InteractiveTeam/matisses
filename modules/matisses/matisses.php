@@ -1055,7 +1055,6 @@ class matisses extends Module
             foreach($allrefer as $refer) {
                 
                 $hexcolor = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'attribute WHERE id_attribute = "'.$refer['id_attribute'].'"');
-                
                 $objPrice = $getPrice->getByProductId($prod->id,$refer['id_product_attribute']);
                 $priceRefer = null;
                 
