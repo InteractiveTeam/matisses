@@ -1,7 +1,7 @@
 <?php
 
 class giftlistadministrarModuleFrontController extends ModuleFrontController {
-    public $uploadDir =_PS_UPLOAD_DIR_."giftlist/" ;
+    public $uploadDir = _PS_UPLOAD_DIR_."giftlist/";
     
     public function initContent() {
 		if(!$this->context->customer->isLogged()){
@@ -31,7 +31,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 			if(!empty(Tools::getValue("method"))){
 				switch(Tools::getValue("method")){
 					case "saveList":
-						$this->_saveList(Tools::getValue("form"),Tools::getValue("img"));
+						$this->_saveList();
 						break;
 				}
 			}
@@ -61,39 +61,75 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 	 * upload image from list
 	 * @return boolean|string|NULL
 	 */
-	private function _uploadImage($id = 0){
-		if ($_FILES['image']['name'] != '') {
-			$file = Tools::fileAttachment('image');
+    private function _uploadImage($id, $prof, $pname){
+		if ($_FILES[$pname]['name'] != '') {
+			$file = Tools::fileAttachment($pname);
 			$sqlExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
 			$mimeType = array('image/png', 'image/x-png','image/jpeg','image/gif');
 			if(!$file || empty($file) || !in_array($file['mime'], $mimeType))
 				return false;
 			else {
-				move_uploaded_file($file['tmp_name'], $this->uploadDir . $id. ".". $sqlExtension);
-				$image_name = $id. ".". $sqlExtension;
-			}
-			return isset($image_name) ?_PS_UPLOAD_DIR_."giftlist/" . $image_name : false;
-		}
-		return false;
-	}
-    private function _uploadProfileImage($id = 0){
-		if ($_FILES['profile_img']['name'] != '') {
-			$file = Tools::fileAttachment('profile_img');
-			$sqlExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
-			$mimeType = array('image/png', 'image/x-png','image/jpeg','image/gif');
-			if(!$file || empty($file) || !in_array($file['mime'], $mimeType))
-				return false;
-			else {
-				move_uploaded_file($file['tmp_name'], $this->uploadDir ."prof_".$id. ".". $sqlExtension);
-				$image_name = "prof_".$id. ".". $sqlExtension;
+				move_uploaded_file($file['tmp_name'], $this->uploadDir . ($prof ? "prof_" : "") . $id. ".". $sqlExtension);
+                $image_name = ($prof ? "prof_" : "") . $id. ".". $sqlExtension;
+                $sql = "UPDATE "._DB_PREFIX_."gift_list SET ". ($prof ? "profile_img":"image") .' = "/upload/giftlist/'.$image_name.'" WHERE id = '.$id;
+                Db::getInstance()->execute($sql);
 			}
 			@unlink($file);
-			return isset($image_name) ?_PS_UPLOAD_DIR_."giftlist/" . $image_name : false;
+			return isset($image_name) ? "/upload/giftlist/" . $image_name : false;
 		}
 		return false;
 	}
     
-    private function _saveList($form,$img){
-        //Tools::redirect($this->context->link->getModuleLink('giftlist', 'descripcion',array("url" => $list->url)));
+    private function _saveList(){
+        $c = CountryCore::getCountries($this->context->language->id);
+        parse_str($_POST['form'],$data);
+        $li = new GiftListModel();
+        $r = $li->getListBySlug($data['url']);
+        if(!empty($r))
+            die(
+                Tools::jsonEncode(array(
+                    'msg' => $this->module->l('Ya existe una lista con la url ingresada'),
+                    'error' => 1
+                ))
+            );
+        
+        $li->id_creator = $this->context->customer->id;
+        $li->id_cocreator = 0;
+        $li->code = $li->returnCode();
+        $li->name = $data['name'];
+        $li->public = ($data['list_type'] == 1 ? true : false);
+        $li->event_type = $data['event_type'];
+        $li->event_date = date("Y-m-d",strtotime($data['years']."-".$data['months']."-".$data['days']));
+        $li->guest_number = $data['guest_number'];
+        $li->url = $data['url'];
+        $li->message = $data['message'];
+        $li->recieve_bond = $data['recieve_bond'] == 'on' ? true : false;
+        $li->min_amount = $data['min_ammount'];
+        $li->address_before = $data['dir_before'];
+        $li->address_after = $data['dir_after'];
+        $li->real_not = $data['real_not'] == 'on' ? true : false;
+        $li->cons_not = $data['cons_not'] == 'on' ? true : false;
+        $li->info_creator = Tools::jsonEncode(array(
+            'firstname' => $data['firstname'],
+            'lastname' => $data['lastname'],
+            'country' => 'Colombia',
+            'city' => ucfirst(strtolower($c[$data['city']]['name'])),
+            'town' => ucfirst(strtolower($data['town'])),
+            'address' => $data['address'],
+            'address_2' => $data['address_2'],
+            'tel' => $data['tel'],
+        ));
+        if($li->add()){
+            $li->created_at = date("Y-m-d");
+            $li->image = $this->_uploadImage($li->id, false, 'image-p');
+            $li->profile_img = $this->_uploadImage($li->id, true, 'image-prof');
+            $li->update();
+            die(
+                Tools::jsonEncode(array(
+                    'url' => $this->context->link->getModuleLink('giftlist', 'descripcion',array("url" => $li->url)),
+                    'error' => 0
+                ))
+            );
+        }
 	}
 }

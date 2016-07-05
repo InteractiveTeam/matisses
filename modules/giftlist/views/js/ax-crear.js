@@ -108,10 +108,10 @@ var ax_admin = {
         }));
         for(i = 0; i < states.length; i++){
             $('#town').append($('<option>', {
-                value: states[i].id_state,
+                value: states[i].name,
                 text: states[i].name
             }));
-            $("#town_chosen .chosen-drop .chosen-results").append('<li class="active-result" data-option-array-index="'+states[i].id_state+'">'+states[i].name+'</li>');
+            $("#town_chosen .chosen-drop .chosen-results").append('<li class="active-result" data-option-array-index="'+states[i].name+'">'+states[i].name+'</li>');
         }
     },
     prevTab: function(){
@@ -124,24 +124,29 @@ var ax_admin = {
         if(!ax_admin.form.form())
             return;
         var data = new FormData();
-        $.each(input[0].files, function(i, file) {
-            data.append('file-'+i, file);
+        $.each($("#image-p")[0].files, function(i, file) {
+            data.append('image-p', file);
         });
-        var formData = $("#frmSaveList").serializeArray();
+        $.each($("#image-prof")[0].files, function(i, file) {
+            data.append('image-prof', file);
+        });
+        var formData = $("#frmSaveList").serialize();
+        data.append("form",formData);
+        data.append("ajax",true);
+        data.append("method",'saveList');
         $.ajax({
             type: 'POST',
             async: false,
             cache: false,
             contentType: false,
             processData: false,
-            data:{
-                form:formData,
-                img: data,
-                ajax:true,
-                method:'saveList'
-            },
+            data:data,
             success: function(res){
-                console.log(res);
+                res = JSON.parse(res);
+                if(res.error === "1")
+                    console.log(res.msg);
+                else
+                    window.location.href = res.url;
             }
         });
     },

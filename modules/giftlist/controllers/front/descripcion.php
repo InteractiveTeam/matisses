@@ -40,7 +40,6 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			'all_link' => $this->context->link->getModuleLink('giftlist', 'listas'),
 			'admin_link' => $this->context->link->getModuleLink('giftlist', 'administrar',array("url" => Tools::getValue('url'))),
 			'address' => Tools::jsonDecode($res['info_creator']),
-			'address_cocreator' => $res['info_cocreator'] == "" ? "''" :  $res['info_cocreator'],
 			'form' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/form_save_list.php",
 			'form_edit' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/form_edit_list.php",
 			'form_cocreator' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/cocreator_info.php",

@@ -28,6 +28,8 @@ class GiftListModel extends ObjectModel
 	public $updated_at;
     public $context;
     public $validated;
+    public $real_not;
+    public $cons_not;
 
 	public static $definition = array(
 		'table' => 'gift_list',
@@ -53,6 +55,8 @@ class GiftListModel extends ObjectModel
 			'address_before' => array('type' => self::TYPE_STRING, 'size' => 100),
 			'address_after' => array('type' => self::TYPE_STRING, 'size' => 100),
             'validated' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
+            'real_not' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
+            'cons_not' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
 			'created_at' => array('type' => self::TYPE_DATE),
 			'updated_at' => array('type' => self::TYPE_DATE)
 		)
@@ -115,7 +119,7 @@ class GiftListModel extends ObjectModel
 	public function returnCode($id = 0, $edit = false){
 		if(!$edit){
 			do {
-				$code = $this->_generateCode();
+				$code = $this->_generateCode(8,true,true,false,false);
 				$sql = "SELECT count(code) AS cant FROM "._DB_PREFIX_."gift_list WHERE `code` = '". $code."';'";
 				$cant = Db::getInstance()->executeS($sql);
 			} while (!$cant && $cant[0]['cant'] > 0);

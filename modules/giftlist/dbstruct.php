@@ -62,6 +62,8 @@ class DBStruct extends Module
 			`address_before` VARCHAR(100) NOT NULL,
 			`address_after` VARCHAR(100) NOT NULL,
             `validated` TINYINT(1),
+            `real_not` TINYINT(1),
+            `cons_not` TINYINT(1),
 			`created_at` DATETIME NOT NULL,
 			`updated_at` DATETIME NOT NULL,
 	  	    PRIMARY KEY (`id`, `event_type`,`id_creator`),

@@ -70,19 +70,11 @@
         <div class="row">
             <div class="col-md-4">
             <p class="ax-title">{l s='Antes del evento' mod='giftlist'}</p>
-            {if $list_desc['address_before'] == "creator"}
-               <p>{$address->address} {$address->town}, {$address->country}</p>
-            {else}
-                <p>{$address_cocreator->address} {$address_cocreator->town}, {$address_cocreator->country}</p>
-            {/if}
+               <p>{$list_desc['address_before']} {$address->town} {$address->city}, {$address->country}</p>
             </div>
             <div class="col-md-4">
             <p class="ax-title">{l s='Despúes del evento' mod='giftlist'}</p>
-            {if $list_desc['address_after'] == "creator"}
-               <p>{$address->address} {$address->town}, {$address->country}</p>
-            {else}
-                <p>{$address_cocreator->address} {$address_cocreator->town}, {$address_cocreator->country}</p>
-            {/if}
+            <p>{$list_desc['address_after']} {$address->town} {$address->city}, {$address->country}</p>
             </div>
         </div>
     </div>
@@ -157,10 +149,5 @@
 <script type="text/javascript" src="{/literal}{$modules_dir}{literal}giftlist/views/js/listOwner.js"></script>
 {/literal}
 </div>
-{literal}
-<script type="text/javascript">
-	var  address_cocreator = {/literal}{$address_cocreator}{literal};
-</script>
-{/literal}
 
 

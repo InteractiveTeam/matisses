@@ -158,11 +158,11 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="image-prof">{l s='Seleccione foto de perfil' mod='giftlist'}</label>
-                    <input type="file" name="image-prof" id="image-prof">
+                    <input type="file" class="up-img" name="image-prof" id="image-prof">
                 </div>
                 <div class="col-md-6">
                     <label for="image-p">{l s='Seleccione foto de portada' mod='giftlist'}</label>
-                    <input type="file" name="image-p" id="image-p">
+                    <input type="file" class="up-img" name="image-p" id="image-p">
                 </div>
             </div>
             <div class="row">
@@ -210,7 +210,7 @@
                     <div class="checkbox">
 					   <label>
                         <span>{l s='Recibir bono' mod='giftlist'}</span>
-                        <input type="checkbox" id="recieve_bond">
+                        <input type="checkbox" id="recieve_bond" name="recieve_bond">
 					   </label>
 				    </div>
                 </div>
@@ -238,7 +238,7 @@
 				    </div>
                 </div>
                 <div class="col-md-6">
-                    <label for="url">{l s='Url' mod='giftlist'}<sup>*</sup></label>
+                    <label for="url">{l s='URL' mod='giftlist'}<sup>*</sup></label>
                     <input type="text" class="form-control" name="url" id="url">
                 </div>
             </div>
