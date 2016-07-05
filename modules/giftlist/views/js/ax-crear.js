@@ -75,6 +75,12 @@ var ax_admin = {
                 ax_admin.saveList();
             });
             
+            $("a[role=tab]").on('shown.bs.tab',function(){
+                var tab = $(".tab-pane.active").attr("data-tab-id");
+                $(this).parent().removeClass("active");
+                $("#step"+tab).addClass("active");
+            });
+            
             $("#cocreator").click(function(){
                 if($(this).attr('checked') == "checked")
                     $("#cocreator-div").removeClass("hidden");
