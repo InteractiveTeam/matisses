@@ -235,6 +235,9 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	* @return boolean|string|NULL
 	*/
 	private function _uploadImage($id, $prof){
+        if (!is_dir($this->uploadDir)) {
+            mkdir($this->uploadDir);         
+        }
         $prof = ($prof == "true" ? true : false);
 		if ($_FILES['file-0']['name'] != '') {
 			$file = Tools::fileAttachment('file-0');

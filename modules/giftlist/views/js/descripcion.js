@@ -106,10 +106,12 @@ $(document).ready(function() {
         $(".ax-message").append(textdiv);
     });
     $("#ax-prof-up").change(function(){
-        uploadImage(true,$(this));
+        if($(this).val() !== "")
+            uploadImage(true,$(this));
     });
     $("#ax-cover-up").change(function(){
-        uploadImage(false,$(this));
+        if($(this).val() !== "")
+            uploadImage(false,$(this));
     });
     
     $("body").on('submit','#share-email',function(e){
