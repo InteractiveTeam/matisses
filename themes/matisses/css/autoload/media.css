@@ -3617,7 +3617,8 @@
 @media screen and (max-width :320px) {
 
 
-	#homepage-slider .bx-wrapper .bx-pager.bx-default-pager a {
+
+	#homepage-slider .bx-controls .bx-pager-item .bx-pager-link {
 	    background: #eee;
 	}
 
