@@ -3615,6 +3615,14 @@
 }
 
 @media screen and (max-width :320px) {
+
+	li#search{
+		right: 75%;
+		top: 0;
+		vertical-align: top;
+	}
+	 
+
     #new-products_block_right .products-block .bx-viewport .product_list.grid .product-container {
         width: 290px !important;
     }
