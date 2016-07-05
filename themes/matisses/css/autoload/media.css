@@ -3543,9 +3543,9 @@
         display: none;
     }
     
-    /*.menu-right #cart {
+    .menu-right #cart {
         background: url("../../img/shopping-rp.png") center 36% no-repeat transparent;
-    }*/
+    }
     
     .primary_block .pb-left-column #views_block {
         height: 4.5rem;
