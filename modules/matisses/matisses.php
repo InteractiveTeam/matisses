@@ -1050,9 +1050,20 @@ class matisses extends Module
                 }
             }
             
+            $getPrice = new SpecificPrice();
+            
             foreach($allrefer as $refer) {
                 
                 $hexcolor = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'attribute WHERE id_attribute = "'.$refer['id_attribute'].'"');
+                
+                $objPrice = $getPrice->getByProductId($prod->id,$refer['id_product_attribute']);
+                $priceRefer = null;
+                
+                if (isset($objPrice['price']) && !empty($objPrice['price'])) {
+                    $priceRefer = explode(".",$objectPrice['price']);   
+                } else {
+                    $priceRefer = $price;
+                }
                 
                 $xml .= '<item>
                         <g:item_group_id>'.$prod->id.'</g:item_group_id>
@@ -1064,12 +1075,13 @@ class matisses extends Module
                         <g:image_link>http://'.$link->getImageLink($prod->link_rewrite[1], (int)$images[0]["id_image"], "large_default").'</g:image_link>
                         <g:condition>'.$prod->condition.'</g:condition>
                         <g:availability>'.$stock.'</g:availability>
-                        <g:price>'.$price[0].'</g:price>
+                        <g:price>'.$priceRefer[0].'</g:price>
                         <g:gtin>0</g:gtin>
                         <g:brand>'.$marca.'</g:brand>
                         <g:custom_label_0>'.$hexcolor[0]['color'].'</g:custom_label_0>
                     </item>';   
             }
+            
         }
         
         $xml .= '</channel></rss>';       
@@ -1493,10 +1505,11 @@ class matisses extends Module
         return $result;
 	}
 	
-	public function wsmatissess_getReferencesByModel($params){        
+	public function wsmatissess_getReferencesByModel($params, $all = false){        
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), array("trace"=>1,"exceptions"=>0)); 
 		$inventoryItemDTO['inventoryItemDTO']['model'] 		= $params;
+		$inventoryItemDTO['inventoryItemDTO']['includeAll']	= $all;
 		
 		$inventoryItemDTO 	= self::array_to_xml($inventoryItemDTO,false);
 		$s 			= array('genericRequest' => array('data'		=>$inventoryItemDTO,
@@ -1914,11 +1927,12 @@ class matisses extends Module
 		return true;	
 	}
 	
-	public function wsmatisses_getInfoProduct($reference)
+    public function wsmatisses_getInfoProduct($reference, $includeAll = false)
 	{
 		ini_set('display_errors',false);	
 		require_once dirname(__FILE__)."/classes/template.php";
 		$data['inventoryItemDTO']['itemCode'] = $reference;
+		$data['inventoryItemDTO']['includeAll'] = $includeAll;
 		$datos 		= $this->wsmatisses_get_data('inventoryItem','getItemInfo','prestashop',$this->array_to_xml($data,false));
 		return $datos['inventoryItemDTO']; 
 	}
