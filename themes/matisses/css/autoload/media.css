@@ -3543,9 +3543,9 @@
         display: none;
     }
     
-    /*.menu-right #cart {
+    .menu-right #cart {
         background: url("../../img/shopping-rp.png") center 36% no-repeat transparent;
-    }*/
+    }
     
     .primary_block .pb-left-column #views_block {
         height: 4.5rem;
@@ -3617,7 +3617,7 @@
 @media screen and (max-width :320px) {
 
 	li#search{
-		right: 75%;
+		right: 90%;
 		top: 0;
 		vertical-align: top;
 	}
@@ -3696,7 +3696,7 @@
     }
     
 }
-
+/* iPhone 6 portrait */
 /* iPhone 6 portrait */
 @media only screen
   and (min-device-width: 375px)
