@@ -14,7 +14,13 @@
 </form>
 
 <div class="ax-text-result-list ax-details-list">
-    <p>{l s='Resultados para' mod='giftlist'} <span>{Tools::getValue('name')} {Tools::getValue('lastname')}</span></p>
+    <p>{l s='Resultados para' mod='giftlist'} 
+    {if empty(Tools::getValue('code'))}
+        <span>{Tools::getValue('name')} {Tools::getValue('lastname')}</span>
+    {else}
+        <span>{Tools::getValue('code')}</span>
+    {/if}
+    </p>
 </div>
 
 <div id="lists" class="ax-cont-list">
