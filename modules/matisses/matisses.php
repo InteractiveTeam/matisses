@@ -1055,13 +1055,17 @@ class matisses extends Module
             foreach($allrefer as $refer) {
                 
                 $hexcolor = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'attribute WHERE id_attribute = "'.$refer['id_attribute'].'"');
-                $objPrice = $getPrice->getByProductId($prod->id,$refer['id_product_attribute']);
-                $priceRefer = null;
                 
-                if (isset($objPrice['price']) && !empty($objPrice['price'])) {
-                    $priceRefer = explode(".",$objPrice['price']);   
-                } else {
-                    $priceRefer = $price;
+                $objPrice = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'specific_price WHERE id_product = "'.$prod->id.'"');
+                $priceRefer = $price[0];
+                
+                if (!empty($objPrice)) {
+                    foreach ($objPrice as $obprices) {
+                        if ($obprices['id_product_attribute'] == $refer['id_product_attribute']) {
+                            $pricereference = explode(".",$obprices['price']);
+                            $priceRefer = $pricereference[0];
+                        } 
+                    }
                 }
                 
                 $xml .= '<item>
@@ -1074,7 +1078,7 @@ class matisses extends Module
                         <g:image_link>http://'.$link->getImageLink($prod->link_rewrite[1], (int)$images[0]["id_image"], "large_default").'</g:image_link>
                         <g:condition>'.$prod->condition.'</g:condition>
                         <g:availability>'.$stock.'</g:availability>
-                        <g:price>'.$priceRefer[0].'</g:price>
+                        <g:price>'.$priceRefer.'</g:price>
                         <g:gtin>0</g:gtin>
                         <g:brand>'.$marca.'</g:brand>
                         <g:custom_label_0>'.$hexcolor[0]['color'].'</g:custom_label_0>
