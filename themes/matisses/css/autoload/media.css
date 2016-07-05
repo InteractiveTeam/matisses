@@ -3621,6 +3621,10 @@
 		top: 0;
 		vertical-align: top;
 	}
+
+	#widget .pagination-wrapper {
+		margin: 15px auto 0 auto;
+	}
 	 
 
     #new-products_block_right .products-block .bx-viewport .product_list.grid .product-container {
