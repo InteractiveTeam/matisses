@@ -1034,5 +1034,6 @@ function getInfoCombinations(ids){
             }
         }
     });
+    console.log(ids);
     return ids;
 }
