@@ -154,13 +154,8 @@ $(document).ready(function() {
     });
     
     $(".ax-finish-edit").click(function(){
-        $(".delete-product").addClass('hidden');
-        $(".delete-product").parent().removeClass('ax-edit-list');
-        $(".ax-list-edit").removeClass('hidden');
-        $(this).addClass("hidden");
         var val = $("#min_amount").val();
         min_amount = val;
-        $(".ax-bond-value").removeClass("hidden");
         $.ajax({
             type: 'POST',
             data: {
@@ -170,10 +165,14 @@ $(document).ready(function() {
                 'value': val
             },
             success: function(){
-                console.log('ok');
+                $(".delete-product").addClass('hidden');
+                $(".delete-product").parent().removeClass('ax-edit-list');
+                $(".ax-list-edit").removeClass('hidden');
+                $(".ax-finish-edit").addClass("hidden");
+                $(".ax-bond-value").removeClass("hidden");
+                $(".ax-bond-cont").remove();
             }
         });
-        $(".ax-bond-cont").remove();
     }); 
     
     $("#ax-delete").click(function(){
