@@ -75,6 +75,14 @@ var ax_admin = {
                 ax_admin.saveList();
             });
             
+            $("#ax-img-prof").click(function(){
+                $("#image-prof").trigger("click");
+            });
+            
+            $("#ax-img").click(function(){
+                $("#image-p").trigger("click");
+            });
+            
             $("a[role=tab]").on('shown.bs.tab',function(){
                 var tab = $(".tab-pane.active").attr("data-tab-id");
                 $(this).parent().removeClass("active");

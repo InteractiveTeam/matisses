@@ -36,7 +36,8 @@
                 <img class="ax-cover-img" src="{if !empty($list_desc['image'])}{$list_desc['image']}{else}{$modules_dir}/giftlist/views/img/banner.jpg{/if}" width="920" height="300">
             </div>
             <div class="ax-cover-buttons">
-                <input type="file" id="ax-cover-up" />
+                <a href="javascript:void(0);" id="ax-img">{l s='Selecciona una foto de portada' mod='giftlist'}</a>
+                <input type="file" id="ax-cover-up" class="hidden"/>
                 <a href="javascript:void(0);" id="ax-cover-delete">{l s='Eliminar imagen' mod='giftlist'}</a>
             </div>
         </div>
@@ -45,7 +46,8 @@
                 <img class="ax-profile-img" width="180" src="{if !empty($list_desc['image'])}{$list_desc['profile_img']}{else}{$modules_dir}/giftlist/views/img/avatar.png{/if}">
             </div>
             <div class="ax-prof-buttons">
-                <input type="file" id="ax-prof-up" />
+                <a href="javascript:void(0);" id="ax-img-prof">{l s='Selecciona una foto de perfil' mod='giftlist'}</a>
+                <input type="file" id="ax-prof-up" class="hidden"/>
                 <a href="javascript:void(0);" id="ax-prof-delete">{l s='Eliminar imagen' mod='giftlist'}</a>
             </div>
         </div>

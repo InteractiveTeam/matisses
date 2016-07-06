@@ -1,6 +1,14 @@
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
     
+    $("#ax-img-prof").click(function(){
+        $("#ax-prof-up").trigger("click");
+    });
+
+    $("#ax-img").click(function(){
+        $("#ax-cover-up").trigger("click");
+    });
+    
     $('.owl-carousel').owlCarousel({
         loop:true,
         margin:10,

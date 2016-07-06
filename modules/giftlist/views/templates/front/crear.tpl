@@ -157,12 +157,16 @@
         <div data-tab-id="2" role="tabpanel" class="tab-pane" id="step-2">
             <div class="row">
                 <div class="col-md-6">
-                    <label for="image-prof">{l s='Selecciona una foto de perfil' mod='giftlist'}</label>
-                    <input type="file" class="up-img" name="image-prof" id="image-prof">
+                    <a href="javascript:void(0);" id="ax-img-prof">{l s='Selecciona una foto de perfil' mod='giftlist'}</a>
+                    <div class="hidden">
+                        <input type="file" class="up-img" name="image-prof" id="image-prof">
+                    </div>
                 </div>
                 <div class="col-md-6">
-                    <label for="image-p">{l s='Selecciona una foto de portada' mod='giftlist'}</label>
-                    <input type="file" class="up-img" name="image-p" id="image-p">
+                    <a href="javascript:void(0);" id="ax-img">{l s='Selecciona una foto de portada' mod='giftlist'}</a>
+                    <div class="hidden">
+                        <input type="file" class="up-img" name="image-p" id="image-p">
+                    </div>
                 </div>
             </div>
             <div class="row">
