@@ -164,7 +164,7 @@
 			{if $product->online_only}
 				<p class="online_only">{l s='Online only'}</p>
 			{/if}
-			<h1 itemprop="name">{$product->itemname|escape:'html':'UTF-8'}</h1>
+			<h1 itemprop="name" class="titleProduct">{$product->itemname|escape:'html':'UTF-8'}</h1>
             <li id="product_reference"{if empty($product->reference) || !$product->reference} style="display: none;"{/if}>
 				<label>{l s='Referencia:'} </label>
 				<span class="editable" itemprop="sku">{if !isset($groups)}{hook h="actionMatChangeReference" reference=$product->reference}{/if}</span>

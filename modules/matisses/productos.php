@@ -179,7 +179,11 @@
 										
 						// teindas disponibles por combinacion				
 						Db::getInstance()->update('product_attribute', 
-											array('available' => $_Combination['stock']['WarehouseCode']), 
+											array('available' => $_Combination['stock']['WarehouseCode'],
+                                                 'garantias'=> $_Combination['materials'],
+                                                  'itemname'=> $_Combination['itemName'],
+                                                  'short_description'=> $_Combination['description']
+                                            ), 
 											'id_product_attribute = '.(int)$id_product_attribute
 										);
 						
@@ -209,7 +213,11 @@
 							Db::getInstance()->insert('product_attribute_combination', $attributes_list);
 							// teindas disponibles por combinacion
 							Db::getInstance()->update('product_attribute', 
-											array('available' => $_Combination['stock']['WarehouseCode']), 
+											array('available' => $_Combination['stock']['WarehouseCode'],
+                                                  'garantias'=> $_Combination['materials'],
+                                                  'itemname'=> $_Combination['itemName'],
+                                                  'short_description'=> $_Combination['description']
+                                                 ), 
 											'id_product_attribute = '.(int)$id_product_attribute
 										);
 						 }
