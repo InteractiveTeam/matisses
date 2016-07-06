@@ -103,7 +103,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
         $li->event_type = $data['event_type'];
         $li->event_date = date("Y-m-d",strtotime($data['years']."-".$data['months']."-".$data['days']));
         $li->guest_number = $data['guest_number'];
-        $li->url = $data['url'];
+        $li->url = $li->slugify($data['url']);
         $li->message = $data['message'];
         $li->recieve_bond = $data['recieve_bond'] == 'on' ? true : false;
         $li->min_amount = $data['min_ammount'];
@@ -125,6 +125,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
             $li->created_at = date("Y-m-d");
             $li->image = $this->_uploadImage($li->id, false, 'image-p');
             $li->profile_img = $this->_uploadImage($li->id, true, 'image-prof');
+            $li->id_cocreator = $li->setCoCreator($li->id,$data['email_co']);
             $li->update();
             die(
                 Tools::jsonEncode(array(

@@ -238,12 +238,13 @@ class GiftListModel extends ObjectModel
                 Db::getInstance()->update('email_cocreator',array(
                     'email' => $email
                 ),'id_list = '. $id);
-            }{
+            }else{
                 Db::getInstance()->insert('email_cocreator',array(
                     'id_list' => $id,
                     'email' => $email
                 ));
             }
+            return 0;
         }
 	}
 
