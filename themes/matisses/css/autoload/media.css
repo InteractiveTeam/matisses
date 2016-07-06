@@ -2194,7 +2194,6 @@
     
     #page .header-container .main_panel {
         min-height: 0;
-        margin-bottom: 63px;
         z-index: 99;
     }
     
@@ -3615,17 +3614,16 @@
 }
 
 @media screen and (max-width :320px) {
+    
 
-
-
-	#homepage-slider .bx-controls .bx-pager-item .bx-pager-link {
-	    background: #eee;
+    
+	#homepage-slider .bx-pager.bx-default-pager{
+        margin: 10px 0;
 	}
-
-
-	#widget .title {
-	    padding-right: 85px;
-	}
+    
+    #header .main_panel {
+        margin-bottom: 5px;
+    }
 
 	#widget .item {
 	    padding: 0px 10px;
@@ -3633,7 +3631,6 @@
 
 
 	li#search{
-		right: 90%;
 		top: 0;
 		vertical-align: top;
 	}
@@ -3667,7 +3664,20 @@
 }
 
 /* iPhone 6 landscape */
-@media screen and (max-width: 375px) { 
+@media screen and (max-width: 375px) {
+    
+    #menu.menu-experiencias {
+        top: 8.9375rem;
+    }
+    
+    
+	#homepage-slider .bx-pager.bx-default-pager{
+        margin: 10px 0;
+	}
+    
+    li#search {
+        top: 0;
+    }
 
     #menu-left .menu-content > li > a {
         padding: 28px 0 12px 3rem;
@@ -3679,7 +3689,6 @@
     
     #page .header-container .main_panel {
         height: 58px;
-        margin-bottom: 19px;
     }
     
     #header_logo {
@@ -3714,6 +3723,83 @@
     .newsletter-footer .newsletter-input {
         width: 100%;
     }
+
+    
+}
+
+
+@media screen and (max-width: 414px){
+    
+    
+    #menu.menu-experiencias {
+        top: 8.9375rem;
+        width: 100%;
+    }
+
+    .left-down-menu #menu #wishlist, .left-down-menu #menu #giftlist {
+        margin: 0 auto;
+        width: 40%;
+        display: block;
+    }
+    
+
+    .fb_iframe_widget {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .form-group .habeas.cf > p {
+        float: left;
+        width: 85%;
+        font-size: 1rem;
+        margin-top: -14px;
+        text-align: left;
+
+    }
+    
+    
+    .newsletter-footer .newsletter-input {
+        border-right: 1px solid #fff;
+        border-left: 1px solid #fff;
+        width: 95%;
+        padding: 0 0;
+    }
+    
+    .menuFooterRp {
+        margin: 0;
+        width: 100%;
+    }
+
+
+    .menuFooterRp li {
+        width: 50%;
+        display: inline-block;
+    }
+
+    .menuFooterRp li:nth-child(even) {
+        text-align: right;
+    }
+
+    .menuFooterRp li a {
+        border: none;
+        font-size: 1.15rem;
+        padding: 1rem 0;
+    }
+    
+    .header-container .menu-left .menu-experiencias li a {
+        font-size: 1.1rem;
+    }
+
+    .left-down-menu #menu #giftlist{
+        display: none;
+    }
+
+    li#search {
+        top: 0;
+    }
+
+    
     
 }
 /* iPhone 6 portrait */
