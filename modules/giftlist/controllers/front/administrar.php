@@ -62,6 +62,9 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 	 * @return boolean|string|NULL
 	 */
     private function _uploadImage($id, $prof, $pname){
+        if (!is_dir($this->uploadDir)) {
+            mkdir($this->uploadDir);         
+        }
 		if ($_FILES[$pname]['name'] != '') {
 			$file = Tools::fileAttachment($pname);
 			$sqlExtension = pathinfo($file['name'], PATHINFO_EXTENSION);

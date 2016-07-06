@@ -93,6 +93,21 @@ $(document).ready(function() {
  			}
 	});
     
+    $(".ax-edit-address").fancybox({
+			'autoSize'      :   false,
+			'height'        :   'auto',
+			'width'			:    600,
+			'transitionIn'	:	'elastic',
+			'transitionOut'	:	'elastic',
+			'speedIn'		:	600,
+			'speedOut'		:	200,
+			'overlayShow'	:	false,
+            afterShow  :   function() {
+				validateAddressForm();
+                $("#mount").attr("min",$("#min_amount").val());
+ 			}
+	});
+    
     $("#ax-edit").click(function(){
         var mc = $("#ax-message-content");
         var m = mc.text();
@@ -106,16 +121,68 @@ $(document).ready(function() {
         $(".ax-message").append(textdiv);
     });
     $("#ax-prof-up").change(function(){
-        uploadImage(true,$(this));
+        if($(this).val() !== "")
+            uploadImage(true,$(this));
     });
     $("#ax-cover-up").change(function(){
-        uploadImage(false,$(this));
+        if($(this).val() !== "")
+            uploadImage(false,$(this));
+    });
+    
+    $("#ax-prof-delete").click(function(){
+        deleteImage("1",$(this));
+    });
+    
+    $("#ax-cover-delete").click(function(){
+        deleteImage("0",$(this));
     });
     
     $("body").on('submit','#share-email',function(e){
 		callAjaxSend(e);
 	});
+    
+    $(".ax-list-edit").click(function(){
+        $(".delete-product").removeClass('hidden');
+        $(".delete-product").parent().addClass('ax-edit-list');
+        $(".ax-finish-edit").removeClass('hidden');
+        $(this).addClass("hidden");
+    });
+    
+    $(".ax-finish-edit").click(function(){
+        $(".delete-product").addClass('hidden');
+        $(".delete-product").parent().removeClass('ax-edit-list');
+        $(".ax-list-edit").removeClass('hidden');
+        $(this).addClass("hidden");
+    }); 
+    
+    $("#ax-delete").click(function(){
+        deleteMsg();
+    });
+    
+    setTown($("#city option:selected").val());
+    $("#town").trigger("chosen:updated");
+    
+    $("#city").on('change',function(){
+        setTown($("#city option:selected").val());
+        $("#town").trigger("chosen:updated");
+    });
+    
+    $(".ax-save").on('click',saveAddress);
 });
+
+function deleteMsg(){
+    $.ajax({
+        type: 'POST',
+        data: {
+            'ajax':true,
+            'method':"deleteMsg",
+            'id_list': $(".products-associated").attr('data-id')
+        },
+        success: function(){
+        $("#ax-message-content").text("");
+        }
+    });
+}
 
 function uploadImage(prof,input){
     var data = new FormData();
@@ -135,13 +202,53 @@ function uploadImage(prof,input){
         processData: false,
         success: function(res){
             var today = new Date();
-            console.log(res+"?"+today.getTime());
             if(prof)
                 $(".ax-profile-img").attr("src",res+"?"+today.getTime());
             else
                 $(".ax-cover-img").attr("src",res+"?"+today.getTime());
         }
     });
+}
+
+function deleteImage(prof){
+    $.ajax({
+        type: 'POST',
+        data: {
+            'ajax':true,
+            'prof':prof,
+            'method':"deleteImage",
+            'id_list': $(".products-associated").attr('data-id')
+        },
+        success: function(res){
+            var today = new Date();
+            if(prof == "1")
+                $(".ax-profile-img").attr("src",res+"?"+today.getTime());
+            else
+                $(".ax-cover-img").attr("src",res+"?"+today.getTime());
+        }
+    });
+}
+
+function saveAddress(){
+}
+
+function setTown(id_state){
+   var states = countries[id_state].states;
+    $("#town").empty().append($('<option>', {
+        value: 0,
+        text: "Seleccione una opción"
+    }));
+    for(i = 0; i < states.length; i++){
+        var op = $('<option>', {
+            value: states[i].name,
+            text: states[i].name,
+        });
+        if(sel_town === states[i].name)
+            op.attr("selected",true);
+        
+        $("#town").append(op);
+        $("#town_chosen .chosen-drop .chosen-results").append('<li class="active-result" data-option-array-index="'+states[i].name+'">'+states[i].name+sel_town+'</li>');
+    }
 }
 
 function saveMessage(){
@@ -177,6 +284,21 @@ function saveMessage(){
         $("#ax-delete").show();
     });
 }
+
+
+function validateAddressForm(){
+    $("#address-form").validate({
+        rules:{
+            firstname:'required',
+            lastname:'required',
+            tel:'required',
+            address:'required',
+            dir_before:'required',
+            dir_after:'required',
+        }
+    });
+}
+
 function validateBondForm(){
 	$("#bond_form").validate({
 		rules:{

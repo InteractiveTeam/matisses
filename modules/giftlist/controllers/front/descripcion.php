@@ -52,6 +52,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
             'days' => $list->getMissingDays($res['event_date']),
             'numberProducts' => $list->getNumberProductsByList($res['id']),
 			'share_list' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/share_email.php",
+            'countries' => CountryCore::getCountries($this->context->language->id),
             'cats' => Category::getCategories( (int)($cookie->id_lang), true, false  )
 		) );
 
@@ -83,6 +84,10 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
                         $this->_saveMessaage(Tools::getValue('id_list'), Tools::getValue('message'));
                     case "uploadImage":
                         $this->_uploadImage(Tools::getValue('id_list'), Tools::getValue('prof'));
+                    case "deleteImage":
+                        $this->_deleteImage(Tools::getValue('id_list'), Tools::getValue('prof'));
+                    case "deleteMsg":
+                        $this->_deleteMsg(Tools::getValue('id_list'));
                     case "share":
 						$this->_shareList();
 				}
@@ -90,6 +95,18 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 		}
 	}
     
+    private function _deleteMsg($id){
+        $sql = "UPDATE "._DB_PREFIX_."gift_list SET message = ''  WHERE id = ".$id;
+        Db::getInstance()->execute($sql);
+    }
+    
+    private function _deleteImage($id,$prof){
+        $li = new GiftListModel($id);
+        $image = ($prof == "1" ? 'avatar.png' : "banner.jpg");
+        $sql = "UPDATE "._DB_PREFIX_."gift_list SET ". ($prof == "1" ? "profile_img":"image") .' = "/modules/giftlist/views/img/'.$image.'"  WHERE id = '.$id;
+        Db::getInstance()->execute($sql);
+        die('/modules/giftlist/views/img/'.$image);
+    }
     private function _saveMessaage($id, $message){
         if(Db::getInstance()->update('gift_list', array('message' => $message),"id = ".$id))
             die(Tools::jsonEncode("Se ha actalizado el mensaje"));
@@ -198,7 +215,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
         *only for cocreator who cannot edit the list
 		* @param int $id
 		*/
-	private function _saveInfoCocreator($id){
+	private function _saveAddress($id){
 		$list = new GiftListModel ($id);
 		$dirC = array(
 			'country' => "Colombia",
@@ -235,6 +252,9 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	* @return boolean|string|NULL
 	*/
 	private function _uploadImage($id, $prof){
+        if (!is_dir($this->uploadDir)) {
+            mkdir($this->uploadDir);         
+        }
         $prof = ($prof == "true" ? true : false);
 		if ($_FILES['file-0']['name'] != '') {
 			$file = Tools::fileAttachment('file-0');

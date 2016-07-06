@@ -66,7 +66,7 @@
         <div class="ax-text-result-list ax-result-inline">
             <h2>{l s='Direcciones' mod='giftlist'}</h2>
         </div>
-        <a href="javascript:void(0);">{l s='Editar direcciones' mod='giftlist'}</a>
+        <a href="#address-form" class="ax-edit-address">{l s='Editar direcciones' mod='giftlist'}</a>
         <div class="row">
             <div class="col-md-4">
             <p class="ax-title">{l s='Antes del evento' mod='giftlist'}</p>
@@ -83,21 +83,21 @@
         <div class="ax-text-result-list ax-result-inline">
         <h2>{l s='Añadir productos' mod='giftlist'}</h2>
         </div>
-        
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <div class="owl-carousel">
             {foreach item=cat from=$cats}
                 {if $cat.id_parent == 3}
                 {assign var="cat_img" value="/img/c/{$cat.id}-categories_home.jpg"}
                 <div class="item">
-                {assign var="first" value=0}
-
-                    {if file_exists($cat_img)} 
-                        <img class="replace-2x" src="{$cat_img}" alt="" />
-                    {else}
-                        <img class="replace-2x" src="/img/c/nl-default-categories_home.jpg" alt="" />
-                    {/if}
-                    <p>{$cat.name}</p>
+                    {assign var="first" value=0}
+                    <a href="/{$cat.id_category}-{$cat.link_rewrite}">
+                        {if file_exists($cat_img)} 
+                            <img class="replace-2x" src="{$cat_img}" alt="" />
+                        {else}
+                            <img class="replace-2x" src="/img/c/nl-default-categories_home.jpg" alt="" />
+                        {/if}
+                        <p>{$cat.name}</p>
+                    </a>
                 </div>
                 {/if}
             {/foreach}
@@ -110,7 +110,8 @@
          <h2>{l s='Mi lista' mod='giftlist'}</h2>
         </div>
 		
-        <a href="javascript::void(0);">{l s='Editar lista' mod='giftlist'}</a>
+        <a href="javascript:void(0);" class="ax-list-edit">{l s='Editar lista' mod='giftlist'}</a>
+        <a href="javascript:void(0);" class="ax-finish-edit hidden">{l s='Terminar edición' mod='giftlist'}</a>
 		<div class="row">
             <div class="product-card col-md-3" data-id="{$list_desc['id']}">
                 <img src="{$modules_dir}/giftlist/views/img/details-lista.png">
@@ -132,15 +133,87 @@
                         {/foreach}
                     <p>{l s='Cantidad:'} {$row['group']->wanted}</p>
                     </div>
-                    <a class="delete-product" data-toggle="tooltip" data-placement="bottom" title="Quitar producto"><i class="fa fa-close"></i></a>
+                    <a class="delete-product hidden" data-toggle="tooltip" data-placement="bottom" title="Quitar producto"><i class="fa fa-close"></i></a>
                 </div>
             {/foreach}
 		</div>
 	</div>
 </div>
 
-<a href="{$share_list}" data-id="{$row['id']}" data-toggle="tooltip" data-placement="bottom" title="{l s='Compartir lista' mod='giftlist'}" class="share-list btn btn-default btn-lista-regalos">{l s='Compartir lista' mod='giftlist'} <span class="icon-mail-forward"></span></a>
+<div id="address-form" style="display:none">
+    <form method="post" id="address-form">
+        <h3>{l s='Información personal' mod='giftlist'}</h3> 
+        <div class="row">
+            <div class="col-md-6">
+                <label for="firstname">{l s='Nombre' mod='giftlist'}<sup>*</sup></label> 
+                <input type="text" class="form-control" name="firstname" id="firstname" value="{$address->firstname}">
+            </div>
+            <div class="col-md-6">
+                <label for="country">{l s='País' mod='giftlist'}<sup>*</sup></label>
+                <select id="country" name="country" class="form-control ax-select">
+                    <option value="1">{l s='COLOMBIA' mod='giftlist'}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="lastname">{l s='Apellido' mod='giftlist'}<sup>*</sup></label> 
+                <input type="text" class="form-control" name="lastname" id="lastname" value="{$address->lastname}">
+            </div>
+            <div class="col-md-6">
+                <label for="town">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
+                <select id="city" name="city" class="form-control ax-select">
+                    <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
+                    {foreach from=$countries item=c}
+                        <option value="{$c.id_country}" {if strtoupper($address->city) == $c.name } selected {/if}>{$c.name}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="tel">{l s='Teléfono' mod='giftlist'}<sup>*</sup></label> 
+                <input type="text" class="form-control" value="{$address->tel}" name="tel" id="tel">
+            </div>
+            <div class="col-md-6">
+                <div class="required town unvisible">
+                    <label for="city">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
+                    <select id="town" name="town" class="form-control ax-select">
+                        <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="address">{l s='Dirección 1' mod='giftlist'}<sup>*</sup></label> <input type="text" id="address" class="form-control" name="address" value="{$address->address}" />
+            </div>
+            <div class="col-md-6">
+                <label for="address_2">{l s='Dirección 2' mod='giftlist'}</label> <input type="text" id="address_2" class="form-control" name="address_2" value="{$address->address_2}" placeholder="{l s='Apto, oficina, interior, bodega...' mod='giftlist'}" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="dir_before">{l s='Antes del evento' mod='giftlist'}<sup>*</sup></label>
+                <input type="text" class="form-control" value="{$list_desc['address_before']}" name="dir_before" id="dir_before">
+            </div>
+            <div class="col-md-6">
+                <label for="dir_after">{l s='Después del evento' mod='giftlist'}<sup>*</sup></label>
+                <input type="text" class="form-control" value="{$list_desc['address_after']}" name="dir_after" id="dir_after">
+            </div>
+        </div>
+        <div class="row">
+            <a href="javascript:void(0);" class="ax-cancel btn btn-default btn-lista-regalos">{l s='Cancelar' mod='giftlist'}</a>
+            <a href="javascript:void(0);" class="ax-save btn btn-default btn-lista-regalos">{l s='Guardar' mod='giftlist'}</a>
+        </div>
+    </form>
+</div>
 
+<a href="{$share_list}" data-id="{$row['id']}" data-toggle="tooltip" data-placement="bottom" title="{l s='Compartir lista' mod='giftlist'}" class="share-list btn btn-default btn-lista-regalos">{l s='Compartir lista' mod='giftlist'} <span class="icon-mail-forward"></span></a>
+{if isset($countries)}
+	{addJsDef countries=$countries}
+    {addJsDef sel_town=strtoupper($address->town)}
+{/if}
 <div class="hidden">
 {literal} 
 <script class="hidden" type="text/javascript"> 
