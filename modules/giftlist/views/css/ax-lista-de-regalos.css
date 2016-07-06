@@ -381,7 +381,7 @@ Fixes generalres
 #ax-cover-container .cont-img {
     overflow: hidden;
     width: 100%;
-    height: 300px;
+     height: 260px;
 }
 
 #ax-cover-container .cont-img img {
@@ -392,6 +392,7 @@ Fixes generalres
 #ax-cover-container {
     text-align: right;
     margin-bottom: 80px;
+    height: 260px;
 }
 
 #ax-cover-container .ax-cover-buttons {
@@ -433,7 +434,7 @@ Fixes generalres
 .ax-avatar-content #ax-prof-container {
     display: block;
     position: absolute;
-    bottom: -8%;
+    bottom: -29%;
     left: 10%;
     width: 192px;
     text-align: center;
@@ -633,6 +634,10 @@ Fixes generalres
     margin: 40px 0 0 25px;
 }
 
+#address-form {
+    
+}
+
 /* crear listas */
 
 #frmSaveList .nav-tabs {
@@ -652,6 +657,10 @@ Fixes generalres
     border: none;
     padding: 10px 89.8px;
     margin: 0;
+}
+
+.ax-avatar-content .ax-prof-buttons div.uploader input {
+    width: 100%;
 }
 
 #frmSaveList .nav-tabs li.active a, #frmSaveList div.uploader span.action {
@@ -772,6 +781,15 @@ Fixes generalres
         width: 100% !important;
     }
 
+a.chosen-single {
+        width: 190px;
+}
+
+.chosen-container-single .chosen-single span {
+    overflow: initial;
+    text-overflow: inherit;
+    white-space: inherit;
+}
 
 @media screen and (max-width:1024px) {
      
