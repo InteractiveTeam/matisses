@@ -92,10 +92,17 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 						$this->_shareList();
                     case "saveAddress":
 						$this->_saveAddress(Tools::getValue('id_list'), Tools::getValue('form'));
+                    case "updateAmount":
+						$this->_updateminAmount(Tools::getValue('id_list'), Tools::getValue('value'));
 				}
 			}
 		}
 	}
+    
+    private function _updateminAmount($id,$val){
+        $sql = "UPDATE "._DB_PREFIX_."gift_list SET min_amount = $val  WHERE id = ".$id;
+        Db::getInstance()->execute($sql);
+    }
     
     private function _deleteMsg($id){
         $sql = "UPDATE "._DB_PREFIX_."gift_list SET message = ''  WHERE id = ".$id;

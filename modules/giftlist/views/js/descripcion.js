@@ -149,6 +149,8 @@ $(document).ready(function() {
         $(".delete-product").parent().addClass('ax-edit-list');
         $(".ax-finish-edit").removeClass('hidden');
         $(this).addClass("hidden");
+        $(".ax-bond-value").addClass("hidden");
+        $(".ax-bond-card").append('<div class="ax-bond-cont"><label for="min_amount">Monto mínimo</label><input type="number" step="20000" min="0" id="min_amount" value="'+min_amount+'" name="min_amount"></div>');
     });
     
     $(".ax-finish-edit").click(function(){
@@ -156,6 +158,22 @@ $(document).ready(function() {
         $(".delete-product").parent().removeClass('ax-edit-list');
         $(".ax-list-edit").removeClass('hidden');
         $(this).addClass("hidden");
+        var val = $("#min_amount").val();
+        min_amount = val;
+        $(".ax-bond-value").removeClass("hidden");
+        $.ajax({
+            type: 'POST',
+            data: {
+                'ajax':true,
+                'method':"updateAmount",
+                'id_list': $(".products-associated").attr('data-id'),
+                'value': val
+            },
+            success: function(){
+                console.log('ok');
+            }
+        });
+        $(".ax-bond-cont").remove();
     }); 
     
     $("#ax-delete").click(function(){

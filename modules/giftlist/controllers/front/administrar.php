@@ -132,6 +132,13 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
                     'error' => 0
                 ))
             );
+        }else{
+           die(
+                Tools::jsonEncode(array(
+                    'msg' => "Hay un error ". Db::getInstance()->getMsgError(),
+                    'error' => 1
+                ))
+            ); 
         }
 	}
 }

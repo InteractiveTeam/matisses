@@ -149,7 +149,7 @@ var ax_admin = {
             data:data,
             success: function(res){
                 res = JSON.parse(res);
-                if(res.error === "1")
+                if(res.error)
                     console.log(res.msg);
                 else
                     window.location.href = res.url;

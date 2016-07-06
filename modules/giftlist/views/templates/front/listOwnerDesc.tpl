@@ -113,9 +113,9 @@
         <a href="javascript:void(0);" class="ax-list-edit">{l s='Editar lista' mod='giftlist'}</a>
         <a href="javascript:void(0);" class="ax-finish-edit hidden">{l s='Terminar edición' mod='giftlist'}</a>
 		<div class="row">
-            <div class="product-card col-md-3" data-id="{$list_desc['id']}">
+            <div class="product-card ax-bond-card col-md-3" data-id="{$list_desc['id']}">
                 <img src="{$modules_dir}/giftlist/views/img/details-lista.png">
-                <span>{l s='Total bonos' mod='giftlist'}: {convertPrice price=$bond['total']}</span> <br>       
+                <span class="ax-bond-value">{l s='Total bonos' mod='giftlist'}: {convertPrice price=$bond['total']}</span> <br>       
             </div>
             {foreach from=$products item=row}
                 {$atribute_group = $row['options'][3]->value}
@@ -213,6 +213,7 @@
 {if isset($countries)}
 	{addJsDef countries=$countries}
     {addJsDef sel_town=strtoupper($address->town)}
+    {addJsDef min_amount=$list_desc['min_amount']}
 {/if}
 <div class="hidden">
 {literal} 
