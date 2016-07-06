@@ -2126,6 +2126,12 @@
         padding: 0 0.225rem;
     }
     
+    #buy_block .box-info-product .elem_butt, .wrap_buttons #btn_gift_list {
+        width: 100%;
+        font-size: 1rem;
+        margin: 5px 0;
+    }
+    
 }
 
 @media screen and (max-width :480px) {

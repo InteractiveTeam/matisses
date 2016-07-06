@@ -1,5 +1,5 @@
 <a id="btn_gift_list" href="#frmAddGiftList" class="btn btn-success">
-	{l s="add to gift list" mod="add to gift list"} <span class="icon-plus"></span>
+	{l s="Agregar a la lista de regalos" mod="giftlist"} <span class="icon-plus"></span>
 </a>
 
 <div>

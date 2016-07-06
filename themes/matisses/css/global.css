@@ -6031,7 +6031,7 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 
 .wrap_buttons #btn_gift_list {
     display: inline-block;
-    margin: 0 9px 0 0;
+    margin: 0 0 0 0;
     text-align: center;
     padding: 0.5rem 10px;
     color: #F00;
@@ -6051,6 +6051,11 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 }
 
 /*modal*/
+
+#frmAddGiftList {
+    width: 618px;
+}
+
 
 #frmAddGiftList label {
     display: inline-block;
@@ -6093,4 +6098,32 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 #frmAddGiftList textarea {
     width: 74%;
     border: #ccc solid 1px;
+}
+
+.fancybox-opened {
+    width: auto !important;
+}
+
+#buy_block .box-info-product .elem_butt {
+    margin: 1.25rem 0.2rem 0 0;
+}
+
+#buy_block .box-info-product .elem_butt {
+    width: 32.5%;
+}
+
+#contentdiv .response {
+    margin-bottom: 20px;
+}
+
+#frmAddGiftList .message {
+    line-height: 1.5rem;
+    padding: 8px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.contentdiv .price {
+    font-family: "condensed";
+    font-size: 2rem;
+    color: #777676;
 }
