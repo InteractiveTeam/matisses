@@ -577,6 +577,7 @@ function updateDisplay()
 	else
 		$('#product_reference:visible').hide('slow');
     
+    console.table(selectedCombination);
     if (selectedCombination['short_description']){
         $("#short_description_content p").text(selectedCombination['short_description']);
     }
