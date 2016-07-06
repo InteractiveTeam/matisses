@@ -577,7 +577,7 @@ function updateDisplay()
 	else
 		$('#product_reference:visible').hide('slow');
     
-    console.log(selectedCombination);
+
     if (selectedCombination['short_description']){
         $("#short_description_content").text(selectedCombination['short_description']);
     }
@@ -1035,6 +1035,5 @@ function getInfoCombinations(ids){
             }
         }
     });
-    console.log(ids);
     return ids;
 }
