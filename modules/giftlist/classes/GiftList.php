@@ -85,7 +85,7 @@ class GiftListModel extends ObjectModel
 	 * @return boolean
 	 */
 	public function updateInfo(){
-		$sql = "UPDATE `"._DB_PREFIX_."gift_list` SET `info_cocreator` = '".$this->info_cocreator."' WHERE `id` = ".$this->id.";";
+		$sql = "UPDATE `"._DB_PREFIX_."gift_list` SET `info_creator` = '".$this->info_creator."',`address_before` = '".$this->address_before."',`address_after` = '".$this->address_after."' WHERE `id` = ".$this->id.";";
 		if(!Db::getInstance()->execute($sql))
 			return false;
 		return true;

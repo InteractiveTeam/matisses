@@ -66,15 +66,15 @@
         <div class="ax-text-result-list ax-result-inline">
             <h2>{l s='Direcciones' mod='giftlist'}</h2>
         </div>
-        <a href="#address-form" class="ax-edit-address">{l s='Editar direcciones' mod='giftlist'}</a>
+        <a href="#address-div" class="ax-edit-address">{l s='Editar direcciones' mod='giftlist'}</a>
         <div class="row">
             <div class="col-md-4">
             <p class="ax-title">{l s='Antes del evento' mod='giftlist'}</p>
-               <p>{$list_desc['address_before']} {$address->town} {$address->city}, {$address->country}</p>
+               <p class="ax_address_bef">{$list_desc['address_before']} {$address->town} {$address->city}, {$address->country}</p>
             </div>
             <div class="col-md-4">
             <p class="ax-title">{l s='Despúes del evento' mod='giftlist'}</p>
-            <p>{$list_desc['address_after']} {$address->town} {$address->city}, {$address->country}</p>
+            <p class="ax_address_af">{$list_desc['address_after']} {$address->town} {$address->city}, {$address->country}</p>
             </div>
         </div>
     </div>
@@ -140,7 +140,7 @@
 	</div>
 </div>
 
-<div id="address-form" style="display:none">
+<div id="address-div" style="display:none">
     <form method="post" id="address-form">
         <h3>{l s='Información personal' mod='giftlist'}</h3> 
         <div class="row">

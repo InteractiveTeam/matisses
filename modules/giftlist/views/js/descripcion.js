@@ -43,6 +43,11 @@ $(document).ready(function() {
 		e.preventDefault();
 		$.fancybox.close();
 	});
+    
+    $(".ax-cancel").on('click', function (e) {
+		e.preventDefault();
+		$.fancybox.close();
+	});
 
 	setTimeout(function() {
 		$("#closeMsg").parent().remove();
@@ -93,6 +98,8 @@ $(document).ready(function() {
  			}
 	});
     
+    validateAddressForm();
+    
     $(".ax-edit-address").fancybox({
 			'autoSize'      :   false,
 			'height'        :   'auto',
@@ -102,10 +109,6 @@ $(document).ready(function() {
 			'speedIn'		:	600,
 			'speedOut'		:	200,
 			'overlayShow'	:	false,
-            afterShow  :   function() {
-				validateAddressForm();
-                $("#mount").attr("min",$("#min_amount").val());
- 			}
 	});
     
     $("#ax-edit").click(function(){
@@ -230,6 +233,25 @@ function deleteImage(prof){
 }
 
 function saveAddress(){
+    var form = $("#address-form").serializeObject();
+    $.ajax({
+        type: 'POST',
+        data: {
+            ajax: true,
+            method: "saveAddress",
+            id_list: $(".products-associated").attr('data-id'),
+            form: form,
+        },
+        success: function(res){
+            res = JSON.parse(res);
+            res.data = JSON.parse(res.data);
+            if(!res.error){
+                $(".ax_address_bef").text(res.a_b + " " + res.data.town + " " + res.data.city +", "+ res.data.country);
+                $(".ax_address_af").text(res.a_a + " " + res.data.town + " " + res.data.city +", "+ res.data.country);
+                $.fancybox.close();
+            }
+        }
+    });
 }
 
 function setTown(id_state){
@@ -287,7 +309,12 @@ function saveMessage(){
 
 
 function validateAddressForm(){
+    $.validator.addMethod("selectRequired",function(value,element){
+        return value != 0;
+    }, "El campo es requerido");
+
     $("#address-form").validate({
+        lang: 'es',
         rules:{
             firstname:'required',
             lastname:'required',
@@ -295,6 +322,9 @@ function validateAddressForm(){
             address:'required',
             dir_before:'required',
             dir_after:'required',
+        },
+        message:{
+            required:"El campo es requerido"
         }
     });
 }

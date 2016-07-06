@@ -43,7 +43,6 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
             _MODULE_DIR_ . '/giftlist/views/js/vendor/datetimepicker/jquery.datetimepicker.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/validation/jquery.validate.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/validation/messages_es.js',
-			_MODULE_DIR_ . '/giftlist/views/js/vendor/mask/jquery.mask.min.js',
             _MODULE_DIR_ . '/giftlist/views/js/ax-crear.js',
             'https://www.google.com/recaptcha/api.js'
 		) );

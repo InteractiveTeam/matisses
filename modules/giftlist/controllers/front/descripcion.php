@@ -90,6 +90,8 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
                         $this->_deleteMsg(Tools::getValue('id_list'));
                     case "share":
 						$this->_shareList();
+                    case "saveAddress":
+						$this->_saveAddress(Tools::getValue('id_list'), Tools::getValue('form'));
 				}
 			}
 		}
@@ -117,14 +119,12 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	public function setMedia() {
 		parent::setMedia ();
 		$this->addJS ( array (
-			_MODULE_DIR_ . '/giftlist/views/js/vendor/datetimepicker/jquery.datetimepicker.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/validation/jquery.validate.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/owl/owl.carousel.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/serializeObject/jquery.serializeObject.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/descripcion.js'
 		) );
 		$this->addCSS ( array (
-			_MODULE_DIR_ . '/giftlist/views/css/vendor/datetimepicker/jquery.datetimepicker.css',
             _MODULE_DIR_ . '/giftlist/views/css/vendor/owl/owl.carousel.css',
 			_MODULE_DIR_ . '/giftlist/views/css/ax-lista-de-regalos.css'
 		) );
@@ -143,8 +143,6 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
         //echo "<pre>";echo print_r($_POST);die("</pre>");
 		if(Tools::isSubmit ('saveList'))
 		$this->_saveList(Tools::getValue("id_list"));
-		else if(Tools::isSubmit('saveInfo'))
-		$this->_saveInfoCocreator(Tools::getValue("id_list"));
 	}
 
 	/**
@@ -215,35 +213,41 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
         *only for cocreator who cannot edit the list
 		* @param int $id
 		*/
-	private function _saveAddress($id){
-		$list = new GiftListModel ($id);
-		$dirC = array(
-			'country' => "Colombia",
-			'city'    => Tools::getValue('city_co'),
-			'town'    => Tools::getValue('town_co'),
-			'address' => Tools::getValue('address_co'),
-			'address_2' => Tools::getValue('address_co_2'),
-			'tel'     => Tools::getValue('tel_co'),
-			'cel'     => Tools::getValue('cel_co')
-		);
-		$list->info_cocreator = Tools::jsonEncode($dirC);
+	private function _saveAddress($id,$data){
+        $c = CountryCore::getCountries($this->context->language->id);
+		$li = new GiftListModel ($id);
+        $li->address_before = $data['dir_before'];
+        $li->address_after = $data['dir_after'];
+		$li->info_creator = Tools::jsonEncode(array(
+            'firstname' => $data['firstname'],
+            'lastname' => $data['lastname'],
+            'country' => 'Colombia',
+            'city' => ucfirst(strtolower($c[$data['city']]['name'])),
+            'town' => ucfirst(strtolower($data['town'])),
+            'address' => $data['address'],
+            'address_2' => $data['address_2'],
+            'tel' => $data['tel'],
+        ));
 		try {
-			if ($list->updateInfo()){
-				$this->context->smarty->assign (array (
+			if ($li->updateInfo()){
+				die( Tools::jsonEncode(array (
 					'response' => _EDITED_,
+                    'data' => $li->info_creator,
+                    'a_b' => $li->address_before,
+                    'a_a' => $li->address_after,
 					'error' => false
-				));
+				)));
 			}
 			else
-				$this->context->smarty->assign (array (
+				die(Tools::jsonEncode(array (
 					'response' => _ERROR_,
 					'error' => true
-				));
+				)));
 		} catch ( Exception $e ) {
-			$this->context->smarty->assign (array (
+			die(Tools::jsonEncode(array (
 				'response' => $e->getMessage(),
 				'error' => true
-			));
+			)));
 		}
 	}
 
