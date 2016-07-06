@@ -202,7 +202,7 @@
                 <input type="text" class="form-control" value="{$list_desc['address_after']}" name="dir_after" id="dir_after">
             </div>
         </div>
-        <div class="row">
+        <div class="row btn-form-address">
             <a href="javascript:void(0);" class="ax-cancel btn btn-default btn-lista-regalos">{l s='Cancelar' mod='giftlist'}</a>
             <a href="javascript:void(0);" class="ax-save btn btn-default btn-lista-regalos">{l s='Guardar' mod='giftlist'}</a>
         </div>

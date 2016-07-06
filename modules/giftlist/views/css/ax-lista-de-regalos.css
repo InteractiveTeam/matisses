@@ -700,7 +700,8 @@ Fixes generalres
 }
 
 .ax-text-pp-create {
-    padding: 40px;
+    padding: 10px 10px 60px 10px;
+    line-height: 1.5rem;
 }
 
 .tab-content {
@@ -738,11 +739,22 @@ Fixes generalres
     padding: 6px 12px;
 }
 
+#frmSaveList .tab-pane .ax-date-event {
+    margin: 0 10px;
+    padding: 0;
+    width: 31.1%;
+}
+
+#frmSaveList .ax-cont-form-date-lista .ax-date-event:first-child, #frmSaveList .ax-cont-form-date-lista .ax-date-event:last-child {
+    margin: 0;
+}
+
 #frmSaveList .chosen-container span {
     color:#a2a2a2;
     font-family: serif;
     font-weight: 100;
     line-height: 30px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #frmSaveList div.uploader span.filename {
@@ -781,8 +793,33 @@ Fixes generalres
         width: 100% !important;
     }
 
-a.chosen-single {
+#address-div a.chosen-single {
         width: 190px;
+}
+
+#address-div .btn-form-address {
+   text-align: center;
+    margin-top: 20px;
+}
+
+.ax-message #changemessage textarea.ax-new-message {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    color: #3b3b3b;
+}
+
+.ax-message #changemessage #ax-save {
+    background: #5e534d;
+    color: #eac78f;
+    border: none;
+    font-family: initial;
+    padding: 8px 25px;
+    letter-spacing: 1.5px;
+}
+
+.ax-message #changemessage #ax-save:hover {
+    background: #3c312a;
 }
 
 .chosen-container-single .chosen-single span {
@@ -1083,6 +1120,10 @@ a.chosen-single {
     
     #ax-cover-container .cont-img {
         height: 200px;
+    }
+    
+    #ax-cover-container .cont-img img {
+        
     }
     
     .ax-avatar-content #ax-prof-container .cont-img {
