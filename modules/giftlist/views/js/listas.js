@@ -79,21 +79,23 @@ $(document).ready(function() {
 	//eliminar
 	$(".delete-list").on('click', function(e){
 		e.preventDefault();
-		$.ajax({
-			url: $(".actions").attr("action"),
-			type: 'POST',
-			data: {
-				ajax: true,
-				method: "delete",
-				id_list: $(this).val()
-			},
-			headers: { "cache-control": "no-cache" },
-			success: function(result){
-				result = JSON.parse(result);
-				alert(result.msg);
-				$("#list-"+result.id).remove();
-			}
-		});
+        if(confirm("¿Estás seguro que deseas eliminar esta lista?")){
+            $.ajax({
+                url: $(".actions").attr("action"),
+                type: 'POST',
+                data: {
+                    ajax: true,
+                    method: "delete",
+                    id_list: $(this).val()
+                },
+                headers: { "cache-control": "no-cache" },
+                success: function(result){
+                    result = JSON.parse(result);
+                    alert(result.msg);
+                    $("#list-"+result.id).remove();
+                }
+            });   
+        }
 	});
 	
 	//compartir

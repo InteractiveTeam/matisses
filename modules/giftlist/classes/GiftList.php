@@ -255,18 +255,22 @@ class GiftListModel extends ObjectModel
 	public function searchByCustomerNames($firstname,$lastname){
 		$return = false;
 		$sql = "SELECT id_customer FROM "._DB_PREFIX_.'customer WHERE
-				firstname LIKE "%'.$firstname.'%" AND lastname LIKE "%'.$lastname.'%";';
+				firstname = "'.$firstname.'" AND lastname = "'.$lastname.'";';
 		$res = Db::getInstance()->executeS($sql);
         $return = array();
+        
 		if(count($res) > 0){
             foreach($res as $row){
                 $sql = "SELECT * FROM "._DB_PREFIX_.'gift_list WHERE id_creator = '. $row['id_customer']
 			     .' OR id_cocreator = '. $row['id_customer'];
                 $ret = Db::getInstance()->executeS($sql);
-                foreach($ret as $list);
-			         array_push($return,$list);
+                for($i = 0; $i < count($ret);$i++){
+                    array_push($return,$ret[$i]);
+                }
             }
 		}
+        
+        
         
         foreach($return as $key => $row){
             $creator = $this->getCreator($row['id_creator']);
