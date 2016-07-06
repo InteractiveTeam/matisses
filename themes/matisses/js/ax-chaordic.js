@@ -1,5 +1,4 @@
 
-// Global variable Chaordic
 var chaordic_meta;
 
 ax = {

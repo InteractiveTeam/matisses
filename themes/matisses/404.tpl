@@ -46,11 +46,9 @@
         </form>
     </div>
 </div>
-<!--Bloque1 Visualizados-->
-	    <div id="displayed-category" class="displayed-category">
-			<div class="container">
-				<!-- Chaordic Bottom -->
-                <div chaordic="bottom"></div>
-			</div>
-	    </div>
-		<!--Fin Bloque1 Visualizados-->
+<div id="displayed-category" class="displayed-category">
+    <div class="container">
+        <div chaordic="bottom"></div>
+    </div>
+</div>
+		

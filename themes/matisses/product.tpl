@@ -456,11 +456,6 @@
 		<!-- end center infos-->
 	</div> <!-- end primary_block -->
 	
-	<div class="ax-showcase-product">
-	    <!--Chaordic Top-->
-	    <div chaordic="top"></div>
-	</div>
-	
 	{if !$content_only}
 		   {if $product->description || $features || $HOOK_PRODUCT_TAB || $attachments}
 			<!-- <div class="row"> -->
@@ -819,16 +814,15 @@
 			{include file="$tpl_dir./product-list.tpl" products=$packItems}
 		</section>
 		{/if}
-		
-            <!--Chaordic Middle-->
-            <div chaordic="middle"></div>		
-		</div>
 	{/if}    
 </div> <!-- itemscope product wrapper -->
-<div class="container">
-    <!--Chaordic Bottom-->
+
+<div class="ax-showcase-product">
+    <div chaordic="top"></div>
+    <div chaordic="middle"></div>		
     <div chaordic="bottom"></div>
 </div>
+
 {strip}
 {if isset($smarty.get.ad) && $smarty.get.ad}
 	{addJsDefL name=ad}{$base_dir|cat:$smarty.get.ad|escape:'html':'UTF-8'}{/addJsDefL}
