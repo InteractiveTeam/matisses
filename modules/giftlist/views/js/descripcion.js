@@ -93,6 +93,21 @@ $(document).ready(function() {
  			}
 	});
     
+    $(".ax-edit-address").fancybox({
+			'autoSize'      :   false,
+			'height'        :   'auto',
+			'width'			:    600,
+			'transitionIn'	:	'elastic',
+			'transitionOut'	:	'elastic',
+			'speedIn'		:	600,
+			'speedOut'		:	200,
+			'overlayShow'	:	false,
+            afterShow  :   function() {
+				validateAddressForm();
+                $("#mount").attr("min",$("#min_amount").val());
+ 			}
+	});
+    
     $("#ax-edit").click(function(){
         var mc = $("#ax-message-content");
         var m = mc.text();
@@ -138,11 +153,21 @@ $(document).ready(function() {
         $(".delete-product").parent().removeClass('ax-edit-list');
         $(".ax-list-edit").removeClass('hidden');
         $(this).addClass("hidden");
-    });
+    }); 
     
     $("#ax-delete").click(function(){
         deleteMsg();
     });
+    
+    setTown($("#city option:selected").val());
+    $("#town").trigger("chosen:updated");
+    
+    $("#city").on('change',function(){
+        setTown($("#city option:selected").val());
+        $("#town").trigger("chosen:updated");
+    });
+    
+    $(".ax-save").on('click',saveAddress);
 });
 
 function deleteMsg(){
@@ -204,6 +229,28 @@ function deleteImage(prof){
     });
 }
 
+function saveAddress(){
+}
+
+function setTown(id_state){
+   var states = countries[id_state].states;
+    $("#town").empty().append($('<option>', {
+        value: 0,
+        text: "Seleccione una opción"
+    }));
+    for(i = 0; i < states.length; i++){
+        var op = $('<option>', {
+            value: states[i].name,
+            text: states[i].name,
+        });
+        if(sel_town === states[i].name)
+            op.attr("selected",true);
+        
+        $("#town").append(op);
+        $("#town_chosen .chosen-drop .chosen-results").append('<li class="active-result" data-option-array-index="'+states[i].name+'">'+states[i].name+sel_town+'</li>');
+    }
+}
+
 function saveMessage(){
     var message = $(".ax-new-message").val();
     $(".ax-new-message").remove();
@@ -237,6 +284,21 @@ function saveMessage(){
         $("#ax-delete").show();
     });
 }
+
+
+function validateAddressForm(){
+    $("#address-form").validate({
+        rules:{
+            firstname:'required',
+            lastname:'required',
+            tel:'required',
+            address:'required',
+            dir_before:'required',
+            dir_after:'required',
+        }
+    });
+}
+
 function validateBondForm(){
 	$("#bond_form").validate({
 		rules:{

@@ -52,6 +52,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
             'days' => $list->getMissingDays($res['event_date']),
             'numberProducts' => $list->getNumberProductsByList($res['id']),
 			'share_list' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/share_email.php",
+            'countries' => CountryCore::getCountries($this->context->language->id),
             'cats' => Category::getCategories( (int)($cookie->id_lang), true, false  )
 		) );
 
@@ -214,7 +215,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
         *only for cocreator who cannot edit the list
 		* @param int $id
 		*/
-	private function _saveInfoCocreator($id){
+	private function _saveAddress($id){
 		$list = new GiftListModel ($id);
 		$dirC = array(
 			'country' => "Colombia",
