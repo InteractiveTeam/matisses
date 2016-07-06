@@ -63,29 +63,31 @@
                             {l s='December' mod='giftlist'}
                         *}
                     <label>{l s='Fecha del evento' mod='giftlist'}<sup>*</sup></label>
-                    <div class="col-md-4 ax-date-event">
-                        <select id="months" name="months" class="form-control ax-select">
-                            <option value="0">{l s='Mes' mod='giftlist'}</option>
-                            {foreach from=$months key=k item=month}
-                                <option value="{$k}">{l s=$month}&nbsp;</option>
-                            {/foreach}
-                        </select>
-                    </div>
-                    <div class="col-md-4 ax-date-event">
-                        <select id="days" name="days" class="form-control ax-select">
-                            <option value="0">{l s='Día' mod='giftlist'}</option>
-                            {foreach from=$days item=day}
-                                <option value="{$day}" >{$day}&nbsp;&nbsp;</option>
-                            {/foreach}
-                        </select>
-                    </div>
-                    <div class="col-md-4 ax-date-event">
-                        <select id="years" name="years" class="form-control ax-select">
-                            <option value="0">{l s='Año' mod='giftlist'}</option>
-                            {for $i=$year to $limit}
-                                <option value="{$i}">{$i}&nbsp;&nbsp;</option>
-                            {/for}
-                        </select>
+                    <div class="ax-cont-form-date-lista">
+                        <div class="col-md-4 ax-date-event">
+                            <select id="months" name="months" class="form-control ax-select">
+                                <option value="0">{l s='Mes' mod='giftlist'}</option>
+                                {foreach from=$months key=k item=month}
+                                    <option value="{$k}">{l s=$month}&nbsp;</option>
+                                {/foreach}
+                            </select>
+                        </div>
+                        <div class="col-md-4 ax-date-event">
+                            <select id="days" name="days" class="form-control ax-select">
+                                <option value="0">{l s='Día' mod='giftlist'}</option>
+                                {foreach from=$days item=day}
+                                    <option value="{$day}" >{$day}&nbsp;&nbsp;</option>
+                                {/foreach}
+                            </select>
+                        </div>
+                        <div class="col-md-4 ax-date-event">
+                            <select id="years" name="years" class="form-control ax-select">
+                                <option value="0">{l s='Año' mod='giftlist'}</option>
+                                {for $i=$year to $limit}
+                                    <option value="{$i}">{$i}&nbsp;&nbsp;</option>
+                                {/for}
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -6038,6 +6038,11 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     border: #E3E0E0 solid 1px;
     background: #f8f8f8;
     font-family: 'gothic';
+    font-size: 16px;
+}
+
+.elem_butt a {
+    font-size: 16px;
 }
 
 .wrap_buttons #btn_gift_list:hover {
@@ -6109,7 +6114,11 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 }
 
 #buy_block .box-info-product .elem_butt {
-    width: 32.5%;
+    width: 33.7%;
+}
+
+#buy_block .box-info-product #usefull_link_block {
+    width: 25.7%;
 }
 
 #contentdiv .response {

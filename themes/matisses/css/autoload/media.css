@@ -2126,7 +2126,7 @@
         padding: 0 0.225rem;
     }
     
-    #buy_block .box-info-product .elem_butt, .wrap_buttons #btn_gift_list {
+    #buy_block .box-info-product .elem_butt, .wrap_buttons #btn_gift_list, #buy_block .box-info-product #usefull_link_block {
         width: 100%;
         font-size: 1rem;
         margin: 5px 0;
@@ -2391,6 +2391,8 @@
     button.btn.btn-default.btn-red {
         width: 100%;
     }
+    
+    /* modal */
     
 }
 
