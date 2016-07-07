@@ -34,7 +34,7 @@ $(document).ready(function(){
         'speedIn'		:	600,
         'speedOut'		:	200,
         'overlayShow'	:	false,
-                    type: 'ajax',
+        type: 'ajax',
         afterShow  :   function() {
             validateBondForm();
             $("#mount").attr("min",min_amount);
@@ -100,9 +100,25 @@ function addFromList(idProduct, idCombination, quantity, callerElement,id_list){
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown)
 		{
-			alert("Impossible to add t|he product to the cart.\n\ntextStatus: '" + textStatus + "'\nerrorThrown: '" + errorThrown + "'\nresponseText:\n" + XMLHttpRequest.responseText);
-			//reactive the button when adding has finished
-			$('#add_to_cart input').removeAttr('disabled').addClass('exclusive').removeClass('exclusive_disabled');
+			var error = "Impossible to add the product to the cart.<br/>textStatus: '" + textStatus + "'<br/>errorThrown: '" + errorThrown + "'<br/>responseText:<br/>" + XMLHttpRequest.responseText;
+				if (!!$.prototype.fancybox)
+				    $.fancybox.open([
+				    {
+				        type: 'inline',
+				        autoScale: true,
+				        minHeight: 30,
+				        content: '<p class="fancybox-error">' + error + '</p>'
+				    }],
+					{
+				        padding: 0
+				    });
+				else
+				    alert(error);
+				//reactive the button when adding has finished
+				if (addedFromProductPage)
+					$('#add_to_cart input').removeAttr('disabled').addClass('exclusive').removeClass('exclusive_disabled');
+				else
+					$(callerElement).removeProp('disabled');
 		}
 	});
 }

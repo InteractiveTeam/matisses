@@ -201,7 +201,7 @@
 				    </div>
                 </div>
                 <div class="col-md-6 hidden" id="cocreator-div">
-                    <label for="email_co">{l s='Correo electronico' mod='giftlist'}</label>
+                    <label for="email_co">{l s='Correo electrónico' mod='giftlist'}</label>
                     <input type="email" class="form-control" name="email_co" id="email_co">
                 </div>
                 <div class="row">
