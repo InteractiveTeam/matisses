@@ -609,12 +609,12 @@ Fixes generalres
 .products-associated .product-card:first-child {
     text-align: center;
     font-size: 1rem;
-    margin: 5px 0;
 }
 
 .products-associated .product-card:first-child span {
     margin-top: 10px;
     display: inline-block;
+    font-size: 1.2rem;
 }
 
 .products-associated .product-card .img-container {
@@ -873,7 +873,8 @@ Fixes generalres
     }
 
 #address-div a.chosen-single {
-        width: 190px;
+    width: 190px;
+    width: 278px;
 }
 
 #address-div .btn-form-address {
@@ -1258,7 +1259,8 @@ Fixes generalres
     }
     
     #ax-cover-container .cont-img img {
-        
+        height: 100%;
+        width: auto;
     }
     
     .ax-avatar-content #ax-prof-container .cont-img {
