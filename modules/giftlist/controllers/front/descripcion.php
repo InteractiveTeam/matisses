@@ -45,7 +45,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			'form_cocreator' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/cocreator_info.php",
 			'bond_form' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/bond_form.php",
 			'creator' => $creator['firstname'] . " " . $creator['lastname'],
-			'cocreator' => ($cocreator ? $cocreator['firstname'] . " " . $cocreator['lastname'] : "-"),
+			'cocreator' => ($cocreator ? $cocreator['firstname'] . " " . $cocreator['lastname'] : false),
 			'products' => $lpd->getProductsByList($res['id']),
 			'event_type' => Db::getInstance()->getValue($ev),
             'bond' => $lpd->getBondsByList($res['id']),
@@ -124,12 +124,18 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
     }
 
 	public function setMedia() {
+        $addJs = "";
 		parent::setMedia ();
+        if($this->context->customer->isLogged())
+            $addJs = _MODULE_DIR_ . '/giftlist/views/js/descripcion.js';
+        else
+            $addJs = _MODULE_DIR_ . '/giftlist/views/js/descripcion_user.js';
+        
 		$this->addJS ( array (
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/validation/jquery.validate.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/owl/owl.carousel.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/serializeObject/jquery.serializeObject.min.js',
-			_MODULE_DIR_ . '/giftlist/views/js/descripcion.js'
+			$addJs
 		) );
 		$this->addCSS ( array (
             _MODULE_DIR_ . '/giftlist/views/css/vendor/owl/owl.carousel.css',
