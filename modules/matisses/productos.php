@@ -183,7 +183,7 @@
 											array('available' => $_Combination['stock']['WarehouseCode'],
                                                  'garantias'=> $_Combination['materials'],
                                                   'itemname'=> $_Combination['itemName'],
-                                                  'short_description'=> $_Combination['shortDescription']
+                                                  'short_description'=> $_Combination['shortDescription'] 
                                             ), 
 											'id_product_attribute = '.(int)$id_product_attribute
 										);
