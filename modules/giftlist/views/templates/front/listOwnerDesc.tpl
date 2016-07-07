@@ -43,7 +43,7 @@
         </div>
         <div id="ax-prof-container">
             <div class="cont-img">
-                <img class="ax-profile-img" width="180" src="{if !empty($list_desc['image'])}{$list_desc['profile_img']}{else}{$modules_dir}/giftlist/views/img/avatar.png{/if}">
+                <img class="ax-profile-img" width="180" src="{if !empty($list_desc['profile_img'])}{$list_desc['profile_img']}{else}{$modules_dir}/giftlist/views/img/avatar.png{/if}">
             </div>
             <div class="ax-prof-buttons">
                 <a href="javascript:void(0);" id="ax-img-prof">{l s='Seleccionar imagen' mod='giftlist'}</a>
