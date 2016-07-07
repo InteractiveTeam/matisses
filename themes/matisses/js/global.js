@@ -447,16 +447,17 @@ $(document).ready(function(){
     
 })
 //ANIMAR SCROLL
+    function bannerDinamic(){
+        $(window).scroll(function(){
+            var numCont = $(document).scrollTop();
+            var dimmer = $('.homepage-slider .dimmer');
+            var opaci = numCont*0.005;
+            var slider = $('.homepage-slider');
 
-$(window).scroll(function(){
-    var numCont = $(document).scrollTop();
-    var dimmer = $('.homepage-slider .dimmer');
-    var opaci = numCont*0.005;
-    var slider = $('.homepage-slider');
-
-    dimmer.css('opacity', opaci*0.3);
-    slider.css('transform', 'translateY('+numCont*0.4+'px)');
-})
+            dimmer.css('opacity', opaci*0.3);
+            slider.css('transform', 'translateY('+numCont*0.4+'px)');
+        })
+    }
     
 //añadir filtros
 $(document).ready(function(){
@@ -469,18 +470,19 @@ $(document).ready(function(){
     
 })
 
-// function FilterRp() {
+function FilterRp() {
     
-//     var widthPage = $(window).width();    
+    var widthPage = $(window).width();    
     
-//     if(widthPage < 768){
-//         $('.ax-block-content').append($('.ax-blog-select-category'));
-//         $('.right-down-menu .search').prependTo($('.right-up-menu > ul'));
-//     }else {
-//         $('.parrilla-productos #layered_block_left').show();
-//         $('.right-down-menu > ul li:eq(1)').after($('.right-up-menu .search'))
-//     }
-// } 
+    if(widthPage < 768){
+        $('.ax-block-content').append($('.ax-blog-select-category'));
+        $('.right-down-menu .search').prependTo($('.right-up-menu > ul'));
+    }else {
+        $('.parrilla-productos #layered_block_left').show();
+        $('.right-down-menu > ul li:eq(1)').after($('.right-up-menu .search'))
+        bannerDinamic();
+    }
+} 
 
 FilterRp()
 
@@ -489,7 +491,6 @@ $(window).resize(
         FilterRp()
     }
 )
-
 /*ayo ayo*/
 
 /*********************************************************************

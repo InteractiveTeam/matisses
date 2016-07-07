@@ -76,6 +76,7 @@
 	
 	if(sizeof($_References)>0)
 	{
+        echo "<pre>";print_r($_References); echo "</pre>";
 		foreach($_References as $_Model => $_Combinations)
 		{
 			unset($_Product);
@@ -179,7 +180,11 @@
 										
 						// teindas disponibles por combinacion				
 						Db::getInstance()->update('product_attribute', 
-											array('available' => $_Combination['stock']['WarehouseCode']), 
+											array('available' => $_Combination['stock']['WarehouseCode'],
+                                                 'garantias'=> $_Combination['materials'],
+                                                  'itemname'=> $_Combination['itemName'],
+                                                  'short_description'=> $_Combination['shortDescription'] 
+                                            ), 
 											'id_product_attribute = '.(int)$id_product_attribute
 										);
 						
@@ -209,7 +214,11 @@
 							Db::getInstance()->insert('product_attribute_combination', $attributes_list);
 							// teindas disponibles por combinacion
 							Db::getInstance()->update('product_attribute', 
-											array('available' => $_Combination['stock']['WarehouseCode']), 
+											array('available' => $_Combination['stock']['WarehouseCode'],
+                                                  'garantias'=> $_Combination['materials'],
+                                                  'itemname'=> $_Combination['itemName'],
+                                                  'short_description'=> $_Combination['shortDescription']
+                                                 ), 
 											'id_product_attribute = '.(int)$id_product_attribute
 										);
 						 }
@@ -558,7 +567,9 @@
 				unset($_data['stock']);
 				$_data['stock'][] = $stock;	 
 			}
-			 
+			             
+            //$_data['processImages'] = 1;
+            
 			$_data['itemName'] 				= pSQL(mb_strtoupper(substr($_data['itemName'],0,1)).mb_strtolower(substr($_data['itemName'],1)));
 			$_data['color']['name'] 		= mb_strtolower($_data['color']['name']);
 			$_data['sketch']				= basename(current(glob($path.'/plantilla/*.jpg')));
