@@ -206,6 +206,10 @@ Fixes generalres
     font-size: 18px;
 }
 
+.module-giftlist-buscar .ax-form-data-search .btn.btn-lista-regalos {
+    margin-left: 8px;
+}
+
 .ax-form-data-search .btn.btn-default.btn-lista-regalos {
     margin-bottom: 4px;
     display: inline-block;
@@ -293,10 +297,10 @@ Fixes generalres
 }
 
 .module-giftlist-buscar .ax-cont-list .ax-item, .ax-cont-admin-listas-regalos .ax-cont-list .ax-item {
-    border-bottom: #dcdcdc solid 1px;
+    
     display:table;
     width: 100%;
-    padding: 30px 0 15px 0;
+    
 }
 
 .ax-cont-list.desc .ax-item {
@@ -314,6 +318,13 @@ Fixes generalres
     color: #292929;
     font-size: 16px;
     vertical-align: middle;
+    padding: 30px 0 15px 0;
+    border-bottom: #dcdcdc solid 1px;
+    width: 85px;
+}
+
+.module-giftlist-buscar .ax-cont-list .part.ax-read-more, .ax-cont-admin-listas-regalos .ax-cont-list .part.ax-read-more {
+    border-bottom: transparent solid 1px;
 }
 
 .module-giftlist-buscar .part span, .ax-cont-admin-listas-regalos .part span {
@@ -444,6 +455,7 @@ Fixes generalres
 
 #ax-cover-container .ax-cover-buttons a, #ax-prof-container .ax-prof-buttons a {
     color: #c7c7c7;
+    text-decoration: underline;
 }
 
 .ax-avatar-content .ax-cover-buttons .action, .ax-avatar-content .ax-prof-buttons .action {
@@ -499,14 +511,14 @@ Fixes generalres
 
 .ax-message-content .ax-edit, .ax-message-content .ax-delete {
     margin-top: 20px;
-    display: inline-block;
-    text-decoration: underline;
-    font-size: 1.2rem;
     margin-right: 15px;
+    margin-left: 0 !important;
+    text-decoration: underline;
+    font-weight: 600;
 }
 
 .ax-message-content .ax-delete {
-    opacity: 0.6;
+    opacity: 0.36;
 }
 
 .ax-message-content .ax-delete:hover {
@@ -529,12 +541,14 @@ Fixes generalres
     margin-bottom: 40px;
 }
 
-.ax-address > a, .products-associated > a{
+.ax-address > a, .products-associated > a, .ax-message-content .ax-edit {
     margin-left: 20px;
-    font-size: 18px;
+    font-size: 16px;
     text-decoration: underline;
     display: inline-block;
     color: #5e534d;
+    font-weight: 600;
+    letter-spacing: 0.6px
 }
 
 .products-associated > .ax-finish-edit {
@@ -546,6 +560,11 @@ Fixes generalres
     font-size: 18px;
     margin: 7px 0;
     font-family: 'Georgia';
+    color: #272727;
+}
+
+.ax-address .ax_address_bef, .ax-address .ax_address_af, p.ax-message-content {
+    font-family: 'Open Sans', sans-serif;
 }
 
 .module-giftlist-descripcion #carousel-example-generic {
@@ -930,6 +949,19 @@ Fixes generalres
     color: #5e534d;
     text-decoration: underline;
     font-weight: 600;
+    letter-spacing: 0.6px;
+}
+
+.ax-popup-delete {
+    width: 230px;
+}
+
+.ax-popup-delete {
+    width: 230px;
+}
+
+.ax-popup-delete p {
+    margin-bottom: 10px;
 }
 
 @media screen and (max-width:1024px) {
@@ -1059,7 +1091,7 @@ Fixes generalres
 
 @media screen and (max-width:568px) {
     
-    .module-giftlist-empezar #center_column.center_column {
+    .module-giftlist-empezar #center_column.center_column, .module-giftlist-buscar #center_column.center_column {
         width: 96%;
         margin: 0 auto;
         float: none;
