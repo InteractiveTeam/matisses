@@ -222,6 +222,10 @@
 											'id_product_attribute = '.(int)$id_product_attribute
 										);
 						 }
+                
+                    echo 'testdavin';
+                    echo 'id_product_attribute = '.(int)$id_product_attribute;
+                    echo 'garantias'. $_Combination['materials'];
 		 
 					StockAvailable::setQuantity($_Product->id,$id_product_attribute,(int)$_Combination['stock']['quantity']);
 					
