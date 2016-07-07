@@ -241,7 +241,7 @@ class GiftListModel extends ObjectModel
             ));
             $params = array(
                 '{creator}' => $creator,
-                '{url}' => $url
+                '{url}' => $context->link->getModuleLink('giftlist', 'descripcion',array("url" => $url)),
             );
             MailCore::Send($id_lang, 'cocreator-list', sprintf(
             MailCore::l('Eres cocreador de una lista'), 1),

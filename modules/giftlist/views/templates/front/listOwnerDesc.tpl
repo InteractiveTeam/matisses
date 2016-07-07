@@ -225,5 +225,7 @@
 <script type="text/javascript" src="{/literal}{$modules_dir}{literal}giftlist/views/js/listOwner.js"></script>
 {/literal}
 </div>
-
+<div style="display:none" id="contentdiv">
+    <p id="message"></p>
+</div>
 
