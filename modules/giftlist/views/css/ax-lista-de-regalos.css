@@ -108,6 +108,13 @@ Fixes generalres
     display:none;
 }
 
+.col-md-3.ax-edit-list {
+    width: 23.5%;
+}
+
+.product-card .ax-bond-cont #min_amount {
+    display: inline-block;
+}
 
 /*************************
 		PRODUCT CARD
@@ -115,6 +122,11 @@ Fixes generalres
 
 .ax-edit-list {
 	border:1px solid #CCC !important
+}
+
+.ax-edit-list {
+    padding: 8px;
+    margin: 8px;
 }
 
 .img-container {
@@ -945,6 +957,16 @@ Fixes generalres
 
 @media screen and (max-width:568px) {
     
+    #address-div {
+        overflow: auto;
+        height: 100%;
+    }
+    
+    #address-div .btn.btn-default.btn-lista-regalos {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
     .tab-rp-listas-rega:before {
         content: "\f107";
         display: block;
@@ -1183,7 +1205,7 @@ Fixes generalres
     }
     
     .module-giftlist-descripcion .product-card.col-md-3 {
-        width: 100%;
+        width: 96%;
     }
     
     .products-associated .product-card .ax-info-list {

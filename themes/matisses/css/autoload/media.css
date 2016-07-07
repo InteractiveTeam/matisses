@@ -2394,6 +2394,28 @@
     
     /* modal */
     
+    #frmAddGiftList {
+        width: 280px;
+    }
+    
+    #frmAddGiftList .form-group label span {
+        width: auto;
+        display: block;
+        text-align: left;
+    }
+    
+    #frmAddGiftList .chosen-single {
+        
+    }
+    
+    #frmAddGiftList .col-md-6 {
+        padding: 0;
+    }
+    
+    #frmAddGiftList .chosen-single, #frmAddGiftList #cant, #frmAddGiftList textarea {
+        margin-left: 5px;
+    }
+
 }
 
 @media screen and (max-width :380px) {
@@ -3615,4 +3637,14 @@
     .ax-maps div[id*="map"] .ax-modal-map{
         width: 250px;
     }
+    
+    #frmAddGiftList {
+        width: 230px;
+    }
+    
+    #frmAddGiftList #cant, #frmAddGiftList textarea {
+        width: 93%;
+        border: #ccc solid 1px;
+    }
+    
 }
