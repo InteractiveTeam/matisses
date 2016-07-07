@@ -31,6 +31,7 @@
 	    <div class="ax-text-result-list ax-result-inline">
          <h2>{l s='Mi lista' mod='giftlist'}</h2>
         </div>
+        <a href="javascript:void(0);" class="ax-print">{l s='Imprimir' mod='giftlist'}</a>
 		<div class="row">
             <div class="product-card ax-bond-card col-md-3" data-id="{$list_desc['id']}">
                 <img src="{$modules_dir}/giftlist/views/img/details-lista.png">
@@ -48,11 +49,24 @@
                         {foreach from=$row['data'] item=att_group}
                             {if $att_group['id_product_attribute'] == $atribute_group}
                                 <p>{$att_group['group_name']}: {$att_group['attribute_name']}</p>
+                                <input type="hidden" class="prod-attr" value="{$att_group['id_product_attribute']}">
                             {/if}
                         {/foreach}
                     <p>{l s='Cantidad:'} {$row['group']->wanted}</p>
+                    <div class="add_container">
+                        <label for="total_qty">{l s='Añadir al carrito' mod='giftlist'}</label>
+                        {if !empty($row['group']->tot_groups)}
+                            {if $row['group']->missing > $row['group']->tot_groups}
+                                <input type="number" data-value="{$row['group']->missing}" name="total_qty" max="{$row['group']->tot_groups}" class="total_qty" value="1">
+                                <label class="qty_group" data-value="{$row['group']->cant}">Cantidad por grupo {$row['group']->cant}</label>
+                           {else}
+                                <input type="number" name="total_qty" max="1" class="total_qty" value="1" disabled>
+                                <label class="qty_group" data-value="{$row['group']->cant}">Cantidad por grupo {$row['group']->rest}</label>
+                            {/if}
+                        {/if}
+                        <button data-toggle="tooltip" data-placement="bottom" title="{l s='Añadir al carrito' mod='giftlist'}" class="add-to-cart">{l s='Añadir al carrito' mod='giftlist'}</button>
                     </div>
-                    <a class="delete-product hidden" data-toggle="tooltip" data-placement="bottom" title="Quitar producto"><i class="fa fa-close"></i></a>
+                    </div>
                 </div>
             {/foreach}
 		</div>
@@ -60,3 +74,11 @@
 </div>
 
 {addJsDef min_amount=$list_desc['min_amount']}
+
+<div id="contentdiv" style="display: none;">
+	<p id="message"></p>
+	<div class="col-md-12">
+		<a data-toggle="tooltip" data-placement="bottom" title="Continuar comprando" class="keep-buy btn btn-default pull-left">Continuar comprando</a>
+		<a href="{$base_dir}pedido" data-toggle="tooltip" data-placement="bottom" title="Ir al carrito" class="see-list btn btn-default pull-right">Ir al carrito</a>
+	</div>
+</div>

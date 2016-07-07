@@ -17,7 +17,7 @@ $(document).ready(function(){
     //add to cart
 
 	$(".add-to-cart").click(function(e){
-		var product_card = $(this).parent().parent();
+		var product_card = $(this).parent().parent().parent();
 		total = product_card.find(".total_qty").val() * (typeof product_card.find(".qty_group") != "undefined" ? product_card.find(".qty_group").attr("data-value") : 1);
         if(total > product_card.find(".total_qty").attr("data-value"))
             total = parseInt(product_card.find(".total_qty").attr("data-value"));

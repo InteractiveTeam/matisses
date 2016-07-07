@@ -168,7 +168,7 @@ class giftlist extends Module
     
     public function hookActionProductInList($params){
         $l = new GiftListModel($params['id_list']);
-        $p = new ProductCore($param["id_product"]);
+        $p = new ProductCore($params["id_product"]);
         $lpd = ListProductBondModel::getByProductAndList($params['id_list'],$params['id_product']);
         $customer = new CustomerCore($l->id_creator);
         $cant = ToolsCore::jsonDecode($lpd['group']);
