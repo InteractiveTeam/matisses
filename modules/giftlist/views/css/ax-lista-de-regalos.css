@@ -1,3 +1,15 @@
+@font-face {
+	font-family: 'Georgia';
+	src: local('Georgia'),
+		url('../font/Georgia.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+p {
+    font-family: 'Georgia';
+}
+
 /**ADMNINISTRAR*/
 
 /*validation */
@@ -112,8 +124,21 @@ Fixes generalres
     width: 23.5%;
 }
 
-.product-card .ax-bond-cont #min_amount {
+.product-card .ax-bond-cont{
+    margin-top: 10px;
+}
+
+.product-card .ax-bond-cont #min_amount, .product-card .ax-bond-cont label {
     display: inline-block;
+}
+
+.product-card .ax-bond-cont #min_amount {
+    width: 120px;
+    margin-left: 8px;
+    background: #f6f6f6;
+    border: none;
+    padding: 5px;
+    color: #d9292e;
 }
 
 /*************************
@@ -174,7 +199,7 @@ Fixes generalres
 }
 
 .ax-form-data-search label {
-    font-family: initial;
+    font-family: 'Georgia';
     padding: 5px 20px;
     text-transform: capitalize;
     font-weight: 600;
@@ -190,7 +215,7 @@ Fixes generalres
     background: #5e534d;
     color: #eac78f;
     border: none;
-    font-family: initial;
+    font-family: 'Georgia';
     padding: 8px 25px;
     letter-spacing: 1.5px;
 }
@@ -208,14 +233,14 @@ Fixes generalres
     background: transparent;
     color: #272727;
     border: none;
-    font-family: initial;
+    font-family: 'Georgia';
     text-decoration: underline;
     padding: 8px 25px;
 }
 
 .ax-text-result-list {
     background: #f6f6f6;
-    font-family: initial;
+    font-family: 'Georgia';
     clear: both;
     position: relative;
     margin: 30px 0;
@@ -250,7 +275,7 @@ Fixes generalres
 }
 
 .ax-text-result-list p, .ax-text-result-list h2, .ax-text-result-list h3 {
-    font-family: initial;
+    font-family: 'Georgia';
     font-weight: bold;
     color: #292929;
     font-size: larger;
@@ -258,8 +283,9 @@ Fixes generalres
 }
 
 .ax-text-result-list h2, .ax-text-result-list h3  {
-    text-transform: capitalize;
+    text-transform: inherit;
     color:#262626;
+    font-family: 'Georgia';
 }
 
 .ax-text-result-list p span {
@@ -295,7 +321,7 @@ Fixes generalres
     font-weight: 100;
     color:#a8a8a8; 
     font-family: 'Open Sans', sans-serif;
-    margin: 4px 0; 
+    margin: 10px 0 4px 0; 
 }
 
 .module-giftlist-buscar .part span {
@@ -304,8 +330,9 @@ Fixes generalres
 
 .ax-cont-admin-listas-regalos .part .ax-day {
     color: #ecb072;
-    font-size: 2rem;
-    font-family: serif;
+    font-size: 1.8rem;
+    font-family: 'Georgia';
+    margin: 2px 0;
 }
 
 .ax-cont-list {
@@ -319,7 +346,7 @@ Fixes generalres
     background: #5e534d;
     color: #eac78f;
     border: none;
-    font-family: initial;
+    font-family: 'Georgia';
     font-weight: 100;
     text-transform: uppercase;
     cursor: pointer;
@@ -364,7 +391,7 @@ Fixes generalres
 }
 
 .ax-search-home .ax-form-data-search input {
-    width: 151px;
+    width: 147px;
 }
 
 .ax-search-home button {
@@ -424,7 +451,7 @@ Fixes generalres
     color: #60534d;
     display: block;
     width: 100%;
-    font-family: serif;
+    font-family: 'Georgia';
 }
 
 .ax-avatar-content .ax-cover-buttons .uploader, .ax-avatar-content .ax-prof-buttons .uploader {
@@ -487,11 +514,11 @@ Fixes generalres
 }
 
 .module-giftlist-descripcion .ax-text-result-list {
-    padding: 15px 60px;
+    padding: 10px 40px;
 }
 
 .module-giftlist-descripcion .ax-text-result-list p, .module-giftlist-descripcion .ax-text-result-list h2, .module-giftlist-descripcion .ax-text-result-list h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .ax-result-inline {
@@ -507,13 +534,18 @@ Fixes generalres
     font-size: 18px;
     text-decoration: underline;
     display: inline-block;
+    color: #5e534d;
+}
+
+.products-associated > .ax-finish-edit {
+    color: #d9292e;
 }
 
 .ax-address .ax-title {
     font-weight: 600;
     font-size: 18px;
     margin: 7px 0;
-    font-family: serif;
+    font-family: 'Georgia';
 }
 
 .module-giftlist-descripcion #carousel-example-generic {
@@ -523,7 +555,7 @@ Fixes generalres
 
 .module-giftlist-descripcion #carousel-example-generic p {
     text-align: center;
-    font-family: serif;
+    font-family: 'Georgia';
     margin: 10px 0;
     color: #56534e;
     font-weight: 700;
@@ -629,7 +661,7 @@ Fixes generalres
 .products-associated .product-card p.ax-name-list {
     border-bottom: #ccc solid 1px;
     padding: 5px 0;
-    font-family: serif;
+    font-family: 'Georgia';
     font-weight: 600;
     font-size: 1.1rem;
     text-transform: uppercase;
@@ -681,7 +713,7 @@ Fixes generalres
 }
 
 #frmSaveList div.uploader span.action {
-    font-family: serif;
+    font-family: 'Georgia';
     font-weight: 700;    
 }
 
@@ -724,10 +756,46 @@ Fixes generalres
 }
 
 .tab-content *, #frmSaveList h3 {
-    font-family: serif;
+    font-family: 'Georgia';
     text-transform: inherit;
     color: #464646;
 }
+
+.tab-content .tab-content .fa {
+    font-family: FontAwesome;
+}
+
+.tab-content #ax-img-prof, .tab-content #ax-img {
+    background: #f8f8f8;
+    padding: 10px;
+    display: inline-block;
+    border: #dbdbdb solid 1px;
+    font-family: 'Georgia';
+}
+
+.tab-content #ax-img-prof i, .tab-content #ax-img i {
+    color: #5e534d;
+    margin:5px 10px;
+    font-family: FontAwesome !important;
+}
+
+#frmSaveList .checkbox label span {
+    line-height: 16px;
+}
+
+#frmSaveList div.checker span {
+    background: #5e534d;
+}
+
+#frmSaveList .checkbox .checker {
+    margin-top: 4px;
+    background: #5e534d;
+}
+
+#frmSaveList .checker .checked:before, #frmSaveList .radio .checked:before {
+    color: #ffd594;
+}
+
 
 #frmSaveList h3 {
     padding-bottom: 10px;
@@ -763,7 +831,6 @@ Fixes generalres
 
 #frmSaveList .chosen-container span {
     color:#a2a2a2;
-    font-family: serif;
     font-weight: 100;
     line-height: 30px;
     font-family: 'Open Sans', sans-serif;
@@ -814,6 +881,22 @@ Fixes generalres
     margin-top: 20px;
 }
 
+#address-div #address-form label {
+    padding-bottom: 0rem;
+    padding-top: 0.55rem;
+}
+
+#share-pop.white-popup-block .btn.btn-success.pull-right {
+    background: #5e534d;
+    color: #eac78f;
+    border: none;
+    font-family: 'Georgia';
+    padding: 8px 25px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top:10px;
+}
+
 .ax-message #changemessage textarea.ax-new-message {
     width: 100%;
     margin-bottom: 20px;
@@ -825,7 +908,7 @@ Fixes generalres
     background: #5e534d;
     color: #eac78f;
     border: none;
-    font-family: initial;
+    font-family: 'Georgia';
     padding: 8px 25px;
     letter-spacing: 1.5px;
 }
@@ -835,15 +918,23 @@ Fixes generalres
 }
 
 .chosen-container-single .chosen-single span {
-    overflow: initial;
+    overflow: 'Georgia';
     text-overflow: inherit;
     white-space: inherit;
+}
+
+#ax-prof-container .ax-prof-buttons #ax-img-prof, #ax-cover-container .ax-cover-buttons #ax-img {
+    margin: 15px 0 7px 0;
+    display: block;
+    color: #5e534d;
+    text-decoration: underline;
+    font-weight: 600;
 }
 
 @media screen and (max-width:1024px) {
      
     .ax-search-home .ax-form-data-search input {
-        width: 123px;
+        width: 119px;
     }  
     
 }
@@ -879,7 +970,7 @@ Fixes generalres
     }
     
     .ax-search-home .ax-form-data-search input {
-       width: 205px;
+       width: 201px;
     }
     
     .module-giftlist-empezar .col-md-6 {
@@ -952,10 +1043,32 @@ Fixes generalres
         float: left;
         margin: 10px 0;
     }
+    
+    #frmSaveList .nav-tabs li a {
+        font-size: 1.2rem;
+    }
+    
+    .tab-content #ax-img-prof, .tab-content #ax-img { 
+        display: block;
+        margin: 10px 0;
+        text-align: center;
+    }
 
 }
 
 @media screen and (max-width:568px) {
+    
+    .module-giftlist-empezar #center_column.center_column {
+        width: 96%;
+        margin: 0 auto;
+        float: none;
+    }
+    
+    .ax-optional-tex {
+        width: 100% !important;
+        text-align: center;
+        margin: 10px 0;
+    }
     
     #address-div {
         overflow: auto;
