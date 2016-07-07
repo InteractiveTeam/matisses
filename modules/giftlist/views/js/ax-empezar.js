@@ -1,5 +1,17 @@
 $('document').ready(function(){
    
+    $("#ax-buscar").validate({
+        lang: 'es',
+        rules:{
+            name:'required',
+            lastname:'required',
+            code:'required',
+        },
+        message:{
+            required:"El campo es requerido"
+        }
+    });    
+    
    $("#name").change(function(){
 	   if($("#name").val() !== "" || $("#lastname").val() !== ""){
 		   disableCodeField();

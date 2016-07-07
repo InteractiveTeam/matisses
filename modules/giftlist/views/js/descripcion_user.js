@@ -1,5 +1,9 @@
 
 $(document).ready(function(){
+    $(".ax-print").click(function(){
+        window.print();
+    });
+    
     $(document).on('click', '.popup-modal-dismiss', function (e) {
 		e.preventDefault();
 		$.fancybox.close();

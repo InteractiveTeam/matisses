@@ -133,6 +133,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
         
 		$this->addJS ( array (
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/validation/jquery.validate.min.js',
+            _MODULE_DIR_ . '/giftlist/views/js/vendor/validation/messages_es.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/owl/owl.carousel.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/serializeObject/jquery.serializeObject.min.js',
 			$addJs

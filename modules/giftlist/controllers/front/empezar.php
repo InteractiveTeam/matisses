@@ -20,6 +20,8 @@ class giftlistempezarModuleFrontController extends ModuleFrontController {
     public function setMedia() {
 		parent::setMedia ();
 		$this->addJS ( array (
+            _MODULE_DIR_ . '/giftlist/views/js/vendor/validation/jquery.validate.min.js',
+            _MODULE_DIR_ . '/giftlist/views/js/vendor/validation/messages_es.js',
             _MODULE_DIR_ . '/giftlist/views/js/ax-empezar.js'
         ) );
 		$this->addCSS ( array (
