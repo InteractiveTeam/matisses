@@ -599,7 +599,7 @@ class CategoryCore extends ObjectModel
 		'.($active ? 'AND `active` = 1' : '').'
 		'.$sql_groups_where.'
 		GROUP BY c.`id_category`
-		ORDER BY `level_depth` ASC, category_shop.`position` ASC');
+		ORDER BY `level_depth` ASC, cl.`name` ASC');
 
 		foreach ($result as &$row)
 		{
