@@ -78,24 +78,47 @@ $(document).ready(function() {
 	
 	//eliminar
 	$(".delete-list").on('click', function(e){
+        var id = $(this).val();
 		e.preventDefault();
-        if(confirm("¿Estás seguro que deseas eliminar esta lista?")){
-            $.ajax({
+        $.fancybox({
+             'autoScale': true,
+             'transitionIn': 'elastic',
+             'transitionOut': 'elastic',
+             'speedIn': 500,
+             'speedOut': 300,
+             'autoDimensions': true,
+             'centerOnScroll': true,
+             'content' : '<p>¿Estás seguro que deseas eliminar esta lista?</p><a href="#" id="cancel">Cancelar</a><a href="#" id="acept">Aceptar</a>'
+        });
+        $("#cancel").on('click',function(){
+            $.fancybox.close();
+        });
+        $("#acept").on('click',function(){
+             $.ajax({
                 url: $(".actions").attr("action"),
                 type: 'POST',
                 data: {
                     ajax: true,
                     method: "delete",
-                    id_list: $(this).val()
+                    id_list: id
                 },
                 headers: { "cache-control": "no-cache" },
                 success: function(result){
                     result = JSON.parse(result);
-                    alert(result.msg);
+                    $.fancybox({
+                         'autoScale': true,
+                         'transitionIn': 'elastic',
+                         'transitionOut': 'elastic',
+                         'speedIn': 500,
+                         'speedOut': 300,
+                         'autoDimensions': true,
+                         'centerOnScroll': true,
+                         'content' : result.msg
+                    });
                     $("#list-"+result.id).remove();
                 }
             });   
-        }
+        });
 	});
 	
 	//compartir

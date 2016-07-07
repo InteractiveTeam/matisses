@@ -234,12 +234,14 @@
                                 <input type="radio" id="list_type" name="list_type" value="1" checked="checked">
                                 {l s='Público' mod='giftlist'}
                             </label>
+                            <span class="ax-message-public">{l s='La lista quedara pública' mod='giftlist'}</span>
                         </div>
                         <div class="radio-inline">
                             <label>
                                 <input type="radio" id="list_type" name="list_type" value="0">
                                 {l s='Privado' mod='giftlist'}
                             </label>
+                            <span class="ax-message-private hidden">{l s='La lista quedara privada' mod='giftlist'}</span>
                         </div>
 				    </div>
                 </div>
