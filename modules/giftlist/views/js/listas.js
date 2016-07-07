@@ -88,7 +88,7 @@ $(document).ready(function() {
              'speedOut': 300,
              'autoDimensions': true,
              'centerOnScroll': true,
-             'content' : '<p>¿Estás seguro que deseas eliminar esta lista?</p><a href="#" id="cancel">Cancelar</a><a href="#" id="acept">Aceptar</a>'
+             'content' : '<div class="ax-popup-delete"><p>¿Estás seguro que deseas eliminar esta lista?</p><a href="#" id="cancel"  class="cancel btn btn-default btn-red">Cancelar</a><a href="#" id="acept" class="acept btn btn-default btn-red">Aceptar</a></div>'
         });
         $("#cancel").on('click',function(){
             $.fancybox.close();
