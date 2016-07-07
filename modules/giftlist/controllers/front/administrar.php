@@ -105,7 +105,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
         $li->guest_number = $data['guest_number'];
         $li->url = $li->slugify($data['url']);
         $li->message = $data['message'];
-        $li->recieve_bond = $data['recieve_bond'] == 'on' ? true : false;
+        $li->recieve_bond = isset($data['recieve_bond']) && $data['recieve_bond'] == 'on' ? true : false;
         $li->min_amount = $data['min_ammount'];
         $li->address_before = $data['dir_before'];
         $li->address_after = $data['dir_after'];
@@ -125,7 +125,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
             $li->created_at = date("Y-m-d");
             $li->image = $this->_uploadImage($li->id, false, 'image-p');
             $li->profile_img = $this->_uploadImage($li->id, true, 'image-prof');
-            $li->id_cocreator = $li->setCoCreator($li->id,$data['email_co']);
+            $li->id_cocreator = $li->setCoCreator($li->id,$data['email_co'],$data['firstname'] . " " .$data ['lastname'],$li->url);
             $li->update();
             die(
                 Tools::jsonEncode(array(

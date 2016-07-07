@@ -226,24 +226,27 @@ class GiftListModel extends ObjectModel
 	 * search ig $email exist in database, if exist save id, else save in ps-emai-cocreator
 	 * @return number
 	 */
-	public function setCoCreator($id,$email){
+	public function setCoCreator($id,$email,$creator,$url){
+        $context = Context::getContext();
+        $id_shop = (int)Context::getContext()->shop->id;
+		$id_lang = $context->language->id;
 		$sql = "SELECT id_customer FROM `" . _DB_PREFIX_ . "customer` WHERE `email` = '". $email."';";
 		$row = Db::getInstance()->getRow($sql);
 		if(Db::getInstance()->numRows() > 0)
 			return $row['id_customer'];
 		else{
-            $sql = "SELECT * FROM "._DB_PREFIX_."email_cocreator WHERE id_list = ".$id;
-            $row = Db::getInstance()->getRow($sql);
-            if(!empty($row)){
-                Db::getInstance()->update('email_cocreator',array(
-                    'email' => $email
-                ),'id_list = '. $id);
-            }else{
-                Db::getInstance()->insert('email_cocreator',array(
-                    'id_list' => $id,
-                    'email' => $email
-                ));
-            }
+            Db::getInstance()->insert('email_cocreator',array(
+                'id_list' => $id,
+                'email' => $email
+            ));
+            $params = array(
+                '{creator}' => $creator,
+                '{url}' => $url
+            );
+            MailCore::Send($id_lang, 'cocreator-list', sprintf(
+            MailCore::l('Eres cocreador de una lista'), 1),
+            $params, $email, $creator,
+            null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
             return 0;
         }
 	}

@@ -1,0 +1,4 @@
+{creator} ha creado una lista y te ha elegido como cocreador
+puedes encontrarla ingresando a la<strong> URL
+{url}
+Registrate en {shop_url}
