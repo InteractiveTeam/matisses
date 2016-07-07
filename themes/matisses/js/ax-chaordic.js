@@ -348,7 +348,11 @@ ax = {
                             var cont = data.length;
 
                             for (i = 0; i < data.length; i++) {
-                                ajaxCart.add(data[i],0,1,1,0);
+                                var idattr = 0;
+                                if (data[i].idattribute) {
+                                    idattr = data[i].idattribute;
+                                }
+                                ajaxCart.add(data[i].idproduct, idattr, 1, 1, 0);
                             }
                         }
                     },

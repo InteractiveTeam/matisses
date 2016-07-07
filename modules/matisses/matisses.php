@@ -952,6 +952,19 @@ class matisses extends Module
                 ));
             }
         }
+        
+        if (in_array($this->page_name, array('order'))) {
+            /*$sqlstore = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'store');
+            $stores = array();
+            
+            foreach ($sqlstore as $store) {
+                array_push($stores, $store);
+            }
+            
+            $this->context->smarty->assign(array(
+                'current_stores' => $stores
+            ));*/
+        }
 	}
     
     public function createXML() {
@@ -1095,16 +1108,18 @@ class matisses extends Module
         $references = $skus;
         
         if (!empty($references)) {
-            $idproducts = array();
+            $prods = array();
             $idlanguage = $this->context->language->id;
             
             foreach ($references as $row) {
                 $prod = Product::searchByName($idlanguage,$row);
+                $attribute = Db::getInstance()->ExecuteS('SELECT id_product_attribute from '._DB_PREFIX_.'product_attribute where reference = "'.$row.'"');
+                $idattribute = $attribute[0]['id_product_attribute'];
                 $idprod = $prod[0]['id_product'];
-                array_push($idproducts,$idprod);
+                array_push($prods,array('idproduct' => $idprod,'idattribute' => $idattribute));
             }
             
-            return $idproducts;   
+            return $prods;   
         } else {
             return null;
         }
