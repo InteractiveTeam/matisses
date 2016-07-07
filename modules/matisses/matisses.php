@@ -1857,7 +1857,7 @@ class matisses extends Module
 		return $boolean ? $return : $response;
 	}
 	
-	public function wsmatisses_get_data($objeto,$operacion,$origen,$datos=NULL, $return = false)
+	public function wsmatisses_get_data($objeto,$operacion,$origen,$datos=NULL, $return = false,$code = false)
 	{
 		//set_time_limit(15);
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
@@ -1876,18 +1876,19 @@ class matisses extends Module
 		
 		if(!$result['return'])
 			return false;
-			
 		
-
 		$datos 	= $this->xml_to_array(utf8_encode($result['return']['detail']));
+        
+        if($code){
+            $datos['inventoryItemDTO']['codeStatus'] = $result['return']['code'];
+        }
 		
 		return $datos;
 	}
 	
-	public function wsmatisses_listStockChanges()
-	{		
+	public function wsmatisses_listStockChanges(){		
 		require_once dirname(__FILE__)."/classes/template.php";
-		$datos 		= $this->wsmatisses_get_data('inventoryItem','listStockChanges','sap',5);
+		$datos = $this->wsmatisses_get_data('inventoryItem','listStockChanges','sap',5);        
 		if(is_array($datos))
 		{
 			require_once dirname(__FILE__)."/wsclasses/ws_product.php";
@@ -1945,13 +1946,13 @@ class matisses extends Module
 		return true;	
 	}
 	
-    public function wsmatisses_getInfoProduct($reference, $includeAll = false)
+    public function wsmatisses_getInfoProduct($reference, $includeAll = false,$code = false)
 	{
 		ini_set('display_errors',false);	
 		require_once dirname(__FILE__)."/classes/template.php";
 		$data['inventoryItemDTO']['itemCode'] = $reference;
 		$data['inventoryItemDTO']['includeAll'] = $includeAll;
-		$datos 		= $this->wsmatisses_get_data('inventoryItem','getItemInfo','prestashop',$this->array_to_xml($data,false));
+		$datos 		= $this->wsmatisses_get_data('inventoryItem','getItemInfo','prestashop',$this->array_to_xml($data,false),false,$code);
 		return $datos['inventoryItemDTO']; 
 	}
 	public function wsmatisses_getModelInfo()
