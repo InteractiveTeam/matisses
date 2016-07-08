@@ -1,3 +1,5 @@
+var valForm;
+
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
     
@@ -45,8 +47,9 @@ $(document).ready(function() {
 	});
 
     $(".share-list").fancybox({
-		'transitionIn'	:	'elastic',
-		'transitionOut'	:	'elastic',
+		'autoSize'      :   false,
+        'height'        :   'auto',
+        'width'			:    300,
 		'speedIn'		:	600, 
 		'speedOut'		:	200, 
 		'overlayShow'	:	false,
@@ -58,17 +61,16 @@ $(document).ready(function() {
 		$(this).addClass("clicked");
 	});
     
-    validateAddressForm();
-    
     $(".ax-edit-address").fancybox({
-			'autoSize'      :   false,
-			'height'        :   'auto',
-			'width'			:    600,
-			'transitionIn'	:	'elastic',
-			'transitionOut'	:	'elastic',
-			'speedIn'		:	600,
-			'speedOut'		:	200,
-			'overlayShow'	:	false,
+        'autoSize'      :   false,
+        'height'        :   'auto',
+        'width'			:    600,
+        'transitionIn'	:	'elastic',
+        'transitionOut'	:	'elastic',
+        'speedIn'		:	600,
+        'speedOut'		:	200,
+        'overlayShow'	:	false,
+        afterShow		: 	validateAddressForm
 	});
     
     $("#ax-edit").click(function(){
@@ -116,23 +118,33 @@ $(document).ready(function() {
     $(".ax-finish-edit").click(function(){
         var val = $("#min_amount").val();
         min_amount = val;
-        $.ajax({
-            type: 'POST',
-            data: {
-                'ajax':true,
-                'method':"updateAmount",
-                'id_list': $(".products-associated").attr('data-id'),
-                'value': val
-            },
-            success: function(){
-                $(".delete-product").addClass('hidden');
-                $(".delete-product").parent().removeClass('ax-edit-list');
-                $(".ax-list-edit").removeClass('hidden');
-                $(".ax-finish-edit").addClass("hidden");
-                $(".ax-bond-value").removeClass("hidden");
-                $(".ax-bond-cont").remove();
-            }
-        });
+            $.ajax({
+                type: 'POST',
+                data: {
+                    'ajax':true,
+                    'method':"updateAmount",
+                    'id_list': $(".products-associated").attr('data-id'),
+                    'value': val
+                },
+                success: function(){
+                    $(".delete-product").addClass('hidden');
+                    $(".delete-product").parent().removeClass('ax-edit-list');
+                    $(".ax-list-edit").removeClass('hidden');
+                    $(".ax-finish-edit").addClass("hidden");
+                    $(".ax-bond-value").removeClass("hidden");
+                    $(".ax-bond-cont").remove();
+                    $.fancybox({
+                     'autoScale': true,
+                     'transitionIn': 'elastic',
+                     'transitionOut': 'elastic',
+                     'speedIn': 500,
+                     'speedOut': 300,
+                     'autoDimensions': true,
+                     'centerOnScroll': true,
+                     'content' : '<div><p class="fancybox-error">Se ha editado la lista</p></div>'
+                    });
+                } 
+            });                      
     }); 
     
     $("#ax-delete").click(function(){
@@ -211,24 +223,36 @@ function deleteImage(prof){
 
 function saveAddress(){
     var form = $("#address-form").serializeObject();
-    $.ajax({
-        type: 'POST',
-        data: {
-            ajax: true,
-            method: "saveAddress",
-            id_list: $(".products-associated").attr('data-id'),
-            form: form,
-        },
-        success: function(res){
-            res = JSON.parse(res);
-            res.data = JSON.parse(res.data);
-            if(!res.error){
-                $(".ax_address_bef").text(res.a_b + " " + res.data.town + " " + res.data.city +", "+ res.data.country);
-                $(".ax_address_af").text(res.a_a + " " + res.data.town + " " + res.data.city +", "+ res.data.country);
-                $.fancybox.close();
+    if(valForm.form()){
+        $.ajax({
+            type: 'POST',
+            data: {
+                ajax: true,
+                method: "saveAddress",
+                id_list: $(".products-associated").attr('data-id'),
+                form: form,
+            },
+            success: function(res){
+                res = JSON.parse(res);
+                res.data = JSON.parse(res.data);
+                if(!res.error){
+                    $(".ax_address_bef").text(res.a_b + " " + res.data.town + " " + res.data.city +", "+ res.data.country);
+                    $(".ax_address_af").text(res.a_a + " " + res.data.town + " " + res.data.city +", "+ res.data.country);
+                    $.fancybox.close();
+                     $.fancybox({
+                         'autoScale': true,
+                         'transitionIn': 'elastic',
+                         'transitionOut': 'elastic',
+                         'speedIn': 500,
+                         'speedOut': 300,
+                         'autoDimensions': true,
+                         'centerOnScroll': true,
+                         'content' : '<div><p class="fancybox-error">'+res.response+'</p></div>'
+                    });
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 function setTown(id_state){
@@ -266,13 +290,14 @@ function saveMessage(){
         success: function(res){
             $("#message").text(JSON.parse(res));
             $.fancybox({
-                 'autoScale': true,
+                 autoSize    : true,
+                autoScale   : true,
+                fitToView   : true,
+                autoDimensions:	true,
                  'transitionIn': 'elastic',
                  'transitionOut': 'elastic',
                  'speedIn': 500,
                  'speedOut': 300,
-                 'autoDimensions': true,
-                 'centerOnScroll': true,
                  'href' : '#contentdiv'
             });
         }, 
@@ -290,7 +315,7 @@ function validateAddressForm(){
         return value != 0;
     }, "El campo es requerido");
 
-    $("#address-form").validate({
+    valForm = $("#address-form").validate({
         lang: 'es',
         rules:{
             firstname:'required',
@@ -333,10 +358,18 @@ function callAjaxSend(e){
 		},
 		headers: { "cache-control": "no-cache" },
 		success: function(result){
-			alert(result);
+            $.fancybox.close();
+            $.fancybox({
+                 'autoScale': true,
+                 'transitionIn': 'elastic',
+                 'transitionOut': 'elastic',
+                 'speedIn': 500,
+                 'speedOut': 300,
+                 'autoDimensions': true,
+                 'centerOnScroll': true,
+                 'content' : '<div><p class="fancybox-error">'+result+'</p></div>'
+            });
 		}
-	}).always(function(){
-        $.fancybox.close();
-    });
+	})
 }
     

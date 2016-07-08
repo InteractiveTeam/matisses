@@ -226,6 +226,6 @@
 {/literal}
 </div>
 <div style="display:none" id="contentdiv">
-    <p id="message"></p>
+    <p class="fancybox-error" id="message"></p>
 </div>
 

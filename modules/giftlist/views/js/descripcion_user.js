@@ -100,13 +100,15 @@ function addFromList(idProduct, idCombination, quantity, callerElement,id_list){
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown)
 		{
-			var error = "Impossible to add the product to the cart.<br/>textStatus: '" + textStatus + "'<br/>errorThrown: '" + errorThrown + "'<br/>responseText:<br/>" + XMLHttpRequest.responseText;
+			var error = "Imposible añadir al carrito";
 				if (!!$.prototype.fancybox)
 				    $.fancybox.open([
 				    {
 				        type: 'inline',
-				        autoScale: true,
-				        minHeight: 30,
+				        autoSize    : true,
+                        autoScale   : true,
+                        fitToView   : true,
+				        //minHeight: 30,
 				        content: '<p class="fancybox-error">' + error + '</p>'
 				    }],
 					{

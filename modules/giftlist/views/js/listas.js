@@ -81,12 +81,14 @@ $(document).ready(function() {
         var id = $(this).val();
 		e.preventDefault();
         $.fancybox({
-             'autoScale': true,
+             type: 'inline',
+             autoScale: true,
+             minHeight: 30,
+             minWidth: 220,
              'transitionIn': 'elastic',
              'transitionOut': 'elastic',
              'speedIn': 500,
              'speedOut': 300,
-             'autoDimensions': true,
              'centerOnScroll': true,
              'content' : '<div class="ax-popup-delete"><p>¿Estás seguro que deseas eliminar esta lista?</p><a href="#" id="cancel"  class="cancel btn btn-default btn-red">Cancelar</a><a href="#" id="acept" class="acept btn btn-default btn-red">Aceptar</a></div>'
         });
@@ -111,7 +113,6 @@ $(document).ready(function() {
                          'transitionOut': 'elastic',
                          'speedIn': 500,
                          'speedOut': 300,
-                         'autoDimensions': true,
                          'centerOnScroll': true,
                          'content' : result.msg
                     });
