@@ -1,16 +1,32 @@
 $('document').ready(function(){
-   
-    $("#ax-buscar").validate({
-        lang: 'es',
-        rules:{
-            name:'required',
-            lastname:'required',
-            code:'required',
-        },
-        message:{
-            required:"El campo es requerido"
+    $("#ax-buscar").submit(function(e){
+        if($("#name").val() === "" && $("#lastname").val() === "" && $("#code").val() === ""){
+            $.fancybox({
+                 'autoScale': true,
+                 'transitionIn': 'elastic',
+                 'transitionOut': 'elastic',
+                 'speedIn': 500,
+                 'speedOut': 300,
+                 'autoDimensions': true,
+                 'centerOnScroll': true,
+                 'content' : '<div><p class="fancybox-error">Debes completar los campos Nombre y Apellido o Código para realizar la búsqueda de la(s) listas deseadas.</p></div>'
+            });
+             e.preventDefault();
         }
-    });    
+        if($("#name").val() === "" && $("#lastname").val() !== "" || $("#name").val() !== "" && $("#lastname").val() === ""){
+             $.fancybox({
+                 'autoScale': true,
+                 'transitionIn': 'elastic',
+                 'transitionOut': 'elastic',
+                 'speedIn': 500,
+                 'speedOut': 300,
+                 'autoDimensions': true,
+                 'centerOnScroll': true,
+                 'content' : '<div><p class="fancybox-error">Debes completar los campos Nombre y Apellido para realizar la búsqueda de la(s) listas deseadas.</p></div>'
+            });
+             e.preventDefault();
+        }
+    });   
     
    $("#name").change(function(){
 	   if($("#name").val() !== "" || $("#lastname").val() !== ""){

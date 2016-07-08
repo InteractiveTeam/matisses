@@ -184,7 +184,7 @@ class DBStruct extends Module
 	public function addEventTypes(){
 		$sql = 'INSERT INTO '._DB_PREFIX_.'event_type(name) VAlUES("Matrimonio"),
 				("Cermonia de compromiso"),("Renovación de votos"),("Cumpleaños"),
-				("Aniversario"),("Home Shower"),("Baby Shower"),("Ocasión Especial");';
+				("Aniversario"),("Home shower"),("Baby shower"),("Ocasión especial");';
 		if(!$result=Db::getInstance(_PS_USE_SQL_SLAVE_)->Execute($sql))
 			return false;
 		return true;

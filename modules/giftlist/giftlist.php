@@ -101,6 +101,7 @@ class giftlist extends Module
 			$this->registerHook("actionOrderStatusUpdate");
             $this->registerHook("actionCustomerAccountAdd");
             $this->registerHook("actionProductInList");
+            $this->registerHook('header');
 			$this->dbstruct->CreateListConfigurationTable();
 			$this->dbstruct->CreateEventTypeTable();
 			$this->dbstruct->CreateGiftListTable();
@@ -386,4 +387,9 @@ class giftlist extends Module
 		$this->context->controller->addCss(_MODULE_DIR_."giftlist/views/css/tab.css");
 	}
 
+    public function hookHeader($params)
+    {
+        if(Dispatcher::getInstance()->getController() == "myaccount")
+            $this->context->controller->addJS((_MODULE_DIR_).'giftlist/views/js/ax-empezar.js');
+    }
 }

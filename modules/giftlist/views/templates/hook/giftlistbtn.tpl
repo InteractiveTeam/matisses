@@ -12,12 +12,12 @@
 		<div class="col-md-6">
 			<h3>{l s='Buscar lista' mod='giftlist'}</h3>
 			<p>{l s='Busca una lista de regalos existente' mod='giftlist'}</p>
-			<form action="{$search_link}" method="post">
+			<form action="{$search_link}" method="post" id="ax-buscar">
 			<div class="row ax-form-lista-deseos">
-				<input type="text" class="form-control" name="name" placeholder="{l s='Nombre' mod='giftlist'}"/>
-				<input type="text" class="form-control" name="lastname" placeholder="{l s='Apellido' mod='giftlist'}"/>
+				<input type="text" id="name" class="form-control" name="name" placeholder="{l s='Nombre' mod='giftlist'}"/>
+				<input type="text" id="lastname" class="form-control" name="lastname" placeholder="{l s='Apellido' mod='giftlist'}"/>
 					<p>{l s='o' mod='giftlist'}</p>
-					<input type="text" class="form-control code" name="code" placeholder="{l s='Código' mod='giftlist'}"/>
+					<input type="text" id="code" class="form-control code" name="code" placeholder="{l s='Código' mod='giftlist'}"/>
 				<button class="btn btn-default button btn-red">{l s='Buscar' mod='giftlist'}</button>
 			</div>
 			</form>
