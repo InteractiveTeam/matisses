@@ -1,5 +1,5 @@
 <form action="" method="post" id="bond_form">
-  <h1>Comprar bono</h1>
+  <h3>Comprar bono</h3>
   <div class="container">
     <div class="col-md-6">
         <div class="">
@@ -9,7 +9,9 @@
     </div>
     <div class="col-md-6">
       <div class="checkbox">
-        <label>Bono de lujo <input type="checkbox" id="luxury_bond" name="luxury_bond">
+        <label>
+            <input type="checkbox" id="luxury_bond" name="luxury_bond">
+            <span>Bono de lujo</span>
         </label>
       </div>
     </div>
@@ -23,9 +25,9 @@
   <div class="container">
     <div class="col-md-12">
       <input id="btnSave" type="submit" name="saveList"
-        class="btn btn-success pull-right" value="Guardar">
+        class="btn pull-right btn-default btn-lista-regalos" value="Guardar">
       <button id="btnCancel"
-        class="btn btn-danger pull-left">Cancelar</button>
+        class="btn pull-left btn-default btn-lista-regalos">Cancelar</button>
     </div>
   </div>
 </form>

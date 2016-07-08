@@ -31,7 +31,7 @@
 	    <div class="ax-text-result-list ax-result-inline">
          <h2>{l s='Mi lista' mod='giftlist'}</h2>
         </div>
-        <a href="javascript:void(0);" class="ax-print">{l s='Imprimir' mod='giftlist'}</a>
+        <a href="javascript:void(0);" class="ax-print"><i class="fa fa-print"></i>{l s='Imprimir lista' mod='giftlist'}</a>
 		<div class="row">
             <div class="product-card ax-bond-card col-md-3" data-id="{$list_desc['id']}">
                 <img src="{$modules_dir}/giftlist/views/img/details-lista.png">
@@ -40,32 +40,34 @@
             {foreach from=$products item=row}
                 {$atribute_group = $row['options'][3]->value}
                     <div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}">
-                        <div class="img-container" style="background-image: url('http://{$row['image']}')">
+                        <div class="ax-cont-hover">
+                            <div class="img-container">
+                                <img src="http://{$row['image']}" />
+                            </div>
+                            <div class="ax-info-list">
+                                {if $row['favorite']}<i class="fa fa-heart  ax-favorite" aria-hidden="true"><span>{l s='Favorito' mod='giftlist'}</span></i>{/if}
+                                <p class="ax-name-list">{$row['name']}</p>
+                                <p class="ax-price-list">{convertPrice price=$row['price']}</p>
+                                    {foreach from=$row['data'] item=att_group}
+                                        {if $att_group['id_product_attribute'] == $atribute_group}
+                                            <p>{$att_group['group_name']}: {$att_group['attribute_name']}</p>
+                                            <input type="hidden" class="prod-attr" value="{$att_group['id_product_attribute']}">
+                                        {/if}
+                                    {/foreach}
+                                <p>{l s='Cantidad:'} {$row['group']->wanted}</p>
+                            </div>
+                            <button data-toggle="tooltip" data-placement="bottom" title="{l s='Añadir al carrito' mod='giftlist'}" class="add-to-cart btn btn-default btn-lista-regalos">{l s='Añadir al carrito' mod='giftlist'}</button>
                         </div>
-                        <div class="ax-info-list">
-                        {if $row['favorite']}<i class="fa fa-heart  ax-favorite" aria-hidden="true"></i><span>{l s='Favorito' mod='giftlist'}</span>{/if}
-                        <p class="ax-name-list">{$row['name']}</p>
-                        <p class="ax-price-list">{convertPrice price=$row['price']}</p>
-                        {foreach from=$row['data'] item=att_group}
-                            {if $att_group['id_product_attribute'] == $atribute_group}
-                                <p>{$att_group['group_name']}: {$att_group['attribute_name']}</p>
-                                <input type="hidden" class="prod-attr" value="{$att_group['id_product_attribute']}">
-                            {/if}
-                        {/foreach}
-                    <p>{l s='Cantidad:'} {$row['group']->wanted}</p>
                     <div class="add_container">
-                        <label for="total_qty">{l s='Añadir al carrito' mod='giftlist'}</label>
                         {if !empty($row['group']->tot_groups)}
                             {if $row['group']->missing > $row['group']->tot_groups}
+                               <label class="qty_group" data-value="{$row['group']->cant}">Cantidad por grupo {$row['group']->cant}</label>
                                 <input type="number" data-value="{$row['group']->missing}" name="total_qty" max="{$row['group']->tot_groups}" class="total_qty" value="1">
-                                <label class="qty_group" data-value="{$row['group']->cant}">Cantidad por grupo {$row['group']->cant}</label>
                            {else}
+                               <label class="qty_group" data-value="{$row['group']->cant}">Cantidad por grupo {$row['group']->rest}</label>
                                 <input type="number" name="total_qty" max="1" class="total_qty" value="1" disabled>
-                                <label class="qty_group" data-value="{$row['group']->cant}">Cantidad por grupo {$row['group']->rest}</label>
                             {/if}
                         {/if}
-                        <button data-toggle="tooltip" data-placement="bottom" title="{l s='Añadir al carrito' mod='giftlist'}" class="add-to-cart">{l s='Añadir al carrito' mod='giftlist'}</button>
-                    </div>
                     </div>
                 </div>
             {/foreach}

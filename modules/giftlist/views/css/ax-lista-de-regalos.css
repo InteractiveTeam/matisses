@@ -590,7 +590,23 @@ label.error:before {
 }
 
 .module-giftlist-descripcion .ax-text-result-list {
-    padding: 10px 40px;
+    padding: 10px 50px;
+}
+
+.products-associated .ax-print {
+    float: right;
+    text-decoration: none;
+    font-family: 'condensed';
+    font-size: 1.1rem;
+    margin-top: 30px;
+}
+
+.products-associated .ax-print i {
+    margin:0 15px 0 0;
+    padding: 8px;
+    background: #5e534d;
+    color: #daa96f;
+    font-size: 1.2rem
 }
 
 .module-giftlist-descripcion .ax-text-result-list p, .module-giftlist-descripcion .ax-text-result-list h2, .module-giftlist-descripcion .ax-text-result-list h3 {
@@ -683,6 +699,11 @@ label.error:before {
 
 .module-giftlist-descripcion .product-card {
     border: none;
+    margin-bottom: 15px;
+}
+
+.module-giftlist-descripcion .product-card label {
+    padding-bottom: 0;
 }
 
 .products-associated .product-card img {
@@ -706,8 +727,12 @@ label.error:before {
 }
 
 .products-associated .product-card .ax-info-list {
-    padding: 10px 0;
+    padding: 5px 10px;
     position: relative;
+}
+
+.products-associated .product-card .add_container {
+    padding: 0 8px;
 }
 
 .products-associated .product-card i.fa-heart   {
@@ -725,6 +750,13 @@ label.error:before {
 
 .products-associated .product-card i.fa-heart.ax-favorite {
     color: #e10025;
+    text-align: center;
+}
+
+.products-associated i.fa-heart.ax-favorite span {
+    font-size: 0.8rem;
+    display: block;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .products-associated .product-card .delete-product {
@@ -760,8 +792,72 @@ label.error:before {
 .products-associated .ax-bond-card #add_bond {
     margin-top: 15px;
     display: inline-block;
-    color: #231f20
+    color: #231f20;
 }
+
+.products-associated .add_container input {
+    width: 100%;
+    padding: 10px;
+    color: #6b6b6b;
+}
+
+.module-giftlist-descripcion .parrilla-productos .products-associated .add-to-cart {
+    display: block;
+    font-size: 0.9rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    width: 200px;
+    bottom: 0;
+    margin: auto;
+    padding: 0;
+    text-align: center;
+    opacity: 0;
+    z-index: 99;
+    transform: scale(0);
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+}
+
+.ax-cont-hover {
+    overflow: hidden;
+    position: relative;
+}
+
+.ax-cont-hover:before, .ax-cont-hover:after {
+    content: "";
+    display: block;
+    background: rgba(35,31,32,0.3);
+    position: absolute;
+    height:50%;
+    width: 100%;
+    z-index: 1;
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+}
+
+.ax-cont-hover:before {
+    top:-50%;
+}
+
+.ax-cont-hover:after {
+    bottom:-50%;
+}
+
+   .ax-cont-hover:hover:before {
+        top:0;
+    }
+
+    .ax-cont-hover:hover:after {
+        bottom:0;
+    }
+
+    .ax-cont-hover:hover .add-to-cart.btn-default.btn-lista-regalos {
+        opacity: 1;
+        transform: scale(1);
+    }
 
 .module-giftlist-descripcion .parrilla-productos .btn-lista-regalos {
     margin: 40px 0 0 25px;
@@ -889,13 +985,17 @@ label.error:before {
     background: #5e534d;
 }
 
-#frmSaveList .checkbox .checker {
+.checkbox .checker {
     margin-top: 4px;
     background: #5e534d;
 }
 
-#frmSaveList .checker .checked:before, #frmSaveList .radio .checked:before {
+.checker .checked:before, .radio .checked:before {
     color: #ffd594;
+}
+
+#bond_form #luxury_bond {
+    position: inherit;
 }
 
 
