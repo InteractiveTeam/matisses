@@ -3615,7 +3615,9 @@
 
 @media screen and (max-width :320px) {
     
-
+    #slider #homepage-slider {
+        height: 14rem;
+    }
     
 	#homepage-slider .bx-pager.bx-default-pager{
         margin: 10px 0;
@@ -3665,6 +3667,10 @@
 
 /* iPhone 6 landscape */
 @media screen and (max-width: 375px) {
+    
+    #slider #homepage-slider {
+        height: 16rem;
+    }
     
     #menu.menu-experiencias {
         top: 8.9375rem;
@@ -3729,7 +3735,26 @@
 
 
 @media screen and (max-width: 414px){
+
+    #slider .bx-controls.bx-has-pager {
+        bottom: 8%;
+    }
     
+
+    #slider #homepage-slider .homeslider-description {
+        padding: 3rem 0.625rem;
+    }
+
+    #slider #homepage-slider {
+        height: 13rem;
+    }
+
+    #homepage-slider .homeslider-description h2, #homepage-slider .homeslider-description h3 {
+        font-size: 1.8rem;
+        line-height: 1.8rem;
+        padding: 0;
+        margin: 0;
+    }
     
     #menu.menu-experiencias {
         top: 8.9375rem;
