@@ -7,6 +7,8 @@ $('document').ready(function(){
       ,panelPath: '.jplist-panel'	
    });
    
+    $('.jplist-pagingmid').after($('.jplist-label'));
+    
    $("#name").change(function(){
 	   if($("#name").val() != "" || $("#lastname").val() != ""){
 		   disableCodeField();

@@ -6061,14 +6061,15 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     width: 600px;
 }
 
-
-
-
 #frmAddGiftList label {
     display: inline-block;
     width: auto;
     vertical-align: top;
     width: 100%;
+}
+
+#frmAddGiftList .checkbox label {
+    line-height: 1rem;
 }
 
 #frmAddGiftList .form-group label span {
@@ -6080,7 +6081,7 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 
 #frmAddGiftList .chosen-single {
     display: inline-block;
-    width: 207px;
+    width: 202px;
 }
 
 #frmAddGiftList .chosen-single span {
@@ -6099,7 +6100,7 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 }
 
 #frmAddGiftList #cant {
-    width: 74.8%;
+    width: 74%;
 }
 
 #frmAddGiftList textarea {
