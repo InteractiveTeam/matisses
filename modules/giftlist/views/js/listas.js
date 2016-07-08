@@ -1,5 +1,11 @@
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
+    
+    $('#lists').jplist({				
+      itemsBox: '.ax-cont-admin-listas-regalos' 
+      ,itemPath: '.list-item-container' 
+      ,panelPath: '.jplist-panel'	
+   });
 		
 	$(document).on('click', '.popup-modal-dismiss', function (e) {
 		e.preventDefault();

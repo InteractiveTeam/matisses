@@ -40,10 +40,10 @@
     </div>
     
     <!-- no results found -->
-<div class="jplist-no-results">
-  <p>{l s='No se encontraron resultados' mod='giftlist'}</p>
-</div>
-<div class="jplist-panel">
+    <div class="jplist-no-results">
+      <p>{l s='No se encontraron resultados' mod='giftlist'}</p>
+    </div>
+    <div class="jplist-panel">
     <div 
     class="jplist-pagination" 
     data-control-type="pagination" 

@@ -26,6 +26,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
             'admin_link' => $this->context->link->getModuleLink('giftlist', 'administrar'),
 			'description_link' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => "")),
 			'form' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/form_save_list.php",
+            'items_per_page' => 5
 		) );
 		$this->setTemplate ( 'listas.tpl' );
 	}
@@ -53,6 +54,9 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 	public function setMedia() {
 		parent::setMedia ();
 		$this->addJS ( array (
+            _MODULE_DIR_ . '/giftlist/views/js/vendor/jplist/jplist.core.min.js',
+			_MODULE_DIR_ . '/giftlist/views/js/vendor/jplist/jplist.pagination-bundle.min.js',
+			_MODULE_DIR_ . '/giftlist/views/js/vendor/jplist/jplist.textbox-filter.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/datetimepicker/jquery.datetimepicker.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/validation/jquery.validate.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/mask/jquery.mask.min.js',
@@ -60,6 +64,9 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 		) );
 		$this->addCSS ( array (
 			_MODULE_DIR_ . '/giftlist/views/css/vendor/datetimepicker/jquery.datetimepicker.css',
+            _MODULE_DIR_ . '/giftlist/views/css/vendor/jplist/jplist.core.min.css',
+			_MODULE_DIR_ . '/giftlist/views/css/vendor/jplist/jplist.pagination-bundle.min.css',
+			_MODULE_DIR_ . '/giftlist/views/css/vendor/jplist/jplist.textbox-filter.min.css',
 			_MODULE_DIR_ . '/giftlist/views/css/ax-lista-de-regalos.css'
 		) );
 	}
