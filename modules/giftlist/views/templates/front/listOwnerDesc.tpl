@@ -197,11 +197,11 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <label for="dir_before">{l s='Antes del evento' mod='giftlist'}<sup>*</sup></label>
+                <label for="dir_before">{l s='Dirección de envío antes del evento' mod='giftlist'}<sup>*</sup></label>
                 <input type="text" class="form-control" value="{$list_desc['address_before']}" name="dir_before" id="dir_before">
             </div>
             <div class="col-md-6">
-                <label for="dir_after">{l s='Después del evento' mod='giftlist'}<sup>*</sup></label>
+                <label for="dir_after">{l s='Dirección de envío después del evento' mod='giftlist'}<sup>*</sup></label>
                 <input type="text" class="form-control" value="{$list_desc['address_after']}" name="dir_after" id="dir_after">
             </div>
         </div>
