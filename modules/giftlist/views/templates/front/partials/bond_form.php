@@ -23,9 +23,8 @@
       <label for="message">Mensaje</label>
       <textarea placeholder="Mensaje" name="message" id="message"></textarea>
     </div>
-  </div>
-  <div class="container">
     <div class="col-md-12">
+     <br/>
       <input id="btnSave" type="submit" name="saveList"
         class="btn pull-right btn-default btn-lista-regalos" value="Guardar">
       <button id="btnCancel"

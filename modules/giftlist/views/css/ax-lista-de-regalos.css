@@ -236,12 +236,25 @@ label.error:before {
     white-space: normal;
 }
 
-.tab-content p.ax-text-descript {
+.ax-text-descript {
     padding: 15px 0;
     font-size: 0.85rem;
     line-height: 1.2rem;
     white-space: normal;
     color: #7b7b7b;
+}
+
+.ax-add-gift-card .ax-text-descript {
+    padding: 0 0 15px 0;
+}
+
+.fancybox-inner .ax-add-gift-card {
+    overflow-y: auto;
+    height: 100%;
+}
+
+.ax-add-gift-card .checkbox label {
+    margin-left: 0;
 }
 
 .module-giftlist-buscar .ax-form-data-search .btn.btn-lista-regalos {
@@ -691,6 +704,8 @@ label.error:before {
 
 .module-giftlist-descripcion .product-card label {
     padding-bottom: 0;
+    font-family: georgia, 'Georgia';
+    font-weight: bold;
 }
 
 .products-associated .product-card img {
@@ -1174,7 +1189,7 @@ label.error:before {
 }
 
 .ax-add-gift-card .checkbox {
-    margin-top: 40px;   
+    margin-top: 0;   
 }
 
 .ax-add-gift-card .container {

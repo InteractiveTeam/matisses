@@ -27,8 +27,8 @@ $(document).ready(function(){
 	//buy bond
 	$("#add_bond").fancybox({
         'autoSize'      :   false,
-        'height'        :   'auto',
-        'width'			:    600,
+        'height'        :   340,
+        'width'			:   600,
         'transitionIn'	:	'elastic',
         'transitionOut'	:	'elastic',
         'speedIn'		:	600,
@@ -109,8 +109,6 @@ function addFromList(idProduct, idCombination, quantity, callerElement,id_list){
 				        autoSize    : true,
                         autoScale   : true,
                         fitToView   : true,
-                        'minWidth': 250,
-                        'minHeight': 60,
 				        //minHeight: 30,
 				        content: '<p class="fancybox-error">' + error + '</p>'
 				    }],
