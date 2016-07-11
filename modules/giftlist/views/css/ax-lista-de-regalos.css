@@ -1,7 +1,7 @@
 @font-face {
-	font-family: 'Georgia';
+	font-family: 'Georgia;
 	src: local('Georgia'),
-		url('../font/Georgia.woff') format('woff');
+		url('../font/Georgia.woff, 'Georgia'.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -198,7 +198,7 @@ Fixes generalres
 }
 
 .ax-form-data-search label {
-    font-family: Georgia;
+    font-family: Georgia, 'Georgia';
     padding: 5px 20px;
     font-weight: 600;
     font-size: 18px;
@@ -231,12 +231,18 @@ label.error:before {
 }
 
 .tab-content p {
-    padding: 10px;
+    padding: 20px 0;
     line-height: 1.5rem;
-    font-family: 'Open Sans', sans-serif;
     white-space: normal;
 }
 
+.tab-content p.ax-text-descript {
+    padding: 15px 0;
+    font-size: 0.85rem;
+    line-height: 1.2rem;
+    white-space: normal;
+    color: #7b7b7b;
+}
 
 .module-giftlist-buscar .ax-form-data-search .btn.btn-lista-regalos {
     margin-left: 8px;
@@ -251,7 +257,7 @@ label.error:before {
     background: #5e534d;
     color: #eac78f;
     border: none;
-    font-family: Georgia;
+    font-family: Georgia, 'Georgia';
     padding: 8px 20px;
     font-size: 0.9rem;
     letter-spacing: 1px;
@@ -275,14 +281,14 @@ label.error:before {
     background: transparent;
     color: #272727;
     border: none;
-    font-family: Georgia;
+    font-family: Georgia, 'Georgia';
     text-decoration: underline;
     padding: 8px 25px;
 }
 
 .ax-text-result-list {
     background: #f6f6f6;
-    font-family: Georgia;
+    font-family: Georgia, 'Georgia';
     clear: both;
     position: relative;
     margin: 30px 0;
@@ -317,7 +323,7 @@ label.error:before {
 }
 
 .ax-text-result-list p, .ax-text-result-list h2, .ax-text-result-list h3 {
-    font-family: Georgia;
+    font-family: Georgia, 'Georgia';
     font-weight: bold;
     color: #292929;
     font-size: larger;
@@ -327,7 +333,7 @@ label.error:before {
 .ax-text-result-list h2, .ax-text-result-list h3  {
     text-transform: inherit;
     color:#262626;
-    font-family: Georgia;
+    font-family: Georgia, 'Georgia';
 }
 
 .ax-text-result-list p span {
@@ -380,7 +386,7 @@ label.error:before {
 .ax-cont-admin-listas-regalos .part .ax-day {
     color: #ecb072;
     font-size: 1.8rem;
-    font-family: Georgia;
+    font-family: Georgia, 'Georgia';
     margin: 2px 0;
 }
 
@@ -395,7 +401,7 @@ label.error:before {
     background: #5e534d;
     color: #eac78f;
     border: none;
-    font-family: Georgia;
+    font-family: Georgia, 'Georgia';
     font-weight: 100;
     text-transform: uppercase;
     cursor: pointer;
@@ -505,7 +511,7 @@ label.error:before {
     color: #60534d;
     display: block;
     width: 100%;
-    font-family: Georgia;
+    font-family: Georgia, 'Georgia';
 }
 
 .ax-avatar-content .ax-cover-buttons .uploader, .ax-avatar-content .ax-prof-buttons .uploader {
@@ -620,7 +626,7 @@ label.error:before {
     font-weight: 600;
     font-size: 18px;
     margin: 7px 0;
-    font-family: Georgia;
+    font-family: Georgia, 'Georgia';
     color: #272727;
 }
 
@@ -635,7 +641,7 @@ label.error:before {
 
 .module-giftlist-descripcion #carousel-example-generic p {
     text-align: center;
-    font-family: Georgia;
+    font-family: Georgia, 'Georgia';
     margin: 10px 0;
     color: #56534e;
     font-weight: 700;
@@ -757,7 +763,7 @@ label.error:before {
 .products-associated .product-card p.ax-name-list {
     border-bottom: #ccc solid 1px;
     padding: 5px 0;
-    font-family: Georgia;
+    font-family: Georgia, 'Georgia';
     font-weight: 600;
     font-size: 1.1rem;
     text-transform: uppercase;
@@ -879,7 +885,7 @@ label.error:before {
 }
 
 #frmSaveList div.uploader span.action {
-    font-family: Georgia;
+    font-family: Georgia, 'Georgia';
     font-weight: 700;    
 }
 
@@ -926,7 +932,7 @@ label.error:before {
 }
 
 .tab-content *, #frmSaveList h3 {
-    font-family: Georgia;
+    font-family: Georgia;, 'Georgia'
     text-transform: inherit;
     color: #464646;
 }
@@ -939,7 +945,7 @@ label.error:before {
     background: #f8f8f8;
     display: inline-block;
     border: #dbdbdb solid 1px;
-    font-family: Georgia;
+    font-family: Georgia, 'Georgia';
     padding-right: 15px;
 }
 
@@ -993,6 +999,7 @@ label.error:before {
     border-bottom: #ccc solid 1px;
     font-weight: 700;
     margin: 0;
+    text-transform: initial;
 }
 
 #frmSaveList label {
@@ -1082,7 +1089,7 @@ label.error:before {
     background: #5e534d;
     color: #eac78f;
     border: none;
-    font-family: Georgia;
+    font-family: Georgia, 'Georgia';
     padding: 8px 25px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -1100,7 +1107,7 @@ label.error:before {
     background: #5e534d;
     color: #eac78f;
     border: none;
-    font-family: Georgia;
+    font-family: Georgia, 'Georgia';
     padding: 8px 25px;
     letter-spacing: 1.5px;
 }
@@ -1110,7 +1117,7 @@ label.error:before {
 }
 
 .chosen-container-single .chosen-single span {
-    overflow: Georgia;
+    overflow: Georgia, 'Georgia';
     text-overflow: inherit;
     white-space: inherit;
 }
@@ -1161,7 +1168,7 @@ label.error:before {
 
 .ax-add-gift-card label {
     padding:0 0 5px 0;
-    font-family: Georgia;
+    font-family: Georgia;, 'Georgia'
     font-weight: bold;
     margin-left: 10px;
 }

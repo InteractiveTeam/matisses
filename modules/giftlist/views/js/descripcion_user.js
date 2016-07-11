@@ -109,6 +109,8 @@ function addFromList(idProduct, idCombination, quantity, callerElement,id_list){
 				        autoSize    : true,
                         autoScale   : true,
                         fitToView   : true,
+                        'minWidth': 250,
+                        'minHeight': 60,
 				        //minHeight: 30,
 				        content: '<p class="fancybox-error">' + error + '</p>'
 				    }],
