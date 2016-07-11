@@ -178,16 +178,6 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <label for="message">{l s='Mensaje' mod='giftlist'}</label>
-                    <textarea name="message" class="form-control" id="message"></textarea>
-                </div>
-                <div class="col-md-6">
-                    <label for="guest_number">{l s='Número de invitados' mod='giftlist'}<sup>*</sup></label>
-                    <input type="number" class="form-control" name="guest_number" id="guest_number">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
                     <label for="dir_before">{l s='Antes del evento' mod='giftlist'}<sup>*</sup></label>
                     <input type="text" class="form-control" name="dir_before" id="dir_before">
                 </div>
@@ -198,16 +188,32 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="checkbox">
-					   <label>
-                        {l s='Cocreador'}
-                        <input type="checkbox" id="cocreator">
-					   </label>
-				    </div>
+                    <label for="message">
+                    {l s='Mensaje' mod='giftlist'}</label>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    
+                    <textarea name="message" class="form-control" id="message"></textarea>
                 </div>
-                <div class="col-md-6 hidden" id="cocreator-div">
-                    <label for="email_co">{l s='Correo electrónico' mod='giftlist'}</label>
-                    <input type="email" class="form-control" name="email_co" id="email_co">
+                <div class="col-md-6">
+                    <div class="checkbox">
+                        <label>
+                            {l s='Cocreador'}
+                            <input type="checkbox" id="cocreator">
+                        </label>
+                        <div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </div>
+                        <div class="col-md-12 hidden" id="cocreator-div">
+                            <label for="email_co">{l s='Correo electrónico' mod='giftlist'}</label>
+                            <input type="email" class="form-control" name="email_co" id="email_co">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="guest_number">{l s='Número de invitados' mod='giftlist'}<sup>*</sup></label>
+                    <input type="number" class="form-control" name="guest_number" id="guest_number">
                 </div>
                 <div class="row">
                     <a href="javascript:void(0);" class="ax-next btn btn-default btn-lista-regalos">{l s='Siguiente' mod='giftlist'}</a>

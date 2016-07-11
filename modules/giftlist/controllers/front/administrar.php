@@ -111,9 +111,9 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
         $li->address_after = $data['dir_after'];
         $li->real_not = $data['real_not'] == 'on' ? true : false;
         $li->cons_not = $data['cons_not'] == 'on' ? true : false;
+        $li->firstname = $data['firstname'];
+        $li->lastname = $data['lastname'];
         $li->info_creator = Tools::jsonEncode(array(
-            'firstname' => $data['firstname'],
-            'lastname' => $data['lastname'],
             'country' => 'Colombia',
             'city' => ucfirst(strtolower($c[$data['city']]['name'])),
             'town' => ucfirst(strtolower($data['town'])),

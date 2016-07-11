@@ -198,6 +198,17 @@ function uploadImage(prof,input){
                 $(".ax-profile-img").attr("src",res+"?"+today.getTime());
             else
                 $(".ax-cover-img").attr("src",res+"?"+today.getTime());
+            $.fancybox({
+             'autoScale': true,
+             'transitionIn': 'elastic',
+             'transitionOut': 'elastic',
+             'speedIn': 500,
+             'speedOut': 300,
+             'autoDimensions': true,
+             'centerOnScroll': true,
+             'content' : '<div><p class="fancybox-error">Imagen cargada con éxito.</p></div>'
+            });
+           
         }
     });
 }

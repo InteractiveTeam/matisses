@@ -46,6 +46,8 @@ class DBStruct extends Module
 			`id_cocreator` INT UNSIGNED NULL,
 			`code` VARCHAR(11) NOT NULL,
 			`name` VARCHAR(100) NOT NULL,
+			`firstname` VARCHAR(100) NOT NULL,
+			`lastname` VARCHAR(100) NOT NULL,
 			`public` TINYINT(1) NOT NULL,
 			`event_type` INT NOT NULL,
 			`event_date` DATETIME NOT NULL,

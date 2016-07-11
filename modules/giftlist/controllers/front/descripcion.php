@@ -44,7 +44,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			'form_edit' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/form_edit_list.php",
 			'form_cocreator' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/cocreator_info.php",
 			'bond_form' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/bond_form.php",
-			'creator' => $creator['firstname'] . " " . $creator['lastname'],
+			'creator' => $res['firstname'] . " " . $res['lastname'],
 			'cocreator' => ($cocreator ? $cocreator['firstname'] . " " . $cocreator['lastname'] : false),
 			'products' => $lpd->getProductsByList($res['id']),
 			'event_type' => Db::getInstance()->getValue($ev),
@@ -232,9 +232,9 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 		$li = new GiftListModel ($id);
         $li->address_before = $data['dir_before'];
         $li->address_after = $data['dir_after'];
+        $li->firstname = $data['firstname'];
+        $li->lastname = $data['lastname'];
 		$li->info_creator = Tools::jsonEncode(array(
-            'firstname' => $data['firstname'],
-            'lastname' => $data['lastname'],
             'country' => 'Colombia',
             'city' => ucfirst(strtolower($c[$data['city']]['name'])),
             'town' => ucfirst(strtolower($data['town'])),

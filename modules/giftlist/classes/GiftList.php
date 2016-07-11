@@ -7,6 +7,8 @@ class GiftListModel extends ObjectModel
 	public $id_cocreator;
 	public $code;
 	public $name;
+    public $firstname;
+    public $lastname;
 	public $public;
 	public $event_type;
 	public $event_date;
@@ -39,6 +41,8 @@ class GiftListModel extends ObjectModel
 			'id_cocreator' => array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
 			'code' => array('type' => self::TYPE_STRING, 'required' => true, 'size' => 11),
 			'name' => array('type' => self::TYPE_STRING, 'required' => true, 'size' => 100),
+			'firstname' => array('type' => self::TYPE_STRING, 'required' => true, 'size' => 100),
+			'lastname' => array('type' => self::TYPE_STRING, 'required' => true, 'size' => 100),
 			'public' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
 			'event_type' => array('type' => self::TYPE_INT),
 			'event_date' => array('type' => self::TYPE_DATE),
@@ -131,11 +135,11 @@ class GiftListModel extends ObjectModel
 	}
 
 	public function getListByCreatorId($id){
-		$lists = Db::getInstance ()->executeS ( "SELECT * FROM `" . _DB_PREFIX_ . "gift_list` WHERE `id_creator` =". $id . " OR `id_cocreator` =". $id);
+		$lists = Db::getInstance ()->executeS ( "SELECT * FROM `" . _DB_PREFIX_ . "gift_list` WHERE `id_creator` = ". $id . " OR `id_cocreator` = ". $id);
         
         foreach($lists as $key => $l){
             $c = new CustomerCore($l['id_creator']);
-            $lists[$key]['creator_name'] = $c->firstname . " " . $c->lastname;
+            $lists[$key]['creator_name'] = $l['firstname'] . " " . $l['lastname'];
             if($l['id_cocreator'] != 0){
                 $cc = new CustomerCore($l['id_cocreator']);
                 $lists[$key]['cocreator_name'] = $cc->firstname . " " . $cc->lastname;
@@ -258,15 +262,15 @@ class GiftListModel extends ObjectModel
 
 	public function searchByCustomerNames($firstname,$lastname){
 		$return = false;
-		$sql = "SELECT id_customer FROM "._DB_PREFIX_.'customer WHERE
+        $sql = "SELECT * FROM "._DB_PREFIX_.'gift_list WHERE firstname = "'. $firstname.'" AND lastname = "'.$lastname.'";';
+		 $return = Db::getInstance()->executeS($sql);
+                
+        $sql = "SELECT id_customer FROM "._DB_PREFIX_.'customer WHERE
 				firstname = "'.$firstname.'" AND lastname = "'.$lastname.'";';
-		$res = Db::getInstance()->executeS($sql);
-        $return = array();
-        
+        $res = Db::getInstance()->getValue($sql);
 		if(count($res) > 0){
             foreach($res as $row){
-                $sql = "SELECT * FROM "._DB_PREFIX_.'gift_list WHERE id_creator = '. $row['id_customer']
-			     .' OR id_cocreator = '. $row['id_customer'];
+                $sql = "SELECT * FROM "._DB_PREFIX_.'gift_list WHERE id_cocreator = '. $res;			    
                 $ret = Db::getInstance()->executeS($sql);
                 for($i = 0; $i < count($ret);$i++){
                     array_push($return,$ret[$i]);
@@ -274,12 +278,9 @@ class GiftListModel extends ObjectModel
             }
 		}
         
-        
-        
         foreach($return as $key => $row){
-            $creator = $this->getCreator($row['id_creator']);
             $cocreator = ($row['id_cocreator'] ? $this->getCoCreator($row['id_cocreator']) : false);
-            $return[$key]['creator'] = $creator->firstname . " " . $creator->lastname;
+            $return[$key]['creator'] = $row['firstname'] . " " . $row['lastname'];
             $return[$key]['cocreator'] = ($cocreator ? $cocreator->firstname . " " . $cocreator->lastname : " - ");
             $return[$key]['event_type'] = Db::getInstance()->getValue("SELECT name FROM "._DB_PREFIX_."event_type WHERE id =".$row['event_type']);
             $return[$key]['link'] = $this->context->link->getModuleLink('giftlist', 'descripcion', ['url' => $row['url']]);
