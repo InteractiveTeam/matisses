@@ -113,6 +113,14 @@ $(document).ready(function() {
         $(this).addClass("hidden");
         $(".ax-bond-value").addClass("hidden");
         $(".ax-bond-card").append('<div class="ax-bond-cont"><label for="min_amount">Monto mínimo</label><input type="number" step="20000" min="0" id="min_amount" value="'+min_amount+'" name="min_amount"></div>');
+        var min_val = document.getElementById('min_amount');
+        min_val.onkeydown = function(e) {
+            if(!((e.keyCode > 95 && e.keyCode < 106)
+              || (e.keyCode > 47 && e.keyCode < 58) 
+              || e.keyCode == 8)) {
+                return false;
+            }
+        };
     });
     
     $(".ax-finish-edit").click(function(){
