@@ -255,7 +255,7 @@ $(document).ready(function(e){
         
         $.each(business, function(x,y){
             var category = $(y).children('li');
-            var countMax = category.length;
+            var countMax = category.length < 5 ? 5 : category.length;
             
             category.eq(category.length-1).css('paddingBottom',20)
             
