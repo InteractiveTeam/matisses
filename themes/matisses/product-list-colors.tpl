@@ -35,16 +35,28 @@
             	data-idattribute="{$color.id_attribute}"
                 data-idproduct="{$color.id_product}"
                 
-            href="javascript:void(0)" {if !empty($id_image_p)}onclick="changeImageColor('{$color.id_product}','{$img_prod_color}')"{/if} class="color_pick"{if !$img_color_exists && isset($color.color) && $color.color} style="background:{$color.color};"{/if}>
+            href="javascript:void(0)" {if !empty($id_image_p)}onclick="changeImageColor('{$color.id_product}','{$color.name}','{$img_prod_color}','{$color.id_product_attribute}')"{/if} class="color_pick"{if !$img_color_exists && isset($color.color) && $color.color} style="background:{$color.color};"{/if}>
 				{if $img_color_exists}
 					<img src="{$img_col_dir}{$color.id_attribute|intval}.jpg" alt="{$color.name|escape:'html':'UTF-8'}" title="{$color.name|escape:'html':'UTF-8'}" width="20" height="20" />
 				{/if}
 			</a>
+			<pre>{$color|print_r}</pre>
 		</li>
 	{/foreach}
 </ul>
 <script type="text/javascript">
-    function changeImageColor(idprod,image) {
+    function changeImageColor(idprod,name,image,idattr) {
         $('.product-container[id='+idprod+'] .left-block .product_img_link img').attr("src", image);
+        
+        var linkp = $('.product-container[id='+idprod+'] .button-container .showmore').attr("href").split("#");
+        $('.product-container[id='+idprod+'] .button-container .showmore').attr("href", linkp[0]+"#/color-"+name.toLowerCase());
+        
+        if (idattr) {
+            if ($('.product-container[id='+idprod+'] .button-container .showmore input')) {
+                $('.product-container[id='+idprod+'] .button-container .showmore input').remove();   
+            }
+
+            $('.product-container[id='+idprod+'] .button-container .showmore').append("<input type='hidden' id='idCombination' value='"+idattr+"'/>");
+        }
     }
 </script>
