@@ -145,6 +145,8 @@ $(document).ready(function() {
                      'autoScale': true,
                      'transitionIn': 'elastic',
                      'transitionOut': 'elastic',
+                     'minWidth': 240,
+                     'minHeight': 50,
                      'speedIn': 500,
                      'speedOut': 300,
                      'autoDimensions': true,
@@ -264,6 +266,8 @@ function saveAddress(){
                          'autoScale': true,
                          'transitionIn': 'elastic',
                          'transitionOut': 'elastic',
+                         'minWidth': 240,
+                         'minHeight': 50,
                          'speedIn': 500,
                          'speedOut': 300,
                          'autoDimensions': true,
@@ -311,12 +315,14 @@ function saveMessage(){
         success: function(res){
             $("#message").text(JSON.parse(res));
             $.fancybox({
-                 autoSize    : true,
+                autoSize    : true,
                 autoScale   : true,
                 fitToView   : true,
                 autoDimensions:	true,
                  'transitionIn': 'elastic',
                  'transitionOut': 'elastic',
+                 'minWidth': 240,
+                 'minHeight': 50,
                  'speedIn': 500,
                  'speedOut': 300,
                  'href' : '#contentdiv'

@@ -10,7 +10,7 @@ $(function(){
 
 	$("#btn_gift_list").fancybox({
 		'autoSize'      :   false,
-		'height'        :   'auto',
+		'height'        :   340,
 		'width'			:    600,
 		'transitionIn'	:	'elastic',
 		'transitionOut'	:	'elastic',
@@ -63,6 +63,7 @@ $(function(){
                              'autoScale': true,
                              'transitionIn': 'elastic',
                              'transitionOut': 'elastic',
+                             'minWidth': 435,
                              'speedIn': 500,
                              'speedOut': 300,
                              'autoDimensions': true,

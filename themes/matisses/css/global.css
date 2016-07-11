@@ -1304,6 +1304,9 @@ box-sizing: border-box;
 	.checkbox label {
 	color: #777777;
 	}
+    #frmAddGiftList .checkbox label {
+	color: #4b4b4b;
+	}
 	.close {
 	opacity: 1;
 	}
@@ -6070,6 +6073,7 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 
 #frmAddGiftList .checkbox label {
     line-height: 1rem;
+    margin: 8px 0;
 }
 
 #frmAddGiftList .form-group label span {
@@ -6089,7 +6093,7 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 
 #frmAddGiftList label p {
     text-transform: lowercase;
-    margin: 5px 0;
+    margin: 8px 0;
 }
 
 #frmAddGiftList .chosen-single, #frmAddGiftList #cant, #frmAddGiftList textarea {
@@ -6099,7 +6103,10 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 #frmAddGiftList .btn-list-regalos {
     text-align: right;
     width: 100%;
-    clear: both;
+}
+
+#frmAddGiftList .btn-list-regalos button {
+    
 }
 
 #frmAddGiftList #cant, #frmAddGiftList input {

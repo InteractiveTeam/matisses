@@ -54,9 +54,9 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="cont btn-list-regalos">
-                <button class="btn button btn btn-default btn-red" id="add-list">Añadir</button>
+                <div class="btn-list-regalos">
+                    <button class="btn button btn btn-default btn-red" id="add-list">Añadir</button>
+                </div>
             </div>
 	</div>
 </div>
@@ -65,7 +65,7 @@
 	<div class="container">
 		<p class="response"></p>
 		<div class="col-md-6">
-			<div class="image-prod" style="height: 233px;"></div>
+			<div class="image-prod" style="height: 190px; margin-bottom: 20px"></div>
 		</div>
 		<div class="col-md-6">
 			<p class="prod_name"></p>
