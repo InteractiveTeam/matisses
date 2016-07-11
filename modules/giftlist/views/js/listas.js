@@ -119,10 +119,12 @@ $(document).ready(function() {
                          'autoScale': true,
                          'transitionIn': 'elastic',
                          'transitionOut': 'elastic',
+                         'minHeight': 30,
+                         'minWidth': 240,
                          'speedIn': 500,
                          'speedOut': 300,
                          'centerOnScroll': true,
-                         'content' : result.msg
+                         'content' : $('<p>').text(result.msg)
                     });
                     $("#list-"+result.id).remove();
                 }
