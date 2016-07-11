@@ -44,7 +44,8 @@
 	{/foreach}
 </ul>
 <script type="text/javascript">
-    function changeImageColor(idprod,name,image,idattr) {
+    function changeImageColor(idprod,namec,image,idattr) {
+        var name = namec.replace(" ", "_");
         $('.product-container[id='+idprod+'] .left-block .product_img_link img').attr("src", image);
         
         var linkp = $('.product-container[id='+idprod+'] .button-container .showmore').attr("href").split("#");
