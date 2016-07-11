@@ -262,7 +262,7 @@ class GiftListModel extends ObjectModel
 
 	public function searchByCustomerNames($firstname,$lastname){
 		$return = false;
-        $sql = "SELECT * FROM "._DB_PREFIX_.'gift_list WHERE firstname = "'. $firstname.'" AND lastname = "'.$lastname.'";';
+        $sql = "SELECT * FROM "._DB_PREFIX_.'gift_list WHERE firstname = "'. $firstname.'" AND lastname = "'.$lastname.'" AND public = 1;';
 		 $return = Db::getInstance()->executeS($sql);
                 
         $sql = "SELECT id_customer FROM "._DB_PREFIX_.'customer WHERE
