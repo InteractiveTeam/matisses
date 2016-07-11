@@ -91,14 +91,14 @@ $(document).ready(function() {
         $.fancybox({
              type: 'inline',
              autoScale: true,
-             minHeight: 30,
-             minWidth: 220,
+             minHeight: 100,
+             minWidth: 240,
              'transitionIn': 'elastic',
              'transitionOut': 'elastic',
              'speedIn': 500,
              'speedOut': 300,
              'centerOnScroll': true,
-             'content' : '<div class="ax-popup-delete"><p>¿Estás seguro que deseas eliminar esta lista?</p><a href="#" id="cancel"  class="cancel btn btn-default btn-red">Cancelar</a><a href="#" id="acept" class="acept btn btn-default btn-red">Aceptar</a></div>'
+             'content' : '<div class="ax-popup-delete"><p>¿Estás seguro que deseas eliminar esta lista?</p><a href="#" id="cancel"  class="cancel btn btn-default btn-lista-regalos">Cancelar</a><a href="#" id="acept" class="acept btn btn-default btn-lista-regalos">Aceptar</a></div>'
         });
         $("#cancel").on('click',function(){
             $.fancybox.close();

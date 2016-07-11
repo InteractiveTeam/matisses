@@ -246,9 +246,15 @@ label.error:before {
     color: #eac78f;
     border: none;
     font-family: Georgia;
-    padding: 8px 25px;
-    letter-spacing: 1.5px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
 }
+
+.fancybox-outer .btn.btn-default.btn-lista-regalos {
+    
+}
+
 
 .module-giftlist-empezar .btn-lista-regalos {
     margin:20px 0 10px 0;
@@ -963,6 +969,14 @@ label.error:before {
     color: #ffd594 !important;
 }
 
+.fancybox-skin .fancybox-close:after {
+    color: #5e534d !important;
+}
+
+.fancybox-skin {
+    border-bottom: 5px solid #5e534d !important;
+}
+
 #bond_form #luxury_bond {
     position: inherit;
 }
@@ -1104,14 +1118,6 @@ label.error:before {
     letter-spacing: 0.6px;
 }
 
-.ax-popup-delete {
-    width: 230px;
-}
-
-.ax-popup-delete {
-    width: 230px;
-}
-
 .ax-popup-delete p {
     margin-bottom: 10px;
 }
@@ -1164,6 +1170,11 @@ label.error:before {
 
 .ax-add-gift-card #btnSave {
     margin-left: 10px;
+}
+
+.ax-add-gift-card textarea {
+    border: #ccc solid 1px;
+    padding: 8px;
 }
 
 @media screen and (max-width:1024px) {
@@ -1299,6 +1310,7 @@ label.error:before {
     
     .ax-add-gift-card textarea {
         border: #ccc solid 1px;
+        padding: 8px;
     }
 
 }
@@ -1617,6 +1629,7 @@ label.error:before {
     
     .ax-add-gift-card textarea {
         border: #ccc solid 1px;
+        padding: 8px;
     }
     
     .ax-add-gift-card .btn.btn-lista-regalos {
