@@ -954,7 +954,7 @@ class matisses extends Module
         }
         
         if (in_array($this->page_name, array('order'))) {
-            /*$sqlstore = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'store');
+            $sqlstore = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'store where active_shop = "1"');
             $stores = array();
             
             foreach ($sqlstore as $store) {
@@ -963,9 +963,30 @@ class matisses extends Module
             
             $this->context->smarty->assign(array(
                 'current_stores' => $stores
-            ));*/
+            ));
         }
 	}
+    
+    public function getActiveStores() {
+        $sqlstore = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'store where active_shop = "1"');
+        $stores = array();
+
+        foreach ($sqlstore as $store) {
+            array_push($stores, $store);
+        }
+
+        return $stores;
+    }
+    
+    public function getImagesByAttribute($attr) {
+        $images = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'product_attribute_image WHERE id_product_attribute = '.$attr);
+        $idimage = array();
+        
+        foreach ($images as $id) {
+            array_push($idimage, $id['id_image']);    
+        }
+        return $idimage[0];
+    }
     
     public function createXML() {
         
