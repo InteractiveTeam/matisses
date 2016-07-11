@@ -213,7 +213,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="guest_number">{l s='Número de invitados' mod='giftlist'}<sup>*</sup></label>
-                    <input type="number" class="form-control" name="guest_number" id="guest_number">
+                    <input type="number" class="form-control" name="guest_number" id="guest_number" min="1">
                 </div>
                 <div class="row">
                     <a href="javascript:void(0);" class="ax-next btn btn-default btn-lista-regalos">{l s='Siguiente' mod='giftlist'}</a>
@@ -233,7 +233,7 @@
                 </div>
                 <div class="col-md-6 hidden" id="ammount_div">
                     <label for="min_ammount">{l s='Monto mínimo' mod='giftlist'}<sup>*</sup></label>
-                    <input type="number" class="form-control" name="min_ammount" id="min_ammount" step="20000">
+                    <input type="number" class="form-control" name="min_ammount" id="min_ammount" step="20000" min="0">
                 </div>
             </div>
             <div class="row">

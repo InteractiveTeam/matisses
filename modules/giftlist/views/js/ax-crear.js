@@ -55,6 +55,13 @@ var ax_admin = {
     form: '',
     init: function(){
         $(document).ready(function(){
+            // Select your input element.
+            var guest_number = document.getElementById('guest_number');
+            var min_amount = document.getElementById('min_ammount');
+
+            // Listen for input event on numInput.
+            guest_number.onkeydown = ax_admin.negative// Listen for input event on numInput.
+            min_amount.onkeydown = ax_admin.negative;
             ax_admin.validate();
             $("#city").on('change',function(){
                 ax_admin.setTown($("#city option:selected").val());
@@ -175,6 +182,13 @@ var ax_admin = {
             }
         });
     },
+    negative: function(e) {
+        if(!((e.keyCode > 95 && e.keyCode < 106)
+          || (e.keyCode > 47 && e.keyCode < 58) 
+          || e.keyCode == 8)) {
+            return false;
+        }
+    },
     changeTab:function(){
         var active = $(".nav-tabs li.active a");
         var next = parseInt(active.parent().attr("data-id")) + 1;
@@ -243,6 +257,7 @@ var ax_admin = {
                     selectRequired: true,
                 },
                 guest_number: {
+                    min : 1,
                     required: true,
                     number:true,
                     guestNumber:true
