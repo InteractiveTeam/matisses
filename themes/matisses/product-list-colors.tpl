@@ -43,13 +43,14 @@
 		</li>
 	{/foreach}
 </ul>
+{literal}
 <script type="text/javascript">
     function changeImageColor(idprod,namec,image,idattr) {
-        var name = namec.replace(" ", "_");
+        var name = namec.replace(" ", "_").toLowerCase();
         $('.product-container[id='+idprod+'] .left-block .product_img_link img').attr("src", image);
         
         var linkp = $('.product-container[id='+idprod+'] .button-container .showmore').attr("href").split("#");
-        $('.product-container[id='+idprod+'] .button-container .showmore').attr("href", linkp[0]+"#/color-"+name.toLowerCase());
+        $('.product-container[id='+idprod+'] .button-container .showmore').attr("href", linkp[0]+"#/color-"+name);
         
         if (idattr) {
             if ($('.product-container[id='+idprod+'] .button-container .showmore input')) {
@@ -58,5 +59,16 @@
 
             $('.product-container[id='+idprod+'] .button-container .showmore').append("<input type='hidden' id='idCombination' value='"+idattr+"'/>");
         }
+        
+        $('.product-container[id='+idprod+'] .button-container .ajax_add_to_cart_button').remove();
+        $('.product-container[id='+idprod+'] .button-container .ajax_add_to_cart_b').remove();
+        
+        $('.product-container[id='+idprod+'] .button-container').append('<a class=" btn btn-default buy-now ajax_add_to_cart_b" href="javascript:void(0)"><span>{/literal}{l s="Add to cart"}{literal}</span></a>');
+        
+		$('.ajax_add_to_cart_b').click(function(){
+			ajaxCart.add(idprod, idattr, true, null, 1, null);
+            console.log("hola");
+		});
     }
 </script>
+{/literal}
