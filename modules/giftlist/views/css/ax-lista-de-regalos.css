@@ -82,7 +82,7 @@ Fixes generalres
 
 /*Listas*/
 .bread {
-    margin-left: 17px;
+    margin-left: 0px;
 }
 
 #list-img-container {
@@ -363,37 +363,6 @@ label.error:before {
 
 .module-giftlist-buscar .part span {
 
-}
-
-.jplist-panel .jplist-pagingmid, .jplist-panel .jplist-pagination button.jplist-last, .jplist-panel .jplist-pagination button.jplist-first {
-    display: none;
-}
-
-.ax-cont-list .jplist-panel .jplist-pagination .jplist-pagingprev button, .ax-cont-list .jplist-panel .jplist-pagination .jplist-pagingnext button {
-    font-size: 2rem;
-}
-
-.jplist-panel .jplist-hidden {
-    display: inline-block;
-    opacity: 0.36; 
-}
-
-.ax-cont-list .jplist-panel .jplist-pagination {
-    float: right;
-    margin: 80px 50px 0 0;
-}
-
-.ax-cont-list .jplist-panel .jplist-pagination button, .ax-cont-list .jplist-label {
-    background: transparent;
-    border: none;
-    color: #5e534d;
-    margin: 0;
-    padding: 0 6px;
-}
-
-.ax-cont-list .jplist-label {
-    font-family: "condensed";
-    color: #848484;
 }
 
 .ax-cont-admin-listas-regalos .part .ax-day {
@@ -846,18 +815,18 @@ label.error:before {
     bottom:-50%;
 }
 
-   .ax-cont-hover:hover:before {
-        top:0;
-    }
+.ax-cont-hover:hover:before {
+    top:0;
+}
 
-    .ax-cont-hover:hover:after {
-        bottom:0;
-    }
+.ax-cont-hover:hover:after {
+    bottom:0;
+}
 
-    .ax-cont-hover:hover .add-to-cart.btn-default.btn-lista-regalos {
-        opacity: 1;
-        transform: scale(1);
-    }
+.ax-cont-hover:hover .add-to-cart.btn-default.btn-lista-regalos {
+    opacity: 1;
+    transform: scale(1);
+}
 
 .module-giftlist-descripcion .parrilla-productos .btn-lista-regalos {
     margin: 40px 0 0 25px;
@@ -991,7 +960,7 @@ label.error:before {
 }
 
 .checker .checked:before, .radio .checked:before {
-    color: #ffd594;
+    color: #ffd594 !important;
 }
 
 #bond_form #luxury_bond {
@@ -1147,6 +1116,56 @@ label.error:before {
     margin-bottom: 10px;
 }
 
+.jplist-panel .jplist-pagingmid, .jplist-panel .jplist-pagination button.jplist-last, .jplist-panel .jplist-pagination button.jplist-first {
+    display: none;
+}
+
+.jplist-panel .jplist-pagination .jplist-pagingprev button, .jplist-panel .jplist-pagination .jplist-pagingprev button {
+    font-size: 2rem;
+}
+
+.jplist-panel .jplist-hidden {
+    display: inline-block;
+    opacity: 0.36; 
+}
+
+.jplist-panel .jplist-pagination {
+    float: right;
+    margin: 80px 50px 0 0;
+}
+
+.jplist-panel .jplist-pagination .jplist-pagingnext button, .jplist-panel .jplist-pagination .jplist-pagingprev button, .jplist-panel .jplist-label {
+    background: transparent;
+    border: none;
+    color: #5e534d;
+    margin: 0;
+    padding: 0 6px;
+}
+
+.jplist-panel .jplist-label {
+    font-family: "condensed";
+    color: #848484;
+}
+
+.ax-add-gift-card label {
+    padding:0 0 5px 0;
+    font-family: Georgia;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.ax-add-gift-card .checkbox {
+    margin-top: 40px;   
+}
+
+.ax-add-gift-card .container {
+    margin-top:20px;
+}
+
+.ax-add-gift-card #btnSave {
+    margin-left: 10px;
+}
+
 @media screen and (max-width:1024px) {
      
     .ax-search-home .ax-form-data-search input {
@@ -1268,6 +1287,18 @@ label.error:before {
         display: block;
         margin: 10px 0;
         text-align: center;
+    }
+    
+    .module-giftlist-descripcion .ax-text-result-list {
+        float: left;
+    }
+    
+    .module-giftlist-descripcion .row {
+        clear: both;
+    }
+    
+    .ax-add-gift-card textarea {
+        border: #ccc solid 1px;
     }
 
 }
@@ -1392,6 +1423,10 @@ label.error:before {
         width: 100%;
         margin: 0;
         padding: 0;
+    }
+    
+    .ax-add-gift-card textarea {
+        border: #ccc solid 1px;
     }
 
 }
@@ -1560,6 +1595,37 @@ label.error:before {
     
     #frmSaveList div.uploader span.action {
         font-size: 0.8rem;
+    }
+    
+    .products-associated .ax-print {
+        margin-top: 38px;
+    }
+    
+    .module-giftlist-descripcion .ax-text-result-list {
+        float: none;
+    }
+    
+    .products-associated .ax-print {
+        display: block;
+        margin: 0 auto 20px auto;
+        float: none;
+    }
+    
+    .ax-add-gift-card label {
+        text-align: left;
+    }
+    
+    .ax-add-gift-card textarea {
+        border: #ccc solid 1px;
+    }
+    
+    .ax-add-gift-card .btn.btn-lista-regalos {
+        width: 100%;
+        margin: 5px 0 !important;
+    }
+    
+    .ax-add-gift-card .checkbox {
+        margin-top: 20px;
     }
     
 }

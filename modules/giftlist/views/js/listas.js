@@ -6,6 +6,8 @@ $(document).ready(function() {
       ,itemPath: '.list-item-container' 
       ,panelPath: '.jplist-panel'	
    });
+    
+  $('.jplist-pagingmid').after($('.jplist-label'));
 		
 	$(document).on('click', '.popup-modal-dismiss', function (e) {
 		e.preventDefault();

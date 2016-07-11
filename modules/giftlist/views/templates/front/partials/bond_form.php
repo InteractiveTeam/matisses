@@ -1,4 +1,5 @@
-<form action="" method="post" id="bond_form">
+<div class="ax-add-gift-card">
+ <form action="" method="post" id="bond_form">
   <h3>Comprar bono</h3>
   <div class="container">
     <div class="col-md-6">
@@ -31,3 +32,4 @@
     </div>
   </div>
 </form>
+</div>
