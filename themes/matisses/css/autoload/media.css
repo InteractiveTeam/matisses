@@ -1053,9 +1053,11 @@
 	.footer form {
 		margin-bottom: 3.125rem;
 	}
+/*
 	.menu-footer .column li {
 		text-align: center;
 	}
+*/
 	.footer .share p {
 		text-align: center;
 		display: block;
@@ -3798,7 +3800,7 @@
 
 
     .menuFooterRp li {
-        width: 50%;
+        width: 49%;
         display: inline-block;
     }
 
@@ -3825,6 +3827,64 @@
     }
 
     
+    
+}
+
+
+@media screen and (max-width: 603px){
+    
+    #homepage-slider .homeslider-description h2, #homepage-slider .homeslider-description h3 {
+        font-size: 2.75rem;
+        line-height: 2.75rem;
+        padding: 0;
+        margin: 0;   
+    }
+    #slider .bx-controls.bx-has-pager {
+        bottom: 5%;
+    }
+    #slider #homepage-slider {
+        max-height: 19rem;
+    }
+    
+    .menu-footer {
+        margin: 0;
+        width: 100%;
+    }
+
+
+    .menu-footer li {
+        width: 49%;
+        display: inline-block;
+        text-align: left;
+    }
+
+    .menu-footer li:nth-child(even) {
+        text-align: right;
+    }
+
+    .menu-footer li a {
+        border: none;
+        font-size: 1.15rem;
+        padding: 1rem 0;
+    }
+
+    .newsletter-footer .newsletter-input {
+        border-right: 1px solid #fff;
+        border-left: 1px solid #fff;
+        width: 95%;
+        padding: 0 0;
+    }
+    
+    
+    .footer-up .share{
+        text-align: center;
+    }
+    #page .header-container .main_panel {
+        height: 0px;
+    }
+    .header-container .main_panel.cf {
+        margin-bottom: 3.55rem;
+    }
     
 }
 /* iPhone 6 portrait */
