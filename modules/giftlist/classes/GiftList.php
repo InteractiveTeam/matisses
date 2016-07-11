@@ -267,10 +267,10 @@ class GiftListModel extends ObjectModel
                 
         $sql = "SELECT id_customer FROM "._DB_PREFIX_.'customer WHERE
 				firstname = "'.$firstname.'" AND lastname = "'.$lastname.'";';
-        $res = Db::getInstance()->getValue($sql);
+        $res = Db::getInstance()->executeS($sql);
 		if(count($res) > 0){
             foreach($res as $row){
-                $sql = "SELECT * FROM "._DB_PREFIX_.'gift_list WHERE id_cocreator = '. $res;			    
+                $sql = "SELECT * FROM "._DB_PREFIX_.'gift_list WHERE id_cocreator = '. $row['id_customer']. " AND public = 1";
                 $ret = Db::getInstance()->executeS($sql);
                 for($i = 0; $i < count($ret);$i++){
                     array_push($return,$ret[$i]);

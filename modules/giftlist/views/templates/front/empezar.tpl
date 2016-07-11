@@ -34,7 +34,7 @@
                 <span><label for="name">Nombre</label><input type="text" class="form-control" name="name" id="name"/></span>
                 <span><label for="lastname">Apellido</label><input type="text" class="form-control" name="lastname" id="lastname"/></span>
                 <span class="ax-optional-tex">o</span>
-                <span><label for="code">Código</label><input type="text" class="form-control code" name="code" id="code" required/></span>
+                <span><label for="code">Código</label><input type="text" class="form-control code" name="code" id="code"/></span>
                 <button class="btn btn-default button btn-lista-regalos">{l s='Buscar' mod='giftlist'}</button>
             </div>
         </form>

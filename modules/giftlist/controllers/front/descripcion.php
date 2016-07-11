@@ -57,10 +57,8 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 		) );
 
 		if($this->context->customer->isLogged()){
-			if($res['id_creator'] == $this->context->customer->id)
+			if($res['id_creator'] == $this->context->customer->id || $res['id_cocreator'] == $this->context->customer->id)
 				$this->setTemplate ( 'listOwnerDesc.tpl' );
-			elseif($res['id_cocreator'] == $this->context->customer->id)
-				$this->setTemplate ( 'listSharedDesc.tpl' );
 			else
 				$this->setTemplate ( 'listDesc.tpl' );
 		}
