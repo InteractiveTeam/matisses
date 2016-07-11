@@ -36,6 +36,7 @@ $(document).ready(function(){
         'overlayShow'	:	false,
         type: 'ajax',
         afterShow  :   function() {
+            $("#luxury_bond").uniform();
             validateBondForm();
             $("#mount").attr("min",min_amount);
         }
