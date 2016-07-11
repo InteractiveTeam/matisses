@@ -6096,6 +6096,10 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     margin: 8px 0;
 }
 
+#frmAddGiftList .ax-text-descript {
+    font-size: 0.85rem;
+}
+
 #frmAddGiftList .chosen-single, #frmAddGiftList #cant, #frmAddGiftList textarea {
     
 }
