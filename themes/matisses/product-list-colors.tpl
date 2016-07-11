@@ -53,22 +53,27 @@
         var linkp = $('.product-container[id='+idprod+'] .button-container .showmore').attr("href").split("#");
         $('.product-container[id='+idprod+'] .button-container .showmore').attr("href", linkp[0]+"#/color-"+name);
         
-        if (idattr) {
-            if ($('.product-container[id='+idprod+'] .button-container .showmore input')) {
-                $('.product-container[id='+idprod+'] .button-container .showmore input').remove();   
-            }
-
-            $('.product-container[id='+idprod+'] .button-container .showmore').append("<input type='hidden' id='idCombination' value='"+idattr+"'/>");
-        }
+        var linkw = $('.product-container[id='+idprod+'] .wrap_view .quick-view').attr("href").split("#");
+        $('.product-container[id='+idprod+'] .wrap_view .quick-view').attr("href", linkw[0]+"#/color-"+name);
+        
+        var linkb = $('.product-container[id='+idprod+'] .wrap_view .lnk_view').attr("href").split("#");
+        $('.product-container[id='+idprod+'] .wrap_view .lnk_view').attr("href", linkb[0]+"#/color-"+name);
+          
+        $('.product-container[id='+idprod+'] .wrap_view .wishlistProd_'+idprod).addClass('addToWS');
+        $('.product-container[id='+idprod+'] .wrap_view .addToWS').removeClass('addToWishlist');
+        $('.product-container[id='+idprod+'] .wrap_view .addToWS').removeAttr('data-product');
+        
+		$('.product-container[id='+idprod+'] .wrap_view .addToWS').click(function(){
+			WishlistCart('wishlist_block_list', 'add', idprod, idattr, 1);
+		});
         
         $('.product-container[id='+idprod+'] .button-container .ajax_add_to_cart_button').remove();
         $('.product-container[id='+idprod+'] .button-container .ajax_add_to_cart_b').remove();
         
-        $('.product-container[id='+idprod+'] .button-container').append('<a class=" btn btn-default buy-now ajax_add_to_cart_b" href="javascript:void(0)"><span>{/literal}{l s="Add to cart"}{literal}</span></a>');
+        $('.product-container[id='+idprod+'] .button-container').append('<a class="btn btn-default buy-now ajax_add_to_cart_b" href="javascript:void(0)"><span>{/literal}{l s="Add to cart"}{literal}</span></a>');
         
-		$('.ajax_add_to_cart_b').click(function(){
+		$('.product-container[id='+idprod+'] .button-container .ajax_add_to_cart_b').click(function(){
 			ajaxCart.add(idprod, idattr, true, null, 1, null);
-            console.log("hola");
 		});
     }
     
