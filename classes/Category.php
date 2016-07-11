@@ -511,7 +511,7 @@ class CategoryCore extends ObjectModel
 				'.(isset($groups) && Group::isFeatureActive() ? ' AND cg.`id_group` IN ('.implode(',', $groups).')' : '').'
 				'.(!$id_lang || (isset($groups) && Group::isFeatureActive()) ? ' GROUP BY c.`id_category`' : '').'
 				'.($sql_sort != '' ? $sql_sort : ' ORDER BY c.`level_depth` ASC').'
-				'.($sql_sort == '' && $use_shop_restriction ? ', category_shop.`position` ASC' : '').'
+				'.($sql_sort == '' && $use_shop_restriction ? ', cl.name ASC' : '').'
 				'.($sql_limit != '' ? $sql_limit : '')
 			);
             
@@ -527,7 +527,7 @@ class CategoryCore extends ObjectModel
 				'.(isset($groups) && Group::isFeatureActive() ? ' AND cg.`id_group` IN ('.implode(',', $groups).')' : '').'
 				'.(!$id_lang || (isset($groups) && Group::isFeatureActive()) ? ' GROUP BY c.`id_category`' : '').'
 				'.($sql_sort != '' ? $sql_sort : ' ORDER BY c.`level_depth` ASC').'
-				'.($sql_sort == '' && $use_shop_restriction ? ', category_shop.`position` ASC' : '').'
+				'.($sql_sort == '' && $use_shop_restriction ? ', cl.name ASC' : '').'
 				'.($sql_limit != '' ? $sql_limit : '');
            
 			$categories = array();
