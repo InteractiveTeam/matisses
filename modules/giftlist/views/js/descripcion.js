@@ -208,6 +208,8 @@ function uploadImage(prof,input){
                 $(".ax-cover-img").attr("src",res+"?"+today.getTime());
             $.fancybox({
              'autoScale': true,
+             'minWidth': 240,
+             'minHeight': 50,
              'transitionIn': 'elastic',
              'transitionOut': 'elastic',
              'speedIn': 500,

@@ -836,6 +836,12 @@
         height: auto;
     }
     
+    #frmAddGiftList {
+        width: 230px;
+        height: 100%;
+        overflow-x: auto;
+    }
+    
 }
 @media (max-width: 419px){
 	#order-detail-content #cart_summary td.cart_product{
@@ -2405,7 +2411,7 @@
     }
     
     #frmAddGiftList .chosen-single {
-        
+        width: 210px;
     }
     
     #frmAddGiftList .col-md-6 {
@@ -3640,6 +3646,8 @@
     
     #frmAddGiftList {
         width: 230px;
+        height: 100%;
+        overflow-x: auto;
     }
     
     #frmAddGiftList #cant, #frmAddGiftList textarea {

@@ -6073,15 +6073,13 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 }
 
 #frmAddGiftList .form-group label span {
-    display: inline-block;
-    width: 60px;
-    text-align: right;
+    display: block;
     vertical-align: top;
 }
 
 #frmAddGiftList .chosen-single {
     display: inline-block;
-    width: 202px;
+    width: 265px;
 }
 
 #frmAddGiftList .chosen-single span {
@@ -6089,8 +6087,13 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     display: inline-block;
 }
 
+#frmAddGiftList label p {
+    text-transform: lowercase;
+    margin: 5px 0;
+}
+
 #frmAddGiftList .chosen-single, #frmAddGiftList #cant, #frmAddGiftList textarea {
-    margin-left: 5px;
+    
 }
 
 #frmAddGiftList .btn-list-regalos {
@@ -6099,12 +6102,12 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     clear: both;
 }
 
-#frmAddGiftList #cant {
-    width: 74%;
+#frmAddGiftList #cant, #frmAddGiftList input {
+    width: 100%;
 }
 
 #frmAddGiftList textarea {
-    width: 74%;
+    width: 100%;
     border: #ccc solid 1px;
 }
 /*

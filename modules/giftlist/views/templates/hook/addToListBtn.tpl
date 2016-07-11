@@ -20,20 +20,21 @@
                 </div>
                 <div class="cont">
                     <div class="form-group">
-                        <label for="cant"><span>Cantidad</span>
-                        <input type="number" id="cant" placeholder="Cantidad">
-                        </label>
-                    </div>
-                </div>
-                <div class="cont">
-                    <div class="form-group">
                         <label for="message"><span>Mensajes</span>
+                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             <textarea id="message"></textarea>
                         </label>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
+                <div class="cont">
+                    <div class="form-group">
+                        <label for="cant"><span>Cantidad</span>
+                        <input type="number" id="cant" placeholder="Cantidad">
+                        </label>
+                    </div>
+                </div>
                 <div class="cont">
                     <div class="checkbox">
                         <label>¿Agrupar?<input type="checkbox" id="group">
