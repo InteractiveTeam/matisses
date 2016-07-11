@@ -211,9 +211,8 @@ label.error {
     padding: 5px;
     top: 113%;
     z-index: 2;
-    word-break: break-all;
     display: block;
-    width: 157px;
+    padding: 5px !important;
     background: rgba(232, 232, 232, 0.85);
     font-family: 'Open Sans', sans-serif;
 }
@@ -229,6 +228,13 @@ label.error:before {
     left: 20px;
     border-right: transparent solid 6px;
     border-left: transparent solid 6px;
+}
+
+.tab-content p {
+    padding: 10px;
+    line-height: 1.5rem;
+    font-family: 'Open Sans', sans-serif;
+    white-space: normal;
 }
 
 

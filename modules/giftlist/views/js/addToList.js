@@ -63,6 +63,8 @@ $(function(){
                              'autoScale': true,
                              'transitionIn': 'elastic',
                              'transitionOut': 'elastic',
+                             'minWidth': 435,
+                             'minHeight': 300,
                              'speedIn': 500,
                              'speedOut': 300,
                              'autoDimensions': true,
