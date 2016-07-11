@@ -40,7 +40,6 @@
 					<img src="{$img_col_dir}{$color.id_attribute|intval}.jpg" alt="{$color.name|escape:'html':'UTF-8'}" title="{$color.name|escape:'html':'UTF-8'}" width="20" height="20" />
 				{/if}
 			</a>
-			<pre>{$color|print_r}</pre>
 		</li>
 	{/foreach}
 </ul>
