@@ -9,6 +9,7 @@
         </div>
     </div>
     <div class="col-md-6">
+     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       <div class="checkbox">
         <label>
             <input type="checkbox" id="luxury_bond" name="luxury_bond">
