@@ -108,15 +108,6 @@
 								</a>
 							</h2>
 
-							<div class="colors">
-                            	{if substr_count($product.color_list,'color_pick') > 1 } 
-                                	{substr_count($product.color_list,'color_pick')} 
-                                   	{l s='Colores'}
-                                {else}
-                                	{substr_count($product.color_list,'color_pick')} 
-                                   	{l s='Color'}
-                                {/if}
-                                </div>
 						</div>
 
 
@@ -140,6 +131,15 @@
 									{hook h="displayProductPriceBlock" product=$product type="price"}
 									{hook h="displayProductPriceBlock" product=$product type="unit_price"}
 								{/if}
+								<div class="colors">
+                            	{if substr_count($product.color_list,'color_pick') > 1 } 
+                                	{substr_count($product.color_list,'color_pick')} 
+                                   	{l s='Colores'}
+                                {else}
+                                	{substr_count($product.color_list,'color_pick')} 
+                                   	{l s='Color'}
+                                {/if}
+                                </div>
 							</div>
 						{/if}
 					</div>

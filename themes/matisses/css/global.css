@@ -755,19 +755,19 @@ box-sizing: border-box;
 	}
 	.header-products h2{
 	text-transform: uppercase;
-	font-size: 1.5rem;
+	font-size: 1.3rem;
 	font-family: "condensed";
 	padding-right: 0;
     display: inline;
 	}
-	.header-products .colors {
+	.content_price .colors {
 	display: inline-block;
 	float: right;
 	color: #7b7b7b;
 	font-family: 'gothic';
 	font-size: 0.875rem;
 	text-transform: uppercase;
-	padding-top: 0.3125rem;
+	padding-top: 0;
 	}
 	.viewed-products .price{
 	font-size: 1.5rem;
@@ -777,7 +777,7 @@ box-sizing: border-box;
 	.header-products h2 a{
     color: #636363;
     display: inline-block;
-    width: 77%;
+    width: 100%;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden; 
@@ -5820,6 +5820,7 @@ body#search .category_list.product_list.grid .ajax_block_product {
     .parrilla-productos h2.product-name {
     color: #d7162f;
     background: none;
+        width: 100%
     }
     .parrilla-productos .product-price {
     font-family: 'gothic';
