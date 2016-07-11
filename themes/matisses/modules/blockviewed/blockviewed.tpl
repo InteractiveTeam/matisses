@@ -60,11 +60,11 @@
 									{$First->name|truncate:25:'...'|escape:'html':'UTF-8'}
 								</a>
 							</h2>
-	                        <div class="colors">{if $First->colors|count ==1} {$First->colors|count} {l s='Color'} {else} {$First->colors|count} {l s='Colores'} {/if}</div>
+	                        
 						</div>
 
                         <div class="price">{convertPrice price=$First->price}</div>
-
+                        <div class="colors">{if $First->colors|count ==1} {$First->colors|count} {l s='Color'} {else} {$First->colors|count} {l s='Colores'} {/if}</div>
 						<!-- <p class="product-description">{$viewedProduct->description_short|strip_tags:'UTF-8'|truncate:60}</p> -->
 					</div>
 				</li>

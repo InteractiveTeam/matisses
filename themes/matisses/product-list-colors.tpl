@@ -25,14 +25,17 @@
 <ul class="color_to_pick_list cf">
 	{foreach from=$colors_list item='color'}
 		{assign var='img_color_exists' value=file_exists($col_img_dir|cat:$color.id_attribute|cat:'.jpg')}
+		{assign var='id_image_p' value=matisses::getImagesByAttribute($color.id_product_attribute)}
+        {if !empty($id_image_p)}
+            {assign var='img_prod_color' value=$link->getImageLink($color.name, $id_image_p, 'home_default')}
+        {/if}
 		<li>
-        
 			<a 
             	data-idproductattribute="{$color.id_product_attribute}" 
             	data-idattribute="{$color.id_attribute}"
                 data-idproduct="{$color.id_product}"
                 
-            href="{$link->getProductLink($color.id_product, null, null, null, null, null, $color.id_product_attribute)|escape:'html':'UTF-8'}" id="color_{$color.id_product_attribute|intval}" class="color_pick"{if !$img_color_exists && isset($color.color) && $color.color} style="background:{$color.color};"{/if}>
+            href="javascript:void(0)" {if !empty($id_image_p)}onclick="changeImageColor('{$color.id_product}','{$img_prod_color}')"{/if} class="color_pick"{if !$img_color_exists && isset($color.color) && $color.color} style="background:{$color.color};"{/if}>
 				{if $img_color_exists}
 					<img src="{$img_col_dir}{$color.id_attribute|intval}.jpg" alt="{$color.name|escape:'html':'UTF-8'}" title="{$color.name|escape:'html':'UTF-8'}" width="20" height="20" />
 				{/if}
@@ -40,3 +43,8 @@
 		</li>
 	{/foreach}
 </ul>
+<script type="text/javascript">
+    function changeImageColor(idprod,image) {
+        $('.product-container[id='+idprod+'] .left-block .product_img_link img').attr("src", image);
+    }
+</script>
