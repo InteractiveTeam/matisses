@@ -21,7 +21,7 @@
                 <div class="cont">
                     <div class="form-group">
                         <label for="message"><span>Mensajes</span>
-                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                           <p class="ax-text-descript">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             <textarea id="message"></textarea>
                         </label>
                     </div>
@@ -36,6 +36,7 @@
                     </div>
                 </div>
                 <div class="cont">
+                    <p class="ax-text-descript">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     <div class="checkbox">
                         <label>¿Agrupar?<input type="checkbox" id="group">
                         </label>
