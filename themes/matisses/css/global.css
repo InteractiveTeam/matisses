@@ -6154,3 +6154,41 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     font-size: 2rem;
     color: #777676;
 }
+
+#frmAddGiftList .form-group {
+    position: relative;
+}
+
+#frmAddGiftList .label-error {
+    font-size: 12.9px;
+    font-weight: 400 !important;
+    line-height: 16px;
+    padding: 5px;
+    top: 94%;
+    z-index: 2;
+    left: 2%;
+    display: block;
+    padding: 8px !important;
+    background: rgba(232, 232, 232, 0.9);
+    font-family: 'Open Sans', sans-serif;
+    color: #d7162f;
+    position: absolute;
+}
+
+#frmAddGiftList .label-error:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-bottom: rgba(232, 232, 232, 0.85) solid 6px;
+    display: block;
+    position: absolute;
+    bottom: 100%;
+    left: 20px;
+    border-right: transparent solid 6px;
+    border-left: transparent solid 6px;
+}
+
+.chosen-container.chosen-with-drop .chosen-drop {
+    width: 267px;
+    top: 86%;
+}
