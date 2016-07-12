@@ -80,10 +80,11 @@ class SearchControllerCore extends FrontController
 		//Only controller content initialization when the user use the normal search
 		parent::initContent();
 
+        $this->n = abs((int)(Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE'))));
+        
 		if ($this->instant_search && !is_array($query))
 		{
 			$this->productSort();
-			$this->n = abs((int)(Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE'))));
 			$this->p = abs((int)(Tools::getValue('p', 1)));
 			$search = Search::find($this->context->language->id, $query, 1, 10, 'position', 'desc');
 			Hook::exec('actionSearch', array('expr' => $query, 'total' => $search['total']));
