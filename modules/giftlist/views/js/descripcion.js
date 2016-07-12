@@ -390,6 +390,8 @@ function callAjaxSend(e){
                  'autoScale': true,
                  'transitionIn': 'elastic',
                  'transitionOut': 'elastic',
+                 'minWidth': 240,
+                 'minHeight': 50,
                  'speedIn': 500,
                  'speedOut': 300,
                  'autoDimensions': true,

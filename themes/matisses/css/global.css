@@ -5428,6 +5428,7 @@ a.newPrint:hover {
 .fancybox-inner {
     overflow: hidden !important;
     width: 100% !important;
+    overflow-y: auto !important;
 }
 
 .cart_total_tax {
