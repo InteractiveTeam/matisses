@@ -127,7 +127,7 @@ var ax_admin = {
         });
     },
     uploadMsg:function(el){
-        var msg = $("<span>").addClass("ax-up-msg").text("Imagen cargada con éxito.");
+        var msg = $("<span>").addClass("ax-up-msg").html("<i class='fa fa-check'></i>");
         if(!el.parent().parent().parents(".col-md-6").find(".ax-up-msg").length)
             el.parent().parent().parents(".col-md-6").append(msg);
     },

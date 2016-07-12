@@ -1208,6 +1208,19 @@ label.error:before {
     padding: 8px;
 }
 
+#frmSaveList span.ax-up-msg {
+    padding: 13px 11px;
+    color: #5e534d;
+    border: #ffd594 solid 1px;
+    background: rgba(255, 213, 148, 0.2);
+}
+
+#frmSaveList span.ax-up-msg .fa {
+    color: #5e534d;
+    vertical-align: middle;
+    font-size: 1.3rem;
+}
+
 @media screen and (max-width:1024px) {
      
     .ax-search-home .ax-form-data-search input {
@@ -1672,4 +1685,8 @@ label.error:before {
         margin-top: 20px;
     }
     
+}
+
+.fa {
+    font-family: FontAwesome;
 }
