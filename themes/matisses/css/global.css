@@ -2406,7 +2406,7 @@ box-sizing: border-box;
 	}
 	.breadcrumb a {
 	display: inline-block;
-	color: #fff;
+	color: #d0d0d0;
 	font-family: 'condensed';
     font-weight: lighter;
 	}
