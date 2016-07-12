@@ -31,6 +31,10 @@ label.error {
     margin-left: 17px;
 }
 
+.module-giftlist-buscar .ax-btn-filter, .module-giftlist-empezar .ax-btn-filter, .module-giftlist-listas .ax-btn-filter, .module-giftlist-administrar .ax-btn-filter, .module-giftlist-descripcion .ax-btn-filter {
+    display: none;
+}
+
 #list-img-container {
 	height: 150px;
 	width: 150px;
@@ -307,9 +311,13 @@ label.error:before {
     font-family: Georgia, 'Georgia';
     clear: both;
     position: relative;
-    margin: 30px 0;
+    margin: 30px 0 0 0;
     padding: 20px 30px;
     position: relative;
+}
+
+.ax-cont-tab {
+    margin-top:20px;
 }
 
 .ax-text-result-list .before-line {
@@ -342,7 +350,7 @@ label.error:before {
     font-family: Georgia, 'Georgia';
     font-weight: bold;
     color: #292929;
-    font-size: larger;
+    font-size: 1.2rem;
     margin: 0;
 }
 
@@ -385,6 +393,7 @@ label.error:before {
 
 .module-giftlist-buscar .ax-cont-list .part.ax-read-more, .ax-cont-admin-listas-regalos .ax-cont-list .part.ax-read-more {
     border-bottom: transparent solid 1px;
+    width: 100%;
 }
 
 .module-giftlist-buscar .part span, .ax-cont-admin-listas-regalos .part span {
@@ -1086,6 +1095,7 @@ label.error:before {
 
     #center_column .ax-img-cont img {
         width: 100% !important;
+        margin-top: 10px;
     }
 
 #address-div a.chosen-single {
@@ -1361,10 +1371,24 @@ label.error:before {
 
 @media screen and (max-width:568px) {
     
+    .ax-text-result-list {
+       padding: 10px 20px;
+       margin: 10px 0 0 0;
+    }
+    
     .module-giftlist-empezar #center_column.center_column, .module-giftlist-buscar #center_column.center_column {
-        width: 96%;
+        width: 92%;
         margin: 0 auto;
         float: none;
+    }
+    
+    .module-giftlist-empezar #center_column.center_column p {
+        text-align: center;
+    }    
+    
+    .ax-text-result-list p, .ax-text-result-list h2, .ax-text-result-list h3 {
+        font-size: 1.03rem;
+        letter-spacing: -1px;
     }
     
     .ax-optional-tex {
@@ -1383,7 +1407,7 @@ label.error:before {
         margin: 5px 0;
     }
     
-    .tab-rp-listas-rega:before {
+    .tab-rp-listas-rega:before  {
         content: "\f107";
         display: block;
         display: inline-block;
@@ -1393,13 +1417,14 @@ label.error:before {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         position: absolute;
-        right: 30px;
-        font-size: 2rem;
+        right: 20px;
+        font-size: 1.7rem;
         top: 10%;
     }
     
     .active-tab-list:before {
         content: "\f106";
+        font-family: FontAwesome;
     }
     
     .ax-form-data-search span {
@@ -1422,7 +1447,9 @@ label.error:before {
     }
     
     .ax-form-data-search .btn.btn-default.btn-lista-regalos {
-        width: 49%;
+        width: 48%;
+        margin: 35px 8px 0 0;
+        padding: 10px 0;
     }
     
     .ax-text-result-list p {
@@ -1479,10 +1506,23 @@ label.error:before {
         width: 100%;
         margin: 0;
         padding: 0;
+        text-align: center;
     }
     
     .ax-add-gift-card textarea {
         border: #ccc solid 1px;
+    }
+    
+    .ax-text-result-list .before-line {
+        border-left: #fff solid 15px;
+    }
+    
+    .ax-text-result-list .after-line {
+        border-right: #fff solid 15px;
+    }
+    
+    .btn.btn-default.btn-lista-regalos {
+        float: right;
     }
 
 }
@@ -1502,11 +1542,7 @@ label.error:before {
     }
     
     .ax-form-data-search span {
-        width: 100%;
-    }
-    
-    .ax-search-home .btn.btn-default.btn-lista-regalos {
-        margin-top: 15px;
+        width: 48%;
     }
     
     .module-giftlist-descripcion h1, .module-giftlist-descripcion h2 {
@@ -1514,7 +1550,6 @@ label.error:before {
     }
     
     .module-giftlist-descripcion .ax-text-result-list {
-        padding: 15px 30px;
         display: block;
         margin: 30px 0;
     }
@@ -1531,7 +1566,7 @@ label.error:before {
     }
     
     .module-giftlist-buscar .ax-cont-list .part, .ax-cont-admin-listas-regalos .ax-cont-list .part {
-        padding: 20px 0;
+        padding: 20px 13px;
     }
     
     .module-giftlist-listas .ax-cont-list .part:last-child {
@@ -1549,11 +1584,6 @@ label.error:before {
     .ax-cont-admin-listas-regalos .part .ax-day {
         color: #ecb072;
         font-size: 1.7rem;
-    }
-    
-    .ax-text-result-list {
-        margin: 10px 0;
-        padding: 10px 30px;
     }
     
     .module-giftlist-descripcion .ax-cont-list .ax-item {

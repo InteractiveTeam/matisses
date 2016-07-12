@@ -58,6 +58,21 @@ $('document').ready(function(){
 		   enableNameLastnameFields();
 	   }
    });
+    
+if($(window).width() <= 568) {
+    tabRpListAdmin()
+}else {
+    $('.ax-text-result-list').next().show();
+}
+
+function tabRpListAdmin(){
+    $('.ax-text-result-list').next().hide();
+
+    $('.ax-text-result-list').on('click', function(){
+        $(this).next().slideToggle();
+    })
+}
+    
 });
 
 function disableCodeField(){
