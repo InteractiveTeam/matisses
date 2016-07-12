@@ -1,13 +1,6 @@
+var jp = "";
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
-    
-    $('#lists').jplist({				
-      itemsBox: '.ax-cont-admin-listas-regalos' 
-      ,itemPath: '.list-item-container' 
-      ,panelPath: '.jplist-panel'	
-   });
-    
-  $('.jplist-pagingmid').after($('.jplist-label'));
 		
 	$(document).on('click', '.popup-modal-dismiss', function (e) {
 		e.preventDefault();
@@ -126,7 +119,12 @@ $(document).ready(function() {
                          'centerOnScroll': true,
                          'content' : $('<p>').text(result.msg)
                     });
-                    $("#list-"+result.id).remove();
+                    jp.jplist({
+                      command: 'del'
+                      ,commandData: {
+                         $item:  $("#list-"+result.id)
+                      }
+                   });
                 }
             });   
         });
@@ -153,4 +151,13 @@ $(document).ready(function() {
         })
     }
     
+   jp = $('#lists').jplist({				
+      itemsBox: '.ax-cont-admin-listas-regalos' 
+      ,itemPath: '.list-item-container' 
+      ,panelPath: '.jplist-panel'	
+   });
+    
+  $('.jplist-pagingmid').after($('.jplist-label'));
+    
 });
+
