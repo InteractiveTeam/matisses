@@ -149,7 +149,7 @@
         <div class="row">
             <div class="col-md-6">
                 <label for="firstname">{l s='Nombre' mod='giftlist'}<sup>*</sup></label> 
-                <input type="text" class="form-control" name="firstname" id="firstname" value="{$address->firstname}">
+                <input type="text" class="form-control" name="firstname" id="firstname" value="{$list_desc['firstname']}">
             </div>
             <div class="col-md-6">
                 <label for="country">{l s='País' mod='giftlist'}<sup>*</sup></label>
@@ -161,7 +161,7 @@
         <div class="row">
             <div class="col-md-6">
                 <label for="lastname">{l s='Apellido' mod='giftlist'}<sup>*</sup></label> 
-                <input type="text" class="form-control" name="lastname" id="lastname" value="{$address->lastname}">
+                <input type="text" class="form-control" name="lastname" id="lastname" value="{$list_desc['lastname']}">
             </div>
             <div class="col-md-6">
                 <label for="town">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
