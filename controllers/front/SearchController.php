@@ -101,7 +101,7 @@ class SearchControllerCore extends FrontController
 				'homeSize' => Image::getSize(ImageType::getFormatedName('home'))));
 		} elseif (($query = Tools::getValue('search_query', Tools::getValue('ref'))) && !is_array($query)) {
             $banderaRef =  false;
-
+            
             if (strlen(trim($query)) == 7 && is_numeric(trim($query))){
                 $query = substr_replace($query, '0000000000000', 3, 0);
                 $banderaRef = true;
@@ -118,7 +118,6 @@ class SearchControllerCore extends FrontController
             
             session_start();
             $_SESSION['search_custom']['lista'] = $this->n;
-            
             if($this->n  > $_SESSION['search_custom']['lista'] && isset($_SESSION['search_custom'])){
                 $result = ($_SESSION['search_custom']['total'] / $this->n);
                 $itemPaginator = round($result, 0, PHP_ROUND_HALF_DOWN);
@@ -158,6 +157,7 @@ class SearchControllerCore extends FrontController
 				'search_products' => $search['result'],
 				'nbProducts' => $search['total'],
 				'search_query' => $original_query,
+				'current_pg' => abs((int)(Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE')))),
 				'homeSize' => Image::getSize(ImageType::getFormatedName('home'))));
 		}
 		elseif (($tag = urldecode(Tools::getValue('tag'))) && !is_array($tag))

@@ -159,6 +159,13 @@
                 data.signature = '{$signature}';
             {/if}
         {/if}
+        {if $page_name == 'search'}
+            {if !empty($current_pg)}
+                setTimeout(function(){                            
+                    $('.nbrItemPage .chosen-single span').text('{$current_pg}');
+                }, 500);
+            {/if}
+        {/if}
     {literal}
     data.page = page;
     data.loggeduser = islogged;         
