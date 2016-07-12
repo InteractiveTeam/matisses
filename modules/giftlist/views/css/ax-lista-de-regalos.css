@@ -208,6 +208,7 @@ Fixes generalres
 label.error {
     position: absolute;
     font-size: 12.9px;
+    font-weight: 400 !important;
     line-height: 16px;
     padding: 5px;
     top: 113%;
@@ -238,7 +239,7 @@ label.error:before {
 }
 
 .center_column .ax-text-descript, .ax-text-descript {
-    padding: 15px 0;
+    padding: 5px 0 10px 0;
     font-size: 0.85rem;
     line-height: 1.1rem;
     white-space: normal;
