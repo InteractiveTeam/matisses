@@ -67,14 +67,20 @@
 			WishlistCart('wishlist_block_list', 'add', idprod, idattr, 1);
 		});
         
-        $('.product-container[id='+idprod+'] .button-container .ajax_add_to_cart_button').remove();
+        //$('.product-container[id='+idprod+'] .button-container .ajax_add_to_cart_button').remove();
+        $('.product-container[id='+idprod+'] .button-container .customAddToCart').remove();        
         $('.product-container[id='+idprod+'] .button-container .ajax_add_to_cart_b').remove();
         
         $('.product-container[id='+idprod+'] .button-container').append('<a class="btn btn-default buy-now ajax_add_to_cart_b" href="javascript:void(0)"><span>{/literal}{l s="Add to cart"}{literal}</span></a>');
         
-		$('.product-container[id='+idprod+'] .button-container .ajax_add_to_cart_b').click(function(){
-			ajaxCart.add(idprod, idattr, true, null, 1, null);
+		
+        $('.product-container[id='+idprod+'] .button-container .ajax_add_to_cart_b').click(function(){			
+            customAddTocart(idprod,idattr);
 		});
+    }
+    
+    function customAddTocart(idprod,idattr){        
+        ajaxCart.add(idprod, idattr, true, null, 1, null);
     }
     
     function getCleanedString(cadena){
