@@ -17,6 +17,12 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	* Select firstname and lastnamen from creator and cocreator
 	* Set template by condicion
 	*/
+    
+    private function getCreadotr(){
+        $list = new GiftListModel();
+        $res = $list->getListBySlug(Tools::getValue('url'));
+        return $res;
+    }
 	public function initContent() {
         global $cookie;
 		parent::initContent ();
@@ -28,6 +34,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 		{
 			Tools::redirect($this->context->link->getModuleLink('giftlist', 'listas'));
 		}
+        $this->list = $res;
 		$ev = "SELECT name FROM "._DB_PREFIX_."event_type WHERE id =".$res['event_type'];
 		$sql = "SELECT id_customer,firstname,lastname FROM "._DB_PREFIX_.
 		"customer WHERE id_customer = ". $res['id_creator'];
@@ -123,11 +130,17 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 
 	public function setMedia() {
         $addJs = "";
+        $res = $this->getCreadotr();
 		parent::setMedia ();
-        if($this->context->customer->isLogged())
-            $addJs = _MODULE_DIR_ . '/giftlist/views/js/descripcion.js';
-        else
-            $addJs = _MODULE_DIR_ . '/giftlist/views/js/descripcion_user.js';
+        if($this->context->customer->isLogged()){
+			if($res['id_creator'] == $this->context->customer->id || $res['id_cocreator'] == $this->context->customer->id)
+				$addJs = _MODULE_DIR_ . '/giftlist/views/js/descripcion.js';
+			else
+				$addJs = _MODULE_DIR_ . '/giftlist/views/js/descripcion_user.js';
+		}
+		else{
+			$addJs = _MODULE_DIR_ . '/giftlist/views/js/descripcion_user.js';
+        }            
         
 		$this->addJS ( array (
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/validation/jquery.validate.min.js',
@@ -182,6 +195,27 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			$cart->id_currency = $this->context->currency->id;
 			$cart->save();
 		}
+        
+        $products = $cart->getProducts();
+        foreach($products as $product){
+
+            if($product['id_giftlist'] != 0 && $product['id_giftlist'] != $id_list){
+
+                die(Tools::jsonEncode(array(
+				    'msg' => 'Recuerda que solo puedes agregar productos de una misma Lista de regalos a un solo carrito de compras',
+                    'error' => true
+				)));
+
+            }elseif($product['id_giftlist'] == 0){
+                die(Tools::jsonEncode(array(
+                    'msg' => 'Recuerda que no puedes agregar productos del Ecommerce y de una Lista de regalos en un mismo carrito',
+                    'error' => true
+                )));
+
+            }
+
+        }
+        
         $mat = new Matisses();
         $res = $mat->wsmatissess_getVIPGift($data['mount']);
         $FreeVipBond = $res["return"]['detail'];

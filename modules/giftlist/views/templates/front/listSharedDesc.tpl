@@ -81,9 +81,6 @@
 						<p>{$att_group['group_name']} : {$att_group['attribute_name']}</p>
 					{/if}
 				{/foreach}
-				{if $list_desc['edit']}
-				<button data-toggle="tooltip" data-placement="bottom" title="Quitar producto" class="delete-product">Quitar producto</button>
-				{/if}
 			</div>
 		{/foreach}
 		</div>
