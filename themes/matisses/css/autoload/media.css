@@ -3627,7 +3627,11 @@
 }
 
 @media screen and (max-width :320px) {
-    
+
+	header .search-container {
+	    top: 63px;
+	}
+	    
     #slider #homepage-slider {
         height: 14rem;
     }
@@ -3854,9 +3858,6 @@
         top: 80px;
     }
     
-    #menu.menu-experiencias {
-        top: 301px;
-    }
 
     
     #search {
