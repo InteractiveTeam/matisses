@@ -127,6 +127,7 @@ class SearchControllerCore extends FrontController
                     $_GET['p'] = $this->p;
                 }
             }
+            $_SESSION['search_custom']['lista'] = $this->n;
 
 			$original_query = $query;
 			$query = Tools::replaceAccentedChars(urldecode($query));
