@@ -117,6 +117,7 @@ class SearchControllerCore extends FrontController
 			$this->p = abs((int)(Tools::getValue('p', 1)));
             
             session_start();
+            $_SESSION['search_custom']['lista'] = $this->n;
             
             if($this->n  > $_SESSION['search_custom']['lista'] && isset($_SESSION['search_custom'])){
                 $result = ($_SESSION['search_custom']['total'] / $this->n);
@@ -127,7 +128,6 @@ class SearchControllerCore extends FrontController
                     $_GET['p'] = $this->p;
                 }
             }
-            $_SESSION['search_custom']['lista'] = $this->n;
 
 			$original_query = $query;
 			$query = Tools::replaceAccentedChars(urldecode($query));
