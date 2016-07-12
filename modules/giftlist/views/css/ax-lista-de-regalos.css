@@ -129,6 +129,7 @@ Fixes generalres
 
 .product-card .ax-bond-cont #min_amount, .product-card .ax-bond-cont label {
     display: inline-block;
+    font-weight: 100 !important;
 }
 
 .product-card .ax-bond-cont #min_amount {
@@ -236,12 +237,13 @@ label.error:before {
     white-space: normal;
 }
 
-.center_column .ax-text-descript {
+.center_column .ax-text-descript, .ax-text-descript {
     padding: 15px 0;
     font-size: 0.85rem;
-    line-height: 1.2rem;
+    line-height: 1.1rem;
     white-space: normal;
     color: #7b7b7b;
+    font-family: Georgia, 'Georgia';
 }
 
 .ax-add-gift-card .ax-text-descript {
