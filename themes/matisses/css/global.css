@@ -778,7 +778,7 @@ box-sizing: border-box;
     color: #636363;
     display: inline-block;
     width: 100%;
-    text-overflow: ellipsis;
+    /*text-overflow: ellipsis;*/
     white-space: nowrap;
     overflow: hidden; 
 	}
