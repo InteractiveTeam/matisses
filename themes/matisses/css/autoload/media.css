@@ -1954,6 +1954,16 @@
 
 @media screen and (max-width :768px) {
 
+    #search {
+        position: absolute;
+        right: 14px;
+        top: 55px;
+    }
+
+    ul #search a {
+        font-size: 25px;
+    }
+
 	    
     #slider .bx-controls.bx-has-pager {
         bottom: 15%;
@@ -2064,6 +2074,7 @@
     
     button.button-small.btn-enviar {
         padding: 0.4375rem 0.7rem;
+        margin: 10px 0 0 0;
     }
     
     .footer-down .container .menu-copyright {
@@ -3832,6 +3843,26 @@
 
 
 @media screen and (max-width: 603px){
+
+    header .search-container {
+        position: absolute;
+        width: 100%;
+    }
+    
+    #header_logo {
+        position: absolute;
+        top: 80px;
+    }
+    
+    #menu.menu-experiencias {
+        top: 301px;
+    }
+
+    
+    #search {
+        top: 0;
+    }
+    
     
     #homepage-slider .homeslider-description h2, #homepage-slider .homeslider-description h3 {
         font-size: 2.75rem;

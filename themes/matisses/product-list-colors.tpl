@@ -35,7 +35,7 @@
             	data-idattribute="{$color.id_attribute}"
                 data-idproduct="{$color.id_product}"
                 
-            href="javascript:void(0)" {if !empty($id_image_p)}onclick="changeImageColor('{$color.id_product}','{$img_prod_color}')"{/if} class="color_pick"{if !$img_color_exists && isset($color.color) && $color.color} style="background:{$color.color};"{/if}>
+            href="javascript:void(0)" {if !empty($id_image_p)}onclick="changeImageColor('{$color.id_product}','{$color.name}','{$img_prod_color}','{$color.id_product_attribute}')"{/if} class="color_pick"{if !$img_color_exists && isset($color.color) && $color.color} style="background:{$color.color};"{/if}>
 				{if $img_color_exists}
 					<img src="{$img_col_dir}{$color.id_attribute|intval}.jpg" alt="{$color.name|escape:'html':'UTF-8'}" title="{$color.name|escape:'html':'UTF-8'}" width="20" height="20" />
 				{/if}
@@ -43,8 +43,63 @@
 		</li>
 	{/foreach}
 </ul>
+{literal}
 <script type="text/javascript">
-    function changeImageColor(idprod,image) {
+    function changeImageColor(idprod,namec,image,idattr) {
+        var name = namec.replace(" ", "_").toLowerCase();
+        name = getCleanedString(name);
         $('.product-container[id='+idprod+'] .left-block .product_img_link img').attr("src", image);
+        
+        var linkp = $('.product-container[id='+idprod+'] .button-container .showmore').attr("href").split("#");
+        $('.product-container[id='+idprod+'] .button-container .showmore').attr("href", linkp[0]+"#/color-"+name);
+        
+       /* var linkw = $('.product-container[id='+idprod+'] .wrap_view .quick-view').attr("href").split("#");
+        $('.product-container[id='+idprod+'] .wrap_view .quick-view').attr("href", linkw[0]+"#/color-"+name);*/
+        
+        var linkb = $('.product-container[id='+idprod+'] .wrap_view .lnk_view').attr("href").split("#");
+        $('.product-container[id='+idprod+'] .wrap_view .lnk_view').attr("href", linkb[0]+"#/color-"+name);
+          
+        $('.product-container[id='+idprod+'] .wrap_view .wishlistProd_'+idprod).addClass('addToWS');
+        $('.product-container[id='+idprod+'] .wrap_view .addToWS').removeClass('addToWishlist');
+        $('.product-container[id='+idprod+'] .wrap_view .addToWS').removeAttr('data-product');
+        
+		$('.product-container[id='+idprod+'] .wrap_view .addToWS').click(function(){
+			WishlistCart('wishlist_block_list', 'add', idprod, idattr, 1);
+		});
+        
+        $('.product-container[id='+idprod+'] .button-container .ajax_add_to_cart_button').remove();
+        $('.product-container[id='+idprod+'] .button-container .ajax_add_to_cart_b').remove();
+        
+        $('.product-container[id='+idprod+'] .button-container').append('<a class="btn btn-default buy-now ajax_add_to_cart_b" href="javascript:void(0)"><span>{/literal}{l s="Add to cart"}{literal}</span></a>');
+        
+		$('.product-container[id='+idprod+'] .button-container .ajax_add_to_cart_b').click(function(){
+			ajaxCart.add(idprod, idattr, true, null, 1, null);
+		});
+    }
+    
+    function getCleanedString(cadena){
+       // Definimos los caracteres que queremos eliminar
+       var specialChars = "!@#$^&%*()+=-[]\/{}|:<>?,.";
+
+       // Los eliminamos todos
+       for (var i = 0; i < specialChars.length; i++) {
+           cadena= cadena.replace(new RegExp("\\" + specialChars[i], 'gi'), '');
+       }   
+
+       // Lo queremos devolver limpio en minusculas
+       cadena = cadena.toLowerCase();
+
+       // Quitamos espacios y los sustituimos por _ porque nos gusta mas asi
+       cadena = cadena.replace(/ /g,"_");
+
+       // Quitamos acentos y "ñ". Fijate en que va sin comillas el primer parametro
+       cadena = cadena.replace(/á/gi,"a");
+       cadena = cadena.replace(/é/gi,"e");
+       cadena = cadena.replace(/í/gi,"i");
+       cadena = cadena.replace(/ó/gi,"o");
+       cadena = cadena.replace(/ú/gi,"u");
+       cadena = cadena.replace(/ñ/gi,"n");
+       return cadena;
     }
 </script>
+{/literal}
