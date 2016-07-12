@@ -90,6 +90,10 @@ var ax_admin = {
                 $("#image-p").trigger("click");
             });
             
+            $("input[type=file]").on('change',function(){
+                ax_admin.uploadMsg($(this));
+            });
+            
             $("a[role=tab]").on('shown.bs.tab',function(){
                 var tab = $(".tab-pane.active").attr("data-tab-id");
                 $(this).parent().removeClass("active");
@@ -121,6 +125,11 @@ var ax_admin = {
                     $("#ammount_div").addClass("hidden");
             });
         });
+    },
+    uploadMsg:function(el){
+        var msg = $("<span>").addClass("ax-up-msg").text("Imagen cargada con éxito.");
+        if(!el.parent().parent().parents(".col-md-6").find(".ax-up-msg").length)
+            el.parent().parent().parents(".col-md-6").append(msg);
     },
     validateSelect : function(element){
         var ret = true;
