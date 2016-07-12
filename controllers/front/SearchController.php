@@ -157,7 +157,6 @@ class SearchControllerCore extends FrontController
 				'search_products' => $search['result'],
 				'nbProducts' => $search['total'],
 				'search_query' => $original_query,
-				'current_pg' => abs((int)(Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE')))),
 				'homeSize' => Image::getSize(ImageType::getFormatedName('home'))));
 		}
 		elseif (($tag = urldecode(Tools::getValue('tag'))) && !is_array($tag))
