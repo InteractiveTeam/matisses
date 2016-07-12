@@ -4,13 +4,13 @@
 
 <div>
 	<div id="frmAddGiftList">
-		<h2 class="page-subheading">Añadir producto</h2>
+		<h2 class="page-subheading">{l s='Añadir producto' mod='giftlist'}</h2>
             <div class="col-md-6">
                 <div class="cont">
                     <div class="form-group">
-                        <label for="lists"><span>Listas</span><select
+                        <label for="lists"><span>{l s='Listas' mod='giftlist'}</span><select
                             id="lists" class="form-control">
-                            <option value="0">--Seleccione--</option> 
+                            <option value="0">{l s='Seleccione' mod='giftlist'}</option> 
                             {foreach from=$list item=row}
                             <option value="{$row['id']}">{$row['name']}</option> 
                             {/foreach}
@@ -20,7 +20,7 @@
                 </div>
                 <div class="cont">
                     <div class="form-group">
-                        <label for="message"><span>Mensajes</span>
+                        <label for="message"><span>{l s='Mensaje' mod='giftlist'}</span>
                            <p class="ax-text-descript">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             <textarea id="message"></textarea>
                         </label>
@@ -30,7 +30,7 @@
             <div class="col-md-6">
                 <div class="cont">
                     <div class="form-group">
-                        <label for="cant"><span>Cantidad</span>
+                        <label for="cant"><span>{l s='Cantidad' mod='giftlist'}</span>
                         <input type="number" id="cant" placeholder="Cantidad">
                         </label>
                     </div>
@@ -38,25 +38,25 @@
                 <div class="cont">
                     <p class="ax-text-descript">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     <div class="checkbox">
-                        <label>¿Agrupar?<input type="checkbox" id="group">
+                        <label>{l s='¿Agrupar?' mod='giftlist'}<input type="checkbox" id="group">
                         </label>
                     </div>
                 </div>
                 <div class="cont" style="display: none;" id="group-options">
                     <div class="form-group">
-                        <label for="cant_group">Cantidad por grupo
+                        <label for="cant_group">{l s='Cantidad por grupo' mod='giftlist'}
                         <input type="number" id="cant_group" placeholder="Cantidad">
                         </label>
                     </div>
                 </div>
                 <div class="cont">
                     <div class="checkbox">
-                        <label>¿favorito?<input type="checkbox" id="fav">
+                        <label>{l s='¿favorito?' mod='giftlist'}<input type="checkbox" id="fav">
                         </label>
                     </div>
                 </div>
                 <div class="btn-list-regalos">
-                    <button class="btn button btn btn-default btn-red" id="add-list">Añadir</button>
+                    <button class="btn button btn btn-default btn-red" id="add-list">{l s='Añadir' mod='giftlist'}</button>
                 </div>
             </div>
 	</div>

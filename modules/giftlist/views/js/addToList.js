@@ -23,7 +23,8 @@ $(function(){
 		$("#group-options").toggle();
 	});
 	
-	$("#add-list").click(function(){
+	$("#add-list").click(function(e){
+        e.preventDefault();
 		if($("#lists").val() != 0){
 			var dataForm = {
 					'list': $("#lists").val(),
@@ -73,11 +74,33 @@ $(function(){
                     }
 				},
 				error: function(res){
-					console.log("I'm sorry");
+					 $.fancybox({
+                        'autoScale': true,
+                        'transitionIn': 'elastic',
+                        'transitionOut': 'elastic',
+                        'minWidth': 435,
+                        'speedIn': 500,
+                        'speedOut': 300,
+                        'autoDimensions': true,
+                        'centerOnScroll': true,
+                        'content' : 'No se puedo añadir a la lista, intentalo mas tarde'
+                    });
 				}
 			});
 		}else{
-			alert("Seleccione una lista");
+            var group = $("#lists").parents(".form-group");
+            if(!group.find(".label-error").length){
+                var errorLb = $("<span>").addClass("label-error").text("Selecciona una lista");
+                group.append(errorLb);
+            }
+            return false;
 		}
 	});
+    
+    $("#lists").on('change',function(){
+        var group = $("#lists").parents(".form-group");
+        if(group.find(".label-error").length){
+            group.find(".label-error").remove();
+        }
+    });
 });
