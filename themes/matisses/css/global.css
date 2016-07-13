@@ -6188,6 +6188,10 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     border-left: transparent solid 6px;
 }
 
+#frmAddGiftList .chosen-container .chosen-results {
+    max-height: 160px;
+}
+
 .chosen-container.chosen-with-drop .chosen-drop {
     width: 267px;
     top: 86%;

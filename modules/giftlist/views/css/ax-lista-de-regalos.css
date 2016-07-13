@@ -311,7 +311,7 @@ label.error:before {
     font-family: Georgia, 'Georgia';
     clear: both;
     position: relative;
-    margin: 30px 0 0 0;
+    margin: 30px 0;
     padding: 20px 30px;
     position: relative;
 }
@@ -946,6 +946,15 @@ label.error:before {
     margin-top: 20px;
 }
 
+
+#frmSaveList > div {
+    margin-top: 20px
+}
+
+#frmSaveList {
+    
+}
+
 .ax-text-pp-create {
     padding: 10px 10px 60px 10px;
     line-height: 1.5rem;
@@ -1111,6 +1120,10 @@ label.error:before {
 #address-div #address-form label {
     padding-bottom: 0rem;
     padding-top: 0.55rem;
+}
+
+#address-div #address-form label, #address-div #address-form span, #address-div #address-form input {
+    font-family: Georgia, 'Georgia' !important;
 }
 
 #share-pop.white-popup-block .btn.btn-success.pull-right {
@@ -1524,6 +1537,10 @@ label.error:before {
     .btn.btn-default.btn-lista-regalos {
         float: right;
     }
+    
+    .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(2) {
+        padding-top: 20px;
+    }
 
 }
 
@@ -1595,8 +1612,8 @@ label.error:before {
     }
     
     #ax-cover-container .cont-img img {
-        height: 100%;
-        width: auto;
+        width: 100%;
+        height: auto;
     }
     
     .ax-avatar-content #ax-prof-container .cont-img {
@@ -1631,6 +1648,14 @@ label.error:before {
     
     .ax-categories {
         margin: 80px 0 20px 0;
+    }
+    
+    .ax-categories .owl-carousel .owl-item {
+        width: 140px !important;
+    }
+    
+    .ax-categories .owl-carousel .owl-itemimg {
+        width: 100%;
     }
     
     .module-giftlist-descripcion #carousel-example-generic {
@@ -1669,6 +1694,10 @@ label.error:before {
     
     .module-giftlist-administrar .col-md-12, .module-giftlist-administrar .col-md-4, .module-giftlist-administrar .col-md-6 {
         padding: 5px 10px;
+    }
+    
+    .module-giftlist-administrar .col-md-8 {
+        margin-top: 20px;
     }
     
     #frmSaveList label {

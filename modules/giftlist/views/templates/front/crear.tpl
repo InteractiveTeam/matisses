@@ -63,7 +63,7 @@
                             {l s='December' mod='giftlist'}
                         *}
                     <label>{l s='Fecha del evento' mod='giftlist'}<sup>*</sup></label>
-                    <div class="ax-cont-form-date-lista">
+                    <div class="clearfix ax-cont-form-date-lista">
                         <div class="col-md-4 ax-date-event">
                             <select id="months" name="months" class="form-control ax-select">
                                 <option value="0">{l s='Mes' mod='giftlist'}</option>
@@ -94,61 +94,58 @@
             <div class="col-md-8">
                 <h3>{l s='Información personal' mod='giftlist'}</h3>
                 <div class="row">
-                    <div class="col-md-6">
-                        <label for="firstname">{l s='Nombre' mod='giftlist'}<sup>*</sup></label> 
-                        <input type="text" class="form-control" name="firstname" id="firstname" value="{$cookie->customer_firstname}">
+                   <div class="col-md-6">
+                        <div class="row">
+                            <label for="firstname">{l s='Nombre' mod='giftlist'}<sup>*</sup></label> 
+                            <input type="text" class="form-control" name="firstname" id="firstname" value="{$cookie->customer_firstname}">
+                        </div>
+                        <div class="row">
+                            <label for="lastname">{l s='Apellido' mod='giftlist'}<sup>*</sup></label> 
+                            <input type="text" class="form-control" name="lastname" id="lastname" value="{$cookie->customer_lastname}">
+                        </div>
+                        <div class="row">
+                            <label for="tel">{l s='Teléfono' mod='giftlist'}<sup>*</sup></label> 
+                            <input type="text" class="form-control" name="tel" id="tel">
+                        </div>
+                        <div class="row">
+                            <label for="address">{l s='Dirección 1' mod='giftlist'}<sup>*</sup></label> <input type="text" id="address" class="form-control" name="address" />
+                        </div>
+                        <div class="row">
+                            <label for="email">{l s='Correo electrónico' mod='giftlist'}<sup>*</sup></label> <input type="email" id="email" class="form-control" name="email" />
+                        </div>
                     </div>
+                    
                     <div class="col-md-6">
-                        <label for="country">{l s='País' mod='giftlist'}<sup>*</sup></label>
-                        <select id="country" name="country" class="form-control ax-select">
-                            <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
-                            <option value="1">{l s='COLOMBIA' mod='giftlist'}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="lastname">{l s='Apellido' mod='giftlist'}<sup>*</sup></label> 
-                        <input type="text" class="form-control" name="lastname" id="lastname" value="{$cookie->customer_lastname}">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="town">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
-                        <select id="city" name="city" class="form-control ax-select">
-                            <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
-                            {foreach from=$countries item=c}
-                                <option value="{$c.id_country}">{$c.name}</option>
-                            {/foreach}
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="tel">{l s='Teléfono' mod='giftlist'}<sup>*</sup></label> 
-                        <input type="text" class="form-control" name="tel" id="tel">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="required town unvisible">
-                            <label for="city">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
-                            <select id="town" name="town" class="form-control ax-select">
+                        <div class="row">
+                            <label for="country">{l s='País' mod='giftlist'}<sup>*</sup></label>
+                            <select id="country" name="country" class="form-control ax-select">
                                 <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
+                                <option value="1">{l s='COLOMBIA' mod='giftlist'}</option>
                             </select>
-			            </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="address">{l s='Dirección 1' mod='giftlist'}<sup>*</sup></label> <input type="text" id="address" class="form-control" name="address" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="address_2">{l s='Dirección 2' mod='giftlist'}</label> <input type="text" id="address_2" class="form-control" name="address_2" placeholder="{l s='Apto, oficina, interior, bodega...' mod='giftlist'}" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="email">{l s='Correo electrónico' mod='giftlist'}<sup>*</sup></label> <input type="email" id="email" class="form-control" name="email" />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="conf_email">{l s='Confirmar correo electrónico' mod='giftlist'}<sup>*</sup></label> <input type="email" id="conf_email" class="form-control" name="conf_email" />
+                        </div>
+                        <div class="row">
+                            <label for="town">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
+                            <select id="city" name="city" class="form-control ax-select">
+                                <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
+                                {foreach from=$countries item=c}
+                                    <option value="{$c.id_country}">{$c.name}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="required town unvisible">
+                                <label for="city">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
+                                <select id="town" name="town" class="form-control ax-select">
+                                    <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="address_2">{l s='Dirección 2' mod='giftlist'}</label> <input type="text" id="address_2" class="form-control" name="address_2" placeholder="{l s='Apto, oficina, interior, bodega...' mod='giftlist'}" />
+                        </div>
+                        <div class="row">
+                            <label for="conf_email">{l s='Confirmar correo electrónico' mod='giftlist'}<sup>*</sup></label> <input type="email" id="conf_email" class="form-control" name="conf_email" />
+                        </div>
                     </div>
                 </div>
                 <div class="row">
