@@ -85,51 +85,74 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 	 * @param array $data
 	 */
 	private function _addProduct($id_product,$data){
-		$lpd = new ListProductBondModel();
 		$list = new GiftListModel($data['list']);
 		$prod = new ProductCore($id_product);
 		$link = new LinkCore();
-        $s = StockAvailable::getQuantityAvailableByProduct((int)$id_product,(int)$data['form'][3]['value']);
-        if($s == 0)
+        $params = array(
+            'id_product' => (int)$id_product,
+            'id_product_attribute' => (int)$data['form'][3]['value']
+        );
+        
+        $response = Hook::exec('actionProductCartSave', $params);
+        if($response == 0 || $response < $data['cant'])
             die(Tools::jsonEncode(array(
                 'msg' => "No hay cantidades suficientes en el inventario",
                 'error' => true))
                );
         $images = Image::getImages($this->context->language->id, $id_product);
-		$lpd->id_list = $data['list'];
-		$lpd->id_product = $id_product;
-		$lpd->message = $data['message'];
-		$lpd->option = Tools::jsonEncode($data['form']);
-		$lpd->favorite = $data['fav'] == "true" ? true : false;
-		$lpd->group = $this->_groupProducts($data['cant'],$data['cant_group']);
-		$lpd->created_at = date ( "Y-m-d H:i:s" );
-		try{
-			if(!$lpd->save())
-				die(Db::getInstance()->getMsgError());
-			else{
-				$msg = $prod->getProductName($id_product)
-				." ha sido añadido a la lista de regalos ". $list->name;
-				$att = null;
-				$attributes = $prod->getAttributeCombinationsById($data['form'][3]['value'], $this->context->language->id);
-				foreach ($attributes as $row){
-					if(isset($row['group_name']))
-						$att[] = [
-							'value' =>$row['group_name'].": ". $row['attribute_name']
-						];
-				}
-				die(Tools::jsonEncode(array(
-					'msg' => $msg,
-					'prod_name' => $prod->getProductName($id_product),
-					'attributes' => $att,
-					'price' => $prod->getPrice(),
-					'image' => "http://".$link->getImageLink($prod->link_rewrite[1], (int)$images[0]['id_image'], 'home_default'),
-					'description_link' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url)),
-                    'error' => false
-				)));
-			}
-		}catch (Exception $e){
-			die($e->getMessage());
-		}
+        if($data['group'] && $data['group'] > 0){
+            $pcant = $data['cant'];
+            while($pcant > $data['cant_group']){
+                $lpd = new ListProductBondModel();
+                $lpd->id_list = $data['list'];
+                $lpd->id_product = $id_product;
+                $lpd->cant = $data['cant_group'];
+                $lpd->message = $data['message'];
+                $lpd->option = Tools::jsonEncode($data['form']);
+                $lpd->favorite = $data['fav'] == "true" ? true : false;
+                $lpd->created_at = date ( "Y-m-d H:i:s" );
+                $pcant -= $data['cant_group'];
+                $lpd->save();
+            }
+            $lpd = new ListProductBondModel();
+            $lpd->id_list = $data['list'];
+            $lpd->id_product = $id_product;
+            $lpd->cant = $pcant;
+            $lpd->message = $data['message'];
+            $lpd->option = Tools::jsonEncode($data['form']);
+            $lpd->favorite = $data['fav'] == "true" ? true : false;
+            $lpd->created_at = date ( "Y-m-d H:i:s" );
+            $lpd->save();
+        }else{
+            $lpd = new ListProductBondModel();
+            $lpd->id_list = $data['list'];
+            $lpd->id_product = $id_product;
+            $lpd->message = $data['message'];
+            $lpd->cant = $data['cant'];
+            $lpd->option = Tools::jsonEncode($data['form']);
+            $lpd->favorite = $data['fav'] == "true" ? true : false;
+            $lpd->created_at = date ( "Y-m-d H:i:s" );
+            $lpd->save();
+        }		
+        $msg = $prod->getProductName($id_product)
+        ." ha sido añadido a la lista de regalos ". $list->name;
+        $att = null;
+        $attributes = $prod->getAttributeCombinationsById($data['form'][3]['value'], $this->context->language->id);
+        foreach ($attributes as $row){
+            if(isset($row['group_name']))
+                $att[] = [
+                    'value' =>$row['group_name'].": ". $row['attribute_name']
+                ];
+        }
+        die(Tools::jsonEncode(array(
+            'msg' => $msg,
+            'prod_name' => $prod->getProductName($id_product),
+            'attributes' => $att,
+            'price' => $prod->getPrice(),
+            'image' => "http://".$link->getImageLink($prod->link_rewrite[1], (int)$images[0]['id_image'], 'home_default'),
+            'description_link' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url)),
+            'error' => false
+        )));
 	}
 
 	/**
@@ -152,36 +175,4 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 		}
 
 	}
-    
-    /*
-    *Group products
-    */
-    private function _groupProducts($cant,$cant_group){
-        $total = $cant;
-        $i = 0;
-        if($cant_group != "" && $cant_group > 0){
-            while($total >= $cant_group){
-                $i++;
-                $total -= $cant_group;
-            }
-            if($cant_group > 0){
-                $i++;
-            }
-            
-            return Tools::jsonEncode( array(
-                "wanted" => $cant,
-                "missing"=> $cant,
-                "cant" => $cant_group,
-                "rest" => $total,
-                "tot_groups" => $i
-            ));
-        }
-        return Tools::jsonEncode( array(
-                "wanted" => $cant,
-                "missing"=> $cant,
-                "cant" => $cant,
-                "rest" => $total,
-                "tot_groups" => 1
-            ));   
-    }
 }

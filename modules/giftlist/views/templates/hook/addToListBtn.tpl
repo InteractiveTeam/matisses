@@ -10,7 +10,7 @@
                     <div class="form-group">
                         <label for="lists"><span>{l s='Listas' mod='giftlist'}</span><select
                             id="lists" class="form-control">
-                            <option value="0">{l s='Seleccione' mod='giftlist'}</option> 
+                            <option value="0">{l s='Selecciona' mod='giftlist'}</option> 
                             {foreach from=$list item=row}
                             <option value="{$row['id']}">{$row['name']}</option> 
                             {/foreach}
@@ -38,7 +38,7 @@
                 <div class="cont">
                     <p class="ax-text-descript">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     <div class="checkbox">
-                        <label>{l s='¿Agrupar?' mod='giftlist'}<input type="checkbox" id="group">
+                        <label>{l s='¿Agrupar?' mod='giftlist'}<input type="checkbox" id="group" name="group">
                         </label>
                     </div>
                 </div>

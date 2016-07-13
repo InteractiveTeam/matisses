@@ -54,21 +54,10 @@
                                             <input type="hidden" class="prod-attr" value="{$att_group['id_product_attribute']}">
                                         {/if}
                                     {/foreach}
-                                <p>{l s='Cantidad:'} {$row['group']->wanted}</p>
+                                <p class="total_qty" data-cant="{$row['cant']}">{l s='Cantidad:'} {$row['cant']}</p>
                             </div>
                             <button data-toggle="tooltip" data-placement="bottom" title="{l s='Añadir al carrito' mod='giftlist'}" class="add-to-cart btn btn-default btn-lista-regalos">{l s='Añadir al carrito' mod='giftlist'}</button>
                         </div>
-                    <div class="add_container">
-                        {if !empty($row['group']->tot_groups)}
-                            {if $row['group']->missing > $row['group']->tot_groups}
-                               <label class="qty_group" data-value="{$row['group']->cant}">Cantidad por grupo {$row['group']->cant}</label>
-                                <input type="number" data-value="{$row['group']->missing}" name="total_qty" max="{$row['group']->tot_groups}" class="total_qty" value="1">
-                           {else}
-                               <label class="qty_group" data-value="{$row['group']->cant}">Cantidad por grupo {$row['group']->rest}</label>
-                                <input type="number" name="total_qty" max="1" class="total_qty" value="1" disabled>
-                            {/if}
-                        {/if}
-                    </div>
                 </div>
             {/foreach}
 		</div>

@@ -31,7 +31,8 @@ $(function(){
 					'cant':$("#cant").val(),
 					'cant_group': $("#group").prop("checked") ? $("#cant_group").val() : null,
 					'message': $("#message").val(),
-					'fav': $("#fav").prop("checked"),
+					'fav': ($("#fav").prop("checked") ? 1 : 0),
+					'group': ($("#group").prop("checked") ? 1 : 0),
 					'form': $("#buy_block").serializeArray()
 				}
 			$.ajax({
@@ -47,7 +48,17 @@ $(function(){
                     $.fancybox.close();
 					res = JSON.parse(res);
                     if(res.error == true){
-                        alert(res.msg);
+                         $.fancybox({
+                            'autoScale': true,
+                            'transitionIn': 'elastic',
+                            'transitionOut': 'elastic',
+                            'minWidth': 435,
+                            'speedIn': 500,
+                            'speedOut': 300,
+                            'autoDimensions': true,
+                            'centerOnScroll': true,
+                            'content' : res.msg
+                        });
                         $("#add-list").attr("disabled", true);
                         $("#add-list").removeAttr("id");
                     }else{

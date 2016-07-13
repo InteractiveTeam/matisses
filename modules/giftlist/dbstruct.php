@@ -153,6 +153,7 @@ class DBStruct extends Module
 		`id_list` INT NULL,
 		`id_product` INT UNSIGNED NULL,
 		`id_bond` INT NULL,
+		`cant` INT,
 		`group` VARCHAR(70) NULL,
 		`option` TEXT NULL,
 		`favorite` TINYINT(1) NOT NULL,
