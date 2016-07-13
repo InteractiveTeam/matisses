@@ -1,4 +1,4 @@
-<a id="btn_gift_list" href="#frmAddGiftList" class="btn btn-success">
+<a id="btn_gift_list" href="#frmAddGiftList" class="btn btn-success" style="display:none"> 
 	{l s="Adicionar a la lista de regalos" mod="giftlist"} <span class="icon-plus"></span>
 </a>
 
