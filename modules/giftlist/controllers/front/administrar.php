@@ -93,8 +93,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
                     'msg' => $this->module->l('Ya existe una lista con la url ingresada'),
                     'error' => 1
                 ))
-            );
-        
+            );        
         $li->id_creator = $this->context->customer->id;
         $li->id_cocreator = 0;
         $li->code = $li->returnCode();
@@ -121,11 +120,12 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
             'address_2' => $data['address_2'],
             'tel' => $data['tel'],
         ));
+        $li->created_at = date("Y-m-d");
         if($li->add()){
-            $li->created_at = date("Y-m-d");
             $li->image = $this->_uploadImage($li->id, false, 'image-p');
             $li->profile_img = $this->_uploadImage($li->id, true, 'image-prof');
-            $li->id_cocreator = $li->setCoCreator($li->id,$data['email_co'],$data['firstname'] . " " .$data ['lastname'],$li->url);
+            if($data['email_co'] != $data['email_co'])
+                $li->id_cocreator = $li->setCoCreator($li->id,$data['email_co'],$data['firstname'] . " " .$data ['lastname'],$li->url);
             $li->update();
             die(
                 Tools::jsonEncode(array(
