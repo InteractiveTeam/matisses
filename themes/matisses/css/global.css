@@ -361,7 +361,7 @@ box-sizing: border-box;
 	.menu-experiencias {
 	padding: 1.1rem 0 0.9rem 0;
 	display: table;
-    width: 70%;
+    width: 50%;
 	}
 	.menu-experiencias li {
 	display: table-cell;
@@ -2406,7 +2406,7 @@ box-sizing: border-box;
 	}
 	.breadcrumb a {
 	display: inline-block;
-	color: #fff;
+	color: #d0d0d0;
 	font-family: 'condensed';
     font-weight: lighter;
 	}

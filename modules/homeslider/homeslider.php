@@ -478,6 +478,7 @@ class HomeSlider extends Module
 		/* Processes Slide */
 		elseif (Tools::isSubmit('submitSlide'))
 		{
+            
 			/* Sets ID if needed */
 			if (Tools::getValue('id_slide'))
 			{
@@ -496,7 +497,10 @@ class HomeSlider extends Module
 			$slide->typeslide = Tools::getValue('typeslide');
 			$slide->active = (int)Tools::getValue('active_slide');
 			$slide->videoid = Tools::getValue('videoid');
-		
+		  
+            
+            
+            
 			/* Sets each langue fields */
 			$languages = Language::getLanguages(false);
 
@@ -510,6 +514,10 @@ class HomeSlider extends Module
 				/* Uploads image and sets slide */
 				$type = Tools::strtolower(Tools::substr(strrchr($_FILES['image_'.$language['id_lang']]['name'], '.'), 1));
 				$imagesize = @getimagesize($_FILES['image_'.$language['id_lang']]['tmp_name']);
+                
+                
+                $temp_name = tempnam(_PS_TMP_IMG_DIR_, 'PS');
+                
 				if (isset($_FILES['image_'.$language['id_lang']]) &&
 					isset($_FILES['image_'.$language['id_lang']]['tmp_name']) &&
 					!empty($_FILES['image_'.$language['id_lang']]['tmp_name']) &&
@@ -524,9 +532,9 @@ class HomeSlider extends Module
 					) &&
 					in_array($type, array('jpg', 'gif', 'jpeg', 'png'))
 				)
-				{
-					$temp_name = tempnam(_PS_TMP_IMG_DIR_, 'PS');
+				{					
 					$salt = sha1(microtime());
+                    
 					if ($error = ImageManager::validateUpload($_FILES['image_'.$language['id_lang']]))
 						$errors[] = $error;
 					elseif (!$temp_name || !move_uploaded_file($_FILES['image_'.$language['id_lang']]['tmp_name'], $temp_name))
@@ -537,8 +545,22 @@ class HomeSlider extends Module
 						@unlink($temp_name);
 					$slide->image[$language['id_lang']] = $salt.'_'.$_FILES['image_'.$language['id_lang']]['name'];
 				}
-				elseif (Tools::getValue('image_old_'.$language['id_lang']) != '')
+				elseif (Tools::getValue('image_old_'.$language['id_lang']) != ''){
 					$slide->image[$language['id_lang']] = Tools::getValue('image_old_'.$language['id_lang']);
+                }elseif($slide->typeslide){
+                    
+                    include "res/MP4Info.php";
+                    $infoMp4 = MP4Info::getInfo($_FILES['image_'.$language['id_lang']]['tmp_name']);
+                    if($infoMp4->hasVideo){                        
+                        $temp = explode(".", $_FILES['image_'.$language['id_lang']]["name"]);
+                        $newfilename = round(microtime(true)) . '.' . end($temp);
+                        
+                        move_uploaded_file($_FILES['image_'.$language['id_lang']]['tmp_name'], dirname(__FILE__).'/videos/'.$newfilename);
+                        
+                        $slide->videoid = '/modules/homeslider/videos/'.$newfilename;
+                    }
+                }
+                
 			}
 
 			/* Processes if no errors  */

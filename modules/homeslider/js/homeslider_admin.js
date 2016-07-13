@@ -6,10 +6,10 @@ $(document).ready(function(e) {
 				$('#videoid').parent().parent().addClass('hidden');
 				$('#image_1').parent().parent().parent().parent().removeClass('hidden');
 			break;	
-			case 'Video': 
+			/*case 'Video': 
 				$('#image_1').parent().parent().parent().parent().addClass('hidden');
 				$('#videoid').parent().parent().removeClass('hidden');
-			break;	
+			break;	*/
 		}
 
     	$('#typeslide').live('change',function(e){
@@ -20,10 +20,10 @@ $(document).ready(function(e) {
 				$('#videoid').parent().parent().addClass('hidden');
 				$('#image_1').parent().parent().parent().parent().removeClass('hidden');
 			break;	
-			case 'Video': 
+			/*case 'Video': 
 				$('#image_1').parent().parent().parent().parent().addClass('hidden');
 				$('#videoid').parent().parent().removeClass('hidden');
-			break;	
+			break;	*/
 		}
 	})
 });
