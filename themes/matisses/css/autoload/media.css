@@ -1969,11 +1969,22 @@
 
 @media screen and (max-width :768px) {
 
-    #search {
+	.right-down-menu {
+	    padding: 0rem 1.875rem 0 0;
+	    margin: 10px 0 0 0;
+	    display: block;
+	}
+
+	.main-container .center_column #index #slider #homepage-slider {
+	    height: 23.6rem;
+	    position: relative;
+	}
+
+    /*#search {
         position: absolute;
         right: 14px;
         top: 55px;
-    }
+    }*/
 
     ul #search a {
         font-size: 25px;
@@ -1981,7 +1992,7 @@
 
 	    
     #slider .bx-controls.bx-has-pager {
-        bottom: 15%;
+        bottom: 5%;
     }
 
 	.slide-2 h2{
@@ -3673,11 +3684,16 @@
 
 @media screen and (max-width :320px) {
 
+
+	#page .header-container #header .cf #menu-left .menu-experiencias {
+	    top: 8.9375rem;
+	}
+
 	header .search-container {
 	    top: 63px;
 	}
 	    
-    #slider #homepage-slider {
+    body #page .main-container #columns #center_column #slider #homepage-slider {
         height: 14rem;
     }
     
@@ -3743,7 +3759,7 @@
 /* iPhone 6 landscape */
 @media screen and (max-width: 375px) {
     
-    #slider #homepage-slider {
+    #page .main-container #center_column #slider #homepage-slider {
         height: 16rem;
     }
     
@@ -3820,7 +3836,7 @@
         padding: 3rem 0.625rem;
     }
 
-    #slider #homepage-slider {
+    #page .main-container #center_column #slider #homepage-slider {
         height: 13rem;
     }
 
@@ -3831,8 +3847,8 @@
         margin: 0;
     }
     
-    #menu.menu-experiencias {
-        top: 8.9375rem;
+   #header .main_panel #menu-left #menu.menu-experiencias {
+        top: 7.8rem;
         width: 100%;
     }
 
@@ -3986,6 +4002,11 @@
         padding: 0;
         margin: 0;
     }
+
+	#slider #homepage-slider {
+    	height: 30rem;
+	    position: relative;
+	}
 
 
 
