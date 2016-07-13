@@ -1322,7 +1322,7 @@ label.error:before {
         right: 0;
         z-index: 2;
         bottom: 105%;
-        width: 134px;
+        width: 144px;
     }
     
     .module-giftlist-descripcion .ax-text-result-list p, .module-giftlist-descripcion .ax-text-result-list h2, .module-giftlist-descripcion .ax-text-result-list h3 {
@@ -1604,7 +1604,11 @@ label.error:before {
     }
     
     .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(even) {
-        text-align: right;
+        text-align: center;
+    }
+    
+    .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(odd) {
+        text-align: center;
     }
     
     .ax-cont-admin-listas-regalos .ax-cont-list .part:last-child {
@@ -1632,10 +1636,11 @@ label.error:before {
     .ax-avatar-content #ax-prof-container .cont-img {
         width: 122px;
         height: 122px;
+        margin: 0 auto;
     }
     
     .ax-avatar-content #ax-prof-container {
-        width: 122px;
+        width: 145px;
     }
     
      .ax-avatar-content .ax-prof-buttons .uploader {
@@ -1757,6 +1762,13 @@ label.error:before {
         margin-top: 20px;
     }
     
+}
+
+@media screen and (max-width:320px) {
+    
+    #address-div a.chosen-single {
+        width: 190px;
+    }
 }
 
 .fa {

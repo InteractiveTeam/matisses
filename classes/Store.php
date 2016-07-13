@@ -79,6 +79,9 @@ class StoreCore extends ObjectModel
 
 	/** @var boolean Store status */
 	public $active = true;
+    
+    /** @var boolean Enabled pickup */
+	public $active_shop = true;
 
 	/**
 	 * @see ObjectModel::$definition
@@ -103,6 +106,7 @@ class StoreCore extends ObjectModel
 			'note' => 			array('type' => self::TYPE_STRING, 'validate' => 'isCleanHtml', 'size' => 65000),
 			'email' => 			array('type' => self::TYPE_STRING, 'validate' => 'isEmail', 'size' => 128),
 			'active' => 		array('type' => self::TYPE_BOOL, 'validate' => 'isBool', 'required' => true),
+			'active_shop' => 	array('type' => self::TYPE_BOOL, 'validate' => 'isBool', 'required' => true),
 			'date_add' => 		array('type' => self::TYPE_DATE, 'validate' => 'isDate'),
 			'date_upd' => 		array('type' => self::TYPE_DATE, 'validate' => 'isDate'),
 		),
