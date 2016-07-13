@@ -5334,8 +5334,8 @@ a.newPrint:hover {
     font-size: 18px;
 }
 
-#menu #giftlist {
-    display: block;
+#menu #giftlist, .my-giftlist {
+    display: none;
 }
 /*lista de deseos*/
 
