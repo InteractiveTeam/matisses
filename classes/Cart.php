@@ -2140,41 +2140,52 @@ class CartCore extends ObjectModel
 			$delivery_option_list[$id_address][$key]['is_best_grade'] = true;*/
 
 			// Get all delivery options with a unique carrier
-			/*foreach ($common_carriers as $id_carrier)
+            $storepick = Db::getInstance()->ExecuteS('SELECT id_carrier FROM '._DB_PREFIX_.'carrier WHERE name = "Recoger en Tienda"');
+            $idstoredpick = null;
+            
+            if (!empty($storepick)) {
+                $idstoredpick = $storepick[0]['id_carrier'];
+            }
+            
+			foreach ($common_carriers as $id_carrier)
 			{
-				$key = '';
-				$package_list = array();
-				$product_list = array();
-				$price_with_tax = 0;
-				$price_without_tax = 0;
+                if($idstoredpick != null) {
+                     if ($id_carrier == $idstoredpick) {
+                        $key = '';
+                        $package_list = array();
+                        $product_list = array();
+                        $price_with_tax = 0;
+                        $price_without_tax = 0;
 
-				foreach ($packages as $id_package => $package)
-				{
-					$key .= $id_carrier.',';
-					$price_with_tax += $carriers_price[$id_address][$id_package][$id_carrier]['with_tax'];
-					$price_without_tax += $carriers_price[$id_address][$id_package][$id_carrier]['without_tax'];
-					$package_list[] = $id_package;
-					$product_list = array_merge($product_list, $package['product_list']);
-				}
+                        foreach ($packages as $id_package => $package)
+                        {
+                            $key .= $id_carrier.',';
+                            $price_with_tax += $carriers_price[$id_address][$id_package][$id_carrier]['with_tax'];
+                            $price_without_tax += $carriers_price[$id_address][$id_package][$id_carrier]['without_tax'];
+                            $package_list[] = $id_package;
+                            $product_list = array_merge($product_list, $package['product_list']);
+                        }
 
-				if (!isset($delivery_option_list[$id_address][$key]))
-					$delivery_option_list[$id_address][$key] = array(
-						'is_best_price' => false,
-						'is_best_grade' => false,
-						'unique_carrier' => true,
-						'carrier_list' => array(
-							$id_carrier => array(
-								'price_with_tax' => $price_with_tax,
-								'price_without_tax' => $price_without_tax,
-								'instance' => $carriers_instance[$id_carrier],
-								'package_list' => $package_list,
-								'product_list' => $product_list,
-							)
-						)
-					);
-				else
-					$delivery_option_list[$id_address][$key]['unique_carrier'] = (count($delivery_option_list[$id_address][$key]['carrier_list']) <= 1);
-			}*/
+                        if (!isset($delivery_option_list[$id_address][$key]))
+                            $delivery_option_list[$id_address][$key] = array(
+                                'is_best_price' => false,
+                                'is_best_grade' => false,
+                                'unique_carrier' => true,
+                                'carrier_list' => array(
+                                    $id_carrier => array(
+                                        'price_with_tax' => $price_with_tax,
+                                        'price_without_tax' => $price_without_tax,
+                                        'instance' => $carriers_instance[$id_carrier],
+                                        'package_list' => $package_list,
+                                        'product_list' => $product_list,
+                                    )
+                                )
+                            );
+                        else
+                            $delivery_option_list[$id_address][$key]['unique_carrier'] = (count($delivery_option_list[$id_address][$key]['carrier_list']) <= 1);
+                     }   
+                }
+			}
 		}
 
 		$cart_rules = CartRule::getCustomerCartRules(Context::getContext()->cookie->id_lang, Context::getContext()->cookie->id_customer, true, true, false, $this);

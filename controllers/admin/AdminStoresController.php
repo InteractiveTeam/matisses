@@ -301,6 +301,26 @@ class AdminStoresControllerCore extends AdminController
 					),
 					'hint' => $this->l('Whether or not to display this store.')
 				),
+                array(
+					'type' => 'switch',
+					'label' => $this->l('Enabled to buy products'),
+					'name' => 'active_shop',
+					'required' => true,
+					'is_bool' => true,
+					'values' => array(
+						array(
+							'id' => 'active_shop_on',
+							'value' => 1,
+							'label' => $this->l('Enabled')
+						),
+						array(
+							'id' => 'active_shop_off',
+							'value' => 0,
+							'label' => $this->l('Disabled')
+						)
+					),
+					'hint' => $this->l('Enable this store to pick up products.')
+				),
 				array(
 					'type' => 'file',
 					'label' => $this->l('Picture'),
