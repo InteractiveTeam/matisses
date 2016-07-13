@@ -1124,6 +1124,12 @@ label.error:before {
 
 #address-div #address-form label, #address-div #address-form span, #address-div #address-form input {
     font-family: Georgia, 'Georgia' !important;
+    font-weight: 100;
+    font-size: 1rem !important;
+}
+
+#address-div #address-form span {
+    font-size: 0.8rem !important;
 }
 
 #share-pop.white-popup-block .btn.btn-success.pull-right {
@@ -1383,6 +1389,10 @@ label.error:before {
 }
 
 @media screen and (max-width:568px) {
+    
+    #address-div a.chosen-single {
+        width: 246px;
+    }
     
     .ax-text-result-list {
        padding: 10px 20px;
