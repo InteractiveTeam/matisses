@@ -14,7 +14,7 @@
 		</div>
 	</div>
     <div id="lists">
-        <div class="ax-cont-admin-listas-regalos list-item-container">
+        <div class="ax-cont-admin-listas-regalos">
         {foreach from=$all_lists item=row}
             <div class="row list-item-container ax-item" data-id="{$row['id']}" id="list-{$row['id']}">
                 <div class="header-item ax-text-result-list tab-rp-listas-rega">

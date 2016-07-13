@@ -109,36 +109,67 @@
 	
 	<div class="products-associated" data-id="{$list_desc['id']}">
 	    <div class="ax-text-result-list ax-result-inline">
-         <h2>{l s='Mi lista' mod='giftlist'}</h2>
+            <h2>{l s='Mi lista' mod='giftlist'}</h2>
         </div>
 		
         <a href="javascript:void(0);" class="ax-list-edit">{l s='Editar lista' mod='giftlist'}</a>
         <a href="javascript:void(0);" class="ax-finish-edit hidden">{l s='Terminar edición' mod='giftlist'}</a>
-		<div class="row">
-            <div class="product-card ax-bond-card col-md-3" data-id="{$list_desc['id']}">
-                <img src="{$modules_dir}/giftlist/views/img/details-lista.png">
-                <span class="ax-bond-value">{l s='Total bonos' mod='giftlist'}: {convertPrice price=$bond['total']}</span> <br>       
-            </div>
-            {foreach from=$products item=row}
-                {$atribute_group = $row['options'][3]->value}
-                    <div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}">
-                        <div class="img-container">
-                            <img src="http://{$row['image']}">
+        <div id="ax-products">
+            
+            <div class="row ax-prod-cont">
+                {foreach from=$products item=row}
+                    {$atribute_group = $row['options'][3]->value}
+                        <div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}">
+                            <div class="img-container">
+                                <img src="http://{$row['image']}">
+                            </div>
+                            <div class="ax-info-list">
+                            <i class="fa fa-heart  {if $row['favorite']}ax-favorite{/if}" aria-hidden="true"></i>
+                            <p class="ax-name-list">{$row['name']}</p>
+                            <p class="ax-price-list">{convertPrice price=$row['price']}</p>
+                            {foreach from=$row['data'] item=att_group}
+                                {if $att_group['id_product_attribute'] == $atribute_group}
+                                    <p>{$att_group['group_name']}: {$att_group['attribute_name']}</p>
+                                {/if}
+                            {/foreach}
+                            <p>{l s='Cantidad:'} {$row['group']->wanted}</p>
                         </div>
-                        <div class="ax-info-list">
-                        <i class="fa fa-heart  {if $row['favorite']}ax-favorite{/if}" aria-hidden="true"></i>
-                        <p class="ax-name-list">{$row['name']}</p>
-                        <p class="ax-price-list">{convertPrice price=$row['price']}</p>
-                        {foreach from=$row['data'] item=att_group}
-                            {if $att_group['id_product_attribute'] == $atribute_group}
-                                <p>{$att_group['group_name']}: {$att_group['attribute_name']}</p>
-                            {/if}
-                        {/foreach}
-                    <p>{l s='Cantidad:'} {$row['group']->wanted}</p>
+                        <a class="delete-product hidden" data-toggle="tooltip" data-placement="bottom" title="Quitar producto"><i class="fa fa-close"></i></a>
                     </div>
-                    <a class="delete-product hidden" data-toggle="tooltip" data-placement="bottom" title="Quitar producto"><i class="fa fa-close"></i></a>
+                {/foreach}
+                <div class="product-card ax-bond-card col-md-3" data-id="{$list_desc['id']}">
+                    <img src="{$modules_dir}/giftlist/views/img/details-lista.png">
+                    <span class="ax-bond-value">{l s='Total bonos' mod='giftlist'}: {convertPrice price=$bond['total']}</span> <br>       
                 </div>
-            {/foreach}
+            </div>
+            <div class="jplist-panel">						
+                <div 
+                class="jplist-pagination" 
+                data-control-type="pagination" 
+                data-control-name="paging" 
+                data-control-action="paging"
+                data-items-per-page="{$items_per_page}">
+                </div>
+                   {literal}
+                    <div class="jplist-label" 
+                        data-type="{current} de {pages}" 
+                        data-control-type="pagination-info" 
+                        data-control-name="paging" 
+                        data-control-action="paging">
+                    </div> 
+                    {/literal}
+                <select
+                    class="jplist-select" 
+                    data-control-type="items-per-page-select" 
+                    data-control-name="paging" 
+                    data-control-action="paging">
+
+                    <option data-number="4"> 4 </option>
+                    <option data-number="8" data-default="true" selected> 8 </option>
+                    <option data-number="12"> 12 </option>
+                    <option data-number="all"> Todos </option>
+                </select>
+            </div>
 		</div>
 	</div>
 </div>

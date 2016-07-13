@@ -60,7 +60,8 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
             'numberProducts' => $list->getNumberProductsByList($res['id']),
 			'share_list' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/share_email.php",
             'countries' => CountryCore::getCountries($this->context->language->id),
-            'cats' => Category::getCategories( (int)($cookie->id_lang), true, false  )
+            'cats' => Category::getCategories( (int)($cookie->id_lang), true, false  ),
+            'items_per_page' => 8
 		) );
 
 		if($this->context->customer->isLogged()){
@@ -143,6 +144,8 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
         }            
         
 		$this->addJS ( array (
+            _MODULE_DIR_ . '/giftlist/views/js/vendor/jplist/jplist.core.min.js',
+			_MODULE_DIR_ . '/giftlist/views/js/vendor/jplist/jplist.pagination-bundle.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/validation/jquery.validate.min.js',
             _MODULE_DIR_ . '/giftlist/views/js/vendor/validation/messages_es.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/owl/owl.carousel.min.js',
@@ -150,6 +153,8 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			$addJs
 		) );
 		$this->addCSS ( array (
+            _MODULE_DIR_ . '/giftlist/views/css/vendor/jplist/jplist.core.min.css',
+			_MODULE_DIR_ . '/giftlist/views/css/vendor/jplist/jplist.pagination-bundle.min.css',
             _MODULE_DIR_ . '/giftlist/views/css/vendor/owl/owl.carousel.css',
 			_MODULE_DIR_ . '/giftlist/views/css/ax-lista-de-regalos.css'
 		) );

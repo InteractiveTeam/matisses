@@ -170,6 +170,14 @@ $(document).ready(function() {
     });
     
     $(".ax-save").on('click',saveAddress);
+    
+    jp = $('#ax-products').jplist({				
+      itemsBox: '.ax-prod-cont', 
+      itemPath: '.product-card' 
+      ,panelPath: '.jplist-panel'	
+   });
+    
+  $('.jplist-pagingmid').after($('.jplist-label'));
 });
 
 function deleteMsg(){
