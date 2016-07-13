@@ -11,13 +11,28 @@ if (Validate::isEmail($email)) {
     $regsap = new registerWithSap();
     $response = $mat->wsmatissess_getCustomerbyEmail($email);
     $context = Context::getContext();
-    $jsonData = array('trueProcess' => false,
-                      'failSend' => false,
-                      'errorToken' => false,
-                      'notExistSap' => false,
-                      'emailFalse' => false);
+    $jsonData = array('trueProcess' => array(
+                                        'response' => false,
+                                        'result' => ''
+                                    ),
+                      'failSend' => array(
+                                        'response' => false,
+                                        'result' => ''
+                                    ),
+                      'errorToken' => array(
+                                        'response' => false,
+                                        'result' => ''
+                                    ),
+                      'notExistSap' => array(
+                                        'response' => false,
+                                        'result' => ''
+                                    ),
+                      'emailFalse' => array(
+                                        'response' => false,
+                                        'result' => ''
+                                    ));
     
-    if ($response) {
+    if ($response && !Customer::customerExists($email)) {
         
         $link = new Link();
         $ctrlname = 'authentication';
@@ -28,13 +43,15 @@ if (Validate::isEmail($email)) {
 
         if (!empty($checktoken)) {
             $update = $regsap->updateToken($email, $token, false);
-
+            $jsonData['errorToken']['result'] = $update;
+            
             if ($update) {
                 $send = true;
             }
         } else {
             $create = $regsap->createToken($email, $token);
-
+            $jsonData['errorToken']['result'] = $create;
+            
             if ($create) {
                 $send = true;
             }
@@ -44,23 +61,28 @@ if (Validate::isEmail($email)) {
             $templateVars = array(
                 '{link}' => $url.'?skey='.$token
             );
+            
+            $mailSend = Mail::Send((int)$context->language->id,'validate_account_sap',Mail::l('Registration account process', (int)$context->language->id),$templateVars,$email,null,null,null,null,null,_THEME_DIR_.'mails/');
              /* Email sending */
-            if (Mail::Send((int)$context->language->id,'validate_account_sap',Mail::l('Registration account process', (int)$context->language->id),$templateVars,$email,null,null,null,null,null,_THEME_DIR_.'mails/')) {
-                $jsonData['trueProcess'] = true;
+            if ($mailSend) {
+                $jsonData['trueProcess']['response'] = true;
+                $jsonData['trueProcess']['result'] = $mailSend;
             } 
             else {
-                $jsonData['failSend'] = true;
+                $jsonData['failSend']['response'] = true;
+                $jsonData['failSend']['result'] = $mailSend;
             }
         } else {
-            $jsonData['errorToken'] = true;
+            $jsonData['errorToken']['response'] = true;
         }
 
     } else {
-        $jsonData['notExistSap'] = true;
+        $jsonData['notExistSap']['response'] = true;
+        $jsonData['notExistSap']['result'] = $response;
     }  
 } 
 else {
-    $jsonData['emailFalse'] = true;
+    $jsonData['emailFalse']['response'] = true;
 }
  
 echo json_encode($jsonData);

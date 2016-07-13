@@ -42,7 +42,6 @@
 <div id="purchased-block" class="purchased-block">
     {if $category->level_depth < 5}
 	<div class="container">
-        <!-- Chaordic Top -->
         <div chaordic="top"></div>
 	</div>
 	{/if}
@@ -50,32 +49,15 @@
 
 <div id="popular" class="popular">
     <div class="container">
-        <!-- Chaordic Middle -->
         <div chaordic="middle"></div>
     </div>
 </div>
 
 <div id="offers" class="offers-products">
 	<div class="container">
-	    <!-- Chaordic Bottom -->
         <div chaordic="bottom"></div>
 	</div>
 </div>
-
-<!--
-<div id="historical-block" class="historical-block">
-            <div class="container">
-
-			<div class="info-chaordic">
-				<img src="../../themes/matisses/img/historical-block.jpg" alt="Histórico">
-				<div class="mask">
-					<h1>Espacio para Chaordic</h1>
-				</div>
-			</div>
-		</div>
-</div>
--->
-
 {/if}
 
 {if isset($HOOK_FOOTER)}

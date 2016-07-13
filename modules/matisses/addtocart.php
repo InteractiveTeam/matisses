@@ -6,8 +6,8 @@ include_once('matisses.php');
 if (isset($_POST['skus'])) {
     $skus = $_POST['skus'];
     $matisses = new matisses();
-    $idproducts = $matisses->searchByReference($skus);
-    echo json_encode($idproducts);
+    $products = $matisses->searchByReference($skus);
+    echo json_encode($products);
 } else {
     echo "null";
 }

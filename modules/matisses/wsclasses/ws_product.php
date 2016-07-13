@@ -157,26 +157,31 @@ class ws_product extends matisses
 		return true;
 	}
 
-	public function product_listStockChanges($datos){
+	public function product_listStockChanges($datos){        
 		if(!is_array($datos))
 			return false;
 		
 		$inventario = $datos['inventoryChangesDTO']['changes'];
 		$stock = array();
-		
+        
 		foreach($inventario as $k => $v) {
 			$_Quantity  = 0;
 			$_Row 		= Db::getInstance()->getRow('SELECT id_product, id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.trim($v['itemCode']).'"');			
             
 			if($_Row['id_product']!='' && $_Row['id_product_attribute']!='') {
                 
-                $dataRef = parent::wsmatisses_getInfoProduct($v['itemCode']);
-                for($i = 0;$i < count($dataRef['stock']);$i++){
-                    $_Quantity += $dataRef['stock'][$i]['quantity'];
-                }
-                StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);                
-                //echo 'REF '.$v['itemCode'].' => '.$_Row['id_product']. ' - '.$_Row['id_product_attribute'].' => '.$_Quantity. ' <br>';
+                $dataRef = parent::wsmatisses_getInfoProduct($v['itemCode'],false,true);
                 
+                if($dataRef['codeStatus'] == 0101909){//valido el código si existe o no tiene inventario la ref...
+                    $_Quantity = 0;
+                }else{
+                    for($i = 0;$i < count($dataRef['stock']);$i++){
+                        $_Quantity += $dataRef['stock'][$i]['quantity'];
+                    }    
+                }
+                
+                StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);                
+                                
                 $qty = Product::getQuantity($_Row['id_product']);
                 if(!$qty){
                     $str_ids .= $_Row['id_product'].',';

@@ -21,7 +21,7 @@
 	
 	//define('_PS_MODE_DEV_', false);
 	$_wsmatisses 	= new matisses;
-	
+	$_Modelos = null;
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
 	__MessaggeLog("INICIA PROCESO ".date('H:i:s')." - ".$time."\n");
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
@@ -33,6 +33,7 @@
     
 
     $banderaPost = false;
+    $searchExist = false;
     if(isset($_POST['modelo']) && $_POST['modelo'] != ""){
         
         $_Modelos = getProductsByModel($_POST['modelo']);
@@ -43,10 +44,20 @@
         }
         print_r($_POST);
         print_r($_Modelos);
+    } 
+    
+    if (isset($modeloSAP) && !empty($modeloSAP)) {
+        $searchExist = true;
+        $_Modelos = getProductsByModel($modeloSAP, $searchExist);
+        $banderaPost = true;
+        
+        if(sizeof($_Modelos)<1){
+            echo 'NO MODELS';
+            exit();
+        }
     }
     
-	$_References    = __getReferences($_Modelos,$banderaPost);
-
+	$_References    = __getReferences($_Modelos,$banderaPost,$searchExist);
 	/*if(Configuration::get('ax_simpleproduct_data')=='')	{
 		$ModelsExists = implode('","',array_keys($_References));
 		Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
@@ -65,6 +76,7 @@
 	
 	if(sizeof($_References)>0)
 	{
+        echo "<pre>";print_r($_References); echo "</pre>";
 		foreach($_References as $_Model => $_Combinations)
 		{
 			unset($_Product);
@@ -122,7 +134,7 @@
 		{
 			try{
                     if(!$_Combination['processImages'] && $_Product->getCombinationImages(1))
-                         continue;
+                         //continue;
 					// verifico si la combinacion esta para cambio de modelo
 					$_currentCombinations[] = $_Combination['itemCode'];
 					$id_product_attribute = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.$_Combination['itemCode'].'" and id_product = 0');
@@ -168,7 +180,11 @@
 										
 						// teindas disponibles por combinacion				
 						Db::getInstance()->update('product_attribute', 
-											array('available' => $_Combination['stock']['WarehouseCode']), 
+											array('available' => $_Combination['stock']['WarehouseCode'],
+                                                 'garantias'=> $_Combination['materials'],
+                                                  'itemname'=> $_Combination['itemName'],
+                                                  'short_description'=> $_Combination['shortDescription'] 
+                                            ), 
 											'id_product_attribute = '.(int)$id_product_attribute
 										);
 						
@@ -198,7 +214,11 @@
 							Db::getInstance()->insert('product_attribute_combination', $attributes_list);
 							// teindas disponibles por combinacion
 							Db::getInstance()->update('product_attribute', 
-											array('available' => $_Combination['stock']['WarehouseCode']), 
+											array('available' => $_Combination['stock']['WarehouseCode'],
+                                                  'garantias'=> $_Combination['materials'],
+                                                  'itemname'=> $_Combination['itemName'],
+                                                  'short_description'=> $_Combination['shortDescription']
+                                                 ), 
 											'id_product_attribute = '.(int)$id_product_attribute
 										);
 						 }
@@ -455,7 +475,7 @@
 		}
 	}
 	
-	function __getReferences($_Modelos,$bandera)	{        
+	function __getReferences($_Modelos,$bandera, $includeall = false)	{ 
 		global $_wsmatisses;
 		if(!$_wsmatisses)
 			$_wsmatisses 	= new matisses;
@@ -482,26 +502,24 @@
 		//$_Data = array_slice($_Data, 0 , 10); 
                 
 		$_Data2 = $_Data;        
-
+        
 		foreach($_Data2 as $key => $_Model) {
 			if(is_array($_Model['references'])) {                
 				foreach($_Model['references'] as $k => $_Reference) {					
 					 __MessaggeLog(' ------------ Consultando ('.$_Model['code'].') '.date('H:i:s').' '.$_Reference."\n");
-					$_data =  __parseData($_wsmatisses->wsmatisses_getInfoProduct($_Reference),$_Model['status']);
+					$_data =  __parseData($_wsmatisses->wsmatisses_getInfoProduct($_Reference,$includeall),$_Model['status']);
 					if($_data)
 						$_Models[$_Model['code']][$_Reference] =$_data;			
 				}
-			}else{                
+			}else{     
                 __MessaggeLog(' ------------ Consultando ('.$_Model['code'].') '.date('H:i:s').' '.$_Model['references']."\n");
-                $_data =  __parseData($_wsmatisses->wsmatisses_getInfoProduct($_Model['references']),$_Model['status']);
-                //$_data =  $_wsmatisses->wsmatisses_getInfoProduct($_Model['references']);
+                $_data =  __parseData($_wsmatisses->wsmatisses_getInfoProduct($_Model['references'],$includeall),$_Model['status']);
+                //$_data2 =  $_wsmatisses->wsmatisses_getInfoProduct($_Model['references'],$includeall);
                 if($_data)
                     $_Models[$_Model['code']][$_Model['references']] = $_data;
                 
              }
 		}
-        
-        
         
 		// desactivo los productos que no existen
 		foreach($_Data2 as $d => $v) {
@@ -527,8 +545,11 @@
 	}
 	
 	function __parseData($_data,$status = null){        
-		if($_data['description'] && $_data['shortDescription'] && $_data['price'] && $_data['itemName'] && $_data['model'] && $_data['subgroupCode'] && $_data['webName'] && sizeof($_data['color'])==3)
+		if($_data['description'] && $_data['shortDescription'] && $_data['price'] && $_data['itemName'] && $_data['model'] && $_data['subgroupCode'] && sizeof($_data['color'])==3)
 		{
+            if(empty($_data['webName'])) {
+               $_data['webName'] = ""; 
+            }
 				
 			$path		= dirname(__FILE__).'/files/'.$_data['itemCode'];
 			$materials 	= $_data['materials'];
@@ -546,7 +567,9 @@
 				unset($_data['stock']);
 				$_data['stock'][] = $stock;	 
 			}
-			 
+			             
+            //$_data['processImages'] = 1;
+            
 			$_data['itemName'] 				= pSQL(mb_strtoupper(substr($_data['itemName'],0,1)).mb_strtolower(substr($_data['itemName'],1)));
 			$_data['color']['name'] 		= mb_strtolower($_data['color']['name']);
 			$_data['sketch']				= basename(current(glob($path.'/plantilla/*.jpg')));
@@ -687,14 +710,13 @@
 	/* Obetenes las referencias por el modelo
     * $models => todos los modelos delimitados por ","
     */
-    function getProductsByModel($models){
-        echo $models;
+    function getProductsByModel($models, $all = false){
         $_wsmatisses = new matisses;
         
         $models = explode(',',$models);
         $auxModels = array();
         for($i = 0; $i < count($models);$i++){
-            $dataModel = $_wsmatisses->wsmatissess_getReferencesByModel($models[$i]);
+            $dataModel = $_wsmatisses->wsmatissess_getReferencesByModel($models[$i], $all);
             if(!isset($dataModel['itemCode'])){
                 $auxRef = array();
                 for($j = 0; $j < count($dataModel);$j++){

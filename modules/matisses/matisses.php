@@ -571,7 +571,13 @@ class matisses extends Module
         global $smarty;
         global $cookie;
 		$this->page_name = Dispatcher::getInstance()->getController();
-		$this->context->controller->addJS($this->_path.'js/fblogin.js');
+        
+        $chaordic = '<script async src="//static.chaordicsystems.com/static/loader.js" data-apikey="matisses" data-initialize="false" defer type="text/javascript"></script>';
+        $this->context->smarty->assign(array(
+            'chaordicScript' => $chaordic
+        ));
+		
+        $this->context->controller->addJS($this->_path.'js/fblogin.js');
 		
 		if(in_array($this->page_name, array('category')))
 		{
@@ -946,7 +952,41 @@ class matisses extends Module
                 ));
             }
         }
+        
+        if (in_array($this->page_name, array('order'))) {
+            $sqlstore = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'store where active_shop = "1"');
+            $stores = array();
+            
+            foreach ($sqlstore as $store) {
+                array_push($stores, $store);
+            }
+            
+            $this->context->smarty->assign(array(
+                'current_stores' => $stores
+            ));
+        }
 	}
+    
+    public function getActiveStores() {
+        $sqlstore = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'store where active_shop = "1"');
+        $stores = array();
+
+        foreach ($sqlstore as $store) {
+            array_push($stores, $store);
+        }
+
+        return $stores;
+    }
+    
+    public function getImagesByAttribute($attr) {
+        $images = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'product_attribute_image WHERE id_product_attribute = '.$attr);
+        $idimage = array();
+        
+        foreach ($images as $id) {
+            array_push($idimage, $id['id_image']);    
+        }
+        return $idimage[0];
+    }
     
     public function createXML() {
         
@@ -1044,9 +1084,23 @@ class matisses extends Module
                 }
             }
             
+            $getPrice = new SpecificPrice();
+            
             foreach($allrefer as $refer) {
                 
                 $hexcolor = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'attribute WHERE id_attribute = "'.$refer['id_attribute'].'"');
+                
+                $objPrice = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'specific_price WHERE id_product = "'.$prod->id.'"');
+                $priceRefer = $price[0];
+                
+                if (!empty($objPrice)) {
+                    foreach ($objPrice as $obprices) {
+                        if ($obprices['id_product_attribute'] == $refer['id_product_attribute']) {
+                            $pricereference = explode(".",$obprices['price']);
+                            $priceRefer = $pricereference[0];
+                        } 
+                    }
+                }
                 
                 $xml .= '<item>
                         <g:item_group_id>'.$prod->id.'</g:item_group_id>
@@ -1058,12 +1112,13 @@ class matisses extends Module
                         <g:image_link>http://'.$link->getImageLink($prod->link_rewrite[1], (int)$images[0]["id_image"], "large_default").'</g:image_link>
                         <g:condition>'.$prod->condition.'</g:condition>
                         <g:availability>'.$stock.'</g:availability>
-                        <g:price>'.$price[0].'</g:price>
+                        <g:price>'.$priceRefer.'</g:price>
                         <g:gtin>0</g:gtin>
                         <g:brand>'.$marca.'</g:brand>
                         <g:custom_label_0>'.$hexcolor[0]['color'].'</g:custom_label_0>
                     </item>';   
             }
+            
         }
         
         $xml .= '</channel></rss>';       
@@ -1074,16 +1129,18 @@ class matisses extends Module
         $references = $skus;
         
         if (!empty($references)) {
-            $idproducts = array();
+            $prods = array();
             $idlanguage = $this->context->language->id;
             
             foreach ($references as $row) {
                 $prod = Product::searchByName($idlanguage,$row);
+                $attribute = Db::getInstance()->ExecuteS('SELECT id_product_attribute from '._DB_PREFIX_.'product_attribute where reference = "'.$row.'"');
+                $idattribute = $attribute[0]['id_product_attribute'];
                 $idprod = $prod[0]['id_product'];
-                array_push($idproducts,$idprod);
+                array_push($prods,array('idproduct' => $idprod,'idattribute' => $idattribute));
             }
             
-            return $idproducts;   
+            return $prods;   
         } else {
             return null;
         }
@@ -1467,11 +1524,31 @@ class matisses extends Module
         $result = $this->xml_to_array($result['return']['detail']);
         return $result;
 	}
+    
+    public function wsmatissess_getOrdersByCharter($charter)
+	{
+		
+		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
+        $params = array();
+		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), array("trace"=>1,"exceptions"=>0));
+        
+        $params['customerDTO']['id'] = $charter.'CL';
+        $params = self::array_to_xml($params,false);
+		$s 			= array('genericRequest' => array('data'		=>$params,
+														'object'	=>'order',
+														'operation'	=>'listCustomerOrders',
+														'source'	=>'prestashop')
+												);
+		$result = $client->call('callService', $s);
+        $result = $this->xml_to_array($result['return']['detail']);
+        return $result;
+	}
 	
-	public function wsmatissess_getReferencesByModel($params){        
+	public function wsmatissess_getReferencesByModel($params, $all = false){        
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), array("trace"=>1,"exceptions"=>0)); 
 		$inventoryItemDTO['inventoryItemDTO']['model'] 		= $params;
+		$inventoryItemDTO['inventoryItemDTO']['includeAll']	= $all;
 		
 		$inventoryItemDTO 	= self::array_to_xml($inventoryItemDTO,false);
 		$s 			= array('genericRequest' => array('data'		=>$inventoryItemDTO,
@@ -1801,7 +1878,7 @@ class matisses extends Module
 		return $boolean ? $return : $response;
 	}
 	
-	public function wsmatisses_get_data($objeto,$operacion,$origen,$datos=NULL, $return = false)
+	public function wsmatisses_get_data($objeto,$operacion,$origen,$datos=NULL, $return = false,$code = false)
 	{
 		//set_time_limit(15);
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
@@ -1820,18 +1897,19 @@ class matisses extends Module
 		
 		if(!$result['return'])
 			return false;
-			
 		
-
 		$datos 	= $this->xml_to_array(utf8_encode($result['return']['detail']));
+        
+        if($code){
+            $datos['inventoryItemDTO']['codeStatus'] = $result['return']['code'];
+        }
 		
 		return $datos;
 	}
 	
-	public function wsmatisses_listStockChanges()
-	{		
+	public function wsmatisses_listStockChanges(){		
 		require_once dirname(__FILE__)."/classes/template.php";
-		$datos 		= $this->wsmatisses_get_data('inventoryItem','listStockChanges','sap',5);
+		$datos = $this->wsmatisses_get_data('inventoryItem','listStockChanges','sap',5);        
 		if(is_array($datos))
 		{
 			require_once dirname(__FILE__)."/wsclasses/ws_product.php";
@@ -1889,12 +1967,13 @@ class matisses extends Module
 		return true;	
 	}
 	
-	public function wsmatisses_getInfoProduct($reference)
+    public function wsmatisses_getInfoProduct($reference, $includeAll = false,$code = false)
 	{
 		ini_set('display_errors',false);	
 		require_once dirname(__FILE__)."/classes/template.php";
 		$data['inventoryItemDTO']['itemCode'] = $reference;
-		$datos 		= $this->wsmatisses_get_data('inventoryItem','getItemInfo','prestashop',$this->array_to_xml($data,false));
+		$data['inventoryItemDTO']['includeAll'] = $includeAll;
+		$datos 		= $this->wsmatisses_get_data('inventoryItem','getItemInfo','prestashop',$this->array_to_xml($data,false),false,$code);
 		return $datos['inventoryItemDTO']; 
 	}
 	public function wsmatisses_getModelInfo()

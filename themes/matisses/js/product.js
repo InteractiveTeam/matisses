@@ -104,7 +104,8 @@ $(document).ready(function(){
 			combinationsJS[k]['id_product_attribute'] = (combinations[i]['specific_price'] && combinations[i]['specific_price']['id_product_attribute']) ? combinations[i]['specific_price']['id_product_attribute'] : 0;
 			k++;
 		}
-		combinations = combinationsJS;
+		//combinations = combinationsJS;
+        combinations = getInfoCombinations(combinationsJS);
 	}
 
 	//init the serialScroll for thumbs
@@ -396,6 +397,15 @@ function findCombination(firstTime)
 
 			//get available_date for combination product
 			selectedCombination['available_date'] = combinations[combination]['available_date'];
+            
+            //show short description
+            selectedCombination['short_description'] = combinations[combination]['short_description'];
+            
+            //Show Item name
+            selectedCombination['itemname'] = combinations[combination]['itemname'];
+            
+            //show garantias
+            selectedCombination['garantias'] = combinations[combination]['garantias'];
 
 			//update the display
 			updateDisplay();
@@ -566,6 +576,19 @@ function updateDisplay()
 	}
 	else
 		$('#product_reference:visible').hide('slow');
+    
+
+    if (selectedCombination['short_description']){
+        $("#short_description_content").text(selectedCombination['short_description']);
+    }
+    
+    if (selectedCombination['itemname']){
+        $(".titleProduct").text(selectedCombination['itemname']);
+    }
+    
+    if(selectedCombination['garantias']){
+        $("#tabs-2").html(selectedCombination['garantias']);
+    }
 
 	// If we have combinations, update price section: amounts, currency, discount amounts,...
 	if (productHasAttributes)
@@ -983,4 +1006,34 @@ function checkUrl()
 		}
 	}
 	return false;
+}
+
+//Consultamos las grantias,item name y descripción para cambiarla según la referencia
+function getInfoCombinations(ids){    
+    var objectAux = [];
+    for (i = 0; i < ids.length; i++){
+    	objectAux.push(ids[i]['reference']);
+    }
+    var data = {ajax:true,data:objectAux};
+    
+    $.ajax({
+        type:'POST',
+        url:'/module/matisses/getinfocombinations',
+        async:false,
+        data:data,
+        dataType:'json',
+        success:function(data){
+            for (i = 0; i < ids.length; i++){
+                for (var key in data) {
+                    if(ids[i]['idCombination'] == key){
+                        ids[i]['garantias'] = data[key].garantias;
+                        ids[i]['short_description'] = data[key].short_description;
+                        ids[i]['itemname'] = data[key].itemname;
+                        break;
+                    }
+                }
+            }
+        }
+    });
+    return ids;
 }

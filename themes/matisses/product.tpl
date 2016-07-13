@@ -164,7 +164,7 @@
 			{if $product->online_only}
 				<p class="online_only">{l s='Online only'}</p>
 			{/if}
-			<h1 itemprop="name">{$product->itemname|escape:'html':'UTF-8'}</h1>
+			<h1 itemprop="name" class="titleProduct">{$product->itemname|escape:'html':'UTF-8'}</h1>
             <li id="product_reference"{if empty($product->reference) || !$product->reference} style="display: none;"{/if}>
 				<label>{l s='Referencia:'} </label>
 				<span class="editable" itemprop="sku">{if !isset($groups)}{hook h="actionMatChangeReference" reference=$product->reference}{/if}</span>
@@ -455,11 +455,6 @@
 		</div>
 		<!-- end center infos-->
 	</div> <!-- end primary_block -->
-	
-	<div class="ax-showcase-product">
-	    <!--Chaordic Top-->
-	    <div chaordic="top"></div>
-	</div>
 	
 	{if !$content_only}
 		   {if $product->description || $features || $HOOK_PRODUCT_TAB || $attachments}
@@ -819,16 +814,15 @@
 			{include file="$tpl_dir./product-list.tpl" products=$packItems}
 		</section>
 		{/if}
-		
-            <!--Chaordic Middle-->
-            <div chaordic="middle"></div>		
-		</div>
 	{/if}    
 </div> <!-- itemscope product wrapper -->
-<div class="container">
-    <!--Chaordic Bottom-->
+
+<div class="ax-showcase-product">
+    <div chaordic="top"></div>
+    <div chaordic="middle"></div>		
     <div chaordic="bottom"></div>
 </div>
+
 {strip}
 {if isset($smarty.get.ad) && $smarty.get.ad}
 	{addJsDefL name=ad}{$base_dir|cat:$smarty.get.ad|escape:'html':'UTF-8'}{/addJsDefL}

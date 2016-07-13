@@ -1,5 +1,4 @@
 
-// Global variable Chaordic
 var chaordic_meta;
 
 ax = {
@@ -8,12 +7,6 @@ ax = {
         var loggeduser = data.loggeduser;
         
         $(window).load(function () {   
-            
-             var urlchd = '//static.chaordicsystems.com/static/loader.js';
-        $("script[src$='chaordicsystems.com/static/loader.js']").attr('data-apikey','matisses');
-        $("script[src$='chaordicsystems.com/static/loader.js']").attr('data-initialize','false');
-        $("script[src$='chaordicsystems.com/static/loader.js']").attr('async',0);
-        $("script[src$='chaordicsystems.com/static/loader.js']").attr('defer',0);     $("script[src$='chaordicsystems.com/static/loader.js']").attr('src',urlchd);
             
             jQuery('#newsletter').on('submit', function(){ window.chaordic.push(['updateUserEmail', { email: String(jQuery(this).find('[name=email]').val()) }]); });
             
@@ -355,7 +348,11 @@ ax = {
                             var cont = data.length;
 
                             for (i = 0; i < data.length; i++) {
-                                ajaxCart.add(data[i],0,1,1,0);
+                                var idattr = 0;
+                                if (data[i].idattribute) {
+                                    idattr = data[i].idattribute;
+                                }
+                                ajaxCart.add(data[i].idproduct, idattr, 1, 1, 0);
                             }
                         }
                     },

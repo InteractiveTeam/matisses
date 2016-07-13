@@ -108,15 +108,6 @@
 								</a>
 							</h2>
 
-							<div class="colors">
-                            	{if substr_count($product.color_list,'color_pick') > 1 } 
-                                	{substr_count($product.color_list,'color_pick')} 
-                                   	{l s='Colores'}
-                                {else}
-                                	{substr_count($product.color_list,'color_pick')} 
-                                   	{l s='Color'}
-                                {/if}
-                                </div>
 						</div>
 
 
@@ -140,6 +131,15 @@
 									{hook h="displayProductPriceBlock" product=$product type="price"}
 									{hook h="displayProductPriceBlock" product=$product type="unit_price"}
 								{/if}
+								<div class="colors">
+                            	{if substr_count($product.color_list,'color_pick') > 1 } 
+                                	{substr_count($product.color_list,'color_pick')} 
+                                   	{l s='Colores'}
+                                {else}
+                                	{substr_count($product.color_list,'color_pick')} 
+                                   	{l s='Color'}
+                                {/if}
+                                </div>
 							</div>
 						{/if}
 					</div>
@@ -186,12 +186,14 @@
 						{if ($product.id_product_attribute == 0 || (isset($add_prod_display) && ($add_prod_display == 1))) && $product.available_for_order && !isset($restricted_country_mode) && $product.minimal_quantity <= 1 && $product.customizable != 2 && !$PS_CATALOG_MODE}
 							{if (!isset($product.customization_required) || !$product.customization_required) && ($product.allow_oosp || $product.quantity > 0)}
 								{if isset($static_token)}
-									<a class=" btn btn-default
-buy-now ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, "add=1&amp;id_product={$product.id_product|intval}&amp;token={$static_token}", false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}">
+									<!--<a class="btn btn-default buy-now ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, "add=1&amp;id_product={$product.id_product|intval}&amp;token={$static_token}", false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}">-->
+                                    <a class="btn btn-default buy-now customAddToCart" href="javascript:void(0)" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}" onclick="customAddTocart({$product.id_product},{$product.id_product_attribute})">
 										<span>{l s='Comprar ahora'}</span>
 									</a>
 								{else}
-									<a class=" btn btn_border ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, 'add=1&amp;id_product={$product.id_product|intval}', false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}">
+									<!--<a class=" btn btn_border ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, 'add=1&amp;id_product={$product.id_product|intval}', false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}" >-->
+									
+									<a class=" btn btn_border customAddToCart" href="javascript:void(0)" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}"  onclick="customAddTocart({$product.id_product},{$product.id_product_attribute})">
 										<span>{l s='Add to cart'}</span>
 									</a>
 								{/if}
