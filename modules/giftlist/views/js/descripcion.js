@@ -226,12 +226,11 @@ function uploadImage(prof,input){
              'centerOnScroll': true,
              'content' : '<div><p class="fancybox-error">Imagen cargada con éxito.</p></div>'
             });
-           
         }
     });
 }
 
-function deleteImage(prof){
+function deleteImage(prof,el){
     $.ajax({
         type: 'POST',
         data: {
@@ -243,7 +242,7 @@ function deleteImage(prof){
         success: function(res){
             var today = new Date();
             if(prof == "1")
-                $(".ax-profile-img").attr("src",res+"?"+today.getTime());
+                $(".ax-profile-img").css("background-image","url("+res+"?"+today.getTime()+")");
             else
                 $(".ax-cover-img").attr("src",res+"?"+today.getTime());
         }

@@ -99,6 +99,12 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
                 'msg' => "No hay cantidades suficientes en el inventario",
                 'error' => true))
                );
+        
+        if($list->validateProductinList($id_product,$data['list']))
+            die(Tools::jsonEncode(array(
+                'msg' => "Este producto ya existe en tu lista",
+                'error' => true))
+               );
         $images = Image::getImages($this->context->language->id, $id_product);
         if($data['group'] && $data['group'] > 0){
             $pcant = $data['cant'];

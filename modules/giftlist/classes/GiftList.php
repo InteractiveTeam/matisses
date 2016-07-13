@@ -366,4 +366,10 @@ class GiftListModel extends ObjectModel
 			return false;
 		return true;  
     }
+    
+    public function validateProductinList($id_prod,$id_list){
+        $sql = "SELECT count(*) FROM ". _DB_PREFIX_ ."list_product_bond WHERE id_list = ".$id_list." AND id_product = ".$id_prod;
+        $value = Db::getInstance()->getValue($sql);
+        return ($value > 0 ? true : false);
+    }
 }
