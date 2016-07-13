@@ -2576,6 +2576,11 @@ class matisses extends Module
 	{
 		return State::getIdByIso(trim($state));
 	}
+    
+    //Consultamos el stock del color o sea la referencia 
+    public function getStatusColor($id_prod,$id_prod_attr){
+        return StockAvailable::getQuantityAvailableByProduct((int)$id_prod,(int)$id_prod_attr);
+    }
 	
 }	
 ?>

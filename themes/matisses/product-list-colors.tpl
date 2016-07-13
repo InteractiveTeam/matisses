@@ -22,25 +22,32 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
+
+
 <ul class="color_to_pick_list cf">
+    
 	{foreach from=$colors_list item='color'}
 		{assign var='img_color_exists' value=file_exists($col_img_dir|cat:$color.id_attribute|cat:'.jpg')}
 		{assign var='id_image_p' value=matisses::getImagesByAttribute($color.id_product_attribute)}
         {if !empty($id_image_p)}
             {assign var='img_prod_color' value=$link->getImageLink($color.name, $id_image_p, 'home_default')}
         {/if}
-		<li>
-			<a 
-            	data-idproductattribute="{$color.id_product_attribute}" 
-            	data-idattribute="{$color.id_attribute}"
-                data-idproduct="{$color.id_product}"
-                
-            href="javascript:void(0)" {if !empty($id_image_p)}onclick="changeImageColor('{$color.id_product}','{$color.name}','{$img_prod_color}','{$color.id_product_attribute}')"{/if} class="color_pick"{if !$img_color_exists && isset($color.color) && $color.color} style="background:{$color.color};"{/if}>
-				{if $img_color_exists}
-					<img src="{$img_col_dir}{$color.id_attribute|intval}.jpg" alt="{$color.name|escape:'html':'UTF-8'}" title="{$color.name|escape:'html':'UTF-8'}" width="20" height="20" />
-				{/if}
-			</a>
-		</li>
+        
+        {assign var='status' value=matisses::getStatusColor($color.id_product,$color.id_product_attribute)}
+        {*if $status*}
+            <li>
+                <a 
+                    data-idproductattribute="{$color.id_product_attribute}" 
+                    data-idattribute="{$color.id_attribute}"
+                    data-idproduct="{$color.id_product}"
+
+                href="javascript:void(0)" {if !empty($id_image_p)}onclick="changeImageColor('{$color.id_product}','{$color.name}','{$img_prod_color}','{$color.id_product_attribute}')"{/if} class="color_pick"{if !$img_color_exists && isset($color.color) && $color.color} style="background:{$color.color};"{/if}>
+                    {if $img_color_exists}
+                        <img src="{$img_col_dir}{$color.id_attribute|intval}.jpg" alt="{$color.name|escape:'html':'UTF-8'}" title="{$color.name|escape:'html':'UTF-8'}" width="20" height="20" />
+                    {/if}
+                </a>
+            </li>
+        {*/if*}
 	{/foreach}
 </ul>
 {literal}
