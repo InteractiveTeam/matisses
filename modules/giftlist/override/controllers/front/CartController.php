@@ -432,8 +432,10 @@ class CartController extends CartControllerCore
 		
 		$response = Hook::exec('actionProductCartSave', $params);
 		if ($this->qty == 0 || $response==0){
-            $params['id_list'] = $this->id_giftlist;
-            Hook::exec('actionProductInList',$params);
+            $param['id_product'] = $this->id_product;
+            $param['id_list'] = $this->id_giftlist;
+            $param['id_product_attribute'] = $this->id_product_attribute;
+            Hook::exec('actionProductInList',$param);
             $this->errors [] = Tools::displayError ( 'Null quantity.', ! Tools::getValue ( 'ajax' ) );
         }
 		elseif (! $this->id_product)

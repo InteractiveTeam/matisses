@@ -1,3 +1,4 @@
+var jp = "";
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
 		
@@ -78,79 +79,85 @@ $(document).ready(function() {
 	
 	//eliminar
 	$(".delete-list").on('click', function(e){
+        var id = $(this).val();
 		e.preventDefault();
-		$.ajax({
-			url: $(".actions").attr("action"),
-			type: 'POST',
-			data: {
-				ajax: true,
-				method: "delete",
-				id_list: $(this).val()
-			},
-			headers: { "cache-control": "no-cache" },
-			success: function(result){
-				result = JSON.parse(result);
-				alert(result.msg);
-				$("#list-"+result.id).remove();
-			}
-		});
+        $.fancybox({
+             type: 'inline',
+             autoScale: true,
+             minHeight: 100,
+             minWidth: 240,
+             'transitionIn': 'elastic',
+             'transitionOut': 'elastic',
+             'speedIn': 500,
+             'speedOut': 300,
+             'centerOnScroll': true,
+             'content' : '<div class="ax-popup-delete"><p>¿Estás seguro que deseas eliminar esta lista?</p><a href="#" id="cancel"  class="cancel btn btn-default btn-lista-regalos">Cancelar</a><a href="#" id="acept" class="acept btn btn-default btn-lista-regalos">Aceptar</a></div>'
+        });
+        $("#cancel").on('click',function(){
+            $.fancybox.close();
+        });
+        $("#acept").on('click',function(){
+             $.ajax({
+                url: $(".actions").attr("action"),
+                type: 'POST',
+                data: {
+                    ajax: true,
+                    method: "delete",
+                    id_list: id
+                },
+                headers: { "cache-control": "no-cache" },
+                success: function(result){
+                    result = JSON.parse(result);
+                    $.fancybox({
+                         'autoScale': true,
+                         'transitionIn': 'elastic',
+                         'transitionOut': 'elastic',
+                         'minHeight': 30,
+                         'minWidth': 240,
+                         'speedIn': 500,
+                         'speedOut': 300,
+                         'centerOnScroll': true,
+                         'content' : $('<p>').text(result.msg)
+                    });
+                    jp.jplist({
+                      command: 'del'
+                      ,commandData: {
+                         $item:  $("#list-"+result.id)
+                      }
+                   });
+                }
+            });   
+        });
 	});
 	
 	//compartir
-	
-	$(".share-list").fancybox({
-		'transitionIn'	:	'elastic',
-		'transitionOut'	:	'elastic',
-		'speedIn'		:	600, 
-		'speedOut'		:	200, 
-		'overlayShow'	:	false,
-		'type'			: 	'ajax',
-		afterShow		: 	validateShareList
-	});
-	
-	$(".share-list").click(function(){
-		$(this).addClass("clicked");
-	});
-
 	 
 	setTimeout(function() {
 		$("#closeMsg").parent().remove();
 	}, 8000);
-	
-	$("body").on('submit','#share-email',function(e){
-		callAjaxSend(e);
-	});
-	
+    
+        if($(window).width() <= 568) {
+            tabRpListAdmin()
+        }else {
+            $('.tab-rp-listas-rega').next().show();
+        }
+
+    function tabRpListAdmin(){
+        $('.tab-rp-listas-rega').next().hide();
+
+        $('.tab-rp-listas-rega').on('click', function(){
+            $(this).next().slideToggle();
+            $(this).toggleClass('active-tab-list');
+        })
+    }
+    
+   jp = $('#lists').jplist({				
+      itemsBox: '.ax-cont-admin-listas-regalos' 
+      ,itemPath: '.list-item-container' 
+      ,panelPath: '.jplist-panel'	
+   });
+    
+  $('.jplist-pagingmid').after($('.jplist-label'));
+    
 });
-
-function validateShareList(){
-	$("#share-email").validate({
-		rules:{
-			email: {
-				email:true,
-				required:true
-			}
-		}
-	});
-}
-
-function callAjaxSend(e){
-	e.preventDefault();
-	var id_list = $(".clicked").attr("data-id");
-	$(".clicked").removeClass("clicked");
-	$.ajax({
-		url:'',
-		type: 'POST',
-		data: {
-			ajax: true,
-			method: "share",
-			id_list: id_list,
-			email: $("#email").val()
-		},
-		headers: { "cache-control": "no-cache" },
-		success: function(result){
-			alert(result);
-		}
-	});
-}
 

@@ -40,8 +40,10 @@
 							<span><i class="icon-arrows "></i></span>
 						</div>
 						<div class="col-md-3">
-                        	{if $slide.typeslide == 'Video'}
-								<iframe src="{$slide.videoid}" width="289" height="147" frameborder="0"></iframe>
+                        	{if $slide.typeslide == 'Video'}                                
+                                <video width="289" height="147" controls>
+                                    <source src="{$slide.videoid}" type="video/mp4">
+                                </video>
                             {else}
                             <img src="{$image_baseurl}{$slide.image}" alt="{$slide.title}" class="img-thumbnail" />
 							{/if}

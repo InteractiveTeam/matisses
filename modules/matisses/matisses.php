@@ -962,10 +962,21 @@ class matisses extends Module
             }
             
             $this->context->smarty->assign(array(
-                'current_stores' => $stores
+                'current_stores' => $stores,
+                'idcart' => $this->context->cart->id
             ));
         }
 	}
+    
+    public function updateShopCode($code, $idcart) {
+        if (!empty($code) && !empty($idcart)) {
+            $sql = 'UPDATE '._DB_PREFIX_.'cart SET cod_shop_matisses = "'.$code.'" WHERE id_cart = "'.$idcart.'"';
+            $result = Db::getInstance()->Execute($sql);
+            return $result;
+        } else {
+            return false;
+        }
+    }
     
     public function getActiveStores() {
         $sqlstore = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'store where active_shop = "1"');
@@ -2576,6 +2587,11 @@ class matisses extends Module
 	{
 		return State::getIdByIso(trim($state));
 	}
+    
+    //Consultamos el stock del color o sea la referencia 
+    public function getStatusColor($id_prod,$id_prod_attr){
+        return StockAvailable::getQuantityAvailableByProduct((int)$id_prod,(int)$id_prod_attr);
+    }
 	
 }	
 ?>

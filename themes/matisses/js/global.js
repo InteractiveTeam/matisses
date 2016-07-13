@@ -777,3 +777,14 @@ function cerrarBoton() {
     $('#layered_block_left').slideToggle();
     $("html, body").animate({scrollTop:275+"px"});
 }
+
+
+$(document).ready(function(){
+    //border triangle
+    var heightResultList = $('.ax-text-result-list').outerHeight();
+    $('.ax-text-result-list').prepend("<span class='before-line'></span>");
+    $('.ax-text-result-list').append("<span class='after-line'></span>");
+    
+    $('.before-line, .after-line').css({ 'border-top-width':heightResultList/2, 'border-bottom-width':heightResultList/2 });
+    
+})

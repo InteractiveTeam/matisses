@@ -10,7 +10,7 @@ $(function(){
 
 	$("#btn_gift_list").fancybox({
 		'autoSize'      :   false,
-		'height'        :   'auto',
+		'height'        :   340,
 		'width'			:    600,
 		'transitionIn'	:	'elastic',
 		'transitionOut'	:	'elastic',
@@ -23,14 +23,16 @@ $(function(){
 		$("#group-options").toggle();
 	});
 	
-	$("#add-list").click(function(){
+	$("#add-list").click(function(e){
+        e.preventDefault();
 		if($("#lists").val() != 0){
 			var dataForm = {
 					'list': $("#lists").val(),
 					'cant':$("#cant").val(),
 					'cant_group': $("#group").prop("checked") ? $("#cant_group").val() : null,
 					'message': $("#message").val(),
-					'fav': $("#fav").prop("checked"),
+					'fav': ($("#fav").prop("checked") ? 1 : 0),
+					'group': ($("#group").prop("checked") ? 1 : 0),
 					'form': $("#buy_block").serializeArray()
 				}
 			$.ajax({
@@ -46,7 +48,17 @@ $(function(){
                     $.fancybox.close();
 					res = JSON.parse(res);
                     if(res.error == true){
-                        alert(res.msg);
+                         $.fancybox({
+                            'autoScale': true,
+                            'transitionIn': 'elastic',
+                            'transitionOut': 'elastic',
+                            'minWidth': 435,
+                            'speedIn': 500,
+                            'speedOut': 300,
+                            'autoDimensions': true,
+                            'centerOnScroll': true,
+                            'content' : res.msg
+                        });
                         $("#add-list").attr("disabled", true);
                         $("#add-list").removeAttr("id");
                     }else{
@@ -63,6 +75,7 @@ $(function(){
                              'autoScale': true,
                              'transitionIn': 'elastic',
                              'transitionOut': 'elastic',
+                             'minWidth': 435,
                              'speedIn': 500,
                              'speedOut': 300,
                              'autoDimensions': true,
@@ -72,11 +85,33 @@ $(function(){
                     }
 				},
 				error: function(res){
-					console.log("I'm sorry");
+					 $.fancybox({
+                        'autoScale': true,
+                        'transitionIn': 'elastic',
+                        'transitionOut': 'elastic',
+                        'minWidth': 435,
+                        'speedIn': 500,
+                        'speedOut': 300,
+                        'autoDimensions': true,
+                        'centerOnScroll': true,
+                        'content' : 'No se puedo añadir a la lista, intentalo mas tarde'
+                    });
 				}
 			});
 		}else{
-			alert("Seleccione una lista");
+            var group = $("#lists").parents(".form-group");
+            if(!group.find(".label-error").length){
+                var errorLb = $("<span>").addClass("label-error").text("Selecciona una lista");
+                group.append(errorLb);
+            }
+            return false;
 		}
 	});
+    
+    $("#lists").on('change',function(){
+        var group = $("#lists").parents(".form-group");
+        if(group.find(".label-error").length){
+            group.find(".label-error").remove();
+        }
+    });
 });

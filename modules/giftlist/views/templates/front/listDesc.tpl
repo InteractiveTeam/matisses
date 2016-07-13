@@ -1,62 +1,91 @@
 {* Not Logged User AND searched list *}
-{capture name=path}
-<a href="{$all_link}">{l s='giftlist' mod='giftlist'}</a><i class="fa fa-angle-right"></i>{$list_desc['name']}
-{/capture}
-<input type="hidden" value="{$list_desc['min_amount']}" id="min_amount">
+<h1>{$list_desc['name']}</h1>
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-6">
-			<h2>{$list_desc['name']}</h2>
-			<p>{$list_desc['message']}</p>
-			<p>Hora: {$list_desc['event_date']}</p>
-			<p>{$event_type['name']}</p>
-			<p>Creado por: {$creator['firstname']} {$creator['lastname']} {if !empty($cocreator)} y {$cocreator['firstname']} {$cocreator['lastname']} {/if}</p>
-			{if $list_desc['recieve_bond']}
-				<a href="{$bond_form}" data-toggle="tooltip" data-placement="bottom" title="Comprar bono" class="btn btn-default" id="add_bond">Comprar bono</a>
-			{/if}
-		</div>
-		<div class="col-md-6">
-		<img src="{$list_desc['image']}" height="250" width="250" alt="Imagen" />
-		</div>
-	</div>
-	{*Products asociated to the list*}
+<div class="ax-avatar-content">
+    <div id="ax-cover-container">
+        <div class="cont-img">
+            <div class="ax-cover-img" width="180" style="background-image: url('{if !empty($list_desc['image'])}{$list_desc['image']}{else}{$modules_dir}/giftlist/views/img/banner.jpg{/if}')"></div>
+        </div>
+    </div>
+    <div id="ax-prof-container">
+        <div class="cont-img">
+            <div class="ax-profile-img" width="180" style="background-image: url('{if !empty($list_desc['profile_img'])}{$list_desc['profile_img']}{else}{$modules_dir}/giftlist/views/img/avatar.png{/if}')"></div>
+        </div>
+    </div>
+</div>
 
-	<div class="products-associated" data-id="{$list_desc['id']}">
-		<h2>Productos</h2>
-		<div class="row">
-		{foreach from=$products item=row }
-		{$cant = Tools::jsonDecode($row['group'])}
-		{$atribute_group = $row['options'][3]->value}
-			<div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}">
-				<div class="img-container" style="background-image: url('http://{$row['image']}')">
-				</div>
-				<p>{$row['name']}</p>
-				{foreach from=$row['data'] item=att_group}
-					{if $att_group['id_product_attribute'] == $atribute_group}
-						<p>{$att_group['group_name']} : {$att_group['attribute_name']}</p>
-						<input type="hidden" class="prod-attr" value="{$att_group['id_product_attribute']}">
-					{/if}
-				{/foreach}
-				{$row['price']}
-				<div class="add_container">
-					<label for="total_qty">Comprar</label>
-					{if !empty($cant->cant)}
-					    {if $cant->missing > $cant->cant_group}
-					        <input type="number" data-value="{$cant->missing}" name="total_qty" max="{$cant->tot_groups}" class="total_qty" value="1">
-						    <label class="qty_group" data-value="{$cant->cant}">Cantidad por grupo {$cant->cant}</label>
-                       {else}
-                            <input type="number" name="total_qty" max="1" class="total_qty" value="1" disabled>
-                            <label class="qty_group" data-value="{$cant->cant}">Cantidad por grupo {$cant->rest}</label>
-                        {/if}
-					{/if}
-					<button data-toggle="tooltip" data-placement="bottom" title="Agregar al carrito" class="add-to-cart">Add to car</button>
-				</div>
-			</div>
-		{/foreach}
-		</div>
+<p class="ax-text-description-lista">{$list_desc['message']}</p>
+
+<div class="ax-general-info ax-cont-admin-listas-regalos">
+    <div class="ax-cont-list desc">
+        <div class="ax-item">
+            <div class="part">{if !$cocreator}{l s='Creador' mod='giftlist'}{else}{l s='Creadores' mod='giftlist'}{/if}<span>{$creator}</span>{if $cocreator}<br><span>{$cocreator}</span>{/if}</div>
+            <div class="part">{l s='Código' mod='giftlist'}<span>{$list_desc['code']}</span></div><div class="part">{l s='Evento' mod='giftlist'}<span>{$event_type}</span></div>
+            <div class="part">{l s='Días para el evento' mod='giftlist'}<span class="ax-day">{$days}</span></div>
+            <div class="part">{l s='Fecha' mod='giftlist'}<span>{date("d/m/Y",strtotime($list_desc['event_date']))}</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="products-associated" data-id="{$list_desc['id']}">
+	    <div class="ax-text-result-list ax-result-inline">
+         <h2>{l s='Mi lista' mod='giftlist'}</h2>
+        </div>
+        <a href="javascript:void(0);" class="ax-print"><i class="fa fa-print"></i>{l s='Imprimir lista' mod='giftlist'}</a>
+        <div id="ax-products">
+            <div class="row ax-prod-cont">
+                {foreach from=$products item=row}
+                    {$atribute_group = $row['options'][3]->value}
+                        <div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}">
+                            <div class="ax-cont-hover">
+                                <div class="img-container">
+                                    <img src="http://{$row['image']}" />
+                                </div>
+                                <div class="ax-info-list">
+                                    {if $row['favorite']}<i class="fa fa-heart  ax-favorite" aria-hidden="true"><span>{l s='Favorito' mod='giftlist'}</span></i>{/if}
+                                    <p class="ax-name-list">{$row['name']}</p>
+                                    <p class="ax-price-list">{convertPrice price=$row['price']}</p>
+                                        {foreach from=$row['data'] item=att_group}
+                                            {if $att_group['id_product_attribute'] == $atribute_group}
+                                                <p>{$att_group['group_name']}: {$att_group['attribute_name']}</p>
+                                                <input type="hidden" class="prod-attr" value="{$att_group['id_product_attribute']}">
+                                            {/if}
+                                        {/foreach}
+                                    <p class="total_qty" data-cant="{$row['cant']}">{l s='Cantidad:'} {$row['cant']}</p>
+                                </div>
+                                <button data-toggle="tooltip" data-placement="bottom" title="{l s='Añadir al carrito' mod='giftlist'}" class="add-to-cart btn btn-default btn-lista-regalos">{l s='Añadir al carrito' mod='giftlist'}</button>
+                            </div>
+                    </div>
+                {/foreach}
+                <div class="product-card ax-bond-card col-md-3" data-id="{$list_desc['id']}">
+                    <img src="{$modules_dir}/giftlist/views/img/details-lista.png">
+                    <a href="{$bond_form}" id="add_bond">{l s='Regala una GIFT CARD' mod='giftlist'}</a>      
+                </div>
+            </div>
+            <div class="jplist-panel">						
+                <div 
+                class="jplist-pagination" 
+                data-control-type="pagination" 
+                data-control-name="paging" 
+                data-control-action="paging">
+                </div>
+                <select
+                    class="jplist-select" 
+                    data-control-type="items-per-page-select" 
+                    data-control-name="paging" 
+                    data-control-action="paging">
+
+                    <option data-number="4"> 4 </option>
+                    <option data-number="8" data-default="true" selected> 8 </option>
+                    <option data-number="12"> 12 </option>
+                    <option data-number="all"> Todos </option>
+                </select>
+            </div>
+        </div>
 	</div>
 </div>
+
+{addJsDef min_amount=$list_desc['min_amount']}
 
 <div id="contentdiv" style="display: none;">
 	<p id="message"></p>

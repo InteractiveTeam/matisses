@@ -1,10 +1,14 @@
 <?php
+
+include_once __DIR__ . '/EventType.php';
 class GiftListModel extends ObjectModel
 {
 	public $id_creator;
 	public $id_cocreator;
 	public $code;
 	public $name;
+    public $firstname;
+    public $lastname;
 	public $public;
 	public $event_type;
 	public $event_date;
@@ -26,6 +30,8 @@ class GiftListModel extends ObjectModel
 	public $updated_at;
     public $context;
     public $validated;
+    public $real_not;
+    public $cons_not;
 
 	public static $definition = array(
 		'table' => 'gift_list',
@@ -35,6 +41,8 @@ class GiftListModel extends ObjectModel
 			'id_cocreator' => array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
 			'code' => array('type' => self::TYPE_STRING, 'required' => true, 'size' => 11),
 			'name' => array('type' => self::TYPE_STRING, 'required' => true, 'size' => 100),
+			'firstname' => array('type' => self::TYPE_STRING, 'required' => true, 'size' => 100),
+			'lastname' => array('type' => self::TYPE_STRING, 'required' => true, 'size' => 100),
 			'public' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
 			'event_type' => array('type' => self::TYPE_INT),
 			'event_date' => array('type' => self::TYPE_DATE),
@@ -51,6 +59,8 @@ class GiftListModel extends ObjectModel
 			'address_before' => array('type' => self::TYPE_STRING, 'size' => 100),
 			'address_after' => array('type' => self::TYPE_STRING, 'size' => 100),
             'validated' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
+            'real_not' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
+            'cons_not' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
 			'created_at' => array('type' => self::TYPE_DATE),
 			'updated_at' => array('type' => self::TYPE_DATE)
 		)
@@ -79,7 +89,7 @@ class GiftListModel extends ObjectModel
 	 * @return boolean
 	 */
 	public function updateInfo(){
-		$sql = "UPDATE `"._DB_PREFIX_."gift_list` SET `info_cocreator` = '".$this->info_cocreator."' WHERE `id` = ".$this->id.";";
+		$sql = "UPDATE `"._DB_PREFIX_."gift_list` SET `info_creator` = '".$this->info_creator."',`address_before` = '".$this->address_before."',`address_after` = '".$this->address_after."' WHERE `id` = ".$this->id.";";
 		if(!Db::getInstance()->execute($sql))
 			return false;
 		return true;
@@ -113,7 +123,7 @@ class GiftListModel extends ObjectModel
 	public function returnCode($id = 0, $edit = false){
 		if(!$edit){
 			do {
-				$code = $this->_generateCode();
+				$code = $this->_generateCode(8,true,true,false,false);
 				$sql = "SELECT count(code) AS cant FROM "._DB_PREFIX_."gift_list WHERE `code` = '". $code."';'";
 				$cant = Db::getInstance()->executeS($sql);
 			} while (!$cant && $cant[0]['cant'] > 0);
@@ -125,15 +135,42 @@ class GiftListModel extends ObjectModel
 	}
 
 	public function getListByCreatorId($id){
-		return Db::getInstance ()->executeS ( "SELECT * FROM `" . _DB_PREFIX_ . "gift_list` WHERE `id_creator` =". $id );
+		$lists = Db::getInstance ()->executeS ( "SELECT * FROM `" . _DB_PREFIX_ . "gift_list` WHERE `id_creator` = ". $id . " OR `id_cocreator` = ". $id);
+        
+        foreach($lists as $key => $l){
+            $c = new CustomerCore($l['id_creator']);
+            $lists[$key]['creator_name'] = $l['firstname'] . " " . $l['lastname'];
+            if($l['id_cocreator'] != 0){
+                $cc = new CustomerCore($l['id_cocreator']);
+                $lists[$key]['cocreator_name'] = $cc->firstname . " " . $cc->lastname;
+            }else{
+                $lists[$key]['cocreator_name'] = "-";
+            }
+            $ev = new EventTypeModel($l['event_type']);
+            $lists[$key]['event'] = $ev->name;
+            $prod = $this->getNumberProductsByList($l['id']);
+            $lists[$key]['days'] = $this->getMissingDays($l['event_date']);
+            $lists[$key]['products'] = $prod['products'];
+            $lists[$key]['products_bought'] = $prod['products_bought'];
+        }
+        return $lists;
 	}
+    
+    public function getNumberProductsByList($id){
+        $res['products'] = Db::getInstance()->getValue("SELECT COUNT( id ) FROM `ps_list_product_bond`  WHERE  `id_list` =" . $id);
+        $res['products_bought'] = Db::getInstance()->getValue("SELECT COUNT( id ) FROM `ps_list_product_bond`  WHERE  `id_list` = " . $id . " AND  `bought` =1");
+        return $res;
+    }
+    
+    public function getMissingDays($d1){
+        $d1 = new DateTime($d1);
+        $d2 = new DateTime(date('Y-m-d'));
+        $interval = $d1->diff($d2);
+        return $interval->format("%a");
+    }
 
 	public function getSharedListByCoCreatorId($id){
 		return Db::getInstance ()->executeS ( "SELECT * FROM `" . _DB_PREFIX_ . "gift_list` WHERE `id_cocreator` =". $id );
-	}
-
-	public function getListById($id){
-		return Db::getInstance()->getRow('SELECT * FROM '._DB_PREFIX_.'gift_list WHERE id = ' . $id);
 	}
 
 	/**
@@ -193,24 +230,28 @@ class GiftListModel extends ObjectModel
 	 * search ig $email exist in database, if exist save id, else save in ps-emai-cocreator
 	 * @return number
 	 */
-	public function setCoCreator($id,$email){
+	public function setCoCreator($id,$email,$creator,$url){
+        $context = Context::getContext();
+        $id_shop = (int)Context::getContext()->shop->id;
+		$id_lang = $context->language->id;
 		$sql = "SELECT id_customer FROM `" . _DB_PREFIX_ . "customer` WHERE `email` = '". $email."';";
 		$row = Db::getInstance()->getRow($sql);
 		if(Db::getInstance()->numRows() > 0)
 			return $row['id_customer'];
 		else{
-            $sql = "SELECT * FROM "._DB_PREFIX_."email_cocreator WHERE id_list = ".$id;
-            $row = Db::getInstance()->getRow($sql);
-            if(!empty($row)){
-                Db::getInstance()->update('email_cocreator',array(
-                    'email' => $email
-                ),'id_list = '. $id);
-            }{
-                Db::getInstance()->insert('email_cocreator',array(
-                    'id_list' => $id,
-                    'email' => $email
-                ));
-            }
+            Db::getInstance()->insert('email_cocreator',array(
+                'id_list' => $id,
+                'email' => $email
+            ));
+            $params = array(
+                '{creator}' => $creator,
+                '{url}' => $context->link->getModuleLink('giftlist', 'descripcion',array("url" => $url)),
+            );
+            MailCore::Send($id_lang, 'cocreator-list', sprintf(
+            MailCore::l('Eres cocreador de una lista'), 1),
+            $params, $email, $creator,
+            null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
+            return 0;
         }
 	}
 
@@ -221,19 +262,38 @@ class GiftListModel extends ObjectModel
 
 	public function searchByCustomerNames($firstname,$lastname){
 		$return = false;
-		$sql = "SELECT id_customer FROM "._DB_PREFIX_.'customer WHERE
-				firstname LIKE "%'.$firstname.'%" and lastname LIKE "%'.$lastname.'%";';
-		$res = Db::getInstance()->getRow($sql);
+        $sql = "SELECT * FROM "._DB_PREFIX_.'gift_list WHERE firstname = "'. $firstname.'" AND lastname = "'.$lastname.'" AND public = 1;';
+		 $return = Db::getInstance()->executeS($sql);
+                
+        $sql = "SELECT id_customer FROM "._DB_PREFIX_.'customer WHERE
+				firstname = "'.$firstname.'" AND lastname = "'.$lastname.'";';
+        $res = Db::getInstance()->executeS($sql);
 		if(count($res) > 0){
-			$sql = "SELECT * FROM "._DB_PREFIX_.'gift_list WHERE id_creator = '. $res['id_customer']
-			.' or id_cocreator = '. $res['id_customer'];
-			$return =  Db::getInstance()->executeS($sql);
+            foreach($res as $row){
+                $sql = "SELECT * FROM "._DB_PREFIX_.'gift_list WHERE id_cocreator = '. $row['id_customer']. " AND public = 1";
+                $ret = Db::getInstance()->executeS($sql);
+                for($i = 0; $i < count($ret);$i++){
+                    array_push($return,$ret[$i]);
+                }
+            }
 		}
+        
+        foreach($return as $key => $row){
+            $cocreator = ($row['id_cocreator'] ? $this->getCoCreator($row['id_cocreator']) : false);
+            $return[$key]['creator'] = $row['firstname'] . " " . $row['lastname'];
+            $return[$key]['cocreator'] = ($cocreator ? $cocreator->firstname . " " . $cocreator->lastname : " - ");
+            $return[$key]['event_type'] = Db::getInstance()->getValue("SELECT name FROM "._DB_PREFIX_."event_type WHERE id =".$row['event_type']);
+            $return[$key]['link'] = $this->context->link->getModuleLink('giftlist', 'descripcion', ['url' => $row['url']]);
+        }
 		return $return;
 	}
     
-    public function getCreator(){
-        return new CustomerCore($this->id_creator);
+    public function getCreator($id){
+        return new CustomerCore($id);
+    }
+    
+    public function getCoCreator($id){
+        return new CustomerCore($id);
     }
     
     public function getCartProductsByList($id){
@@ -305,5 +365,11 @@ class GiftListModel extends ObjectModel
         if(!Db::getInstance()->execute($sql))
 			return false;
 		return true;  
+    }
+    
+    public function validateProductinList($id_prod,$id_list){
+        $sql = "SELECT count(*) FROM ". _DB_PREFIX_ ."list_product_bond WHERE id_list = ".$id_list." AND id_product = ".$id_prod;
+        $value = Db::getInstance()->getValue($sql);
+        return ($value > 0 ? true : false);
     }
 }

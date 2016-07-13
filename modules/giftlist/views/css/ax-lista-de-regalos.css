@@ -1,0 +1,1776 @@
+@font-face {
+	font-family: 'Georgia;
+	src: local('Georgia'),
+		url('../font/Georgia.woff, 'Georgia'.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+p {
+    line-height: 1.5;
+}
+
+label {
+    text-transform: inherit;
+}
+
+/**ADMNINISTRAR*/
+
+/*validation */
+input.error {
+    box-shadow: 0 0 5px red;  
+}
+label.error {
+    font-size: 12px;
+    color: red;
+}
+
+/**DESCRIPCION*/
+@CHARSET "ISO-8859-1";
+.bread {
+    margin-left: 17px;
+}
+
+.module-giftlist-buscar .ax-btn-filter, .module-giftlist-empezar .ax-btn-filter, .module-giftlist-listas .ax-btn-filter, .module-giftlist-administrar .ax-btn-filter, .module-giftlist-descripcion .ax-btn-filter {
+    display: none;
+}
+
+#list-img-container {
+	height: 150px;
+	width: 150px;
+    background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+    border: 1px solid #ccc;
+}
+
+/*****************************************************
+Fixes generalres
+******************************************************/
+
+.mfp-bg {
+    z-index: 10420!important;
+}
+
+.mfp-wrap {
+    z-index: 10430!important;
+}
+
+#message, #center_column {
+    width: 100%;
+}
+
+#saveInfo{
+    width: 500px;
+    margin: 0 auto;
+}
+
+#left_column, #right_column {
+    display:none;
+}
+
+
+/*************************
+		PRODUCT CARD
+**************************/
+
+.product-card {
+	border:1px solid #CCC;
+}
+
+.img-container {
+	background-size: cover;
+	height: 200px;
+	width: auto;
+}
+
+/*Listas*/
+.bread {
+    margin-left: 0px;
+}
+
+#list-img-container {
+	height: 150px;
+	width: 150px;
+    background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+    border: 1px solid #ccc;
+}
+
+/*****************************************************
+Fixes generalres
+******************************************************/
+
+.mfp-bg {
+    z-index: 10420!important;
+}
+
+.mfp-wrap {
+    z-index: 10430!important;
+}
+
+#message, #center_column {
+    width: 100%;
+}
+
+#saveInfo{
+    width: 500px;
+    margin: 0 auto;
+}
+
+#left_column, #right_column {
+    display:none;
+}
+
+.col-md-3.ax-edit-list {
+    width: 23.5%;
+}
+
+.product-card .ax-bond-cont{
+    margin-top: 10px;
+}
+
+.product-card .ax-bond-cont #min_amount, .product-card .ax-bond-cont label {
+    display: inline-block;
+    font-weight: 100 !important;
+}
+
+.product-card .ax-bond-cont #min_amount {
+    width: 120px;
+    margin-left: 8px;
+    background: #f6f6f6;
+    border: none;
+    padding: 5px;
+    color: #d9292e;
+}
+
+/*************************
+		PRODUCT CARD
+**************************/
+
+.ax-edit-list {
+	border:1px solid #CCC !important
+}
+
+.ax-edit-list {
+    padding: 8px;
+    margin: 8px;
+}
+
+.img-container {
+	background-size: cover;
+	height: 200px;
+	width: auto;
+}
+
+/* resultados de búsqueda */
+
+.module-giftlist-buscar .center_column h3 {
+    border-bottom: #ccc solid 1px;
+}
+
+.ax-form-data-search {
+    margin: 20px 0;
+}
+
+.ax-form-data-search>span{
+    position: relative;
+}
+
+.ax-form-data-search span {
+    display: inline-block;
+}
+
+.ax-form-data-search input {
+    width: 190px;
+    background: #f8f8f8;
+    border: #dbdbdb solid 1px;
+    padding: 6px 12px;
+    margin: 0 10px;
+}
+
+.ax-form-data-search input:first-child {
+    margin: 0 10px 0 0;
+}
+
+.ax-form-data-search input#code {
+    margin: 0 0 0 10px;
+}
+
+.ax-form-data-search p {
+    display: inline-block;
+}
+
+.ax-form-data-search label {
+    font-family: Georgia, 'Georgia';
+    padding: 5px 20px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+label.error {
+    position: absolute;
+    font-size: 12.9px;
+    font-weight: 400 !important;
+    line-height: 16px;
+    padding: 5px;
+    top: 113%;
+    z-index: 2;
+    display: block;
+    padding: 5px !important;
+    background: rgba(232, 232, 232, 0.85);
+    font-family: 'Open Sans', sans-serif;
+}
+
+label.error:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-bottom: rgba(232, 232, 232, 0.85) solid 6px;
+    display: block;
+    position: absolute;
+    bottom: 100%;
+    left: 20px;
+    border-right: transparent solid 6px;
+    border-left: transparent solid 6px;
+}
+
+.tab-content p {
+    padding: 20px 0;
+    line-height: 1.5rem;
+    white-space: normal;
+}
+
+.center_column .ax-text-descript, .ax-text-descript {
+    padding: 5px 0 10px 0;
+    font-size: 0.85rem;
+    line-height: 1.1rem;
+    white-space: normal;
+    color: #7b7b7b;
+    font-family: Georgia, 'Georgia';
+}
+
+.ax-add-gift-card .ax-text-descript {
+    padding: 0 0 15px 0;
+}
+
+.fancybox-inner .ax-add-gift-card {
+    overflow-y: auto;
+    height: 100%;
+}
+
+.ax-add-gift-card .checkbox label {
+    margin-left: 0;
+}
+
+.module-giftlist-buscar .ax-form-data-search .btn.btn-lista-regalos {
+    margin-left: 8px;
+}
+
+.ax-form-data-search .btn.btn-default.btn-lista-regalos {
+    margin-bottom: 4px;
+    display: inline-block;
+}
+
+.btn.btn-default.btn-lista-regalos {
+    background: #5e534d;
+    color: #eac78f;
+    border: none;
+    font-family: Georgia, 'Georgia';
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.fancybox-outer .btn.btn-default.btn-lista-regalos {
+    
+}
+
+
+.module-giftlist-empezar .btn-lista-regalos {
+    margin:20px 0 10px 0;
+}
+
+.ax-form-data-search .btn.btn-default.btn-lista-regalos-sample {
+    margin-bottom: 4px;
+    display: inline-block;
+}
+
+.btn.btn-default.btn-lista-regalos-sample {
+    background: transparent;
+    color: #272727;
+    border: none;
+    font-family: Georgia, 'Georgia';
+    text-decoration: underline;
+    padding: 8px 25px;
+}
+
+.ax-text-result-list {
+    background: #f6f6f6;
+    font-family: Georgia, 'Georgia';
+    clear: both;
+    position: relative;
+    margin: 30px 0;
+    padding: 20px 30px;
+    position: relative;
+}
+
+.ax-cont-tab {
+    margin-top:20px;
+}
+
+.ax-text-result-list .before-line {
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top:transparent solid;
+    border-bottom:transparent solid;
+    border-left:#fff solid 20px;
+}
+
+.ax-text-result-list .after-line {
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;  
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top:transparent solid;
+    border-bottom:transparent solid;
+    border-right:#fff solid 20px;
+}
+
+.ax-text-result-list p, .ax-text-result-list h2, .ax-text-result-list h3 {
+    font-family: Georgia, 'Georgia';
+    font-weight: bold;
+    color: #292929;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.ax-text-result-list h2, .ax-text-result-list h3  {
+    text-transform: inherit;
+    color:#262626;
+    font-family: Georgia, 'Georgia';
+}
+
+.ax-text-result-list p span {
+    color:#7d7d7d;
+}
+
+.module-giftlist-buscar .ax-cont-list .ax-item, .ax-cont-admin-listas-regalos .ax-cont-list .ax-item {
+    
+    display:table;
+    width: 100%;
+    
+}
+
+.ax-cont-list.desc .ax-item {
+    border-top: #dcdcdc solid 1px;
+}
+
+.module-giftlist-descripcion .ax-cont-list.desc .ax-item {
+    padding: 20px 0;
+}
+
+.module-giftlist-buscar .ax-cont-list .part, .ax-cont-admin-listas-regalos .ax-cont-list .part {
+    text-align: center;
+    display: table-cell;
+    font-weight: 700;
+    color: #292929;
+    font-size: 16px;
+    vertical-align: middle;
+    padding: 30px 0 15px 0;
+    border-bottom: #dcdcdc solid 1px;
+    width: 85px;
+}
+
+.module-giftlist-buscar .ax-cont-list .part.ax-read-more, .ax-cont-admin-listas-regalos .ax-cont-list .part.ax-read-more  {
+    border-bottom: transparent solid 1px;
+}
+
+.ax-cont-admin-listas-regalos .ax-cont-list .part.ax-read-more {
+     width: 100%;
+}
+
+.module-giftlist-buscar .part span, .ax-cont-admin-listas-regalos .part span {
+    display: block;
+    font-weight: 100;
+    color:#a8a8a8; 
+    font-family: 'Open Sans', sans-serif;
+    margin: 10px 0 4px 0; 
+}
+
+.module-giftlist-buscar .part span {
+
+}
+
+.ax-cont-admin-listas-regalos .part .ax-day {
+    color: #ecb072;
+    font-size: 1.8rem;
+    font-family: Georgia, 'Georgia';
+    margin: 2px 0;
+}
+
+.ax-cont-list {
+    float: none;
+}
+
+.ax-cont-list .ax-read-more a {
+   padding: 10px 18px;
+    margin-bottom: 4px;
+    display: inline-block;
+    background: #5e534d;
+    color: #eac78f;
+    border: none;
+    font-family: Georgia, 'Georgia';
+    font-weight: 100;
+    text-transform: uppercase;
+    cursor: pointer;
+    border:#5e534d solid 2px;
+}
+
+.ax-cont-list .ax-read-more a:hover {
+    background: #fff;
+    color: #5e534d;
+} 
+
+.ax-cont-admin-listas-regalos .footer-item {
+    text-align: right;
+    margin: 20px 0;
+}
+
+.btn.btn-lista-regalos:hover:after, .btn.btn-lista-regalos:hover:before, .btn.btn-lista-regalos-sample:hover:after, .btn.btn-lista-regalos-sample:hover:before {
+    background: #eac78f !important;
+}
+
+.ax-btn-creat-list {
+    border-top: #ccc solid 1px;
+    padding: 20px 15px;
+    text-align: right;
+}
+
+/*index*/
+
+.module-giftlist-empezar .ax-img-cont {
+    width: 100%;
+}
+
+.module-giftlist-empezar .col-md-6 {
+    width: 48%;
+    padding-right: 25px;
+    padding-left: 25px;
+}
+
+.ax-text-description-lista {
+    width: 90%;
+    margin: 20px auto 50px auto;
+}
+
+.module-giftlist-empezar .ax-text-description-lista {
+    margin: 20px auto;
+}
+
+.ax-search-home .ax-form-data-search input {
+    width: 147px;
+}
+
+.ax-search-home button {
+    float: right;
+    margin: 10px 0;
+}
+
+/*perfil*/
+
+.module-giftlist-descripcion .ax-cont-list {
+    margin: 20px 0;    
+}
+
+.module-giftlist-descripcion .ax-cont-list .ax-item {
+    padding: 15px 0;
+}
+
+.ax-avatar-content {
+    position: relative;
+}
+
+#ax-cover-container, #ax-cover-container .cont-img img {
+    width: 100%;
+}
+
+#ax-cover-container .cont-img {
+    overflow: hidden;
+    width: 100%;
+     height: 260px;
+}
+
+#ax-cover-container .cont-img img {
+    width: 100%;
+    height: auto;
+}
+
+#ax-cover-container {
+    text-align: right;
+    margin-bottom: 80px;
+    height: 260px;
+}
+
+#ax-cover-container .ax-cover-buttons {
+    width: 200px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 10px;
+}
+
+#ax-cover-container .ax-cover-buttons a, #ax-prof-container .ax-prof-buttons a {
+    color: #c7c7c7;
+    text-decoration: underline;
+}
+
+.ax-avatar-content .ax-cover-buttons .action, .ax-avatar-content .ax-prof-buttons .action {
+    background: transparent;
+    color: #60534d;
+    display: block;
+    width: 100%;
+    font-family: Georgia, 'Georgia';
+}
+
+.ax-avatar-content .ax-cover-buttons .uploader, .ax-avatar-content .ax-prof-buttons .uploader {
+    display: inline-block;
+    width: auto;
+    width: 150px;
+    height: 40px;
+}
+
+.ax-avatar-content .ax-cover-buttons .filename, .ax-avatar-content .ax-prof-buttons .filename {
+    display: none;
+}
+
+.ax-avatar-content .ax-cover-buttons #ax-cover-up, .ax-avatar-content .ax-prof-buttons #ax-cover-up {
+    width: 100%;
+    height: 40px;
+}
+
+.ax-avatar-content #ax-prof-container {
+    display: block;
+    position: absolute;
+    top: 48%;
+    left: 10%;
+    width: 160px;
+    text-align: center;
+}
+
+.ax-avatar-content #ax-prof-container .cont-img {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 160px;
+    height: 160px;
+    border: #fff solid 6px;
+    box-shadow: rgba(0,0,0,0.2) 0 3px 10px;
+}
+
+.ax-avatar-content #ax-prof-container .cont-img > div {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.ax-message-content {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.ax-message-content .ax-edit, .ax-message-content .ax-delete {
+    margin-top: 20px;
+    margin-right: 15px;
+    margin-left: 0 !important;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.ax-message-content .ax-delete {
+    opacity: 0.36;
+}
+
+.ax-message-content .ax-delete:hover {
+    opacity: 1;
+}
+
+.module-giftlist-descripcion .ax-text-result-list {
+    padding: 10px 50px;
+}
+
+.products-associated .ax-print {
+    float: right;
+    text-decoration: none;
+    font-family: 'condensed';
+    font-size: 1.1rem;
+    margin-top: 30px;
+}
+
+.products-associated .ax-print i {
+    margin:0 15px 0 0;
+    padding: 8px;
+    background: #5e534d;
+    color: #daa96f;
+    font-size: 1.2rem
+}
+
+.module-giftlist-descripcion .ax-text-result-list p, .module-giftlist-descripcion .ax-text-result-list h2, .module-giftlist-descripcion .ax-text-result-list h3 {
+    font-size: 1.3rem;
+}
+
+.ax-result-inline {
+    display: inline-block;
+}
+
+.ax-message, .ax-address, .ax-categories {
+    margin-bottom: 40px;
+}
+
+.ax-address > a, .products-associated > a, .ax-message-content .ax-edit {
+    margin-left: 20px;
+    font-size: 16px;
+    text-decoration: underline;
+    display: inline-block;
+    color: #5e534d;
+    font-weight: 600;
+    letter-spacing: 0.6px
+}
+
+.products-associated > .ax-finish-edit {
+    color: #d9292e;
+}
+
+.ax-address .ax-title {
+    font-weight: 600;
+    font-size: 18px;
+    margin: 7px 0;
+    font-family: Georgia, 'Georgia';
+    color: #272727;
+}
+
+.ax-address .ax_address_bef, .ax-address .ax_address_af, p.ax-message-content {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.module-giftlist-descripcion #carousel-example-generic {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.module-giftlist-descripcion #carousel-example-generic p {
+    text-align: center;
+    font-family: Georgia, 'Georgia';
+    margin: 10px 0;
+    color: #56534e;
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.module-giftlist-descripcion .owl-nav .owl-prev, .module-giftlist-descripcion .owl-nav .owl-next {
+    font-size: 0;
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.3s ease;
+    width: 35px;
+    height: 35px;
+}
+
+.module-giftlist-descripcion .owl-nav .owl-prev:after, .module-giftlist-descripcion .owl-nav .owl-next:after, .module-giftlist-descripcion .owl-nav .owl-prev:before, .module-giftlist-descripcion .owl-nav .owl-next:before {
+    display: none;
+}
+
+.module-giftlist-descripcion .owl-nav .owl-prev {
+    left: -46px;
+    box-shadow: none;
+    border-bottom: #a6a5a3 solid 2px;
+    border-right: #a6a5a3 solid 2px;
+}
+
+.module-giftlist-descripcion .owl-nav .owl-prev:hover{
+    border-bottom-color: #d9292e;
+    border-right-color: #d9292e;
+}
+
+.module-giftlist-descripcion .owl-nav .owl-next {
+    right: -46px;
+    box-shadow: none;
+    border-top: #a6a5a3 solid 2px;
+    border-left: #a6a5a3 solid 2px;
+}
+
+.module-giftlist-descripcion .owl-nav .owl-next:hover{
+    border-top-color: #d9292e;
+    border-left-color: #d9292e;
+}
+
+.module-giftlist-descripcion .product-card {
+    border: none;
+    margin-bottom: 15px;
+}
+
+.module-giftlist-descripcion .product-card label {
+    padding-bottom: 0;
+    font-family: georgia, 'Georgia';
+    font-weight: bold;
+}
+
+.products-associated .product-card img {
+    width: 100%;
+}
+
+.products-associated .product-card:first-child {
+    text-align: center;
+    font-size: 1rem;
+}
+
+.products-associated .product-card:first-child span {
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 1.2rem;
+}
+
+.products-associated .product-card .img-container {
+    width: 100%;
+    height: 255px;
+}
+
+.products-associated .product-card .ax-info-list {
+    padding: 5px 10px;
+    position: relative;
+}
+
+.products-associated .product-card .add_container {
+    padding: 0 8px;
+}
+
+.products-associated .product-card i.fa-heart   {
+    position: absolute;
+    top: -34px;
+    right: 10px;
+    font-size: 1.5rem;
+    color: #a5a5a5;
+}
+
+.products-associated .product-card i.fa-close:before {
+    content: "\f00d";
+    color: #fff;
+}
+
+.products-associated .product-card i.fa-heart.ax-favorite {
+    color: #e10025;
+    text-align: center;
+}
+
+.products-associated i.fa-heart.ax-favorite span {
+    font-size: 0.8rem;
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.products-associated .product-card .delete-product {
+    background: #d9292e;
+    border-radius: 50%;
+    display: inline-block;
+    padding: 3px 5px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+.products-associated .product-card p {
+    font-size: 0.85rem;
+}
+
+.products-associated .product-card p.ax-name-list {
+    border-bottom: #ccc solid 1px;
+    padding: 5px 0;
+    font-family: Georgia, 'Georgia';
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+.products-associated .product-card p.ax-price-list {
+    padding: 5px 0 0 0;
+    color: #231f20;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.products-associated .ax-bond-card #add_bond {
+    margin-top: 15px;
+    display: inline-block;
+    color: #231f20;
+}
+
+.products-associated .add_container input {
+    width: 100%;
+    padding: 10px;
+    color: #6b6b6b;
+}
+
+.module-giftlist-descripcion .parrilla-productos .products-associated .add-to-cart {
+    display: block;
+    font-size: 0.9rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    width: 200px;
+    bottom: 0;
+    margin: auto;
+    padding: 0;
+    text-align: center;
+    opacity: 0;
+    z-index: 99;
+    transform: scale(0);
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+}
+
+.ax-cont-hover {
+    overflow: hidden;
+    position: relative;
+}
+
+.ax-cont-hover:before, .ax-cont-hover:after {
+    content: "";
+    display: block;
+    background: rgba(35,31,32,0.3);
+    position: absolute;
+    height:50%;
+    width: 100%;
+    z-index: 1;
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+}
+
+.ax-cont-hover:before {
+    top:-50%;
+}
+
+.ax-cont-hover:after {
+    bottom:-50%;
+}
+
+.ax-cont-hover:hover:before {
+    top:0;
+}
+
+.ax-cont-hover:hover:after {
+    bottom:0;
+}
+
+.ax-cont-hover:hover .add-to-cart.btn-default.btn-lista-regalos {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.module-giftlist-descripcion .parrilla-productos .btn-lista-regalos {
+    margin: 40px 0 0 25px;
+}
+
+#address-form {
+    
+}
+
+/* crear listas */
+
+#frmSaveList .nav-tabs {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+#frmSaveList .nav-tabs>span {
+    z-index: 2;
+}
+
+#frmSaveList .nav-tabs li a {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    border: none;
+    padding: 10px 89.8px;
+    margin: 0;
+}
+
+.ax-avatar-content .ax-prof-buttons div.uploader input {
+    width: 100%;
+}
+
+#frmSaveList .nav-tabs li.active a, #frmSaveList div.uploader span.action {
+    background: #5e534d;
+    color: #ffd594;
+}
+
+#frmSaveList div.uploader span.action {
+    font-family: Georgia, 'Georgia';
+    font-weight: 700;    
+}
+
+#frmSaveList .nav-tabs li a span {
+    display: none;
+}
+
+#frmSaveList .nav-tabs li.active a span {
+    display: block;
+}
+
+#frmSaveList .nav-tabs li.active .ax-text-result-list .after-line {
+    border-right-color: #f6f6f6 !important;
+}
+
+#frmSaveList .nav-tabs li.active .ax-text-result-list .before-line {
+    border-left-color: #f6f6f6 !important;
+}
+
+#frmSaveList .nav-tabs>li>a:hover, #frmSaveList .nav-tabsli>a:focus {
+    background-color: inherit;
+    color: #636363;
+}
+
+#frmSaveList .nav-tabs li.active a:hover {
+    background: #5e534d;
+    color: #ffd594;
+}
+
+#frmSaveList .gender-line h3 {
+    margin-top: 20px;
+}
+
+
+#frmSaveList > div {
+    margin-top: 20px
+}
+
+#frmSaveList {
+    
+}
+
+.ax-text-pp-create {
+    padding: 10px 10px 60px 10px;
+    line-height: 1.5rem;
+}
+
+.tab-content {
+    border: #ccc solid 1px;
+    margin: 0;
+    padding: 20px;
+    border-top: 0;
+}
+
+.tab-content *, #frmSaveList h3 {
+    font-family: Georgia;, 'Georgia'
+    text-transform: inherit;
+    color: #464646;
+}
+
+.tab-content .tab-content .fa {
+    font-family: FontAwesome;
+}
+
+.tab-content #ax-img-prof, .tab-content #ax-img {
+    background: #f8f8f8;
+    display: inline-block;
+    border: #dbdbdb solid 1px;
+    font-family: Georgia, 'Georgia';
+    padding-right: 15px;
+}
+
+.tab-content #ax-img-prof i, .tab-content #ax-img i {
+    color: #5e534d;
+    margin: 5px 10px;
+    font-family: FontAwesome !important;
+    background: #5e534d;
+    padding: 13px;
+    color: #fff;
+    margin: 0 20px 0 0;
+    font-size: 1.2rem;
+}
+
+.tab-content #ax-img-prof, .tab-content #ax-img:hover {
+    background: #e4e4e4;    
+}
+
+#frmSaveList .checkbox label span {
+    line-height: 16px;
+}
+
+#frmSaveList div.checker span {
+    background: #5e534d;
+}
+
+.checkbox .checker {
+    margin-top: 4px;
+    background: #5e534d;
+}
+
+.checker .checked:before, .radio .checked:before {
+    color: #ffd594 !important;
+}
+
+.fancybox-skin .fancybox-close:after {
+    color: #5e534d !important;
+}
+
+.fancybox-skin {
+    border-bottom: 5px solid #5e534d !important;
+}
+
+#bond_form #luxury_bond {
+    position: inherit;
+}
+
+
+#frmSaveList h3 {
+    padding-bottom: 10px;
+    border-bottom: #ccc solid 1px;
+    font-weight: 700;
+    margin: 0;
+    text-transform: initial;
+}
+
+#frmSaveList label {
+    font-weight: 700;
+    padding: 1rem 0 0.2rem 0;
+}
+
+#frmSaveList label sup {
+    color: #ffd594;
+}
+
+#frmSaveList input, #frmSaveList .chosen-container a, #frmSaveList  textarea {
+    background: #f8f8f8;
+    border: #dbdbdb solid 1px;
+    padding: 6px 12px;
+}
+
+#frmSaveList .tab-pane .ax-date-event {
+    margin: 0 10px;
+    padding: 0;
+    width: 31.1%;
+}
+
+#frmSaveList .ax-cont-form-date-lista .ax-date-event:first-child, #frmSaveList .ax-cont-form-date-lista .ax-date-event:last-child {
+    margin: 0;
+}
+
+#frmSaveList .chosen-container span {
+    color:#a2a2a2;
+    font-weight: 100;
+    line-height: 30px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#frmSaveList div.uploader span.filename {
+    line-height: 38px;
+}
+
+#frmSaveList .btn.btn-default.btn-lista-regalos {
+    float: right;
+    margin: 16px;
+}
+
+#frmSaveList .radio-inline {
+    display: block;
+}
+
+#frmSaveList .radio-inline+.radio-inline {
+    margin-left: 0;
+}
+
+#frmSaveList .radio-inline,
+        .checkbox-inline {
+        padding-left: 0;
+    }
+    #frmSaveList .radio span {
+        border: 3px solid #5e534d;
+        width: 0.9375rem;
+        height: 0.9375rem;
+    }
+    #frmSaveList div.radio span.checked:before {
+        width: 0.5625rem;
+        height: 0.5625rem;
+        background: #5e534d;
+    }
+
+    #center_column .ax-img-cont img {
+        width: 100% !important;
+        margin-top: 10px;
+    }
+
+#address-div a.chosen-single {
+    width: 190px;
+    width: 278px;
+}
+
+#address-div .btn-form-address {
+   text-align: center;
+    margin-top: 20px;
+}
+
+#address-div #address-form label {
+    padding-bottom: 0rem;
+    padding-top: 0.55rem;
+}
+
+#address-div #address-form label, #address-div #address-form span, #address-div #address-form input {
+    font-family: Georgia, 'Georgia' !important;
+    font-weight: 100;
+    font-size: 1rem !important;
+}
+
+#address-div #address-form span {
+    font-size: 0.8rem !important;
+}
+
+#share-pop.white-popup-block .btn.btn-success.pull-right {
+    background: #5e534d;
+    color: #eac78f;
+    border: none;
+    font-family: Georgia, 'Georgia';
+    padding: 8px 25px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top:10px;
+}
+
+.ax-message #changemessage textarea.ax-new-message {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    color: #3b3b3b;
+}
+
+.ax-message #changemessage #ax-save {
+    background: #5e534d;
+    color: #eac78f;
+    border: none;
+    font-family: Georgia, 'Georgia';
+    padding: 8px 25px;
+    letter-spacing: 1.5px;
+}
+
+.ax-message #changemessage #ax-save:hover {
+    background: #3c312a;
+}
+
+.chosen-container-single .chosen-single span {
+    overflow: Georgia, 'Georgia';
+    text-overflow: inherit;
+    white-space: inherit;
+}
+
+#ax-prof-container .ax-prof-buttons #ax-img-prof, #ax-cover-container .ax-cover-buttons #ax-img {
+    margin: 15px 0 7px 0;
+    display: block;
+    color: #5e534d;
+    text-decoration: underline;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+}
+
+.ax-popup-delete p {
+    margin-bottom: 10px;
+}
+
+.jplist-panel .jplist-pagingmid, .jplist-panel .jplist-pagination button.jplist-last, .jplist-panel .jplist-pagination button.jplist-first {
+    display: none;
+}
+
+.jplist-panel .jplist-pagination .jplist-pagingprev button, .jplist-panel .jplist-pagination .jplist-pagingprev button {
+    font-size: 2rem;
+}
+
+.jplist-panel .jplist-hidden {
+    display: inline-block;
+    opacity: 0.36; 
+}
+
+.jplist-panel .jplist-pagination {
+    float: right;
+    margin: 80px 50px 0 0;
+}
+
+.jplist-panel .jplist-pagination .jplist-pagingnext button, .jplist-panel .jplist-pagination .jplist-pagingprev button, .jplist-panel .jplist-label {
+    background: transparent;
+    border: none;
+    color: #5e534d;
+    margin: 0;
+    padding: 0 6px;
+}
+
+.jplist-panel .jplist-label {
+    font-family: "condensed";
+    color: #848484;
+}
+
+.ax-add-gift-card label {
+    padding:0 0 5px 0;
+    font-family: Georgia;, 'Georgia'
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.ax-add-gift-card .checkbox {
+    margin-top: 0;   
+}
+
+.ax-add-gift-card .container {
+    margin-top:20px;
+}
+
+.ax-add-gift-card #btnSave {
+    margin-left: 10px;
+}
+
+.ax-add-gift-card textarea {
+    border: #ccc solid 1px;
+    padding: 8px;
+}
+
+#frmSaveList span.ax-up-msg {
+    padding: 13px 11px;
+    color: #5e534d;
+    border: #ffd594 solid 1px;
+    background: rgba(255, 213, 148, 0.2);
+}
+
+#frmSaveList span.ax-up-msg .fa {
+    color: #5e534d;
+    vertical-align: middle;
+    font-size: 1.3rem;
+}
+
+@media screen and (max-width:1024px) {
+     
+    .ax-search-home .ax-form-data-search input {
+        width: 119px;
+    }  
+    
+}
+
+@media screen and (max-width:768px) {
+    
+    .module-giftlist-buscar .ax-cont-list .ax-item, .ax-cont-admin-listas-regalos .ax-cont-list .ax-item {
+        border: none;
+    }
+    
+    .module-giftlist-buscar .ax-cont-list .ax-item:nth-child(even), .ax-cont-admin-listas-regalos .ax-cont-list .ax-item:nth-child(even) {
+        background: #fafafa;
+    }
+    
+    .module-giftlist-buscar .ax-cont-list .part, .ax-cont-admin-listas-regalos .ax-cont-list .part {
+        width: 33.3%;
+        display: inline-block;
+        padding: 25px;
+        border-bottom: #dcdcdc solid 1px;
+    }
+    
+    .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(2) {        
+        padding-top: 10px;
+    }
+    
+    .module-giftlist-buscar .ax-cont-list .ax-read-more, .ax-cont-admin-listas-regalos .ax-cont-list .ax-read-more {
+        border: none;
+        width: 100%;
+    }
+    
+    .ax-form-data-search input {
+        width: 185px;
+    }
+    
+    .ax-search-home .ax-form-data-search input {
+       width: 201px;
+    }
+    
+    .module-giftlist-empezar .col-md-6 {
+        width: 98%;
+    }
+    
+    #ax-cover-container .cont-img {
+        height: 250px;
+    }
+    
+    .ax-avatar-content #ax-prof-container {
+        bottom: -65px;
+        right: 0;
+        left: 0;
+        width: 162px;
+        margin: auto;
+    }
+    
+    .ax-avatar-content #ax-prof-container .cont-img {
+        width: 162px;
+        height: 162px;
+    }
+    
+    #ax-cover-container .ax-cover-buttons {
+        margin-top: 0;
+        position: absolute;
+        right: 0;
+        z-index: 2;
+        bottom: 105%;
+        width: 144px;
+    }
+    
+    .module-giftlist-descripcion .ax-text-result-list p, .module-giftlist-descripcion .ax-text-result-list h2, .module-giftlist-descripcion .ax-text-result-list h3 {
+        text-align: center;
+    }
+    
+    .ax-avatar-content {
+        position: relative;
+    }
+    
+    .ax-address, .ax-message, .ax-categories, .products-associated {
+        text-align: center;
+        position: relative;
+        margin: 20px 0;
+    }
+    
+    .ax-categories {
+        margin: 40px 0 20px 0
+    }
+    
+    .ax-address > a {
+        position: absolute;
+        top: 105%;
+        margin: auto;
+        left: 0;
+        right: 0;
+    }
+    
+    .module-giftlist-descripcion .product-card.col-md-3 {
+        width: 33.3%;
+        float: left;
+    }
+    
+    .module-giftlist-descripcion .parrilla-productos .btn-lista-regalos {
+        margin: 20px 0 0 25px;
+    }
+    
+    .module-giftlist-administrar .ax-date-event {
+        width: 33.3%;
+        float: left;
+        margin: 10px 0;
+    }
+    
+    #frmSaveList .nav-tabs li a {
+        font-size: 1.2rem;
+    }
+    
+    .tab-content #ax-img-prof, .tab-content #ax-img { 
+        display: block;
+        margin: 10px 0;
+        text-align: center;
+    }
+    
+    .module-giftlist-descripcion .ax-text-result-list {
+        float: left;
+    }
+    
+    .module-giftlist-descripcion .row {
+        clear: both;
+    }
+    
+    .ax-add-gift-card textarea {
+        border: #ccc solid 1px;
+        padding: 8px;
+    }
+
+}
+
+@media screen and (max-width:568px) {
+    
+    #address-div a.chosen-single {
+        width: 246px;
+    }
+    
+    .ax-text-result-list {
+       padding: 10px 20px;
+       margin: 10px 0 0 0;
+    }
+    
+    .module-giftlist-empezar #center_column.center_column, .module-giftlist-buscar #center_column.center_column {
+        width: 92%;
+        margin: 0 auto;
+        float: none;
+    }
+    
+    .module-giftlist-empezar #center_column.center_column p {
+        text-align: center;
+    }    
+    
+    .ax-text-result-list p, .ax-text-result-list h2, .ax-text-result-list h3 {
+        font-size: 1.03rem;
+        letter-spacing: -1px;
+    }
+    
+    .ax-optional-tex {
+        width: 100% !important;
+        text-align: center;
+        margin: 10px 0;
+    }
+    
+    #address-div {
+        overflow: auto;
+        height: 100%;
+    }
+    
+    #address-div .btn.btn-default.btn-lista-regalos {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    .tab-rp-listas-rega:before  {
+        content: "\f107";
+        display: block;
+        display: inline-block;
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        position: absolute;
+        right: 20px;
+        font-size: 1.7rem;
+        top: 10%;
+    }
+    
+    .active-tab-list:before {
+        content: "\f106";
+        font-family: FontAwesome;
+    }
+    
+    .ax-form-data-search span {
+        width: 49.4%;
+    }
+    
+    .ax-form-data-search p {
+        display: block;
+        margin: 10px 0;
+        text-align: center;
+    }
+    
+    .ax-form-data-search input, .ax-form-data-search input#code {
+        width: 98%;
+        margin: 0;
+    }
+    
+    .ax-form-data-search label {
+        padding: 5px 15px;
+    }
+    
+    .ax-form-data-search .btn.btn-default.btn-lista-regalos {
+        width: 48%;
+        margin: 35px 8px 0 0;
+        padding: 10px 0;
+    }
+    
+    .ax-text-result-list p {
+        top: -20px;
+    }
+    
+    .ax-text-result-list p span {
+        display: block;        
+    }
+    
+    .module-giftlist-buscar .ax-cont-list .part, .ax-cont-admin-listas-regalos .ax-cont-list .part {
+        width: 50%;
+        text-align: left;
+    }
+    
+    .ax-search-home .ax-form-data-search input {
+       width: 100%;
+    }
+    
+    .ax-search-home .btn.btn-default.btn-lista-regalos {
+        margin-top: 35px;
+    }
+    
+    .module-giftlist-empezar .col-md-6 {
+        width: 100%;
+        padding: 0;
+    }   
+    
+    .module-giftlist-descripcion .product-card.col-md-3 {
+        width: 48%;
+    }
+       
+    #frmSaveList .nav-tabs {
+        display: table;
+        width: 100%;
+    }
+   
+    #frmSaveList .nav-tabs li {
+        display: table-cell;
+        float: none;
+        text-align: center;
+    }
+    
+    #frmSaveList .nav-tabs li a {
+        padding: 10px 20px;
+    }
+    
+    .ax-text-pp-create {
+        padding: 10px;
+        display: inline-block;
+    }
+    
+    .ax-text-description-lista {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+    
+    .ax-add-gift-card textarea {
+        border: #ccc solid 1px;
+    }
+    
+    .ax-text-result-list .before-line {
+        border-left: #fff solid 15px;
+    }
+    
+    .ax-text-result-list .after-line {
+        border-right: #fff solid 15px;
+    }
+    
+    .btn.btn-default.btn-lista-regalos {
+        float: right;
+    }
+    
+    .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(2) {
+        padding-top: 20px;
+    }
+
+}
+
+@media screen and (max-width:380px) {
+    
+    .container {
+        padding: 0;
+    }
+    
+    #columns .parrilla-productos {
+        margin: 0;
+    }
+    
+    .ax-text-result-list h3 {
+        top: -20px;
+    }
+    
+    .ax-form-data-search span {
+        width: 48%;
+    }
+    
+    .module-giftlist-descripcion h1, .module-giftlist-descripcion h2 {
+        font-size: 1.7rem;
+    }
+    
+    .module-giftlist-descripcion .ax-text-result-list {
+        display: block;
+        margin: 30px 0;
+    }
+    
+    .module-giftlist-descripcion .ax-text-result-list p, .module-giftlist-descripcion .ax-text-result-list h2, .module-giftlist-descripcion .ax-text-result-list h3 {
+        font-size: 1.3em;
+    }
+    
+    .module-giftlist-descripcion .container {
+        padding: 0;
+        width: 98%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .module-giftlist-buscar .ax-cont-list .part, .ax-cont-admin-listas-regalos .ax-cont-list .part {
+        padding: 20px 13px;
+    }
+    
+    .module-giftlist-listas .ax-cont-list .part:last-child {
+        width: 50% !important;
+    }
+    
+    .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(even) {
+        text-align: center;
+    }
+    
+    .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(odd) {
+        text-align: center;
+    }
+    
+    .ax-cont-admin-listas-regalos .ax-cont-list .part:last-child {
+        width: 100%;
+    }
+    
+    .ax-cont-admin-listas-regalos .part .ax-day {
+        color: #ecb072;
+        font-size: 1.7rem;
+    }
+    
+    .module-giftlist-descripcion .ax-cont-list .ax-item {
+        padding: 0;
+    }
+    
+    #ax-cover-container .cont-img {
+        height: 200px;
+    }
+    
+    #ax-cover-container .cont-img img {
+        width: 100%;
+        height: auto;
+    }
+    
+    .ax-avatar-content #ax-prof-container .cont-img {
+        width: 122px;
+        height: 122px;
+        margin: 0 auto;
+    }
+    
+    .ax-avatar-content #ax-prof-container {
+        width: 145px;
+    }
+    
+     .ax-avatar-content .ax-prof-buttons .uploader {
+         width: 117px;
+    }
+    
+    .ax-message-content {
+        margin: 10px auto;
+    }
+    
+    .ax-message-content .ax-edit, .ax-message-content .ax-delete {
+        margin: 10px;
+        font-size: 1.1rem;
+    }
+    
+    .ax-avatar-content {
+        margin-top: 75px;
+    }
+    
+    .ax-address .col-md-4 {
+        margin: 20px 0;
+    }
+    
+    .ax-categories {
+        margin: 80px 0 20px 0;
+    }
+    
+    .ax-categories .owl-carousel .owl-item {
+        width: 140px !important;
+    }
+    
+    .ax-categories .owl-carousel .owl-itemimg {
+        width: 100%;
+    }
+    
+    .module-giftlist-descripcion #carousel-example-generic {
+        width: 80%;
+    }
+    
+    .module-giftlist-descripcion .owl-nav .owl-prev, .module-giftlist-descripcion .owl-nav .owl-next {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .module-giftlist-descripcion .owl-nav .owl-prev {
+        left: -24px;
+    }
+    
+    .module-giftlist-descripcion .owl-nav .owl-next {
+        right: -24px;
+    }
+    
+    .products-associated .ax-text-result-list {
+        display: inline-block;
+        padding: 15px 50px;
+    }
+    
+    .module-giftlist-descripcion .product-card.col-md-3 {
+        width: 96%;
+    }
+    
+    .products-associated .product-card .ax-info-list {
+        text-align: left;
+    }
+    
+    .tab-content {
+        padding: 20px 0;
+    }
+    
+    .module-giftlist-administrar .col-md-12, .module-giftlist-administrar .col-md-4, .module-giftlist-administrar .col-md-6 {
+        padding: 5px 10px;
+    }
+    
+    .module-giftlist-administrar .col-md-8 {
+        margin-top: 20px;
+    }
+    
+    #frmSaveList label {
+        padding: 0.5rem 0 0.2rem 0;
+    }
+    
+    #frmSaveList .nav-tabs li a {
+        font-size: 0.9rem;
+    }
+    
+    #frmSaveList div.uploader span.action {
+        font-size: 0.8rem;
+    }
+    
+    .products-associated .ax-print {
+        margin-top: 38px;
+    }
+    
+    .module-giftlist-descripcion .ax-text-result-list {
+        float: none;
+    }
+    
+    .products-associated .ax-print {
+        display: block;
+        margin: 0 auto 20px auto;
+        float: none;
+    }
+    
+    .ax-add-gift-card label {
+        text-align: left;
+    }
+    
+    .ax-add-gift-card textarea {
+        border: #ccc solid 1px;
+        padding: 8px;
+    }
+    
+    .ax-add-gift-card .btn.btn-lista-regalos {
+        width: 100%;
+        margin: 5px 0 !important;
+    }
+    
+    .ax-add-gift-card .checkbox {
+        margin-top: 20px;
+    }
+    
+}
+
+@media screen and (max-width:320px) {
+    
+    #address-div a.chosen-single {
+        width: 190px;
+    }
+}
+
+.fa {
+    font-family: FontAwesome;
+}

@@ -159,6 +159,13 @@
                 data.signature = '{$signature}';
             {/if}
         {/if}
+        {if $page_name == 'search'}
+            {if !empty($current_pg)}
+                setTimeout(function(){                            
+                    $('.nbrItemPage .chosen-single span').text('{$current_pg}');
+                }, 500);
+            {/if}
+        {/if}
     {literal}
     data.page = page;
     data.loggeduser = islogged;         
@@ -233,7 +240,7 @@ src="https://www.facebook.com/tr?id=146264512398308&ev=PageView&noscript=1"
 	              <ul id="menu" class="grid_10 menu-experiencias" style="color:black">
                     <li id="experiencias"><a href="{$link->getModuleLink('matisses','experiences')}">{l s='Experiencias'}</a></li>
 	                <li id="wishlist">{hook h="displayMatWishlist"}</li>
-	                <li id="giftlist"><a href="javascript:void(0)"><span></span>{l s='Lista de regalos'}</a></li>
+	                <li id="giftlist"><a href="{$link->getModuleLink('giftlist','empezar')}"><span></span>{l s='Lista de regalos'}</a></li>
 	              </ul>
             	</div>
           	</div>

@@ -7,22 +7,24 @@ class giftlistbuscarModuleFrontController extends ModuleFrontController {
 
 	public function initContent() {
 		parent::initContent ();
+        $this->display_column_left = false;
+        $this->display_column_right = false;
 		$list = new GiftListModel();
-		$res = false;
-		if(!empty(Tools::getValue("name")) && !empty(Tools::getValue("lastname"))){
-			$res = $list->searchByCustomerNames(Tools::getValue("name"),Tools::getValue("lastname"));
+        if(!empty(Tools::getValue("name")) && !empty(Tools::getValue("lastname"))){
+            $res = $list->searchByCustomerNames(Tools::getValue("name"),Tools::getValue("lastname"));
 		}elseif(!empty(Tools::getValue("code"))){
 			$res = $list->searchByCode(Tools::getValue("code"));
 			if($res != ""){
 				Tools::redirect($this->context->link->getModuleLink('giftlist', 'descripcion', $res));
 			}
-			$res = false;
+			$res = array();
 		}
 			
 		$this->context->smarty->assign ( array (
-			"lists" => $res,
+            "lists" => $res,
+            'parameter' => Tools::getValue("name") . Tools::getValue("lastname"),
 			'description_link' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => "")),
-			'items_per_page' => 20
+			'items_per_page' => 5
 		) );
 		$this->setTemplate ( 'searchList.tpl' );
 	}
@@ -55,7 +57,7 @@ class giftlistbuscarModuleFrontController extends ModuleFrontController {
 			_MODULE_DIR_ . '/giftlist/views/css/vendor/jplist/jplist.core.min.css',
 			_MODULE_DIR_ . '/giftlist/views/css/vendor/jplist/jplist.pagination-bundle.min.css',
 			_MODULE_DIR_ . '/giftlist/views/css/vendor/jplist/jplist.textbox-filter.min.css',
-			_MODULE_DIR_ . '/giftlist/views/css/listas.css'
+			_MODULE_DIR_ . '/giftlist/views/css/ax-lista-de-regalos.css'
 		) );
 	}
 	

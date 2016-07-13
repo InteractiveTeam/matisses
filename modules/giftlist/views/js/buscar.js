@@ -2,11 +2,43 @@ $('document').ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
    //check all jPList javascript options
    $('#lists').jplist({				
-      itemsBox: '.list' 
-      ,itemPath: '.list-item' 
+      itemsBox: '.list-item' 
+      ,itemPath: '.ax-item' 
       ,panelPath: '.jplist-panel'	
    });
+    
+    $("form[name=searchList]").submit(function(e){
+        if($("#name").val() === "" && $("#lastname").val() === "" && $("#code").val() === ""){
+            $.fancybox({
+                 'autoScale': true,
+                 'transitionIn': 'elastic',
+                 'transitionOut': 'elastic',
+                 'speedIn': 500,
+                 'speedOut': 300,
+                 'autoDimensions': true,
+                 'centerOnScroll': true,
+                 'content' : '<div><p class="fancybox-error">Debes completar los campos Nombre y Apellido o Código para realizar la búsqueda de la(s) listas deseadas.</p></div>'
+            });
+             e.preventDefault();
+        }
+        if($("#name").val() === "" && $("#lastname").val() !== "" || $("#name").val() !== "" && $("#lastname").val() === ""){
+             $.fancybox({
+                 'autoScale': true,
+                 'transitionIn': 'elastic',
+                 'transitionOut': 'elastic',
+                 'speedIn': 500,
+                 'speedOut': 300,
+                 'autoDimensions': true,
+                 'centerOnScroll': true,
+                 'content' : '<div><p class="fancybox-error">Debes completar los campos Nombre y Apellido para realizar la búsqueda de la(s) listas deseadas.</p></div>'
+            });
+             e.preventDefault();
+        }
+    });
+    
    
+    $('.jplist-pagingmid').after($('.jplist-label'));
+    
    $("#name").change(function(){
 	   if($("#name").val() != "" || $("#lastname").val() != ""){
 		   disableCodeField();

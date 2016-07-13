@@ -46,6 +46,8 @@ class DBStruct extends Module
 			`id_cocreator` INT UNSIGNED NULL,
 			`code` VARCHAR(11) NOT NULL,
 			`name` VARCHAR(100) NOT NULL,
+			`firstname` VARCHAR(100) NOT NULL,
+			`lastname` VARCHAR(100) NOT NULL,
 			`public` TINYINT(1) NOT NULL,
 			`event_type` INT NOT NULL,
 			`event_date` DATETIME NOT NULL,
@@ -62,6 +64,8 @@ class DBStruct extends Module
 			`address_before` VARCHAR(100) NOT NULL,
 			`address_after` VARCHAR(100) NOT NULL,
             `validated` TINYINT(1),
+            `real_not` TINYINT(1),
+            `cons_not` TINYINT(1),
 			`created_at` DATETIME NOT NULL,
 			`updated_at` DATETIME NOT NULL,
 	  	    PRIMARY KEY (`id`, `event_type`,`id_creator`),
@@ -149,7 +153,8 @@ class DBStruct extends Module
 		`id_list` INT NULL,
 		`id_product` INT UNSIGNED NULL,
 		`id_bond` INT NULL,
-		`group` VARCHAR(70) NULL,
+		`cant` INT,
+		`group` TINYINT(1),
 		`option` TEXT NULL,
 		`favorite` TINYINT(1) NOT NULL,
 		`message` TEXT NULL,
@@ -182,7 +187,7 @@ class DBStruct extends Module
 	public function addEventTypes(){
 		$sql = 'INSERT INTO '._DB_PREFIX_.'event_type(name) VAlUES("Matrimonio"),
 				("Cermonia de compromiso"),("Renovación de votos"),("Cumpleaños"),
-				("Aniversario"),("Home Shower"),("Baby Shower"),("Ocasión Especial");';
+				("Aniversario"),("Home shower"),("Baby shower"),("Ocasión especial");';
 		if(!$result=Db::getInstance(_PS_USE_SQL_SLAVE_)->Execute($sql))
 			return false;
 		return true;

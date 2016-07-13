@@ -1441,13 +1441,13 @@
   ),
   'Cart' => 
   array (
-    'path' => '',
+    'path' => 'override/classes/Cart.php',
     'type' => 'class',
     'override' => false,
   ),
   'CartController' => 
   array (
-    'path' => '',
+    'path' => 'override/controllers/front/CartController.php',
     'type' => 'class',
     'override' => false,
   ),

@@ -266,6 +266,173 @@
 										{/if}
 									</div>
 								</div> <!-- end delivery_option -->
+								{literal}
+								<script type="text/javascript">
+                                    var shop = 'recoger en tienda';
+                                    var allstores = null;
+                                    
+                                    {/literal}
+                                    {if empty($current_stores)}
+                                        allstores = 'NULL';
+                                    {else}
+                                        allstores = '<p class="carrier_title">';
+                                        allstores += '{l s="Seleccione Tienda"}';
+                                        allstores += '</p>';
+                                        allstores += '<table class="available_stores table table-bordered">';
+                                        allstores += '<thead>';
+                                        allstores += '<tr>';
+                                        allstores += '<th></th>';
+                                        allstores += '<th>Nombre</th>';
+                                        allstores += '<th>Dirección</th>';
+                                        allstores += '<th>Ciudad</th>';
+                                        allstores += '</tr> ';
+                                        allstores += '</thead>';
+                                        allstores += '<tbody>';
+                                        allstores += '{foreach $current_stores as $store}';
+                                        allstores += '<tr>';
+                                        allstores += '<td class="delivery_option_radio">';
+                                        allstores += '<input id="active_store_option_{$store.id_store}" class="delivery_option_radio" type="radio" name="store_option" data-code="{$store.codmatisses}" value="{$store.id_store}">';
+                                        allstores += '</td>';
+                                        allstores += '<td class="delivery_option_logo">';
+                                        allstores += '{$store.name}';
+                                        allstores += '</td>';
+                                        allstores += '<td>';
+                                        allstores += '{$store.address1}';
+                                        allstores += '</td>';
+                                        allstores += '<td class="delivery_option_price">';
+                                        allstores += '<strong>{$store.city}</strong>';
+                                        allstores += '</td>';
+                                        allstores += '</tr>';
+                                        allstores += '{/foreach}';
+                                        allstores += '</tbody>';
+                                        allstores += '</table>';
+                                    {/if}
+                                    {literal}
+                                    $(document).ready(function () { 
+                                        $('.delivery_option tr').each(function() {
+                                            var shopsle = $(this).find('strong').text().toLowerCase(); 
+                                            var input = $(this).find('input');
+                                            
+                                            if (shopsle == shop) {
+                                                if (allstores == 'NULL') {
+                                                    $('.active_stores').empty();
+                                                    $('.active_stores').append('<p class="alert alert-warning">No hay tiendas disponibles</p>');
+                                                } else {
+                                                    if (input.is(':checked')) {
+                                                        $('.active_stores').empty();
+                                                        $('.active_stores').append(allstores);
+                                                        $(".cart_navigation .standard-checkout").remove();
+                                                        $('.cart_navigation').append('<button type="button" onclick="validateShop()" class="button btn btn-default standard-checkout button-medium btn-red"><span>{/literal}{l s='Proceed to checkout'}{literal}<i class="fa fa-angle-right"></i></span></button>');            
+                                                    }
+                                                }
+                                            }
+                                        });                                       
+                                    });
+                                                                         
+                                    $('.delivery_option tr').each(function() {
+                                        var shopsle = $(this).find('strong').text().toLowerCase(); 
+                                        var input = $(this).find('input');
+
+                                        input.click(function() {
+                                            if (input.is(':checked')) {
+                                                if (shopsle == shop) {
+                                                    if (allstores == 'NULL') {
+                                                        $('.active_stores').empty();
+                                                        $('.active_stores').append('<p class="alert alert-warning">No hay tiendas disponibles</p>');
+                                                    } else {
+                                                        $('.active_stores').empty();
+                                                        $('.active_stores').append(allstores);
+                                                        $(".cart_navigation .standard-checkout").remove();
+                                                        $('.cart_navigation').append('<button type="button" onclick="validateShop()" class="button btn btn-default standard-checkout button-medium btn-red"><span>{/literal}{l s='Proceed to checkout'}{literal}<i class="fa fa-angle-right"></i></span></button>');
+                                                    }
+                                                } else {
+                                                    $('.active_stores').empty();
+                                                    $(".cart_navigation .standard-checkout").remove();
+                                                    $('.cart_navigation').append('<button type="submit" name="processCarrier" class="button btn btn-default standard-checkout button-medium btn-red" style=""><span>{/literal}{l s='Proceed to checkout'}{literal}<i class="fa fa-angle-right"></i></span></button>');
+                                                }    
+                                            }
+                                        });
+                                    });
+                                    
+                                    function validateShop() {
+                                        var shopselected = false;
+                                        var terms = false;
+                                        var process = true;
+                                        
+                                        $('.available_stores td input').each(function() {
+                                           if (this.checked) {
+                                                shopselected = true;
+                                           }
+                                        });
+                                        
+                                        if(!shopselected) {
+                                            $.fancybox.open([
+                                            {
+                                                type: 'inline',
+                                                autoScale: true,
+                                                minHeight: 30,
+                                                content: "<p class='fancybox-error'>{/literal}{l s='Please select the shop.' js=1}{literal}</p>"
+                                            }],
+                                            {
+                                                padding: 0
+                                            });
+                                            process = false;
+                                        }
+                                        
+                                        if ($('#uniform-cgv span').hasClass("checked")) {
+                                            terms = true;
+                                        }
+                                        
+                                        if(!terms) {
+                                            $.fancybox.open([
+                                            {
+                                                type: 'inline',
+                                                autoScale: true,
+                                                minHeight: 30,
+                                                content: "<p class='fancybox-error'>{/literal}{l s='You must agree to the terms of service before continuing.' js=1}{literal}</p>"
+                                            }],
+                                            {
+                                                padding: 0
+                                            });
+                                            process = false;
+                                        }
+                                        
+                                        if (process) {
+                                            var shopselected = $('.available_stores input:checked');
+                                            var codeshop = shopselected.attr("data-code");
+                                            
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: baseUri+'modules/matisses/updateshopcode.php',
+                                                cache: false,
+                                                async: true,
+                                                dataType : "json",
+                                                data: 
+                                                {
+                                                    code: codeshop,
+                                                    idcart: {/literal}{$idcart}{literal}
+                                                },
+                                                success: function(data)
+                                                {
+                                                    if (data) {
+                                                        $('#form[name=carrier_area]').submit();
+                                                    } else {
+                                                        $('.active_stores').empty();
+                                                        $('.active_stores').append('<p class="alert alert-warning">Error al enviar la tienda seleccionada, inténtelo mas tarde</p>');
+                                                    }
+                                                },
+                                                error: function(data)
+                                                {
+                                                    console.log(data);
+                                                }
+                                            });
+                                        }
+                                    }
+                                </script>
+                                {/literal}
+                                {if $carrier.instance->name == 'Recoger en Tienda'}
+                                    <div class="active_stores"></div>
+                                {/if}
 							{/foreach}
 						</div> <!-- end delivery_options -->
 						<div class="hook_extracarrier" id="HOOK_EXTRACARRIER_{$id_address}">

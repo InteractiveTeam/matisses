@@ -3,28 +3,38 @@
 include_once __DIR__ . '/../../classes/GiftList.php';
 include_once __DIR__ . '/../../classes/ListProductBond.php';
 include_once __DIR__ . '/../../classes/Bond.php';
-include_once __DIR__ . _PS_MODULE_DIR_ . "matisses/matisses.php";
+include_once _PS_MODULE_DIR_ . "matisses/matisses.php";
 include_once _PS_OVERRIDE_DIR_ ."controllers/front/CartController.php";
 define("_ERROR_","Ha ocurrido un error, vuelva a intentarlo mas tarde");
 define("_DELETED_","Elmininado Correctamente");
-define("_EDITED_","Se ha editado la informacion");
+define("_EDITED_","Se ha editado la información");
 
 class giftlistdescripcionModuleFrontController extends ModuleFrontController {
-	public $uploadDir =_PS_UPLOAD_DIR_."giftlist/uploads/";
+	public $uploadDir = _PS_UPLOAD_DIR_."giftlist/";
 	public $module;
 	/**
 	* Select all event types
 	* Select firstname and lastnamen from creator and cocreator
 	* Set template by condicion
 	*/
+    
+    private function getCreadotr(){
+        $list = new GiftListModel();
+        $res = $list->getListBySlug(Tools::getValue('url'));
+        return $res;
+    }
 	public function initContent() {
+        global $cookie;
 		parent::initContent ();
+        $this->display_column_left = false;
+        $this->display_column_right = false;
 		$list = new GiftListModel();
 		$lpd = new ListProductBondModel();
 		if(!$res = $list->getListBySlug(Tools::getValue('url')))
 		{
 			Tools::redirect($this->context->link->getModuleLink('giftlist', 'listas'));
 		}
+        $this->list = $res;
 		$ev = "SELECT name FROM "._DB_PREFIX_."event_type WHERE id =".$res['event_type'];
 		$sql = "SELECT id_customer,firstname,lastname FROM "._DB_PREFIX_.
 		"customer WHERE id_customer = ". $res['id_creator'];
@@ -37,23 +47,26 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			'all_link' => $this->context->link->getModuleLink('giftlist', 'listas'),
 			'admin_link' => $this->context->link->getModuleLink('giftlist', 'administrar',array("url" => Tools::getValue('url'))),
 			'address' => Tools::jsonDecode($res['info_creator']),
-			'address_cocreator' => $res['info_cocreator'] == "" ? "''" :  $res['info_cocreator'],
 			'form' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/form_save_list.php",
 			'form_edit' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/form_edit_list.php",
 			'form_cocreator' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/cocreator_info.php",
 			'bond_form' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/bond_form.php",
-			'creator' => $creator,
-			'cocreator' => $cocreator,
+			'creator' => $res['firstname'] . " " . $res['lastname'],
+			'cocreator' => ($cocreator ? $cocreator['firstname'] . " " . $cocreator['lastname'] : false),
 			'products' => $lpd->getProductsByList($res['id']),
-			'event_type' => Db::getInstance()->getRow($ev),
-            'bond' => $lpd->getBondsByList($res['id'])
+			'event_type' => Db::getInstance()->getValue($ev),
+            'bond' => $lpd->getBondsByList($res['id']),
+            'days' => $list->getMissingDays($res['event_date']),
+            'numberProducts' => $list->getNumberProductsByList($res['id']),
+			'share_list' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/share_email.php",
+            'countries' => CountryCore::getCountries($this->context->language->id),
+            'cats' => Category::getCategories( (int)($cookie->id_lang), true, false  ),
+            'items_per_page' => 8
 		) );
 
 		if($this->context->customer->isLogged()){
-			if($res['id_creator'] == $this->context->customer->id)
+			if($res['id_creator'] == $this->context->customer->id || $res['id_cocreator'] == $this->context->customer->id)
 				$this->setTemplate ( 'listOwnerDesc.tpl' );
-			elseif($res['id_cocreator'] == $this->context->customer->id)
-				$this->setTemplate ( 'listSharedDesc.tpl' );
 			else
 				$this->setTemplate ( 'listDesc.tpl' );
 		}
@@ -73,23 +86,77 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 					case "addBond":
 						$this->_addBond(Tools::getValue('id_list'), Tools::getValue('data'));
 						break;
+                    case "saveMessage":
+                        $this->_saveMessaage(Tools::getValue('id_list'), Tools::getValue('message'));
+                    case "uploadImage":
+                        $this->_uploadImage(Tools::getValue('id_list'), Tools::getValue('prof'));
+                    case "deleteImage":
+                        $this->_deleteImage(Tools::getValue('id_list'), Tools::getValue('prof'));
+                    case "deleteMsg":
+                        $this->_deleteMsg(Tools::getValue('id_list'));
+                    case "share":
+						$this->_shareList();
+                    case "saveAddress":
+						$this->_saveAddress(Tools::getValue('id_list'), Tools::getValue('form'));
+                    case "updateAmount":
+						$this->_updateminAmount(Tools::getValue('id_list'), Tools::getValue('value'));
 				}
 			}
 		}
 	}
+    
+    private function _updateminAmount($id,$val){
+        $sql = "UPDATE "._DB_PREFIX_."gift_list SET min_amount = $val  WHERE id = ".$id;
+        Db::getInstance()->execute($sql);
+    }
+    
+    private function _deleteMsg($id){
+        $sql = "UPDATE "._DB_PREFIX_."gift_list SET message = ''  WHERE id = ".$id;
+        Db::getInstance()->execute($sql);
+    }
+    
+    private function _deleteImage($id,$prof){
+        $li = new GiftListModel($id);
+        $image = ($prof == "1" ? 'avatar.png' : "banner.jpg");
+        $sql = "UPDATE "._DB_PREFIX_."gift_list SET ". ($prof == "1" ? "profile_img":"image") .' = "/modules/giftlist/views/img/'.$image.'"  WHERE id = '.$id;
+        Db::getInstance()->execute($sql);
+        die('/modules/giftlist/views/img/'.$image);
+    }
+    private function _saveMessaage($id, $message){
+        if(Db::getInstance()->update('gift_list', array('message' => $message),"id = ".$id))
+            die(Tools::jsonEncode("Se ha actualizado el mensaje"));
+        else
+            die(Tools::jsonEncode("Ha ocurrido un error"));
+    }
 
 	public function setMedia() {
+        $addJs = "";
+        $res = $this->getCreadotr();
 		parent::setMedia ();
+        if($this->context->customer->isLogged()){
+			if($res['id_creator'] == $this->context->customer->id || $res['id_cocreator'] == $this->context->customer->id)
+				$addJs = _MODULE_DIR_ . '/giftlist/views/js/descripcion.js';
+			else
+				$addJs = _MODULE_DIR_ . '/giftlist/views/js/descripcion_user.js';
+		}
+		else{
+			$addJs = _MODULE_DIR_ . '/giftlist/views/js/descripcion_user.js';
+        }            
+        
 		$this->addJS ( array (
-			_MODULE_DIR_ . '/giftlist/views/js/vendor/datetimepicker/jquery.datetimepicker.min.js',
+            _MODULE_DIR_ . '/giftlist/views/js/vendor/jplist/jplist.core.min.js',
+			_MODULE_DIR_ . '/giftlist/views/js/vendor/jplist/jplist.pagination-bundle.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/validation/jquery.validate.min.js',
-			_MODULE_DIR_ . '/giftlist/views/js/vendor/mask/jquery.mask.min.js',
+            _MODULE_DIR_ . '/giftlist/views/js/vendor/validation/messages_es.js',
+			_MODULE_DIR_ . '/giftlist/views/js/vendor/owl/owl.carousel.min.js',
 			_MODULE_DIR_ . '/giftlist/views/js/vendor/serializeObject/jquery.serializeObject.min.js',
-			_MODULE_DIR_ . '/giftlist/views/js/descripcion.js'
+			$addJs
 		) );
 		$this->addCSS ( array (
-			_MODULE_DIR_ . '/giftlist/views/css/vendor/datetimepicker/jquery.datetimepicker.css',
-			_MODULE_DIR_ . '/giftlist/views/css/descripcion.css'
+            _MODULE_DIR_ . '/giftlist/views/css/vendor/jplist/jplist.core.min.css',
+			_MODULE_DIR_ . '/giftlist/views/css/vendor/jplist/jplist.pagination-bundle.min.css',
+            _MODULE_DIR_ . '/giftlist/views/css/vendor/owl/owl.carousel.css',
+			_MODULE_DIR_ . '/giftlist/views/css/ax-lista-de-regalos.css'
 		) );
 	}
 
@@ -106,8 +173,6 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
         //echo "<pre>";echo print_r($_POST);die("</pre>");
 		if(Tools::isSubmit ('saveList'))
 		$this->_saveList(Tools::getValue("id_list"));
-		else if(Tools::isSubmit('saveInfo'))
-		$this->_saveInfoCocreator(Tools::getValue("id_list"));
 	}
 
 	/**
@@ -135,6 +200,27 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			$cart->id_currency = $this->context->currency->id;
 			$cart->save();
 		}
+        
+        $products = $cart->getProducts();
+        foreach($products as $product){
+
+            if($product['id_giftlist'] != 0 && $product['id_giftlist'] != $id_list){
+
+                die(Tools::jsonEncode(array(
+				    'msg' => 'Recuerda que solo puedes agregar productos de una misma Lista de regalos a un solo carrito de compras',
+                    'error' => true
+				)));
+
+            }elseif($product['id_giftlist'] == 0){
+                die(Tools::jsonEncode(array(
+                    'msg' => 'Recuerda que no puedes agregar productos del Ecommerce y de una Lista de regalos en un mismo carrito',
+                    'error' => true
+                )));
+
+            }
+
+        }
+        
         $mat = new Matisses();
         $res = $mat->wsmatissess_getVIPGift($data['mount']);
         $FreeVipBond = $res["return"]['detail'];
@@ -178,35 +264,41 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
         *only for cocreator who cannot edit the list
 		* @param int $id
 		*/
-	private function _saveInfoCocreator($id){
-		$list = new GiftListModel ($id);
-		$dirC = array(
-			'country' => "Colombia",
-			'city'    => Tools::getValue('city_co'),
-			'town'    => Tools::getValue('town_co'),
-			'address' => Tools::getValue('address_co'),
-			'address_2' => Tools::getValue('address_co_2'),
-			'tel'     => Tools::getValue('tel_co'),
-			'cel'     => Tools::getValue('cel_co')
-		);
-		$list->info_cocreator = Tools::jsonEncode($dirC);
+	private function _saveAddress($id,$data){
+        $c = CountryCore::getCountries($this->context->language->id);
+		$li = new GiftListModel ($id);
+        $li->address_before = $data['dir_before'];
+        $li->address_after = $data['dir_after'];
+        $li->firstname = $data['firstname'];
+        $li->lastname = $data['lastname'];
+		$li->info_creator = Tools::jsonEncode(array(
+            'country' => 'Colombia',
+            'city' => ucfirst(strtolower($c[$data['city']]['name'])),
+            'town' => ucfirst(strtolower($data['town'])),
+            'address' => $data['address'],
+            'address_2' => $data['address_2'],
+            'tel' => $data['tel'],
+        ));
 		try {
-			if ($list->updateInfo()){
-				$this->context->smarty->assign (array (
+			if ($li->updateInfo()){
+				die( Tools::jsonEncode(array (
 					'response' => _EDITED_,
+                    'data' => $li->info_creator,
+                    'a_b' => $li->address_before,
+                    'a_a' => $li->address_after,
 					'error' => false
-				));
+				)));
 			}
 			else
-				$this->context->smarty->assign (array (
+				die(Tools::jsonEncode(array (
 					'response' => _ERROR_,
 					'error' => true
-				));
+				)));
 		} catch ( Exception $e ) {
-			$this->context->smarty->assign (array (
+			die(Tools::jsonEncode(array (
 				'response' => $e->getMessage(),
 				'error' => true
-			));
+			)));
 		}
 	}
 
@@ -214,20 +306,57 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	* upload image from list
 	* @return boolean|string|NULL
 	*/
-	private function _uploadImage(){
-		if ($_FILES['image']['name'] != '') {
-			$file = Tools::fileAttachment('image');
+	private function _uploadImage($id, $prof){
+        if (!is_dir($this->uploadDir)) {
+            mkdir($this->uploadDir);         
+        }
+        $prof = ($prof == "true" ? true : false);
+		if ($_FILES['file-0']['name'] != '') {
+			$file = Tools::fileAttachment('file-0');
 			$sqlExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
 			$mimeType = array('image/png', 'image/x-png','image/jpeg','image/gif');
 			if(!$file || empty($file) || !in_array($file['mime'], $mimeType))
 				return false;
 			else {
-				move_uploaded_file($file['tmp_name'], $this->uploadDir . Db::getInstance()->Insert_ID(). ".". $sqlExtension);
-				$image_name = Db::getInstance()->Insert_ID(). ".". $sqlExtension;
+				move_uploaded_file($file['tmp_name'], $this->uploadDir . ($prof ? "prof_" : "") . $id. ".". $sqlExtension);
+                $image_name = ($prof ? "prof_" : "") . $id. ".". $sqlExtension;
+                $sql = "UPDATE "._DB_PREFIX_."gift_list SET ". ($prof ? "profile_img":"image") .' = "/upload/giftlist/'.$image_name.'" WHERE id = '.$id;
+                Db::getInstance()->execute($sql);
 			}
 			@unlink($file);
-			return isset($image_name) ?_PS_UPLOAD_DIR_."giftlist/uploads/" . $image_name : false;
+			die(isset($image_name) ? "/upload/giftlist/" . $image_name : false);
 		}
 		return false;
+	}
+    
+    private function _shareList(){
+		$id_shop = (int)Context::getContext()->shop->id;
+		$id_lang = $this->context->language->id;
+		$list = new GiftListModel (Tools::getValue('id_list'));
+		$currency = $this->context->currency;
+		$customer = new CustomerCore($list->id_creator);
+		$params = array(
+			'{lastname}' => $customer->lastname,
+			'{firstname}' => $customer->firstname,
+			'{code}' => $list->code,
+			'{description_link}' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url))
+		);
+
+		if(!empty($list->id_cocreator)){
+			$customer = new CustomerCore($list->id_cocreator);
+			$params['firstname_co'] = $customer->firstname;
+			$params['lastname_co'] = $customer->lastname;
+
+			MailCore::Send($id_lang, 'share-list', sprintf(
+			MailCore::l('Te han compartido una lista'), 1),
+			$params, Tools::getValue('email'), $customer->firstname.' '.$customer->lastname,
+			null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
+			die("Se ha compartido la lista");
+		}
+		MailCore::Send($id_lang, 'share-list-no-cocreator', sprintf(
+		MailCore::l('Te han compartido una lista'), 1),
+		$params, Tools::getValue('email'), $customer->firstname.' '.$customer->lastname,
+		null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
+		die("Se ha compartido la lista");
 	}
 }

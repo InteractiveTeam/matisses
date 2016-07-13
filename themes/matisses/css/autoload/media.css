@@ -836,6 +836,12 @@
         height: auto;
     }
     
+    #frmAddGiftList {
+        width: 230px;
+        height: 100%;
+        overflow-x: auto;
+    }
+    
 }
 @media (max-width: 419px){
 	#order-detail-content #cart_summary td.cart_product{
@@ -1416,6 +1422,15 @@
         position: inherit;
     }
     
+    .my-giftlist .ax-form-lista-deseos .form-control {
+        width: 143px;
+        margin: 5px 5px 5px 0;
+        padding: 5px 7px;
+    }
+    
+    .my-giftlist .ax-form-lista-deseos .form-control.code {
+        margin: 5px 0 5px 5px;
+    }
     .product_list.grid .product-container:hover .wrap_view, .c_item .product-container:hover .wrap_view, .product_list.grid .product-container:hover:before, .c_item .product-container:hover:before, .product_list.grid .product-container:hover:after, .c_item .product-container:hover:after {
         display: none;
     }
@@ -1954,11 +1969,22 @@
 
 @media screen and (max-width :768px) {
 
-    #search {
+	.right-down-menu {
+	    padding: 0rem 1.875rem 0 0;
+	    margin: 10px 0 0 0;
+	    display: block;
+	}
+
+	.main-container .center_column #index #slider #homepage-slider {
+	    height: 23.6rem;
+	    position: relative;
+	}
+
+    /*#search {
         position: absolute;
         right: 14px;
         top: 55px;
-    }
+    }*/
 
     ul #search a {
         font-size: 25px;
@@ -1966,7 +1992,7 @@
 
 	    
     #slider .bx-controls.bx-has-pager {
-        bottom: 15%;
+        bottom: 5%;
     }
 
 	.slide-2 h2{
@@ -2156,6 +2182,25 @@
     
     .menu-copyright ul li {
         padding: 0 0.225rem;
+    }
+    
+    #buy_block .box-info-product .elem_butt, .wrap_buttons #btn_gift_list, #buy_block .box-info-product #usefull_link_block {
+        width: 100%;
+        font-size: 1rem;
+        margin: 5px 0;
+    }
+    
+    .wrap_buttons #btn_gift_list {
+        font-size: 0;
+        margin: 15px 0 0 0;
+    }
+    
+    .fancybox-wrap.fancybox-desktop.fancybox-type-inline.fancybox-opened {
+        width: 90% !important;
+    }
+    
+    .wrap_buttons #btn_gift_list:before {
+        font-size: 1rem;
     }
     
     .product_list .product-image-container img, .c_item .product-image-container img {
@@ -2423,6 +2468,30 @@
         width: 100%;
     }
     
+    /* modal */
+    
+    #frmAddGiftList {
+        width: 280px;
+    }
+    
+    #frmAddGiftList .form-group label span {
+        width: auto;
+        display: block;
+        text-align: left;
+    }
+    
+    #frmAddGiftList .chosen-single {
+        width: 210px;
+    }
+    
+    #frmAddGiftList .col-md-6 {
+        padding: 0;
+    }
+    
+    #frmAddGiftList .chosen-single, #frmAddGiftList #cant, #frmAddGiftList textarea {
+        margin-left: 5px;
+    }
+
     .center_column .product_list.grid .product-container:before, .center_column .product_list.grid .product-container:after, .center_column .c_item .product-container:before, .center_column .c_item .product-container:after, .product_list.grid .product-container:hover .wrap_view, .c_item .product-container:hover .wrap_view {
         display: none;
     }
@@ -3565,8 +3634,12 @@
     
     .primary_block .pb-left-column {
         position: relative;
-        min-height: 385px;
+        min-height: 434px;
         margin-bottom: 30px;
+    }
+    
+    #thumbs_list_frame #thumbs_list li {
+        padding: 0;
     }
     
     .ax-shareContent.ax-shareContentProduct p {
@@ -3628,11 +3701,16 @@
 
 @media screen and (max-width :320px) {
 
+
+	#page .header-container #header .cf #menu-left .menu-experiencias {
+	    top: 8.9375rem;
+	}
+
 	header .search-container {
 	    top: 63px;
 	}
 	    
-    #slider #homepage-slider {
+    body #page .main-container #columns #center_column #slider #homepage-slider {
         height: 14rem;
     }
     
@@ -3680,12 +3758,25 @@
     .ax-maps div[id*="map"] .ax-modal-map{
         width: 250px;
     }
+
+    
+    #frmAddGiftList {
+        width: 230px;
+        height: 100%;
+        overflow-x: auto;
+    }
+    
+    #frmAddGiftList #cant, #frmAddGiftList textarea {
+        width: 93%;
+        border: #ccc solid 1px;
+    }
+
 }
 
 /* iPhone 6 landscape */
 @media screen and (max-width: 375px) {
     
-    #slider #homepage-slider {
+    #page .main-container #center_column #slider #homepage-slider {
         height: 16rem;
     }
     
@@ -3762,7 +3853,7 @@
         padding: 3rem 0.625rem;
     }
 
-    #slider #homepage-slider {
+    #page .main-container #center_column #slider #homepage-slider {
         height: 13rem;
     }
 
@@ -3773,8 +3864,8 @@
         margin: 0;
     }
     
-    #menu.menu-experiencias {
-        top: 8.9375rem;
+   #header .main_panel #menu-left #menu.menu-experiencias {
+        top: 7.8rem;
         width: 100%;
     }
 
@@ -3929,6 +4020,11 @@
         margin: 0;
     }
 
+	#slider #homepage-slider {
+    	height: 30rem;
+	    position: relative;
+	}
+
 
 
 }
@@ -3957,4 +4053,3 @@
   and (orientation: portrait) 
   and (-webkit-min-device-pixel-ratio: 3)
 { }
-

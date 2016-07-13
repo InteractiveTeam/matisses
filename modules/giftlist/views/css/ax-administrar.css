@@ -1,8 +1,0 @@
-/*validation */
-input.error {
-    box-shadow: 0 0 5px red;  
-}
-label.error {
-    font-size: 12px;
-    color: red;
-}

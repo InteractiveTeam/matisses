@@ -6,6 +6,7 @@ class ListProductBondModel extends ObjectModel
 	public $id_product;
 	public $id_bond;
 	public $option;
+	public $cant;
 	public $group;
     public $bought;
 	public $favorite;
@@ -20,8 +21,9 @@ class ListProductBondModel extends ObjectModel
 			'id_list' => array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId', 'required' => true),
 			'id_product' => array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
 			'id_bond' => array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
+			'cant' => array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
 			'option' => array('type' => self::TYPE_STRING, 'required' => true),
-			'group' => array('type' => self::TYPE_STRING, 'required' => true, 'size' => 70),
+			'group' => array('type' => self::TYPE_STRING,'size' => 70),
 			'favorite' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
             'bought' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool'), 
 			'message' => array('type' => self::TYPE_STRING),
@@ -67,7 +69,7 @@ class ListProductBondModel extends ObjectModel
 	 */
 	public function getProductsByList($id){
 		 $sql = "SELECT * FROM "._DB_PREFIX_."list_product_bond WHERE id_list = ".$id." AND id_product <> 0 AND bought = 0";
-		 $res  = Db::getInstance()->executeS($sql);
+         $res  = Db::getInstance()->executeS($sql);
 		 $prod = array();
 		 $link = new LinkCore();
 		 foreach ($res as $row){
@@ -79,8 +81,9 @@ class ListProductBondModel extends ObjectModel
 					'data' => $my_prod->getAttributeCombinations(1),
 					'image' =>  $link->getImageLink($my_prod->link_rewrite[1], (int)$images[0]['id_image'], 'home_default'),
 					'price' => $my_prod->getPrice(),
-					'group' => $row['group'],
-					'options' => Tools::jsonDecode($row['option'])
+					'cant' => $row['cant'],
+					'options' => Tools::jsonDecode($row['option']),
+                    'favorite' => $row['favorite']
 				];
 		 }
 		 return $prod;

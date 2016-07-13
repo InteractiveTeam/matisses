@@ -9,6 +9,68 @@ include_once __DIR__ . '/classes/ListProductBond.php';
 class giftlist extends Module
 {
 	private $dbstruct;
+    
+    public static $moduleRoutes = array(
+         'module-giftlist-descripcion' => array(
+                'controller' => 'descripcion',
+                'rule' =>  'lista-de-regalos/lista{/:url}',
+              'keywords' => array(
+                    'url'   => array('regexp' => '[_a-zA-Z0-9_-]+',   'param' => 'url'),
+                  ),
+                'params' => array(
+                    'fc' => 'module',
+                    'module' => 'giftlist',
+                    'controller' => 'descripcion'
+                )
+            ),
+
+            'module-giftlist-listas' => array(
+                'controller' => 'listas',
+                'rule' =>  'lista-de-regalos/listas',
+                'keywords' => array(),
+                'params' => array(
+                    'fc' => 'module',
+                    'module' => 'giftlist',
+                    'controller' => 'listas'
+                )
+            ), 
+             
+            'module-giftlist-administrar' => array(
+                'controller' => 'administrar',
+                'rule' =>  'lista-de-regalos/crear',
+                'keywords' => array(),
+                'params' => array(
+                    'fc' => 'module',
+                    'module' => 'giftlist',
+                    'controller' => 'administrar'
+                )
+            ),  
+             
+            'module-giftlist-empezar' => array(
+                'controller' => 'empezar',
+                'rule' =>  'lista-de-regalos',
+                'keywords' => array(),
+                'params' => array(
+                    'fc' => 'module',
+                    'module' => 'giftlist',
+                    'controller' => 'empezar'
+                )
+            ), 
+             
+            'module-giftlist-buscar' => array(
+                'controller' => 'buscar',
+                'rule' =>  'lista-de-regalos/buscar',
+                'keywords' => array(),
+                'params' => array(
+                    'fc' => 'module',
+                    'module' => 'giftlist',
+                    'controller' => 'buscar'
+                )
+            ), 
+    );
+    
+    
+    
 	public function __construct()
 	{
 		$this->dbstruct = new DBStruct();
@@ -39,6 +101,7 @@ class giftlist extends Module
 			$this->registerHook("actionOrderStatusUpdate");
             $this->registerHook("actionCustomerAccountAdd");
             $this->registerHook("actionProductInList");
+            $this->registerHook('header');
 			$this->dbstruct->CreateListConfigurationTable();
 			$this->dbstruct->CreateEventTypeTable();
 			$this->dbstruct->CreateGiftListTable();
@@ -85,7 +148,8 @@ class giftlist extends Module
 	  $this->context->smarty->assign(
 	  		array(
 	  			'gift_link' =>  $this->context->link->getModuleLink('giftlist', 'listas'),
-  				'search_link' => $this->context->link->getModuleLink('giftlist', 'buscar')
+  				'search_link' => $this->context->link->getModuleLink('giftlist', 'buscar'),
+  				'create_link' => $this->context->link->getModuleLink('giftlist', 'administrar'),
 	  		));
 	  return $this->display(__FILE__, 'giftlistbtn.tpl');
 	}
@@ -105,7 +169,7 @@ class giftlist extends Module
     
     public function hookActionProductInList($params){
         $l = new GiftListModel($params['id_list']);
-        $p = new ProductCore($param["id_product"]);
+        $p = new ProductCore($params["id_product"]);
         $lpd = ListProductBondModel::getByProductAndList($params['id_list'],$params['id_product']);
         $customer = new CustomerCore($l->id_creator);
         $cant = ToolsCore::jsonDecode($lpd['group']);
@@ -176,7 +240,7 @@ class giftlist extends Module
                     $lpd->save();
                     $bond = new BondModel($product['id_bond']);
                     $list = new GiftListModel($product['id_giftlist']);
-                    $creator = $list->getCreator();
+                    $creator = $list->getCreator($list->id_creator);
                     $params = array(
                         '{creator}' =>  $creator->firstname,
                         '{value}' => $bond->value,
@@ -191,7 +255,7 @@ class giftlist extends Module
                     $lpd->save();
                     $prod = new ProductCore($product['id_product']);
                     $list = new GiftListModel($product['id_giftlist']);
-                    $creator = $list->getCreator();
+                    $creator = $list->getCreator($list->getCreator($list->id_creator));
                     $qty = Tools::jsonDecode($lpd->group);
                     $params = array(
                         '{creator}' =>  $creator->firstname,
@@ -313,46 +377,19 @@ class giftlist extends Module
 			return false;
 		}
 	}
-
-	public function hookModuleRoutes($params)
-	{
-		return [
-			'module-giftlist-descripcion' => [
-				'controller' => 'descripcion',
-				'rule' => 'giftlist/descripcion{/:url}',
-				'keywords' => [
-					'url' => ['regexp' => '[_a-zA-Z0-9_-]+', 'param' => 'url']
-				],
-				'params' => [
-					'fc' => 'module',
-					'module' => 'giftlist'
-				]
-			],
-			'module-giftlist-listas' => [
-				'controller' => 'listas',
-				'rule' => 'giftlist/listas',
-				'params' => [
-						'fc' => 'module',
-						'module' => 'giftlist'
-				]
-			],
-			'module-giftlist-administrar' => [
-				'controller' => 'administrar',
-				'rule' => 'giftlist/listas{/:url}',
-                'keywords' => [
-					'url' => ['regexp' => '[_a-zA-Z0-9_-]+', 'param' => 'url']
-				],
-				'params' => [
-						'fc' => 'module',
-						'module' => 'giftlist'
-				]
-			],
-		];
-	}
+    
+    public function hookModuleRoutes() {
+        return self::$moduleRoutes;
+    }
 
 	public function hookDisplayBackOfficeHeader()
 	{
 		$this->context->controller->addCss(_MODULE_DIR_."giftlist/views/css/tab.css");
 	}
 
+    public function hookHeader($params)
+    {
+        if(Dispatcher::getInstance()->getController() == "myaccount")
+            $this->context->controller->addJS((_MODULE_DIR_).'giftlist/views/js/ax-empezar.js');
+    }
 }

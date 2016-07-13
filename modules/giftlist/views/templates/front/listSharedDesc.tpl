@@ -1,6 +1,6 @@
 {* Shared List *}
 {capture name=path}
-<a href="{$all_link}">{l s='giftlist' mod='giftlist'}</a><i class="fa fa-angle-right"></i>{$list_desc['name']}
+<a href="{$link->getModuleLink('giftlist','empezar')}">{l s='giftlist' mod='giftlist'}</a><i class="fa fa-angle-right"></i><a href="{$all_link}">{l s='Administrar listas' mod='giftlist'}</a><i class="fa fa-angle-right"></i>{$list_desc['name']}
 {/capture}
 <div class="container">
 {if isset($response)}
@@ -81,9 +81,6 @@
 						<p>{$att_group['group_name']} : {$att_group['attribute_name']}</p>
 					{/if}
 				{/foreach}
-				{if $list_desc['edit']}
-				<button data-toggle="tooltip" data-placement="bottom" title="Quitar producto" class="delete-product">Quitar producto</button>
-				{/if}
 			</div>
 		{/foreach}
 		</div>

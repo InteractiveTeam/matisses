@@ -1,5 +1,6 @@
-<form action="" method="post" id="bond_form">
-  <h1>Comprar bono</h1>
+<div class="ax-add-gift-card">
+ <form action="" method="post" id="bond_form">
+  <h3>Comprar bono</h3>
   <div class="container">
     <div class="col-md-6">
         <div class="">
@@ -8,8 +9,11 @@
         </div>
     </div>
     <div class="col-md-6">
+     <p class="ax-text-descript">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       <div class="checkbox">
-        <label>Bono de lujo <input type="checkbox" id="luxury_bond" name="luxury_bond">
+        <label>
+            <input type="checkbox" id="luxury_bond" name="luxury_bond">
+            <span>Bono de lujo</span>
         </label>
       </div>
     </div>
@@ -19,13 +23,13 @@
       <label for="message">Mensaje</label>
       <textarea placeholder="Mensaje" name="message" id="message"></textarea>
     </div>
-  </div>
-  <div class="container">
     <div class="col-md-12">
+     <br/>
       <input id="btnSave" type="submit" name="saveList"
-        class="btn btn-success pull-right" value="Guardar">
+        class="btn pull-right btn-default btn-lista-regalos" value="Guardar">
       <button id="btnCancel"
-        class="btn btn-danger pull-left">Cancelar</button>
+        class="btn pull-left btn-default btn-lista-regalos">Cancelar</button>
     </div>
   </div>
 </form>
+</div>

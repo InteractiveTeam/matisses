@@ -1303,6 +1303,9 @@ box-sizing: border-box;
 	.checkbox label {
 	color: #777777;
 	}
+    #frmAddGiftList .checkbox label {
+	color: #4b4b4b;
+	}
 	.close {
 	opacity: 1;
 	}
@@ -3002,11 +3005,7 @@ box-sizing: border-box;
 	#authentication #center_column form.std .row .col-xs-4 .form-control,
 	#order-opc #center_column form.std .row .col-xs-4 .form-control {
 	max-width: 84px; }
-<<<<<<< HEAD
-
-=======
 	#identity #center_column .footer_links,
->>>>>>> d74c6e9d6756679d77aae30ad4cccdc7d3a48411
 	#authentication #center_column .footer_links,
 	#order-opc #center_column .footer_links {
 	border: none;
@@ -5330,7 +5329,7 @@ a.newPrint:hover {
     font-size: 18px;
 }
 
-#menu #giftlist {
+#menu #giftlist, .my-giftlist {
     display: none;
 }
 /*lista de deseos*/
@@ -5999,4 +5998,203 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 .fancybox-overlay .fancybox-wrap iframe {
     width: 100% !important;
     height: 102%;
+}
+
+/*lista de regalos*/
+
+.my-giftlist .ax-form-lista-deseos .form-control {
+    display: inline-block;
+    width: 160px;
+    margin: 10px 10px 10px 0;
+    padding: 6px 8px;
+    background: #f8f8f8;
+}
+
+.my-giftlist .ax-form-lista-deseos .form-control.code {
+    margin: 10px;
+} 
+
+.my-giftlist .ax-form-lista-deseos p {
+    display: inline-block;
+}
+.my-giftlist .text-option-list {
+    margin-bottom: 10px;
+}
+
+.wrap_buttons.cf .grid_12 div {
+    display: inline-block;
+}
+
+.wrap_buttons .grid_12 #usefull_link_block {
+    margin-right: 0;
+}
+
+.wrap_buttons #btn_gift_list {
+    display: inline-block;
+    margin: 0 0 0 0;
+    text-align: center;
+    padding: 0.5rem 10px;
+    color: #F00;
+    border: #E3E0E0 solid 1px;
+    background: #f8f8f8;
+    font-family: 'gothic';
+    font-size: 16px;
+}
+
+.elem_butt a {
+    font-size: 16px;
+}
+
+.wrap_buttons #btn_gift_list:hover {
+    color: #d7162f;
+    background: #E3E0E0;
+}
+
+.wrap_buttons #btn_gift_list:before {
+	font-family: "FontAwesome";
+    content: "\f06b";
+}
+
+/*modal*/
+
+#frmAddGiftList {
+    width: 600px;
+    overflow-y: auto !important;
+    height: 100%;
+}
+
+#frmAddGiftList label {
+    display: inline-block;
+    width: auto;
+    vertical-align: top;
+    width: 100%;
+}
+
+#frmAddGiftList .checkbox label {
+    line-height: 1rem;
+    margin: 8px 0;
+}
+
+#frmAddGiftList .form-group label span {
+    display: block;
+    vertical-align: top;
+}
+
+#frmAddGiftList .chosen-single {
+    display: inline-block;
+    width: 265px;
+}
+
+#frmAddGiftList .chosen-single span {
+    overflow: inherit;
+    display: inline-block;
+}
+
+#frmAddGiftList label p {
+    text-transform: lowercase;
+    margin: 8px 0;
+}
+
+#frmAddGiftList .ax-text-descript {
+    font-size: 0.85rem;
+}
+
+#frmAddGiftList .chosen-single, #frmAddGiftList #cant, #frmAddGiftList textarea {
+    
+}
+
+#frmAddGiftList .btn-list-regalos {
+    text-align: right;
+    width: 100%;
+}
+
+#frmAddGiftList .btn-list-regalos button {
+    
+}
+
+#frmAddGiftList #cant, #frmAddGiftList input {
+    width: 100%;
+}
+
+#frmAddGiftList textarea {
+    width: 100%;
+    border: #ccc solid 1px;
+}
+/*
+.fancybox-opened {
+    width: auto !important;
+}
+*/
+#buy_block .box-info-product .elem_butt {
+    margin: 1.25rem 0.2rem 0 0;
+}
+
+#buy_block .box-info-product .elem_butt {
+    width: 33.7%;
+}
+
+#buy_block .box-info-product #usefull_link_block {
+    width: 25.7%;
+}
+
+#contentdiv .response {
+    margin-bottom: 20px;
+}
+
+#frmAddGiftList .message {
+    line-height: 1.5rem;
+    padding: 8px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.contentdiv .price {
+    font-family: "condensed";
+    font-size: 2rem;
+    color: #777676;
+}
+
+#frmAddGiftList .form-group {
+    position: relative;
+}
+
+#frmAddGiftList .label-error {
+    font-size: 12.9px;
+    font-weight: 400 !important;
+    line-height: 16px;
+    padding: 5px;
+    top: 94%;
+    z-index: 2;
+    left: 2%;
+    display: block;
+    padding: 8px !important;
+    background: rgba(232, 232, 232, 0.9);
+    font-family: 'Open Sans', sans-serif;
+    color: #d7162f;
+    position: absolute;
+}
+
+#frmAddGiftList .label-error:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-bottom: rgba(232, 232, 232, 0.85) solid 6px;
+    display: block;
+    position: absolute;
+    bottom: 100%;
+    left: 20px;
+    border-right: transparent solid 6px;
+    border-left: transparent solid 6px;
+}
+
+#frmAddGiftList .chosen-container .chosen-results {
+    max-height: 160px;
+}
+
+.chosen-container.chosen-with-drop .chosen-drop {
+    width: 267px;
+    top: 86%;
+}
+
+.select .chosen-container-single .chosen-single {
+    height: 46px;
 }
