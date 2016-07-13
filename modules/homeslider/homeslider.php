@@ -497,10 +497,7 @@ class HomeSlider extends Module
 			$slide->typeslide = Tools::getValue('typeslide');
 			$slide->active = (int)Tools::getValue('active_slide');
 			$slide->videoid = Tools::getValue('videoid');
-		  
-            
-            
-            
+		                          
 			/* Sets each langue fields */
 			$languages = Language::getLanguages(false);
 
@@ -514,7 +511,6 @@ class HomeSlider extends Module
 				/* Uploads image and sets slide */
 				$type = Tools::strtolower(Tools::substr(strrchr($_FILES['image_'.$language['id_lang']]['name'], '.'), 1));
 				$imagesize = @getimagesize($_FILES['image_'.$language['id_lang']]['tmp_name']);
-                
                 
                 $temp_name = tempnam(_PS_TMP_IMG_DIR_, 'PS');
                 
@@ -549,9 +545,7 @@ class HomeSlider extends Module
 					$slide->image[$language['id_lang']] = Tools::getValue('image_old_'.$language['id_lang']);
                 }elseif($slide->typeslide){
                     
-                    include "res/MP4Info.php";
-                    $infoMp4 = MP4Info::getInfo($_FILES['image_'.$language['id_lang']]['tmp_name']);
-                    if($infoMp4->hasVideo){                        
+                    if($_FILES['image_'.$language['id_lang']]['tmp_name']){
                         $temp = explode(".", $_FILES['image_'.$language['id_lang']]["name"]);
                         $newfilename = round(microtime(true)) . '.' . end($temp);
                         

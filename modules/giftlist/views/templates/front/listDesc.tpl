@@ -4,7 +4,7 @@
 <div class="ax-avatar-content">
     <div id="ax-cover-container">
         <div class="cont-img">
-            <img class="ax-cover-img" src="{if !empty($list_desc['image'])}{$list_desc['image']}{else}{$modules_dir}/giftlist/views/img/banner.jpg{/if}" width="920" height="300">
+            <div class="ax-cover-img" width="180" style="background-image: url('{if !empty($list_desc['image'])}{$list_desc['image']}{else}{$modules_dir}/giftlist/views/img/banner.jpg{/if}')"></div>
         </div>
     </div>
     <div id="ax-prof-container">

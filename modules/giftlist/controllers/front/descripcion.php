@@ -7,7 +7,7 @@ include_once _PS_MODULE_DIR_ . "matisses/matisses.php";
 include_once _PS_OVERRIDE_DIR_ ."controllers/front/CartController.php";
 define("_ERROR_","Ha ocurrido un error, vuelva a intentarlo mas tarde");
 define("_DELETED_","Elmininado Correctamente");
-define("_EDITED_","Se ha editado la informacion");
+define("_EDITED_","Se ha editado la información");
 
 class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	public $uploadDir = _PS_UPLOAD_DIR_."giftlist/";
