@@ -28,8 +28,8 @@ upload/
 
 # Excluir GiftList
 modules/giftlist/uploads/*
-#override/classes/Cart.php
-#override/controllers/front/CartController.php
+override/classes/Cart.php
+override/controllers/front/CartController.php
 modules/blockfacebooklike/views/templates/hook/fans.tpl
 .project
 .buildpath
