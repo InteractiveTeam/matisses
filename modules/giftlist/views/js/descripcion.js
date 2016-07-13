@@ -211,7 +211,7 @@ function uploadImage(prof,input){
         success: function(res){
             var today = new Date();
             if(prof)
-                $(".ax-profile-img").css("background-image","url("+res+")");
+                $(".ax-profile-img").css("background-image","url("+res+"?"+today.getTime()+")");
             else
                 $(".ax-cover-img").attr("src",res+"?"+today.getTime());
             $.fancybox({
