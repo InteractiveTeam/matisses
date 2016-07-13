@@ -147,17 +147,8 @@
                 class="jplist-pagination" 
                 data-control-type="pagination" 
                 data-control-name="paging" 
-                data-control-action="paging"
-                data-items-per-page="{$items_per_page}">
+                data-control-action="paging">
                 </div>
-                   {literal}
-                    <div class="jplist-label" 
-                        data-type="{current} de {pages}" 
-                        data-control-type="pagination-info" 
-                        data-control-name="paging" 
-                        data-control-action="paging">
-                    </div> 
-                    {/literal}
                 <select
                     class="jplist-select" 
                     data-control-type="items-per-page-select" 

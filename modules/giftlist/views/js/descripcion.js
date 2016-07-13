@@ -176,8 +176,6 @@ $(document).ready(function() {
       itemPath: '.product-card' 
       ,panelPath: '.jplist-panel'	
    });
-    
-  $('.jplist-pagingmid').after($('.jplist-label'));
 });
 
 function deleteMsg(){
