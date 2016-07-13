@@ -391,9 +391,12 @@ label.error:before {
     width: 85px;
 }
 
-.module-giftlist-buscar .ax-cont-list .part.ax-read-more, .ax-cont-admin-listas-regalos .ax-cont-list .part.ax-read-more {
+.module-giftlist-buscar .ax-cont-list .part.ax-read-more, .ax-cont-admin-listas-regalos .ax-cont-list .part.ax-read-more  {
     border-bottom: transparent solid 1px;
-    width: 100%;
+}
+
+.ax-cont-admin-listas-regalos .ax-cont-list .part.ax-read-more {
+     width: 100%;
 }
 
 .module-giftlist-buscar .part span, .ax-cont-admin-listas-regalos .part span {
