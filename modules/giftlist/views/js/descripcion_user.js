@@ -41,6 +41,12 @@ $(document).ready(function(){
             $("#mount").attr("min",min_amount);
         }
     });
+    
+    jp = $('#ax-products').jplist({				
+      itemsBox: '.ax-prod-cont', 
+      itemPath: '.product-card' 
+      ,panelPath: '.jplist-panel'	
+   });
 });
 
 /*********************
