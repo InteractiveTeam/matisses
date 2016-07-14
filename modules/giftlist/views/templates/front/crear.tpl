@@ -11,7 +11,7 @@
 
 <form id="frmSaveList" role="form" action="" method="post" enctype="multipart/form-data">
     <h1>{l s='Crear lista de regalos' mod='giftlist'}</h1>
-    <p class="ax-text-pp-create">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+    <p class="ax-text-pp-create">{l s='Este es el primer paso para crear tu lista de regalos. Completa tu información personal para que tus familiares y amigos sepan de quién es esta lista.' mod='giftlist'}</p>
     <div>
 
       <!-- Nav tabs -->
@@ -156,7 +156,7 @@
         <div data-tab-id="2" role="tabpanel" class="tab-pane" id="step-2">
             <div class="row">
                 <div class="col-md-12">
-                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                   <p>{l s='Personaliza tu lista de regalos, agrega una foto de perfil y una foto de portada. Procura que tengan buen tamaño, expresa tu gusto, estilo y creatividad. También puedes indicar.' mod='giftlist'}</p>
                 </div>
             </div>
             <div class="row">
@@ -187,7 +187,7 @@
                 <div class="col-md-6">
                     <label for="message">
                     {l s='Mensaje' mod='giftlist'}</label>
-                    <p class="ax-text-descript">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p class="ax-text-descript">{l s='Este mensaje aparecerá como bienvenida a tu lista de regalos, cuéntales a tus amigos y familiares de qué se trata.' mod='giftlist'}</p>
                     
                     <textarea name="message" class="form-control" id="message"></textarea>
                 </div>
@@ -198,7 +198,7 @@
                             <input type="checkbox" id="cocreator">
                         </label>
                         <div>
-                            <p class="ax-text-descript">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p class="ax-text-descript">{l s='Invita a una persona para que te ayude a administrar tu lista. Puede ser tu prometido, tu mejor amiga, un familiar o cualquiera que sea tu mano derecha para esa fecha especial.' mod='giftlist'}</p>
                         </div>
                         <div class="col-md-12 hidden" id="cocreator-div">
                             <label for="email_co">{l s='Correo electrónico' mod='giftlist'}</label>
@@ -237,6 +237,7 @@
                 <div class="col-md-6">
                     <div class="form-group gender-line">
                         <h3>{l s='Tipo de lista' mod='giftlist'}</h3>
+                        <p class="ax-text-descript">{l s='Elige la privacidad de tu lista, al hacerla privada solamente podrán acceder mediante el código o el link directo.' mod='giftlist'}</p>
                         <div class="radio-inline">
                             <label for="list_type">
                                 <input type="radio" id="list_type" name="list_type" value="1" checked="checked">
