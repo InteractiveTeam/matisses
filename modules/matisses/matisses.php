@@ -1852,8 +1852,9 @@ class matisses extends Module
 				Db::getInstance()->Execute($sql);
 				return true;
 			 }
-		echo "<p>";print_r($result['return']['detail']);echo"</p>";*/
-		return false;	 
+		echo "<p>";print_r($result['return']['detail']);echo"</p>";
+		return false;	*/ 
+        return true;
 	}
 	
 	/*******************************************************
