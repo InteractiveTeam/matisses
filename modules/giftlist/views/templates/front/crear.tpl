@@ -244,14 +244,14 @@
                                 {l s='Público' mod='giftlist'}
                             </label>
                         </div>
-                        <span class="ax-message-public">{l s='Tu lista quedará pública, así podrá ser encontrada por el nombre del creador, co-creador y/o código.' mod='giftlist'}</span>
+                        <span class="ax-text-descript">{l s='Tu lista quedará pública, así podrá ser encontrada por el nombre del creador, co-creador y/o código.' mod='giftlist'}</span>
                         <div class="radio-inline">
                             <label for"list_type">
                                 <input type="radio" id="list_type" name="list_type" value="0">
                                 {l s='Privado' mod='giftlist'}
                             </label>
                         </div>
-                        <span class="ax-message-private hidden">{l s='Tu lista quedará privada y solo podrá ser encontrada por el código de la misma.' mod='giftlist'}</span>
+                        <span class="ax-text-descript hidden">{l s='Tu lista quedará privada y solo podrá ser encontrada por el código de la misma.' mod='giftlist'}</span>
 				    </div>
                 </div>
                 <div class="col-md-6">
