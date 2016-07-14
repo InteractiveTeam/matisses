@@ -1968,6 +1968,10 @@
 }
 
 @media screen and (max-width :768px) {
+    
+    .fancybox-wrap {
+        width: 80% !important;
+    }
 
 	.right-down-menu {
 	    padding: 0rem 1.875rem 0 0;
@@ -2209,6 +2213,13 @@
 	#redes {
 	    padding: 0 10px;
 	}    
+}
+
+@media screen and (max-width :568px) {
+    #productsSortForm .chosen-container.chosen-with-drop .chosen-drop {
+        left: 0;
+        width: 200px;
+    }
 }
 
 @media screen and (max-width :480px) {
@@ -2486,10 +2497,7 @@
     
     #frmAddGiftList .col-md-6 {
         padding: 0;
-    }
-    
-    #frmAddGiftList .chosen-single, #frmAddGiftList #cant, #frmAddGiftList textarea {
-        margin-left: 5px;
+        width: 100%;
     }
 
     .center_column .product_list.grid .product-container:before, .center_column .product_list.grid .product-container:after, .center_column .c_item .product-container:before, .center_column .c_item .product-container:after, .product_list.grid .product-container:hover .wrap_view, .c_item .product-container:hover .wrap_view {
@@ -3063,12 +3071,12 @@
 	}
 
 	.newsMenuCats .content-destacados .title-destacado {
-				width: 72px;
-		    transform: rotate(90deg);
-		    height: 320px;
-		    margin: 0;
-		    margin-top: -150px;
-		    margin-left: 125px;
+        width: 72px;
+        transform: rotate(90deg);
+        height: 320px;
+        margin: 0;
+        margin-top: -150px;
+        margin-left: 125px;
 	}
 
 	.newsMenuCats .content-destacados .newsLeft {
@@ -3700,7 +3708,10 @@
 }
 
 @media screen and (max-width :320px) {
-
+    
+    #frmAddGiftList .chosen-single {
+        width: 222px;
+    }
 
 	#page .header-container #header .cf #menu-left .menu-experiencias {
 	    top: 8.9375rem;
@@ -3767,7 +3778,7 @@
     }
     
     #frmAddGiftList #cant, #frmAddGiftList textarea {
-        width: 93%;
+        width: 98%;
         border: #ccc solid 1px;
     }
 
@@ -3836,6 +3847,14 @@
     
     .newsletter-footer .newsletter-input {
         width: 100%;
+    }
+    
+    #frmAddGiftList textarea {
+        width: 99%;
+    }
+    
+    #frmAddGiftList .chosen-single {
+        width: 270px;
     }
 
     
@@ -3930,6 +3949,10 @@
 
     li#search {
         top: 0;
+    }
+    
+    .add_to_cart button {
+        width: inherit;
     }
 
     
