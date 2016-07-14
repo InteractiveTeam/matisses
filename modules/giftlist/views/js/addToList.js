@@ -59,7 +59,6 @@ $(function(){
                             'centerOnScroll': true,
                             'content' : res.msg
                         });
-                        $("#add-list").attr("disabled", true);
                         $("#add-list").removeAttr("id");
                     }else{
                         $(".response").text(res.msg);

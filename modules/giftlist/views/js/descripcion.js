@@ -17,10 +17,13 @@ $(document).ready(function() {
         nav:true,
         responsive:{
             0:{
-                items:1
+                items:2
             },
-            600:{
-                items:3
+            568:{
+                items:2
+            },
+            768:{
+                items:4
             },
             1000:{
                 items:5
@@ -213,7 +216,7 @@ function uploadImage(prof,input){
             if(prof)
                 $(".ax-profile-img").css("background-image","url("+res+"?"+today.getTime()+")");
             else
-                $(".ax-cover-img").attr("src",res+"?"+today.getTime());
+                $(".ax-cover-img").css("background-image","url("+res+"?"+today.getTime()+")");
             $.fancybox({
              'autoScale': true,
              'minWidth': 240,
@@ -244,7 +247,7 @@ function deleteImage(prof,el){
             if(prof == "1")
                 $(".ax-profile-img").css("background-image","url("+res+"?"+today.getTime()+")");
             else
-                $(".ax-cover-img").attr("src",res+"?"+today.getTime());
+                $(".ax-cover-img").css("background-image","url("+res+"?"+today.getTime()+")");
         }
     });
 }
