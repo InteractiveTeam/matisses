@@ -2047,7 +2047,7 @@ class matisses extends Module
 
 		$this->hookactionCustomerAccountUpdate(array('email'=>$this->context->cookie->email),true, $Addresses,$this->context->cookie->id_customer);
 	
-        $codeShop = Db::getInstance()->getValue('SELECT cod_shop_matisses FROM '._DB_PREFIX_.'cart WHERE id_cart = "'.$this->context->cookie->id_cart.'"');
+        $codeShop = Db::getInstance()->ExecuteS('SELECT cod_shop_matisses FROM '._DB_PREFIX_.'cart WHERE id_cart = "'.$this->context->cookie->id_cart.'"');
         $codeshopmatisses = '';
         
         if (!empty($codeShop)) {
