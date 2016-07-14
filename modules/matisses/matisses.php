@@ -1827,7 +1827,7 @@ class matisses extends Module
 	// FUNCIONES DE COMUNICACION CON SAP	
 	public function wsmatisses_facturar($params)
 	{
-		set_time_limit(0);
+		/*set_time_limit(0);
  		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
 		$order['orderDTO']['header']['prestashopOrderId'] = $params['id_order'];
@@ -1853,7 +1853,8 @@ class matisses extends Module
 				return true;
 			 }
 		echo "<p>";print_r($result['return']['detail']);echo"</p>";
-		return false;	 
+		return false;	*/ 
+        return true;
 	}
 	
 	/*******************************************************
@@ -2046,11 +2047,11 @@ class matisses extends Module
 
 		$this->hookactionCustomerAccountUpdate(array('email'=>$this->context->cookie->email),true, $Addresses,$this->context->cookie->id_customer);
 	
-        $codeShop = Db::getInstance()->getValue('SELECT code_shop_matisses FROM '._DB_PREFIX_."cart WHERE id_cart = ".$this->context->cookie->id_cart);
+        $codeShop = Db::getInstance()->getValue('SELECT cod_shop_matisses FROM '._DB_PREFIX_.'cart WHERE id_cart = "'.$this->context->cookie->id_cart.'"');
         $codeshopmatisses = '';
         
         if (!empty($codeShop)) {
-            $codeshopmatisses = $codeShop[0]['code_shop_matisses'];
+            $codeshopmatisses = $codeShop[0]['cod_shop_matisses'];
         }
         
 		$orderDTO = array();

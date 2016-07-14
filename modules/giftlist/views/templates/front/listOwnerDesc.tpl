@@ -90,15 +90,11 @@
             <div class="owl-carousel">
             {foreach item=cat from=$cats}
                 {if $cat.id_parent == 3}
-                {assign var="cat_img" value="/img/c/{$cat.id}-categories_home.jpg"}
+                {assign var="cat_img" value="/img/c/{$cat.id_category}-medium_default.jpg"}
                 <div class="item">
                     {assign var="first" value=0}
                     <a href="/{$cat.id_category}-{$cat.link_rewrite}">
-                        {if file_exists($cat_img)} 
-                            <img class="replace-2x" src="{$cat_img}" alt="" />
-                        {else}
-                            <img class="replace-2x" src="/img/c/nl-default-categories_home.jpg" alt="" />
-                        {/if}
+                        <img class="replace-2x" src="{$cat_img}" alt="" />
                         <p>{$cat.name}</p>
                     </a>
                 </div>

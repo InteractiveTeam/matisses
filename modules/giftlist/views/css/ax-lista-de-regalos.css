@@ -1785,9 +1785,9 @@ label.error:before {
         margin: 80px 0 20px 0;
     }
     
-    .ax-categories .owl-carousel .owl-item {
+    /*.ax-categories .owl-carousel .owl-item {
         width: 140px !important;
-    }
+    }*/
     
     .ax-categories .owl-carousel .owl-itemimg {
         width: 100%;

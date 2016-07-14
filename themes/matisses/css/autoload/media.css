@@ -872,7 +872,6 @@
 
 @media screen and (max-width :639px) {
 
-	/*Header*/
 	.menu-mobile-grover {
 		position: absolute;
 		left: 5rem;
@@ -1973,6 +1972,12 @@
         width: 80% !important;
     }
 
+	.header-container #search {
+	    position: absolute;
+	    right: 9px;
+	    bottom: 22px;
+	}
+
 	.right-down-menu {
 	    padding: 0rem 1.875rem 0 0;
 	    margin: 10px 0 0 0;
@@ -1980,7 +1985,7 @@
 	}
 
 	.main-container .center_column #index #slider #homepage-slider {
-	    height: 23.6rem;
+	    height: 23.1rem;
 	    position: relative;
 	}
 
@@ -2658,7 +2663,7 @@
 		padding-top: 10% !important;
 	}
 
-	.slider .banner #homepage-slider .homeslider-description  h2, .slider .banner #homepage-slider .homeslider-description  h3 {
+	body #center_column .slider .banner #homepage-slider .homeslider-description  h2, body #center_column .slider .banner #homepage-slider .homeslider-description  h3x {
 		font-size: 1.8rem;
 		line-height: 1.8rem;
         padding: 0;
@@ -3708,10 +3713,23 @@
 }
 
 @media screen and (max-width :320px) {
-    
+
     #frmAddGiftList .chosen-single {
         width: 222px;
     }
+
+	body .header-container #search {
+	    position: absolute;
+	    display: block;
+	    top: 0;
+	    right: 113px;
+	    z-index: 999;
+	}
+	
+	.homeslider-container .btn-slider .buy, .homeslider-container .btn-slider .more {
+	    padding-left: 1.5rem;
+	    padding-right: 1.5rem;
+	}
 
 	#page .header-container #header .cf #menu-left .menu-experiencias {
 	    top: 8.9375rem;
@@ -3863,6 +3881,8 @@
 
 @media screen and (max-width: 414px){
 
+
+
     #slider .bx-controls.bx-has-pager {
         bottom: 8%;
     }
@@ -3876,7 +3896,7 @@
         height: 13rem;
     }
 
-    .slider .banner #homepage-slider .homeslider-description h2, .slider .banner #homepage-slider .homeslider-description h3 {
+    #slider .banner #homepage-slider .homeslider-description h2, #slider .banner #homepage-slider .homeslider-description h3 {
         font-size: 1.8rem;
         line-height: 1.8rem;
         padding: 0;
@@ -3962,6 +3982,20 @@
 
 @media screen and (max-width: 603px){
 
+	.header-container #search {
+	    position: absolute;
+	    display: block;
+	    top: 0;
+	    right: 161px;
+	    z-index: 999;
+	}
+
+
+	#header #menu.menu-experiencias {
+	    top: 300px;
+	}
+
+
     header .search-container {
         position: absolute;
         width: 100%;
@@ -3978,7 +4012,7 @@
     }
     
     
-    #homepage-slider .homeslider-description h2, #homepage-slider .homeslider-description h3 {
+    #slider #homepage-slider .homeslider-description h2, #slider #homepage-slider .homeslider-description h3 {
         font-size: 2.75rem;
         line-height: 2.75rem;
         padding: 0;
@@ -4035,6 +4069,17 @@
 
 @media screen and (max-width: 1024px){
 
+	.banner #homeslider video {
+	    width: 100%;
+	    height: 100%;
+	}
+
+	.banner #homeslider .slide-3 .circle {
+	    width: 100px;
+	    height: 100px;
+	    padding: 0;
+	    background-position: 23px;
+	}
 
     #homepage-slider .homeslider-description h2, #homepage-slider .homeslider-description h3 {
         font-size: 4rem;
@@ -4047,6 +4092,8 @@
     	height: 30rem;
 	    position: relative;
 	}
+
+
 
 
 

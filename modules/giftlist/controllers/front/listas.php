@@ -112,10 +112,11 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
                 $lpd = new ListProductBondModel();
                 $lpd->id_list = $data['list'];
                 $lpd->id_product = $id_product;
+                $lpd->group = 1;
                 $lpd->cant = $data['cant_group'];
                 $lpd->message = $data['message'];
                 $lpd->option = Tools::jsonEncode($data['form']);
-                $lpd->favorite = $data['fav'] == "true" ? true : false;
+                $lpd->favorite = $data['fav'];
                 $lpd->created_at = date ( "Y-m-d H:i:s" );
                 $pcant -= $data['cant_group'];
                 $lpd->save();
@@ -124,9 +125,10 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
             $lpd->id_list = $data['list'];
             $lpd->id_product = $id_product;
             $lpd->cant = $pcant;
+            $lpd->group = 1;
             $lpd->message = $data['message'];
             $lpd->option = Tools::jsonEncode($data['form']);
-            $lpd->favorite = $data['fav'] == "true" ? true : false;
+            $lpd->favorite = $data['fav'];
             $lpd->created_at = date ( "Y-m-d H:i:s" );
             $lpd->save();
         }else{
@@ -134,9 +136,10 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
             $lpd->id_list = $data['list'];
             $lpd->id_product = $id_product;
             $lpd->message = $data['message'];
+            $lpd->group = 0;
             $lpd->cant = $data['cant'];
             $lpd->option = Tools::jsonEncode($data['form']);
-            $lpd->favorite = $data['fav'] == "true" ? true : false;
+            $lpd->favorite = $data['fav'];
             $lpd->created_at = date ( "Y-m-d H:i:s" );
             $lpd->save();
         }		
@@ -155,7 +158,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
             'prod_name' => $prod->getProductName($id_product),
             'attributes' => $att,
             'price' => $prod->getPrice(),
-            'image' => "http://".$link->getImageLink($prod->link_rewrite[1], (int)$images[0]['id_image'], 'home_default'),
+            'image' => Tools::getShopProtocol().$link->getImageLink($prod->link_rewrite[1], (int)$images[0]['id_image'], 'home_default'),
             'description_link' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url)),
             'error' => false
         )));
