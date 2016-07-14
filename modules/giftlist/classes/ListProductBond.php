@@ -121,7 +121,14 @@ class ListProductBondModel extends ObjectModel
 	}
     
     public static function getByProductAndList($id_prod,$id_list){
-        $sql = "SELECT * FROM ". _DB_PREFIX_ ."list_product_bond WHERE id_list = ".$id_list." AND id_product = ".$id_prod;
-        return Db::getInstance()->getRow($sql);
+        $totalCant = "SELECT SUM(cant) FROM `ps_list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_product." AND `group` = 1 GROUP BY id_product";
+        $boughtCant = "SELECT SUM(cant) FROM `ps_list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_product." AND `group` = 1 AND bought =1 GROUP BY id_product";
+        $missingtCant = "SELECT SUM(cant) FROM `ps_list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_product." AND `group` = 1 AND bought = 0 GROUP BY id_product";
+        $sql = "SELECT * FROM ". _DB_PREFIX_ ."list_product_bond WHERE id_list = ".$id_list." AND id_product = ".$id_prod . " GROUP BY id_product";
+        $prod = Db::getInstance()->getRow($sql);
+        $prod['total'] = Db::getInstance()->getValue($totalCant);
+        $prod['bought'] = Db::getInstance()->getValue($boughtCant);
+        $prod['missing'] = Db::getInstance()->getValue($missingtCant);
+        return $prod;
     }
 }
