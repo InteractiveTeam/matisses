@@ -2057,7 +2057,7 @@ class matisses extends Module
 		$orderDTO['orderDTO']['header']['prestashopOrderId']= $this->context->cookie->id_cart;
 		$orderDTO['orderDTO']['header']['customerId']		= $this->context->customer->charter;
 		$orderDTO['orderDTO']['header']['comments']		= Db::getInstance()->getValue('SELECT message FROM '._DB_PREFIX_."message WHERE id_cart = ".$this->context->cookie->id_cart);
-		$orderDTO['orderDTO']['header']['codeShop']	= $codeshopmatisses;
+		$orderDTO['orderDTO']['header']['pickUpStore']	= $codeshopmatisses;
 		foreach($products as $d => $v)
 		{
 			$orderDTO['orderDTO']['detail'][$d]['itemCode'] = $products[$d]['reference'];
