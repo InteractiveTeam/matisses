@@ -142,12 +142,12 @@ class registerWithSap extends Module
                                         $product->update();
                                         $cart->updateQty($item['quantity'], $prod[0]['id_product']);   
                                     }
-                                    /*if (!empty($prod)) {
+                                    if (!empty($prod)) {
                                         $product = new Product($prod[0]['id_product']);
                                         $product->quantity = $product->quantity+1;
                                         $product->update();
                                         $cart->updateQty($item['quantity'], $prod[0]['id_product']);
-                                    }*/
+                                    }
                                 } else {
                                     unset($cart);
                                 }
@@ -173,12 +173,12 @@ class registerWithSap extends Module
                                     $product->update();
                                     $cart->updateQty($ordersap['items']['quantity'], $prod[0]['id_product']);   
                                 }
-                                /*if (!empty($prod)) {
+                                if (!empty($prod)) {
                                     $product = new Product($prod[0]['id_product']);
                                     $product->quantity = $product->quantity+1;
                                     $product->update();
                                     $cart->updateQty($ordersap['items']['quantity'], $prod[0]['id_product']);   
-                                }*/
+                                }
                             } else {
                                unset($cart);
                             }
