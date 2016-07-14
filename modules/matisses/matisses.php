@@ -2046,10 +2046,18 @@ class matisses extends Module
 
 		$this->hookactionCustomerAccountUpdate(array('email'=>$this->context->cookie->email),true, $Addresses,$this->context->cookie->id_customer);
 	
+        $codeShop = Db::getInstance()->getValue('SELECT code_shop_matisses FROM '._DB_PREFIX_."cart WHERE id_cart = ".$this->context->cookie->id_cart);
+        $codeshopmatisses = '';
+        
+        if (!empty($codeShop)) {
+            $codeshopmatisses = $codeShop[0]['code_shop_matisses'];
+        }
+        
 		$orderDTO = array();
 		$orderDTO['orderDTO']['header']['prestashopOrderId']= $this->context->cookie->id_cart;
 		$orderDTO['orderDTO']['header']['customerId']		= $this->context->customer->charter;
 		$orderDTO['orderDTO']['header']['comments']		= Db::getInstance()->getValue('SELECT message FROM '._DB_PREFIX_."message WHERE id_cart = ".$this->context->cookie->id_cart);
+		$orderDTO['orderDTO']['header']['codeShop']	= $codeshopmatisses;
 		foreach($products as $d => $v)
 		{
 			$orderDTO['orderDTO']['detail'][$d]['itemCode'] = $products[$d]['reference'];
