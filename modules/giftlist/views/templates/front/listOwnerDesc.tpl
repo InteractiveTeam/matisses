@@ -105,14 +105,38 @@
     </div>
 	
 	<div class="products-associated" data-id="{$list_desc['id']}">
-	    <div class="ax-text-result-list ax-result-inline">
-            <h2>{l s='Mi lista' mod='giftlist'}</h2>
+	    <div class="text-left">
+            <div class="ax-text-result-list ax-result-inline">
+                <h2>{l s='Mi lista' mod='giftlist'}</h2>
+            </div>
+            <a href="javascript:void(0);" class="ax-list-edit">{l s='Editar lista' mod='giftlist'}</a>
+            <a href="javascript:void(0);" class="ax-finish-edit hidden">{l s='Terminar edición' mod='giftlist'}</a>
         </div>
 		
-        <a href="javascript:void(0);" class="ax-list-edit">{l s='Editar lista' mod='giftlist'}</a>
-        <a href="javascript:void(0);" class="ax-finish-edit hidden">{l s='Terminar edición' mod='giftlist'}</a>
+        
         <div id="ax-products">
-            
+            <div class="jplist-panel">
+               <div class="sortPagiBar">
+               <label for="nb_item"> <span>Mostrar</span> </label>
+               <select
+                    class="jplist-select" 
+                    data-control-type="items-per-page-select" 
+                    data-control-name="paging" 
+                    data-control-action="paging">
+
+                    <option data-number="4"> 4 </option>
+                    <option data-number="8" data-default="true" selected> 8 </option>
+                    <option data-number="12"> 12 </option>
+                    <option data-number="all"> Todos </option>
+                </select>	
+                </div>					
+                <div 
+                class="jplist-pagination" 
+                data-control-type="pagination" 
+                data-control-name="paging" 
+                data-control-action="paging">
+                </div>
+            </div>
             <div class="row ax-prod-cont">
                 {foreach from=$products item=row}
                     {$atribute_group = $row['options'][3]->value}
@@ -139,14 +163,10 @@
                     <span class="ax-bond-value">{l s='Total bonos' mod='giftlist'}: {convertPrice price=$bond['total']}</span> <br>       
                 </div>
             </div>
-            <div class="jplist-panel">						
-                <div 
-                class="jplist-pagination" 
-                data-control-type="pagination" 
-                data-control-name="paging" 
-                data-control-action="paging">
-                </div>
-                <select
+            <div class="jplist-panel">
+               <div class="sortPagiBar">
+               <label for="nb_item"> <span>Mostrar</span> </label>
+               <select
                     class="jplist-select" 
                     data-control-type="items-per-page-select" 
                     data-control-name="paging" 
@@ -156,7 +176,14 @@
                     <option data-number="8" data-default="true" selected> 8 </option>
                     <option data-number="12"> 12 </option>
                     <option data-number="all"> Todos </option>
-                </select>
+                </select>	
+                </div>					
+                <div 
+                class="jplist-pagination" 
+                data-control-type="pagination" 
+                data-control-name="paging" 
+                data-control-action="paging">
+                </div>
             </div>
 		</div>
 	</div>

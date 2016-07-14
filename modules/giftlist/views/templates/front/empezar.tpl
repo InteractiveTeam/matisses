@@ -4,7 +4,7 @@
 {if version_compare($smarty.const._PS_VERSION_,'1.6.0.0','<')}{include file="$tpl_dir./breadcrumb.tpl"}{/if}
 <h1>{l s='Lista de regalos' mod='giftlist'}</h1>
 <div class="ax-img-cont">
-    <img src="{$modules_dir}/giftlist/views/img/banner.jpg" width=1110" heigth="253"/>
+   <div class="ax-imagen-introduction" style="background-image: url('{$modules_dir}/giftlist/views/img/banner.jpg')" width=1110" heigth="253"/></div>
     <p class="ax-text-description-lista">{l s='Bienvenido a la Lista de regalos Matisses, el espacio donde podrás crear fácilmente y con total libertad tus deseos para tu boda, cumpleaños, nuevo apartamento o lo que se te pueda ocurrir. Elige complementos para tu hogar, muebles, decorativos y todo lo que encuentres en nuestro completo catálogo de productos.' mod='giftlist'}</p>
 </div>
 <div class="row">

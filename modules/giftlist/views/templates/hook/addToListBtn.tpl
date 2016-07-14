@@ -62,7 +62,7 @@
 	</div>
 </div>
 
-<div id="contentdiv" style="display: none;">
+<div id="contentdiv" class="finish" style="display: none;">
 	<div class="container">
 		<p class="response"></p>
 		<div class="col-md-6">

@@ -454,12 +454,15 @@ label.error:before {
     border-top: #ccc solid 1px;
     padding: 20px 15px;
     text-align: right;
+    background-size: cover; 
 }
 
 /*index*/
 
-.module-giftlist-empezar .ax-img-cont {
+.module-giftlist-empezar .ax-img-cont .x-imagen-introduction {
     width: 100%;
+    height: 253px;
+    background-size: cover; 
 }
 
 .module-giftlist-empezar .col-md-6 {
@@ -645,7 +648,7 @@ label.error:before {
     margin-bottom: 40px;
 }
 
-.ax-address > a, .products-associated > a, .ax-message-content .ax-edit {
+.ax-address > a, .products-associated > a, .products-associated .ax-list-edit, .products-associated .ax-finish-edit {
     margin-left: 20px;
     font-size: 16px;
     text-decoration: underline;
@@ -655,7 +658,7 @@ label.error:before {
     letter-spacing: 0.6px
 }
 
-.products-associated > .ax-finish-edit {
+.products-associated .ax-finish-edit {
     color: #d9292e;
 }
 
@@ -749,7 +752,7 @@ label.error:before {
 
 .products-associated .product-card .img-container {
     width: 100%;
-    height: 255px;
+    height: auto;
 }
 
 .products-associated .product-card .ax-info-list {
@@ -885,8 +888,69 @@ label.error:before {
     transform: scale(1);
 }
 
+
+.module-giftlist-descripcion .jplist-panel {
+   display: inline-block;
+    margin: 30px 0;
+}
+
+.module-giftlist-descripcion .jplist-panel .jplist-pagination {
+    margin: 0 0 0 20px;
+    float: left;
+}
+
 .module-giftlist-descripcion .parrilla-productos .btn-lista-regalos {
     margin: 40px 0 0 25px;
+}
+
+.module-giftlist-descripcion .jplist-panel .jplist-pagingmid {
+    display: block;
+    padding: 7.5px;
+    border: none;
+}
+
+.module-giftlist-descripcion .jplist-panel .jplist-pagination {
+    border: 1px solid #dbdbdb;
+}
+
+.module-giftlist-descripcion .jplist-panel .jplist-pagination button {
+    margin: 0;
+    background: transparent;
+    border-radius: 0;
+    border: none;
+    font-family: 'gothic';
+}
+
+.module-giftlist-descripcion .jplist-panel .jplist-pagination .jplist-pagingprev, .module-giftlist-descripcion .jplist-panel .jplist-pagination .jplist-pagingnext {
+    padding: 5px;
+}
+
+.module-giftlist-descripcion .sortPagiBar {
+    display: inline-block;
+    float: left;
+}
+
+.module-giftlist-descripcion .sortPagiBar label {
+    font-family: 'gothic';
+    color: #4b4b4b;
+    border-left: 1px solid #dbdbdb;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    display: inline-block;
+    height: 2.99rem;
+    padding: 0.9375rem;
+    font-size: 1rem;
+    text-transform: none;
+    vertical-align: top;
+    line-height: 1rem;
+}
+
+.module-giftlist-descripcion .jplist-panel .jplist-pagination button {
+    color: #5e534d;
+}
+
+.module-giftlist-descripcion .jplist-panel .jplist-pagination .jplist-current {
+    color: #f03800;
 }
 
 #address-form {
@@ -1062,7 +1126,7 @@ label.error:before {
 #frmSaveList input, #frmSaveList .chosen-container a, #frmSaveList  textarea {
     background: #f8f8f8;
     border: #dbdbdb solid 1px;
-    padding: 6px 12px;
+    padding: 8.5px 12px;
 }
 
 #frmSaveList .tab-pane .ax-date-event {
@@ -1137,7 +1201,11 @@ label.error:before {
 #address-div #address-form label, #address-div #address-form span, #address-div #address-form input {
     font-family: Georgia, 'Georgia' !important;
     font-weight: 100;
-    font-size: 1rem !important;
+    font-size: 0.95rem !important;
+}
+
+#address-div .form-control {
+    padding: 8.5px 10px;
 }
 
 #address-div #address-form span {
@@ -1260,6 +1328,18 @@ label.error:before {
     color: #5e534d;
     vertical-align: middle;
     font-size: 1.3rem;
+}
+
+.products-associated {
+    text-align: center;
+}
+
+.products-associated .ax-prod-cont {
+    text-align: left;
+}
+
+.jplist-panel .chosen-container.chosen-with-drop .chosen-drop {
+    width: inherit;
 }
 
 @media screen and (max-width:1024px) {
@@ -1397,10 +1477,19 @@ label.error:before {
         border: #ccc solid 1px;
         padding: 8px;
     }
+    
+    .module-giftlist-descripcion .btn.btn-default.btn-lista-regalos {
+        float: none;
+         margin: 0;
+    }
 
 }
 
 @media screen and (max-width:568px) {
+    
+    .center_column .jplist-panel {
+        display: inline-block;
+    }
     
     #address-div a.chosen-single {
         width: 246px;
@@ -1473,7 +1562,7 @@ label.error:before {
     }
     
     .ax-form-data-search input, .ax-form-data-search input#code {
-        width: 98%;
+        width: 96%;
         margin: 0;
     }
     
@@ -1501,7 +1590,7 @@ label.error:before {
     }
     
     .ax-search-home .ax-form-data-search input {
-       width: 100%;
+       width: 96%;
     }
     
     .ax-search-home .btn.btn-default.btn-lista-regalos {
@@ -1563,6 +1652,11 @@ label.error:before {
     .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(2) {
         padding-top: 20px;
     }
+    
+    .module-giftlist-descripcion .sortPagiBar {
+        margin-right: 0;
+        float: left;
+    }
 
 }
 
@@ -1586,6 +1680,7 @@ label.error:before {
     
     .module-giftlist-descripcion h1, .module-giftlist-descripcion h2 {
         font-size: 1.7rem;
+        text-align: left;
     }
     
     .module-giftlist-descripcion .ax-text-result-list {
@@ -1613,10 +1708,23 @@ label.error:before {
     }
     
     .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(even) {
-        text-align: center;
+        text-align: right;
     }
     
-    .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(odd) {
+    .ax-general-info .ax-cont-list .part:nth-child(2) span {
+        text-align: center;
+        width: 85%;
+        float: right;
+    }
+    
+    .ax-general-info .ax-cont-list .part:nth-child(3) span {
+        text-align: center;
+        width: 40%;
+    }
+    
+    .ax-general-info .ax-cont-list .part:nth-child(4) span {
+        float: right;
+        width: 80%;
         text-align: center;
     }
     
@@ -1704,7 +1812,6 @@ label.error:before {
     
     .products-associated .ax-text-result-list {
         display: inline-block;
-        padding: 15px 50px;
     }
     
     .module-giftlist-descripcion .product-card.col-md-3 {
