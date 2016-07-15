@@ -24,8 +24,8 @@
                 <div class="part">{l s='Tus regalos' mod='giftlist'}<span>{$numberProducts.products}</span></div>
                 <div class="part">{l s='Regalos restantes' mod='giftlist'}<span>{$numberProducts.products_bought}</span></div>
                 <div class="part">{l s='Registrante' mod='giftlist'}<span class="ax-creator-name">{$creator}</span></div>
-                <div class="part">{l s='Tipo de evento' mod='giftlist'}<span>{$event_type}</span></div>
-                <div class="part">{l s='Fecha' mod='giftlist'}<span>{date("d/m/Y",strtotime($list_desc['event_date']))}</span></div>
+                <div class="part">{l s='Tipo de evento' mod='giftlist'}<span class="ax-event-type">{$event_type}</span></div>
+                <div class="part">{l s='Fecha' mod='giftlist'}<span class="ax-event-date">{date("d/m/Y",strtotime($list_desc['event_date']))}</span></div>
                 <div class="part"><span><a href="#info-div" class="ax-edit-info">{l s='Editar información' mod='giftlist'}</a></span></div>
             </div>
         </div>
@@ -272,8 +272,8 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <label for="firstname">{l s='Cocreador' mod='giftlist'}</label> 
-                <input type="text" class="form-control" name="firstname" id="firstname" value="{$email_co}">
+                <label for="email_co">{l s='Cocreador' mod='giftlist'}</label> 
+                <input type="text" class="form-control" name="email_co" id="email_co" value="{$email_co}">
             </div>
             <div class="col-md-6">
                     <label for="event_type">{l s='Tipo de evento' mod='giftlist'}<sup>*</sup></label>
@@ -304,7 +304,6 @@
                 {l s='November' mod='giftlist'}
                 {l s='December' mod='giftlist'}
             *}
-            {$ev_date|print_r}
             <label>{l s='Fecha del evento' mod='giftlist'}<sup>*</sup></label>
             <div class="col-md-4 ax-date-event">
                 <select id="months" name="months" class="form-control ax-select">
@@ -327,7 +326,7 @@
                     <option value="0">{l s='Año' mod='giftlist'}</option>
                     {for $i=$year to $limit}
                         
-                        <option value="{$i}" {if $year == $ev_date[0]}selected{/if}>{$i}&nbsp;&nbsp;{$ev_date[0]}</option>
+                        <option value="{$i}" {if $i == $ev_date[0]}selected{/if}>{$i}&nbsp;&nbsp;</option>
                     {/for}
                 </select>
             </div>
