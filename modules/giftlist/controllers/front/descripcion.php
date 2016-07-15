@@ -38,12 +38,15 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 		$ev = "SELECT name FROM "._DB_PREFIX_."event_type WHERE id =".$res['event_type'];
 		$sql = "SELECT id_customer,firstname,lastname FROM "._DB_PREFIX_.
 		"customer WHERE id_customer = ". $res['id_creator'];
-		$sql2 = "SELECT id_customer,firstname,lastname FROM "._DB_PREFIX_.
+		$sql2 = "SELECT id_customer,firstname,lastname,email FROM "._DB_PREFIX_.
 		"customer WHERE id_customer = ". $res['id_cocreator'];
 		$creator = Db::getInstance()->getRow($sql);
 		$cocreator = Db::getInstance()->getRow($sql2);
+        $months = Tools::dateMonths();
+		$days = Tools::dateDays();
 		$this->context->smarty->assign ( array (
 			'list_desc' => $res,
+            'ev_date' => explode("-",substr($res['event_date'],0,-9)),
 			'all_link' => $this->context->link->getModuleLink('giftlist', 'listas'),
 			'admin_link' => $this->context->link->getModuleLink('giftlist', 'administrar',array("url" => Tools::getValue('url'))),
 			'address' => Tools::jsonDecode($res['info_creator']),
@@ -61,7 +64,13 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			'share_list' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/share_email.php",
             'countries' => CountryCore::getCountries($this->context->language->id),
             'cats' => Category::getCategories( (int)($cookie->id_lang), true, false  ),
-            'items_per_page' => 8
+            'items_per_page' => 8,
+            'months' => $months,
+            'days_d' => $days,
+            'year' => date('Y'),
+            'limit' => date('Y') + 20,
+            'email_co' => $cocreator['email'],
+            'events' => Db::getInstance ()->executeS ( "SELECT * FROM `" . _DB_PREFIX_ . "event_type`" ),
 		) );
 
 		if($this->context->customer->isLogged()){
@@ -100,10 +109,33 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 						$this->_saveAddress(Tools::getValue('id_list'), Tools::getValue('form'));
                     case "updateAmount":
 						$this->_updateminAmount(Tools::getValue('id_list'), Tools::getValue('value'));
+                    case "editInfo":
+						$this->_editInfo(Tools::getValue('id_list'), Tools::getValue('data'));
 				}
 			}
 		}
 	}
+    
+    private function _editInfo($id,$data){
+        $data =(object)$data;
+        $l = new GiftListModel($id);
+        if($data->email_co && $data->email_co != "")
+            $l->id_cocreator = $l->setCoCreator($l->id,$data->email_co,$data->firstname . " " .$data->lastname,$l->url);
+        $l->event_date = date("Y-m-d",strtotime($data->years."-".$data->months."-".$data->days));
+        $ev = "SELECT name FROM "._DB_PREFIX_."event_type WHERE id =".$data->event_type;
+        Db::getInstance()->update('gift_list',array(
+            'firstname' => $data->firstname,
+            'lastname' => $data->lastname,
+            'id_cocreator' =>  $l->id_cocreator,
+            'event_date' => $l->event_date,
+            'event_type' => $data->event_type
+        ),"id = " . $id);
+        die(Tools::jsonEncode(array(
+            'name' => $data->firstname . " " . $data->lastname, 
+            'date' => $l->event_date,
+            'event' => Db::getInstance()->getValue($ev)
+        )));
+    }
     
     private function _updateminAmount($id,$val){
         $sql = "UPDATE "._DB_PREFIX_."gift_list SET min_amount = $val  WHERE id = ".$id;
@@ -283,6 +315,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			if ($li->updateInfo()){
 				die( Tools::jsonEncode(array (
 					'response' => _EDITED_,
+                    'name' => $data['firstname'] . " " . $data['lastname'],
                     'data' => $li->info_creator,
                     'a_b' => $li->address_before,
                     'a_a' => $li->address_after,

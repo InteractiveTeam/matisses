@@ -102,10 +102,151 @@ class registerWithSap extends Module
                         $addressObj->add();
                     }
                     
-                    // Registering orders
-                    
-                    foreach ($sapOrders['customerOrdersDTO']['orders'] as $ordersap) {
-                        
+                    // Registering orders                    
+                    if ($this->isNumericArray($sapOrders['customerOrdersDTO']['orders'])) {
+                        foreach ($sapOrders['customerOrdersDTO']['orders'] as $ordersap) {
+
+                            // create new cart if needed    
+                            $cart = new Cart();
+                            $cart->id_customer = $idcustomer;
+                            $cart->id_address_delivery = $addressObj->id;
+                            $cart->id_address_invoice = $cart->id_address_delivery;
+                            $cart->id_lang = (int)($this->context->cookie->id_lang);
+                            $cart->id_currency = (int)($this->context->cookie->id_currency);
+                            $cart->id_carrier = 0;
+                            $cart->recyclable = 0;
+                            $cart->gift = 0;
+                            $cart->add();                        
+                            $this->context->cookie->id_cart = (int)($cart->id); 
+                            $cart->update();   
+
+                            if ($this->isNumericArray($ordersap['items'])) {
+                                foreach ($ordersap['items'] as $item) {
+                                    if ($item['quantity'] != 0) {
+                                        $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
+
+                                        if (empty($prod)) {
+                                            $prodsap = $mat->wsmatisses_getInfoProduct($item['itemCode'], true);
+                                            $modeloSAP = $prodsap['model'];
+                                            include_once dirname(__FILE__).'/../matisses/productos.php';
+                                            $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
+                                            $product = new Product($prod[0]['id_product']);
+                                            $product->quantity = $product->quantity+1;
+                                            $product->active = true;
+                                            $product->update();
+                                            $cart->updateQty($item['quantity'], $prod[0]['id_product']);    
+                                        } else {
+                                            $product = new Product($prod[0]['id_product']);
+                                            $product->quantity = $product->quantity+1;
+                                            $product->active = true;
+                                            $product->update();
+                                            $cart->updateQty($item['quantity'], $prod[0]['id_product']);   
+                                        }
+                                    } else {
+                                        unset($cart);
+                                    }
+                                }
+                            } else {
+                                if ($ordersap['items']['quantity'] != 0) {
+                                    $prod = Product::searchByName($cart->id_lang, $ordersap['items']['itemCode']);
+
+                                    if (empty($prod)) {
+                                        $prodsap = $mat->wsmatisses_getInfoProduct($ordersap['items']['itemCode'], true);
+                                        $modeloSAP = $prodsap['model'];
+                                        include_once dirname(__FILE__).'/../matisses/productos.php';
+                                        $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
+                                        $product = new Product($prod[0]['id_product']);
+                                        $product->quantity = $product->quantity+1;
+                                        $product->active = true;
+                                        $product->update();
+                                        $cart->updateQty($item['quantity'], $prod[0]['id_product']);     
+                                        die();
+                                    } else {
+                                        $product = new Product($prod[0]['id_product']);
+                                        $product->quantity = $product->quantity+1;
+                                        $product->active = true;
+                                        $product->update();
+                                        $cart->updateQty($ordersap['items']['quantity'], $prod[0]['id_product']);   
+                                    }
+                                } else {
+                                   unset($cart);
+                                }
+                            }
+
+                            // Create Orders
+                            if (isset($cart)) {
+                                $order = new Order();
+                                $order->id = $ordersap['invoiceNumber'];
+                                $order->current_state = 5;
+                                $prodlist = array();
+                                foreach ($cart->getProducts() as $prodcart) {
+                                    array_push($prodlist, $prodcart);
+                                } 
+                                $order->product_list = $prodlist;
+                                $carrier = null;
+                                if (!$cart->isVirtualCart() && isset($package['id_carrier'])) {
+                                    $carrier = new Carrier((int)$package['id_carrier'], (int)$cart->id_lang);
+                                    $order->id_carrier = (int)$carrier->id;
+                                    $id_carrier = (int)$carrier->id;
+                                } else {
+                                    $order->id_carrier = 0;
+                                    $id_carrier = 0;
+                                }
+                                $order->id_customer = $cart->id_customer;
+                                $order->id_address_invoice = $cart->id_address_invoice;
+                                $order->id_address_delivery = $cart->id_address_delivery;
+                                $order->id_currency = $this->context->currency->id;
+                                $order->id_lang = $cart->id_lang;
+                                $order->id_cart = $cart->id;
+                                $order->reference = $order->generateReference();
+                                $order->id_shop = (int)$this->context->shop->id;
+                                $order->id_shop_group = (int)$this->context->shop->id_shop_group;
+                                $order->secure_key = $params['securekey'];
+                                $order->payment = 'Pago en Tienda Física';
+                                if (isset($this->name)) {
+                                    $order->module = $this->name;
+                                }
+                                $order->recyclable = $cart->recyclable;
+                                $order->gift = (int)$cart->gift;
+                                $order->gift_message = $cart->gift_message;
+                                $order->mobile_theme = $cart->mobile_theme;
+                                $order->conversion_rate = $this->context->currency->conversion_rate;
+                                $order->total_paid_real = $ordersap['total'];
+                                $order->total_products = (float)$cart->getOrderTotal(false);
+                                $order->total_products_wt = (float)$cart->getOrderTotal(true);
+                                $order->total_discounts_tax_excl = 0;
+                                $order->total_discounts_tax_incl = 0;
+                                $order->total_discounts = 0;
+                                $order->total_shipping = 0;
+                                $order->carrier_tax_rate = 0;
+                                $order->total_paid = $ordersap['total'];
+                                $order->total_paid_tax_incl = $ordersap['total'];
+                                $order->total_paid_tax_excl = $ordersap['total'];
+                                $order->round_mode = 0;
+                                $order->round_type = Configuration::get('PS_ROUND_TYPE');
+                                $order->invoice_date = '0000-00-00 00:00:00';
+                                $order->delivery_date = '0000-00-00 00:00:00';                            
+
+                                // Creating order
+                                $result = $order->add();
+
+                                if (!$result) {
+                                    echo "<pre><h1>Error creating Order</h1>"; print_r($result); echo "</pre>";
+                                }
+
+                                $id_order_state = $order->current_state;
+                                $order_list[] = $order;
+                                // Insert new Order detail list using cart for the current order
+                                $order_detail = new OrderDetail(null, null, $this->context);
+                                $order_detail->createList($order, $cart, $id_order_state, $order->product_list, 0, true);
+                                $order_detail_list[] = $order_detail;
+
+                                unset($order);
+                                unset($order_detail);
+                            }
+                        }
+                    } else {
+                        $ordersWithSap = $sapOrders['customerOrdersDTO']['orders'];
                         // create new cart if needed    
                         $cart = new Cart();
                         $cart->id_customer = $idcustomer;
@@ -119,12 +260,12 @@ class registerWithSap extends Module
                         $cart->add();                        
                         $this->context->cookie->id_cart = (int)($cart->id); 
                         $cart->update();   
-                        
-                        if ($this->isNumericArray($ordersap['items'])) {
-                            foreach ($ordersap['items'] as $item) {
+
+                        if ($this->isNumericArray($ordersWithSap['items'])) {
+                            foreach ($ordersWithSap['items'] as $item) {
                                 if ($item['quantity'] != 0) {
                                     $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
-                                    
+
                                     if (empty($prod)) {
                                         $prodsap = $mat->wsmatisses_getInfoProduct($item['itemCode'], true);
                                         $modeloSAP = $prodsap['model'];
@@ -142,22 +283,16 @@ class registerWithSap extends Module
                                         $product->update();
                                         $cart->updateQty($item['quantity'], $prod[0]['id_product']);   
                                     }
-                                    if (!empty($prod)) {
-                                        $product = new Product($prod[0]['id_product']);
-                                        $product->quantity = $product->quantity+1;
-                                        $product->update();
-                                        $cart->updateQty($item['quantity'], $prod[0]['id_product']);
-                                    }
                                 } else {
                                     unset($cart);
                                 }
                             }
                         } else {
-                            if ($ordersap['items']['quantity'] != 0) {
-                                $prod = Product::searchByName($cart->id_lang, $ordersap['items']['itemCode']);
-                                    
+                            if ($ordersWithSap['items']['quantity'] != 0) {
+                                $prod = Product::searchByName($cart->id_lang, $ordersWithSap['items']['itemCode']);
+
                                 if (empty($prod)) {
-                                    $prodsap = $mat->wsmatisses_getInfoProduct($ordersap['items']['itemCode'], true);
+                                    $prodsap = $mat->wsmatisses_getInfoProduct($ordersWithSap['items']['itemCode'], true);
                                     $modeloSAP = $prodsap['model'];
                                     include_once dirname(__FILE__).'/../matisses/productos.php';
                                     $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
@@ -166,28 +301,23 @@ class registerWithSap extends Module
                                     $product->active = true;
                                     $product->update();
                                     $cart->updateQty($item['quantity'], $prod[0]['id_product']);     
+                                    die();
                                 } else {
                                     $product = new Product($prod[0]['id_product']);
                                     $product->quantity = $product->quantity+1;
                                     $product->active = true;
                                     $product->update();
-                                    $cart->updateQty($ordersap['items']['quantity'], $prod[0]['id_product']);   
-                                }
-                                if (!empty($prod)) {
-                                    $product = new Product($prod[0]['id_product']);
-                                    $product->quantity = $product->quantity+1;
-                                    $product->update();
-                                    $cart->updateQty($ordersap['items']['quantity'], $prod[0]['id_product']);   
+                                    $cart->updateQty($ordersWithSap['items']['quantity'], $prod[0]['id_product']);   
                                 }
                             } else {
                                unset($cart);
                             }
                         }
-                        
+
                         // Create Orders
                         if (isset($cart)) {
                             $order = new Order();
-                            $order->id = $ordersap['invoiceNumber'];
+                            $order->id = $ordersWithSap['invoiceNumber'];
                             $order->current_state = 5;
                             $prodlist = array();
                             foreach ($cart->getProducts() as $prodcart) {
@@ -222,44 +352,36 @@ class registerWithSap extends Module
                             $order->gift_message = $cart->gift_message;
                             $order->mobile_theme = $cart->mobile_theme;
                             $order->conversion_rate = $this->context->currency->conversion_rate;
-                            $order->total_paid_real = 0;
-
-                            $order->total_products = (float)$cart->getOrderTotal(false, Cart::ONLY_PRODUCTS, $order->product_list, $id_carrier);
-                            $order->total_products_wt = (float)$cart->getOrderTotal(true, Cart::ONLY_PRODUCTS, $order->product_list, $id_carrier);
-                            $order->total_discounts_tax_excl = (float)abs($cart->getOrderTotal(false, Cart::ONLY_DISCOUNTS, $order->product_list, $id_carrier));
-                            $order->total_discounts_tax_incl = (float)abs($cart->getOrderTotal(true, Cart::ONLY_DISCOUNTS, $order->product_list, $id_carrier));
-                            $order->total_discounts = $order->total_discounts_tax_incl;
+                            $order->total_paid_real = $ordersWithSap['total'];
+                            $order->total_products = (float)$cart->getOrderTotal(false);
+                            $order->total_products_wt = (float)$cart->getOrderTotal(true);
+                            $order->total_discounts_tax_excl = 0;
+                            $order->total_discounts_tax_incl = 0;
+                            $order->total_discounts = 0;
                             $order->total_shipping = 0;
-
-                            if (!is_null($carrier) && Validate::isLoadedObject($carrier)) {
-                                $order->carrier_tax_rate = $carrier->getTaxesRate(new Address((int)$cart->{Configuration::get('PS_TAX_ADDRESS_TYPE')}));
-                            }
-
-                            $order->total_wrapping_tax_excl = (float)abs($cart->getOrderTotal(false, Cart::ONLY_WRAPPING, $order->product_list, $id_carrier));
-                            $order->total_wrapping_tax_incl = (float)abs($cart->getOrderTotal(true, Cart::ONLY_WRAPPING, $order->product_list, $id_carrier));
-                            $order->total_wrapping = $order->total_wrapping_tax_incl;
-                            $order->total_paid_tax_excl = (float)Tools::ps_round((float)$cart->getOrderTotal(false, Cart::BOTH, $order->product_list, $id_carrier), _PS_PRICE_COMPUTE_PRECISION_);
-                            $order->total_paid_tax_incl = (float)Tools::ps_round((float)$cart->getOrderTotal(true, Cart::BOTH, $order->product_list, $id_carrier), _PS_PRICE_COMPUTE_PRECISION_);
-                            $order->total_paid = $order->total_paid_tax_incl;
-                            $order->round_mode = Configuration::get('PS_PRICE_ROUND_MODE');
+                            $order->carrier_tax_rate = 0;
+                            $order->total_paid = $ordersWithSap['total'];
+                            $order->total_paid_tax_incl = $ordersWithSap['total'];
+                            $order->total_paid_tax_excl = $ordersWithSap['total'];
+                            $order->round_mode = 0;
                             $order->round_type = Configuration::get('PS_ROUND_TYPE');
                             $order->invoice_date = '0000-00-00 00:00:00';
                             $order->delivery_date = '0000-00-00 00:00:00';                            
-                            
+
                             // Creating order
                             $result = $order->add();
 
                             if (!$result) {
                                 echo "<pre><h1>Error creating Order</h1>"; print_r($result); echo "</pre>";
                             }
-                           
+
                             $id_order_state = $order->current_state;
                             $order_list[] = $order;
                             // Insert new Order detail list using cart for the current order
                             $order_detail = new OrderDetail(null, null, $this->context);
                             $order_detail->createList($order, $cart, $id_order_state, $order->product_list, 0, true);
                             $order_detail_list[] = $order_detail;
-                            
+
                             unset($order);
                             unset($order_detail);
                         }

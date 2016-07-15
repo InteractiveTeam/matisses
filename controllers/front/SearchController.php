@@ -142,11 +142,6 @@ class SearchControllerCore extends FrontController
             $auxGet = array('total'=>$search['total'],'lista'=>$this->n,'page'=>$this->p);
             $_SESSION['search_custom'] = array_merge($_SESSION['search_custom'],$auxGet);
             
-            echo '<div style="display:none">';
-            echo '<pre>';
-            print_r($_SESSION['search_custom']);
-            echo '</pre></div>';
-            
             $nbProducts = $search['total'];
 			$this->pagination($nbProducts);
 

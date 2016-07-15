@@ -229,7 +229,7 @@ class matisses extends Module
 			|| !$this->registerHook('actionSortFilters')
 			|| !$this->registerHook('moduleRoutes')
 			
-			|| $this->registerHook('actionCustomerAccountUpdate')
+			|| $this->registerHook('actionCustomerAccountUpdate')			
 			|| $this->registerHook('actionValidateProductsAvailableCart')
 			|| $this->registerHook('actionCustomerAccountAdd')
 			|| $this->registerHook('actionProductCartSave')
@@ -1827,7 +1827,7 @@ class matisses extends Module
 	// FUNCIONES DE COMUNICACION CON SAP	
 	public function wsmatisses_facturar($params)
 	{
-		/*set_time_limit(0);
+		set_time_limit(0);
  		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
 		$order['orderDTO']['header']['prestashopOrderId'] = $params['id_order'];
@@ -1853,8 +1853,7 @@ class matisses extends Module
 				return true;
 			 }
 		echo "<p>";print_r($result['return']['detail']);echo"</p>";
-		return false;	*/ 
-        return true;
+		return false;	 
 	}
 	
 	/*******************************************************
@@ -2047,23 +2046,18 @@ class matisses extends Module
 
 		$this->hookactionCustomerAccountUpdate(array('email'=>$this->context->cookie->email),true, $Addresses,$this->context->cookie->id_customer);
 	
-        $codeShop = Db::getInstance()->ExecuteS('SELECT cod_shop_matisses FROM '._DB_PREFIX_.'cart WHERE id_cart = "'.$this->context->cookie->id_cart.'"');
-        $codeshopmatisses = '';
-        
-        if (!empty($codeShop)) {
-            $codeshopmatisses = $codeShop[0]['cod_shop_matisses'];
-        }
-        
+        $codeShop = Db::getInstance()->ExecuteS('SELECT cod_shop_matisses FROM '._DB_PREFIX_.'cart WHERE id_cart = "'.$this->context->cookie->id_cart.'"');        
 		$orderDTO = array();
 		$orderDTO['orderDTO']['header']['prestashopOrderId']= $this->context->cookie->id_cart;
 		$orderDTO['orderDTO']['header']['customerId']		= $this->context->customer->charter;
 		$orderDTO['orderDTO']['header']['comments']		= Db::getInstance()->getValue('SELECT message FROM '._DB_PREFIX_."message WHERE id_cart = ".$this->context->cookie->id_cart);
-		$orderDTO['orderDTO']['header']['pickUpStore']	= $codeshopmatisses;
+		$orderDTO['orderDTO']['header']['pickUpStore']	= $codeShop[0]['cod_shop_matisses'];
+        
 		foreach($products as $d => $v)
 		{
 			$orderDTO['orderDTO']['detail'][$d]['itemCode'] = $products[$d]['reference'];
 			$orderDTO['orderDTO']['detail'][$d]['quantity'] = $products[$d]['quantity'];
-		}	
+		}
 		$response = Db::getInstance()->getRow("SELECT * FROM `" . _DB_PREFIX_ . "wsmatisses_pagos` 
 												WHERE customer_id=".$this->context->customer->id.
 												" AND id_shop = ". $this->context->customer->id_shop.
@@ -2601,6 +2595,55 @@ class matisses extends Module
     public function getStatusColor($id_prod,$id_prod_attr){
         return StockAvailable::getQuantityAvailableByProduct((int)$id_prod,(int)$id_prod_attr);
     }
-	
+    
+    public function changeAttrDefault($id_prod,$id_prod_attr){    	
+        $stock = StockAvailable::getQuantityAvailableByProduct((int)$id_prod,(int)$id_prod_attr);
+        if(!$stock){
+        	$product = new ProductCore((int)$id_prod);
+        	$data = Db::getInstance()->ExecuteS('SELECT * FROM `' . _DB_PREFIX_ . 'product_attribute` 
+											WHERE id_product ="'.$id_prod.'"');
+
+	        foreach ($data as $key => $value) {
+	        	$stockCombination = StockAvailable::getQuantityAvailableByProduct((int)$id_prod,$value['id_product_attribute']);
+        		if ($value['id_product_attribute'] != $id_prod_attr && $stockCombination > 0){
+        			//Como el producto principal esta agotado debemos establecer otra combinación como la principal
+
+        			//$test = $product->checkDefaultAttributes();
+			        $product->deleteDefaultAttributes();
+			        $product->setDefaultAttribute((int)$value['id_product_attribute']);
+
+			        $specific_price = Db::getInstance()->getRow('SELECT * FROM `' . _DB_PREFIX_ . 'specific_price` 
+											WHERE id_product ="'.$id_prod.'" AND 
+											id_product_attribute = "'.$value['id_product_attribute'].'"');
+			        //enviamos los nuevos parametros del producto(combination)  que no esta agotado
+			        $json = array(
+			            'status' => 'ok',
+			            'id_prod_attr' => $value['id_product_attribute'],
+			            'qty'=> StockAvailable::getQuantityAvailableByProduct((int)$id_prod,$value['id_product_attribute']),
+			            'specific_price'=> $specific_price
+			        );
+        			break;
+        		}
+	        }
+        }else{
+			$json = array(
+	            'status' => 'bad'
+	        );
+        }
+        return $json;        
+    }
+
+    /* function to get all necessary data of products combinations	 
+	 * return array products combinations
+	 */
+	public function getProductAttributeCombinations($product) {
+	    $combinations = array();        
+        $product = new Product ($product);
+        // get the product combinations data
+        // create array combinations with key = id_product
+        $combination = $product->getAttributeCombinations(1);
+
+	    return $combination;
+	}
 }	
 ?>

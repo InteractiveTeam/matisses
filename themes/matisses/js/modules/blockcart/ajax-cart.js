@@ -802,7 +802,8 @@ var ajaxCart = {
 			        {
 			            type: 'inline',
 			            autoScale: true,
-			            minHeight: 30,
+			            minHeight: 70,
+                        minWidth: 250,
 			            content: '<p class="fancybox-error">' + errors + '</p>'
 			        }
 			    ], {

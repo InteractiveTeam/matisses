@@ -34,7 +34,8 @@
         {/if}
         
         {assign var='status' value=matisses::getStatusColor($color.id_product,$color.id_product_attribute)}
-        {*if $status*}
+        
+        {if $status}
             <li>
                 <a 
                     data-idproductattribute="{$color.id_product_attribute}" 
@@ -47,7 +48,7 @@
                     {/if}
                 </a>
             </li>
-        {*/if*}
+        {/if}
 	{/foreach}
 </ul>
 {literal}
