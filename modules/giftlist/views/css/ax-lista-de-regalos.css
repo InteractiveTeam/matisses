@@ -680,6 +680,7 @@ label.error:before {
 .module-giftlist-descripcion #carousel-example-generic {
     width: 90%;
     margin: 0 auto;
+    clear: both;
 }
 
 .module-giftlist-descripcion #carousel-example-generic p {
@@ -1116,6 +1117,7 @@ label.error:before {
     border-bottom: #ccc solid 1px;
     font-weight: 700;
     margin: 0;
+    font-size: 1.3rem;
     text-transform: initial;
 }
 
@@ -1137,7 +1139,7 @@ label.error:before {
 #frmSaveList .tab-pane .ax-date-event {
     margin: 0 10px;
     padding: 0;
-    width: 31.1%;
+    width: 31%;
 }
 
 #frmSaveList .ax-cont-form-date-lista .ax-date-event:first-child, #frmSaveList .ax-cont-form-date-lista .ax-date-event:last-child {
@@ -1395,6 +1397,7 @@ label.error:before {
     
     #ax-cover-container .cont-img {
         height: 250px;
+        margin-top: 50px;
     }
     
     .ax-avatar-content #ax-prof-container {
@@ -1487,10 +1490,22 @@ label.error:before {
         float: none;
          margin: 0;
     }
+    
+    .module-giftlist-administrar .col-md-8 {
+        margin-top: 20px;
+    }
+    
+    #ax-cover-container .ax-cover-buttons {
+        text-align: right;
+    }
 
 }
 
 @media screen and (max-width:568px) {
+    
+    .module-giftlist-descripcion .ax-text-result-list {
+        float: none;
+    }
     
     .center_column .jplist-panel {
         display: inline-block;
@@ -1503,6 +1518,10 @@ label.error:before {
     .ax-text-result-list {
        padding: 10px 20px;
        margin: 10px 0 0 0;
+    }
+    
+    .module-giftlist-descripcion .ax-text-result-list {
+       margin: 10px 0;
     }
     
     .module-giftlist-empezar #center_column.center_column, .module-giftlist-buscar #center_column.center_column {
@@ -1690,12 +1709,22 @@ label.error:before {
 
 @media screen and (max-width:380px) {
     
+    h1 {
+        margin-bottom: 10px;
+    }
+    
     .fancybox-wrap.fancybox-desktop.fancybox-type-inline.fancybox-opened {
         width: 85% !important;
     }
     
     .container {
         padding: 0;
+    }
+    
+        
+    .footer-up .container {
+        padding-right: 15px;
+        padding-left: 15px;
     }
     
     #columns .parrilla-productos {
@@ -1722,10 +1751,15 @@ label.error:before {
     .module-giftlist-descripcion .ax-text-result-list {
         display: block;
         margin: 30px 0;
+        padding: 10px 30px;
     }
     
     .module-giftlist-descripcion .ax-text-result-list p, .module-giftlist-descripcion .ax-text-result-list h2, .module-giftlist-descripcion .ax-text-result-list h3 {
         font-size: 1.3em;
+    }
+    
+    .module-giftlist-descripcion .ax-text-result-list h2 {
+        font-size: 1.2em;
     }
     
     .module-giftlist-descripcion .container {
@@ -1846,12 +1880,13 @@ label.error:before {
         padding: 20px 0;
     }
     
-    .module-giftlist-administrar .col-md-12, .module-giftlist-administrar .col-md-4, .module-giftlist-administrar .col-md-6 {
-        padding: 5px 10px;
+    .module-giftlist-administrar .tab-content {
+        border: none;
+        border-bottom: #ccc solid 1px;
     }
     
-    .module-giftlist-administrar .col-md-8 {
-        margin-top: 20px;
+    .module-giftlist-administrar .col-md-12, .module-giftlist-administrar .col-md-4, .module-giftlist-administrar .col-md-6 {
+        padding: 5px 10px;
     }
     
     #frmSaveList label {
@@ -1956,6 +1991,10 @@ label.error:before {
     
     #address-div a.chosen-single {
         width: 190px;
+    }
+    
+    .ax-text-result-list p, .ax-text-result-list h2, .ax-text-result-list h3 {
+        font-size: 1.1rem;
     }
 }
 
