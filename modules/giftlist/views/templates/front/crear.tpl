@@ -68,7 +68,7 @@
                             <select id="months" name="months" class="form-control ax-select">
                                 <option value="0">{l s='Mes' mod='giftlist'}</option>
                                 {foreach from=$months key=k item=month}
-                                    <option value="{$k}">{l s=$month}&nbsp;</option>
+                                    <option value="{$k}">{l s=$month mod='giftlist'}&nbsp;</option>
                                 {/foreach}
                             </select>
                         </div>

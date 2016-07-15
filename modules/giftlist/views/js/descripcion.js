@@ -177,8 +177,32 @@ $(document).ready(function() {
     
     jp = $('#ax-products').jplist({				
       itemsBox: '.ax-prod-cont', 
-      itemPath: '.product-card' 
-      ,panelPath: '.jplist-panel'	
+      itemPath: '.product-card' ,
+      panelPath: '.jplist-panel',
+      redrawCallback: function(){
+          if($(".ax-list-edit").hasClass("hidden")){
+            $(".delete-product").removeClass('hidden');
+            $(".delete-product").parent().addClass('ax-edit-list');
+            $(".ax-bond-value").addClass("hidden");
+            if($(".ax-bond-cont").length == 0 ){
+                $(".ax-bond-card").append('<div class="ax-bond-cont"><label for="min_amount">Monto mínimo</label><input type="number" step="20000" min="0" id="min_amount" value="'+min_amount+'" name="min_amount"></div>');
+                var min_val = document.getElementById('min_amount');
+                min_val.onkeydown = function(e) {
+                    if(!((e.keyCode > 95 && e.keyCode < 106)
+                        || (e.keyCode > 47 && e.keyCode < 58) 
+                        || e.keyCode == 8)) {
+                    return false;
+                    }
+                };
+            }
+          }
+          else if($(".ax-finish-edit").hasClass("hidden")){
+            $(".delete-product").addClass('hidden');
+            $(".delete-product").parent().removeClass('ax-edit-list');
+            $(".ax-bond-value").removeClass("hidden");
+            $(".ax-bond-cont").remove();
+          }
+      }
    });
 });
 
