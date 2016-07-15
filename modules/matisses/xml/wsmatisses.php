@@ -799,7 +799,6 @@ class wsmatisses extends Module
 			$orderDTO['orderDTO']['detail'][$d]['itemCode'] = $products[$d]['reference'];
 			$orderDTO['orderDTO']['detail'][$d]['quantity'] = $products[$d]['quantity'];
 		}	
-        print_r($orderDTO);
 		$response = Db::getInstance()->getRow("SELECT * FROM `" . _DB_PREFIX_ . "wsmatisses_pagos` 
 												WHERE customer_id=".$this->context->customer->id.
 												" AND id_shop = ". $this->context->customer->id_shop.
