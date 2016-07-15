@@ -3718,6 +3718,12 @@
     #frmAddGiftList .chosen-single {
         width: 222px;
     }
+    
+    #menu-left .left-down-menu #menu #wishlist, #menu-left .left-down-menu #menu #giftlist {
+        margin: 20px auto;
+        width: 45%;
+        display: inline-block;
+    }
 
 	body .header-container #search {
 	    position: absolute;
@@ -3945,9 +3951,9 @@
     }
 
     .left-down-menu #menu #wishlist, .left-down-menu #menu #giftlist {
-        margin: 0 auto;
+        margin: 8px auto;
         width: 40%;
-        display: block;
+        display: inline-block;
     }
     
 
