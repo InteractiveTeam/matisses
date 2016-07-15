@@ -304,12 +304,13 @@
                 {l s='November' mod='giftlist'}
                 {l s='December' mod='giftlist'}
             *}
+            {$ev_date|print_r}
             <label>{l s='Fecha del evento' mod='giftlist'}<sup>*</sup></label>
             <div class="col-md-4 ax-date-event">
                 <select id="months" name="months" class="form-control ax-select">
                     <option value="0">{l s='Mes' mod='giftlist'}</option>
                     {foreach from=$months key=k item=month}
-                        <option value="{$k}">{l s=$month mod='giftlist'}&nbsp;{$ev_date[1]}</option>
+                        <option value="{$k}" {if $k == $ev_date[1]}selected{/if}>{l s=$month mod='giftlist'}&nbsp;</option>
                     {/foreach}
                 </select>
             </div>
@@ -317,7 +318,7 @@
                 <select id="days" name="days" class="form-control ax-select">
                     <option value="0">{l s='Día' mod='giftlist'}</option>
                     {foreach from=$days_d item=day}
-                        <option value="{$day}" >{$day}&nbsp;&nbsp;{$ev_date[2]}</option>
+                        <option value="{$day}" {if $day == $ev_date[2]}selected{/if}>{$day}&nbsp;&nbsp;</option>
                     {/foreach}
                 </select>
             </div>
@@ -325,7 +326,8 @@
                 <select id="years" name="years" class="form-control ax-select">
                     <option value="0">{l s='Año' mod='giftlist'}</option>
                     {for $i=$year to $limit}
-                        <option value="{$i}">{$i}&nbsp;&nbsp;{$ev_date[0]}</option>
+                        
+                        <option value="{$i}" {if $year == $ev_date[0]}selected{/if}>{$i}&nbsp;&nbsp;{$ev_date[0]}</option>
                     {/for}
                 </select>
             </div>

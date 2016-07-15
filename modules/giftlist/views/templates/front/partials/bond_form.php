@@ -2,6 +2,9 @@
  <form action="" method="post" id="bond_form">
   <h3>Comprar bono</h3>
   <div class="container">
+    <p class="ax-text-descript">Regala un bono con el valor que quieras, este bono solamente será redimible en las tiendas físicas. Selecciona la opción de Bono de Lujo para que incluyamos una caja especial de regalo.
+<br><br>*La caja tiene un valor de $50.000 para bonos de menos de $1’000.000, por encima de este valor la caja especial de regalo es gratis.
+</p>
     <div class="col-md-6">
         <div class="">
           <label for="mount">Valor</label>
@@ -9,7 +12,6 @@
         </div>
     </div>
     <div class="col-md-6">
-     <p class="ax-text-descript">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       <div class="checkbox">
         <label>
             <input type="checkbox" id="luxury_bond" name="luxury_bond">

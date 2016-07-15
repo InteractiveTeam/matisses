@@ -207,7 +207,7 @@ $(document).ready(function() {
     
     $(".ax-edit-info").fancybox({
         'autoSize'      :   false,
-        'height'        :   300,
+        'height'        :   700,
         'width'			:    600,
         'transitionIn'	:	'elastic',
         'transitionOut'	:	'elastic',

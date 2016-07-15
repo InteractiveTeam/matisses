@@ -46,7 +46,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 		$days = Tools::dateDays();
 		$this->context->smarty->assign ( array (
 			'list_desc' => $res,
-            'ev_date' => explode("-",$res['event_date']),
+            'ev_date' => explode("-",substr($res['event_date'],0,-9)),
 			'all_link' => $this->context->link->getModuleLink('giftlist', 'listas'),
 			'admin_link' => $this->context->link->getModuleLink('giftlist', 'administrar',array("url" => Tools::getValue('url'))),
 			'address' => Tools::jsonDecode($res['info_creator']),

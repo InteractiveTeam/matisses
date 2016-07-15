@@ -156,7 +156,7 @@
         <div data-tab-id="2" role="tabpanel" class="tab-pane" id="step-2">
             <div class="row">
                 <div class="col-md-12">
-                   <p>{l s='Personaliza tu lista de regalos, agrega una foto de perfil y una foto de portada. Procura que tengan buen tamaño, expresa tu gusto, estilo y creatividad. También puedes indicar.' mod='giftlist'}</p>
+                   <p>{l s='Personaliza tu lista de regalos, agrega una foto de perfil y una foto de portada. Procura que tengan buen tamaño, expresa tu gusto, estilo y creatividad.' mod='giftlist'}</p>
                 </div>
             </div>
             <div class="row">
