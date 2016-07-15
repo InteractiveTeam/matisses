@@ -109,10 +109,33 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 						$this->_saveAddress(Tools::getValue('id_list'), Tools::getValue('form'));
                     case "updateAmount":
 						$this->_updateminAmount(Tools::getValue('id_list'), Tools::getValue('value'));
+                    case "editInfo":
+						$this->_editInfo(Tools::getValue('id_list'), Tools::getValue('data'));
 				}
 			}
 		}
 	}
+    
+    private function _editInfo($id,$data){
+        $data =(object)$data;
+        $l = new GiftListModel($id);
+        if($data->email_co && $data->email_co != "")
+            $l->id_cocreator = $l->setCoCreator($l->id,$data->email_co,$data->firstname . " " .$data->lastname,$l->url);
+        $l->event_date = date("Y-m-d",strtotime($data->years."-".$data->months."-".$data->days));
+        $ev = "SELECT name FROM "._DB_PREFIX_."event_type WHERE id =".$data->event_type;
+        Db::getInstance()->update('gift_list',array(
+            'firstname' => $data->firstname,
+            'lastname' => $data->lastname,
+            'id_cocreator' =>  $l->id_cocreator,
+            'event_date' => $l->event_date,
+            'event_type' => $data->event_type
+        ),"id = " . $id);
+        die(Tools::jsonEncode(array(
+            'name' => $data->firstname . " " . $data->lastname, 
+            'date' => $l->event_date,
+            'event' => Db::getInstance()->getValue($ev)
+        )));
+    }
     
     private function _updateminAmount($id,$val){
         $sql = "UPDATE "._DB_PREFIX_."gift_list SET min_amount = $val  WHERE id = ".$id;

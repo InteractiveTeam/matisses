@@ -1,4 +1,5 @@
 var valForm;
+var valFormInfo;
 var jp;
 
 $(document).ready(function() {
@@ -214,12 +215,66 @@ $(document).ready(function() {
         'speedIn'		:	600,
         'speedOut'		:	200,
         'overlayShow'	:	false,
-        //afterShow		: 	editInfo
+        afterShow		: 	editInfo
 	});
+    
+    $(".ax-save-info").click(function(){
+        saveInfo();  
+    });
 });
 
+function saveInfo(){
+    if(valFormInfo.form()){
+        $.ajax({
+            type:"post",
+            data:{
+                'id_list': $(".products-associated").attr('data-id'),
+                'data':$("#info-form").serializeObject(),
+                'ajax':true,
+                'method':"editInfo",
+            },
+            success:function(res){
+                res = JSON.parse(res);
+                $(".ax-creator-name").text(res.name);
+                $(".ax-event-date").text(res.date);
+                $(".ax-event-type").text(res.event);
+                $.fancybox.close();
+                $.fancybox({
+                 'autoScale': true,
+                 'minWidth': 250,
+                 'minHeight': 50,
+                 'transitionIn': 'elastic',
+                 'transitionOut': 'elastic',
+                 'speedIn': 500,
+                 'speedOut': 300,
+                 'autoDimensions': true,
+                 'centerOnScroll': true,
+                 'content' : '<div><p class="fancybox-error">La lista ha sido editada</p></div>'
+                });
+            }
+        });
+    }
+}
+
 function editInfo(){
-    
+    $.validator.addMethod("selectRequired",function(value,element){
+        return value != 0;
+    }, "El campo es requerido");
+
+    valFormInfo = $("#info-form").validate({
+        lang: 'es',
+        rules:{
+            firstname:'required',
+            lastname:'required',
+            event_type:'selectRequired',
+            days:'selectRequired',
+            months:'selectRequired',
+            years:'selectRequired',
+        },
+        message:{
+            required:"El campo es requerido"
+        }
+    });
 }
 
 function deleteMsg(){
