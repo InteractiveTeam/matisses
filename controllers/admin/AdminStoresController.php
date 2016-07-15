@@ -303,7 +303,7 @@ class AdminStoresControllerCore extends AdminController
 				),
                 array(
 					'type' => 'switch',
-					'label' => $this->l('Enabled to buy products'),
+					'label' => $this->l('Enabled to collect products'),
 					'name' => 'active_shop',
 					'required' => true,
 					'is_bool' => true,
