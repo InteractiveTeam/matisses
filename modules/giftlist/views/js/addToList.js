@@ -68,7 +68,7 @@ $(function(){
                             $(".att").append("<p>"+row.value+"</p>");
                         });
                         $(".price").text(res.price);
-                        $(".image-prod").css("background","url("+res.image+") center");
+                        $(".image-prod").css("backgroundImage","url("+res.image+")");
                         $(".see-list").attr("href",res.description_link);
                         $.fancybox.close();
                         $.fancybox({
