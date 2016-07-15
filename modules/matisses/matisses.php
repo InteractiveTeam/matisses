@@ -2047,18 +2047,12 @@ class matisses extends Module
 
 		$this->hookactionCustomerAccountUpdate(array('email'=>$this->context->cookie->email),true, $Addresses,$this->context->cookie->id_customer);
 	
-        $codeShop = Db::getInstance()->ExecuteS('SELECT cod_shop_matisses FROM '._DB_PREFIX_.'cart WHERE id_cart = "'.$this->context->cookie->id_cart.'"');
-        $codeshopmatisses = '';
-        
-        if (!empty($codeShop)) {
-            $codeshopmatisses = $codeShop[0]['cod_shop_matisses'];
-        }
-        
+        $codeShop = Db::getInstance()->ExecuteS('SELECT cod_shop_matisses FROM '._DB_PREFIX_.'cart WHERE id_cart = "'.$this->context->cookie->id_cart.'"');        
 		$orderDTO = array();
 		$orderDTO['orderDTO']['header']['prestashopOrderId']= $this->context->cookie->id_cart;
 		$orderDTO['orderDTO']['header']['customerId']		= $this->context->customer->charter;
 		$orderDTO['orderDTO']['header']['comments']		= Db::getInstance()->getValue('SELECT message FROM '._DB_PREFIX_."message WHERE id_cart = ".$this->context->cookie->id_cart);
-		$orderDTO['orderDTO']['header']['pickUpStore']	= $codeshopmatisses;
+		$orderDTO['orderDTO']['header']['pickUpStore']	= $codeShop[0]['cod_shop_matisses'];
 		foreach($products as $d => $v)
 		{
 			$orderDTO['orderDTO']['detail'][$d]['itemCode'] = $products[$d]['reference'];
