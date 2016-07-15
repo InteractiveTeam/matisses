@@ -1827,7 +1827,7 @@ class matisses extends Module
 	// FUNCIONES DE COMUNICACION CON SAP	
 	public function wsmatisses_facturar($params)
 	{
-		/*set_time_limit(0);
+		set_time_limit(0);
  		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
 		$order['orderDTO']['header']['prestashopOrderId'] = $params['id_order'];
@@ -1853,8 +1853,7 @@ class matisses extends Module
 				return true;
 			 }
 		echo "<p>";print_r($result['return']['detail']);echo"</p>";
-		return false;	*/ 
-        return true;
+		return false;	 
 	}
 	
 	/*******************************************************
@@ -2053,8 +2052,7 @@ class matisses extends Module
 		$orderDTO['orderDTO']['header']['customerId']		= $this->context->customer->charter;
 		$orderDTO['orderDTO']['header']['comments']		= Db::getInstance()->getValue('SELECT message FROM '._DB_PREFIX_."message WHERE id_cart = ".$this->context->cookie->id_cart);
 		$orderDTO['orderDTO']['header']['pickUpStore']	= $codeShop[0]['cod_shop_matisses'];
-        print_r($codeShop[0]['cod_shop_matisses']);
-        print_r($this->context->cookie->id_cart);
+        
 		foreach($products as $d => $v)
 		{
 			$orderDTO['orderDTO']['detail'][$d]['itemCode'] = $products[$d]['reference'];
@@ -2122,8 +2120,6 @@ class matisses extends Module
 				
 				// actualizo el cliente
 				
-                print_r($orderDTO); die();
-                
 				if(self::wsmatisses_facturar(array('id_order' => $orderDTO['orderDTO']['header']['prestashopOrderId'])))
 				{
 					return true;
@@ -2608,7 +2604,8 @@ class matisses extends Module
 											WHERE id_product ="'.$id_prod.'"');
 
 	        foreach ($data as $key => $value) {
-        		if ($value['id_product_attribute'] != $id_prod_attr){
+	        	$stockCombination = StockAvailable::getQuantityAvailableByProduct((int)$id_prod,$value['id_product_attribute']);
+        		if ($value['id_product_attribute'] != $id_prod_attr && $stockCombination > 0){
         			//Como el producto principal esta agotado debemos establecer otra combinación como la principal
 
         			//$test = $product->checkDefaultAttributes();
