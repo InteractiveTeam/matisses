@@ -282,18 +282,29 @@
 														{/foreach}
 													</select>
 												{elseif ($group.group_type == 'color')}
-
+													
 													<ul id="color_to_pick_list" class="cf">
+														{assign var='dataCombinations' value=matisses::getProductAttributeCombinations($product->id)}
+														
 														{assign var="default_colorpicker" value=""}
 														{foreach from=$group.attributes key=id_attribute item=group_attribute}
 															{assign var='img_color_exists' value=file_exists($col_img_dir|cat:$id_attribute|cat:'.jpg')}
-															<li{if $group.default == $id_attribute} class="selected"{/if}>
-																<a href="{$link->getProductLink($product)|escape:'html':'UTF-8'}" id="color_{$id_attribute|intval}" class="color_pick{if ($group.default == $id_attribute)} selected{/if}"{if !$img_color_exists && isset($colors.$id_attribute.value) && $colors.$id_attribute.value} style="background:{$colors.$id_attribute.value|escape:'html':'UTF-8'};"{/if} title="{$colors.$id_attribute.name|escape:'html':'UTF-8'}">
-																	{if $img_color_exists}
-																		<img src="{$img_col_dir}{$id_attribute|intval}.jpg" alt="{$colors.$id_attribute.name|escape:'html':'UTF-8'}" title="{$colors.$id_attribute.name|escape:'html':'UTF-8'}" />
-																	{/if}
-																</a> 
-															</li>
+																
+															{foreach from=$dataCombinations key=key item=itemCombination}
+																
+																{if $itemCombination.id_attribute == $id_attribute && 
+																$itemCombination.quantity > 0}
+
+																<li{if $group.default == $id_attribute} class="selected"{/if}>
+																	<a href="{$link->getProductLink($product)|escape:'html':'UTF-8'}" id="color_{$id_attribute|intval}" class="color_pick{if ($group.default == $id_attribute)} selected{/if}"{if !$img_color_exists && isset($colors.$id_attribute.value) && $colors.$id_attribute.value} style="background:{$colors.$id_attribute.value|escape:'html':'UTF-8'};"{/if} title="{$colors.$id_attribute.name|escape:'html':'UTF-8'}">
+																		{if $img_color_exists}
+																			<img src="{$img_col_dir}{$id_attribute|intval}.jpg" alt="{$colors.$id_attribute.name|escape:'html':'UTF-8'}" title="{$colors.$id_attribute.name|escape:'html':'UTF-8'}" />
+																		{/if}
+																	</a> 
+																</li>
+																{/if}
+															{/foreach}
+
 															{if ($group.default == $id_attribute)}
 																{$default_colorpicker = $id_attribute}
 															{/if}
