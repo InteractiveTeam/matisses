@@ -794,6 +794,8 @@ class wsmatisses extends Module
 		$orderDTO['orderDTO']['header']['customerId']		= $this->context->customer->customer_cedula;
         $orderDTO['orderDTO']['header']['comments']		= Db::getInstance()->getValue('SELECT message FROM '._DB_PREFIX_." WHERE id_cart = ".$this->context->cookie->id_cart);
         $orderDTO['orderDTO']['header']['pickUpStore']	= $codeShop[0]['cod_shop_matisses'];
+        print_r($codeShop[0]['cod_shop_matisses']);
+        print_r($this->context->cookie->id_cart);
 		foreach($products as $d => $v)
 		{
 			$orderDTO['orderDTO']['detail'][$d]['itemCode'] = $products[$d]['reference'];

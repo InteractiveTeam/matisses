@@ -108,15 +108,6 @@
                             <input type="text" class="form-control" name="tel" id="tel">
                         </div>
                         <div class="row">
-                            <label for="address">{l s='Dirección 1' mod='giftlist'}<sup>*</sup></label> <input type="text" id="address" class="form-control" name="address" />
-                        </div>
-                        <div class="row">
-                            <label for="address_2">{l s='Dirección 2' mod='giftlist'}</label> <input type="text" id="address_2" class="form-control" name="address_2" placeholder="{l s='Apto, oficina, interior, bodega...' mod='giftlist'}" />
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <div class="row">
                             <label for="country">{l s='País' mod='giftlist'}<sup>*</sup></label>
                             <select id="country" name="country" class="form-control ax-select">
                                 <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
@@ -132,6 +123,9 @@
                                 {/foreach}
                             </select>
                         </div>
+                    </div>
+                    
+                    <div class="col-md-6">
                         <div class="row">
                             <div class="required town unvisible">
                                 <label for="city">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
@@ -139,6 +133,12 @@
                                     <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="row">
+                            <label for="address">{l s='Dirección 1' mod='giftlist'}<sup>*</sup></label> <input type="text" id="address" class="form-control" name="address" />
+                        </div>
+                        <div class="row">
+                            <label for="address_2">{l s='Dirección 2' mod='giftlist'}</label> <input type="text" id="address_2" class="form-control" name="address_2" placeholder="{l s='Apto, oficina, interior, bodega...' mod='giftlist'}" />
                         </div>
                         <div class="row">
                             <label for="email">{l s='Correo electrónico' mod='giftlist'}<sup>*</sup></label> <input type="email" id="email" class="form-control" name="email" />
