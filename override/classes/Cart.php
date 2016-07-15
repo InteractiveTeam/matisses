@@ -4679,7 +4679,7 @@ class Cart extends CartCore
 			$delivery_option_list[$id_address][$key]['is_best_grade'] = true;
 
 			*/
-            $storepick = Db::getInstance()->getValue('SELECT id_reference FROM '._DB_PREFIX_.'carrier WHERE name = "Recoger en Tienda" AND deleted = 0');
+            $storepick = Db::getInstance()->getValue('SELECT id_carrier FROM '._DB_PREFIX_.'carrier WHERE name = "Recoger en Tienda" AND deleted = 0');
             $idstoredpick = null;
             
             if (!empty($storepick)) {
