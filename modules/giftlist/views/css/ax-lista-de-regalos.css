@@ -331,6 +331,7 @@ label.error:before {
     border-top:transparent solid;
     border-bottom:transparent solid;
     border-left:#fff solid 20px;
+    transform: scale(1.1);
 }
 
 .ax-text-result-list .after-line {
@@ -344,6 +345,7 @@ label.error:before {
     border-top:transparent solid;
     border-bottom:transparent solid;
     border-right:#fff solid 20px;
+    transform: scale(1.1);
 }
 
 .ax-text-result-list p, .ax-text-result-list h2, .ax-text-result-list h3 {
@@ -443,6 +445,7 @@ label.error:before {
 
 .ax-cont-admin-listas-regalos .footer-item {
     margin: 20px 0;
+    text-align: right;
 }
 
 .btn.btn-lista-regalos:hover:after, .btn.btn-lista-regalos:hover:before, .btn.btn-lista-regalos-sample:hover:after, .btn.btn-lista-regalos-sample:hover:before {
@@ -597,7 +600,7 @@ label.error:before {
 
 .ax-message-content {
     width: 90%;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
 }
 
 .ax-message-content .ax-edit, .ax-message-content .ax-delete {
@@ -756,7 +759,7 @@ label.error:before {
 }
 
 .products-associated .product-card .ax-info-list {
-    padding: 5px 10px;
+    padding: 5px;
     position: relative;
 }
 
@@ -807,8 +810,10 @@ label.error:before {
     padding: 5px 0;
     font-family: Georgia, 'Georgia';
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 0.82rem;
     text-transform: uppercase;
+    overflow: hidden;
+    height: 28px;
 }
 
 .products-associated .product-card p.ax-price-list {
@@ -1462,7 +1467,7 @@ label.error:before {
     .tab-content #ax-img-prof, .tab-content #ax-img { 
         display: block;
         margin: 10px 0;
-        text-align: center;
+        text-align: left;
     }
     
     .module-giftlist-descripcion .ax-text-result-list {
@@ -1511,7 +1516,7 @@ label.error:before {
     }    
     
     .ax-text-result-list p, .ax-text-result-list h2, .ax-text-result-list h3 {
-        font-size: 1.03rem;
+        font-size: 1.2rem;
         letter-spacing: -1px;
     }
     
@@ -1685,6 +1690,10 @@ label.error:before {
 
 @media screen and (max-width:380px) {
     
+    .fancybox-wrap.fancybox-desktop.fancybox-type-inline.fancybox-opened {
+        width: 85% !important;
+    }
+    
     .container {
         padding: 0;
     }
@@ -1699,6 +1708,10 @@ label.error:before {
     
     .ax-form-data-search span {
         width: 48%;
+    }
+    
+    .ax-form-data-search span:nth-child(2) {
+        width: 50%;
     }
     
     .module-giftlist-descripcion h1, .module-giftlist-descripcion h2 {
@@ -1723,7 +1736,8 @@ label.error:before {
     }
     
     .module-giftlist-buscar .ax-cont-list .part, .ax-cont-admin-listas-regalos .ax-cont-list .part {
-        padding: 20px 11px;
+        padding: 20px 0 20px 16px;
+        height: 90px;
     }
     
     .module-giftlist-listas .ax-cont-list .part:last-child {

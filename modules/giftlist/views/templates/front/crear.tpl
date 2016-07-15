@@ -111,7 +111,7 @@
                             <label for="address">{l s='Dirección 1' mod='giftlist'}<sup>*</sup></label> <input type="text" id="address" class="form-control" name="address" />
                         </div>
                         <div class="row">
-                            <label for="email">{l s='Correo electrónico' mod='giftlist'}<sup>*</sup></label> <input type="email" id="email" class="form-control" name="email" />
+                            <label for="address_2">{l s='Dirección 2' mod='giftlist'}</label> <input type="text" id="address_2" class="form-control" name="address_2" placeholder="{l s='Apto, oficina, interior, bodega...' mod='giftlist'}" />
                         </div>
                     </div>
                     
@@ -141,7 +141,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label for="address_2">{l s='Dirección 2' mod='giftlist'}</label> <input type="text" id="address_2" class="form-control" name="address_2" placeholder="{l s='Apto, oficina, interior, bodega...' mod='giftlist'}" />
+                            <label for="email">{l s='Correo electrónico' mod='giftlist'}<sup>*</sup></label> <input type="email" id="email" class="form-control" name="email" />
                         </div>
                         <div class="row">
                             <label for="conf_email">{l s='Confirmar correo electrónico' mod='giftlist'}<sup>*</sup></label> <input type="email" id="conf_email" class="form-control" name="conf_email" />
