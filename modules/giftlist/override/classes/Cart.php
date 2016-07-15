@@ -2213,7 +2213,7 @@ class Cart extends CartCore
 
 			// Get all delivery options with a unique carrier
 			*/
-            $storepick = Db::getInstance()->getValue('SELECT id_reference FROM '._DB_PREFIX_.'carrier WHERE name = "Recoger en Tienda" AND deleted = 0');
+            $storepick = Db::getInstance()->getValue('SELECT id_carrier FROM '._DB_PREFIX_.'carrier WHERE name = "Recoger en Tienda" AND deleted = 0');
             $idstoredpick = null;
             
             if (!empty($storepick)) {
