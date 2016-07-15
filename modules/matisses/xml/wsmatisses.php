@@ -607,7 +607,7 @@ class wsmatisses extends Module
 
 	public function wsmatisses_facturar($params)
 	{
-		/*set_time_limit(0);
+		set_time_limit(0);
  		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
 		$order['orderDTO']['header']['prestashopOrderId'] = $params['id_order'];
@@ -637,8 +637,7 @@ class wsmatisses extends Module
 				return true;
 			 }
 		echo "<p>";print_r($result['return']['detail']);echo"</p>";
-		return false;	*/
-        return true;
+		return false;	
 	}
 	
 	/*******************************************************
