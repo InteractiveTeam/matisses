@@ -48,7 +48,6 @@ foreach($paidOrders as $order){
                 );
             }
             else{
-                $cant = ToolsCore::jsonDecode($lpd[0]['group']);
                 $attr_op = Tools::jsonDecode($lpd['option']);
                 $attr = $product->getAttributeCombinationsById($attr_op[3]->value,$id_lang);//[3] = id_attribute
                 $data_b[] = array(
@@ -59,8 +58,8 @@ foreach($paidOrders as $order){
                     'buyer' => $buyer->firstname. " " . $buyer->lastname,
                     'price' => $product->price,
                     'color' => attr['attribute_name'],
-                    "wanted" => $cant->wanted,
-                    "missing" => $cant->missing,
+                    "wanted" => $lpd['total'],
+                    "missing" => $lpd['missing'],
                     "message" => $l->message,
                     "bought" => $id_array['quantity'],
                     'description_link' =>$context->link->getModuleLink('giftlist', 'descripcion',array('url' => $l->url)),

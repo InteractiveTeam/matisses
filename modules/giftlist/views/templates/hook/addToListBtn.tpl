@@ -21,7 +21,7 @@
                 <div class="cont">
                     <div class="form-group">
                         <label for="message"><span>{l s='Mensaje' mod='giftlist'}</span>
-                           <p class="ax-text-descript">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                           <p class="ax-text-descript">{l s='Personaliza el mensaje de agradecimiento que llegará a la persona que te haga este regalo.' mod='giftlist'}</p>
                             <textarea id="message"></textarea>
                         </label>
                     </div>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="cont">
-                    <p class="ax-text-descript">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p class="ax-text-descript">{l s='Puedes crear grupos de diferentes productos. Por ejemplo: Si quieres 12 unidades de algo en específico puedes agruparlo en 4 grupos de 3.' mod='giftlist'}</p>
                     <div class="checkbox">
                         <label>{l s='¿Agrupar?' mod='giftlist'}<input type="checkbox" id="group" name="group">
                         </label>
@@ -62,7 +62,7 @@
 	</div>
 </div>
 
-<div id="contentdiv" style="display: none;">
+<div id="contentdiv" class="finish" style="display: none;">
 	<div class="container">
 		<p class="response"></p>
 		<div class="col-md-6">

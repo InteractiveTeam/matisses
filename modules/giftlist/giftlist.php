@@ -172,7 +172,6 @@ class giftlist extends Module
         $p = new ProductCore($params["id_product"]);
         $lpd = ListProductBondModel::getByProductAndList($params['id_list'],$params['id_product']);
         $customer = new CustomerCore($l->id_creator);
-        $cant = ToolsCore::jsonDecode($lpd['group']);
         $attr = $p->getAttributeCombinationsById($params['id_product_attribute'],$this->context->language->id);
         $id_image = ProductCore::getCover($params['id_product']);
         // get Image by id
@@ -187,8 +186,8 @@ class giftlist extends Module
             '{name}' => $p->name[1],
             '{price}' => $p->price,
             '{color}' => $attr['attribute_name'],
-            "{wanted}" => $cant->wanted,
-            "{missing}" => $cant->missing,
+            "{wanted}" => $lpd['total'],
+            "{missing}" => $lpd['missing'],
             '{description_link}' =>$context->link->getModuleLink('giftlist', 'descripcion',array('url' => $l->url))
         );
         $this->_sendEmail("out-stock","Producto agotado",$customer,$params);
@@ -208,10 +207,7 @@ class giftlist extends Module
     
 	public function hookActionOrderStatusUpdate($params){
 		//Order status awaiting payment confirmation
-        if($params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_COD_VALIDATION")
-        || $params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_CHEQUE")
-        || $params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_PAYPAL")
-        || $params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_BANKWIRE")){
+        if($params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_PLACETOPAY")){
             $this->__verifyListInOrderBeforePayment($params['cart']);
         }
 
@@ -250,13 +246,12 @@ class giftlist extends Module
                     );
                     $this->_sendEmail('bond-bought','¡Han comprado un bono para ti!',$creator,$params);
                 }
-                elseif(['id_product'] != 0){
+                elseif($product['id_product'] != 0){
                     $lpd->bought = 1;
                     $lpd->save();
                     $prod = new ProductCore($product['id_product']);
                     $list = new GiftListModel($product['id_giftlist']);
                     $creator = $list->getCreator($list->getCreator($list->id_creator));
-                    $qty = Tools::jsonDecode($lpd->group);
                     $params = array(
                         '{creator}' =>  $creator->firstname,
                         '{image}' => $link->getImageLink($prod->link_rewrite, $prod->id_image, 'home_default'),
@@ -265,8 +260,8 @@ class giftlist extends Module
                         '{product_price}' => $prod->price,
                         '{buyer}' => $buyer->firstname . " " . $buyer->lastname,
                         '{qty_buy}' => $product['quantity'],
-                        '{qty_want}' => $qty->wanted,
-                        '{qty_rest}' => $qty->missing,
+                        '{qty_want}' => $lpd->cant,
+                        '{qty_rest}' => $lpd->missing,
                         '{message}' => $lpd->message == "" ? "Ningun Mensaje" : $lpd->message,
                         '{description_link}' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url))
                     );
