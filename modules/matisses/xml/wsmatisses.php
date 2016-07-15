@@ -607,7 +607,7 @@ class wsmatisses extends Module
 
 	public function wsmatisses_facturar($params)
 	{
-		set_time_limit(0);
+		/*set_time_limit(0);
  		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 		$client 	= new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
 		$order['orderDTO']['header']['prestashopOrderId'] = $params['id_order'];
@@ -637,7 +637,8 @@ class wsmatisses extends Module
 				return true;
 			 }
 		echo "<p>";print_r($result['return']['detail']);echo"</p>";
-		return false;	 
+		return false;	*/
+        return true;
 	}
 	
 	/*******************************************************
@@ -787,10 +788,12 @@ class wsmatisses extends Module
 		if(!is_object($this->context->customer))
 			return false;
 			
+        $codeShop = Db::getInstance()->ExecuteS('SELECT cod_shop_matisses FROM '._DB_PREFIX_.'cart WHERE id_cart = "'.$this->context->cookie->id_cart.'"');        
 		$orderDTO = array();
 		$orderDTO['orderDTO']['header']['prestashopOrderId']= $this->context->cookie->id_cart;
 		$orderDTO['orderDTO']['header']['customerId']		= $this->context->customer->customer_cedula;
         $orderDTO['orderDTO']['header']['comments']		= Db::getInstance()->getValue('SELECT message FROM '._DB_PREFIX_." WHERE id_cart = ".$this->context->cookie->id_cart);
+        $orderDTO['orderDTO']['header']['pickUpStore']	= $codeShop[0]['cod_shop_matisses'];
 		foreach($products as $d => $v)
 		{
 			$orderDTO['orderDTO']['detail'][$d]['itemCode'] = $products[$d]['reference'];
