@@ -3,9 +3,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-error_reporting(E_ALL);
-ini_set('display_errors',1);
-
 include_once __DIR__ . '/../../classes/GiftList.php';
 include_once __DIR__ . '/../../classes/ListProductBond.php';
 include_once _PS_CLASS_DIR_ . "stock/StockAvailable.php";
