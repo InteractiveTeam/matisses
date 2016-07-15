@@ -146,14 +146,14 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
         foreach ($attributes as $row){
             if(isset($row['group_name']))
                 $att[] = [
-                    'value' =>$row['group_name'].": ". $row['attribute_name']
+                    'value' => "<span class='ax-color-list'>".$row['group_name']."</span>: ". $row['attribute_name']
                 ];
         }
         die(Tools::jsonEncode(array(
             'msg' => $msg,
             'prod_name' => $prod->getProductName($id_product),
             'attributes' => $att,
-            'price' => $prod->getPrice(),
+            'price' => Tools::displayPrice($prod->getPrice()),
             'image' => Tools::getShopProtocol().$link->getImageLink($prod->link_rewrite[1], (int)$image['id_image'], 'home_default'),
             'description_link' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url)),
             'error' => false

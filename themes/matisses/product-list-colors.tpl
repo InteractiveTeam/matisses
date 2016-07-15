@@ -32,8 +32,13 @@
         {if !empty($id_image_p)}
             {assign var='img_prod_color' value=$link->getImageLink($color.name, $id_image_p, 'home_default')}
         {/if}
-        {assign var='bandera' value=false}
+        
         {assign var='status' value=matisses::getStatusColor($color.id_product,$color.id_product_attribute)}
+        <div style="display: none;" class="davinnn">
+          {$color.id_product}<br>
+          {$color.id_product_attribute}<br>
+          {$status}
+        </div>
         {if $status}
             <li>
                 <a 
@@ -47,8 +52,6 @@
                     {/if}
                 </a>
             </li>
-        {else}
-            {$bandera = true}
         {/if}
 	{/foreach}
 </ul>
