@@ -132,7 +132,6 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
         ),"id = " . $id);
         die(Tools::jsonEncode(array(
             'name' => $data->firstname . " " . $data->lastname, 
-            'date' => $l->event_date,
             'event' => Db::getInstance()->getValue($ev)
         )));
     }

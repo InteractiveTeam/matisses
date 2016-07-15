@@ -209,15 +209,13 @@ class giftlist extends Module
     }
     
 	public function hookActionOrderStatusUpdate($params){
-		//Order status awaiting payment confirmation
-        if($params['newOrderStatus']->id == ConfigurationCore::get("PS_OS_PLACETOPAY")){
-            $this->__verifyListInOrderBeforePayment($params['cart']);
-        }
 
         //Order status payment confirmation
         if (!($params['newOrderStatus']->id == ConfigurationCore::get('PS_OS_WS_PAYMENT'))
-         && !($params['newOrderStatus']->id == ConfigurationCore::get('PS_OS_PAYMENT')))
+         && !($params['newOrderStatus']->id == ConfigurationCore::get('PS_OS_PAYMENT'))){
             $this->_updateStatesinList($params['cart']);
+            $this->__verifyListInOrderBeforePayment($params['cart']);
+        }
 
         
 	}
@@ -299,8 +297,7 @@ class giftlist extends Module
             }else{
                 $sqlB = "SELECT * FROM " . _DB_PREFIX_ . "list_product_bond WHERE id_list = ". $product['id_giftlist']. " AND id_product = ".$product['id_product'] . " AND id_bond = 0";
                 $prod = Db::getInstance()->getRow($sqlB);
-                $cant = Tools::jsonDecode($prod['group']);
-                $cant->missing -= $product['quantity'];
+                $prod['missing'] -= $product['quantity'];
                 Db::getInstance()->update('list_product_bond',array(
                     'group' => Tools::jsonEncode($cant),
                     'bought' => $cant->missing > 0 ? 1 : 0,

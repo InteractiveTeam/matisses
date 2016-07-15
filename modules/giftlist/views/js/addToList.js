@@ -16,7 +16,17 @@ $(function(){
 		'transitionOut'	:	'elastic',
 		'speedIn'		:	600, 
 		'speedOut'		:	200, 
-		'overlayShow'	:	false
+		'overlayShow'	:	false,
+        afterShow       :   function(){
+            var min_val = document.getElementById('cant');
+            min_val.onkeydown = function(e) {
+            if(!((e.keyCode > 95 && e.keyCode < 106)
+              || (e.keyCode > 47 && e.keyCode < 58) 
+              || e.keyCode == 8)) {
+                return false;
+            }
+        };
+        }
 	});
 
 	$("#group").click(function(){
