@@ -330,6 +330,10 @@
                 </select>
             </div>
         </div>
+        <div class="row btn-form-info">
+            <a href="javascript:void(0);" class="ax-cancel btn btn-default btn-lista-regalos">{l s='Cancelar' mod='giftlist'}</a>
+            <a href="javascript:void(0);" class="ax-save-info btn btn-default btn-lista-regalos">{l s='Guardar' mod='giftlist'}</a>
+        </div>
     </form>
 </div>
 
