@@ -7,6 +7,7 @@ class ListProductBondModel extends ObjectModel
 	public $id_bond;
 	public $option;
 	public $cant;
+	public $missing;
 	public $group;
     public $bought;
 	public $favorite;
@@ -22,6 +23,7 @@ class ListProductBondModel extends ObjectModel
 			'id_product' => array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
 			'id_bond' => array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
 			'cant' => array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
+			'missing' => array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
 			'option' => array('type' => self::TYPE_STRING, 'required' => true),
 			'group' => array('type' => self::TYPE_STRING,'size' => 70),
 			'favorite' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),

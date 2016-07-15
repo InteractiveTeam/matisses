@@ -1,4 +1,5 @@
 var valForm;
+var jp;
 
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();

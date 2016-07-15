@@ -63,6 +63,7 @@ $(function(){
                     }else{
                         $(".response").text(res.msg);
                         $(".prod_name").text(res.prod_name);
+                        $(".att").empty()
                         res.attributes.forEach(function(row){
                             $(".att").append("<p>"+row.value+"</p>");
                         });
