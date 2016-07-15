@@ -208,16 +208,6 @@
                     <input type="text" class="form-control" value="{$address->tel}" name="tel" id="tel">
                 </div>
                 <div class="row">
-                    <label for="address">{l s='Dirección 1' mod='giftlist'}<sup>*</sup></label> <input type="text" id="address" class="form-control" name="address" value="{$address->address}" />
-                </div>
-                <div class="row">
-                    <label for="dir_before">{l s='Dirección de envío antes del evento' mod='giftlist'}<sup>*</sup></label>
-                    <input type="text" class="form-control" value="{$list_desc['address_before']}" name="dir_before" id="dir_before">
-                </div>
-            </div>
-            
-            <div class="col-md-6">
-               <div class="row">
                     <label for="country">{l s='País' mod='giftlist'}<sup>*</sup></label>
                     <select id="country" name="country" class="form-control ax-select">
                         <option value="1">{l s='COLOMBIA' mod='giftlist'}</option>
@@ -232,7 +222,10 @@
                         {/foreach}
                     </select>
                 </div>
-                <div class="row">
+            </div>
+            
+            <div class="col-md-6">
+              <div class="row">
                     <div class="required town unvisible">
                         <label for="city">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
                         <select id="town" name="town" class="form-control ax-select">
@@ -240,8 +233,15 @@
                         </select>
                     </div>
                 </div>
+              <div class="row">
+                    <label for="address">{l s='Dirección 1' mod='giftlist'}<sup>*</sup></label> <input type="text" id="address" class="form-control" name="address" value="{$address->address}" />
+                </div>
                 <div class="row">
                     <label for="address_2">{l s='Dirección 2' mod='giftlist'}</label> <input type="text" id="address_2" class="form-control" name="address_2" value="{$address->address_2}" placeholder="{l s='Apto, oficina, interior, bodega...' mod='giftlist'}" />
+                </div>
+                <div class="row">
+                    <label for="dir_before">{l s='Dirección de envío antes del evento' mod='giftlist'}<sup>*</sup></label>
+                    <input type="text" class="form-control" value="{$list_desc['address_before']}" name="dir_before" id="dir_before">
                 </div>
                 <div class="row">
                     <label for="dir_after">{l s='Dirección de envío después del evento' mod='giftlist'}<sup>*</sup></label>
