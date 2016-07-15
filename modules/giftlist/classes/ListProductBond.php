@@ -75,18 +75,20 @@ class ListProductBondModel extends ObjectModel
 		 $prod = array();
 		 $link = new LinkCore();
 		 foreach ($res as $row){
-		 		$my_prod = new ProductCore($row['id_product']);
-		 		$images = Image::getImages(1, $row['id_product']);
-				$prod[] = [
-					'id' => $row['id_product'],
-					'name' => $my_prod->getProductName($my_prod->id),
-					'data' => $my_prod->getAttributeCombinations(1),
-					'image' =>  $link->getImageLink($my_prod->link_rewrite[1], (int)$images[0]['id_image'], 'home_default'),
-					'price' => $my_prod->getPrice(),
-					'cant' => $row['cant'],
-					'options' => Tools::jsonDecode($row['option']),
-                    'favorite' => $row['favorite']
-				];
+            $option = Tools::jsonDecode($row['option']);
+            $image = ProductCore::getCombinationImageById( (int)$option[3]->value, Context::getContext()->language->id);
+            $my_prod = new ProductCore($row['id_product']);
+            $images = Image::getImages(1, $row['id_product']);
+            $prod[] = [
+                'id' => $row['id_product'],
+                'name' => $my_prod->getProductName($my_prod->id),
+                'data' => $my_prod->getAttributeCombinations(1),
+                'image' =>  $link->getImageLink($my_prod->link_rewrite[1], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image']), 'home_default'),
+                'price' => $my_prod->getPrice(),
+                'cant' => $row['cant'],
+                'options' => Tools::jsonDecode($row['option']),
+                'favorite' => $row['favorite']
+            ]; 
 		 }
 		 return $prod;
 	}
