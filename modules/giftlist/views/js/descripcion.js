@@ -204,7 +204,23 @@ $(document).ready(function() {
           }
       }
    });
+    
+    $(".ax-edit-info").fancybox({
+        'autoSize'      :   false,
+        'height'        :   300,
+        'width'			:    600,
+        'transitionIn'	:	'elastic',
+        'transitionOut'	:	'elastic',
+        'speedIn'		:	600,
+        'speedOut'		:	200,
+        'overlayShow'	:	false,
+        //afterShow		: 	editInfo
+	});
 });
+
+function editInfo(){
+    
+}
 
 function deleteMsg(){
     $.ajax({
@@ -294,6 +310,7 @@ function saveAddress(){
                 if(!res.error){
                     $(".ax_address_bef").text(res.a_b + " " + res.data.town + " " + res.data.city +", "+ res.data.country);
                     $(".ax_address_af").text(res.a_a + " " + res.data.town + " " + res.data.city +", "+ res.data.country);
+                    $(".ax-creator-name").text(res.name);
                     $.fancybox.close();
                      $.fancybox({
                          'autoScale': true,
