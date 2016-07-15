@@ -37,6 +37,7 @@
         <div style="display: none;">
           {$color.id_product}<br>
           {$color.id_product_attribute}
+          {$status}
         </div>
         {if $status}
             <li>
