@@ -2122,8 +2122,6 @@ class matisses extends Module
 				
 				// actualizo el cliente
 				
-                print_r($orderDTO); die();
-                
 				if(self::wsmatisses_facturar(array('id_order' => $orderDTO['orderDTO']['header']['prestashopOrderId'])))
 				{
 					return true;
