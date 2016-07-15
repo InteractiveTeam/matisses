@@ -4830,6 +4830,10 @@ body.new-products {
    -webkit-transition: all 0.4s ease;
 }
 
+#views_block #thumbs_list li {
+    padding: 0;
+}
+
 /*actualizar cuenta*/
 
 .radio+.radio, .checkbox+.checkbox {
@@ -6058,7 +6062,8 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 /*modal*/
 
 #frmAddGiftList {
-    width: 600px;
+    width: 100%;
+    overflow: hidden;
     overflow-y: auto !important;
     height: 100%;
 }
@@ -6135,6 +6140,11 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 
 #buy_block .box-info-product #usefull_link_block {
     width: 25.7%;
+}
+
+#contentdiv.finish {
+    overflow-y: auto;
+    height: 100%;
 }
 
 #contentdiv .response {

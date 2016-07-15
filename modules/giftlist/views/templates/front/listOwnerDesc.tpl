@@ -23,9 +23,10 @@
                 <div class="part">{l s='Días para el evento' mod='giftlist'}<span class="ax-day">{$days}</span></div>
                 <div class="part">{l s='Tus regalos' mod='giftlist'}<span>{$numberProducts.products}</span></div>
                 <div class="part">{l s='Regalos restantes' mod='giftlist'}<span>{$numberProducts.products_bought}</span></div>
-                <div class="part">{l s='Registrante' mod='giftlist'}<span>{$creator}</span></div>
+                <div class="part">{l s='Registrante' mod='giftlist'}<span class="ax-creator-name">{$creator}</span></div>
                 <div class="part">{l s='Tipo de evento' mod='giftlist'}<span>{$event_type}</span></div>
                 <div class="part">{l s='Fecha' mod='giftlist'}<span>{date("d/m/Y",strtotime($list_desc['event_date']))}</span></div>
+                <div class="part"><span><a href="#info-div" class="ax-edit-info">{l s='Editar información' mod='giftlist'}</a></span></div>
             </div>
         </div>
     </div>
@@ -90,15 +91,11 @@
             <div class="owl-carousel">
             {foreach item=cat from=$cats}
                 {if $cat.id_parent == 3}
-                {assign var="cat_img" value="/img/c/{$cat.id}-categories_home.jpg"}
+                {assign var="cat_img" value="/img/c/{$cat.id_category}-medium_default.jpg"}
                 <div class="item">
                     {assign var="first" value=0}
                     <a href="/{$cat.id_category}-{$cat.link_rewrite}">
-                        {if file_exists($cat_img)} 
-                            <img class="replace-2x" src="{$cat_img}" alt="" />
-                        {else}
-                            <img class="replace-2x" src="/img/c/nl-default-categories_home.jpg" alt="" />
-                        {/if}
+                        <img class="replace-2x" src="{$cat_img}" alt="" />
                         <p>{$cat.name}</p>
                     </a>
                 </div>
@@ -109,14 +106,38 @@
     </div>
 	
 	<div class="products-associated" data-id="{$list_desc['id']}">
-	    <div class="ax-text-result-list ax-result-inline">
-            <h2>{l s='Mi lista' mod='giftlist'}</h2>
+	    <div class="text-left">
+            <div class="ax-text-result-list ax-result-inline">
+                <h2>{l s='Mi lista' mod='giftlist'}</h2>
+            </div>
+            <a href="javascript:void(0);" class="ax-list-edit">{l s='Editar lista' mod='giftlist'}</a>
+            <a href="javascript:void(0);" class="ax-finish-edit hidden">{l s='Terminar edición' mod='giftlist'}</a>
         </div>
 		
-        <a href="javascript:void(0);" class="ax-list-edit">{l s='Editar lista' mod='giftlist'}</a>
-        <a href="javascript:void(0);" class="ax-finish-edit hidden">{l s='Terminar edición' mod='giftlist'}</a>
+        
         <div id="ax-products">
-            
+            <div class="jplist-panel">
+               <div class="sortPagiBar">
+               <label for="nb_item"> <span>Mostrar</span> </label>
+               <select
+                    class="jplist-select" 
+                    data-control-type="items-per-page-select" 
+                    data-control-name="paging" 
+                    data-control-action="paging">
+
+                    <option data-number="4"> 4 </option>
+                    <option data-number="8" data-default="true" selected> 8 </option>
+                    <option data-number="12"> 12 </option>
+                    <option data-number="all"> Todos </option>
+                </select>	
+                </div>					
+                <div 
+                class="jplist-pagination" 
+                data-control-type="pagination" 
+                data-control-name="paging" 
+                data-control-action="paging">
+                </div>
+            </div>
             <div class="row ax-prod-cont">
                 {foreach from=$products item=row}
                     {$atribute_group = $row['options'][3]->value}
@@ -143,14 +164,10 @@
                     <span class="ax-bond-value">{l s='Total bonos' mod='giftlist'}: {convertPrice price=$bond['total']}</span> <br>       
                 </div>
             </div>
-            <div class="jplist-panel">						
-                <div 
-                class="jplist-pagination" 
-                data-control-type="pagination" 
-                data-control-name="paging" 
-                data-control-action="paging">
-                </div>
-                <select
+            <div class="jplist-panel">
+               <div class="sortPagiBar">
+               <label for="nb_item"> <span>Mostrar</span> </label>
+               <select
                     class="jplist-select" 
                     data-control-type="items-per-page-select" 
                     data-control-name="paging" 
@@ -160,7 +177,14 @@
                     <option data-number="8" data-default="true" selected> 8 </option>
                     <option data-number="12"> 12 </option>
                     <option data-number="all"> Todos </option>
-                </select>
+                </select>	
+                </div>					
+                <div 
+                class="jplist-pagination" 
+                data-control-type="pagination" 
+                data-control-name="paging" 
+                data-control-action="paging">
+                </div>
             </div>
 		</div>
 	</div>
@@ -184,16 +208,6 @@
                     <input type="text" class="form-control" value="{$address->tel}" name="tel" id="tel">
                 </div>
                 <div class="row">
-                    <label for="address">{l s='Dirección 1' mod='giftlist'}<sup>*</sup></label> <input type="text" id="address" class="form-control" name="address" value="{$address->address}" />
-                </div>
-                <div class="row">
-                    <label for="dir_before">{l s='Dirección de envío antes del evento' mod='giftlist'}<sup>*</sup></label>
-                    <input type="text" class="form-control" value="{$list_desc['address_before']}" name="dir_before" id="dir_before">
-                </div>
-            </div>
-            
-            <div class="col-md-6">
-               <div class="row">
                     <label for="country">{l s='País' mod='giftlist'}<sup>*</sup></label>
                     <select id="country" name="country" class="form-control ax-select">
                         <option value="1">{l s='COLOMBIA' mod='giftlist'}</option>
@@ -208,7 +222,10 @@
                         {/foreach}
                     </select>
                 </div>
-                <div class="row">
+            </div>
+            
+            <div class="col-md-6">
+              <div class="row">
                     <div class="required town unvisible">
                         <label for="city">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
                         <select id="town" name="town" class="form-control ax-select">
@@ -216,8 +233,15 @@
                         </select>
                     </div>
                 </div>
+              <div class="row">
+                    <label for="address">{l s='Dirección 1' mod='giftlist'}<sup>*</sup></label> <input type="text" id="address" class="form-control" name="address" value="{$address->address}" />
+                </div>
                 <div class="row">
                     <label for="address_2">{l s='Dirección 2' mod='giftlist'}</label> <input type="text" id="address_2" class="form-control" name="address_2" value="{$address->address_2}" placeholder="{l s='Apto, oficina, interior, bodega...' mod='giftlist'}" />
+                </div>
+                <div class="row">
+                    <label for="dir_before">{l s='Dirección de envío antes del evento' mod='giftlist'}<sup>*</sup></label>
+                    <input type="text" class="form-control" value="{$list_desc['address_before']}" name="dir_before" id="dir_before">
                 </div>
                 <div class="row">
                     <label for="dir_after">{l s='Dirección de envío después del evento' mod='giftlist'}<sup>*</sup></label>
@@ -229,6 +253,82 @@
         <div class="row btn-form-address">
             <a href="javascript:void(0);" class="ax-cancel btn btn-default btn-lista-regalos">{l s='Cancelar' mod='giftlist'}</a>
             <a href="javascript:void(0);" class="ax-save btn btn-default btn-lista-regalos">{l s='Guardar' mod='giftlist'}</a>
+        </div>
+    </form>
+</div>
+
+<div id="info-div" style="display:none">
+    <h3>{l s='Información de la lista' mod='giftlist'}</h3> 
+    <form method="post" id="info-form">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="firstname">{l s='Nombre' mod='giftlist'}<sup>*</sup></label> 
+                <input type="text" class="form-control" name="firstname" id="firstname" value="{$list_desc['firstname']}">
+            </div>
+            <div class="col-md-6">
+                <label for="lastname">{l s='Apellido' mod='giftlist'}<sup>*</sup></label> 
+                <input type="text" class="form-control" name="lastname" id="lastname" value="{$list_desc['lastname']}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="firstname">{l s='Cocreador' mod='giftlist'}</label> 
+                <input type="text" class="form-control" name="firstname" id="firstname" value="{$email_co}">
+            </div>
+            <div class="col-md-6">
+                    <label for="event_type">{l s='Tipo de evento' mod='giftlist'}<sup>*</sup></label>
+                    <select id="event_type" name="event_type" class="form-control ax-select" data-placeholder=" ">
+                        <option value="0" selected="selected"></option> 
+                        {foreach from=$events item=event}
+                            {if $list_desc['event_type'] == $event['id']}
+                                <option value="{$event['id']}" selected>{$event['name']}</option>
+                            {else}
+                                <option value="{$event['id']}">{$event['name']}</option>
+                            {/if}
+                        {/foreach}
+                    </select>
+                </div>
+        </div>
+        <div class="row">
+            {*
+                {l s='January' mod='giftlist'}
+                {l s='February' mod='giftlist'}
+                {l s='March' mod='giftlist'}
+                {l s='April' mod='giftlist'}
+                {l s='May' mod='giftlist'}
+                {l s='June' mod='giftlist'}
+                {l s='July' mod='giftlist'}
+                {l s='August' mod='giftlist'}
+                {l s='September' mod='giftlist'}
+                {l s='October' mod='giftlist'}
+                {l s='November' mod='giftlist'}
+                {l s='December' mod='giftlist'}
+            *}
+            <label>{l s='Fecha del evento' mod='giftlist'}<sup>*</sup></label>
+            <div class="col-md-4 ax-date-event">
+                <select id="months" name="months" class="form-control ax-select">
+                    <option value="0">{l s='Mes' mod='giftlist'}</option>
+                    {foreach from=$months key=k item=month}
+                        <option value="{$k}">{l s=$month mod='giftlist'}&nbsp;{$ev_date[1]}</option>
+                    {/foreach}
+                </select>
+            </div>
+            <div class="col-md-4 ax-date-event">
+                <select id="days" name="days" class="form-control ax-select">
+                    <option value="0">{l s='Día' mod='giftlist'}</option>
+                    {foreach from=$days_d item=day}
+                        <option value="{$day}" >{$day}&nbsp;&nbsp;{$ev_date[2]}</option>
+                    {/foreach}
+                </select>
+            </div>
+            <div class="col-md-4 ax-date-event">
+                <select id="years" name="years" class="form-control ax-select">
+                    <option value="0">{l s='Año' mod='giftlist'}</option>
+                    {for $i=$year to $limit}
+                        <option value="{$i}">{$i}&nbsp;&nbsp;{$ev_date[0]}</option>
+                    {/for}
+                </select>
+            </div>
         </div>
     </form>
 </div>

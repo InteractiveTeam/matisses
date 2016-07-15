@@ -1,4 +1,5 @@
 var valForm;
+var jp;
 
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
@@ -17,10 +18,13 @@ $(document).ready(function() {
         nav:true,
         responsive:{
             0:{
-                items:1
+                items:2
             },
-            600:{
-                items:3
+            568:{
+                items:2
+            },
+            768:{
+                items:4
             },
             1000:{
                 items:5
@@ -145,7 +149,7 @@ $(document).ready(function() {
                      'autoScale': true,
                      'transitionIn': 'elastic',
                      'transitionOut': 'elastic',
-                     'minWidth': 240,
+                     'minWidth': 250,
                      'minHeight': 50,
                      'speedIn': 500,
                      'speedOut': 300,
@@ -173,10 +177,50 @@ $(document).ready(function() {
     
     jp = $('#ax-products').jplist({				
       itemsBox: '.ax-prod-cont', 
-      itemPath: '.product-card' 
-      ,panelPath: '.jplist-panel'	
+      itemPath: '.product-card' ,
+      panelPath: '.jplist-panel',
+      redrawCallback: function(){
+          if($(".ax-list-edit").hasClass("hidden")){
+            $(".delete-product").removeClass('hidden');
+            $(".delete-product").parent().addClass('ax-edit-list');
+            $(".ax-bond-value").addClass("hidden");
+            if($(".ax-bond-cont").length == 0 ){
+                $(".ax-bond-card").append('<div class="ax-bond-cont"><label for="min_amount">Monto mínimo</label><input type="number" step="20000" min="0" id="min_amount" value="'+min_amount+'" name="min_amount"></div>');
+                var min_val = document.getElementById('min_amount');
+                min_val.onkeydown = function(e) {
+                    if(!((e.keyCode > 95 && e.keyCode < 106)
+                        || (e.keyCode > 47 && e.keyCode < 58) 
+                        || e.keyCode == 8)) {
+                    return false;
+                    }
+                };
+            }
+          }
+          else if($(".ax-finish-edit").hasClass("hidden")){
+            $(".delete-product").addClass('hidden');
+            $(".delete-product").parent().removeClass('ax-edit-list');
+            $(".ax-bond-value").removeClass("hidden");
+            $(".ax-bond-cont").remove();
+          }
+      }
    });
+    
+    $(".ax-edit-info").fancybox({
+        'autoSize'      :   false,
+        'height'        :   300,
+        'width'			:    600,
+        'transitionIn'	:	'elastic',
+        'transitionOut'	:	'elastic',
+        'speedIn'		:	600,
+        'speedOut'		:	200,
+        'overlayShow'	:	false,
+        //afterShow		: 	editInfo
+	});
 });
+
+function editInfo(){
+    
+}
 
 function deleteMsg(){
     $.ajax({
@@ -213,10 +257,10 @@ function uploadImage(prof,input){
             if(prof)
                 $(".ax-profile-img").css("background-image","url("+res+"?"+today.getTime()+")");
             else
-                $(".ax-cover-img").attr("src",res+"?"+today.getTime());
+                $(".ax-cover-img").css("background-image","url("+res+"?"+today.getTime()+")");
             $.fancybox({
              'autoScale': true,
-             'minWidth': 240,
+             'minWidth': 250,
              'minHeight': 50,
              'transitionIn': 'elastic',
              'transitionOut': 'elastic',
@@ -244,7 +288,7 @@ function deleteImage(prof,el){
             if(prof == "1")
                 $(".ax-profile-img").css("background-image","url("+res+"?"+today.getTime()+")");
             else
-                $(".ax-cover-img").attr("src",res+"?"+today.getTime());
+                $(".ax-cover-img").css("background-image","url("+res+"?"+today.getTime()+")");
         }
     });
 }
@@ -266,12 +310,13 @@ function saveAddress(){
                 if(!res.error){
                     $(".ax_address_bef").text(res.a_b + " " + res.data.town + " " + res.data.city +", "+ res.data.country);
                     $(".ax_address_af").text(res.a_a + " " + res.data.town + " " + res.data.city +", "+ res.data.country);
+                    $(".ax-creator-name").text(res.name);
                     $.fancybox.close();
                      $.fancybox({
                          'autoScale': true,
                          'transitionIn': 'elastic',
                          'transitionOut': 'elastic',
-                         'minWidth': 240,
+                         'minWidth': 250,
                          'minHeight': 50,
                          'speedIn': 500,
                          'speedOut': 300,
@@ -326,7 +371,7 @@ function saveMessage(){
                 autoDimensions:	true,
                  'transitionIn': 'elastic',
                  'transitionOut': 'elastic',
-                 'minWidth': 240,
+                 'minWidth': 250,
                  'minHeight': 50,
                  'speedIn': 500,
                  'speedOut': 300,

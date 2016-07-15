@@ -32,13 +32,13 @@
                             <div class="part">{l s='Tus regalos' mod='giftlist'}<span>{$row['products']}</span></div>
                             <div class="part">{l s='Regalos restantes' mod='giftlist'}<span>{$row['products'] - $row['products_bought']}</span></div>
                         </div>
-                    </div>
-                    <div class="footer-item col-lg-12">
+                        <div class="footer-item col-lg-12">
                         <form id="action-{$row['id']}" class="actions" action="{$request_uri}" role="form" method="post">
                             <button name="delete-list" data-toggle="tooltip" data-placement="bottom" title="{l s='Borrar lista' mod='giftlist'}" value="{$row['id']}" class="delete-list btn btn-default btn-lista-regalos-sample">{l s='Borrar lista' mod='giftlist'} <span class="icon-eraser"></span></button>
 
                             <a href="{$description_link }/{$row['url']}" data-id="{$row['id']}" data-toggle="tooltip" data-placement="bottom" title="{l s='Ver lista' mod='giftlist'}" class="btn-edit btn btn-default btn-lista-regalos">{l s='Ver lista' mod='giftlist'} <span class="icon-pencil"></span></a>
                         </form>
+                    </div>
                     </div>
                 </div>
             </div>

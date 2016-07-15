@@ -76,7 +76,6 @@
 	
 	if(sizeof($_References)>0)
 	{
-        echo "<pre>";print_r($_References); echo "</pre>";
 		foreach($_References as $_Model => $_Combinations)
 		{
 			unset($_Product);
@@ -548,7 +547,7 @@
 		if($_data['description'] && $_data['shortDescription'] && $_data['price'] && $_data['itemName'] && $_data['model'] && $_data['subgroupCode'] && sizeof($_data['color'])==3)
 		{
             if(empty($_data['webName'])) {
-               $_data['webName'] = ""; 
+               $_data['webName'] = str_replace(' ','-',strtolower($_data['itemName'])); 
             }
 				
 			$path		= dirname(__FILE__).'/files/'.$_data['itemCode'];

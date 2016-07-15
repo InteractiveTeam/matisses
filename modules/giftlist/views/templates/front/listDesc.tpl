@@ -28,11 +28,32 @@
 </div>
 
 <div class="products-associated" data-id="{$list_desc['id']}">
-	    <div class="ax-text-result-list ax-result-inline">
+	    <div class="text-left">
+        <div class="ax-text-result-list ax-result-inline">
          <h2>{l s='Mi lista' mod='giftlist'}</h2>
         </div>
         <a href="javascript:void(0);" class="ax-print"><i class="fa fa-print"></i>{l s='Imprimir lista' mod='giftlist'}</a>
+        </div>
         <div id="ax-products">
+           <div class="jplist-panel">						
+                <div 
+                class="jplist-pagination" 
+                data-control-type="pagination" 
+                data-control-name="paging" 
+                data-control-action="paging">
+                </div>
+                <select
+                    class="jplist-select" 
+                    data-control-type="items-per-page-select" 
+                    data-control-name="paging" 
+                    data-control-action="paging">
+
+                    <option data-number="4"> 4 </option>
+                    <option data-number="8" data-default="true" selected> 8 </option>
+                    <option data-number="12"> 12 </option>
+                    <option data-number="all"> Todos </option>
+                </select>
+            </div>
             <div class="row ax-prod-cont">
                 {foreach from=$products item=row}
                     {$atribute_group = $row['options'][3]->value}
