@@ -2606,7 +2606,8 @@ class matisses extends Module
 											WHERE id_product ="'.$id_prod.'"');
 
 	        foreach ($data as $key => $value) {
-        		if ($value['id_product_attribute'] != $id_prod_attr){
+	        	$stockCombination = StockAvailable::getQuantityAvailableByProduct((int)$id_prod,$value['id_product_attribute']);
+        		if ($value['id_product_attribute'] != $id_prod_attr && $stockCombination > 0){
         			//Como el producto principal esta agotado debemos establecer otra combinación como la principal
 
         			//$test = $product->checkDefaultAttributes();

@@ -6163,6 +6163,23 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     color: #777676;
 }
 
+#contentdiv .ax-color-list {
+    font-family: "condensed";
+    font-size: 1.2rem;
+}
+
+#contentdiv .price {
+    font-family: "condensed";
+    color: #777676;
+    font-size: 1.8rem;
+}
+
+#contentdiv .image-prod {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 180px !important;
+}
+
 #frmAddGiftList .form-group {
     position: relative;
 }
