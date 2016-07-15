@@ -34,11 +34,7 @@
         {/if}
         
         {assign var='status' value=matisses::getStatusColor($color.id_product,$color.id_product_attribute)}
-        <div style="display: none;">
-          {$color.id_product}<br>
-          {$color.id_product_attribute}
-          {$status}
-        </div>
+        
         {if $status}
             <li>
                 <a 
