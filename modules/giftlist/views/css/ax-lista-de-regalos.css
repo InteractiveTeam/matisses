@@ -943,7 +943,7 @@ label.error:before {
     border-top: 1px solid #dbdbdb;
     border-bottom: 1px solid #dbdbdb;
     display: inline-block;
-    height: 2.99rem;
+    height: 2.94rem;
     padding: 0.9375rem;
     font-size: 1rem;
     text-transform: none;
@@ -1374,6 +1374,10 @@ label.error:before {
         border-bottom: #dcdcdc solid 1px;
     }
     
+    .module-giftlist-buscar .ax-cont-list .part {
+        height: 105px;
+    }
+    
     .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(2) {        
         padding-top: 10px;
     }
@@ -1497,6 +1501,15 @@ label.error:before {
     
     #ax-cover-container .ax-cover-buttons {
         text-align: right;
+    }
+    
+    .module-giftlist-buscar .ax-cont-list .part.ax-read-more{
+        width: 100%;
+        text-align: right;
+    }
+    
+    .jplist-panel .jplist-pagination{
+        margin: 0;
     }
 
 }
@@ -1985,7 +1998,7 @@ label.error:before {
 @media screen and (max-width:320px) {
     
     .module-giftlist-buscar .ax-cont-list .part, .ax-cont-admin-listas-regalos .ax-cont-list .part {
-        padding: 20px 0;
+        padding: 20px 10px;
         font-size: 0.98rem;
     }
     

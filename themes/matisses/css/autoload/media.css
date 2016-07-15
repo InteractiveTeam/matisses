@@ -3790,17 +3790,17 @@
     }
 
     
-    #frmAddGiftList {
+    .fancybox-inner #frmAddGiftList {
         width: 228px;
         height: 100%;
         overflow-x: auto;
     }
     
-    #frmAddGiftList .chosen-single {
+    .fancybox-inner #frmAddGiftList .chosen-single {
         width: 223px;
     }
 
-    #frmAddGiftList #cant, #frmAddGiftList textarea {
+    .fancybox-inner #frmAddGiftList #cant, .fancybox-inner #frmAddGiftList textarea {
         width: 98%;
         border: #ccc solid 1px;
     }
