@@ -38,7 +38,7 @@ class categorysap extends Module
 
 	function __construct($dontTranslate = false)
  	{
-        $this->db = new DBRegister();
+        $this->db = new Dbstruct();
  	 	$this->name = 'categorysap';
 		$this->version = '1.0.0';
 		$this->author = 'Arkix';

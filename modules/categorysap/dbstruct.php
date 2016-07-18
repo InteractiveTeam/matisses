@@ -2,7 +2,7 @@
 if(!defined('_PS_VERSION_'))
 	exit;
 
-class DBStruct extends Module
+class Dbstruct extends Module
 {
 	public function CreateTable(){
 		$sql= "CREATE TABLE IF NOT EXISTS `"._DB_PREFIX_."category_sap`(
