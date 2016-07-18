@@ -1,4 +1,4 @@
-<form id="form1" name="form1" method="post" class="form-inline" action="">
+<form id="form1" name="form1" method="post" action="">
     <div class="panel">
         <div class="panel-heading">
             <h3>
@@ -13,20 +13,24 @@
                        <h3>{l s='Asociar Categorías'}</h3>
                    </div>
                     {foreach from=$allCategories item=category}
-                    <div class="form-group">
-                        <label for="ctg{$category.id_category}">
-                            {l s='Categoría #'}&nbsp;{$category.id_category}:&nbsp;<strong>{$category.name}</strong>
-                        </label>
-                        <label for="txtCtg{$category.id_category}">
-                            {l s='Código SAP:'}&nbsp;
-                        </label>
-                        <input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="ctg{$category.id_category}">
+                                {l s='Categoría #'}&nbsp;{$category.id_category}:&nbsp;<strong>{$category.name}</strong>
+                            </label>
+                            <label for="txtCtg{$category.id_category}">
+                                {l s='Código SAP:'}&nbsp;
+                            </label>
+                            <input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="txtCtg{$category.id_category}">
-                            {l s='Código SAP:'}&nbsp;
-                        </label>
-                        <input id="txtCtg{$category.id_category}" type="text">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="txtCtg{$category.id_category}">
+                                {l s='Código SAP:'}&nbsp;
+                            </label>
+                            <input id="txtCtg{$category.id_category}" type="text">
+                        </div>
                     </div>
                     {/foreach}
                 </div>
