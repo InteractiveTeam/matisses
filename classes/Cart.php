@@ -2140,11 +2140,11 @@ class CartCore extends ObjectModel
 			$delivery_option_list[$id_address][$key]['is_best_grade'] = true;*/
 
 			// Get all delivery options with a unique carrier
-            $storepick = Db::getInstance()->ExecuteS('SELECT id_carrier FROM '._DB_PREFIX_.'carrier WHERE name = "Recoger en Tienda"');
+            $storepick = Db::getInstance()->getValue('SELECT id_carrier FROM '._DB_PREFIX_.'carrier WHERE name = "Recoger en Tienda" AND deleted = 0');
             $idstoredpick = null;
             
             if (!empty($storepick)) {
-                $idstoredpick = $storepick[0]['id_carrier'];
+                $idstoredpick = $storepick;
             }
             
 			foreach ($common_carriers as $id_carrier)
