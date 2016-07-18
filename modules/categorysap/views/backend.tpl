@@ -7,7 +7,7 @@
                 {$displayName}
             </h3>
         </div>
-        <div class="form-wrapper">
+        <div class="form-group">
             <div class="col-lg-12">
                 <h2 style="text-transform: uppercase;">{l s='Asociar Categorias'}</h2>
                     <div class="col-lg-12">
@@ -22,7 +22,7 @@
                         {foreach from=$allCategories item=category}
                             <tr>
                                 <td>
-                                    <strong>{l s='Categoría N°'}{$category.id_category}</strong>
+                                    <strong>{l s='Categoría N°'}<span>{$category.id_category}</span></strong>
                                 </td>
                                 <td>
                                     <div class="col-lg-12">
