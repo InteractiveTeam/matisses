@@ -63,8 +63,8 @@ class categorysap extends Module
             $codes = Tools::getValue('txtCtg');
             if (isset($codes)) {
                 foreach ($codes as $key => $code) {
-                    echo "<pre>"; print_r($key); echo "</pre>";
-                    echo "<pre>"; print_r($code); echo "</pre>";
+                    $sql = 'UPDATE '. _DB_PREFIX_ .'category_sap SET id_category = "'.$key.'", sap_code = "'.$code.'"'; 
+                    $update = Db::getInstance()->ExecuteS($sql);
                 }
             }
 		}	
