@@ -18,10 +18,6 @@
                             <label for="ctg{$category.id_category}">
                                 {l s='Categoría #'}&nbsp;{$category.id_category}:&nbsp;<strong>{$category.name}</strong>
                             </label>
-                            <label for="txtCtg{$category.id_category}">
-                                {l s='Código SAP:'}&nbsp;
-                            </label>
-                            <input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -29,7 +25,7 @@
                             <label for="txtCtg{$category.id_category}">
                                 {l s='Código SAP:'}&nbsp;
                             </label>
-                            <input id="txtCtg{$category.id_category}" type="text">
+                            <input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
                         </div>
                     </div>
                     {/foreach}
