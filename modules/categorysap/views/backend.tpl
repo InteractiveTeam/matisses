@@ -19,10 +19,12 @@
                             </label>
                         </div>
                         <div class="col-lg-8 text-right">
-                            <label for="txtCtg{$category.id_category}">
-                                {l s='Código SAP'}&nbsp;<strong>{$category.name}</strong>&nbsp;
-                            </label>
-                            <input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
+                            <div class="form-group">
+                                <label for="txtCtg{$category.id_category}">
+                                    {l s='Código SAP'}&nbsp;<strong>{$category.name}</strong>&nbsp;
+                                </label>
+                                <input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
+                            </div>
                         </div>
                     </div>
                     <br>
