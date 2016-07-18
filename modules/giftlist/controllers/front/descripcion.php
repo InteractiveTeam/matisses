@@ -161,7 +161,9 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
             'total' => $infoList['total'],
             'reviews' =>$this->displayProductListReviews($params),
             'style'=> $styleColor,
-            'colorName' => $attr->name[1]
+            'colorName' => $attr->name[1],
+            'id_product' => $id_prod,
+            'id_product_attribute' => (int)$infoList['option'][3]->value,
         )));
     }
     
