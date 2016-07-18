@@ -9,7 +9,7 @@
         <div class="form-wrapper">
             <div class="form-group">
                 <div class="col-lg-10">
-                    <h1>{l s='Asociar Categorías'}</h1>
+                    <h2 class="text-uppercase">{l s='Asociar Categorías'}</h2>
                     {foreach from=$allCategories item=category}
                     <div class="col-lg-12">
                         <div class="col-lg-4">
