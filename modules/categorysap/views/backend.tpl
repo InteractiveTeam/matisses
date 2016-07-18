@@ -12,14 +12,11 @@
                     <h2 class="text-uppercase">{l s='Asociar Categorías'}</h2>
                     {foreach from=$allCategories item=category}
                     <div class="col-lg-12">
-                        <div class="col-lg-4">
-                            <label for="ctg{$category.id_category}">
-                                {l s='Categoría N°'}{$category.id_category}&nbsp;<strong>{$category.name}</strong> - {l s='Código SAP:'}&nbsp;
-                            </label>
-                            <input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
-                        </div>
+                        <label for="ctg{$category.id_category}">
+                            {l s='Categoría #'}{$category.id_category}&nbsp;<strong>{$category.name}</strong> | {l s='Código SAP:'}&nbsp;
+                        </label>
+                        <input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
                     </div>
-                    <hr>
                     {/foreach}
                 </div>
                 <div class="col-lg-12">
