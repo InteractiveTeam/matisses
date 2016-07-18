@@ -1,4 +1,4 @@
-<form id="form1" name="form1" method="post" action="">
+<form id="form1" name="form1" method="post" class="form-inline" action="">
     <div class="panel">
         <div class="panel-heading">
             <h3>
@@ -22,10 +22,16 @@
                         </label>
                         <input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
                     </div>
-                    {/foreach}
-                    <div class="text-center">
-                        <input  name="updateCodes" class="button" type="submit" value="{l s='Save'}" />
+                    <div class="form-group">
+                        <label for="txtCtg{$category.id_category}">
+                            {l s='Código SAP:'}&nbsp;
+                        </label>
+                        <input id="txtCtg{$category.id_category}" type="text">
                     </div>
+                    {/foreach}
+                </div>
+                <div class="text-center">
+                    <input  name="updateCodes" class="button" type="submit" value="{l s='Save'}" />
                 </div>
             </div>
         </div>
