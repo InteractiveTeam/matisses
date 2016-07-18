@@ -62,7 +62,7 @@ if (Validate::isEmail($email)) {
                 '{link}' => $url.'?skey='.$token
             );
             
-            $mailSend = Mail::Send((int)$context->language->id,'validate_account_sap',Mail::l('Registration account process', (int)$context->language->id),$templateVars,$email,null,null,null,null,null,_THEME_DIR_.'mails/');
+            $mailSend = Mail::Send((int)$context->language->id,'validate_account_sap',Mail::l('Proceso de registro', (int)$context->language->id),$templateVars,$email,null,null,null,null,null,_THEME_DIR_.'mails/');
              /* Email sending */
             if ($mailSend) {
                 $jsonData['trueProcess']['response'] = true;

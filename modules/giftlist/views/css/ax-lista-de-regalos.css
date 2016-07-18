@@ -1140,7 +1140,7 @@ label.error:before {
 #frmSaveList .tab-pane .ax-date-event {
     margin: 0 10px;
     padding: 0;
-    width: 31%;
+    width: 30.9%;
 }
 
 #frmSaveList .ax-cont-form-date-lista .ax-date-event:first-child, #frmSaveList .ax-cont-form-date-lista .ax-date-event:last-child {
@@ -1583,6 +1583,28 @@ label.error:before {
         width: 33.3%;
         float: left;
     }
+    
+    .module-giftlist-listas .ax-cont-admin-listas-regalos .ax-cont-list .part:last-child  {
+        border-bottom: #dcdcdc solid 1px;
+    }
+    
+    .module-giftlist-listas .ax-btn-creat-list {
+        text-align: center;
+        clear: both;
+    }
+    
+    .module-giftlist-listas .ax-btn-creat-list a {
+        float: none;
+    }
+    
+    .module-giftlist-listas .jplist-panel .jplist-pagination {
+        margin: 20px 10px 0;
+        float: right;
+    }
+    
+    .module-giftlist-listas .jplist-panel {
+        width: 100%;
+    }
 
 }
 
@@ -1700,10 +1722,19 @@ label.error:before {
     .module-giftlist-buscar .ax-cont-list .part, .ax-cont-admin-listas-regalos .ax-cont-list .part {
         width: 50%;
         text-align: left;
+        height: 95px;
     }
     
-    .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(7)  {
+    .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(7) {
         width: 100%;
+    }
+    
+    .module-giftlist-listas .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(7), .module-giftlist-listas .ax-cont-list-rp .ax-item .part:nth-child(8)  {
+        width: 50%;
+    }
+    
+    .module-giftlist-listas .ax-cont-list-rp .ax-item .part:nth-child(7) span {
+        text-align: center;
     }
     
     .ax-cont-admin-listas-regalos .ax-cont-list .part:last-child {
@@ -1813,6 +1844,10 @@ label.error:before {
         padding: 0;
     }
     
+    .module-giftlist-listas .ax-cont-admin-listas-regalos .btn.btn-default.btn-lista-regalos {
+        float: none;
+    }
+    
         #frmSaveList span.ax-up-msg {
         right: 4%;
     }
@@ -1865,6 +1900,10 @@ label.error:before {
     .ax-categories .owl-dots {
         display: none !important;
     }
+    
+    .module-giftlist-listas .ax-btn-creat-list .btn.btn-default.btn-lista-regalos {
+        float: none;
+    }
 
 }
 
@@ -1882,7 +1921,6 @@ label.error:before {
         padding: 0;
     }
     
-        
     .footer-up .container {
         padding-right: 15px;
         padding-left: 15px;
@@ -2123,6 +2161,10 @@ label.error:before {
         font-size: 1.1rem;
     }
     
+     .footer-item .btn.btn-default.btn-lista-regalos-sample, .footer-item .btn.btn-default.btn-lista-regalos {
+        font-size: 0.8rem;
+    }
+    
     .tab-pane .ax-cont-form-date-lista .ax-date-event {
         width: 30.8% !important;
     }
@@ -2186,8 +2228,8 @@ label.error:before {
     }
 
     .module-giftlist-buscar .ax-cont-list .part, .ax-cont-admin-listas-regalos .ax-cont-list .part {
-        padding: 20px 10px;
-        font-size: 0.98rem;
+        padding: 20px 5PX;
+        font-size: 0.89rem;
     }
     
     #address-div a.chosen-single {
@@ -2214,6 +2256,14 @@ label.error:before {
         width: 100%;
         margin: 5px 0;
     }
+    
+    #frmSaveList .tab-pane .ax-date-event {
+        margin: 0 5px;
+        padding: 0;
+        width: 31%;
+    }
+    
+}
 
 .fa {
     font-family: FontAwesome;
