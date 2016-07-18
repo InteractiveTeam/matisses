@@ -44,31 +44,36 @@ $(document).ready(function(){
     
     $(".ax-more").on("click",function(e){
         var el = $(this);
+        $.ajax({
+            type: "POST",
+            data:{
+                'id_prod':el.parent().parent().attr('data-id'),
+                ajax:true,
+                method:"productDetail",
+                id_list: $(".products-associated").attr('data-id'),
+            },
+            success: function(res){
+                res = JSON.parse(res);
+                $(".ax-det-img").attr("src",res.image);
+                $(".ax-det-name").text(res.name);
+                $(".ax-det-ref").text(res.reference);
+                $(".ax-det-reviews").html(res.reviews);
+                $(".ax-det-desc").html(res.desc);
+                $(".ax-det-price").text(res.price);
+                $(".ax-det-sol").text(res.total);
+                $(".ax-det-falt").text(res.missing);
+            }
+        });
         $.fancybox({
         'autoSize'      :   false,
-        'height'        :   340,    
-        'width'			:   600,
+        'minHeight'        :   340,    
+        'minWidth'			:   600,
         'transitionIn'	:	'elastic',
         'transitionOut'	:	'elastic',
         'speedIn'		:	600,
         'speedOut'		:	200,
         'overlayShow'	:	false,
         href            :   "#productDiv",
-        afterShow: function(){
-            console.log(el.parent().parent().attr('data-id'));
-            $.ajax({
-                type: "POST",
-                data:{
-                    'id_prod':el.parent().parent().attr('data-id'),
-                    ajax:true,
-                    method:"productDetail",
-                    id_list: $(".products-associated").attr('data-id'),
-                },
-                success: function(res){
-                    console.log(res);
-                }
-            });
-        }
         });
     });
     
