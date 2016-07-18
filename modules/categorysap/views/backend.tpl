@@ -9,7 +9,7 @@
         </div>
         <div class="form-group">
             <div class="col-lg-12">
-                <h2 style="text-transform: uppercase;">{l s='Asociar Categorias'}</h2>
+                <h2 style="text-transform: uppercase;" class="text-center">{l s='Asociar Categorias'}</h2>
                     <div class="col-lg-12">
                     <table class="table table-bordered">
                         <tbody>
@@ -35,8 +35,9 @@
                         </tbody>
                     </table>
                 </div>
-            <div class="col-lg-12">
-                <input  name="updateCodes" class="button" type="submit" value="{l s='Save'}" />
+            <div class="col-lg-12 text-center">
+                <br>
+                <input  name="updateCodes" class="btn btn-success" type="submit" value="{l s='Save'}" />
             </div>
         </div>
         </div>
