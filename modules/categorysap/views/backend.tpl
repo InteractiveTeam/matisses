@@ -12,12 +12,6 @@
                 <h2 style="text-transform: uppercase;">{l s='Asociar Categorias'}</h2>
                     <div class="col-lg-12">
                     <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th><strong>#</strong></th>
-                                <th><strong>{l s='Código SAP'}</strong></th>
-                            </tr> 
-                        </thead>
                         <tbody>
                         {foreach from=$allCategories item=category}
                             <tr>
