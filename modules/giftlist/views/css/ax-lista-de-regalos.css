@@ -1191,33 +1191,55 @@ label.error:before {
         margin-top: 10px;
     }
 
+#info-div {
+    overflow: hidden;
+    overflow-y: auto;
+    height: 100%;
+}
+
 #address-div a.chosen-single {
     width: 190px;
     width: 278px;
 }
 
-#address-div .btn-form-address {
+#address-div .btn-form-address, #info-div .btn-form-address {
    text-align: center;
     margin-top: 20px;
 }
 
-#address-div #address-form label {
+#address-div #address-form label, #info-div #info-form label {
     padding-bottom: 0rem;
     padding-top: 0.55rem;
 }
 
-#address-div #address-form label, #address-div #address-form span, #address-div #address-form input {
+#address-div #address-form label, #address-div #address-form span, #address-div #address-form input, #info-div #info-form label, #info-div #info-form span, #info-div #info-form input {
     font-family: Georgia, 'Georgia' !important;
     font-weight: 100;
     font-size: 0.95rem !important;
 }
 
-#address-div .form-control {
+#address-div .form-control, #info-div .form-control {
     padding: 8.5px 10px;
 }
 
-#address-div #address-form span {
+#address-div #address-form span, #info-div #info-form span {
     font-size: 0.8rem !important;
+}
+
+#info-div .chosen-single {
+    width: 270px;
+}
+
+#info-div .ax-date-event  .chosen-single {
+    width: 170px;
+}
+
+#info-div .ax-date-event .chosen-drop {
+    width: 170px;
+}
+
+#info-div .row.btn-form-info {
+    margin: 20px 0;
 }
 
 #share-pop.white-popup-block .btn.btn-success.pull-right {
@@ -1548,6 +1570,19 @@ label.error:before {
     div#ax-products {
         clear: both;
     }
+    
+    .ax-cont-admin-listas-regalos .ax-cont-list .part:last-child {
+        border: none;
+    } 
+    
+    #info-div .chosen-single {
+        width: 600px;
+    }
+    
+    #info-div .ax-date-event {
+        width: 33.3%;
+        float: left;
+    }
 
 }
 
@@ -1667,6 +1702,19 @@ label.error:before {
         text-align: left;
     }
     
+    .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(7)  {
+        width: 100%;
+    }
+    
+    .ax-cont-admin-listas-regalos .ax-cont-list .part:last-child {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .ax-cont-admin-listas-regalos .ax-cont-list .part:last-child a {
+        margin: 20px 0;
+    }
+    
     .ax-search-home .ax-form-data-search input {
        width: 96%;
     }
@@ -1681,7 +1729,7 @@ label.error:before {
     }   
     
     .module-giftlist-descripcion .product-card.col-md-3 {
-        width: 48%;
+        width: 98%;
     }
        
     #frmSaveList .nav-tabs {
@@ -1733,7 +1781,7 @@ label.error:before {
     
     .module-giftlist-descripcion .sortPagiBar {
         margin-right: 0;
-        float: left;
+        float: none;
     }
     
     .ax-cont-list-rp .col-lg-12.ax-cont-list {
@@ -1764,16 +1812,17 @@ label.error:before {
         text-align: center;
         padding: 0;
     }
-
-}
-
-@media screen and (max-width:568px) {
-    #frmSaveList span.ax-up-msg {
+    
+        #frmSaveList span.ax-up-msg {
         right: 4%;
     }
     
-    .ax-cont-admin-listas-regalos.user .ax-cont-list .part:nth-child(2), .ax-cont-admin-listas-regalos.user .ax-cont-list .part:nth-child(2) span {
+    .ax-cont-admin-listas-regalos.user .ax-cont-list .part:nth-child(2) {
         text-align: right;
+    }
+    
+    .ax-cont-admin-listas-regalos.user .ax-cont-list .part:nth-child(2) span {
+        text-align: center;
     }
     
     .ax-cont-admin-listas-regalos.user .ax-cont-list .part:nth-child(5) {
@@ -1791,6 +1840,32 @@ label.error:before {
     .module-giftlist-listas .ax-cont-list .part:nth-child(2), .module-giftlist-listas .ax-cont-list .part:nth-child(4) {
         text-align: center;
     }
+    
+    .ax-general-info.user {
+        border-top: #ccc solid 1px;
+        border-bottom: #ccc solid 1px;
+    }
+    
+    .ax-general-info.user .part {
+        border: none;
+    }
+    
+    #info-div .chosen-single {
+        width: 283px;
+    }
+    
+    #info-div .ax-date-event .chosen-single {
+        width: 77px;
+    }
+    
+    .btn.btn-default.btn-lista-regalos {
+        padding: 8px 28.6px;
+    }
+    
+    .ax-categories .owl-dots {
+        display: none !important;
+    }
+
 }
 
 @media screen and (max-width:380px) {
@@ -1908,7 +1983,7 @@ label.error:before {
     
     .ax-message-content .ax-edit, .ax-message-content .ax-delete {
         margin: 10px;
-        font-size: 1.1rem;
+        font-size: 1.0rem;
     }
     
     .ax-avatar-content {
@@ -1921,10 +1996,6 @@ label.error:before {
     
     .ax-categories {
         margin: 80px 0 20px 0;
-    }
-    
-    .ax-categories .owl-carousel .owl-item {
-        width: 140px !important;
     }
     
     .ax-categories .owl-carousel .owl-itemimg {
@@ -2049,13 +2120,51 @@ label.error:before {
     }
     
     .footer-item .btn.btn-default.btn-lista-regalos-sample, .footer-item .btn.btn-default.btn-lista-regalos {
-        font-size: 0.8rem;
+        font-size: 1.1rem;
     }
     
     .tab-pane .ax-cont-form-date-lista .ax-date-event {
         width: 30.8% !important;
     }
+
+    #info-div .ax-date-event {
+        width: 100%;
+        float: none
+    }
     
+    #info-div .chosen-single {
+        width: 233px;
+    }
+    
+    #info-div .ax-date-event .chosen-single {
+        width: 233px;
+        padding: 0 10px;
+        margin: 5px 0;
+    }
+    
+    #info-div .ax-date-event .chosen-drop, .chosen-container.chosen-with-drop .chosen-drop {
+        width: 233px;
+    }
+    
+    #info-div .btn.btn-default.btn-lista-regalos {
+        padding: 8px 16px;
+    }
+    
+}
+
+@media screen and (max-width:414px) {
+    .module-giftlist-descripcion .owl-nav .owl-prev {
+        left: -29px;
+    }
+    
+    .module-giftlist-descripcion .owl-nav .owl-next {
+        right: -31px;
+    }
+    
+    .owl-carousel .owl-controls .owl-nav .owl-prev, .owl-carousel .owl-controls .owl-nav .owl-next, .owl-carousel .owl-controls .owl-dot {
+        width: 25px;
+        height: 25px;
+    }
 }
 
 @media screen and (max-width:375px) {
@@ -2063,6 +2172,10 @@ label.error:before {
         top: 15px;
         right: 3%;
         padding: 12px;
+    }
+    
+    #info-div .btn.btn-default.btn-lista-regalos {
+        padding: 8px 15.23px;
     }
 }
 
@@ -2084,7 +2197,23 @@ label.error:before {
     .ax-text-result-list p, .ax-text-result-list h2, .ax-text-result-list h3 {
         font-size: 1.1rem;
     }
-}
+    
+    #info-div .chosen-single {
+        width: 183px;
+    }
+    
+    #info-div .ax-date-event .chosen-drop, .chosen-container.chosen-with-drop .chosen-drop {
+        width: 183px;
+    }
+    
+    #info-div .ax-date-event .chosen-single {
+        width: 183px;
+    }
+    
+    #info-div .btn.btn-default.btn-lista-regalos {
+        width: 100%;
+        margin: 5px 0;
+    }
 
 .fa {
     font-family: FontAwesome;

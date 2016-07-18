@@ -51,6 +51,24 @@ class categorysap extends Module
         $this->description = $this->l('Permite asociar las categorías de Prestashop con los identificadores de SAP.');
 		$this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
 	}
+    
+    /***********************************************
+	* BACKEND
+	***********************************************/
+	public function getContent()
+	{	
+		if (Tools::isSubmit('updateCodes'))
+		{
+			
+		}	
+
+		$categories	= Db::getInstance()->ExecuteS('SELECT *, cl.name as "name" FROM '. _DB_PREFIX_ .'category c JOIN '. _DB_PREFIX_ .'category_lang cl ON c.id_category = cl.id_category');
+        
+        $this->context->smarty->assign('displayName',strtoupper($this->displayName));
+        $this->context->smarty->assign('allCategories',$categories);
+		
+		return $this->display(__FILE__, '/views/backend.tpl');
+	}	
 
 	public function install()
 	{
