@@ -142,6 +142,7 @@ class ListProductBondModel extends ObjectModel
         $prod['total'] = $totalCant['cant'];
         $prod['bought'] = $totalCant['cant'] - $totalCant['missing'];
         $prod['missing'] = $totalCant['missing'];
+        $prod['option'] = Tools::jsonDecode($totalCant['option']);
         return $prod;
     }
 }

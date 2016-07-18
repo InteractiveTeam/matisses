@@ -121,9 +121,14 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
     private function _productDetail($id_prod,$id_list){
         $prod = new ProductCore((int)$id_prod);
         $infoList = ListProductBondModel::getByProductAndListNotAgroup($id_prod,$id_list);
-        $image = ProductCore::getCombinationImageById( (int)$option[3]->value, Context::getContext()->language->id);
-            $images = Image::getImages(1, $row['id_product']);
+        $image = ProductCore::getCombinationImageById( (int)$infoList['option'][3]->value, Context::getContext()->language->id);
+        $imaR = "";
+        if (sizeof($image) > 0) {
+			$image = new Image($image['id_image']);
+            $imaR = _PS_PROD_IMG_DIR_.Image::getImgFolderStatic($image->id_image).$image->id_image.".jpg";
+		}
         die(Tools::jsonEncode(array(
+            'image' => $imaR,
             'name' => $prod->name[1],
             'reference' => $prod->reference,
             'desc' => $prod->description_short[1],
