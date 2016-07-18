@@ -9,6 +9,7 @@
         <div class="form-wrapper">
             <div class="form-group">
                 <div class="col-lg-8">
+                   {$allCategories|print_r}
                     {foreach from=$allCategories item=category}
                     <div class="form-group">
                         <label for="txtCtg{$category.id_category}">
