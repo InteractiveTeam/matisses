@@ -8,7 +8,7 @@
         </div>
         <div class="form-wrapper">
             <div class="form-group">
-                <div class="col-lg-8">
+                <div class="col-lg-10">
                    <div class="text-center">
                        <h1>{l s='Asociar Categorías'}</h1>
                    </div>
@@ -19,8 +19,8 @@
                                 {l s='Categoría #'}&nbsp;{$category.id_category}<br><strong>{$category.name}</strong>
                             </label>
                         </div>
-                        <div class="col-lg-8">
-                            <div class="form-group form-inline">
+                        <div class="col-lg-8 form-inline">
+                            <div class="form-group">
                                 <label for="txtCtg{$category.id_category}">
                                     {l s='Código SAP:'}&nbsp;
                                 </label>
