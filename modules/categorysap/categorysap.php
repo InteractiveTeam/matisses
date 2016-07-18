@@ -59,38 +59,13 @@ class categorysap extends Module
 	{	
 		if (Tools::isSubmit('updateCodes'))
 		{
-			$NewApyKey = pSQL(Tools::getValue('ApyKey'));
-			if(0==Db::getInstance()->getValue('SELECT count(*) as disp FROM `' . _DB_PREFIX_ . 'wsmatisses_configuration`'))
-			{
-				Db::getInstance()->insert('wsmatisses_configuration', array('apykey' =>	$NewApyKey));
-			}else{
-					Db::getInstance()->update('wsmatisses_configuration', array('apykey' =>	$NewApyKey));
-				 }
-			Configuration::updateValue($this->name.'_UrlWs', pSQL(Tools::getValue('url')));	
-			Configuration::updateValue($this->name.'_LocationWs', pSQL(Tools::getValue('locationurl')));
-			Configuration::updateValue($this->name.'_RowNumber', pSQL(Tools::getValue('RowNumber')));
-			Configuration::updateValue($this->name.'_TimeRecord', abs(pSQL(Tools::getValue('TimeRecord'))));	 
+			
 		}	
-		$limit = Configuration::get($this->name.'_RowNumber') ? Configuration::get($this->name.'_RowNumber') : 20;
-		$ApyKey	= Db::getInstance()->ExecuteS('SELECT * FROM `' . _DB_PREFIX_ . 'webservice_account` WHERE active =1');
-		$Log	= Db::getInstance()->ExecuteS('SELECT * FROM `' . _DB_PREFIX_ . 'wsmatisses_log` order by register_date desc limit '.$limit);
-		foreach($Log as $d => $v)
-		{
-			$Log[$d]['register_date'] = date('Y-m-d H:i:s', $Log[$d]['register_date']);
-		}
-		foreach($ApyKey as $d => $v)
-		{
-			$ApyKey[$d]['selected'] = ($ApyKey[$d]['key'] == Db::getInstance()->getValue('SELECT apykey as disp FROM `' . _DB_PREFIX_ . 'wsmatisses_configuration`') 
-										? 'selected' : NULL);
-		}	
-		$this->context->smarty->assign('path',$this->name);
-		$this->context->smarty->assign('displayName',$this->displayName);
-		$this->context->smarty->assign('ApyKey',$ApyKey);
-		$this->context->smarty->assign('UrlWs',Configuration::get($this->name.'_UrlWs'));
-		$this->context->smarty->assign('locationurl',Configuration::get($this->name.'_LocationWs'));
-		$this->context->smarty->assign('RowNumber',Configuration::get($this->name.'_RowNumber'));
-		$this->context->smarty->assign('TimeRecord',Configuration::get($this->name.'_TimeRecord'));
-		$this->context->smarty->assign('Log',$Log);
+
+		$categories	= Db::getInstance()->ExecuteS('SELECT *, cl.name as "name" FROM '. _DB_PREFIX_ .'_category c JOIN '. _DB_PREFIX_ .'_category_lang cl ON c.id_category = cl.id_category');
+        
+        $this->context->smarty->assign('displayName',$this->displayName);
+        $this->context->smarty->assign('allCategories',$categories);
 		
 		return $this->display(__FILE__, '/views/backend.tpl');
 	}	
