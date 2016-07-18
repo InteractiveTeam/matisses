@@ -23,6 +23,9 @@
                         <input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
                     </div>
                     {/foreach}
+                    <div class="text-center">
+                        <input  name="updateCodes" class="button" type="submit" value="{l s='Save'}" />
+                    </div>
                 </div>
             </div>
         </div>
