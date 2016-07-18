@@ -74,6 +74,7 @@
                                         {/foreach}
                                     <p class="total_qty" data-cant="{$row['cant']}">{l s='Cantidad:'} {$row['cant']}</p>
                                 </div>
+                                <button data-toggle="tooltip" data-placement="bottom" title="{l s='Descubre más' mod='giftlist'}" class="ax-more btn btn-default btn-lista-regalos">{l s='Descubre más' mod='giftlist'}</button>
                                 <button data-toggle="tooltip" data-placement="bottom" title="{l s='Añadir al carrito' mod='giftlist'}" class="add-to-cart btn btn-default btn-lista-regalos">{l s='Añadir al carrito' mod='giftlist'}</button>
                             </div>
                     </div>
@@ -114,4 +115,7 @@
 		<a data-toggle="tooltip" data-placement="bottom" title="Continuar comprando" class="keep-buy btn btn-default pull-left">Continuar comprando</a>
 		<a href="{$base_dir}pedido" data-toggle="tooltip" data-placement="bottom" title="Ir al carrito" class="see-list btn btn-default pull-right">Ir al carrito</a>
 	</div>
+</div>
+
+<div id="productDiv" style="display: none;">
 </div>

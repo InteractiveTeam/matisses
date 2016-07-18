@@ -1,4 +1,4 @@
-
+var jp;
 $(document).ready(function(){
     $(".ax-print").click(function(){
         window.print();
@@ -27,7 +27,7 @@ $(document).ready(function(){
 	//buy bond
 	$("#add_bond").fancybox({
         'autoSize'      :   false,
-        'height'        :   340,
+        'height'        :   340,    
         'width'			:   600,
         'transitionIn'	:	'elastic',
         'transitionOut'	:	'elastic',
@@ -40,6 +40,36 @@ $(document).ready(function(){
             validateBondForm();
             $("#mount").attr("min",min_amount);
         }
+    });
+    
+    $(".ax-more").on("click",function(e){
+        var el = $(this);
+        $.fancybox({
+        'autoSize'      :   false,
+        'height'        :   340,    
+        'width'			:   600,
+        'transitionIn'	:	'elastic',
+        'transitionOut'	:	'elastic',
+        'speedIn'		:	600,
+        'speedOut'		:	200,
+        'overlayShow'	:	false,
+        href            :   "#productDiv",
+        afterShow: function(){
+            console.log(el.parent().parent().attr('data-id'));
+            $.ajax({
+                type: "POST",
+                data:{
+                    'id_prod':el.parent().parent().attr('data-id'),
+                    ajax:true,
+                    method:"productDetail",
+                    id_list: $(".products-associated").attr('data-id'),
+                },
+                success: function(res){
+                    console.log(res);
+                }
+            });
+        }
+        });
     });
     
     jp = $('#ax-products').jplist({				
