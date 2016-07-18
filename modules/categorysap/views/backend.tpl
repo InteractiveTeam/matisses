@@ -26,7 +26,7 @@
                                             </label>
                                         </div>
                                         <div class="col-lg-6 text-left">
-                                               <input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
+                                               <input id="txtCtg{$category.id_category}" name="txtCtg[{$category.id_category}]" type="text">
                                         </div>                                        
                                     </div>  
                                 </td>

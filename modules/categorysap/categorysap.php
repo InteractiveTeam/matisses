@@ -60,7 +60,7 @@ class categorysap extends Module
 	{	
 		if (Tools::isSubmit('updateCodes'))
 		{
-			
+			echo "<pre>"; print_r(Tools::getValue('txtCtg'));
 		}	
 
 		$categories	= Db::getInstance()->ExecuteS('SELECT *, cl.name as "name" FROM '. _DB_PREFIX_ .'category c JOIN '. _DB_PREFIX_ .'category_lang cl ON c.id_category = cl.id_category WHERE level_depth > 2');
