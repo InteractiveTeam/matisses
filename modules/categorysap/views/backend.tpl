@@ -15,13 +15,14 @@
                     <div class="col-lg-12">
                         <div class="col-lg-6">
                             <label for="ctg{$category.id_category}">
-                                {l s='Categoría #'}{$category.id_category}&nbsp;|&nbsp;{l s='Código SAP:'}<strong>{$category.name}</strong>&nbsp;
+                                {l s='Categoría #'}{$category.id_category}&nbsp;
                             </label>
                         </div>
                         <div class="col-lg-6 text-right">
-                            <input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
+                            {l s='Código SAP'}&nbsp;<strong>{$category.name}</strong>&nbsp;<input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
                         </div>
                     </div>
+                    <br>
                     {/foreach}
                 </div>
                 <div class="col-lg-12">
