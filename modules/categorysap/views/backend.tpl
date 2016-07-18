@@ -18,7 +18,7 @@
                             {l s='Categoría #'}&nbsp;{$category.id_category}<br><strong>{$category.name}</strong>
                         </label>
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-6">
                         <div class="form-group">
                             <label for="txtCtg{$category.id_category}">
                                 {l s='Código SAP:'}&nbsp;
