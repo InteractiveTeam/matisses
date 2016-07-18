@@ -27,7 +27,7 @@
 if (!defined('_PS_VERSION_'))
 	exit;
 
-require_once __DIR__ . '/dbregister.php';
+require_once __DIR__ . '/dbstruct.php';
 require_once _PS_MODULE_DIR_.'matisses/matisses.php';
 
 class categorysap extends Module
