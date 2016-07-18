@@ -1787,6 +1787,10 @@ label.error:before {
     .ax-cont-admin-listas-regalos.user .ax-cont-list .part:nth-child(4){
         text-align: right;
     }
+    
+    .module-giftlist-listas .ax-cont-list .part:nth-child(2), .module-giftlist-listas .ax-cont-list .part:nth-child(4) {
+        text-align: center;
+    }
 }
 
 @media screen and (max-width:380px) {
@@ -1858,10 +1862,6 @@ label.error:before {
     
     .module-giftlist-listas .ax-cont-list .part:last-child {
         width: 50% !important;
-    }
-    
-    .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(even) {
-        text-align: right;
     }
     
     .module-giftlist-descripcion .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(7) {
@@ -2039,21 +2039,13 @@ label.error:before {
         float: right;
     }
     
-    .ax-general-info .ax-cont-list .part:nth-child(2) span {
+    .module-giftlist-descripcion .ax-general-info .ax-cont-list .part:nth-child(2), .module-giftlist-descripcion .ax-general-info .ax-cont-list .part:nth-child(4), .module-giftlist-descripcion .ax-general-info .ax-cont-list .part:nth-child(6) {
         text-align: center;
-        width: 85%;
-        float: right;
     }
     
     .ax-general-info .ax-cont-list .part:nth-child(3) span {
         text-align: center;
         width: 40%;
-    }
-    
-    .ax-general-info .ax-cont-list .part:nth-child(4) span {
-        float: right;
-        width: 80%;
-        text-align: center;
     }
     
     .footer-item .btn.btn-default.btn-lista-regalos-sample, .footer-item .btn.btn-default.btn-lista-regalos {
