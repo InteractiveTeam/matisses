@@ -27,10 +27,29 @@ $(document).ready(function(){
 
 	$(".add-to-cart").click(function(e){
 		var product_card = $(this).parent().parent();
-		total = product_card.find(".total_qty").attr("data-cant");
-        if(total > product_card.find(".total_qty").attr("data-value"))
-            total = parseInt(product_card.find(".total_qty").attr("data-value"));
-		addFromList(product_card.attr("data-id"),product_card.find(".prod-attr").val(), total, $(this),$(".products-associated").attr("data-id"));
+		var total = parseInt(product_card.find(".total_qty").attr("data-cant"));
+        if(total === 0){
+            total = parseInt(product_card.find("#qty").val());
+            if(total !== 0 && total <=  product_card.find(".total_qty").attr("data-max")){
+                addFromList(product_card.attr("data-id"),product_card.find(".prod-attr").val(), total, $(this),$(".products-associated").attr("data-id"));
+                return true;
+            }else{
+                $.fancybox({
+                    'autoSize'      :   true,
+                    'minHeight'     :   100,    
+                    'minWidth'		:   200,
+                    'transitionIn'	:	'elastic',
+                    'transitionOut'	:	'elastic',
+                    'speedIn'		:	600,
+                    'speedOut'		:	200,
+                    'overlayShow'	:	false,
+                    content         :   "La cantidad que elegiste supera la requerida por el creador de la lista.",
+                });
+                return false;
+            }
+        }            
+        
+         addFromList(product_card.attr("data-id"),product_card.find(".prod-attr").val(), total, $(this),$(".products-associated").attr("data-id"));		
 	});
     
     $(".add-to-cart-modal").click(function(){
@@ -65,6 +84,7 @@ $(document).ready(function(){
                 ajax:true,
                 method:"productDetail",
                 id_list: $(".products-associated").attr('data-id'),
+                group: (el.attr("data-group") !== undefined ? 1 : 0)
             },
             success: function(res){
                 res = JSON.parse(res);
@@ -80,6 +100,10 @@ $(document).ready(function(){
                 $(".ax-det-falt").text(res.missing);
                 $(".color_pick").css("background",res.style);
                 $(".color_pick").attr("title",res.colorName);
+                if(res.group){
+                    $(".ax-mod-qty").attr("disabled", true);
+                    $(".ax-mod-qty").val(res.cantGroup);
+                }
                 $.fancybox({
                     'autoSize'      :   false,
                     'minHeight'        :   340,    
@@ -189,8 +213,10 @@ function addFromList(idProduct, idCombination, quantity, callerElement,id_list){
 	});
 }
 
+var bondForm;
+
 function validateBondForm(){
-	$("#bond_form").validate({
+	bondForm = $("#bond_form").validate({
 		rules:{
 			mount: 'required'
 		}
@@ -203,32 +229,34 @@ function validateBondForm(){
 		$.fancybox.close();
 	});
 	$("#btnSave").click(function(e){
-		$.ajax({
-			data: {
-				ajax: true,
-				method: "addBond",
-				id_list: $(".products-associated").attr('data-id'),
-				data: $("#bond_form").serializeObject(),
-                summary: true
-			},
-			headers: { "cache-control": "no-cache" },
-			success: function(result){
-				result = JSON.parse(result);
-				$.fancybox.close();
-				$("#message").text(result.msg);
-                ajaxCart.refresh();
-				$.fancybox({
-                     'autoScale': true,
-                     'transitionIn': 'elastic',
-                     'transitionOut': 'elastic',
-                     'speedIn': 500,
-                     'speedOut': 300,
-                     'autoDimensions': true,
-                     'centerOnScroll': true,
-                     'href' : '#contentdiv'
-                });
-			}
-		});
+        if(bondForm.form()){
+            $.ajax({
+                data: {
+                    ajax: true,
+                    method: "addBond",
+                    id_list: $(".products-associated").attr('data-id'),
+                    data: $("#bond_form").serializeObject(),
+                    summary: true
+                },
+                headers: { "cache-control": "no-cache" },
+                success: function(result){
+                    result = JSON.parse(result);
+                    $.fancybox.close();
+                    $("#message").text(result.msg);
+                    ajaxCart.refresh();
+                    $.fancybox({
+                         'autoScale': true,
+                         'transitionIn': 'elastic',
+                         'transitionOut': 'elastic',
+                         'speedIn': 500,
+                         'speedOut': 300,
+                         'autoDimensions': true,
+                         'centerOnScroll': true,
+                         'href' : '#contentdiv'
+                    });
+                }
+            });
+        }
 		e.preventDefault();
 	});
 }

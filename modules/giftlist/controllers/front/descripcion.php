@@ -136,7 +136,10 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
     private function _productDetail($id_prod,$id_list){
         $prod = new ProductCore((int)$id_prod);
         $link = new LinkCore();
-        $infoList = ListProductBondModel::getByProductAndListNotAgroup($id_prod,$id_list);
+        if((int)Tools::getValue('group'))
+            $infoList = ListProductBondModel::getByProductAndList($id_prod,$id_list);
+        else
+            $infoList = ListProductBondModel::getByProductAndListNotAgroup($id_prod,$id_list);
         $image = ProductCore::getCombinationImageById( (int)$infoList['option'][3]->value, Context::getContext()->language->id);
         $params['reference'] = $prod->reference;
         $params['product']['id_product'] = (int)$id_prod;
@@ -159,9 +162,11 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
             'missing' => $infoList['missing'],
             'bought' => $infoList['bought'],
             'total' => $infoList['total'],
+            'cantGroup' => $infoList['cant'],
             'reviews' =>$this->displayProductListReviews($params),
             'style'=> $styleColor,
             'colorName' => $attr->name[1],
+            'group' => ($infoList['group'] ? true : false),
             'id_product' => $id_prod,
             'id_product_attribute' => (int)$infoList['option'][3]->value,
         )));
@@ -310,6 +315,10 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 		$bond = new BondModel();
 		$list = new GiftListModel($id_list);
 		$bond->id_list = $id_list;
+        if($list->min_amount > $data['mount'])
+            die(Tools::jsonEncode(array(
+				'msg' =>  'Por favor, escribe un valor mayor o igual a '.$data['mount']
+				)));
 		$bond->value = $data['mount'];
 		$bond->message = $data['message'];
 		$bond->luxury_bond = ($FreeVipBond ? 1 : (isset($data['luxury_bond']) ? 1 : 0));
@@ -317,7 +326,9 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 		$sql = "SELECT id_product FROM "._DB_PREFIX_."product WHERE reference = 'BOND-LIST'";
 		$id_product = Db::getInstance()->getValue($sql);
 		if(!$bond->save())
-			die("error");
+			die(Tools::jsonEncode(array(
+				'msg' =>  'No se ha podido guardar el bono de regalo'
+				)));
 		else{
 			Db::getInstance()->insert('cart_product', array(
 				'id_cart' => $cart->id,
