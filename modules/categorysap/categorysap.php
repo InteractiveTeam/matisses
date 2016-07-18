@@ -90,7 +90,10 @@ class categorysap extends Module
             }
 		}	
 
-		$categories	= Db::getInstance()->ExecuteS('SELECT *, cl.name as "name" FROM '. _DB_PREFIX_ .'category c JOIN '. _DB_PREFIX_ .'category_lang cl ON c.id_category = cl.id_category WHERE level_depth > 2');
+		$categories	= Db::getInstance()->ExecuteS('SELECT * , cl.name AS "name", sap_code FROM '. _DB_PREFIX_ .'category c
+                                                 JOIN '. _DB_PREFIX_ .'category_lang cl ON c.id_category = cl.id_category 
+                                                 JOIN '. _DB_PREFIX_ .'category_sap cs ON c.id_category = cs.id_category 
+                                                 WHERE level_depth >2');
         
         $this->context->smarty->assign('displayName',strtoupper($this->displayName));
         $this->context->smarty->assign('allCategories',$categories);
