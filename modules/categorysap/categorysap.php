@@ -65,16 +65,16 @@ class categorysap extends Module
             
             if (isset($codes)) {
                 foreach ($codes as $key => $code) {
-                    $select = Db::getInstance()->getValue('SELECT id_category FROM '. _DB_PREFIX_ .'category_sap WHERE id_category = "'.$key.'"');
+                    $select = Db::getInstance()->ExecuteS('SELECT id_category FROM '. _DB_PREFIX_ .'category_sap WHERE id_category = "'.$key.'"');
                     
-                    if (empty($select)) {
+                    if (empty($select[0]['id_category'])) {
                         $create = Db::getInstance()->ExecuteS('INSERT INTO '. _DB_PREFIX_ .'category_sap VALUES("'.$key.'", "'.$code.'")');
                         
                         if ($create) {
                             $process = false;
                         }
                     } else {
-                        $update = Db::getInstance()->ExecuteS('UPDATE '. _DB_PREFIX_ .'category_sap SET id_category = "'.$key.'", sap_code = "'.$code.'"'); 
+                        $update = Db::getInstance()->ExecuteS('UPDATE '. _DB_PREFIX_ .'category_sap SET id_category = "'.$key.'", sap_code = "'.$code.'" WHERE id_category = "'.$key.'"'); 
                         
                         if ($update) {
                             $process = false;
