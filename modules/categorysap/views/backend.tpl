@@ -2,7 +2,7 @@
     <div class="panel">
         <div class="panel-heading">
             <h3>
-               <i class="icon-cogs"></i>
+               &nbsp;<i class="icon-cogs"></i>
                {$displayName}
             </h3>
         </div>
@@ -10,7 +10,7 @@
             <div class="form-group">
                 <div class="col-lg-12">
                    <div class="text-center">
-                       <h3>{l s='Asociar Categorías'}</h3>
+                       <h1>{l s='Asociar Categorías'}</h1>
                    </div>
                     {foreach from=$allCategories item=category}
                     <div class="col-lg-6">
