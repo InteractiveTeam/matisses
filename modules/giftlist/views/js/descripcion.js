@@ -208,8 +208,8 @@ $(document).ready(function() {
     
     $(".ax-edit-info").fancybox({
         'autoSize'      :   false,
-        'height'        :   700,
-        'width'			:    600,
+        'width'			:   600,
+        'height'        :   360,
         'transitionIn'	:	'elastic',
         'transitionOut'	:	'elastic',
         'speedIn'		:	600,
