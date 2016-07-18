@@ -4821,6 +4821,10 @@ body.new-products {
         height: 2.87rem;
         }
 
+    .chosen-container-single .chosen-single {
+        height: 2.84rem;
+    }
+
     /*.top-pagination-content ul.pagination li.pagination_previous span, .top-pagination-content ul.pagination li.pagination_next span, .top-pagination-content ul.pagination li.pagination_previous a, .top-pagination-content ul.pagination li.pagination_next a {
     padding: 0.925rem 0.9375rem;
     }*/

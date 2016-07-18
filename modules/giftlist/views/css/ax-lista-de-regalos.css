@@ -1140,7 +1140,7 @@ label.error:before {
 #frmSaveList .tab-pane .ax-date-event {
     margin: 0 10px;
     padding: 0;
-    width: 31%;
+    width: 30.9%;
 }
 
 #frmSaveList .ax-cont-form-date-lista .ax-date-event:first-child, #frmSaveList .ax-cont-form-date-lista .ax-date-event:last-child {
@@ -1722,14 +1722,19 @@ label.error:before {
     .module-giftlist-buscar .ax-cont-list .part, .ax-cont-admin-listas-regalos .ax-cont-list .part {
         width: 50%;
         text-align: left;
+        height: 95px;
     }
     
-    .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(7)  {
+    .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(7) {
         width: 100%;
     }
     
-    .module-giftlist-listas .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(7)  {
+    .module-giftlist-listas .ax-cont-admin-listas-regalos .ax-cont-list .part:nth-child(7), .module-giftlist-listas .ax-cont-list-rp .ax-item .part:nth-child(8)  {
         width: 50%;
+    }
+    
+    .module-giftlist-listas .ax-cont-list-rp .ax-item .part:nth-child(7) span {
+        text-align: center;
     }
     
     .ax-cont-admin-listas-regalos .ax-cont-list .part:last-child {
@@ -1837,6 +1842,10 @@ label.error:before {
     .ax-cont-admin-listas-regalos .footer-item {
         text-align: center;
         padding: 0;
+    }
+    
+    .module-giftlist-listas .ax-cont-admin-listas-regalos .btn.btn-default.btn-lista-regalos {
+        float: none;
     }
     
         #frmSaveList span.ax-up-msg {
@@ -2246,6 +2255,12 @@ label.error:before {
     #info-div .btn.btn-default.btn-lista-regalos {
         width: 100%;
         margin: 5px 0;
+    }
+    
+    #frmSaveList .tab-pane .ax-date-event {
+        margin: 0 5px;
+        padding: 0;
+        width: 31%;
     }
     
 }
