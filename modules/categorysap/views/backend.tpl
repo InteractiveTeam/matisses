@@ -2,8 +2,9 @@
     <div class="panel">
         <div class="panel-heading">
             <h3>
-               <i class="icon-cogs"></i>
-               {$displayName}
+                &nbsp;
+                <i class="icon-cogs"></i>
+                {$displayName}
             </h3>
         </div>
         <div class="form-wrapper">
