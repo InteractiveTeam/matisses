@@ -973,7 +973,7 @@
 	/*zona perfil*/
 	#user{
 		min-width: 4.375rem;
-		padding: 0.525rem;
+		padding: 0.2rem;
 	}
 	#user .login{
 		display: none;
@@ -1725,7 +1725,7 @@
 	}
 
 	.header-container {
-		height: auto;
+		height: 215px;
 		min-height: 6.9rem;
 	}
 
@@ -2292,6 +2292,7 @@
      
     button.button-small.btn-enviar {
         padding: 0.4375rem 2.5rem;
+ 		margin: 10px auto;
     }
     
     .sf-contener .sf-menu > li span {
@@ -2557,7 +2558,7 @@
     
     .bx-wrapper .bx-viewport li img {
         max-width: 185% !important;
-        margin-left: -50%;
+        margin-left: -42%;
         width: 185% !important;
     }
     
@@ -3714,6 +3715,13 @@
 
 @media screen and (max-width :320px) {
 
+
+
+	#tabs .ui-tabs-panel .info-opinion a {
+		font-size: 11px;
+	}
+
+
     #frmAddGiftList .chosen-single {
         width: 222px;
     }
@@ -3894,6 +3902,19 @@
 
 
 @media screen and (max-width: 414px){
+
+	.pb-right-column h1.titleProduct {
+	    font-size: 22px;
+	    color: #d9292e;
+	    padding-bottom: 0;
+	    border: none;
+	    text-align: left;
+	    margin: 0;
+	}
+
+	.my-account-list ul {
+	    margin-top: 20px;
+	}
 
     .fancybox-inner #frmAddGiftList {
         width: 323px;
@@ -4102,6 +4123,7 @@
     
     .footer-up .share{
         text-align: center;
+        margin-top: 60px;
     }
     #page .header-container .main_panel {
         height: 0px;
