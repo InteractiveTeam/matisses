@@ -143,7 +143,7 @@
                     {$atribute_group = $row['options'][3]->value}
                         <div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}">
                             <div class="img-container">
-                                <img src="http://{$row['image']}">
+                                <img src="{$row['image']}">
                             </div>
                             <div class="ax-info-list">
                             <i class="fa fa-heart  {if $row['favorite']}ax-favorite{/if}" aria-hidden="true"></i>

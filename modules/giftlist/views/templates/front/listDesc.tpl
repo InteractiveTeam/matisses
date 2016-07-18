@@ -148,7 +148,8 @@
     </div>
     <p>{l s='Solicitados' mod='giflist'}: <span class="ax-det-sol"></span></p>
     <p>{l s='Faltantes' mod='giflist'}: <span class="ax-det-falt"></span></p>
-    <input type="number"/>
+    <input type="number" id="qty" name="qty" min="1" value="1"/>
+    <button data-toggle="tooltip" data-id="0" data-att="0" title="{l s='Añadir al carrito' mod='giftlist'}" class="add-to-cart-modal btn btn-default btn-lista-regalos">{l s='Añadir al carrito' mod='giftlist'}</button>
     </div>
 </div>
 </div>
