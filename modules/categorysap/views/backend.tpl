@@ -8,9 +8,8 @@
             </h3>
         </div>
         <div class="form-wrapper">
-            <div class="form-group">
-                <div class="col-lg-12">
-                    <h2 class="text-uppercase">{l s='Asociar Categorías'}</h2>
+            <div class="col-lg-12">
+                <h2 style="text-transform: uppercase;">{l s='Asociar Categorias'}</h2>
                     <div class="col-lg-12">
                     <table class="table table-bordered">
                         <thead>
@@ -23,16 +22,14 @@
                         {foreach from=$allCategories item=category}
                             <tr>
                                 <td>
-                                    {l s='Categoría N°'}{$category.id_category}
+                                    <strong>{l s='Categoría N°'}{$category.id_category}</strong>
                                 </td>
                                 <td>
-                                    <div class="form-group">
-                                        <div class="text-left">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
                                             <label for="txtCtg{$category.id_category}">
                                                 {l s='Código SAP'}&nbsp;<strong style="text-transform: uppercase; color: #d7162f;">{$category.name}</strong>&nbsp;
                                             </label>
-                                        </div>
-                                        <div class="text-right">
                                             <input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
                                         </div>
                                     </div>  
@@ -42,10 +39,10 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-lg-12">
-                    <input  name="updateCodes" class="button" type="submit" value="{l s='Save'}" />
-                </div>
+            <div class="col-lg-12">
+                <input  name="updateCodes" class="button" type="submit" value="{l s='Save'}" />
             </div>
+        </div>
         </div>
     </div>
 </form>
