@@ -83,7 +83,7 @@ class ListProductBondModel extends ObjectModel
                 'id' => $row['id_product'],
                 'name' => $my_prod->getProductName($my_prod->id),
                 'data' => $my_prod->getAttributeCombinations(1),
-                'image' =>  $link->getImageLink($my_prod->link_rewrite[1], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image']), 'home_default'),
+                'image' =>  (Configuration::get('PS_SSL_ENABLED')) ? 'https://' : 'http://'.$link->getImageLink($my_prod->link_rewrite[1], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image']), 'home_default'),
                 'price' => $my_prod->getPrice(),
                 'cant' => $row['cant'],
                 'options' => Tools::jsonDecode($row['option']),

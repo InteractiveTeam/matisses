@@ -118,25 +118,52 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 		}
 	}
     
+    public function displayProductListReviews($params)
+	{
+        require_once(_PS_MODULE_DIR_.'productcomments/ProductComment.php');
+		$id_product = (int)$params['product']['id_product'];
+        $average = ProductComment::getAverageGrade($id_product);
+        $this->context->smarty->assign(array(
+            'product' => $params['product'],
+            'averageTotal' => round($average['grade']),
+            'ratings' => ProductComment::getRatings($id_product),
+            'nbComments' => (int)ProductComment::getCommentNumber($id_product)
+        ));
+		
+		return $this->context->smarty->fetch(_PS_THEME_DIR_.'/modules/productcomments/productcomments_reviews.tpl');
+	}
+    
     private function _productDetail($id_prod,$id_list){
         $prod = new ProductCore((int)$id_prod);
+        $link = new LinkCore();
         $infoList = ListProductBondModel::getByProductAndListNotAgroup($id_prod,$id_list);
         $image = ProductCore::getCombinationImageById( (int)$infoList['option'][3]->value, Context::getContext()->language->id);
-        $imaR = "";
-        if (sizeof($image) > 0) {
-			$image = new Image($image['id_image']);
-            $imaR = _PS_PROD_IMG_DIR_.Image::getImgFolderStatic($image->id_image).$image->id_image.".jpg";
-		}
+        $params['reference'] = $prod->reference;
+        $params['product']['id_product'] = (int)$id_prod;
+        $group = $prod->getAttributeCombinationsById((int)$infoList['option'][3]->value,Context::getContext()->language->id);
+        $styleColor = ""; 
+        $attr = new AttributeCore($group[0]['id_attribute']);
+        
+        if(file_exists(_PS_COL_IMG_DIR_.$group[0]['id_attribute']."jpg"))
+            $styleColor = 'url('._PS_COL_IMG_DIR_.$group[0]['id_attribute']."jpg)";
+        else
+            $styleColor = $attr->color;
+        
         die(Tools::jsonEncode(array(
-            'image' => $imaR,
+            'image' => (Configuration::get('PS_SSL_ENABLED')) ? 'https://' : 'http://'.$link->getImageLink($prod->link_rewrite[1], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image'])),
             'name' => $prod->name[1],
-            'reference' => $prod->reference,
+            'reference' => hook::exec('actionMatChangeReference',$params),
             'desc' => $prod->description_short[1],
             'color' => "blue",
             'price' => Tools::displayPrice($prod->price),
             'missing' => $infoList['missing'],
             'bought' => $infoList['bought'],
             'total' => $infoList['total'],
+            'reviews' =>$this->displayProductListReviews($params),
+            'style'=> $styleColor,
+            'colorName' => $attr->name[1],
+            'id_product' => $id_prod,
+            'id_product_attribute' => (int)$infoList['option'][3]->value,
         )));
     }
     

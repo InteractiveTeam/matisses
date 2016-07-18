@@ -2202,7 +2202,6 @@
     
     .wrap_buttons #btn_gift_list {
         font-size: 0;
-        margin: 15px 0 0 0;
     }
     
     .fancybox-wrap.fancybox-desktop.fancybox-type-inline.fancybox-opened {
@@ -4139,10 +4138,21 @@
 	    position: relative;
 	}
 
+}
 
 
-
-
+@media screen and (max-width:360px) {
+    .fancybox-outer .fancybox-inner #frmAddGiftList {
+        width: 264px;
+    }
+    
+    .fancybox-inner #frmAddGiftList .chosen-single {
+        width: 259px;
+    }
+    
+    .fancybox-outer .fancybox-inner #frmAddGiftList {
+        width: 264px;
+    }
 }
 
 /* iPhone 6 portrait */

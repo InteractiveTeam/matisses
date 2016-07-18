@@ -14,6 +14,15 @@ $(document).ready(function(){
 		$.fancybox.close();
 	});
     
+    var min_val = document.getElementById('qty');
+    min_val.onkeydown = function(e) {
+        if(!((e.keyCode > 95 && e.keyCode < 106)
+            || (e.keyCode > 47 && e.keyCode < 58) 
+            || e.keyCode == 8)) {
+        return false;
+        }
+    };
+    
     //add to cart
 
 	$(".add-to-cart").click(function(e){
@@ -23,6 +32,11 @@ $(document).ready(function(){
             total = parseInt(product_card.find(".total_qty").attr("data-value"));
 		addFromList(product_card.attr("data-id"),product_card.find(".prod-attr").val(), total, $(this),$(".products-associated").attr("data-id"));
 	});
+    
+    $(".add-to-cart-modal").click(function(){
+        var el = $(this);
+        addFromList(el.attr("data-id"),el.attr("data-att"), $("#qty").val(), el,$(".products-associated").attr("data-id"));
+    });
 
 	//buy bond
 	$("#add_bond").fancybox({
@@ -44,31 +58,40 @@ $(document).ready(function(){
     
     $(".ax-more").on("click",function(e){
         var el = $(this);
-        $.fancybox({
-        'autoSize'      :   false,
-        'height'        :   340,    
-        'width'			:   600,
-        'transitionIn'	:	'elastic',
-        'transitionOut'	:	'elastic',
-        'speedIn'		:	600,
-        'speedOut'		:	200,
-        'overlayShow'	:	false,
-        href            :   "#productDiv",
-        afterShow: function(){
-            console.log(el.parent().parent().attr('data-id'));
-            $.ajax({
-                type: "POST",
-                data:{
-                    'id_prod':el.parent().parent().attr('data-id'),
-                    ajax:true,
-                    method:"productDetail",
-                    id_list: $(".products-associated").attr('data-id'),
-                },
-                success: function(res){
-                    console.log(res);
-                }
-            });
-        }
+        $.ajax({
+            type: "POST",
+            data:{
+                'id_prod':el.parent().parent().attr('data-id'),
+                ajax:true,
+                method:"productDetail",
+                id_list: $(".products-associated").attr('data-id'),
+            },
+            success: function(res){
+                res = JSON.parse(res);
+                $(".ax-det-img").attr("src",res.image);
+                $(".add-to-cart-modal").attr("data-id",res.id_product);
+                $(".add-to-cart-modal").attr("data-att",res.id_product_attribute);
+                $(".ax-det-name").text(res.name);
+                $(".ax-det-ref").text(res.reference);
+                $(".ax-det-reviews").html(res.reviews);
+                $(".ax-det-desc").html(res.desc);
+                $(".ax-det-price").text(res.price);
+                $(".ax-det-sol").text(res.total);
+                $(".ax-det-falt").text(res.missing);
+                $(".color_pick").css("background",res.style);
+                $(".color_pick").attr("title",res.colorName);
+                $.fancybox({
+                    'autoSize'      :   false,
+                    'minHeight'        :   340,    
+                    'minWidth'			:   600,
+                    'transitionIn'	:	'elastic',
+                    'transitionOut'	:	'elastic',
+                    'speedIn'		:	600,
+                    'speedOut'		:	200,
+                    'overlayShow'	:	false,
+                    href            :   "#productDiv",
+                });
+            }
         });
     });
     
@@ -96,6 +119,8 @@ function addFromList(idProduct, idCombination, quantity, callerElement,id_list){
 		data: 'controller=cart&addFromList=1&ajax=true&qty=' + ((quantity && quantity != null) ? quantity : '1') + '&id_product=' + idProduct + '&token=' + static_token + ( (parseInt(idCombination) && idCombination != null) ? '&ipa=' + parseInt(idCombination): '')+"&id_list="+id_list,
 		success: function(jsonData,textStatus,jqXHR)
 		{
+            
+            $.fancybox.close();
 			if (!jsonData.hasError)
 			{
 				if (contentOnly)
@@ -137,6 +162,8 @@ function addFromList(idProduct, idCombination, quantity, callerElement,id_list){
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown)
 		{
+            
+            $.fancybox.close();
 			var error = "Imposible añadir al carrito";
 				if (!!$.prototype.fancybox)
 				    $.fancybox.open([

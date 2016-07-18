@@ -26,7 +26,7 @@
                 <div class="part">{l s='Registrante' mod='giftlist'}<span class="ax-creator-name">{$creator}</span></div>
                 <div class="part">{l s='Tipo de evento' mod='giftlist'}<span class="ax-event-type">{$event_type}</span></div>
                 <div class="part">{l s='Fecha' mod='giftlist'}<span class="ax-event-date">{date("d/m/Y",strtotime($list_desc['event_date']))}</span></div>
-                <div class="part"><span><a href="#info-div" class="ax-edit">{l s='Editar información' mod='giftlist'}</a></span></div>
+                <div class="part"><span><a href="#info-div" class="ax-edit-info ax-edit">{l s='Editar información' mod='giftlist'}</a></span></div>
             </div>
         </div>
     </div>
@@ -143,7 +143,7 @@
                     {$atribute_group = $row['options'][3]->value}
                         <div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}">
                             <div class="img-container">
-                                <img src="http://{$row['image']}">
+                                <img src="{$row['image']}">
                             </div>
                             <div class="ax-info-list">
                             <i class="fa fa-heart  {if $row['favorite']}ax-favorite{/if}" aria-hidden="true"></i>
@@ -304,7 +304,9 @@
                 {l s='November' mod='giftlist'}
                 {l s='December' mod='giftlist'}
             *}
-            <label>{l s='Fecha del evento' mod='giftlist'}<sup>*</sup></label>
+            <div class="col-md-12">
+                <label>{l s='Fecha del evento' mod='giftlist'}<sup>*</sup></label>
+            </div>
             <div class="col-md-4 ax-date-event">
                 <select id="months" name="months" class="form-control ax-select">
                     <option value="0">{l s='Mes' mod='giftlist'}</option>
@@ -332,8 +334,10 @@
             </div>
         </div>
         <div class="row btn-form-info">
-            <a href="javascript:void(0);" class="ax-cancel btn btn-default btn-lista-regalos">{l s='Cancelar' mod='giftlist'}</a>
-            <a href="javascript:void(0);" class="ax-save-info btn btn-default btn-lista-regalos">{l s='Guardar' mod='giftlist'}</a>
+           <div class="col-md-12">
+                <a href="javascript:void(0);" class="ax-cancel btn btn-default btn-lista-regalos">{l s='Cancelar' mod='giftlist'}</a>
+                <a href="javascript:void(0);" class="ax-save-info btn btn-default btn-lista-regalos">{l s='Guardar' mod='giftlist'}</a>
+            </div>
         </div>
     </form>
 </div>
