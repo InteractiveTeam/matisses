@@ -62,18 +62,20 @@ $(document).ready(function(){
                 $(".ax-det-price").text(res.price);
                 $(".ax-det-sol").text(res.total);
                 $(".ax-det-falt").text(res.missing);
+                $(".color_pick").css("background",res.style);
+                $(".color_pick").attr("title",res.colorName);
+                $.fancybox({
+                'autoSize'      :   false,
+                'minHeight'        :   340,    
+                'minWidth'			:   600,
+                'transitionIn'	:	'elastic',
+                'transitionOut'	:	'elastic',
+                'speedIn'		:	600,
+                'speedOut'		:	200,
+                'overlayShow'	:	false,
+                href            :   "#productDiv",
+                });
             }
-        });
-        $.fancybox({
-        'autoSize'      :   false,
-        'minHeight'        :   340,    
-        'minWidth'			:   600,
-        'transitionIn'	:	'elastic',
-        'transitionOut'	:	'elastic',
-        'speedIn'		:	600,
-        'speedOut'		:	200,
-        'overlayShow'	:	false,
-        href            :   "#productDiv",
         });
     });
     

@@ -140,7 +140,15 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
         $image = ProductCore::getCombinationImageById( (int)$infoList['option'][3]->value, Context::getContext()->language->id);
         $params['reference'] = $prod->reference;
         $params['product']['id_product'] = (int)$id_prod;
-//        die(print_r($prod->getAttributeCombinationsById((int)$infoList['option'][3]->value,Context::getContext()->language->id)));
+        $group = $prod->getAttributeCombinationsById((int)$infoList['option'][3]->value,Context::getContext()->language->id);
+        $styleColor = ""; 
+        $attr = new AttributeCore($group[0]['id_attribute']);
+        
+        if(file_exists(_PS_COL_IMG_DIR_.$group[0]['id_attribute']."jpg"))
+            $styleColor = 'url('._PS_COL_IMG_DIR_.$group[0]['id_attribute']."jpg)";
+        else
+            $styleColor = $attr->color;
+        
         die(Tools::jsonEncode(array(
             'image' => (Configuration::get('PS_SSL_ENABLED')) ? 'https://' : 'http://'.$link->getImageLink($prod->link_rewrite[1], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image'])),
             'name' => $prod->name[1],
@@ -151,7 +159,9 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
             'missing' => $infoList['missing'],
             'bought' => $infoList['bought'],
             'total' => $infoList['total'],
-            'reviews' =>$this->displayProductListReviews($params)
+            'reviews' =>$this->displayProductListReviews($params),
+            'style'=> $styleColor,
+            'colorName' => $attr->name[1]
         )));
     }
     
