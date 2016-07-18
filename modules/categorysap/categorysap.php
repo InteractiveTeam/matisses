@@ -83,9 +83,9 @@ class categorysap extends Module
                 }
                 
                 if ($process) {
-                    $this->_successes[] = $this->l('Guardado correctamente');
+                    $this->confirmations[] = "Guardado correctamente";
                 } else {
-                    $this->_errors[] = $this->l('Error al guardar');
+                    $this->_errors[] = Tools::displayError("Error al guardar");
                 }
             }
 		}	
