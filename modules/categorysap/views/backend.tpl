@@ -28,7 +28,7 @@
                     </div>
                     {/foreach}
                 </div>
-                <div class="text-center">
+                <div class="text-center col-lg-12">
                     <input  name="updateCodes" class="button" type="submit" value="{l s='Save'}" />
                 </div>
             </div>
