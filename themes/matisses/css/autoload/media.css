@@ -3797,13 +3797,13 @@
 
     
     .fancybox-inner #frmAddGiftList {
-        width: 228px;
+        width: 228px !important;
         height: 100%;
         overflow-x: auto;
     }
     
     .fancybox-inner #frmAddGiftList .chosen-single {
-        width: 223px;
+        width: 223px !important;
     }
 
     .fancybox-inner #frmAddGiftList #cant, .fancybox-inner #frmAddGiftList textarea {
@@ -3878,11 +3878,15 @@
         width: 100%;
     }
     
-    #frmAddGiftList textarea {
+    .fancybox-outer .fancybox-inner #frmAddGiftList {
+        width: 280px;
+    }
+    
+    .fancybox-outer .fancybox-inner #frmAddGiftList textarea {
         width: 99%;
     }
     
-    #frmAddGiftList .chosen-single {
+    .fancybox-inner #frmAddGiftList .chosen-single {
         width: 270px;
     }
 
@@ -3892,11 +3896,11 @@
 
 @media screen and (max-width: 414px){
 
-    #frmAddGiftList {
+    .fancybox-inner #frmAddGiftList {
         width: 323px;
     }
     
-    #frmAddGiftList textarea {
+    .fancybox-inner #frmAddGiftList textarea {
         width: 97%;
     }
     

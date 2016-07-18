@@ -111,10 +111,34 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 						$this->_updateminAmount(Tools::getValue('id_list'), Tools::getValue('value'));
                     case "editInfo":
 						$this->_editInfo(Tools::getValue('id_list'), Tools::getValue('data'));
+                    case "productDetail":
+						$this->_productDetail(Tools::getValue('id_prod'),Tools::getValue('id_list'));
 				}
 			}
 		}
 	}
+    
+    private function _productDetail($id_prod,$id_list){
+        $prod = new ProductCore((int)$id_prod);
+        $infoList = ListProductBondModel::getByProductAndListNotAgroup($id_prod,$id_list);
+        $image = ProductCore::getCombinationImageById( (int)$infoList['option'][3]->value, Context::getContext()->language->id);
+        $imaR = "";
+        if (sizeof($image) > 0) {
+			$image = new Image($image['id_image']);
+            $imaR = _PS_PROD_IMG_DIR_.Image::getImgFolderStatic($image->id_image).$image->id_image.".jpg";
+		}
+        die(Tools::jsonEncode(array(
+            'image' => $imaR,
+            'name' => $prod->name[1],
+            'reference' => $prod->reference,
+            'desc' => $prod->description_short[1],
+            'color' => "blue",
+            'price' => Tools::displayPrice($prod->price),
+            'missing' => $infoList['missing'],
+            'bought' => $infoList['bought'],
+            'total' => $infoList['total'],
+        )));
+    }
     
     private function _editInfo($id,$data){
         $data =(object)$data;
@@ -132,7 +156,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
         ),"id = " . $id);
         die(Tools::jsonEncode(array(
             'name' => $data->firstname . " " . $data->lastname, 
-            'date' => $l->event_date,
+            'date' => date("Y/m/d",strtotime($data->years."-".$data->months."-".$data->days)),
             'event' => Db::getInstance()->getValue($ev)
         )));
     }

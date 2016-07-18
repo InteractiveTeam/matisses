@@ -26,7 +26,7 @@
                 <div class="part">{l s='Registrante' mod='giftlist'}<span class="ax-creator-name">{$creator}</span></div>
                 <div class="part">{l s='Tipo de evento' mod='giftlist'}<span class="ax-event-type">{$event_type}</span></div>
                 <div class="part">{l s='Fecha' mod='giftlist'}<span class="ax-event-date">{date("d/m/Y",strtotime($list_desc['event_date']))}</span></div>
-                <div class="part"><span><a href="#info-div" class="ax-edit-info">{l s='Editar información' mod='giftlist'}</a></span></div>
+                <div class="part"><span><a href="#info-div" class="ax-edit">{l s='Editar información' mod='giftlist'}</a></span></div>
             </div>
         </div>
     </div>

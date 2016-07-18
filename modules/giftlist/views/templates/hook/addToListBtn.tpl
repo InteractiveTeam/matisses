@@ -31,7 +31,7 @@
                 <div class="cont">
                     <div class="form-group">
                         <label for="cant"><span>{l s='Cantidad' mod='giftlist'}</span>
-                        <input type="number" id="cant" placeholder="Cantidad">
+                        <input type="number" id="cant" placeholder="Cantidad" min="1">
                         </label>
                     </div>
                 </div>
