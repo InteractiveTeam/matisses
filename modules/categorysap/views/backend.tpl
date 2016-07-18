@@ -8,23 +8,19 @@
         </div>
         <div class="form-wrapper">
             <div class="form-group">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
+                   <div class="text-center">
+                       <h3>{l s='Asociar Categorías'}</h3>
+                   </div>
                     {foreach from=$allCategories item=category}
                     <div class="form-group">
                         <label for="ctg{$category.id_category}">
-                            {l s='Categoría #:'}&nbsp;{$category.id_category}
+                            {l s='Categoría #'}&nbsp;{$category.id_category}:&nbsp;<strong>{$category.name}</strong>
                         </label>
-                        <label><strong>{$category.name}</strong></label>
-                    </div>
-                    {/foreach}
-                </div>
-                <div class="col-lg-4">
-                    {foreach from=$allCategories item=category}
-                    <div class="form-group">
                         <label for="txtCtg{$category.id_category}">
                             {l s='Código SAP:'}&nbsp;
                         </label>
-                        <input id="txtCtg{$category.id_category}" type="text">
+                        <input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
                     </div>
                     {/foreach}
                 </div>
