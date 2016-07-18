@@ -27,9 +27,10 @@
 if (!defined('_PS_VERSION_'))
 	exit;
 
+require_once __DIR__ . '/dbregister.php';
 require_once _PS_MODULE_DIR_.'matisses/matisses.php';
 
-class registerWithSap extends Module
+class categorysap extends Module
 {
 	private $_html = '';
 	private $_postErrors = array();
@@ -54,15 +55,11 @@ class registerWithSap extends Module
 
 	public function install()
 	{
-	 	return (parent::install() && $this->registerHook('header'));
+	 	return (parent::install() && $this->db->CreateTokenTable());
 	}
 
 	public function uninstall()
 	{
-		return (parent::uninstall() && $this->unregisterHook('header'));
-	}
-
-	public function hookHeader($params)
-	{
+		return (parent::uninstall() && $this->db->DeleteTable());
 	}
 }
