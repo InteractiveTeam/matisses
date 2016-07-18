@@ -62,7 +62,7 @@ class categorysap extends Module
 			
 		}	
 
-		$categories	= Db::getInstance()->ExecuteS('SELECT *, cl.name as "name" FROM '. _DB_PREFIX_ .'_category c JOIN '. _DB_PREFIX_ .'_category_lang cl ON c.id_category = cl.id_category');
+		$categories	= Db::getInstance()->ExecuteS('SELECT *, cl.name as "name" FROM '. _DB_PREFIX_ .'category c JOIN '. _DB_PREFIX_ .'category_lang cl ON c.id_category = cl.id_category');
         
         $this->context->smarty->assign('displayName',strtoupper($this->displayName));
         $this->context->smarty->assign('allCategories',$categories);
