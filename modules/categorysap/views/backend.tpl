@@ -19,10 +19,14 @@
                     {/foreach}
                 </div>
                 <div class="col-lg-4">
-                    <label for="txtCtg{$category.id_category}">
-                        {l s='Código SAP:'}&nbsp;
-                    </label>
-                    <input id="txtCtg{$category.id_category}" type="text">
+                   {foreach from=$allCategories item=category}
+                    <div class="form-group">
+                        <label for="txtCtg{$category.id_category}">
+                            {l s='Código SAP:'}&nbsp;
+                        </label>
+                        <input id="txtCtg{$category.id_category}" type="text">
+                    </div>
+                    {/foreach}
                 </div>
             </div>
         </div>
