@@ -60,7 +60,13 @@ class categorysap extends Module
 	{	
 		if (Tools::isSubmit('updateCodes'))
 		{
-			echo "<pre>"; print_r(Tools::getValue('txtCtg'));
+            $codes = Tools::getValue('txtCtg');
+            if (isset($codes)) {
+                foreach ($codes as $key => $code) {
+                    echo "<pre>"; print_r($key); echo "</pre>";
+                    echo "<pre>"; print_r($code); echo "</pre>";
+                }
+            }
 		}	
 
 		$categories	= Db::getInstance()->ExecuteS('SELECT *, cl.name as "name" FROM '. _DB_PREFIX_ .'category c JOIN '. _DB_PREFIX_ .'category_lang cl ON c.id_category = cl.id_category WHERE level_depth > 2');
