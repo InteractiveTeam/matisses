@@ -15,8 +15,8 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>{l s='Código SAP'}</th>
+                                <th><strong>#</strong></th>
+                                <th><strong>{l s='Código SAP'}</strong></th>
                             </tr> 
                         </thead>
                         <tbody>
