@@ -71,10 +71,16 @@
                                                 <p>{$att_group['group_name']}: {$att_group['attribute_name']}</p>
                                                 <input type="hidden" class="prod-attr" value="{$att_group['id_product_attribute']}">
                                             {/if}
-                                        {/foreach}
-                                    <p class="total_qty" data-cant="{$row['cant']}">{l s='Cantidad:'} {$row['cant']}</p>
+                                        {/foreach} 
+                                    {if $row['group']}
+                                        <p class="total_qty" data-cant="{$row['cant']}">{l s='Cantidad:'} {$row['cant']}
+                                    {else}
+                                        <p class="total_qty" data-max="{$row['missing']}" data-cant="0">{l s='Cantidad:'} 
+                                        <input type="number" min="1" value="1" name="qty_card" id="qty"/>
+                                    {/if}
+                                    </p>
                                 </div>
-                                <button data-toggle="tooltip" data-placement="bottom" title="{l s='Descubre más' mod='giftlist'}" class="ax-more btn btn-default btn-lista-regalos">{l s='Descubre más' mod='giftlist'}</button>
+                                <button data-toggle="tooltip" data-placement="bottom" title="{l s='Descubre más' mod='giftlist'}" {if $row['group']}data-group="true"{/if} class="ax-more btn btn-default btn-lista-regalos">{l s='Descubre más' mod='giftlist'}</button>
                                 <button data-toggle="tooltip" data-placement="bottom" title="{l s='Añadir al carrito' mod='giftlist'}" class="add-to-cart btn btn-default btn-lista-regalos">{l s='Añadir al carrito' mod='giftlist'}</button>
                             </div>
                     </div>
@@ -148,7 +154,7 @@
     </div>
     <p>{l s='Solicitados' mod='giflist'}: <span class="ax-det-sol"></span></p>
     <p>{l s='Faltantes' mod='giflist'}: <span class="ax-det-falt"></span></p>
-    <input type="number" id="qty" name="qty" min="1" value="1"/>
+    <p>{l s='Cantidad' mod='giftlist'}: <input type="number" class="ax-mod-qty" id="qty" name="qty" min="1" value="1"/></p>
     <button data-toggle="tooltip" data-id="0" data-att="0" title="{l s='Añadir al carrito' mod='giftlist'}" class="add-to-cart-modal btn btn-default btn-lista-regalos">{l s='Añadir al carrito' mod='giftlist'}</button>
     </div>
 </div>

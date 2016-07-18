@@ -83,11 +83,13 @@ class ListProductBondModel extends ObjectModel
                 'id' => $row['id_product'],
                 'name' => $my_prod->getProductName($my_prod->id),
                 'data' => $my_prod->getAttributeCombinations(1),
-                'image' =>  (Configuration::get('PS_SSL_ENABLED')) ? 'https://' : 'http://'.$link->getImageLink($my_prod->link_rewrite[1], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image']), 'home_default'),
+                'image' =>  (Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').$link->getImageLink($my_prod->link_rewrite[1], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image']), 'home_default'),
                 'price' => $my_prod->getPrice(),
                 'cant' => $row['cant'],
+                'missing' => $row['missing'],
                 'options' => Tools::jsonDecode($row['option']),
-                'favorite' => $row['favorite']
+                'favorite' => $row['favorite'],
+                'group' => ($row['group'] ? true : false)
             ]; 
 		 }
 		 return $prod;
@@ -128,11 +130,12 @@ class ListProductBondModel extends ObjectModel
         $totalCant = "SELECT SUM(cant) FROM `ps_list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_product." AND `group` = 1 GROUP BY id_product";
         $boughtCant = "SELECT SUM(cant) FROM `ps_list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_product." AND `group` = 1 AND bought =1 GROUP BY id_product";
         $missingtCant = "SELECT SUM(cant) FROM `ps_list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_product." AND `group` = 1 AND bought = 0 GROUP BY id_product";
-        $sql = "SELECT * FROM ". _DB_PREFIX_ ."list_product_bond WHERE id_list = ".$id_list." AND id_product = ".$id_prod . " GROUP BY id_product";
+        $sql = "SELECT * FROM ". _DB_PREFIX_ ."list_product_bond WHERE id_list = ".$id_list." AND id_product = ".$id_product . " GROUP BY id_product";
         $prod = Db::getInstance()->getRow($sql);
         $prod['total'] = Db::getInstance()->getValue($totalCant);
         $prod['bought'] = Db::getInstance()->getValue($boughtCant);
         $prod['missing'] = Db::getInstance()->getValue($missingtCant);
+        $prod['option'] = Tools::jsonDecode($prod['option']);
         return $prod;
     }
     

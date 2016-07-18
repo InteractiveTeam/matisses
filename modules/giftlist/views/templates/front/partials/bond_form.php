@@ -8,7 +8,7 @@
     <div class="col-md-6">
         <div class="">
           <label for="mount">Valor</label>
-          <input class="form-control" type="number" name="mount" id="mount" placeholder="Valor">
+          <input class="form-control" type="number" name="mount" id="mount" placeholder="Valor" step="20000">
         </div>
     </div>
     <div class="col-md-6">
