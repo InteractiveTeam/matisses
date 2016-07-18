@@ -14,12 +14,12 @@
                         <label for="ctg{$category.id_category}">
                             {l s='Categoría #:'}&nbsp;{$category.id_category}
                         </label>
-                        <h4>{$category.id_category}</h4>
+                        <label><strong>{$category.name}</strong></label>
                     </div>
                     {/foreach}
                 </div>
                 <div class="col-lg-4">
-                   {foreach from=$allCategories item=category}
+                    {foreach from=$allCategories item=category}
                     <div class="form-group">
                         <label for="txtCtg{$category.id_category}">
                             {l s='Código SAP:'}&nbsp;
