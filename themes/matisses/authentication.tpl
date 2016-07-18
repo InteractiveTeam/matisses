@@ -451,7 +451,7 @@
 		<h4>{l s='Información personal'}</h4>
 		<div class="account_creation grid_12 omega alpha">
 			<div class="form-group grid_12 ">
-				<label class="hidden-xs">{l s='Género'}</label>
+				<label>{l s='Género'}</label>
                 <input type="hidden" value="{$smarty.post.customer_acount_type}" id="customer_acount_type" name="customer_acount_type" />
                 <input type="hidden" value="{$smarty.post.facbookid}" id="facbookid" name="facbookid" />
 				{foreach from=$genders key=k item=gender}
