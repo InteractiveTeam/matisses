@@ -132,11 +132,17 @@
     <div id="short_description_block">
 	   <div id="short_description_content" class="rte align_justify ax-det-desc" itemprop="description"></div>
     </div>
+    <p>{l s='Colores' mod='giftlist'}
+    <ul id="color_to_pick_list" class="cf">
+        <li class="selected">
+            <a href="#" class="color_pick selected" title="">
+        </a> 
+        </li>
+    </ul>
     <div class="price">
 	<p class="our_price_display price product-price" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
         <link itemprop="availability" href="http://schema.org/InStock"><span id="our_price_display" class="ax-det-price no-reduce" itemprop="price"></span>
         <meta itemprop="priceCurrency" content="COP">
-
     </p>
     <p class="ax-iva">{l s='IVA incluido' mod='giftlist'}</p>
     </div>
