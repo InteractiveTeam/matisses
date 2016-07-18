@@ -27,8 +27,7 @@
 if (!defined('_PS_VERSION_'))
 	exit;
 
-require_once __DIR__ . '/dbstruct.php';
-require_once _PS_MODULE_DIR_.'matisses/matisses.php';
+require_once __DIR__ . '/dbregistercs.php';
 
 class categorysap extends Module
 {
@@ -38,7 +37,7 @@ class categorysap extends Module
 
 	function __construct($dontTranslate = false)
  	{
-        $this->db = new Dbstruct();
+        $this->db = new DBRegisterCS();
  	 	$this->name = 'categorysap';
 		$this->version = '1.0.0';
 		$this->author = 'Arkix';
