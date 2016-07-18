@@ -54,7 +54,7 @@ class categorysap extends Module
 
 	public function install()
 	{
-	 	return (parent::install() && $this->db->CreateTokenTable());
+	 	return (parent::install() && $this->db->CreateTable());
 	}
 
 	public function uninstall()
