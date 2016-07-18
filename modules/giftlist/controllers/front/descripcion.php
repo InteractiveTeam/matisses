@@ -140,7 +140,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
         $image = ProductCore::getCombinationImageById( (int)$infoList['option'][3]->value, Context::getContext()->language->id);
         $params['reference'] = $prod->reference;
         $params['product']['id_product'] = (int)$id_prod;
-        die(print_r($prod->getAttributeCombinationsById((int)$infoList['option'][3]->value,Context::getContext()->language->id)));
+//        die(print_r($prod->getAttributeCombinationsById((int)$infoList['option'][3]->value,Context::getContext()->language->id)));
         die(Tools::jsonEncode(array(
             'image' => (Configuration::get('PS_SSL_ENABLED')) ? 'https://' : 'http://'.$link->getImageLink($prod->link_rewrite[1], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image'])),
             'name' => $prod->name[1],
