@@ -2,7 +2,7 @@
     <div class="panel">
         <div class="panel-heading">
             <h3>
-               &nbsp;<i class="icon-cogs"></i>
+               <i class="icon-cogs"></i>
                {$displayName}
             </h3>
         </div>
@@ -13,13 +13,13 @@
                        <h1>{l s='Asociar Categorías'}</h1>
                    </div>
                     {foreach from=$allCategories item=category}
-                    <div class="col-lg-8">
-                        <div class="form-group">
+                    <div class="form-group">
+                        <div class="col-lg-8">
                             <label for="ctg{$category.id_category}">
                                 {l s='Categoría #'}&nbsp;{$category.id_category}:&nbsp;<strong>{$category.name}</strong>
                             </label>
                         </div>
-                        <div class="form-group">
+                        <div class="col-lg-4">
                             <label for="txtCtg{$category.id_category}">
                                 {l s='Código SAP:'}&nbsp;
                             </label>
