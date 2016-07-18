@@ -27,10 +27,14 @@
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <label for="txtCtg{$category.id_category}">
-                                            {l s='Código SAP'}&nbsp;<strong style="text-transform: uppercase; color: #d7162f;">{$category.name}</strong>&nbsp;
-                                        </label>
-                                        <input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
+                                        <div class="text-left">
+                                            <label for="txtCtg{$category.id_category}">
+                                                {l s='Código SAP'}&nbsp;<strong style="text-transform: uppercase; color: #d7162f;">{$category.name}</strong>&nbsp;
+                                            </label>
+                                        </div>
+                                        <div class="text-right">
+                                            <input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
+                                        </div>
                                     </div>  
                                 </td>
                             </tr>
