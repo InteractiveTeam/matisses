@@ -60,7 +60,7 @@
                         <div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}">
                             <div class="ax-cont-hover">
                                 <div class="img-container">
-                                    <img src="http://{$row['image']}" />
+                                    <img src="{$row['image']}" />
                                 </div>
                                 <div class="ax-info-list">
                                     {if $row['favorite']}<i class="fa fa-heart  ax-favorite" aria-hidden="true"><span>{l s='Favorito' mod='giftlist'}</span></i>{/if}
@@ -74,7 +74,7 @@
                                         {/foreach}
                                     <p class="total_qty" data-cant="{$row['cant']}">{l s='Cantidad:'} {$row['cant']}</p>
                                 </div>
-                                <button data-toggle="tooltip" data-placement="bottom" title="{l s='Descubre más' mod='giftlist'}" class="ax-more btn btn-default btn-lista-regalos hidden">{l s='Descubre más' mod='giftlist'}</button>
+                                <button data-toggle="tooltip" data-placement="bottom" title="{l s='Descubre más' mod='giftlist'}" class="ax-more btn btn-default btn-lista-regalos">{l s='Descubre más' mod='giftlist'}</button>
                                 <button data-toggle="tooltip" data-placement="bottom" title="{l s='Añadir al carrito' mod='giftlist'}" class="add-to-cart btn btn-default btn-lista-regalos">{l s='Añadir al carrito' mod='giftlist'}</button>
                             </div>
                     </div>
@@ -118,4 +118,31 @@
 </div>
 
 <div id="productDiv" style="display: none;">
+<div class="row">
+    <div class="col-md-6">
+        <img class="ax-det-img" width=300" height="300"/>
+    </div>
+    <div class="col-md-6">
+    <h1 class="titleProduct ax-det-name"></h1>
+    <p id="product_reference">
+        <label>{l s='Referencia' mod='giflist'}: </label>
+        <span class="editable ax-det-ref" itemprop="sku"></span>
+    </p>
+    <div class="ax-det-reviews"></div>
+    <div id="short_description_block">
+	   <div id="short_description_content" class="rte align_justify ax-det-desc" itemprop="description"></div>
+    </div>
+    <div class="price">
+	<p class="our_price_display price product-price" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+        <link itemprop="availability" href="http://schema.org/InStock"><span id="our_price_display" class="ax-det-price no-reduce" itemprop="price"></span>
+        <meta itemprop="priceCurrency" content="COP">
+
+    </p>
+    <p class="ax-iva">{l s='IVA incluido' mod='giftlist'}</p>
+    </div>
+    <p>{l s='Solicitados' mod='giflist'}: <span class="ax-det-sol"></span></p>
+    <p>{l s='Faltantes' mod='giflist'}: <span class="ax-det-falt"></span></p>
+    <input type="number"/>
+    </div>
+</div>
 </div>

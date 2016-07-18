@@ -4817,6 +4817,7 @@ body.new-products {
 
     .main-container .parrilla-productos .sortPagiBar form label {
         padding: 0.6rem 0.6375rem;
+        height: 2.87rem;
         }
 
     /*.top-pagination-content ul.pagination li.pagination_previous span, .top-pagination-content ul.pagination li.pagination_next span, .top-pagination-content ul.pagination li.pagination_previous a, .top-pagination-content ul.pagination li.pagination_next a {
@@ -6035,9 +6036,9 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 
 .wrap_buttons #btn_gift_list {
     display: inline-block;
-    margin: 0 0 0 0;
+    margin: -2px 0 0 0;
     text-align: center;
-    padding: 0.5rem 10px;
+    padding: 0.42rem 10px;
     color: #F00;
     border: #E3E0E0 solid 1px;
     background: #f8f8f8;
