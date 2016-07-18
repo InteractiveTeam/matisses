@@ -11,15 +11,18 @@
                 <div class="col-lg-8">
                     {foreach from=$allCategories item=category}
                     <div class="form-group">
-                        <label for="txtCtg{$category.id_category}">
-                            {$category.name}
+                        <label for="ctg{$category.id_category}">
+                            {l s='Categoría #:'}&nbsp;{$category.id_category}
                         </label>
-                        <input id="txtCtg{$category.id_category}" type="text" value="{$category.id_category}">
+                        <h4>{$category.id_category}</h4>
                     </div>
                     {/foreach}
                 </div>
                 <div class="col-lg-4">
-                    2
+                    <label for="txtCtg{$category.id_category}">
+                        {l s='Código SAP:'}&nbsp;
+                    </label>
+                    <input id="txtCtg{$category.id_category}" type="text">
                 </div>
             </div>
         </div>
