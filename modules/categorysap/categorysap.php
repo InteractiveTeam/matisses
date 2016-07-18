@@ -60,16 +60,32 @@ class categorysap extends Module
 	{	
 		if (Tools::isSubmit('updateCodes'))
 		{
+            $process = true;
             $codes = Tools::getValue('txtCtg');
+            
             if (isset($codes)) {
                 foreach ($codes as $key => $code) {
                     $select = Db::getInstance()->getValue('SELECT id_category FROM '. _DB_PREFIX_ .'category_sap WHERE id_category = "'.$key.'"');
                     
                     if (empty($select)) {
                         $create = Db::getInstance()->ExecuteS('INSERT INTO '. _DB_PREFIX_ .'category_sap VALUES("'.$key.'", "'.$code.'")');
+                        
+                        if ($create) {
+                            $process = false;
+                        }
                     } else {
-                        $update = Db::getInstance()->ExecuteS('UPDATE '. _DB_PREFIX_ .'category_sap SET id_category = "'.$key.'", sap_code = "'.$code.'"');   
+                        $update = Db::getInstance()->ExecuteS('UPDATE '. _DB_PREFIX_ .'category_sap SET id_category = "'.$key.'", sap_code = "'.$code.'"'); 
+                        
+                        if ($update) {
+                            $process = false;
+                        }
                     }
+                }
+                
+                if ($process) {
+                    $this->_successes[] = $this->l('Guardado correctamente');
+                } else {
+                    $this->_errors[] = $this->l('Error al guardar');
                 }
             }
 		}	
