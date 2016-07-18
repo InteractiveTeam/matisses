@@ -9,14 +9,16 @@
         </div>
         <div class="form-wrapper">
             <div class="form-group">
-                <div class="col-lg-10">
+                <div class="col-lg-8">
                     <h2 class="text-uppercase">{l s='Asociar Categorías'}</h2>
                     {foreach from=$allCategories item=category}
                     <div class="col-lg-12">
-                        <div class="form-group">
+                        <div class="col-lg-6">
                             <label for="ctg{$category.id_category}">
-                                {l s='Categoría #'}{$category.id_category}&nbsp;<strong>{$category.name}</strong> | {l s='Código SAP:'}&nbsp;
+                                {l s='Categoría #'}{$category.id_category}&nbsp;|&nbsp;{l s='Código SAP:'}<strong>{$category.name}</strong>&nbsp;
                             </label>
+                        </div>
+                        <div class="col-lg-6 text-right">
                             <input id="txtCtg{$category.id_category}" name="txtCtg{$category.id_category}" type="text">
                         </div>
                     </div>
