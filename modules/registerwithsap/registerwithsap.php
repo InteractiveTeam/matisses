@@ -86,7 +86,7 @@ class registerWithSap extends Module
                 if (isset($addresses) && !empty($addresses)) {
                     $addressObj = new Address();
                     
-                    if (isNumericArray($addresses)) {
+                    if ($this->isNumericArray($addresses)) {
                         foreach ($addresses as $addr) {
                             $addressObj->id_customer = $params['idcustomer'];
                             $addressObj->firstname = $params['firstname'];
