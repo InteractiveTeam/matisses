@@ -117,15 +117,18 @@ $(document).ready(function() {
         $(".ax-finish-edit").removeClass('hidden');
         $(this).addClass("hidden");
         $(".ax-bond-value").addClass("hidden");
+        $(".fa-heart").addClass("ax-fav-icon");
         $(".ax-bond-card").append('<div class="ax-bond-cont"><label for="min_amount">Monto mínimo</label><input type="number" step="20000" min="0" id="min_amount" value="'+min_amount+'" name="min_amount"></div>');
         var min_val = document.getElementById('min_amount');
-        min_val.onkeydown = function(e) {
-            if(!((e.keyCode > 95 && e.keyCode < 106)
-              || (e.keyCode > 47 && e.keyCode < 58) 
-              || e.keyCode == 8)) {
-                return false;
-            }
-        };
+        if(min_val != null){
+            min_val.onkeydown = function(e) {
+                if(!((e.keyCode > 95 && e.keyCode < 106)
+                  || (e.keyCode > 47 && e.keyCode < 58) 
+                  || e.keyCode == 8)) {
+                    return false;
+                }
+            };
+        }
     });
     
     $(".ax-finish-edit").click(function(){
@@ -145,6 +148,7 @@ $(document).ready(function() {
                     $(".ax-list-edit").removeClass('hidden');
                     $(".ax-finish-edit").addClass("hidden");
                     $(".ax-bond-value").removeClass("hidden");
+                    $(".fa-heart").removeClass("ax-fav-icon");
                     $(".ax-bond-cont").remove();
                     $.fancybox({
                      'autoScale': true,
@@ -160,7 +164,12 @@ $(document).ready(function() {
                     });
                 } 
             });                      
-    }); 
+    });
+    
+    $(".fa-heart").click(function(){
+        if($(this).hasClass('ax-fav-icon'))
+            favoriteProduct($(this));
+    });
     
     $("#ax-delete").click(function(){
         $.fancybox({
@@ -203,6 +212,7 @@ $(document).ready(function() {
             $(".delete-product").removeClass('hidden');
             $(".delete-product").parent().addClass('ax-edit-list');
             $(".ax-bond-value").addClass("hidden");
+            $(".fa-heart").addClass("ax-fav-icon");
             if($(".ax-bond-cont").length == 0 ){
                 $(".ax-bond-card").append('<div class="ax-bond-cont"><label for="min_amount">Monto mínimo</label><input type="number" step="20000" min="0" id="min_amount" value="'+min_amount+'" name="min_amount"></div>');
                 var min_val = document.getElementById('min_amount');
@@ -218,6 +228,7 @@ $(document).ready(function() {
             }
           }
           else if($(".ax-finish-edit").hasClass("hidden")){
+              $(".fa-heart").removeClass("ax-fav-icon");
             $(".delete-product").addClass('hidden');
             $(".delete-product").parent().removeClass('ax-edit-list');
             $(".ax-bond-value").removeClass("hidden");
@@ -572,4 +583,28 @@ function callAjaxSend(e){
 		}
 	})
 }
-    
+
+function favoriteProduct(el){
+    var isFav = (el.hasClass("ax-favorite") ? 0 : 1);
+    $.ajax({
+        type: 'POST',
+		data: {
+			ajax: true,
+			method: "changeFavorite",
+			id_list: $(".products-associated").attr('data-id'),
+			id_prod: el.parents(".product-card").attr( "data-id"),
+            fav : isFav
+		},
+        success: function(result){
+            result = JSON.parse(result);
+            if(!result.error){
+                if(!isFav)
+                    el.removeClass("ax-favorite");
+                else
+                    el.addClass("ax-favorite");
+            }else{
+                console.log(result.error);
+            }
+		}
+    });
+}
