@@ -76,7 +76,7 @@
 	</div>
 	<div class="col-md-12">
 		<a class="keep-buy btn button btn btn-default btn-red">Continuar comprando</a>
-		<a href="javascript:void(0)" class="see-list btn btn-default btn-red pull-right">Ver listas de regalos</a>
+		<a href="javascript:void(0)" class="see-list btn btn-default btn-red pull-right" target="_parent">Ver listas de regalos</a>
 	</div>
 </div>
 {literal}

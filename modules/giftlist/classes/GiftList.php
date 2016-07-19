@@ -227,7 +227,7 @@ class GiftListModel extends ObjectModel
 
 	/**
 	 * @param stirng $email
-	 * search ig $email exist in database, if exist save id, else save in ps-emai-cocreator
+	 * search ig $email exist in database, if exist save id, else save in ps_email_cocreator
 	 * @return number
 	 */
 	public function setCoCreator($id,$email,$creator,$url){
@@ -236,7 +236,7 @@ class GiftListModel extends ObjectModel
 		$id_lang = $context->language->id;
 		$sql = "SELECT id_customer FROM `" . _DB_PREFIX_ . "customer` WHERE `email` = '". $email."';";
 		$row = Db::getInstance()->getRow($sql);
-		if(Db::getInstance()->numRows() > 0)
+		if(count($row) > 0)
 			return $row['id_customer'];
 		else{
             Db::getInstance()->insert('email_cocreator',array(
