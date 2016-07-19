@@ -105,9 +105,9 @@ $(document).ready(function(){
                     $(".ax-mod-qty").val(res.cantGroup);
                 }
                 $.fancybox({
-                    'autoSize'      :   false,
-                    'minHeight'        :   340,    
-                    'minWidth'			:   600,
+                    'autoSize'      :   false, 
+                    'minWidth'		:   600,
+                    'height'        :   500, 
                     'transitionIn'	:	'elastic',
                     'transitionOut'	:	'elastic',
                     'speedIn'		:	600,

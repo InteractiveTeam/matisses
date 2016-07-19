@@ -136,7 +136,10 @@
         <label>{l s='Referencia' mod='giflist'}: </label>
         <span class="editable ax-det-ref" itemprop="sku"></span>
     </p>
-    <div class="ax-det-reviews"></div>
+    <div class="ax-calificacion">
+        <label>{l s='Calificación' mod='giflist'}: </label>
+        <div class="ax-det-reviews"></div>
+    </div>
     <div id="short_description_block">
 	   <div id="short_description_content" class="rte align_justify ax-det-desc" itemprop="description"></div>
     </div>
