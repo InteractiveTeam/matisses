@@ -314,26 +314,26 @@ class GiftListModel extends ObjectModel
         return Db::getInstance()->executeS($sql);
     }
     
-    public function sendMessage($data,$out){
+    public function sendMessage($out){
         $context = Context::getContext();
         $id_shop = (int)Context::getContext()->shop->id;
 		$id_lang = $context->language->id;
-        $product_list_txt = $this->getEmailTemplateContent('cron-mail-products.txt', Mail::TYPE_TEXT, $data,$out);
-        $product_list_html = $this->getEmailTemplateContent('cron-mail-products.txt', Mail::TYPE_HTML, $data,$out);
+        $product_list_txt = $this->getEmailTemplateContent('cron-mail-products.txt', Mail::TYPE_TEXT,$out);
+        $product_list_html = $this->getEmailTemplateContent('cron-mail-products.txt', Mail::TYPE_HTML,$out);
 		$params = array(
-            '{creator}' => $data[0]['creator'],
-            '{description_link}' => $data[0]['description_link'],
+            '{creator}' => $out[0]['creator'],
+            '{description_link}' => $out[0]['description_link'],
 			'{products_html}' => $product_list_html,
             '{products_txt}' => $product_list_txt,
             '{message}' => "HOLI"
 		);
         MailCore::Send($id_lang, 'cron-mail', sprintf(
         MailCore::l('resumen de lista'), 1),
-        $params, $data[0]['email'], $data[0]['creator'],
+        $params, $data[0]['email'], $out[0]['creator'],
         null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
     }
     
-    protected function getEmailTemplateContent($template_name, $mail_type, $var,$out)
+    protected function getEmailTemplateContent($template_name, $mail_type,$out)
     {
 		$email_configuration = Configuration::get('PS_MAIL_TYPE');
 		if ($email_configuration != $mail_type && $email_configuration != Mail::TYPE_BOTH)
@@ -347,7 +347,6 @@ class GiftListModel extends ObjectModel
 		if (Tools::file_exists_cache($default_mail_template_path))
 		{
 			$this->context->smarty->assign(array(
-                'products'=> $var,
                 'out' => $out
             ));
 			return $this->context->smarty->fetch($default_mail_template_path);

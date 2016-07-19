@@ -99,8 +99,8 @@ foreach($paidOrders as $order){
                 $l->setValidated();
             }
         }
-        
-        $l->sendMessage($data_b,$out);
+        if($l->cons_not)
+            $l->sendMessage($data_b,$out);
         $data_b = array();
     }
 }
@@ -137,7 +137,8 @@ foreach($list as $l){
             );
         }
     }
-    $l->sendMessage($array(),$out);
+    if($l->cons_not)
+        $l->sendMessage($out);
 }
 
 Giftlist::setValidatedFalse();

@@ -259,9 +259,9 @@ class giftlist extends Module
                     $creator = $list->getCreator($list->getCreator($list->id_creator));
                     $sql = "SELECT count(*) FROM `"._BD_PREFIX_."list_product_bond` WHERE `id_list` = ".$params['id_list']." AND `id_product` = ". $params["id_product"];
                     if(Db::getInstance()->getValue() > 1)
-                        $lpd = ListProductBondModel::getByProductAndListNotAgroup($params['id_list'],$params['id_product']);
-                    else
                         $lpd = ListProductBondModel::getByProductAndList($params['id_list'],$params['id_product']);
+                    else
+                        $lpd = ListProductBondModel::getByProductAndListNotAgroup($params['id_list'],$params['id_product']);
                     $params = array(
                         '{creator}' =>  $creator->firstname,
                         '{image}' => $link->getImageLink($prod->link_rewrite, $prod->id_image, 'home_default'),
@@ -270,8 +270,8 @@ class giftlist extends Module
                         '{product_price}' => $prod->price,
                         '{buyer}' => $buyer->firstname . " " . $buyer->lastname,
                         '{qty_buy}' => $product['quantity'],
-                        '{qty_want}' => $lpd->cant,
-                        '{qty_rest}' => $lpd->missing,
+                        '{qty_want}' => $lpd['cant'],
+                        '{qty_rest}' => $lpd['missing'],
                         '{message}' => $lpd->message == "" ? "Ningun Mensaje" : $lpd->message,
                         '{description_link}' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url))
                     );
