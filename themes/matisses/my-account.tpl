@@ -39,9 +39,10 @@
 			<div class="header-account">
 				<h2>{l s='Mis compras'}</h2>
 			</div>
+			{assign var="protl" value="Configuration::get('PS_SSL_ENABLED')"}
 			<div class="content-account grid_12">
 				<div class="grid_2 img-account">
-		            <img src="{$protl}www.matisses.co/img/mis-compras.png"/>
+		            <img src="{if $protl == true}https://{else}http://{/if}www.matisses.co/img/mis-compras.png"/>
 		        </div>
 				<div class="grid_5 dates-account">
 					<h3>{l s='Estado del pedido'}</h3>
@@ -76,7 +77,7 @@
 			</div>
 			<div class="content-account grid_12">
 				<div class="grid_2">
-		            <img src="{$protl}www.matisses.co/img/mi-lista-regalos.png"/>
+		            <img src="{if $protl == true}https://{else}http://{/if}www.matisses.co/img/mi-lista-regalos.png"/>
 		        </div>
 				<div class="grid_4 dates-account">
 					<h3>{l s='Buscar'}</h3>
@@ -113,7 +114,7 @@
 			</div>
 			<div class="content-account grid_12">
 				<div class="grid_2">
-		            <img src="{$protl}www.matisses.co/img/ajustes-perfil.png"/>
+		            <img src="{if $protl == true}https://{else}http://{/if}www.matisses.co/img/ajustes-perfil.png"/>
 		        </div>
 				<div class="grid_5 dates-account">
 					<h3>Ajustes de cuenta</h3>
