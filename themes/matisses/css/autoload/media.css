@@ -1969,6 +1969,10 @@
 
 @media screen and (max-width :768px) { 
 
+	.history .center_column {
+	    padding: 0 15px;
+	}
+
  	#mywishlist #form_wishlist {
 	    margin-top: 20px;
 	}
@@ -2294,7 +2298,7 @@
     
     h1, h2 {
         font-size: 2rem;
-        margin: 0 3%;
+        margin: 0;
     }
     
     .nav-breadcrum {
