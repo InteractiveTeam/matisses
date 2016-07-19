@@ -529,7 +529,7 @@ function saveMessage(){
                  'transitionIn': 'elastic',
                  'transitionOut': 'elastic',
                  'minWidth': 250,
-                 'minHeight': 50,
+                 'minHeight': 70,
                  'speedIn': 500,
                  'speedOut': 300,
                  'href' : '#contentdiv'
