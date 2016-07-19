@@ -86,25 +86,8 @@ class registerWithSap extends Module
                 if (isset($addresses) && !empty($addresses)) {
                     $addressObj = new Address();
                     
-                    if ($this->isNumericArray($addresses)) {
-                        foreach ($addresses as $addr) {
-                            $addressObj->id_customer = $params['idcustomer'];
-                            $addressObj->firstname = $params['firstname'];
-                            $addressObj->secondname = $params['secondname'];
-                            $addressObj->lastname = $params['lastname'];
-                            $addressObj->surname = $params['surname'];
-                            $addressObj->phone = $addr[0]['phone'];
-                            $addressObj->phone_mobile = $addr[0]['mobile'];
-                            $addressObj->address1 = $addr[0]['address'];
-                            $addressObj->postcode = $addr[0]['cityCode'];
-                            $addressObj->city = $addr[0]['cityName'];
-                            $addressObj->id_country = $this->context->country->id;
-                            $addressObj->id_state = $addr[0]['stateCode'];
-                            $addressObj->alias = $addr[0]['addressName'];
-                            $addressObj->add();
-                        }
-                    } else {
-                        foreach ($addresses as $addr) {
+                    foreach ($addresses as $addr) {
+                        if ($addr['addressType'] == 'E') {
                             $addressObj->id_customer = $params['idcustomer'];
                             $addressObj->firstname = $params['firstname'];
                             $addressObj->secondname = $params['secondname'];
@@ -116,7 +99,7 @@ class registerWithSap extends Module
                             $addressObj->postcode = $addr['cityCode'];
                             $addressObj->city = $addr['cityName'];
                             $addressObj->id_country = $this->context->country->id;
-                            $addressObj->id_state = $addr['stateCode'];
+                            $addressObj->id_state = $addr'stateCode'];
                             $addressObj->alias = $addr['addressName'];
                             $addressObj->add();
                         }
