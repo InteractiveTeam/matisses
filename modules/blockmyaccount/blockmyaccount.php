@@ -80,7 +80,7 @@ class BlockMyAccount extends Module
 		$this->smarty->assign(array(
 			'voucherAllowed' => CartRule::isFeatureActive(),
 			'returnAllowed' => (int)Configuration::get('PS_ORDER_RETURN'),
-            'protl' => Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://',
+            'protl' => (Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://'),
 			'HOOK_BLOCK_MY_ACCOUNT' => Hook::exec('displayMyAccountBlock'),
 		));
 		return $this->display(__FILE__, $this->name.'.tpl');
@@ -108,6 +108,9 @@ class BlockMyAccount extends Module
 
 	public function hookDisplayHeader($params)
 	{
+        $this->smarty->assign(array(
+            'protl' => (Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://')
+		));
 		$this->context->controller->addCSS(($this->_path).'blockmyaccount.css', 'all');
 	}
 }
