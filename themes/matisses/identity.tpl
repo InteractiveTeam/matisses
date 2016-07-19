@@ -116,7 +116,7 @@
                     <label>
                         {l s='Date of Birth'}
                     </label>
-                    <div class="grid_4 alpha">
+                    <div class="grid_4 alpha ax-dia">
                         <select name="days" id="days" class="form-control">
                             <option value="">-</option>
                             {foreach from=$days item=v}
@@ -124,7 +124,7 @@
                             {/foreach}
                         </select>
                     </div>
-                    <div class="grid_4">
+                    <div class="grid_4 ax-mes">
                         <select id="months" name="months" class="form-control">
                             <option value="">-</option>
                             {foreach from=$months key=k item=v}
@@ -132,7 +132,7 @@
                             {/foreach}
                         </select>
                     </div>
-                    <div class="grid_4 omega">
+                    <div class="grid_4 omega ax-year">
                         <select id="years" name="years" class="form-control">
                             <option value="">-</option>
                             {foreach from=$years item=v}
