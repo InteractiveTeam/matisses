@@ -355,7 +355,6 @@
 <script class="hidden" type="text/javascript"> 
 	var list_desc = {/literal}{json_encode($list_desc)}{literal} 
 </script>
-<script type="text/javascript" src="{/literal}{$modules_dir}{literal}giftlist/views/js/listOwner.js"></script>
 {/literal}
 </div>
 <div style="display:none" id="contentdiv">
