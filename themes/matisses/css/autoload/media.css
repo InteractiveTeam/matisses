@@ -2002,7 +2002,7 @@
 	}
 
 	.page-subheading, .cms h2 {   
-	    margin-top: 20px;
+	    margin-top: 0px;
 	}
 
  	#mywishlist #form_wishlist {
@@ -2022,21 +2022,21 @@
 	}
 
 	#identity .grid_4.alpha.ax-dia, #birth-arrows .grid_4.alpha.ax-dia {
-	    width: 25%;
+	    width: 31%;
 	    display: inline-block;
 	    vertical-align: top;
-	    padding: 0 5px 0 0;
+	    padding: 0 0px 0 0;
 	}
     
 	#identity .grid_4.ax-mes, .account_creation #birth-arrows .grid_4.ax-mes {
-	    width: 40%;
+	    width: 32%;
 	    display: inline-block;
 	    vertical-align: top;
 	    padding: 0 5px 0 0;
 	}
 
 	#identity .grid_4.ax-year, #birth-arrows .ax-year {
-	    width: 35%;
+	    width: 37%;
 	    display: inline-block;
 	    vertical-align: top;
 	    padding: 0;
@@ -3925,6 +3925,10 @@
 /* iPhone 6 landscape */
 @media screen and (max-width: 375px) {
 
+	.dates-account {
+	    margin: 10px 0 0 0;
+	}
+
 	.title-facebook {
 	    margin-bottom: 1.5625rem;
 	    display: block;
@@ -4019,6 +4023,12 @@
 
 
 @media screen and (max-width: 414px){
+
+
+	#buy_block .wrap_bottom .product_store_available {
+	    border-top: 1px solid #ccc;
+	    padding: 20px 0 20px 0;
+	}
 
 	#page #center_column .generic-page br {
 	    display: none;
