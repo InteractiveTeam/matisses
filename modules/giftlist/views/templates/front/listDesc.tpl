@@ -72,17 +72,18 @@
                                                 <input type="hidden" class="prod-attr" value="{$att_group['id_product_attribute']}">
                                             {/if}
                                         {/foreach} 
-                                    {if $row['group']}
-                                        <p class="total_qty" data-cant="{$row['cant']}">{l s='Cantidad:'} {$row['cant']}
-                                    {else}
-                                        <p class="total_qty" data-max="{$row['missing']}" data-cant="0">{l s='Cantidad:'} 
-                                        <input type="number" min="1" value="1" name="qty_card" id="qty"/>
-                                    {/if}
+                                    
                                     </p>
                                 </div>
                                 <button data-toggle="tooltip" data-placement="bottom" title="{l s='Descubre más' mod='giftlist'}" {if $row['group']}data-group="true"{/if} class="ax-more btn btn-default btn-lista-regalos">{l s='Descubre más' mod='giftlist'}</button>
                                 <button data-toggle="tooltip" data-placement="bottom" title="{l s='Añadir al carrito' mod='giftlist'}" class="add-to-cart btn btn-default btn-lista-regalos">{l s='Añadir al carrito' mod='giftlist'}</button>
                             </div>
+                            {if $row['group']}
+                            <p class="total_qty" data-cant="{$row['cant']}">{l s='Cantidad:'} {$row['cant']}
+                            {else}
+                            <p class="total_qty" data-max="{$row['missing']}" data-cant="0">{l s='Cantidad:'} 
+                            <input type="text" min="1" value="1" name="qty_card" id="qty"/>
+                            {/if}
                     </div>
                 {/foreach}
                 {if $list_desc['recieve_bond']}

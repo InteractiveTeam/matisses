@@ -744,7 +744,7 @@ label.error:before {
     width: 100%;
 }
 
-.products-associated .product-card:first-child {
+.products-associated .product-card.ax-bond-card {
     text-align: center;
     font-size: 1rem;
 }
@@ -763,6 +763,23 @@ label.error:before {
 .products-associated .product-card .ax-info-list {
     padding: 5px;
     position: relative;
+}
+
+.products-associated .total_qty {
+    position: relative;
+    z-index: 99;
+    margin: 10px 0;
+    font-family: georgia, 'Georgia';
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #212121;
+    display: inline-block;
+}
+
+.products-associated .total_qty input {
+    width: 50px;
+    padding: 2px 5px;
+    margin-left: 8px;
 }
 
 .products-associated .product-card .add_container {
@@ -2281,6 +2298,20 @@ label.error:before {
         width: 25px;
         height: 25px;
     }
+    
+    .ax-cont-hover:before, .ax-cont-hover:after, .ax-cont-hover:hover .add-to-cart.btn-default.btn-lista-regalos, .module-giftlist-descripcion .products-associated .ax-more:before, .module-giftlist-descripcion .products-associated .ax-more:after {
+        display: none;
+    }
+    
+    .module-giftlist-descripcion .parrilla-productos .products-associated .ax-more {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        border: none;
+        background: transparent;
+        font-size: 0;
+    }
+     
 }
 
 @media screen and (max-width:375px) {
