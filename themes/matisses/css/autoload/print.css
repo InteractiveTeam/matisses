@@ -77,4 +77,18 @@
         border-top: #000 solid 4px;
     }
     
+    .ax-avatar-content, .ax-print,  h1, h2, h3, .jplist-panel {
+        display: none !important;
+    }
+    
+    .col-md-3 {
+        width: 25%;
+        float: left;
+        height: 300px;
+    }
+    
+    .col-md-3 img {
+        width: 100%;
+    }
+    
 }

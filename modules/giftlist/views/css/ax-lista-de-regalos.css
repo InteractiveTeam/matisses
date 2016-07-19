@@ -987,8 +987,8 @@ label.error:before {
     color: #f03800;
 }
 
-#address-form {
-    
+#address-form .col-md-6 .row {
+    position: relative;
 }
 
 /* crear listas */
