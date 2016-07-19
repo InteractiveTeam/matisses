@@ -264,6 +264,10 @@
 	}
 }
 @media (max-height: 620px){
+
+	.header-container .left-down-menu #menu #wishlist, .left-down-menu #menu #giftlist {
+	    margin: 20px auto;
+	}
 	html.pagenotfound{
 		height: auto;
 	}
@@ -1967,7 +1971,11 @@
 
 }
 
-@media screen and (max-width :768px) { 
+@media screen and (max-width :768px) {
+
+	#page #center_column .generic-page h1 {
+	    margin-bottom: 20px;
+	}
 
 
 	#order #center_column, #authentication #center_column, #password #center_column, #order-confirmation #center_column, #module-blockwishlist-view #center_column, #guest-tracking #center_column{
@@ -4012,6 +4020,10 @@
 
 @media screen and (max-width: 414px){
 
+	#page #center_column .generic-page br {
+	    display: none;
+	}
+
 
 
 	#page #center_column .generic-page figure img{
@@ -4025,6 +4037,10 @@
 	    display: block;
 	    position: relative;
 	    padding: 0;
+	}
+
+	#page #center_column .generic-page .cms .center_column {
+	    margin-bottom: 0;
 	}
 
 	#page #center_column .generic-page section .generic-left {
