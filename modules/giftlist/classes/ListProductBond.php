@@ -70,7 +70,7 @@ class ListProductBondModel extends ObjectModel
 	 * @return array of products associated in a list
 	 */
 	public function getProductsByList($id){
-		 $sql = "SELECT * FROM "._DB_PREFIX_."list_product_bond WHERE id_list = ".$id." AND id_product <> 0 AND bought = 0";
+		 $sql = "SELECT * FROM "._DB_PREFIX_."list_product_bond WHERE id_list = ".$id." AND id_product <> 0 AND bought = 0 ORDER BY favorite";
          $res  = Db::getInstance()->executeS($sql);
 		 $prod = array();
 		 $link = new LinkCore();

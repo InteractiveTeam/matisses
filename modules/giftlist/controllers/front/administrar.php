@@ -124,7 +124,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
         if($li->add()){
             $li->image = $this->_uploadImage($li->id, false, 'image-p');
             $li->profile_img = $this->_uploadImage($li->id, true, 'image-prof');
-            if($data['email_co'] != $data['email_co'])
+            if($data['email'] != $data['email_co'])
                 $li->id_cocreator = $li->setCoCreator($li->id,$data['email_co'],$data['firstname'] . " " .$data ['lastname'],$li->url);
             $li->update();
             die(

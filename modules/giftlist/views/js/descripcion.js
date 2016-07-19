@@ -586,22 +586,23 @@ function callAjaxSend(e){
 
 function favoriteProduct(el){
     var isFav = (el.hasClass("ax-favorite") ? 0 : 1);
+    var idProd = el.parents(".product-card").attr( "data-id");
     $.ajax({
         type: 'POST',
 		data: {
 			ajax: true,
 			method: "changeFavorite",
 			id_list: $(".products-associated").attr('data-id'),
-			id_prod: el.parents(".product-card").attr( "data-id"),
+			id_prod: idProd,
             fav : isFav
 		},
         success: function(result){
             result = JSON.parse(result);
             if(!result.error){
                 if(!isFav)
-                    el.removeClass("ax-favorite");
+                    $("div[data-id="+idProd+"]").find(".fa-heart").removeClass("ax-favorite");
                 else
-                    el.addClass("ax-favorite");
+                    $("div[data-id="+idProd+"]").find(".fa-heart").addClass("ax-favorite");
             }else{
                 console.log(result.error);
             }
