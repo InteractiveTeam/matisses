@@ -113,10 +113,24 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 						$this->_editInfo(Tools::getValue('id_list'), Tools::getValue('data'));
                     case "productDetail":
 						$this->_productDetail(Tools::getValue('id_prod'),Tools::getValue('id_list'));
+                    case "changeFavorite":
+						$this->_changeFavorite(Tools::getValue('id_prod'),Tools::getValue('id_list'),Tools::getValue('fav'));
 				}
 			}
 		}
 	}
+    
+    private function _changeFavorite($id_prod,$id_list,$fav){
+        $res = Db::getInstance()->update('list_product_bond',array(
+            'favorite' => (int)$fav
+            ),
+            'id_product = '.$id_prod. " AND id_list = ". $id_list
+        );
+        if($res)
+            die(Tools::jsonEncode(array('error'=>false,'msg' => $res)));
+        else
+            die(Tools::jsonEncode(array('error'=>true,'msg' => Db::getInstance()->getMsgError())));
+    }
     
     public function displayProductListReviews($params)
 	{
