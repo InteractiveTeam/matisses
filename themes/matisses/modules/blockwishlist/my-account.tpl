@@ -32,7 +32,7 @@
 	</div>
 	<div class="content-account grid_12">
 		<div class="grid_2 dates-account">
-			<img src="{Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://'}www.matisses.co/img/mi-lista-deseos.png" class="img-responsive"/>
+			<img src="{$protl}www.matisses.co/img/mi-lista-deseos.png" class="img-responsive"/>
 		</div>
 		<div class="grid_10 dates-account">
 			<h3>Administrar</h3>

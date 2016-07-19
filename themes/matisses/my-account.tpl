@@ -39,7 +39,6 @@
 			<div class="header-account">
 				<h2>{l s='Mis compras'}</h2>
 			</div>
-			{assign var="protl" value="Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://'"}
 			<div class="content-account grid_12">
 				<div class="grid_2 img-account">
 		            <img src="{$protl}www.matisses.co/img/mis-compras.png"/>
