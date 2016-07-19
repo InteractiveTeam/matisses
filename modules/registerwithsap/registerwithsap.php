@@ -82,24 +82,27 @@ class registerWithSap extends Module
                 
                 // Registering address
                 $addresses = $userSap['customerDTO']['addresses'];
+                
                 if (isset($addresses) && !empty($addresses)) {
                     $addressObj = new Address();
                     
                     foreach ($addresses as $addr) {
-                        $addressObj->id_customer = $params['idcustomer'];
-                        $addressObj->firstname = $params['firstname'];
-                        $addressObj->secondname = $params['secondname'];
-                        $addressObj->lastname = $params['lastname'];
-                        $addressObj->surname = $params['surname'];
-                        $addressObj->phone = $addr['phone'];
-                        $addressObj->phone_mobile = $addr['mobile'];
-                        $addressObj->address1 = $addr['address'];
-                        $addressObj->postcode = $addr['cityCode'];
-                        $addressObj->city = $addr['cityName'];
-                        $addressObj->id_country = $this->context->country->id;
-                        $addressObj->id_state = $addr['stateCode'];
-                        $addressObj->alias = $addr['addressName'];
-                        $addressObj->add();
+                        if ($addr['addressType'] == 'E') {
+                            $addressObj->id_customer = $params['idcustomer'];
+                            $addressObj->firstname = $params['firstname'];
+                            $addressObj->secondname = $params['secondname'];
+                            $addressObj->lastname = $params['lastname'];
+                            $addressObj->surname = $params['surname'];
+                            $addressObj->phone = $addr['phone'];
+                            $addressObj->phone_mobile = $addr['mobile'];
+                            $addressObj->address1 = $addr['address'];
+                            $addressObj->postcode = $addr['cityCode'];
+                            $addressObj->city = $addr['cityName'];
+                            $addressObj->id_country = $this->context->country->id;
+                            $addressObj->id_state = $addr['stateCode'];
+                            $addressObj->alias = $addr['addressName'];
+                            $addressObj->add();
+                        }
                     }
                     
                     // Registering orders                    
