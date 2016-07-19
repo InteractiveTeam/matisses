@@ -12,6 +12,12 @@
                 <h2 style="text-transform: uppercase;" class="text-center">{l s='Asociar Categorias'}</h2>
                     <div class="col-lg-12">
                     <table class="table table-bordered">
+                       <thead>
+                           <tr>
+                               <th>N° CATEGORIA</th>
+                               <th>ASOCIACION SAP</th>
+                           </tr>
+                       </thead>
                         <tbody>
                         {foreach from=$allCategories item=category}
                             <tr>
@@ -22,7 +28,7 @@
                                     <div class="col-lg-12">
                                         <div class="col-lg-6 text-right">
                                             <label for="txtCtg{$category.id_category}">
-                                                {l s='Código SAP'}&nbsp;<strong style="text-transform: uppercase; color: #d7162f;">{$category.name}</strong>&nbsp;
+                                                {l s='Subgrupo SAP'}&nbsp;<strong style="text-transform: uppercase; color: #d7162f;">{$category.name}</strong>&nbsp;
                                             </label>
                                         </div>
                                         <div class="col-lg-6 text-left">
