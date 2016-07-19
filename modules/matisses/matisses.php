@@ -1099,7 +1099,7 @@ class matisses extends Module
             
             foreach($allrefer as $refer) {
                 
-                $hexcolor = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'attribute a JOIN '._DB_PREFIX_.'attribute_lang al ON a.id_attribute = al.id_attribute WHERE id_attribute = "'.$refer['id_attribute'].'"');
+                $hexcolor = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'attribute a JOIN '._DB_PREFIX_.'attribute_lang al ON a.id_attribute = al.id_attribute WHERE a.id_attribute = "'.$refer['id_attribute'].'"');
                 
                 $objPrice = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'specific_price WHERE id_product = "'.$prod->id.'"');
                 $priceRefer = $price[0];

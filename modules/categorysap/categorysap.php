@@ -81,9 +81,9 @@ class categorysap extends Module
             }
 		}	
 
-		$categories	= Db::getInstance()->ExecuteS('SELECT * , cl.name AS "name" FROM '. _DB_PREFIX_ .'category c
+		$categories	= Db::getInstance()->ExecuteS('SELECT c.id_category, cl.name AS "nameCat" FROM '. _DB_PREFIX_ .'category c
                                                  JOIN '. _DB_PREFIX_ .'category_lang cl ON c.id_category = cl.id_category
-                                                 WHERE level_depth >2');
+                                                 WHERE c.level_depth >2');
         
         $this->context->smarty->assign('displayName',strtoupper($this->displayName));
         $this->context->smarty->assign('allCategories',$categories);

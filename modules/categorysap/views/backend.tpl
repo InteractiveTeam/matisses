@@ -28,7 +28,7 @@
                                     <div class="col-lg-12">
                                         <div class="col-lg-6 text-right">
                                             <label for="txtCtg{$category.id_category}">
-                                                {l s='Subgrupo SAP'}&nbsp;<strong style="text-transform: uppercase; color: #d7162f;">{$category.name}</strong>&nbsp;
+                                                {l s='Subgrupo SAP'}&nbsp;<strong style="text-transform: uppercase; color: #d7162f;">{$category.nameCat}</strong>&nbsp;
                                             </label>
                                         </div>
                                         <div class="col-lg-6 text-left">
