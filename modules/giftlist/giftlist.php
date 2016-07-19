@@ -169,8 +169,14 @@ class giftlist extends Module
     
     public function hookActionProductInList($params){
         $l = new GiftListModel($params['id_list']);
+        if(!$l->real_not)
+            return true;
         $p = new ProductCore($params["id_product"]);
-        $lpd = ListProductBondModel::getByProductAndList($params['id_list'],$params['id_product']);
+        $sql = "SELECT count(*) FROM `"._BD_PREFIX_."list_product_bond` WHERE `id_list` = ".$params['id_list']." AND `id_product` = ". $params["id_product"];
+        if(Db::getInstance()->getValue() > 1)
+            $lpd = ListProductBondModel::getByProductAndListNotAgroup($params['id_list'],$params['id_product']);
+        else
+            $lpd = ListProductBondModel::getByProductAndList($params['id_list'],$params['id_product']);
         $customer = new CustomerCore($l->id_creator);
         $attr = $p->getAttributeCombinationsById($params['id_product_attribute'],$this->context->language->id);
         $id_image = ProductCore::getCover($params['id_product']);
@@ -186,7 +192,7 @@ class giftlist extends Module
             '{name}' => $p->name[1],
             '{price}' => $p->price,
             '{color}' => $attr['attribute_name'],
-            "{wanted}" => $lpd['total'],
+            "{wanted}" => $lpd['cant'],
             "{missing}" => $lpd['missing'],
             '{description_link}' =>$context->link->getModuleLink('giftlist', 'descripcion',array('url' => $l->url))
         );
@@ -211,10 +217,9 @@ class giftlist extends Module
 	public function hookActionOrderStatusUpdate($params){
 
         //Order status payment confirmation
-        if (!($params['newOrderStatus']->id == ConfigurationCore::get('PS_OS_WS_PAYMENT'))
-         && !($params['newOrderStatus']->id == ConfigurationCore::get('PS_OS_PAYMENT'))){
-            $this->_updateStatesinList($params['cart']);
+        if (!($params['newOrderStatus']->id == ConfigurationCore::get('PS_OS_PAYMENT'))){
             $this->__verifyListInOrderBeforePayment($params['cart']);
+            $this->_updateStatesinList($params['cart']);
         }
 
         
@@ -245,14 +250,18 @@ class giftlist extends Module
                         '{buyer}' => $buyer->firstname . " " . $buyer->lastname,
                         '{description_link}' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url))
                     );
-                    $this->_sendEmail('bond-bought','¡Han comprado un bono para ti!',$creator,$params);
+                    if($list->real_not)
+                        $this->_sendEmail('bond-bought','¡Han comprado un bono para ti!',$creator,$params);
                 }
                 elseif($product['id_product'] != 0){
-                    $lpd->bought = 1;
-                    $lpd->save();
                     $prod = new ProductCore($product['id_product']);
                     $list = new GiftListModel($product['id_giftlist']);
                     $creator = $list->getCreator($list->getCreator($list->id_creator));
+                    $sql = "SELECT count(*) FROM `"._BD_PREFIX_."list_product_bond` WHERE `id_list` = ".$params['id_list']." AND `id_product` = ". $params["id_product"];
+                    if(Db::getInstance()->getValue() > 1)
+                        $lpd = ListProductBondModel::getByProductAndListNotAgroup($params['id_list'],$params['id_product']);
+                    else
+                        $lpd = ListProductBondModel::getByProductAndList($params['id_list'],$params['id_product']);
                     $params = array(
                         '{creator}' =>  $creator->firstname,
                         '{image}' => $link->getImageLink($prod->link_rewrite, $prod->id_image, 'home_default'),
@@ -266,7 +275,8 @@ class giftlist extends Module
                         '{message}' => $lpd->message == "" ? "Ningun Mensaje" : $lpd->message,
                         '{description_link}' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url))
                     );
-                    $this->_sendEmail('product-bought','¡Han comprado un producto para ti!',$creator,$params);
+                    if($list->real_not)
+                        $this->_sendEmail('product-bought','¡Han comprado un producto para ti!',$creator,$params);
                 }
             }
         }
