@@ -99,7 +99,7 @@ class registerWithSap extends Module
                             $addressObj->postcode = $addr['cityCode'];
                             $addressObj->city = $addr['cityName'];
                             $addressObj->id_country = $this->context->country->id;
-                            $addressObj->id_state = $addr'stateCode'];
+                            $addressObj->id_state = $addr['stateCode'];
                             $addressObj->alias = $addr['addressName'];
                             $addressObj->add();
                         }
