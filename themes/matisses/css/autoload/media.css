@@ -2225,6 +2225,16 @@
         left: 0;
         width: 200px;
     }
+    
+    .wrap_buttons .elem_butt #wishlist_button:before {
+        padding-right: 0;
+        font-size: 0.9rem;
+    }
+    
+    .wrap_buttons #usefull_link_block li a {
+        padding-left: 8px;
+    }
+    
 }
 
 @media screen and (max-width :480px) {
@@ -2277,8 +2287,13 @@
     }
     
     .left-down-menu #menu #wishlist, .left-down-menu #menu #giftlist {
-        margin: 0;
-        width: 42%;
+        margin: 8px auto;
+        width: 35%;
+        display: inline-block;
+    }
+    
+    .left-down-menu #menu #wishlist a, .left-down-menu #menu #giftlist a {
+        font-size: 1.1rem;
     }
     
     .newsletter-footer .newsletter-input {
@@ -2594,7 +2609,7 @@
     }
     
     .left-down-menu #giftlist {
-        background-position: 8px -23px;
+        background-position: 3px -23px;
     }
 
 	.menu-content > li > a::before {
@@ -4056,9 +4071,9 @@
 	    z-index: 999;
 	}
 
-
 	#header #menu.menu-experiencias {
-	    top: 300px;
+	    top: 7.8rem;
+        width: 100%;
 	}
 
 

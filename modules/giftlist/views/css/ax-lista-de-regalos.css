@@ -2082,6 +2082,10 @@ label.error:before {
         padding: 5px 10px;
     }
     
+    .module-giftlist-administrar .ax-sin-margen .col-md-12, .module-giftlist-administrar .ax-sin-margen .col-md-4, .module-giftlist-administrar .ax-sin-margen .col-md-6 {
+        padding: 0 10px;
+    }
+    
     #frmSaveList label {
         padding: 0.5rem 0 0.2rem 0;
     }
