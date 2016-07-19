@@ -95,6 +95,10 @@ class categorysap extends Module
                                                  JOIN '. _DB_PREFIX_ .'category_sap cs ON c.id_category = cs.id_category 
                                                  WHERE level_depth >2');
         
+        foreach ($categories as $cat) {
+            $update	= Db::getInstance()->ExecuteS('UPDATE ps_category_sap SET sap_code = (SELECT subgrupo FROM ps_category WHERE id_category = "'.$cat['id_category'].'")  WHERE id_category = "'.$cat['id_category'].'"');
+        }
+        
         $this->context->smarty->assign('displayName',strtoupper($this->displayName));
         $this->context->smarty->assign('allCategories',$categories);
 		

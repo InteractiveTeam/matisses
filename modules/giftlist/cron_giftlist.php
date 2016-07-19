@@ -130,8 +130,8 @@ foreach($list as $l){
                 'name' => $p->name[1],
                 'price' => $p->price,
                 'color' => attr['attribute_name'],
-                "wanted" => $cant['cant'],
-                "missing" => $cant['missing'],
+                "wanted" => $prod['cant'],
+                "missing" => $prod['missing'],
                 "email" => $l->email
             );
         }

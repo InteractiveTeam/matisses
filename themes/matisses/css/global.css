@@ -4331,6 +4331,11 @@ color: #ADADAD;
 line-height: 1.5;
 }
 
+.layer-attributes .scroll-left {
+    height: auto;
+    max-height: 230px;
+}
+
 #layered_block_left .scroll-left.scroll-pane.mCustomScrollbar._mCS_1 {
     border: none;
 }
@@ -6041,8 +6046,9 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 }
 
 .wrap_buttons #btn_gift_list {
-    display: inline-block;
-    margin: -2px 0 0 0;
+    display: block;
+    margin: 0 3px 0 0;
+    float: left;
     text-align: center;
     padding: 0.42rem 10px;
     color: #F00;
@@ -6050,6 +6056,10 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     background: #f8f8f8;
     font-family: 'gothic';
     font-size: 16px;
+}
+
+.fancybox-wrap .wrap_buttons #btn_gift_list {
+    margin-top: 20px;
 }
 
 .elem_butt a {
@@ -6066,6 +6076,10 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     content: "\f06b";
 }
 
+
+.box-info-product .wrap_buttons .grid_12.omega.alpha {
+    margin-top: 20px;
+}
 /*modal*/
 
 #frmAddGiftList {
@@ -6138,7 +6152,7 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 }
 */
 #buy_block .box-info-product .elem_butt {
-    margin: 1.25rem 0.2rem 0 0;
+    margin: 0 0.2rem 0 0;
 }
 
 #buy_block .box-info-product .elem_butt {

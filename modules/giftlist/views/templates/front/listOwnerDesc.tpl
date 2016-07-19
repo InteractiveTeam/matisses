@@ -159,10 +159,12 @@
                         <a class="delete-product hidden" data-toggle="tooltip" data-placement="bottom" title="Quitar producto"><i class="fa fa-close"></i></a>
                     </div>
                 {/foreach}
+                {if $list_desc['recieve_bond']}
                 <div class="product-card ax-bond-card col-md-3" data-id="{$list_desc['id']}">
                     <img src="{$modules_dir}/giftlist/views/img/details-lista.png">
                     <span class="ax-bond-value">{l s='Total bonos' mod='giftlist'}: {convertPrice price=$bond['total']}</span> <br>       
                 </div>
+                {/if}
             </div>
             <div class="jplist-panel">
                <div class="sortPagiBar">
@@ -353,7 +355,6 @@
 <script class="hidden" type="text/javascript"> 
 	var list_desc = {/literal}{json_encode($list_desc)}{literal} 
 </script>
-<script type="text/javascript" src="{/literal}{$modules_dir}{literal}giftlist/views/js/listOwner.js"></script>
 {/literal}
 </div>
 <div style="display:none" id="contentdiv">
