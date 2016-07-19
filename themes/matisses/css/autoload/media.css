@@ -1967,7 +1967,11 @@
 
 }
 
-@media screen and (max-width :768px) {  
+@media screen and (max-width :768px) { 
+
+ 	#mywishlist #form_wishlist {
+	    margin-top: 20px;
+	}
 
 	#layer_cart .button-container .btn {
 	    font-size: 1.3rem;
