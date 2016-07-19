@@ -1,6 +1,7 @@
 var valForm;
 var valFormInfo;
 var jp;
+var products;
 
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
@@ -115,13 +116,24 @@ $(document).ready(function() {
         $(".delete-product").removeClass('hidden');
         $(".delete-product").parent().addClass('ax-edit-list');
         $(".ax-finish-edit").removeClass('hidden');
+        $(".cant_prod").attr("disabled",false);
         $(this).addClass("hidden");
         $(".ax-bond-value").addClass("hidden");
         $(".fa-heart").addClass("ax-fav-icon");
         $(".ax-bond-card").append('<div class="ax-bond-cont"><label for="min_amount">Monto mínimo</label><input type="number" step="20000" min="0" id="min_amount" value="'+min_amount+'" name="min_amount"></div>');
         var min_val = document.getElementById('min_amount');
+        var cant_prod = document.getElementsByClassName("cant_prod");
+        for(var i = 0; i < cant_prod.length; i++){
+            cant_prod[i].onkeydown = function(e) {
+                if(!((e.keyCode > 95 && e.keyCode < 106)
+                  || (e.keyCode > 47 && e.keyCode < 58) 
+                  || e.keyCode == 8)) {
+                    return false;
+                }
+            };
+        }
         if(min_val != null){
-            min_val.onkeydown = function(e) {
+            cant_prod.onkeydown = min_val.onkeydown = function(e) {
                 if(!((e.keyCode > 95 && e.keyCode < 106)
                   || (e.keyCode > 47 && e.keyCode < 58) 
                   || e.keyCode == 8)) {
@@ -144,6 +156,7 @@ $(document).ready(function() {
                 },
                 success: function(){
                     $(".delete-product").addClass('hidden');
+                    $(".cant_prod").attr("disabled",true);
                     $(".delete-product").parent().removeClass('ax-edit-list');
                     $(".ax-list-edit").removeClass('hidden');
                     $(".ax-finish-edit").addClass("hidden");
@@ -215,7 +228,18 @@ $(document).ready(function() {
             $(".fa-heart").addClass("ax-fav-icon");
             if($(".ax-bond-cont").length == 0 ){
                 $(".ax-bond-card").append('<div class="ax-bond-cont"><label for="min_amount">Monto mínimo</label><input type="number" step="20000" min="0" id="min_amount" value="'+min_amount+'" name="min_amount"></div>');
+                $(".cant_prod").attr("disabled",false);
                 var min_val = document.getElementById('min_amount');
+                var cant_prod = document.getElementsByClassName("cant_prod");
+                for(var i = 0; i < cant_prod.length; i++){
+                    cant_prod[i].onkeydown = function(e) {
+                        if(!((e.keyCode > 95 && e.keyCode < 106)
+                          || (e.keyCode > 47 && e.keyCode < 58) 
+                          || e.keyCode == 8)) {
+                            return false;
+                        }
+                    };
+                }
                 if(min_val != null){
                     min_val.onkeydown = function(e) {
                         if(!((e.keyCode > 95 && e.keyCode < 106)
@@ -228,11 +252,12 @@ $(document).ready(function() {
             }
           }
           else if($(".ax-finish-edit").hasClass("hidden")){
+              $(".cant_prod").attr("disabled",true);
               $(".fa-heart").removeClass("ax-fav-icon");
-            $(".delete-product").addClass('hidden');
-            $(".delete-product").parent().removeClass('ax-edit-list');
-            $(".ax-bond-value").removeClass("hidden");
-            $(".ax-bond-cont").remove();
+              $(".delete-product").addClass('hidden');
+              $(".delete-product").parent().removeClass('ax-edit-list');
+              $(".ax-bond-value").removeClass("hidden");
+              $(".ax-bond-cont").remove();
           }
       }
    });
@@ -357,7 +382,7 @@ function deleteMsg(){
             'transitionIn': 'elastic',
             'transitionOut': 'elastic',
             'minWidth': 250,
-            'minHeight':50,
+            'minHeight':120,
             'speedIn': 500,
             'speedOut': 300,
             'autoDimensions': true,

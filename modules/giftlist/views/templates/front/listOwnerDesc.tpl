@@ -141,7 +141,7 @@
             <div class="row ax-prod-cont">
                 {foreach from=$products item=row}
                     {$atribute_group = $row['options'][3]->value}
-                        <div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}">
+                        <div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}" data-group="{if $row['group']}1{else}0{/if}">
                             <div class="img-container">
                                 <img src="{$row['image']}">
                             </div>
@@ -154,7 +154,7 @@
                                     <p>{$att_group['group_name']}: {$att_group['attribute_name']}</p>
                                 {/if}
                             {/foreach}
-                            <p>{l s='Cantidad:'} {$row['cant']}</p>
+                            <p>{l s='Cantidad:'}{if $row['group']}{$row['cant']}{else} <input class="cant_prod" type="text" value="{$row['cant']}" disabled/>{/if}</p>
                         </div>
                         <a class="delete-product hidden" data-toggle="tooltip" data-placement="bottom" title="Quitar producto"><i class="fa fa-close"></i></a>
                     </div>
