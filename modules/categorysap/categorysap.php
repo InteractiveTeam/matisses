@@ -64,47 +64,26 @@ class categorysap extends Module
             $codes = Tools::getValue('txtCtg');
             
             if (isset($codes)) {
-                foreach ($codes as $key => $code) {
-                    $select = Db::getInstance()->ExecuteS('SELECT id_category FROM '. _DB_PREFIX_ .'category_sap WHERE id_category = "'.$key.'"');
-                    
-                    if (empty($select[0]['id_category'])) {
-                        $create = Db::getInstance()->ExecuteS('INSERT INTO '. _DB_PREFIX_ .'category_sap VALUES("'.$key.'", "'.$code.'")');
-                        
-                        if ($create) {
-                            $process = false;
-                        }
-                    } else {
-                        $update = Db::getInstance()->ExecuteS('UPDATE '. _DB_PREFIX_ .'category_sap SET id_category = "'.$key.'", sap_code = "'.$code.'" WHERE id_category = "'.$key.'"'); 
-                        
-                        if ($update) {
-                            $process = false;
-                        }
-                    }
+                
+                foreach ($codes as $key => $code) {                    
+                    $update = Db::getInstance()->ExecuteS('UPDATE '. _DB_PREFIX_ .'category SET subgrupo = "'.$code.'" WHERE id_category = "'.$key.'"'); 
+
+                    if (!$update) {
+                        $process = false;
+                    }    
                 }
                 
                 if ($process) {
-                    $this->confirmations[] = "Guardado correctamente";
+                    $this->context->smarty->assign($saveMsg, 'Guardado correctamente');
                 } else {
-                    $this->_errors[] = Tools::displayError("Error al guardar");
+                    $this->context->smarty->assign($saveMsg, 'Guardado correctamente');
                 }
             }
 		}	
 
-		$categories	= Db::getInstance()->ExecuteS('SELECT * , cl.name AS "name", sap_code FROM '. _DB_PREFIX_ .'category c
-                                                 JOIN '. _DB_PREFIX_ .'category_lang cl ON c.id_category = cl.id_category 
-                                                 JOIN '. _DB_PREFIX_ .'category_sap cs ON c.id_category = cs.id_category 
+		$categories	= Db::getInstance()->ExecuteS('SELECT * , cl.name AS "name" FROM '. _DB_PREFIX_ .'category c
+                                                 JOIN '. _DB_PREFIX_ .'category_lang cl ON c.id_category = cl.id_category
                                                  WHERE level_depth >2');
-        
-        if (empty($categories)) {
-            $sele	= Db::getInstance()->ExecuteS('SELECT id_category FROM '. _DB_PREFIX_ .'category WHERE level_depth >2');
-            
-            foreach ($sele as $sd) {
-                $update	= Db::getInstance()->ExecuteS('INSERT INTO ps_category_sap (id_category) VALUES('.$sd['id_category'].') = (SELECT subgrupo FROM ps_category WHERE id_category = "'.$cat['id_category'].'")  WHERE id_category = "'.$cat['id_category'].'"');
-            }
-        }
-        /*foreach ($categories as $cat) {
-            $update	= Db::getInstance()->ExecuteS('UPDATE ps_category_sap SET sap_code = (SELECT subgrupo FROM ps_category WHERE id_category = "'.$cat['id_category'].'")  WHERE id_category = "'.$cat['id_category'].'"');
-        }*/
         
         $this->context->smarty->assign('displayName',strtoupper($this->displayName));
         $this->context->smarty->assign('allCategories',$categories);

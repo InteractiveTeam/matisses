@@ -32,7 +32,7 @@
                                             </label>
                                         </div>
                                         <div class="col-lg-6 text-left">
-                                               <input id="txtCtg{$category.id_category}" name="txtCtg[{$category.id_category}]" type="text" value="{$category.sap_code}">
+                                               <input id="txtCtg{$category.id_category}" name="txtCtg[{$category.id_category}]" type="text" value="{$category.subgrupo}">
                                         </div>                                        
                                     </div>  
                                 </td>
