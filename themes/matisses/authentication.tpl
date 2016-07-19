@@ -502,7 +502,7 @@
 				<div id="birth-arrows" class="form-group grid_6">
 					<label>{l s='Date of Birth'}</label>
 					<div class="row">
-						<div class="grid_4 alpha">
+						<div class="grid_4 alpha ax-dia">
 							<select id="days" name="days" class="form-control">
 								<option value="">-</option>
 								{foreach from=$days item=day}
@@ -524,7 +524,7 @@
 								{l s='December'}
 							*}
 						</div>
-						<div class="grid_4">
+						<div class="grid_4 ax-mes">
 							<select id="months" name="months" class="form-control">
 								<option value="">-</option>
 								{foreach from=$months key=k item=month}
@@ -532,7 +532,7 @@
 								{/foreach}
 							</select>
 						</div>
-						<div class="grid_4 omega">
+						<div class="grid_4 omega ax-year">
 							<select id="years" name="years" class="form-control">
 								<option value="">-</option>
 								{foreach from=$years item=year}

@@ -195,7 +195,6 @@
     color: #fff;
     display: block;
     min-width: 8.75rem;
-    float: right;
     text-align: center;
     text-transform: uppercase;
     -webkit-transition: color .6s ease,background .6s ease,border-color .6s ease;
