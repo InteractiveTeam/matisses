@@ -466,8 +466,8 @@
 
 }
 @media (max-width: 991px) {
-	.page-subheading{
-		font-size: 14px;
+	.page-subheading {
+	    font-size: 1.5rem;
 	}
 	.footer_line_two h4{
 		font-size: 13px;
@@ -1967,7 +1967,11 @@
 
 }
 
-@media screen and (max-width :768px) {  
+@media screen and (max-width :768px) { 
+
+ 	#mywishlist #form_wishlist {
+	    margin-top: 20px;
+	}
 
 	#layer_cart .button-container .btn {
 	    font-size: 1.3rem;
