@@ -3795,6 +3795,10 @@
 @media screen and (max-width :320px) {
 
 
+	#page {
+	    margin: 0 0 30px 0;
+	}
+
 
 	#tabs .ui-tabs-panel .info-opinion a {
 		font-size: 11px;
@@ -3901,6 +3905,14 @@
 
 /* iPhone 6 landscape */
 @media screen and (max-width: 375px) {
+
+	#center_column .generic-page h1 {
+		margin: 0 0 20px 0;
+	}
+	#center_column .generic-left h1 {
+		margin: 20px 0 0px 0;
+	}
+
     
     #page .main-container #center_column #slider #homepage-slider {
         height: 16rem;
