@@ -4019,8 +4019,17 @@
 		    height: 100%;
 	}
 
-	.cms .main-content {
-	    margin-top: -1.75rem;
+	#page #center_column .generic-page .cms .main-content {
+	    margin-top: 1rem;
+	    z-index: 10;
+	    display: block;
+	    position: relative;
+	    padding: 0;
+	}
+
+	#page #center_column .generic-page section .generic-left {
+	    background: #FFF;
+	    padding: 0;
 	}
 
 
