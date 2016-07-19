@@ -1969,8 +1969,16 @@
 
 @media screen and (max-width :768px) { 
 
+	.center_column .subcategories {
+	    padding: 0 15px;
+	}
+
 	.history .center_column {
 	    padding: 0 15px;
+	}
+
+	.page-subheading, .cms h2 {   
+	    margin-top: 20px;
 	}
 
  	#mywishlist #form_wishlist {
@@ -3962,6 +3970,29 @@
 
 
 @media screen and (max-width: 414px){
+
+	#footer {
+	    padding: 0;
+	    margin: 0;
+	}
+
+	#add_address .btn.btn-default.btn-red {
+	    width: 100%;
+	    margin-bottom: 10px;
+	}
+
+	.footer-links-address button.btn.btn-default.btn-red {
+	    margin-left: 0px;
+	    padding: auto;
+	}
+
+	#add_address .footer-links-address {
+	    margin: 2rem 0;
+	}
+
+ 	#page .txt-address, #page .page-subheading {
+	    margin-top: 20px;
+	}
 
 	#authentication .box {
 	    margin-bottom: 40px;
