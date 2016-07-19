@@ -85,10 +85,12 @@
                             </div>
                     </div>
                 {/foreach}
+                {if $list_desc['recieve_bond']}
                 <div class="product-card ax-bond-card col-md-3" data-id="{$list_desc['id']}">
                     <img src="{$modules_dir}/giftlist/views/img/details-lista.png">
                     <a href="{$bond_form}" id="add_bond">{l s='Regala una GIFT CARD' mod='giftlist'}</a>      
                 </div>
+                {/if}
             </div>
             <div class="jplist-panel">						
                 <div 

@@ -3,7 +3,7 @@
 {foreach from=$out item=c}
 <tr>
 <td>
-<p>Imagen: {$c['image']}</p>
+<p>Imagen: <img src="{$c['image']}" heigth="200" width="200"></p>
 <p>Nombre: {$c['name']}</p>
 <p>Color: {$c['color']}</p>
 <p>Precio: {$c['price']}</p>
@@ -15,10 +15,10 @@
 {/if}
 <p style="text-align:left;"><span style="font-size:16px;font-weight:normal;"> Productos que fueron comprados:</span></p>
 {foreach from=$out item=c}
-{if $c['bond] == 1}
+{if $c['bond'] == 1}
 <tr>
 <td>
-<p>Imagen: {$c['image']}</p>
+<p>Imagen: <img src="{$c['image']}" heigth="200" width="200"></p>
 <p>Nombre: {$c['name']}</p>
 <p>Precio: {$c['price']}</p>
 <p>Comprador: {$c['buyer']}</p>
@@ -29,7 +29,7 @@
 {else}
 <tr>
 <td>
-<p>Imagen: {$c['image']}</p>
+<p>Imagen: <img src="{$c['image']}" heigth="200" width="200"></p>
 <p>Nombre: {$c['name']}</p>
 <p>Color: {$c['color']}</p>
 <p>Precio: {$c['price']}</p>
