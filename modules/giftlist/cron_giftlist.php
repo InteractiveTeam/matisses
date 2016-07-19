@@ -99,8 +99,8 @@ foreach($paidOrders as $order){
                 $l->setValidated();
             }
         }
-        
-        $l->sendMessage($data_b,$out);
+        if($l->cons_not)
+            $l->sendMessage($data_b,$out);
         $data_b = array();
     }
 }
@@ -113,7 +113,6 @@ foreach($list as $l){
     $prod = $p->getProductsByList($l->id);
     $customer = new CustomerCore($l->id_creator);
     foreach($prod as $p){
-        $cant = ToolsCore::jsonDecode($p['group']);
         $attr_op = Tools::jsonDecode($p['option']);
         $attr = $p->getAttributeCombinationsById($attr_op[3]->value,$id_lang);//[3] = id_attribute
         $id_image = ProductCore::getCover($p['id']);
@@ -131,13 +130,14 @@ foreach($list as $l){
                 'name' => $p->name[1],
                 'price' => $p->price,
                 'color' => attr['attribute_name'],
-                "wanted" => $cant->wanted,
-                "missing" => $cant->missing,
+                "wanted" => $cant['cant'],
+                "missing" => $cant['missing'],
                 "email" => $l->email
             );
         }
     }
-    $l->sendMessage($array(),$out);
+    if($l->cons_not)
+        $l->sendMessage($out);
 }
 
 Giftlist::setValidatedFalse();

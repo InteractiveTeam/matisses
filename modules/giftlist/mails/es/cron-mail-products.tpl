@@ -14,7 +14,7 @@
 {/foreach}
 {/if}
 <p style="text-align:left;"><span style="font-size:16px;font-weight:normal;"> Productos que fueron comprados:</span></p>
-{foreach from=$data item=c}
+{foreach from=$out item=c}
 {if $c['bond] == 1}
 <tr>
 <td>
