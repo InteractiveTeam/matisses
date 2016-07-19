@@ -1967,8 +1967,45 @@
 
 }
 
-@media screen and (max-width :768px) {
+@media screen and (max-width :768px) {  
+
+	#layer_cart .button-container .btn {
+	    font-size: 1.3rem;
+	    padding: .3125rem;
+	    font-family: 'condensed';
+	    color: #fff;
+	}
+
+	.btn-facebook a.btn.btn-default{
+	    width: 200px;
+	    margin: 0 auto;
+	}
+
+	#identity .grid_4.alpha.ax-dia, #birth-arrows .grid_4.alpha.ax-dia {
+	    width: 25%;
+	    display: inline-block;
+	    vertical-align: top;
+	    padding: 0 5px 0 0;
+	}
     
+	#identity .grid_4.ax-mes, .account_creation #birth-arrows .grid_4.ax-mes {
+	    width: 40%;
+	    display: inline-block;
+	    vertical-align: top;
+	    padding: 0 5px 0 0;
+	}
+
+	#identity .grid_4.ax-year, #birth-arrows .ax-year {
+	    width: 35%;
+	    display: inline-block;
+	    vertical-align: top;
+	    padding: 0;
+	}
+
+	#account-creation_form .submit {
+	    margin: 2rem 0 1.25rem;
+	}
+
     .fancybox-wrap {
         width: 80% !important;
     }
@@ -3917,6 +3954,12 @@
 
 
 @media screen and (max-width: 414px){
+
+	#authentication .box {
+	    margin-bottom: 40px;
+	    line-height: 20px;
+	    margin-top: 20px;
+	}
 
 	.pb-right-column h1.titleProduct {
 	    font-size: 22px;
