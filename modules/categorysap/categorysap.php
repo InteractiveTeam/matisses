@@ -81,7 +81,7 @@ class categorysap extends Module
             }
 		}	
 
-		$categories	= Db::getInstance()->ExecuteS('SELECT c.id_category, cl.name AS "nameCat" FROM '. _DB_PREFIX_ .'category c
+		$categories	= Db::getInstance()->ExecuteS('SELECT c.id_category, cl.name, c.subgrupo AS "nameCat" FROM '. _DB_PREFIX_ .'category c
                                                  JOIN '. _DB_PREFIX_ .'category_lang cl ON c.id_category = cl.id_category
                                                  WHERE c.level_depth >2');
         
