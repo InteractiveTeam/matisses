@@ -2270,7 +2270,16 @@
     }
 	#redes {
 	    padding: 0 10px;
-	}    
+	}
+    
+    .pb-left-column #views_block, .product_schemes {
+        float: none;
+    }
+    
+    .pb-left-column .product_schemes {
+        width: 100%;
+    }
+    
 }
 
 @media screen and (max-width :568px) {
@@ -2652,9 +2661,9 @@
         height: 160px !important;    
     }
     
-    .menu-left .left-down-menu #menu #wishlist, .menu-left .left-down-menu #menu #giftlist {
+    .left-down-menu #menu #wishlist, .left-down-menu #menu #giftlist {
         margin: 0;
-        width: 38%;
+        width: 48%;
     }
      
     .left-down-menu #wishlist {
@@ -3056,9 +3065,6 @@
 
 	.container .product_schemes {
 		width:100%;
-        position: absolute;
-        bottom: 0;
-        left: 0;
 	}
 
 	.tag.out {
@@ -4073,7 +4079,7 @@
 
     .left-down-menu #menu #wishlist, .left-down-menu #menu #giftlist {
         margin: 8px auto;
-        width: 35%;
+        width: 40%;
         display: inline-block;
     }
     
@@ -4137,18 +4143,9 @@
     .add_to_cart button {
         width: inherit;
     }
-     
-    #header .main_panel #menu-left #menu.menu-experiencias {
-        top: 8.5rem;
-    }
-    
-    
-}
 
-@media screen and (max-width: 375px){
-    #header .main_panel #menu-left #menu.menu-experiencias {
-        top: 8.9rem;
-    }
+    
+    
 }
 
 
@@ -4280,10 +4277,6 @@
     
     .fancybox-outer .fancybox-inner #frmAddGiftList {
         width: 264px;
-    }
-    
-    #header .main_panel #menu-left #menu.menu-experiencias {
-        top: 9.8rem;
     }
 }
 

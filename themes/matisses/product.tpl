@@ -107,7 +107,6 @@
 				</div>
 				</div>
 			</div> <!-- end image-block -->
-            {hook h="displaySchemesProduct" product=$product}
 			{if isset($images) && count($images) > 0}
 				<!-- thumbnails -->
 				<div id="views_block" class="cf grid_6 alpha omega {if isset($images) && count($images) < 2}hidden{/if}">
@@ -147,6 +146,7 @@
 				</div> <!-- end views-block -->
 				<!-- end thumbnails -->
 			{/if}
+            {hook h="displaySchemesProduct" product=$product}
 			{if isset($images) && count($images) > 1}
 				<p class="resetimg clear no-print">
 					<span id="wrapResetImages" style="display: none;">
