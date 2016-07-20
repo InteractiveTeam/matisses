@@ -2652,9 +2652,9 @@
         height: 160px !important;    
     }
     
-    .left-down-menu #menu #wishlist, .left-down-menu #menu #giftlist {
+    .menu-left .left-down-menu #menu #wishlist, .menu-left .left-down-menu #menu #giftlist {
         margin: 0;
-        width: 48%;
+        width: 38%;
     }
      
     .left-down-menu #wishlist {
@@ -4073,7 +4073,7 @@
 
     .left-down-menu #menu #wishlist, .left-down-menu #menu #giftlist {
         margin: 8px auto;
-        width: 40%;
+        width: 35%;
         display: inline-block;
     }
     
@@ -4137,9 +4137,18 @@
     .add_to_cart button {
         width: inherit;
     }
+     
+    #header .main_panel #menu-left #menu.menu-experiencias {
+        top: 8.5rem;
+    }
+    
+    
+}
 
-    
-    
+@media screen and (max-width: 375px){
+    #header .main_panel #menu-left #menu.menu-experiencias {
+        top: 8.9rem;
+    }
 }
 
 
@@ -4271,6 +4280,10 @@
     
     .fancybox-outer .fancybox-inner #frmAddGiftList {
         width: 264px;
+    }
+    
+    #header .main_panel #menu-left #menu.menu-experiencias {
+        top: 9.8rem;
     }
 }
 
