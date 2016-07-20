@@ -141,7 +141,7 @@
             <div class="row ax-prod-cont">
                 {foreach from=$products item=row}
                     {$atribute_group = $row['options'][3]->value}
-                        <div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}" data-group="{if $row['group']}1{else}0{/if}">
+                        <div class="product-card col-md-3" data-attr-id="atribute_group" id="prod-{$row['id']}" data-id="{$row['id']}" data-group="{if $row['group']}1{else}0{/if}">
                             <div class="img-container">
                                 <img src="{$row['image']}">
                             </div>

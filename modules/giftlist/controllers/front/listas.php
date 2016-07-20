@@ -89,7 +89,8 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 		$prod = new ProductCore($id_product);
 		$link = new LinkCore();
         
-        $response = StockAvailable::getQuantityAvailableByProduct((int)$id_product,(int)$data['form'][3]['value']);        $image = ProductCore::getCombinationImageById( (int)$data['form'][3]['value'], $this->context->language->id);
+        $response = StockAvailable::getQuantityAvailableByProduct((int)$id_product,(int)$data['form'][3]['value']);
+        $image = ProductCore::getCombinationImageById( (int)$data['form'][3]['value'], $this->context->language->id);
         if($response == 0 || $response < $data['cant'])
             die(Tools::jsonEncode(array(
                 'msg' => "No hay cantidades suficientes en el inventario",
@@ -101,7 +102,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
                 'msg' => "Este producto ya existe en tu lista",
                 'error' => true))
                );
-        if($data['group'] && $data['group'] > 0){
+        if($data['cant_group'] && $data['cant_group'] > 0){
             $pcant = $data['cant'];
             while($pcant > $data['cant_group']){
                 $lpd = new ListProductBondModel();
