@@ -1,7 +1,6 @@
 var valForm;
 var valFormInfo;
 var jp;
-var products;
 
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
@@ -311,6 +310,10 @@ $(document).ready(function() {
     $(".ax-save-info").click(function(){
         saveInfo();  
     });
+    
+    $('.cant_prod').on('change',function(){
+        updateQty($(this));
+    });
 });
 
 function saveInfo(){
@@ -376,19 +379,50 @@ function deleteMsg(){
             'id_list': $(".products-associated").attr('data-id')
         },
         success: function(){
-        $("#ax-message-content").text("");
-            $.fancybox({
-            'autoScale': true,
-            'transitionIn': 'elastic',
-            'transitionOut': 'elastic',
-            'minWidth': 250,
-            'minHeight':120,
-            'speedIn': 500,
-            'speedOut': 300,
-            'autoDimensions': true,
-            'centerOnScroll': true,
-            'content' : '<div><p class="fancybox-error">El mensaje se ha eliminado</p></div>'
-        });
+            $("#ax-message-content").text("");
+                $.fancybox({
+                'autoScale': true,
+                'transitionIn': 'elastic',
+                'transitionOut': 'elastic',
+                'minWidth': 250,
+                'minHeight':120,
+                'speedIn': 500,
+                'speedOut': 300,
+                'autoDimensions': true,
+                'centerOnScroll': true,
+                'content' : '<div><p class="fancybox-error">El mensaje se ha eliminado</p></div>'
+            });
+        }
+    });
+}
+
+function updateQty(el){
+   $.ajax({
+         type: 'POST',
+         data:{
+             'ajax':true,
+             'method':"updateQty",
+             'id_list': $(".products-associated").attr('data-id'),
+             'id_prod': el.parents(".product-card").attr("data-id"),
+             'id_attr': el.parents(".product-card").attr("data-attr-id"),
+             'cant': el.val(),
+        },
+        success: function(res){
+            res = JSON.parse(res);
+            if(res.error){
+               $.fancybox({
+                     'autoScale': true,
+                     'minWidth': 250,
+                     'minHeight': 75,
+                     'transitionIn': 'elastic',
+                     'transitionOut': 'elastic',
+                     'speedIn': 500,
+                     'speedOut': 300,
+                     'autoDimensions': true,
+                     'centerOnScroll': true,
+                     'content' : '<div><p class="fancybox-error">'+res.msg+'</p></div>'
+                });
+            }
         }
     });
 }
