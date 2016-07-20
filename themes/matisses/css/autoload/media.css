@@ -3348,7 +3348,7 @@
 
 	#carrier_area .cart_navigation, #center_column form p:last-child {
 		width: 88%;
-		margin: 0 auto;
+		margin-left: 5px;
 	}
 
 	.menuFooterRp {
@@ -3813,6 +3813,14 @@
 
 @media screen and (max-width :320px) {
 
+	.primary_block .wrap_extra_right{
+	    margin: 0 auto;
+	    text-align: center;
+	    left: 10%;
+	    display: table-cell;
+	    position: relative;
+	    background: red;
+	}
 
 	#page {
 	    margin: 0 0 30px 0;
@@ -4023,6 +4031,12 @@
 
 
 @media screen and (max-width: 414px){
+	
+	buy_block .wrap_bottom{
+		text-align: left;
+	}
+
+	
 
 
 	#buy_block .wrap_bottom .product_store_available {
