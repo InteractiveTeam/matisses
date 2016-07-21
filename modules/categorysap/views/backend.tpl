@@ -1,4 +1,14 @@
 <form id="form1" name="form1" method="post" class="form-inline" action="">
+   {if isset($saveMsg)}
+        <br>
+        <div class="alert alert-success"><p>{$saveMsg}</p></div>
+        <br>
+    {/if}
+    {if isset($errorMsg)}
+        <br>
+        <div class="alert alert-error"><p>{$errorMsg}</p></div>
+        <br>
+    {/if}
     <div class="panel">
         <div class="panel-heading">
             <h3>
