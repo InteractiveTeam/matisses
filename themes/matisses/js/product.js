@@ -580,6 +580,7 @@ function updateDisplay()
 
     if (selectedCombination['short_description']){
         $("#short_description_content").text(selectedCombination['short_description']);
+        $(".product-tabs #tabs-1").html('<p>'+selectedCombination['short_description']+'</p>');
     }
     
     if (selectedCombination['itemname']){
