@@ -5440,11 +5440,6 @@ a.newPrint:hover {
     max-height: 288px;
 }
 
-.fancybox-inner {
-    overflow: hidden !important;
-    width: 100% !important;
-}
-
 .cart_total_tax {
     display:none;
 }
