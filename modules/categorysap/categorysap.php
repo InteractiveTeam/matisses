@@ -74,9 +74,9 @@ class categorysap extends Module
                 }
                 
                 if ($process) {
-                    $this->context->smarty->assign($saveMsg, 'Guardado correctamente');
+                    $this->context->smarty->assign('saveMsg', 'Guardado correctamente');
                 } else {
-                    $this->context->smarty->assign($errorMsg, 'Error al guardar');
+                    $this->context->smarty->assign('errorMsg', 'Error al guardar');
                 }
             }
 		}	
