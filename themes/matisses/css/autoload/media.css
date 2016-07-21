@@ -4042,6 +4042,33 @@
 
 
 @media screen and (max-width: 414px){
+
+	#page .cart_navigation .button-medium, #page .cart_navigation .btn.btn-default {
+        width: 100%;
+	}
+
+	textarea.form-control {
+	    height: 130px;
+	}
+
+	#order .address_add.submit {
+
+	    padding: 0 15px 20px 15px;
+
+	}
+
+	#order .address_add.submit .btn-red {
+	    width: 100%;
+	}
+
+	.main-container .addresses .address li{
+	    padding: 0;
+	}
+
+
+	.main-container .address li.address_update a {
+	    width: 100%;
+	}
 	.cms-trabaja-con-nosotros .generic-page .generic-right {
 	    padding-top: 0px;
 	}
