@@ -115,10 +115,30 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 						$this->_productDetail(Tools::getValue('id_prod'),Tools::getValue('id_list'));
                     case "changeFavorite":
 						$this->_changeFavorite(Tools::getValue('id_prod'),Tools::getValue('id_list'),Tools::getValue('fav'));
+                    case "updateQty":
+						$this->_updateQty(Tools::getValue('id_prod'),Tools::getValue('id_list'),Tools::getValue('id_attr'),Tools::getValue('cant'));
 				}
 			}
 		}
 	}
+    
+    private function _updateQty($id_prod,$id_list,$id_attr,$cant){
+        $response = StockAvailable::getQuantityAvailableByProduct((int)$id_prod,(int)$id_attr);
+        if($response < (int)$cant){
+            die(Tools::jsonEncode(array(
+                'error' => true,
+                'msg' => "No hay suficiente producto en inventario"
+            )));
+        }else{
+            Db::getInstance()->update('list_product_bond',array(
+                'cant' => $cant
+            ),"id_product = ".$id_prod . " AND id_list = ".$id_list);
+            die(Tools::jsonEncode(array(
+                'error' => false,
+                'msg' => ""
+            )));
+        }
+    }
     
     private function _changeFavorite($id_prod,$id_list,$fav){
         $res = Db::getInstance()->update('list_product_bond',array(

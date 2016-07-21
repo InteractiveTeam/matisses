@@ -107,7 +107,6 @@
 				</div>
 				</div>
 			</div> <!-- end image-block -->
-            {hook h="displaySchemesProduct" product=$product}
 			{if isset($images) && count($images) > 0}
 				<!-- thumbnails -->
 				<div id="views_block" class="cf grid_6 alpha omega {if isset($images) && count($images) < 2}hidden{/if}">
@@ -147,6 +146,7 @@
 				</div> <!-- end views-block -->
 				<!-- end thumbnails -->
 			{/if}
+            {hook h="displaySchemesProduct" product=$product}
 			{if isset($images) && count($images) > 1}
 				<p class="resetimg clear no-print">
 					<span id="wrapResetImages" style="display: none;">
@@ -420,13 +420,13 @@
 					<div class="wrap_buttons cf">
 						<div class="grid_12 omega alpha">
 							{if isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS}{$HOOK_PRODUCT_ACTIONS}{/if}
-							{if !$content_only}
+							
 								<!-- usefull links-->
 								<ul id="usefull_link_block" class="elem_butt no-print">
 									{if $HOOK_EXTRA_LEFT}{$HOOK_EXTRA_LEFT}{/if}
 									{if $have_image && !$jqZoomEnabled}{/if}
 								</ul>
-							{/if}
+							
 						</div>
 					</div>
 				</div> <!-- end box-info-product -->

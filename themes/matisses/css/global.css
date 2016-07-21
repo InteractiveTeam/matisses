@@ -6247,6 +6247,10 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     height: 46px;
 }
 
-.fancybox-inner .fancybox-error {
-    white-space: normal;
+.pb-left-column #views_block {
+    float: right;
+}
+
+.product_schemes {
+    float: left;
 }
