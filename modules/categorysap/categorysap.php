@@ -48,7 +48,7 @@ class categorysap extends Module
 
 		parent::__construct();
 
-        $this->displayName = $this->l('Categorías con SAP');
+        $this->displayName = $this->l('Categorías SAP');
         $this->description = $this->l('Permite asociar las categorías de Prestashop con los identificadores de SAP.');
 		$this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
 	}
