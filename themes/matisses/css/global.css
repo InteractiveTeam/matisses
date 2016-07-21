@@ -5319,12 +5319,17 @@ a.newPrint:hover {
     margin-bottom: 1.85rem !important;
 }
 
-.product .center_column, .product .pull-right.search-back {
+.product .center_column, .product .pull-right.search-back, .center_column {
     width: 75rem;
     padding: 0 0.9375rem;
     margin: 0 auto;
     float: none;
 }
+.index .center_column {
+	width: 100%;
+	padding: 0;
+}
+
 
 .product .pull-right.search-back {
     margin: 20px auto;
