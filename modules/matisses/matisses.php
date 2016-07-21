@@ -691,7 +691,10 @@ class matisses extends Module
                 $imag = $product->_getAttributeImageAssociations($row['id_product_attribute']);
                 
                 if (isset($imag)) {
-                    $tempattr['images'] = array('default' => $link->getImageLink($product->link_rewrite[1], $imag[0]));   
+                    $tempattr['images'] = array('default' => $link->getImageLink($product->link_rewrite[1], $imag[0], "large_default"));   
+                } else {
+                    $imag = Image::getImages($idlang, $product->id);
+                    $tempattr['images'] = array('default' => $link->getImageLink($product->link_rewrite[1], (int)$images[0]["id_image"], "large_default")); 
                 }
                 
                 // price
@@ -1099,6 +1102,11 @@ class matisses extends Module
             foreach($allrefer as $refer) {
                 
                 $imag = $prod->_getAttributeImageAssociations($refer['id_product_attribute']);
+                
+                if (!isset($imag)) {
+                    $imag = Image::getImages($idlang, $prod->id);  
+                } 
+                
                 $hexcolor = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'attribute a JOIN '._DB_PREFIX_.'attribute_lang al ON a.id_attribute = al.id_attribute WHERE a.id_attribute = "'.$refer['id_attribute'].'"');
                 
                 $objPrice = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'specific_price WHERE id_product = "'.$prod->id.'"');
@@ -1120,7 +1128,7 @@ class matisses extends Module
                         <description>'.strip_tags($prod->description[1]).'</description>
                         <c:categories>'.$categoriesprod.'</c:categories>
                         <link>'.$prod->getLink().'</link>
-                        <g:image_link>http://'.$link->getImageLink($prod->link_rewrite[1], $imag[0]).'</g:image_link>
+                        <g:image_link>http://'.$link->getImageLink($prod->link_rewrite[1], $imag[0], "large_default").'</g:image_link>
                         <g:condition>'.$prod->condition.'</g:condition>
                         <g:availability>'.$stock.'</g:availability>
                         <g:price>'.$priceRefer.'</g:price>
