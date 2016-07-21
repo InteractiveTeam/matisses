@@ -1,7 +1,6 @@
 var valForm;
 var valFormInfo;
 var jp;
-var products;
 
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
@@ -111,6 +110,10 @@ $(document).ready(function() {
     $("body").on('submit','#share-email',function(e){
 		callAjaxSend(e);
 	});
+    
+    $('.cant_prod').on('change',function(){
+        updateQty($(this));
+    });
     
     $(".ax-list-edit").click(function(){
         $(".delete-product").removeClass('hidden');
@@ -630,6 +633,36 @@ function favoriteProduct(el){
                     $("div[data-id="+idProd+"]").find(".fa-heart").addClass("ax-favorite");
             }else{
                 console.log(result.error);
+            }
+		}
+    });
+}
+
+function updateQty(el){
+    var idProd = el.parents(".product-card").attr( "data-id");
+    $.ajax({
+        type: 'POST',
+		data: {
+			ajax: true,
+			method: "updateQty",
+			id_list: $(".products-associated").attr('data-id'),
+			id_prod: idProd,
+            cant : el.val()
+		},
+        success: function(result){
+            result = JSON.parse(result);
+            if(result.error){
+                $.fancybox({
+                 'autoScale': true,
+                 'transitionIn': 'elastic',
+                 'transitionOut': 'elastic',
+                 'speedIn': 500,
+                 'speedOut': 300,
+                 'autoDimensions': true,
+                 'centerOnScroll': true,
+                 dataType : 'html',
+                 'content' : '<div><p class="fancybox-error">'+result.msg+'</p></div>'
+                });
             }
 		}
     });
