@@ -3074,10 +3074,7 @@
 		width: 100%;
 	}
 
-	.ui-tabs-nav li.ui-state-default.ui-corner-top, .ui-tabs-nav li.ui-state-default.ui-corner-top a {
-		width: 100%;
-		text-align:center;
-	}
+	
 
 	.pb-right-column .rte.align_justify	{
 		font-family: 'Open Sans', sans-serif;
@@ -4046,6 +4043,11 @@
 
 @media screen and (max-width: 414px){
 
+	.ui-tabs-nav li.ui-state-default.ui-corner-top, .ui-tabs-nav li.ui-state-default.ui-corner-top a {
+		width: 100%;
+		text-align:center;
+	}	
+
 	.cms-metodos-de-envio #page .main-container #center_column span img {
 	    width: 100%;
 	    height: 100%;
@@ -4124,7 +4126,6 @@
 
 	.pb-right-column h1.titleProduct {
 	    font-size: 22px;
-	    color: #d9292e;
 	    padding-bottom: 0;
 	    border: none;
 	    text-align: left;
