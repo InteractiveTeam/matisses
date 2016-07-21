@@ -635,13 +635,16 @@
 				unset($_data['subgroupCode']);	
 				$_data['subgroupCode'] = $CategoriesProduct;	
 			}
-			            
+
+            $_data['processImages']=1;
+                
 			if($_data['processImages']==1) {
-				unset($images);
+				unset($images);                
 				if(sizeof($images = glob($path.'/images/*.jpg'))>0) {
-					foreach($images as $dd => $image) {
-						if(filesize($image)>Configuration::get("PS_PRODUCT_PICTURE_MAX_SIZE"))
+					foreach($images as $dd => $image) {                                                
+						if(filesize($image)>Configuration::get("PS_PRODUCT_PICTURE_MAX_SIZE") || (substr($image, -27,20) != $_data['itemCode'])){
 							unset($images[$dd]);
+                        }
 					}
 					$_data['processImages']	= $images;
 				}
