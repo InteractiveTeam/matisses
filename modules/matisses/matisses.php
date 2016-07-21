@@ -690,11 +690,11 @@ class matisses extends Module
                 // images 
                 $imag = $product->_getAttributeImageAssociations($row['id_product_attribute']);
                 
-                if (isset($imag)) {
+                if (!empty($imag)) {
                     $tempattr['images'] = array('default' => $link->getImageLink($product->link_rewrite[1], $imag[0], "large_default"));   
                 } else {
                     $imag = Image::getImages($idlang, $product->id);
-                    $tempattr['images'] = array('default' => $link->getImageLink($product->link_rewrite[1], (int)$images[0]["id_image"], "large_default")); 
+                    $tempattr['images'] = array('default' => $link->getImageLink($product->link_rewrite[1], (int)$imag[0]["id_image"], "large_default")); 
                 }
                 
                 // price
@@ -1103,7 +1103,7 @@ class matisses extends Module
                 
                 $imag = $prod->_getAttributeImageAssociations($refer['id_product_attribute']);
                 
-                if (!isset($imag)) {
+                if (!empty($imag)) {
                     $imag = Image::getImages($idlang, $prod->id);  
                 } 
                 
