@@ -1701,6 +1701,10 @@ label.error:before {
 
 @media screen and (max-width:568px) {
     
+    .parrilla-productos .container #center_column.center_column {
+        padding: 0
+    }
+    
     .module-giftlist-descripcion .ax-text-result-list {
         float: none;
     }
@@ -1994,6 +1998,11 @@ label.error:before {
     
     .module-giftlist-listas .ax-btn-creat-list .btn.btn-default.btn-lista-regalos {
         float: none;
+    }
+    
+    .ax-popup-delete .btn.btn-default.btn-lista-regalos {
+        padding: 8px 17.6px;
+        margin: 0 2.5px;
     }
 
 }
@@ -2389,6 +2398,11 @@ label.error:before {
         margin: 0 5px;
         padding: 0;
         width: 31%;
+    }
+    
+    .fancybox-skin div .btn.btn-default.btn-lista-regalos {
+        padding: 8px 6.6px;
+        margin: 0 2.5px;
     }
     
 }

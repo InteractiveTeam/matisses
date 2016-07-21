@@ -82,7 +82,7 @@
                             <p class="total_qty" data-cant="{$row['cant']}">{l s='Cantidad:'} {$row['cant']}
                             {else}
                             <p class="total_qty" data-max="{$row['missing']}" data-cant="0">{l s='Cantidad:'} 
-                            <input type="text" min="1" value="1" name="qty_card" id="qty"/>
+                            <input type="text" min="1" value="1" max="{$row['missing']}" name="qty_card" id="qty"/>
                             {/if}
                     </div>
                 {/foreach}
