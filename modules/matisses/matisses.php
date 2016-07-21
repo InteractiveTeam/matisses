@@ -1130,7 +1130,7 @@ class matisses extends Module
                         <description>'.strip_tags($prod->description[1]).'</description>
                         <c:categories>'.$categoriesprod.'</c:categories>
                         <link>'.$prod->getLink().'</link>
-                        <g:image_link>http://'..'</g:image_link>
+                        <g:image_link>http://'.$linkimg.'</g:image_link>
                         <g:condition>'.$prod->condition.'</g:condition>
                         <g:availability>'.$stock.'</g:availability>
                         <g:price>'.$priceRefer.'</g:price>
