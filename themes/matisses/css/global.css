@@ -604,6 +604,7 @@ box-sizing: border-box;
     color: #000;
     text-transform: uppercase;
     font-size: 1.475rem;
+    line-height: 21px;  
     }
 
     .center_column h4 {
@@ -6252,5 +6253,11 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 }
 
 .product_schemes {
+    float: left;
+}
+
+
+.parrilla-productos .container .center_column{
+    width: 75%;
     float: left;
 }
