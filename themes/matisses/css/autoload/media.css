@@ -66,6 +66,10 @@
 }
 
 @media (max-width: 767px) {
+
+	.omega {
+	    text-align: left;
+	}
 	.product_list .wrap_view>a.quick-view{
 		display: none;
 	}
@@ -4125,6 +4129,17 @@
 	    border: none;
 	    text-align: left;
 	    margin: 0;
+	}
+
+	.pb-right-column #product_reference {
+	    text-align: left;
+	}
+	.pb-right-column .rate_wrap {
+	    text-align: left;
+	}
+
+	.pb-right-column #buy_block{
+	    text-align: left;
 	}
 
 	.my-account-list ul {
