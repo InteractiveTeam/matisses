@@ -4042,6 +4042,13 @@
 
 
 @media screen and (max-width: 414px){
+	.cms-trabaja-con-nosotros .generic-page .generic-right {
+	    padding-top: 0px;
+	}
+
+	.cms-trabaja-con-nosotros .main-container .cms .center_column {
+		margin-bottom: 0px;
+	}
 
 	body.cms .main-content {
 		margin-top: 10px;
