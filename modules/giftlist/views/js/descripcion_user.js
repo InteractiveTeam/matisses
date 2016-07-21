@@ -54,7 +54,7 @@ $(document).ready(function(){
     
     $(".add-to-cart-modal").click(function(){
         var el = $(this);
-        addFromList(el.attr("data-id"),el.attr("data-att"), $("#qty").val(), el,$(".products-associated").attr("data-id"));
+        addFromList(el.attr("data-id"),el.attr("data-att"), $(".ax-mod-qty").val(), el,$(".products-associated").attr("data-id"));
     });
 
 	//buy bond
@@ -95,6 +95,7 @@ $(document).ready(function(){
                 $(".ax-det-ref").text(res.reference);
                 $(".ax-det-reviews").html(res.reviews);
                 $(".ax-det-desc").html(res.desc);
+                $(".ax-mod-qty").attr("max",res.missing);
                 $(".ax-det-price").text(res.price);
                 $(".ax-det-sol").text(res.total);
                 $(".ax-det-falt").text(res.missing);
