@@ -1104,7 +1104,7 @@ class matisses extends Module
                 $imag = $prod->_getAttributeImageAssociations($refer['id_product_attribute']);
                 
                 if (!empty($imag)) {
-                    $linkimg = $link->getImageLink($prod->link_rewrite[1], $imag[0], "large_default")  
+                    $linkimg = $link->getImageLink($prod->link_rewrite[1], $imag[0], "large_default");  
                 } else {
                     $linkimg = $link->getImageLink($prod->link_rewrite[1], $refer['id_product_attribute'], "large_default");
                 }
