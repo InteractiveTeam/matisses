@@ -1973,6 +1973,10 @@
 
 @media screen and (max-width :768px) {
 
+	.page-subheading {
+	    font-size: 1.5rem;
+	}
+
 	#page #layer_cart .button-container .btn {
 	    font-size: 1.5rem;
 	    width: 250px;
@@ -3616,6 +3620,8 @@
     .page-subheading, .cms h2 {
         margin: 0;
         margin-bottom: 1rem;
+        font-size: 1.3rem;
+
     }
     
     .fancybox-outer .fancybox-inner > img {
