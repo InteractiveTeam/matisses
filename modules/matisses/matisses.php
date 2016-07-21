@@ -693,7 +693,8 @@ class matisses extends Module
                 if (!empty($imag)) {
                     $tempattr['images'] = array('default' => $link->getImageLink($product->link_rewrite[1], $imag[0], "large_default"));   
                 } else {
-                    $tempattr['images'] = array('default' => $link->getImageLink($product->link_rewrite[1], $row['id_product_attribute'], "large_default")); 
+                    $imag = Image::getCover($id_product);
+                    $tempattr['images'] = array('default' => $link->getImageLink($product->link_rewrite[1], $imag['id_image'], 'large_default')); 
                 }
                 
                 // price
@@ -1106,7 +1107,8 @@ class matisses extends Module
                 if (!empty($imag)) {
                     $linkimg = $link->getImageLink($prod->link_rewrite[1], $imag[0], "large_default");  
                 } else {
-                    $linkimg = $link->getImageLink($prod->link_rewrite[1], $refer['id_product_attribute'], "large_default");
+                    $imag = Image::getCover($prod->id);
+                    $linkimg = $link->getImageLink($prod->link_rewrite[1], $imag['id_image'], 'large_default');
                 }
                 
                 $hexcolor = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'attribute a JOIN '._DB_PREFIX_.'attribute_lang al ON a.id_attribute = al.id_attribute WHERE a.id_attribute = "'.$refer['id_attribute'].'"');
