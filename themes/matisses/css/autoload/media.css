@@ -4043,6 +4043,11 @@
 
 @media screen and (max-width: 414px){
 
+	body.cms .main-content {
+		margin-top: 10px;
+		padding: 0;
+	}
+
 	.ui-tabs-nav li.ui-state-default.ui-corner-top, .ui-tabs-nav li.ui-state-default.ui-corner-top a {
 		width: 100%;
 		text-align:center;
