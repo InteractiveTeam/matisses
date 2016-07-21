@@ -45,7 +45,7 @@
                 <div class="cont" style="display: none;" id="group-options">
                     <div class="form-group">
                         <label for="cant_group">{l s='Cantidad por grupo' mod='giftlist'}
-                        <input type="number" id="cant_group" placeholder="Cantidad">
+                        <input type="number" id="cant_group" placeholder="Cantidad" min="1">
                         </label>
                     </div>
                 </div>

@@ -471,7 +471,7 @@
 }
 @media (max-width: 991px) {
 	.page-subheading {
-	    font-size: 1.5rem;
+	    font-size: 2rem;
 	}
 	.footer_line_two h4{
 		font-size: 13px;
@@ -3824,7 +3824,6 @@
 	    left: 10%;
 	    display: table-cell;
 	    position: relative;
-	    background: red;
 	}
 
 	#page {
@@ -3842,7 +3841,7 @@
     }
     
     #menu-left .left-down-menu #menu #wishlist, #menu-left .left-down-menu #menu #giftlist {
-        margin: 20px auto;
+        margin: 10px auto;
         width: 45%;
         display: inline-block;
     }
@@ -4374,6 +4373,8 @@
 
 
 @media screen and (max-width:360px) {
+
+
     .fancybox-outer .fancybox-inner #frmAddGiftList {
         width: 264px;
     }

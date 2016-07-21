@@ -20,12 +20,20 @@ $(function(){
         afterShow       :   function(){
             var min_val = document.getElementById('cant');
             min_val.onkeydown = function(e) {
-            if(!((e.keyCode > 95 && e.keyCode < 106)
-              || (e.keyCode > 47 && e.keyCode < 58) 
-              || e.keyCode == 8)) {
-                return false;
-            }
-        };
+                if(!((e.keyCode > 95 && e.keyCode < 106)
+                  || (e.keyCode > 47 && e.keyCode < 58) 
+                  || e.keyCode == 8)) {
+                    return false;
+                }
+            }; 
+            var cant_group = document.getElementById('cant_group');
+            cant_group.onkeydown = function(e) {
+                if(!((e.keyCode > 95 && e.keyCode < 106)
+                  || (e.keyCode > 47 && e.keyCode < 58) 
+                  || e.keyCode == 8)) {
+                    return false;
+                }
+            }; 
         }
 	});
 
