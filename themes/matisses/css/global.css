@@ -3442,6 +3442,7 @@ box-sizing: border-box;
     .fancybox-wrap {
         font-family: 'Open Sans', sans-serif;
         line-height: 1.3rem;
+        width: auto !important;
     }
 
      .fancybox-wrap select {
