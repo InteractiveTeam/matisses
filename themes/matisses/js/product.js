@@ -589,6 +589,8 @@ function updateDisplay()
     if(selectedCombination['garantias']){
         $("#tabs-2").html(selectedCombination['garantias']);
     }
+    
+    document.getElementById('quantity_wanted').value = 1;
 
 	// If we have combinations, update price section: amounts, currency, discount amounts,...
 	if (productHasAttributes)
