@@ -420,13 +420,13 @@
 					<div class="wrap_buttons cf">
 						<div class="grid_12 omega alpha">
 							{if isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS}{$HOOK_PRODUCT_ACTIONS}{/if}
-							{if !$content_only}
+							
 								<!-- usefull links-->
 								<ul id="usefull_link_block" class="elem_butt no-print">
 									{if $HOOK_EXTRA_LEFT}{$HOOK_EXTRA_LEFT}{/if}
 									{if $have_image && !$jqZoomEnabled}{/if}
 								</ul>
-							{/if}
+							
 						</div>
 					</div>
 				</div> <!-- end box-info-product -->
