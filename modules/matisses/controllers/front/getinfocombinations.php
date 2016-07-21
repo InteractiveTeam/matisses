@@ -17,6 +17,7 @@ class matissesgetinfocombinationsModuleFrontController extends ModuleFrontContro
             $dataProduct[$results[$i]['id_product_attribute']]['idProduct'] = $results[$i]['id_product'];
             $dataProduct[$results[$i]['id_product_attribute']]['garantias'] = $results[$i]['garantias'];
             $dataProduct[$results[$i]['id_product_attribute']]['short_description'] = $results[$i]['short_description'];
+            $dataProduct[$results[$i]['id_product_attribute']]['description'] = $results[$i]['description'];
             $dataProduct[$results[$i]['id_product_attribute']]['itemname'] = $results[$i]['itemname'];
         }
         

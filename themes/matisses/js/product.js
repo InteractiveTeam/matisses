@@ -400,6 +400,7 @@ function findCombination(firstTime)
             
             //show short description
             selectedCombination['short_description'] = combinations[combination]['short_description'];
+            selectedCombination['description'] = combinations[combination]['description'];
             
             //Show Item name
             selectedCombination['itemname'] = combinations[combination]['itemname'];
@@ -580,7 +581,7 @@ function updateDisplay()
 
     if (selectedCombination['short_description']){
         $("#short_description_content").text(selectedCombination['short_description']);
-        $(".product-tabs #tabs-1").html('<p>'+selectedCombination['short_description']+'</p>');
+        $(".product-tabs #tabs-1").html('<p>'+selectedCombination['description']+'</p>');
     }
     
     if (selectedCombination['itemname']){
@@ -1031,6 +1032,7 @@ function getInfoCombinations(ids){
                     if(ids[i]['idCombination'] == key){
                         ids[i]['garantias'] = data[key].garantias;
                         ids[i]['short_description'] = data[key].short_description;
+                        ids[i]['description'] = data[key].description;
                         ids[i]['itemname'] = data[key].itemname;
                         break;
                     }
