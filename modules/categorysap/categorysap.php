@@ -66,7 +66,7 @@ class categorysap extends Module
             if (isset($codes)) {
                 
                 foreach ($codes as $key => $code) {                    
-                    $update = Db::getInstance()->ExecuteS('UPDATE '. _DB_PREFIX_ .'category SET subgrupo = "'.$code.'" WHERE id_category = "'.$key.'"'); 
+                    $update = Db::getInstance()->update('category', array('subgrupo' => $code), 'id_category = '.$key);
 
                     if (!$update) {
                         $process = false;
