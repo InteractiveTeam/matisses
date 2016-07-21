@@ -85,7 +85,7 @@ $(document).ready(function() {
              type: 'inline',
              autoScale: true,
              minHeight: 100,
-             minWidth: 240,
+             minWidth: 180,
              'transitionIn': 'elastic',
              'transitionOut': 'elastic',
              'speedIn': 500,
