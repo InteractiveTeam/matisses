@@ -1973,6 +1973,11 @@
 
 @media screen and (max-width :768px) {
 
+	#page #layer_cart .button-container .btn {
+	    font-size: 1.5rem;
+	    width: 250px;
+	}
+
 	#page #center_column .generic-page h1 {
 	    margin-bottom: 20px;
 	}
@@ -4031,7 +4036,14 @@
 
 
 @media screen and (max-width: 414px){
-	
+
+	#page .main-container #center_column span img {
+	    width: 100%;
+	    height: 100%;
+	    float: none;
+	}
+
+
 	buy_block .wrap_bottom{
 		text-align: left;
 	}
