@@ -9,6 +9,16 @@
         </div>
         <div class="form-group">
             <div class="col-lg-12">
+                {if isset($saveMsg)}
+                    <br>
+                    <div class="alert alert-success"><p>{$saveMsg}</p></div>
+                    <br>
+                {/if}
+                {if isset($errorMsg)}
+                    <br>
+                    <div class="alert alert-error"><p>{$errorMsg}</p></div>
+                    <br>
+                {/if}
                 <h2 style="text-transform: uppercase;" class="text-center">{l s='Asociar Categorias'}</h2>
                     <div class="col-lg-12">
                     <table class="table table-bordered">
