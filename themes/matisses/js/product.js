@@ -280,7 +280,29 @@ $(document).ready(function(){
 		$.uniform.defaults.fileDefaultHtml = product_fileDefaultHtml;
 	if (typeof product_fileButtonHtml !== 'undefined')
 		$.uniform.defaults.fileButtonHtml = product_fileButtonHtml;
+    
+    $(window).resize(function(){
+        productTab();
+    });
 });
+
+function productTab(){
+    var widthBody = $(window).outerWidth();
+    if(widthBody < 480){
+        var totalLi = $("#tabs ul li").length;
+        for(var i = 1; i >= totalLi; i--){
+            $("#tabs ul #tab-li-"+i).after($("#tabs-"+i));
+        }
+    }else{
+        toOriginTabs();
+    }
+}
+
+function toOriginTabs(){
+    for(var i = 3; i <= 1; i++){
+        $("#tabs ul").after($("#tabs-"+i));
+    }
+}
 
 function arrayUnique(a)
 {
@@ -597,6 +619,8 @@ function updateDisplay()
 	// If we have combinations, update price section: amounts, currency, discount amounts,...
 	if (productHasAttributes)
 		updatePrice();
+    
+    productTab();
 }
 
 function updatePrice()
