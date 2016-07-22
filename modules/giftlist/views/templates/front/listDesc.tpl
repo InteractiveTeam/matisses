@@ -118,11 +118,11 @@
 
 {addJsDef min_amount=$list_desc['min_amount']}
 
-<div id="contentdiv" style="display: none;">
+<div id="contentdivBono" style="display: none;">
 	<p id="message"></p>
-	<div class="col-md-12">
-		<a data-toggle="tooltip" data-placement="bottom" title="Continuar comprando" class="keep-buy btn btn-default pull-left">Continuar comprando</a>
-		<a href="{$base_dir}pedido" data-toggle="tooltip" data-placement="bottom" title="Ir al carrito" class="see-list btn btn-default pull-right">Ir al carrito</a>
+	<div class="row">
+		<a data-toggle="tooltip" data-placement="bottom" title="Continuar comprando" class="keep-buy btn btn-default btn-lista-regalos pull-left">Continuar comprando</a>
+		<a href="{$base_dir}pedido" data-toggle="tooltip" data-placement="bottom" title="Ir al carrito" class="see-list btn btn-default btn-lista-regalos pull-right">Ir al carrito</a>
 	</div>
 </div>
 
@@ -138,7 +138,6 @@
         <span class="editable ax-det-ref" itemprop="sku"></span>
     </p>
     <div class="ax-calificacion">
-        <label>{l s='Calificación' mod='giflist'}: </label>
         <div class="ax-det-reviews"></div>
     </div>
     <div id="short_description_block">
@@ -160,7 +159,7 @@
     </div>
     <p>{l s='Solicitados' mod='giflist'}: <span class="ax-det-sol"></span></p>
     <p>{l s='Faltantes' mod='giflist'}: <span class="ax-det-falt"></span></p>
-    <p>{l s='Cantidad' mod='giftlist'}: <input type="number" class="ax-mod-qty" id="qty" name="qty" min="1" value="1"/></p>
+    <p class="cant_prod">{l s='Cantidad' mod='giftlist'}: <input type="number" class="ax-mod-qty" id="qty" name="qty" min="1" value="1"/></p>
     <button data-toggle="tooltip" data-id="0" data-att="0" title="{l s='Añadir al carrito' mod='giftlist'}" class="add-to-cart-modal btn btn-default btn-lista-regalos">{l s='Añadir al carrito' mod='giftlist'}</button>
     </div>
 </div>

@@ -2584,6 +2584,8 @@
     
     body#search .category_list.product_list.grid .ajax_block_product {
         width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
     }
     
     .page-heading span.lighter {
@@ -3308,9 +3310,7 @@
 		font-size: 1rem;
 	}
 
-	#order-detail-content #cart_summary tbody td .price {
-		font-size:2rem;
-	}
+
 
 	.order-detail .quantity_item input {
 		width:100% !important;
@@ -3325,7 +3325,7 @@
 	}
 
 	.radio-inline .checker, .checkbox .checker {
-    margin-right: 5px;
+    margin: 5px;
 	}
 
 	.address li.address_update a {
@@ -3344,21 +3344,16 @@
 		min-width:100%;
 	}
 
-	#order-detail-content #cart_summary tfoot tr .price {
-		font-size: 1.5rem;
-	}
 
-	#order-detail-content #cart_summary tfoot tr #total_price_container {
-		font-size:2.5rem;
-	}
+
 
 	p.payment_module a.bankwire, p.payment_module a.cheque {		background-position: 20px center;
 		background-position: 20px center;
 	}
 
 	#carrier_area .cart_navigation, #center_column form p:last-child {
-		width: 88%;
-		margin-left: 5px;
+		width: 91%;
+		margin: 0px 15px;
 	}
 
 	.menuFooterRp {
@@ -3821,6 +3816,11 @@
     #new-products_block_right .products-block .bx-viewport .product_list.grid .product-container {
         width: 340px !important;
     }
+    
+    .header-container #header .main_panel #menu-left #menu.menu-experiencias {
+        top: 9.8rem;
+    }
+    
 }
 
 @media screen and (max-width :320px) {
@@ -3944,6 +3944,10 @@
 /* iPhone 6 landscape */
 @media screen and (max-width: 375px) {
 
+	.order #center_column #order .address_add.submit {
+	    padding: 0px;
+	}
+
 	.dates-account {
 	    margin: 10px 0 0 0;
 	}
@@ -4043,6 +4047,115 @@
 
 @media screen and (max-width: 414px){
 
+	.addresses .checkbox.addressesAreEquals {
+	    margin: 0;
+	}
+
+	.radio-inline .checker, .checkbox .checker {
+	    float: left;
+	    margin-right: 10px;
+	    margin-top: 5px;
+	}
+
+	#order-detail-content #cart_summary tbody td .price {
+		font-size:2rem;
+	}
+
+
+	#order-detail-content #cart_summary tfoot tr #total_price_container {
+		font-size:2.5rem;
+	}
+
+
+	#order-detail-content #cart_summary tfoot tr .price {
+		font-size: 1.5rem;
+	}
+
+	.form-group label {
+	    line-height: 1;
+	    margin-top: 10px;
+	}
+
+
+	.addresses .checkbox.addressesAreEquals {
+	    margin: 0;
+	}
+
+	.container #buy_block .wrap_bottom>div {
+	    padding-bottom: 0;
+	}
+
+
+ 	#center_column .wrap_extra_right .ax-shareContentProduct {
+	    width: 74%;
+	    margin: 0 auto;
+	}
+
+
+	.ax-btn-filter {
+	    width: 100%;
+	}
+
+	.parrilla-productos {
+	    margin: 0;
+	}
+
+	#center_column.center_column {
+	    margin: 0;
+	    padding: 0;
+	}
+
+	#columns .parrilla-productos #selectProductSort_chosen, #search #columns #selectProductSort_chosen {
+	    width: 17rem!important;
+	}
+
+	.cms-preguntas-frecuentes .main-container .center_column h1 {
+	    margin-bottom: 20px;
+	}
+
+	#center_column.center_column {
+	    width: 100%;
+	    margin-bottom: 20px;
+	}
+
+	.main-container .center_column .sitemap-page {
+	    margin-top: 0;
+	}
+
+	#page .cart_navigation .button-medium, #page .cart_navigation .btn.btn-default { 
+        width: 100%;
+	}
+
+	textarea.form-control {
+	    height: 130px;
+	}
+
+	#order .address_add.submit {
+
+	    padding: 0 15px 20px 15px;
+
+	}
+
+	#order .address_add.submit .btn-red {
+	    width: 100%;
+	}
+
+	.main-container .addresses .address li{
+	    padding: 0;
+	}
+
+
+	.main-container .address li.address_update a {
+	    width: 100%;
+	}
+	.cms-trabaja-con-nosotros .generic-page .generic-right {
+	    padding-top: 0px;
+	}
+
+	.cms-trabaja-con-nosotros .main-container .cms .center_column {
+		margin-bottom: 0px;
+	}
+
 	body.cms .main-content {
 		margin-top: 10px;
 		padding: 0;
@@ -4127,6 +4240,7 @@
 	    margin-bottom: 10px;
 	    line-height: 20px;
 	    margin-top: 20px;
+	    padding: 0;
 	}
 
 	.pb-right-column h1.titleProduct {
@@ -4414,6 +4528,21 @@
         width: 264px;
     }
 }
+
+
+@media screen and (max-width:435px) {
+
+	.footer-links-address .btn.btn-default.btn-red:first-child {
+	    padding: 0.47rem 1.3rem;
+	    width: 100%;
+	    margin-bottom: 10px;
+	}
+
+}
+
+
+
+
 
 /* iPhone 6 portrait */
 /* iPhone 6 portrait */

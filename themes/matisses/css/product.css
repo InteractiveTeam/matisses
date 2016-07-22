@@ -171,6 +171,7 @@ a.fancybox-nav {
 #thumbs_list li a{
 	display: block;
 	text-align: center;
+    margin: 18px 0;
 }
 #thumbs_list li img {
 	display: inline-block;
@@ -906,7 +907,7 @@ a.fancybox-nav {
 	}
 	#product_schemes li a{
 	display: block;
-	padding: 0.9375rem 0;
+	padding: .7rem 0;
 	}
 	#product_schemes li a img {
     margin: 0 auto;

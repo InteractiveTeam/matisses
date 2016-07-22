@@ -218,7 +218,7 @@
                                                   'garantias'=> $_Combination['materials'],
                                                   'itemname'=> $_Combination['itemName'],
                                                   'short_description'=> $_Combination['shortDescription'],
-                                                  'description'=> $_Combination['description'],
+                                                  'description'=> $_Combination['description']
                                                  ), 
 											'id_product_attribute = '.(int)$id_product_attribute
 										);

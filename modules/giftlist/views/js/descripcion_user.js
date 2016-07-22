@@ -253,7 +253,7 @@ function validateBondForm(){
                          'speedOut': 300,
                          'autoDimensions': true,
                          'centerOnScroll': true,
-                         'href' : '#contentdiv'
+                         'href' : '#contentdivBono'
                     });
                 }
             });

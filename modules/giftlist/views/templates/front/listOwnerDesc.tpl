@@ -343,13 +343,14 @@
         </div>
     </form>
 </div>
-
+<div class="ax-compartir-lista">
 <a href="{$share_list}" data-id="{$row['id']}" data-toggle="tooltip" data-placement="bottom" title="{l s='Compartir lista' mod='giftlist'}" class="share-list btn btn-default btn-lista-regalos">{l s='Compartir lista' mod='giftlist'} <span class="icon-mail-forward"></span></a>
 {if isset($countries)}
 	{addJsDef countries=$countries}
     {addJsDef sel_town=strtoupper($address->town)}
     {addJsDef min_amount=$list_desc['min_amount']}
 {/if}
+</div>
 <div class="hidden">
 {literal} 
 <script class="hidden" type="text/javascript"> 

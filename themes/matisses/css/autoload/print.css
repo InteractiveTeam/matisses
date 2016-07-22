@@ -81,14 +81,22 @@
         display: none !important;
     }
     
-    .col-md-3 {
-        width: 25%;
-        float: left;
-        height: 300px;
+    .module-giftlist-descripcion .jplist-panel {
+        display: none;
+        margin: 0;
     }
     
-    .col-md-3 img {
-        width: 100%;
+    .col-md-3 {
+        width: 50%;
+        float: left;
+    }
+    
+    .col-md-3 .ax-cont-hover .img-container img {
+        width: 255px;
+    }
+    
+    .ax-text-description-lista {
+        margin: 0;
     }
     
 }
