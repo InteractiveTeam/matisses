@@ -605,6 +605,7 @@ label.error:before {
 .ax-message-content {
     width: 90%;
     margin: 0 auto 20px auto;
+    clear: both;
 }
 
 .ax-message-content .ax-edit, .ax-message-content .ax-delete, .ax-edit {
@@ -1480,6 +1481,10 @@ label.error:before {
     margin-top: 20px;
 }
 
+.fancybox-overlay .fancybox-error {
+    padding: 15px;
+}
+
 @media screen and (max-width:1024px) {
      
     .ax-search-home .ax-form-data-search input {
@@ -1725,6 +1730,22 @@ label.error:before {
     .ax-add-gift-card {
         width: 556px;
     }
+    
+    .fancybox-skin .fancybox-outer .fancybox-inner {
+        width: 100% !important;
+    }
+    
+    #address-div a.chosen-single {
+        width: 600px;
+    }
+    
+    .fancybox-outer .btn.btn-default.btn-lista-regalos {
+        margin: 0 2.5px;
+    }
+    
+    .products-associated .ax-list-edit {
+        margin-top: 40PX;
+    }
 
 }
 
@@ -1732,6 +1753,10 @@ label.error:before {
     
     .ax-compartir-lista {
         text-align: center;
+    }
+    
+    .container #center_column.center_column {
+        padding: 0;
     }
     
     .module-giftlist-descripcion .ax-text-result-list {
@@ -2045,6 +2070,52 @@ label.error:before {
 
 }
 
+@media screen and (max-width:414px) {
+    .module-giftlist-descripcion .owl-nav .owl-prev {
+        left: -29px;
+    }
+    
+    .module-giftlist-descripcion .owl-nav .owl-next {
+        right: -31px;
+    }
+    
+    .owl-carousel .owl-controls .owl-nav .owl-prev, .owl-carousel .owl-controls .owl-nav .owl-next, .owl-carousel .owl-controls .owl-dot {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .ax-cont-hover:before, .ax-cont-hover:after, .ax-cont-hover:hover .add-to-cart.btn-default.btn-lista-regalos, .module-giftlist-descripcion .products-associated .ax-more:before, .module-giftlist-descripcion .products-associated .ax-more:after {
+        display: none;
+    }
+    
+    .module-giftlist-descripcion .parrilla-productos .products-associated .ax-more {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        border: none;
+        background: transparent;
+        font-size: 0;
+    }
+    
+    .ax-add-gift-card {
+        width: 88%;
+    }
+    
+    .fancybox-skin .fancybox-outer .fancybox-inner {
+        width: 100% !important;
+    }
+    
+    #address-div a.chosen-single {
+        width: 283px;
+    }
+    
+    .ax-popup-delete .btn.btn-default.btn-lista-regalos {
+        width: 100%;
+        padding: 8px 0;
+        margin-top: 5px;
+    }
+}
+
 @media screen and (max-width:380px) {
     
     h1 {
@@ -2310,6 +2381,11 @@ label.error:before {
     .tab-pane .ax-cont-form-date-lista .ax-date-event {
         width: 30.8% !important;
     }
+    
+    .fancybox-skin .btn.btn-default.btn-default.btn-lista-regalos {
+        width: 100%;
+        margin-top: 5px;
+    }
 
     #info-div .ax-date-event {
         width: 100%;
@@ -2334,39 +2410,6 @@ label.error:before {
         padding: 8px 16px;
     }
     
-}
-
-@media screen and (max-width:414px) {
-    .module-giftlist-descripcion .owl-nav .owl-prev {
-        left: -29px;
-    }
-    
-    .module-giftlist-descripcion .owl-nav .owl-next {
-        right: -31px;
-    }
-    
-    .owl-carousel .owl-controls .owl-nav .owl-prev, .owl-carousel .owl-controls .owl-nav .owl-next, .owl-carousel .owl-controls .owl-dot {
-        width: 25px;
-        height: 25px;
-    }
-    
-    .ax-cont-hover:before, .ax-cont-hover:after, .ax-cont-hover:hover .add-to-cart.btn-default.btn-lista-regalos, .module-giftlist-descripcion .products-associated .ax-more:before, .module-giftlist-descripcion .products-associated .ax-more:after {
-        display: none;
-    }
-    
-    .module-giftlist-descripcion .parrilla-productos .products-associated .ax-more {
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        border: none;
-        background: transparent;
-        font-size: 0;
-    }
-    
-    .ax-add-gift-card {
-        width: 88%;
-    }
-     
 }
 
 @media screen and (max-width:360px) {
