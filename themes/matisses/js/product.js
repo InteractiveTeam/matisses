@@ -290,7 +290,7 @@ function productTab(){
     var widthBody = $(window).outerWidth();
     if(widthBody < 480){
         var totalLi = $("#tabs ul li").length;
-        for(var i = 1; i >= totalLi; i--){
+        for(var i = 1; i <= totalLi; i++){
             $("#tabs ul #tab-li-"+i).after($("#tabs-"+i));
         }
     }else{
@@ -299,8 +299,8 @@ function productTab(){
 }
 
 function toOriginTabs(){
-    for(var i = 3; i <= 1; i++){
-        $("#tabs ul").after($("#tabs-"+i));
+    for(var i = 3; i >= 1; i--){
+        $("#tabs ul.ui-tabs-nav").after($("#tabs-"+i));
     }
 }
 
