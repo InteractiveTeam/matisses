@@ -4050,6 +4050,17 @@
 
 @media screen and (max-width: 414px){
 
+	.container #buy_block .wrap_bottom>div {
+	    padding-bottom: 0;
+	}
+
+
+ 	#center_column .wrap_extra_right .ax-shareContentProduct {
+	    width: 74%;
+	    margin: 0 auto;
+	}
+
+
 	.ax-btn-filter {
 	    width: 100%;
 	}
@@ -4065,11 +4076,6 @@
 
 	#columns .parrilla-productos #selectProductSort_chosen, #search #columns #selectProductSort_chosen {
 	    width: 17rem!important;
-	}
-
-	element.style {
-	    margin: 0;
-	    padding: 0;
 	}
 
 	.cms-preguntas-frecuentes .main-container .center_column h1 {
@@ -4203,6 +4209,7 @@
 	    margin-bottom: 10px;
 	    line-height: 20px;
 	    margin-top: 20px;
+	    padding: 0;
 	}
 
 	.pb-right-column h1.titleProduct {
