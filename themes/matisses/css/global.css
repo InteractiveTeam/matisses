@@ -6264,3 +6264,11 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 .product #tabs.ui-widget-content {
     float: left;
 }
+
+#thumbs_list li a {
+   margin: 18px 0; 
+}
+
+.chosen-container-single .chosen-single {
+    height: 2.85rem;
+}
