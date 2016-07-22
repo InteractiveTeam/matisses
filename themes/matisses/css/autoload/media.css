@@ -2584,6 +2584,8 @@
     
     body#search .category_list.product_list.grid .ajax_block_product {
         width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
     }
     
     .page-heading span.lighter {
