@@ -3352,8 +3352,8 @@
 	}
 
 	#carrier_area .cart_navigation, #center_column form p:last-child {
-		width: 88%;
-		margin-left: 5px;
+		width: 91%;
+		margin: 0px 15px;
 	}
 
 	.menuFooterRp {
