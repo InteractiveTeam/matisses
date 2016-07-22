@@ -3310,9 +3310,7 @@
 		font-size: 1rem;
 	}
 
-	#order-detail-content #cart_summary tbody td .price {
-		font-size:2rem;
-	}
+
 
 	.order-detail .quantity_item input {
 		width:100% !important;
@@ -3327,7 +3325,7 @@
 	}
 
 	.radio-inline .checker, .checkbox .checker {
-    margin-right: 5px;
+    margin: 5px;
 	}
 
 	.address li.address_update a {
@@ -3346,13 +3344,8 @@
 		min-width:100%;
 	}
 
-	#order-detail-content #cart_summary tfoot tr .price {
-		font-size: 1.5rem;
-	}
 
-	#order-detail-content #cart_summary tfoot tr #total_price_container {
-		font-size:2.5rem;
-	}
+
 
 	p.payment_module a.bankwire, p.payment_module a.cheque {		background-position: 20px center;
 		background-position: 20px center;
@@ -3951,6 +3944,10 @@
 /* iPhone 6 landscape */
 @media screen and (max-width: 375px) {
 
+	.order #center_column #order .address_add.submit {
+	    padding: 0px;
+	}
+
 	.dates-account {
 	    margin: 10px 0 0 0;
 	}
@@ -4049,6 +4046,40 @@
 
 
 @media screen and (max-width: 414px){
+
+	.addresses .checkbox.addressesAreEquals {
+	    margin: 0;
+	}
+
+	.radio-inline .checker, .checkbox .checker {
+	    float: left;
+	    margin-right: 10px;
+	    margin-top: 5px;
+	}
+
+	#order-detail-content #cart_summary tbody td .price {
+		font-size:2rem;
+	}
+
+
+	#order-detail-content #cart_summary tfoot tr #total_price_container {
+		font-size:2.5rem;
+	}
+
+
+	#order-detail-content #cart_summary tfoot tr .price {
+		font-size: 1.5rem;
+	}
+
+	.form-group label {
+	    line-height: 1;
+	    margin-top: 10px;
+	}
+
+
+	.addresses .checkbox.addressesAreEquals {
+	    margin: 0;
+	}
 
 	.container #buy_block .wrap_bottom>div {
 	    padding-bottom: 0;
