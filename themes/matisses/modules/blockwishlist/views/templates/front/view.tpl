@@ -149,7 +149,7 @@
                                 <!-- .wishlist_product_detail -->
                             </div>
                             <!-- .product_infos -->
-                        </div>
+                        </div> 
                     </div>
                 </li>
             {/foreach}

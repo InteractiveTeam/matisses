@@ -215,48 +215,15 @@ function submitFunction(email)
                                               04: 'Abril',  05: 'Mayo',     06: 'Junio', 
                                               07: 'Julio',  08: 'Agosto',   09: 'Septiembre', 
                                               10: 'Octubre',11: 'Noviembre',12: 'Diciembre'};
+                                
+                                $('#days option[value='+birthdate[2]+']').attr('selected','selected');
+                                $("#days").trigger("chosen:updated");
 
-                                $('#days_chosen span').text(birthdate[2]);
-                                $('#days option[value='+birthdate[2]+']').attr('selected',true);
+                                $('#months option[value='+parseInt(birthdate[1])+']').attr('selected','selected');
+                                $("#months").trigger("chosen:updated");
 
-                                $('#days_chosen').click(function() {
-                                   $('#days_chosen .chosen-results .active-result').each(function() {
-                                        $(this).removeClass('result-selected');
-
-                                        if ($(this).text().trim() == birthdate[2]) {
-                                            $(this).addClass('result-selected');
-                                            $('#days_chosen .chosen-single span').text($(this).text().trim());
-                                        }  
-                                    }); 
-                                });
-
-                                $('#months_chosen span').text(months[parseInt(birthdate[1])]);
-                                $('#months option[value='+parseInt(birthdate[1])+']').attr('selected',true);
-
-                                $('#months_chosen').click(function(i, val) {
-                                   $('#months_chosen .chosen-results .active-result').each(function() {
-                                        $(this).removeClass('result-selected');
-
-                                        if ($(this).text().trim() == months[parseInt(birthdate[1])]) {
-                                            $(this).addClass('result-selected');
-                                            $('#months_chosen .chosen-single span').text($(this).text().trim());
-                                        }  
-                                    }); 
-                                });
-
-                                $('#years_chosen span').text(birthdate[0]);
-                                $('#years option[value='+parseInt(birthdate[0])+']').attr('selected',true);
-
-                                $('#years_chosen').click(function() {
-                                   $('#years_chosen .chosen-results .active-result').each(function() {
-                                        $(this).removeClass('result-selected');
-
-                                        if ($(this).text().trim() == birthdate[0]) {
-                                            $(this).addClass('result-selected');
-                                            $('#years_chosen .chosen-single span').text($(this).text().trim());
-                                        }  
-                                    }); 
-                                });   
+                                $('#years option[value='+birthdate[0]+']').attr('selected','selected');
+                                $("#years").trigger("chosen:updated");                                
                             }
                             
                         }, 800);

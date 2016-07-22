@@ -772,7 +772,7 @@ label.error:before {
 
 .products-associated .total_qty {
     position: relative;
-    z-index: 99;
+    z-index: 2;
     margin: 10px 0;
     font-family: georgia, 'Georgia';
     font-weight: bold;

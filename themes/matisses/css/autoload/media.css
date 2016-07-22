@@ -3749,6 +3749,7 @@
     
     .primary_block .pb-left-column #views_block {
         height: 4.5rem;
+        float: left;
     }
     
     .primary_block .pb-left-column {
@@ -4047,6 +4048,26 @@
 
 @media screen and (max-width: 414px){
 
+	#product .ui-tabs-panel.ui-widget-content {
+	    float: left;
+	}
+
+	#HOOK_PAYMENT .datosPlaceToPay img {
+	    display: block;
+	    margin: auto;
+	}
+
+	.order .center_column b{
+	    font-weight: 700 !important;
+	    display: block;
+	    text-align: center;
+	}
+
+
+	#HOOK_BEFORECARRIER .delivery_option_price  {
+	    text-align: center;
+	}
+
 	.addresses .checkbox.addressesAreEquals {
 	    margin: 0;
 	}
@@ -4091,19 +4112,10 @@
 	    margin: 0 auto;
 	}
 
-
-	.ax-btn-filter {
-	    width: 100%;
-	}
-
 	.parrilla-productos {
 	    margin: 0;
 	}
 
-	#center_column.center_column {
-	    margin: 0;
-	    padding: 0;
-	}
 
 	#columns .parrilla-productos #selectProductSort_chosen, #search #columns #selectProductSort_chosen {
 	    width: 17rem!important;
@@ -4114,7 +4126,7 @@
 	}
 
 	#center_column.center_column {
-	    width: 100%;
+	    width: 91%;
 	    margin-bottom: 20px;
 	}
 

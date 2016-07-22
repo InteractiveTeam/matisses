@@ -961,6 +961,8 @@ a.fancybox-nav {
     border-radius: 0;
 	border: 1px solid  #dbdbdb;
 	padding: 1.5625rem 1.25rem;
+    float: left;
+    width: 100%:
 	}
 	.product-tabs {
     margin: 3.125rem 0 1.875rem 0;
