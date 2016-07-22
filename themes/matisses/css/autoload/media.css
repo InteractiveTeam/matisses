@@ -4047,6 +4047,23 @@
 
 @media screen and (max-width: 414px){
 
+
+	#HOOK_PAYMENT .datosPlaceToPay img {
+	    display: block;
+	    margin: auto;
+	}
+
+	.order .center_column b{
+	    font-weight: 700 !important;
+	    display: block;
+	    text-align: center;
+	}
+
+
+	#HOOK_BEFORECARRIER .delivery_option_price  {
+	    text-align: center;
+	}
+
 	.addresses .checkbox.addressesAreEquals {
 	    margin: 0;
 	}
