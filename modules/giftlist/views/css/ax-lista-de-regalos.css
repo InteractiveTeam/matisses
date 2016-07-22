@@ -260,6 +260,10 @@ label.error:before {
     height: 100%;
 }
 
+.fancybox-inner .ax-add-gift-card .container {
+    padding: 0;
+}
+
 .ax-add-gift-card .checkbox label {
     margin-left: 0;
 }
@@ -284,7 +288,7 @@ label.error:before {
 }
 
 .fancybox-outer .btn.btn-default.btn-lista-regalos {
-    
+    margin: 0 2.5px;
 }
 
 
@@ -484,7 +488,7 @@ label.error:before {
 }
 
 .ax-search-home .ax-form-data-search input {
-    width: 147px;
+    width: 146px;
 }
 
 .ax-search-home button {
@@ -840,6 +844,19 @@ label.error:before {
     color: #231f20;
     font-weight: 500;
     font-size: 1rem;
+}
+
+.product-card .ax-info-list p:last-child, #productDiv .cant_prod {
+    color: #212121;
+    margin: 10px 0;
+    font-family: georgia, 'Georgia';
+    font-weight: bold;
+}
+
+.product-card .cant_prod {
+    width: 60px;
+    padding: 4px 5px;
+    margin-left: 8px;
 }
 
 .products-associated .ax-bond-card #add_bond {
@@ -1423,7 +1440,13 @@ label.error:before {
     font-family: Georgia;,
     'Georgia';
     font-weight: bold;
-    padding-left: 0;
+    padding: 0;
+}
+
+#productDiv .ax-calificacion {
+    padding-bottom: 10px;
+    border-bottom: #ccc solid 1px;
+    margin-bottom: 15px;
 }
 
 #productDiv .col-md-6 > .price {
@@ -1435,11 +1458,13 @@ label.error:before {
 #productDiv .price .our_price_display {
     font-size: 2.5rem;
     line-height: 2.7rem;
+    display: inline-block;
 }
 
 #productDiv .price .ax-iva {
     line-height: 1rem;
     margin: 5px;
+    display: inline-block;
 }
 
 #productDiv .ax-det-sol, #productDiv .ax-det-falt {
@@ -1458,7 +1483,7 @@ label.error:before {
 @media screen and (max-width:1024px) {
      
     .ax-search-home .ax-form-data-search input {
-        width: 119px;
+        width: 118px;
     }  
     
 }
@@ -1519,7 +1544,7 @@ label.error:before {
     }
     
     .ax-search-home .ax-form-data-search input {
-       width: 201px;
+       width: 195px;
     }
     
     .module-giftlist-empezar .col-md-6 {
@@ -1696,13 +1721,17 @@ label.error:before {
     .module-giftlist-descripcion .parrilla-productos .products-associated .add-to-cart, .module-giftlist-descripcion .parrilla-productos .products-associated .ax-more {
         margin: auto;
     }
+    
+    .ax-add-gift-card {
+        width: 556px;
+    }
 
 }
 
 @media screen and (max-width:568px) {
     
-    .parrilla-productos .container #center_column.center_column {
-        padding: 0
+    .ax-compartir-lista {
+        text-align: center;
     }
     
     .module-giftlist-descripcion .ax-text-result-list {
@@ -1782,7 +1811,7 @@ label.error:before {
     }
     
     .ax-form-data-search span {
-        width: 49.4%;
+        width: 49.3%;
     }
     
     .ax-form-data-search p {
@@ -2000,9 +2029,18 @@ label.error:before {
         float: none;
     }
     
-    .ax-popup-delete .btn.btn-default.btn-lista-regalos {
+    #contentdivBono .btn.btn-default.btn-lista-regalos {
+        width: 100%;
+        padding: 10px 0;
+        margin-top: 5px;
+    }
+    
+    .ax-add-gift-card {
+        width: 396px;
+    }
+    
+    .ax-add-gift-card .btn.btn-default.btn-lista-regalos {
         padding: 8px 17.6px;
-        margin: 0 2.5px;
     }
 
 }
@@ -2324,6 +2362,10 @@ label.error:before {
         background: transparent;
         font-size: 0;
     }
+    
+    .ax-add-gift-card {
+        width: 88%;
+    }
      
 }
 
@@ -2356,6 +2398,11 @@ label.error:before {
     #address-div a.chosen-single {
         width: 229px;
     }
+    
+    #info-div, #productDiv {
+        width: 96%;
+    }
+
 }
 
 @media screen and (max-width:320px) {
@@ -2398,11 +2445,6 @@ label.error:before {
         margin: 0 5px;
         padding: 0;
         width: 31%;
-    }
-    
-    .fancybox-skin div .btn.btn-default.btn-lista-regalos {
-        padding: 8px 6.6px;
-        margin: 0 2.5px;
     }
     
 }

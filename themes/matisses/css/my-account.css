@@ -66,6 +66,7 @@
     }
     .footer-account {
     margin-top: 1.5625rem;
+    margin-bottom: 1rem;
     }
     .footer-account a{
     text-decoration: none;
@@ -76,10 +77,11 @@
     .footer-account input[type="text"] {
     display: inline-block;
     vertical-align: top;
-    padding: 0.4525rem;
+/*    padding: 0.4525rem;*/
     font-family: 'Open Sans', sans-serif;
     font-size: 0.875rem;
     color: #777676;
+    height: 38px;
     }
     .income-gifts input {
     margin-right: 0.625rem;

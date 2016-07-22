@@ -3821,6 +3821,11 @@
     #new-products_block_right .products-block .bx-viewport .product_list.grid .product-container {
         width: 340px !important;
     }
+    
+    .header-container #header .main_panel #menu-left #menu.menu-experiencias {
+        top: 9.8rem;
+    }
+    
 }
 
 @media screen and (max-width :320px) {
@@ -4042,6 +4047,49 @@
 
 
 @media screen and (max-width: 414px){
+
+	#center_column.center_column {
+	    width: 100%;
+	    margin-bottom: 20px;
+	}
+
+	.sitemap-page {
+	    margin-top: 0;
+	}
+
+	#page .cart_navigation .button-medium, #page .cart_navigation .btn.btn-default { 
+        width: 100%;
+	}
+
+	textarea.form-control {
+	    height: 130px;
+	}
+
+	#order .address_add.submit {
+
+	    padding: 0 15px 20px 15px;
+
+	}
+
+	#order .address_add.submit .btn-red {
+	    width: 100%;
+	}
+
+	.main-container .addresses .address li{
+	    padding: 0;
+	}
+
+
+	.main-container .address li.address_update a {
+	    width: 100%;
+	}
+	.cms-trabaja-con-nosotros .generic-page .generic-right {
+	    padding-top: 0px;
+	}
+
+	.cms-trabaja-con-nosotros .main-container .cms .center_column {
+		margin-bottom: 0px;
+	}
 
 	body.cms .main-content {
 		margin-top: 10px;
@@ -4414,6 +4462,21 @@
         width: 264px;
     }
 }
+
+
+@media screen and (max-width:435px) {
+
+	.footer-links-address .btn.btn-default.btn-red:first-child {
+	    padding: 0.47rem 1.3rem;
+	    width: 100%;
+	    margin-bottom: 10px;
+	}
+
+}
+
+
+
+
 
 /* iPhone 6 portrait */
 /* iPhone 6 portrait */
