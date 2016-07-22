@@ -3821,6 +3821,11 @@
     #new-products_block_right .products-block .bx-viewport .product_list.grid .product-container {
         width: 340px !important;
     }
+    
+    .header-container #header .main_panel #menu-left #menu.menu-experiencias {
+        top: 9.8rem;
+    }
+    
 }
 
 @media screen and (max-width :320px) {
