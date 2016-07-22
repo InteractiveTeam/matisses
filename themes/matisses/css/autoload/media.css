@@ -4048,7 +4048,16 @@
 
 @media screen and (max-width: 414px){
 
-	#page .cart_navigation .button-medium, #page .cart_navigation .btn.btn-default {
+	#center_column.center_column {
+	    width: 100%;
+	    margin-bottom: 20px;
+	}
+
+	.sitemap-page {
+	    margin-top: 0;
+	}
+
+	#page .cart_navigation .button-medium, #page .cart_navigation .btn.btn-default { 
         width: 100%;
 	}
 
@@ -4453,6 +4462,21 @@
         width: 264px;
     }
 }
+
+
+@media screen and (max-width:435px) {
+
+	.footer-links-address .btn.btn-default.btn-red:first-child {
+	    padding: 0.47rem 1.3rem;
+	    width: 100%;
+	    margin-bottom: 10px;
+	}
+
+}
+
+
+
+
 
 /* iPhone 6 portrait */
 /* iPhone 6 portrait */
