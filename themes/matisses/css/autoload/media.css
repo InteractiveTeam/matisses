@@ -4047,6 +4047,9 @@
 
 @media screen and (max-width: 414px){
 
+	#product .ui-tabs-panel.ui-widget-content {
+	    float: left;
+	}
 
 	#HOOK_PAYMENT .datosPlaceToPay img {
 	    display: block;
@@ -4106,11 +4109,6 @@
  	#center_column .wrap_extra_right .ax-shareContentProduct {
 	    width: 74%;
 	    margin: 0 auto;
-	}
-
-
-	.ax-btn-filter {
-	    width: 100%;
 	}
 
 	.parrilla-productos {
