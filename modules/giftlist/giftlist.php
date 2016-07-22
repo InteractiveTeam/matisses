@@ -201,16 +201,16 @@ class giftlist extends Module
 
     public function hookactionCustomerAccountAdd($params){
         //get the email
-        $sql = "SELECT * FROM "._DB_PREFIX_."email_cocreator WHERE email = '".$params['customer']->email."'";
+        echo $sql = "SELECT * FROM "._DB_PREFIX_."email_cocreator WHERE email = '".$params['newCustomer']->email."'";
         $res = Db::getInstance()->executeS($sql);
         if(!empty($res)){
             foreach($res as $row){
-                Db::getInstace()->update('gift_list',array(
-                    'id_cocreator' => $parmas['customer']->id
+                Db::getInstance()->update('gift_list',array(
+                    'id_cocreator' => (int)$parmas['newCustomer']->id
                 ),'id ='.$row['íd_list']);
             }
         }
-        Db::getInstance()->delete('email_cocreator', "email = '".$params['customer']->email."'");
+        Db::getInstance()->delete('email_cocreator', "email = '".$params['newCustomer']->email."'");
         
     }
     
