@@ -227,7 +227,7 @@ class registerWithSap extends Module
                                 $order->total_paid_tax_excl = $ordersap['total'];
                                 $order->round_mode = 0;
                                 $order->round_type = Configuration::get('PS_ROUND_TYPE');
-                                $order->invoice_date = '0000-00-00 00:00:00';
+                                $order->invoice_date = $ordersap['documentDate'];
                                 $order->delivery_date = '0000-00-00 00:00:00';                            
 
                                 // Creating order
@@ -372,7 +372,7 @@ class registerWithSap extends Module
                             $order->total_paid_tax_excl = $ordersWithSap['total'];
                             $order->round_mode = 0;
                             $order->round_type = Configuration::get('PS_ROUND_TYPE');
-                            $order->invoice_date = '0000-00-00 00:00:00';
+                            $order->invoice_date = $ordersWithSap['documentDate'];
                             $order->delivery_date = '0000-00-00 00:00:00';                            
 
                             // Creating order
