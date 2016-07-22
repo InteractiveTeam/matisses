@@ -3754,6 +3754,7 @@
     
     .primary_block .pb-left-column #views_block {
         height: 4.5rem;
+        float: left;
     }
     
     .primary_block .pb-left-column {

@@ -68,17 +68,17 @@ class registerWithSap extends Module
 	}
     
     public function hookcreateOrders($params){
-        
         if (isset($params) && !empty($params)) {
             $validate = $this->checkByEmail($params['email']);
             
             if (isset($validate) && !empty($validate)) {
-                // Set token used
-                $update = $this->updateToken($params['email'], $validate['token'], true);
+                $update = $this->updateToken($params['email'], $validate[0]['token'], true);
                 $mat = new matisses();
                 $idcustomer = $params['idcustomer'];
                 $userSap = $mat->wsmatissess_getCustomerbyEmail($params['email']);
+//                $userSap = $mat->wsmatissess_getCustomerbyEmail('dlopez@matisses.co');
                 $sapOrders = $mat->wsmatissess_getOrdersByCharter($params['charter']);
+//                $sapOrders = $mat->wsmatissess_getOrdersByCharter('98667971');
                 
                 // Registering address
                 $addresses = $userSap['customerDTO']['addresses'];
@@ -98,8 +98,8 @@ class registerWithSap extends Module
                             $addressObj->address1 = $addr['address'];
                             $addressObj->postcode = $addr['cityCode'];
                             $addressObj->city = $addr['cityName'];
-                            $addressObj->id_country = $this->context->country->id;
-                            $addressObj->id_state = $addr['stateCode'];
+                            $addressObj->id_country = Db::getInstance()->getValue("SELECT id_country FROM "._DB_PREFIX_."country WHERE iso_code = ".$addr['stateCode']);
+                            $addressObj->id_state = Db::getInstance()->getValue("SELECT id_state FROM "._DB_PREFIX_."state WHERE iso_code = ".$addr['cityCode']);
                             $addressObj->alias = $addr['addressName'];
                             $addressObj->add();
                         }
@@ -121,7 +121,8 @@ class registerWithSap extends Module
                             $cart->gift = 0;
                             $cart->add();                        
                             $this->context->cookie->id_cart = (int)($cart->id); 
-                            $cart->update();   
+                            $cart->update();
+                            Db::getInstance()->update('cart',array('id_factura' => $ordersap['invoiceNumber']),'id_cart = '.$cart->id);
 
                             if ($this->isNumericArray($ordersap['items'])) {
                                 foreach ($ordersap['items'] as $item) {
@@ -179,7 +180,6 @@ class registerWithSap extends Module
                             // Create Orders
                             if (isset($cart)) {
                                 $order = new Order();
-                                $order->id = $ordersap['invoiceNumber'];
                                 $order->current_state = 5;
                                 $prodlist = array();
                                 foreach ($cart->getProducts() as $prodcart) {
@@ -232,10 +232,14 @@ class registerWithSap extends Module
 
                                 // Creating order
                                 $result = $order->add();
-
                                 if (!$result) {
                                     echo "<pre><h1>Error creating Order</h1>"; print_r($result); echo "</pre>";
                                 }
+                                
+                                $order->date_add = $ordersap['documentDate'];
+                                $order->date_up = $ordersap['documentDate'];
+
+                                $order->update();
 
                                 $id_order_state = $order->current_state;
                                 $order_list[] = $order;
@@ -262,7 +266,8 @@ class registerWithSap extends Module
                         $cart->gift = 0;
                         $cart->add();                        
                         $this->context->cookie->id_cart = (int)($cart->id); 
-                        $cart->update();   
+                        $cart->update();
+                        Db::getInstance()->update('cart',array('id_factura' => $ordersWithSap['invoiceNumber']),'id_cart = '.$cart->id);
 
                         if ($this->isNumericArray($ordersWithSap['items'])) {
                             foreach ($ordersWithSap['items'] as $item) {
@@ -320,7 +325,6 @@ class registerWithSap extends Module
                         // Create Orders
                         if (isset($cart)) {
                             $order = new Order();
-                            $order->id = $ordersWithSap['invoiceNumber'];
                             $order->current_state = 5;
                             $prodlist = array();
                             foreach ($cart->getProducts() as $prodcart) {
@@ -377,6 +381,11 @@ class registerWithSap extends Module
                             if (!$result) {
                                 echo "<pre><h1>Error creating Order</h1>"; print_r($result); echo "</pre>";
                             }
+                            
+                            $order->date_add = $ordersWithSap['documentDate'];
+                            $order->date_up = $ordersWithSap['documentDate'];
+                            
+                            $order->update();
 
                             $id_order_state = $order->current_state;
                             $order_list[] = $order;
@@ -384,7 +393,6 @@ class registerWithSap extends Module
                             $order_detail = new OrderDetail(null, null, $this->context);
                             $order_detail->createList($order, $cart, $id_order_state, $order->product_list, 0, true);
                             $order_detail_list[] = $order_detail;
-
                             unset($order);
                             unset($order_detail);
                         }
