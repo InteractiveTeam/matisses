@@ -1843,7 +1843,7 @@
 	}
 
 	#columns .parrilla-productos #selectProductSort_chosen {
-		width: 9.87rem !important;
+		width: 9.87rem;
 	}
 
 	.content_sortPagiBar .top-pagination-content ul {
@@ -2242,7 +2242,7 @@
     }
     
     #columns .parrilla-productos #selectProductSort_chosen, #search #columns #selectProductSort_chosen {
-        width: 7.87rem !important;
+        width: 7.87rem
     }
     
     #view_wishlist .wlp_bought ul .col-md-4 {
@@ -2595,6 +2595,7 @@
        
     #center_column.center_column {
         width: 100%;
+        padding: 0;
     }
     
     button.btn.btn-default.btn-red {
@@ -3123,7 +3124,7 @@
 	}
 
 	.main-container .parrilla-productos #selectProductSort_chosen, .main-container .parrilla-productos #selectProductSort_bottom_chosen {
-		width: 12.74rem !important;
+		width: 12rem !important
 	}
 
 	.main-container .parrilla-productos .sortPagiBar form label {
@@ -3170,10 +3171,7 @@
 		border:#ccc solid 1px;
 	}
 
-	a.btn.btn-default.btn-red {
-		width: 100%;
-        margin: 10px auto;
-	}
+
 
 	.content-account p {
     color: #777676;
@@ -3826,12 +3824,22 @@
 
 @media screen and (max-width :320px) {
 
+	html .product #center_column .wrap_extra_right .ax-shareContentProduct {
+	    width: 100%;
+	    margin: 0 auto;
+	}
+
 	.primary_block .wrap_extra_right{
 	    margin: 0 auto;
 	    text-align: center;
-	    left: 10%;
+	    left: 3%;
 	    display: table-cell;
 	    position: relative;
+	}
+
+	.product #center_column .wrap_extra_right .ax-shareContentProduct {
+		width: 100%;
+	    margin: 0 auto;
 	}
 
 	#page {
@@ -3945,6 +3953,11 @@
 /* iPhone 6 landscape */
 @media screen and (max-width: 375px) {
 
+	.product #center_column .wrap_extra_right .ax-shareContentProduct {
+	    width: 65%;
+	    margin: 0 auto;
+	}
+
 	.order #center_column #order .address_add.submit {
 	    padding: 0px;
 	}
@@ -4048,8 +4061,41 @@
 
 @media screen and (max-width: 414px){
 
+	#sitemap #center_column.center_column {
+	    width: 100%;
+	    padding: 0 15px;
+	}
+
+	#module-blockwishlist-mywishlist .form-control {
+		font-size: 12px;
+	}	
+
+	#my-account #center_column.center_column {
+	    width: 100%;
+	    padding: 0px 15px;
+	}
+
+	.ax-showcase-product {
+	    padding: 10px;
+	}
+
+
+	.wlp_bought #wlp_193_71, .wlp_bought #wlp_162_0 {
+	    padding: 0;
+	}
+
+	.module-blockwishlist-mywishlist .wl_send .row .col-md-4{
+		padding: 0;
+	}
+
+	a.btn.btn-default.btn-red {
+		width: 100%;
+        margin: 10px auto;
+	}
+
 	#product .ui-tabs-panel.ui-widget-content {
 	    float: left;
+	    width: 100%
 	}
 
 	#HOOK_PAYMENT .datosPlaceToPay img {
@@ -4108,7 +4154,7 @@
 
 
  	#center_column .wrap_extra_right .ax-shareContentProduct {
-	    width: 74%;
+	    width: 83%;
 	    margin: 0 auto;
 	}
 
@@ -4118,17 +4164,13 @@
 
 
 	#columns .parrilla-productos #selectProductSort_chosen, #search #columns #selectProductSort_chosen {
-	    width: 17rem!important;
+	    width: 16rem;
 	}
 
 	.cms-preguntas-frecuentes .main-container .center_column h1 {
 	    margin-bottom: 20px;
 	}
 
-	#center_column.center_column {
-	    width: 91%;
-	    margin-bottom: 20px;
-	}
 
 	.main-container .center_column .sitemap-page {
 	    margin-top: 0;

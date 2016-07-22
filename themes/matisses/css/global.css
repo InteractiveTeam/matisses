@@ -1620,7 +1620,7 @@ box-sizing: border-box;
 	-o-transition:all .5s ease;
 	transition:all .5s ease;
 	font-family: 'Open Sans', sans-serif !important;
-    font-size: 1rem !important;
+    font-size: 1rem;
 	}
 
 	.table-bordered {
