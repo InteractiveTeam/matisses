@@ -4117,10 +4117,6 @@
 	    margin: 0;
 	}
 
-	#center_column.center_column {
-	    margin: 0;
-	    padding: 0;
-	}
 
 	#columns .parrilla-productos #selectProductSort_chosen, #search #columns #selectProductSort_chosen {
 	    width: 17rem!important;
@@ -4131,7 +4127,7 @@
 	}
 
 	#center_column.center_column {
-	    width: 100%;
+	    width: 91%;
 	    margin-bottom: 20px;
 	}
 
