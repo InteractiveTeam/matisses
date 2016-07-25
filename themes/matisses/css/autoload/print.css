@@ -120,4 +120,12 @@
         margin: 0;
     }
     
+    .products-associated .product-card {
+        text-align: center;
+    }
+    
+    .products-associated .product-card img {
+        width: 80% !important;
+    }
+    
 }
