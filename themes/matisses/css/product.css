@@ -955,6 +955,7 @@ a.fancybox-nav {
 	}
 	.product #tabs.ui-widget-content {
     border: none;
+    width: 100%;
 	}
 	.product .ui-tabs-panel.ui-widget-content{
 	background: none;
@@ -962,7 +963,8 @@ a.fancybox-nav {
 	border: 1px solid  #dbdbdb;
 	padding: 1.5625rem 1.25rem;
     float: left;
-    width: 100%:
+    width: 100%;
+    text-align: center;
 	}
 	.product-tabs {
     margin: 3.125rem 0 1.875rem 0;
