@@ -611,7 +611,11 @@ function updateDisplay()
     }
     
     if(selectedCombination['garantias']){
-        $("#tabs-2").html(selectedCombination['garantias']);
+        $("#tabs-2").removeClass("hidden").html(selectedCombination['garantias']);
+        $("#tab-li-2").removeClass("hidden")
+    }else{
+        $("#tabs-2").addClass("hidden");
+        $("#tab-li-2").addClass("hidden");
     }
     
     document.getElementById('quantity_wanted').value = 1;
