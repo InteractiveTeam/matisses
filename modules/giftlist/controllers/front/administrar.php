@@ -87,6 +87,15 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
         parse_str($_POST['form'],$data);
         $li = new GiftListModel();
         $r = $li->getListBySlug($data['url']);
+        $ev_date = date("Y-m-d",strtotime($data['years']."-".$data['months']."-".$data['days']));
+        $today = date("Y-m-d");
+        if($today >= $ev_date)
+            die(
+                Tools::jsonEncode(array(
+                    'msg' => $this->module->l('La fecha seleccionada debe ser posterior a la fecha actual.'),
+                    'error' => 1
+                ))
+            );    
         if(!empty($r))
             die(
                 Tools::jsonEncode(array(
@@ -100,7 +109,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
         $li->name = $data['name'];
         $li->public = ($data['list_type'] == 1 ? true : false);
         $li->event_type = $data['event_type'];
-        $li->event_date = date("Y-m-d",strtotime($data['years']."-".$data['months']."-".$data['days']));
+        $li->event_date = 
         $li->guest_number = $data['guest_number'];
         $li->url = $li->slugify($data['url']);
         $li->message = $data['message'];
@@ -124,7 +133,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
         if($li->add()){
             $li->image = $this->_uploadImage($li->id, false, 'image-p');
             $li->profile_img = $this->_uploadImage($li->id, true, 'image-prof');
-            if($data['email'] != $data['email_co'])
+            if(isset($data['email_co']) && $data['email_co'] != "")
                 $li->id_cocreator = $li->setCoCreator($li->id,$data['email_co'],$data['firstname'] . " " .$data ['lastname'],$li->url);
             $li->update();
             die(
