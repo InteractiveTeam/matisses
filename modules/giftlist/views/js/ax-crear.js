@@ -184,8 +184,19 @@ var ax_admin = {
             data:data,
             success: function(res){
                 res = JSON.parse(res);
-                if(res.error)
-                    console.log(res.msg);
+                if(res.error){
+                    $.fancybox({
+                        'autoScale': true,
+                        'transitionIn': 'elastic',
+                        'transitionOut': 'elastic',
+                        'speedIn': 500,
+                        'speedOut': 300,
+                        'autoDimensions': true,
+                        'centerOnScroll': true,
+                        'content' : '<p class="fancybox-error">'+res.msg+"</p>"
+                    });
+                }
+                    
                 else
                     window.location.href = res.url;
             }

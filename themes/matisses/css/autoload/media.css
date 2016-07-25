@@ -2310,7 +2310,9 @@
 	}
     
     .pb-left-column #views_block, .product_schemes {
-        float: none;
+        float: left;
+        width: 100%;
+        height: auto;
     }
     
     .pb-left-column .product_schemes {
@@ -3746,7 +3748,7 @@
     }
     
     .primary_block .pb-left-column #views_block {
-        height: 4.5rem;
+        height: auto;
         float: left;
     }
     
@@ -4060,6 +4062,10 @@
 
 
 @media screen and (max-width: 414px){
+
+	#product #send_friend_form .product img {
+		width: 100%;
+	}
 
 	#sitemap #center_column.center_column {
 	    width: 100%;

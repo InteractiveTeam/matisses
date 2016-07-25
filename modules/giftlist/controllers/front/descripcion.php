@@ -207,11 +207,20 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
     }
     
     private function _editInfo($id,$data){
-        $data =(object)$data;
+        $data = (object)$data;
+        $ev_date = date("Y-m-d",strtotime($data->years."-".$data->months."-".$data->days));
+        $today = date("Y-m-d");
         $l = new GiftListModel($id);
+        if($today >= $ev_date)
+            die(
+                Tools::jsonEncode(array(
+                    'msg' => $this->module->l('La fecha seleccionada debe ser posterior a la fecha actual.'),
+                    'error' => 1
+                ))
+            );    
         if($data->email_co && $data->email_co != "")
             $l->id_cocreator = $l->setCoCreator($l->id,$data->email_co,$data->firstname . " " .$data->lastname,$l->url);
-        $l->event_date = date("Y-m-d",strtotime($data->years."-".$data->months."-".$data->days));
+        $l->event_date = $ev_date;
         $ev = "SELECT name FROM "._DB_PREFIX_."event_type WHERE id =".$data->event_type;
         Db::getInstance()->update('gift_list',array(
             'firstname' => $data->firstname,
@@ -221,9 +230,11 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
             'event_type' => $data->event_type
         ),"id = " . $id);
         die(Tools::jsonEncode(array(
+            'msg' => $this->module->l('La lista ha sido editada.'),
             'name' => $data->firstname . " " . $data->lastname, 
             'date' => date("Y/m/d",strtotime($data->years."-".$data->months."-".$data->days)),
-            'event' => Db::getInstance()->getValue($ev)
+            'event' => Db::getInstance()->getValue($ev),
+            'error' => 0
         )));
     }
     

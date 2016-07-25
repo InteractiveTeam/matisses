@@ -170,8 +170,6 @@ $(document).ready(function() {
                      'autoScale': true,
                      'transitionIn': 'elastic',
                      'transitionOut': 'elastic',
-                     'minWidth': 250,
-                     'minHeight': 50,
                      'speedIn': 500,
                      'speedOut': 300,
                      'autoDimensions': true,
@@ -328,9 +326,11 @@ function saveInfo(){
             },
             success:function(res){
                 res = JSON.parse(res);
-                $(".ax-creator-name").text(res.name);
-                $(".ax-event-date").text(res.date);
-                $(".ax-event-type").text(res.event);
+                if(!res.error){
+                    $(".ax-creator-name").text(res.name);
+                    $(".ax-event-date").text(res.date);
+                    $(".ax-event-type").text(res.event);
+                }
                 $.fancybox.close();
                 $.fancybox({
                  'autoScale': true,
@@ -342,7 +342,7 @@ function saveInfo(){
                  'speedOut': 300,
                  'autoDimensions': true,
                  'centerOnScroll': true,
-                 'content' : '<div><p class="fancybox-error">La lista ha sido editada</p></div>'
+                 'content' : '<div><p class="fancybox-error">'+res.msg+'</p></div>'
                 });
             }
         });
