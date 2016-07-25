@@ -4581,6 +4581,10 @@
     	height: 30rem;
 	    position: relative;
 	}
+    
+    .category .content_sortPagiBar .sortPagiBar .cf.selector1 .chosen-container.chosen-container-single a {
+        height: 32px !important;
+    }
 
 }
 
