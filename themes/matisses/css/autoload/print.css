@@ -51,12 +51,13 @@
         display: inline-block;
         margin: 10px 0 0 0;
         padding: 0;
+        font-size: 0.8rem;
     }
     
     .menu-footer li a {
         border-left:#000 solid 1px;
         padding: 0;
-        padding: 0 10px;
+        padding: 0 8px;
     }
     
     .img-article img, img {
@@ -73,11 +74,15 @@
         padding: .0625rem 0;
     }
     
+    #footer {
+        margin: 10px 0 0 0;
+    }
+    
    #footer {
         border-top: #000 solid 4px;
     }
     
-    .ax-avatar-content, .ax-print, h2, h3, .jplist-panel {
+    .ax-avatar-content, .ax-print, h2, h3, .jplist-panel, .share.cf, .logo-copyright {
         display: none !important;
     }
     
@@ -88,6 +93,11 @@
     
     .col-md-3 {
         width: 31.3%;
+        float: left;
+    }
+    
+    #ax-products .col-md-3 {
+        width: 23.3%;
         float: left;
     }
     
@@ -120,12 +130,37 @@
         margin: 0;
     }
     
-    .products-associated .product-card {
+    .products-associated .product-card.ax-bond-card {
         text-align: center;
     }
     
+    .products-associated .product-card.ax-bond-card span {
+        margin-top: 20px;
+    }
+    
     .products-associated .product-card img {
-        width: 80% !important;
+        width: 100% !important;
+        margin: 0 auto;
+        display: block;
+        float: none;
+    }
+    
+    .footer-down {
+        padding: 0;
+    }
+
+    .ax-cont-admin-listas-regalos .ax-cont-list .part {
+        padding: 0px 0 15px 0;
+    }
+    
+    .menu-copyright {
+        padding: 0 0 1.2rem 0;
+        text-align: center;
+        WIDTH: 100%;
+    }
+    
+    .module-giftlist-descripcion .product-card {
+        min-height: 270px;
     }
     
 }

@@ -4754,7 +4754,7 @@ body.new-products {
     
     .center_column .content_sortPagiBar {
         margin-bottom: 20px;
-        float: none;
+        float: left;
     } 
 
     .content_sortPagiBar.bottom_pagi{
@@ -6284,4 +6284,24 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 
 .form-group div#lists_chosen {
     width: 100% !important;
+}
+
+.layered_price {
+    min-height: 154px;
+}
+
+.search .parrilla-productos {
+    margin: 0;
+}
+
+.search .content_sortPagiBar .sortPagiBar .select.selector1 > label {
+    padding: 0.58rem 0.6rem;
+}
+
+.category .content_sortPagiBar .sortPagiBar .cf.selector1 .chosen-container.chosen-container-single a {
+    height: 46px !important
+}
+
+.layered-left .checker {
+    margin: 4px;
 }
