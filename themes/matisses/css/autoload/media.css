@@ -3826,6 +3826,12 @@
 }
 
 @media screen and (max-width :360px) {
+
+	html #product #center_column .wrap_extra_right .ax-shareContentProduct {
+	    width: 71%;
+	    margin: 0 auto;
+	}
+
     #new-products_block_right .products-block .bx-viewport .product_list.grid .product-container {
         width: 340px !important;
     }
@@ -3838,7 +3844,9 @@
 
 @media screen and (max-width :320px) {
 
-	html .product #center_column .wrap_extra_right .ax-shareContentProduct {
+
+
+	html .product #page #center_column .wrap_extra_right .ax-shareContentProduct {
 	    width: 100%;
 	    margin: 0 auto;
 	}
@@ -3968,7 +3976,7 @@
 @media screen and (max-width: 375px) {
 
 	.product #center_column .wrap_extra_right .ax-shareContentProduct {
-	    width: 65%;
+	    width: 66%;
 	    margin: 0 auto;
 	}
 
@@ -4075,6 +4083,10 @@
 
 @media screen and (max-width: 414px){
 
+	.fancybox-wrap .fancybox-outer .fancybox-inner{
+		width: 100% !important;
+	}
+
 	#product #send_friend_form .product img {
 		width: 100%;
 	}
@@ -4112,8 +4124,14 @@
 	}
 
 	#product .ui-tabs-panel.ui-widget-content {
-	    float: left;
-	    width: 100%
+		float: left;
+	    width: 100%;
+	    padding: 20px;
+	    margin: 0 auto;
+	}
+
+	#product #tabs .info-opinion {
+	    width: 100%;
 	}
 
 	#HOOK_PAYMENT .datosPlaceToPay img {
