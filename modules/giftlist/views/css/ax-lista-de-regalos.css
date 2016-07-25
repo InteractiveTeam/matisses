@@ -288,7 +288,9 @@ label.error:before {
 }
 
 .fancybox-outer .btn.btn-default.btn-lista-regalos {
-    margin: 0 2.5px;
+    margin: 20px 2.5px 0 2.5px;
+    display: inline-block;
+    float: none !important;
 }
 
 
@@ -771,20 +773,15 @@ label.error:before {
 }
 
 .products-associated .total_qty {
-    position: relative;
-    z-index: 2;
-    margin: 10px 0;
-    font-family: georgia, 'Georgia';
-    font-weight: bold;
+    margin: 5px 0;
     font-size: 0.9rem;
-    color: #212121;
     display: inline-block;
 }
 
 .products-associated .total_qty input {
     width: 50px;
     padding: 2px 5px;
-    margin-left: 8px;
+    margin-left: 6px;
 }
 
 .products-associated .product-card .add_container {
@@ -848,16 +845,13 @@ label.error:before {
 }
 
 .product-card .ax-info-list p:last-child, #productDiv .cant_prod {
-    color: #212121;
-    margin: 10px 0;
-    font-family: georgia, 'Georgia';
-    font-weight: bold;
+    margin: 5px 0;
 }
 
 .product-card .cant_prod {
     width: 60px;
     padding: 4px 5px;
-    margin-left: 8px;
+    margin-left: 6px;
 }
 
 .products-associated .ax-bond-card #add_bond {

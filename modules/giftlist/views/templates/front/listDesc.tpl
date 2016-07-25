@@ -120,7 +120,7 @@
 
 <div id="contentdivBono" style="display: none;">
 	<p id="message"></p>
-	<div class="row">
+	<div class="row text-center">
 		<a data-toggle="tooltip" data-placement="bottom" title="Continuar comprando" class="keep-buy btn btn-default btn-lista-regalos pull-left">Continuar comprando</a>
 		<a href="{$base_dir}pedido" data-toggle="tooltip" data-placement="bottom" title="Ir al carrito" class="see-list btn btn-default btn-lista-regalos pull-right">Ir al carrito</a>
 	</div>
