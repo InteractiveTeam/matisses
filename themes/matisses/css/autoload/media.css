@@ -4061,6 +4061,10 @@
 
 @media screen and (max-width: 414px){
 
+	#product #send_friend_form .product img {
+		width: 100%;
+	}
+
 	#sitemap #center_column.center_column {
 	    width: 100%;
 	    padding: 0 15px;
