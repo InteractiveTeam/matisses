@@ -2319,6 +2319,10 @@
         width: 100%;
     }
     
+    .search .content_sortPagiBar .sortPagiBar .select.selector1 > label {
+        padding: 0 0.4375rem;
+    }
+    
 }
 
 @media screen and (max-width :568px) {
@@ -4480,7 +4484,10 @@
     .add_to_cart button {
         width: inherit;
     }
-
+    
+    .pb-left-column #views_block {
+        height: auto;
+    }
     
     
 }
@@ -4599,10 +4606,6 @@
     	height: 30rem;
 	    position: relative;
 	}
-    
-    .category .content_sortPagiBar .sortPagiBar .cf.selector1 .chosen-container.chosen-container-single a {
-        height: 32px !important;
-    }
 
 }
 
