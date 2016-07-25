@@ -2606,6 +2606,12 @@
 
     }
 
+    #history #center_column.center_column {
+        width: 100%;
+        padding: 0 15px;
+
+    }
+
     button.btn.btn-default.btn-red {
         width: 100%;
     }
