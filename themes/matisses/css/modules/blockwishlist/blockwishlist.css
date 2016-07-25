@@ -173,9 +173,10 @@
 	.order-close {
     background: #d7162f;
     width: 1.25rem;
-    padding: 0.3125rem;
     color: #fff;
     float: right;
+    padding: 3px;
+    text-align: center;
 	}
 	.order-close:hover{
 	background: #000;

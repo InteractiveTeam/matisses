@@ -236,7 +236,7 @@ class GiftListModel extends ObjectModel
 		$id_lang = $context->language->id;
 		$sql = "SELECT id_customer FROM `" . _DB_PREFIX_ . "customer` WHERE `email` = '". $email."';";
 		$row = Db::getInstance()->getRow($sql);
-		if(count($row) > 0)
+		if(!empty($row) && count($row) > 0)
 			return $row['id_customer'];
 		else{
             Db::getInstance()->insert('email_cocreator',array(
