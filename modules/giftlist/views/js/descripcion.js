@@ -330,6 +330,7 @@ function saveInfo(){
                     $(".ax-creator-name").text(res.name);
                     $(".ax-event-date").text(res.date);
                     $(".ax-event-type").text(res.event);
+                    $(".ax-day").text(res.days);
                 }
                 $.fancybox.close();
                 $.fancybox({

@@ -109,7 +109,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
         $li->name = $data['name'];
         $li->public = ($data['list_type'] == 1 ? true : false);
         $li->event_type = $data['event_type'];
-        $li->event_date = 
+        $li->event_date = $ev_date;
         $li->guest_number = $data['guest_number'];
         $li->url = $li->slugify($data['url']);
         $li->message = $data['message'];

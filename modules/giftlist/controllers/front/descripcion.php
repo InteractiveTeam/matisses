@@ -232,8 +232,9 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
         die(Tools::jsonEncode(array(
             'msg' => $this->module->l('La lista ha sido editada.'),
             'name' => $data->firstname . " " . $data->lastname, 
-            'date' => date("Y/m/d",strtotime($data->years."-".$data->months."-".$data->days)),
+            'date' => date("d/m/Y",strtotime($data->years."-".$data->months."-".$data->days)),
             'event' => Db::getInstance()->getValue($ev),
+            'days' => $l->getMissingDays($ev_date),
             'error' => 0
         )));
     }

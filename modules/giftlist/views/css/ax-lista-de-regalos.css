@@ -1105,6 +1105,7 @@ label.error:before {
     border: #dbdbdb solid 1px;
     font-family: Georgia, 'Georgia';
     padding-right: 15px;
+    float: left;
 }
 
 .tab-content #ax-img-prof i, .tab-content #ax-img i {
@@ -1392,10 +1393,11 @@ label.error:before {
 }
 
 #frmSaveList span.ax-up-msg {
-    padding: 13px 11px;
+    padding: 12.5px 12px;
     color: #5e534d;
     border: #ffd594 solid 1px;
     background: rgba(255, 213, 148, 0.2);
+    float: left;
 }
 
 #frmSaveList span.ax-up-msg .fa {
@@ -1626,6 +1628,7 @@ label.error:before {
         display: block;
         margin: 10px 0;
         text-align: left;
+        float: none;
     }
     
     .module-giftlist-descripcion .ax-text-result-list {
@@ -1666,7 +1669,7 @@ label.error:before {
     #frmSaveList span.ax-up-msg {
         position: absolute;
         top: 0;
-        right: 2%;
+        right: 2.3%;
     }
     
     #frmSaveList .tab-pane .row {
@@ -1739,6 +1742,10 @@ label.error:before {
     
     .products-associated .ax-list-edit {
         margin-top: 40PX;
+    }
+    
+    #frmSaveList .nav-tabs li a {
+        padding: 10px 83.8px;
     }
 
 }
