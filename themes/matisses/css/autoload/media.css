@@ -2258,7 +2258,7 @@
     }
     
     .ax-tienda-item .ax-maps .ax-image {
-        width: 96%;    
+        width: 100%;    
     }
     
     .ax-btn-view-maps {
@@ -3714,7 +3714,7 @@
     }
     
     .ax-tienda-item .ax-maps .ax-image {
-        width: 91%;
+        width: 100%;
         height: 300px;
     }
     
@@ -4143,9 +4143,9 @@
 	    margin: auto;
 	}
 
-	.order .center_column b{
+	#order .center_column b{
 	    font-weight: 700 !important;
-	    display: block;
+	    display: inline-block;
 	    text-align: center;
 	}
 
@@ -4226,7 +4226,7 @@
 
 	#order .address_add.submit {
 
-	    padding: 0 15px 20px 15px;
+	    padding: 0px;
 
 	}
 
