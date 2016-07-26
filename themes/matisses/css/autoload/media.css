@@ -4086,6 +4086,9 @@
 
 
 @media screen and (max-width: 414px){
+	.wlp_bought_list #wlp_88_137{
+		padding: 0;
+	}
 
 	.fancybox-wrap .fancybox-outer .fancybox-inner{
 		width: 100% !important;
