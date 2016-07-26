@@ -4086,6 +4086,12 @@
 
 
 @media screen and (max-width: 414px){
+
+	#order #center_column .cart_navigation, #order #center_column #ordermsg, #order #center_column .address_add.submit {
+	    padding: 0px;
+	    margin: 0 15px;
+	}
+
 	.wlp_bought_list #wlp_88_137{
 		padding: 0;
 	}
