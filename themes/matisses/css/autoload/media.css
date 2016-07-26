@@ -4109,6 +4109,11 @@
 	    padding: 0px 15px;
 	}
 
+	#stores #center_column.center_column {
+	    width: 100%;
+	    padding: 0px 15px;
+	}
+
 	.ax-showcase-product {
 	    padding: 10px;
 	}
