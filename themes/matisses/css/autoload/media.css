@@ -4096,6 +4096,10 @@
 
 @media screen and (max-width: 414px){
 
+	html #category .content_sortPagiBar .sortPagiBar .cf.selector1 .chosen-container.chosen-container-single a {
+	    height: 32px;
+	}
+
 	.main-container #center_column .ax-tienda-item .ax-maps .ax-image {
 	    background: url(http://local.matisses.com/img/st/1.jpg);
 	    width: 93%;
