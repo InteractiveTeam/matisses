@@ -893,6 +893,7 @@ a.fancybox-nav {
     text-align: center;
     border-bottom: 1px solid #dbdbdb;
     border-left: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb;
 	height: 6.25rem;
 	background-color: #f8f8f8;
     opacity: 0.4;
