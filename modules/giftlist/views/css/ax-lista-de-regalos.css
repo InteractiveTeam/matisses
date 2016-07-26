@@ -739,6 +739,7 @@ label.error:before {
 .module-giftlist-descripcion .product-card {
     border: none;
     margin-bottom: 15px;
+    min-height: 405px;
 }
 
 .module-giftlist-descripcion .product-card label {

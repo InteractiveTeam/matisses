@@ -1189,7 +1189,7 @@ class matisses extends Module
 	
 	public function hookdisplayAvailableProduct($params)
 	{
-		$stores = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'store WHERE codmatisses in("'.str_replace(',',",",$params['product']->stores).'")');
+		$stores = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'store WHERE codmatisses in("'.str_replace(',','","',$params['product']->stores).'")');
 		$this->context->smarty->assign('stores',$stores);	
 		return $this->display(__FILE__, 'views/templates/hook/product_available.tpl');
 	}
