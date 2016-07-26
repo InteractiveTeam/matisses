@@ -4086,6 +4086,9 @@
 
 
 @media screen and (max-width: 414px){
+	.wlp_bought_list #wlp_88_137{
+		padding: 0;
+	}
 
 	.fancybox-wrap .fancybox-outer .fancybox-inner{
 		width: 100% !important;
@@ -4112,6 +4115,10 @@
 	#stores #center_column.center_column {
 	    width: 100%;
 	    padding: 0px 15px;
+	}
+
+	#cms .center_column {
+	    margin-bottom: 0rem;
 	}
 
 	.ax-showcase-product {
