@@ -4644,6 +4644,10 @@
 
 @media screen and (max-width:360px) {
 
+	#sitemap  #footer {
+	    margin: 20px 0 0 0;
+	}
+
 
     .fancybox-outer .fancybox-inner #frmAddGiftList {
         width: 264px;
