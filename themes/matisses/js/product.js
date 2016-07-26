@@ -603,7 +603,13 @@ function updateDisplay()
 
     if (selectedCombination['short_description']){
         $("#short_description_content").text(selectedCombination['short_description']);
+    }
+    if (selectedCombination['description']){
+        $("#tabs-1").removeClass("hidden").html(selectedCombination['description']);
         $(".product-tabs #tabs-1").html('<p>'+selectedCombination['description']+'</p>');
+    }else{
+        $("#tabs-1").addClass("hidden");
+        $("#tab-li-1").addClass("hidden");
     }
     
     if (selectedCombination['itemname']){

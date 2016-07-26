@@ -4143,7 +4143,7 @@ box-sizing: border-box;
 .main-container .addresses .address li {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 1rem;
-	line-height: 1.2rem;
+	line-height: 1.6rem;
 }
 
 .main-container .address li.address_update a {
@@ -4329,7 +4329,7 @@ padding: 15px;
 font-family: 'Open Sans', sans-serif;
 font-size: 1rem;
 color: #ADADAD;
-line-height: 1.5;
+line-height: 1.7;
 overflow: hidden;
 overflow-y: auto;
 }
@@ -6305,7 +6305,7 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 }
 
 .category .content_sortPagiBar .sortPagiBar .cf.selector1 .chosen-container.chosen-container-single a {
-    height: 46px !important
+    height: 46px;
 }
 
 .layered-left .checker {
