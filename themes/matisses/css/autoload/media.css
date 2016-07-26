@@ -4096,6 +4096,19 @@
 
 @media screen and (max-width: 414px){
 
+	#addresses #center_column .address-cont {
+	    padding: 0 10px;
+	}
+
+	#addresses #center_column.center_column {
+	    width: 100%;
+	    padding: 0 15px;
+	}
+
+	#address .adress-add{
+	    padding: 0 15px;
+	}
+
 	html #category .content_sortPagiBar .sortPagiBar .cf.selector1 .chosen-container.chosen-container-single a {
 	    height: 32px;
 	}
@@ -4215,7 +4228,7 @@
 	}
 
 	.form-group label {
-	    line-height: 1;
+	    line-height: 1.4;
 	    margin-top: 10px;
 	}
 
@@ -4230,7 +4243,7 @@
 
 
  	#center_column .wrap_extra_right .ax-shareContentProduct {
-	    width: 83%;
+	    width: 68%;
 	    margin: 0 auto;
 	}
 
@@ -4363,7 +4376,7 @@
 	}
 
  	#page .txt-address, #page .page-subheading {
-	    margin-top: 20px;
+	    margin-top: 10px;
 	}
 
 	#authentication .box {
