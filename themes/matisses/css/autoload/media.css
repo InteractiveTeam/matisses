@@ -4096,6 +4096,15 @@
 
 @media screen and (max-width: 414px){
 
+	#authentication #account-creation_form .required{
+	    margin-top: 70px;
+	}
+
+
+	.ax-tienda-item .ax-item-text {
+	    padding: 20px 20px 60px 20px;
+	}
+
 	#order #contentPlaceToPay .datosPlaceToPay b {
 	    text-align: center;
 	}
