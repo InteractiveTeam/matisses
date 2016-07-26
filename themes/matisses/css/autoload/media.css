@@ -3849,6 +3849,11 @@
 @media screen and (max-width :320px) {
 
 
+	#stores #page .main-container #center_column .ax-tienda-item .ax-maps .ax-image {
+	    width: 91%;
+	}
+
+
 
 	html .product #page #center_column .wrap_extra_right .ax-shareContentProduct {
 	    width: 100%;
@@ -3979,6 +3984,10 @@
 /* iPhone 6 landscape */
 @media screen and (max-width: 375px) {
 
+	#page .main-container #center_column .ax-tienda-item .ax-maps .ax-image {
+	    width: 92%;
+	}
+
 	.product #center_column .wrap_extra_right .ax-shareContentProduct {
 	    width: 66%;
 	    margin: 0 auto;
@@ -4086,6 +4095,11 @@
 
 
 @media screen and (max-width: 414px){
+
+	.main-container #center_column .ax-tienda-item .ax-maps .ax-image {
+	    background: url(http://local.matisses.com/img/st/1.jpg);
+	    width: 93%;
+	}
 
 	#order #center_column .cart_navigation, #order #center_column #ordermsg, #order #center_column .address_add.submit {
 	    padding: 0px;
