@@ -4135,6 +4135,11 @@
 
 @media screen and (max-width: 414px){
 
+
+	#module-blockwishlist-mywishlist #mywishlist .wlp_bought ul.row.wlp_bought_list li {
+	    padding: 0;
+	}
+
 	#mywishlist #block-history .ax-wishlist-item {
 	    width: 46%;
 	    margin: 0px 5px;
