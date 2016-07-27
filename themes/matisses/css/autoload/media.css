@@ -1978,6 +1978,19 @@
 @media screen and (max-width :768px) {
 
 
+	#category .content_sortPagiBar .top-pagination-content{
+	    float: left;
+	    width: auto;
+	    margin: 10px 0 0 0;
+	}
+
+	#category .content_sortPagiBar .bottom-pagination-content {
+	    float: left;
+	    width: auto;
+	    margin: 10px 0 0 0;
+	}
+
+
 	#cms #page .center_column{
 	    width: 100%;
 	}
