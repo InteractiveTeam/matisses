@@ -130,10 +130,10 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
                 'msg' => "No hay suficiente producto en inventario"
             )));
         }else{
-            $prod = Db::getInstance()->getValue("SELECT missing FROM "._DB_PREFIX_."list_product_bond WHERE id_product = ".$id_prod . " AND id_list = ".$id_list);
+            $prod = Db::getInstance()->getRow("SELECT cant,missing FROM "._DB_PREFIX_."list_product_bond WHERE id_product = ".$id_prod . " AND id_list = ".$id_list);
             Db::getInstance()->update('list_product_bond',array(
                 'cant' => $cant,
-                'missing' => $cant - (int)$prod
+                'missing' => ($prod['cant'] == $prod['missing'] ? $cant : $cant - ($prod['cant'] - $prod['missing'])),
             ),"id_product = ".$id_prod . " AND id_list = ".$id_list);
             die(Tools::jsonEncode(array(
                 'error' => false,
