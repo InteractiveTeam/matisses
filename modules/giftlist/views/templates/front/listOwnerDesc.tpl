@@ -154,7 +154,10 @@
                                     <p>{$att_group['group_name']}: {$att_group['attribute_name']}</p>
                                 {/if}
                             {/foreach}
-                            <p>{l s='Cantidad:'}{if $row['group']}{$row['cant']}{else} <input class="cant_prod" type="number" min="0" value="{$row['cant']}" disabled/>{/if}</p>
+                            {if $row['group']}<p class="ax-cant-fija">{l s='Cantidad:'} {$row['cant']}</p>
+                            {else} 
+                                <p><input class="cant_prod" type="number" min="0" value="{$row['cant']}" disabled/></p>
+                            {/if}
                         </div>
                         <a class="delete-product hidden" data-toggle="tooltip" data-placement="bottom" title="Quitar producto"><i class="fa fa-close"></i></a>
                     </div>
