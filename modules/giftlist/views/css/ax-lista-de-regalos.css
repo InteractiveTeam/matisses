@@ -942,7 +942,7 @@ label.error:before {
 }
 
 .module-giftlist-descripcion .jplist-panel .jplist-pagination {
-    margin: 0 0 0 20px;
+    margin: 0 20px;
     float: left;
 }
 

@@ -6311,3 +6311,45 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 .layered-left .checker {
     margin: 4px;
 }
+
+#mywishlist #block-history .ax-wishlits-cont {
+    margin: 0;
+    width: 100%;
+    display: block;
+    padding: 20px 0 20px 0;
+    border-bottom: 1px solid #d7162f;
+}
+
+#mywishlist #block-history .ax-wishlist-item {
+    width: 16%;
+    display: inline-block;
+    margin: 10px 0;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    vertical-align: top;
+}
+
+#mywishlist #block-history .ax-wishlist-item .first_item, #mywishlist #block-history .ax-wishlist-item .mywishlist_first, #mywishlist #block-history .ax-wishlist-item .mywishlist_second  {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    color: black;
+    text-align: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eaeaea;
+    padding: 10px 0 5px 0;
+}
+
+#mywishlist #block-history .ax-wishlist-item a {
+    color: #d7162f;
+}
+
+
+
+
+
+
+
+
+
+
