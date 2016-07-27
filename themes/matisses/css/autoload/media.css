@@ -4096,6 +4096,28 @@
 
 @media screen and (max-width: 414px){
 
+	#authentication #account-creation_form .required{
+	    margin-top: 70px;
+	}
+
+
+	.ax-tienda-item .ax-item-text {
+	    padding: 20px 20px 60px 20px;
+	}
+
+	#order #contentPlaceToPay .datosPlaceToPay b {
+	    text-align: center;
+	}
+
+	#carrier_area #form .delivery_options .delivery_option_price{
+		text-align: center;
+	}
+
+	#order #center_column #order_step{
+		margin: 1.4375rem auto;
+	}
+	
+
 	#addresses #center_column .address-cont {
 	    padding: 0 10px;
 	}
