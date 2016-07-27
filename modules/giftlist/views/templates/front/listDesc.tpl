@@ -35,7 +35,8 @@
         <a href="javascript:void(0);" class="ax-print"><i class="fa fa-print"></i>{l s='Imprimir lista' mod='giftlist'}</a>
         </div>
         <div id="ax-products">
-           <div class="jplist-panel">	
+           <div class="jplist-panel">
+              <div class="sortPagiBar">	
                <label for="nb_item"><span>Mostrar</span> </label>					
                 <select
                     class="jplist-select" 
@@ -48,6 +49,7 @@
                     <option data-number="12"> 12 </option>
                     <option data-number="all"> Todos </option>
                 </select>
+               </div>
                 <div 
                 class="jplist-pagination" 
                 data-control-type="pagination" 
