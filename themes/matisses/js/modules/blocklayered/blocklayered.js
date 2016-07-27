@@ -418,7 +418,7 @@ function stopAjaxQuery() {
 	ajaxQueries = new Array();
 }
 
-function reloadContent(params_plus, num = null)
+function reloadContent(params_plus = false, num = null)
 {
 	stopAjaxQuery();
 
