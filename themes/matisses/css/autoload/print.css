@@ -163,4 +163,9 @@
         min-height: 270px;
     }
     
+    .products-associated .product-card p.ax-name-list {
+        overflow: inherit;
+        height: auto;
+    }
+    
 }

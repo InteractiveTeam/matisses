@@ -118,7 +118,7 @@
         <div id="ax-products">
             <div class="jplist-panel">
                <div class="sortPagiBar">
-               <label for="nb_item"> <span>Mostrar</span> </label>
+               <label for="nb_item"><span>Mostrar</span> </label>
                <select
                     class="jplist-select" 
                     data-control-type="items-per-page-select" 
