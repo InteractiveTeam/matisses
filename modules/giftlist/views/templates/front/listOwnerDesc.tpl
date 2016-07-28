@@ -156,7 +156,7 @@
                             {/foreach}
                             {if $row['group']}<p class="ax-cant-fija">{l s='Cantidad:'} {$row['cant']}</p>
                             {else} 
-                                <p><input class="cant_prod" type="number" min="0" value="{$row['cant']}" disabled/></p>
+                                <p>{l s='Cantidad:'} <input class="cant_prod" type="number" min="0" value="{$row['cant']}" disabled/></p>
                             {/if}
                         </div>
                         <a class="delete-product hidden" data-toggle="tooltip" data-placement="bottom" title="Quitar producto"><i class="fa fa-close"></i></a>
