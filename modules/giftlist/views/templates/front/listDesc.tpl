@@ -82,7 +82,7 @@
                                 <button data-toggle="tooltip" data-placement="bottom" title="{l s='Añadir al carrito' mod='giftlist'}" class="add-to-cart btn btn-default btn-lista-regalos">{l s='Añadir al carrito' mod='giftlist'}</button>
                             </div>
                             {if $row['group']}
-                            <p class="total_qty" data-cant="{$row['cant']}">{l s='Cantidad:'} {$row['cant']}
+                            <p class="total_qty ax-price-fija-user" data-cant="{$row['cant']}">{l s='Cantidad:'} {$row['cant']}
                             {else}
                             <p class="total_qty" data-max="{$row['missing']}" data-cant="0">{l s='Cantidad:'} 
                             <input type="text" min="1" value="1" max="{$row['missing']}" name="qty_card" id="qty"/>

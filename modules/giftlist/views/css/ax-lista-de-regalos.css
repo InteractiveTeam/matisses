@@ -774,9 +774,13 @@ label.error:before {
 }
 
 .products-associated .total_qty {
-    margin: 5px 0;
+    margin: 5px;
     font-size: 0.9rem;
     display: inline-block;
+}
+
+.products-associated .total_qty.ax-price-fija-user {
+    margin-top: 10px;
 }
 
 .products-associated .total_qty input {
@@ -1485,6 +1489,11 @@ label.error:before {
 
 .fancybox-overlay .fancybox-error {
     padding: 15px;
+}
+
+.module-giftlist-descripcion .chosen-container .chosen-results {
+    height: auto;
+    width: auto;
 }
 
 @media screen and (max-width:1024px) {

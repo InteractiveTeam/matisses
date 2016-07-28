@@ -6237,7 +6237,7 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     border-left: transparent solid 6px;
 }
 
-.chosen-container .chosen-results {
+.category .chosen-container .chosen-results {
     height: auto;
 }
 
@@ -6342,6 +6342,10 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 
 #mywishlist #block-history .ax-wishlist-item a {
     color: #d7162f;
+}
+
+.jplist-hidden {
+    display: none !important;
 }
 
 
