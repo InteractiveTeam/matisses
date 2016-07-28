@@ -174,7 +174,7 @@ $(document).ready(function() {
                      'speedOut': 300,
                      'autoDimensions': true,
                      'centerOnScroll': true,
-                     'content' : '<div><p class="fancybox-error">Se ha editado la lista</p></div>'
+                     'content' : '<div><p class="fancybox-error">Se ha editado la lista correctamente</p></div>'
                     });
                 } 
             });                      
@@ -429,7 +429,7 @@ function uploadImage(prof,input){
              'speedOut': 300,
              'autoDimensions': true,
              'centerOnScroll': true,
-             'content' : '<div><p class="fancybox-error">Imagen cargada con éxito.</p></div>'
+             'content' : '<div><p class="fancybox-error">Imagen cargada con éxito</p></div>'
             });
         }
     });
