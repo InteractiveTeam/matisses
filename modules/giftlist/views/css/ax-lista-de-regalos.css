@@ -1496,6 +1496,22 @@ label.error:before {
     width: auto;
 }
 
+.module-giftlist-descripcion .jplist-panel .chosen-container .chosen-results {
+    width: 100%;
+}
+
+p.ax-no-products {
+    margin-top: 20px;
+    text-align: center;
+    font-family: Georgia, 'Georgia';
+    font-size: 1rem !important;
+}
+
+p.ax-no-products .fa {
+    margin-right: 10px;
+    color: #eac78a;
+}
+
 @media screen and (max-width:1024px) {
      
     .ax-search-home .ax-form-data-search input {

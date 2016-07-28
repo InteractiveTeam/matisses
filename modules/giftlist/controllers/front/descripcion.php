@@ -5,9 +5,9 @@ include_once __DIR__ . '/../../classes/ListProductBond.php';
 include_once __DIR__ . '/../../classes/Bond.php';
 include_once _PS_MODULE_DIR_ . "matisses/matisses.php";
 include_once _PS_OVERRIDE_DIR_ ."controllers/front/CartController.php";
-define("_ERROR_","Ha ocurrido un error, vuelva a intentarlo mas tarde");
-define("_DELETED_","Elmininado Correctamente");
-define("_EDITED_","Se ha editado la información");
+define("_ERROR_","Ha ocurrido un error, vuelve a intentarlo más tarde");
+define("_DELETED_","Elmininado correctamente");
+define("_EDITED_","Se ha editado la información correctamente");
 
 class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	public $uploadDir = _PS_UPLOAD_DIR_."giftlist/";
@@ -232,7 +232,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
             'event_type' => $data->event_type
         ),"id = " . $id);
         die(Tools::jsonEncode(array(
-            'msg' => $this->module->l('La lista ha sido editada.'),
+            'msg' => $this->module->l('La lista ha sido editada exitosamente.'),
             'name' => $data->firstname . " " . $data->lastname, 
             'date' => date("d/m/Y",strtotime($data->years."-".$data->months."-".$data->days)),
             'event' => Db::getInstance()->getValue($ev),
@@ -260,7 +260,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
     }
     private function _saveMessaage($id, $message){
         if(Db::getInstance()->update('gift_list', array('message' => $message),"id = ".$id))
-            die(Tools::jsonEncode("Se ha actualizado el mensaje"));
+            die(Tools::jsonEncode("Se ha actualizado el mensaje correctamente"));
         else
             die(Tools::jsonEncode("Ha ocurrido un error"));
     }
@@ -494,12 +494,12 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			MailCore::l('Te han compartido una lista'), 1),
 			$params, Tools::getValue('email'), $customer->firstname.' '.$customer->lastname,
 			null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
-			die("Se ha compartido la lista");
+			die("Se ha compartido la lista correctamente");
 		}
 		MailCore::Send($id_lang, 'share-list-no-cocreator', sprintf(
 		MailCore::l('Te han compartido una lista'), 1),
 		$params, Tools::getValue('email'), $customer->firstname.' '.$customer->lastname,
 		null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
-		die("Se ha compartido la lista");
+		die("Se ha compartido la lista correctamente");
 	}
 }
