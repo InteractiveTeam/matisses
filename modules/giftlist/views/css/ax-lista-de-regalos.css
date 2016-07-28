@@ -1500,6 +1500,10 @@ label.error:before {
     width: 100%;
 }
 
+.product-card.ax-no-products {
+    min-height: auto;
+}
+
 p.ax-no-products {
     margin-top: 20px;
     text-align: center;
