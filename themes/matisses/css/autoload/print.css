@@ -75,7 +75,7 @@
     }
     
     #footer {
-        margin: 10px 0 0 0;
+        margin: 70px 0 0 0;
     }
     
    #footer {
@@ -99,6 +99,7 @@
     #ax-products .col-md-3 {
         width: 23.3%;
         float: left;
+        height: 350px;
     }
     
     .col-md-3 .ax-cont-hover .img-container img {
@@ -164,8 +165,23 @@
     }
     
     .products-associated .product-card p.ax-name-list {
-        overflow: inherit;
-        height: auto;
+        height: 45px;
+    }
+    
+    .products-associated .product-card .img-container {
+        height: 180px !important;
+    }
+    
+    .nav-breadcrum {
+        padding: 0.225rem;
+    }
+    
+    .breadcrumb {
+        display: none;
+    }
+    
+    .product-card .ax-info-list p:last-child, #productDiv .cant_prod {
+        margin: 0;
     }
     
 }

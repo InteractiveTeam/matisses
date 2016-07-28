@@ -35,7 +35,8 @@
         <a href="javascript:void(0);" class="ax-print"><i class="fa fa-print"></i>{l s='Imprimir lista' mod='giftlist'}</a>
         </div>
         <div id="ax-products">
-           <div class="jplist-panel">
+          {if !empty($products)}
+           <div class="jplist-panel cf">
               <div class="sortPagiBar">	
                <label for="nb_item"><span>Mostrar</span> </label>					
                 <select
@@ -57,7 +58,9 @@
                 data-control-action="paging">
                 </div>
             </div>
+            {/if}
             <div class="row ax-prod-cont">
+                {if !empty($products)}
                 {foreach from=$products item=row}
                     {$atribute_group = $row['options'][3]->value}
                         <div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}">
@@ -89,6 +92,9 @@
                             {/if}
                     </div>
                 {/foreach}
+                {else}
+                <div class="product-card"><p class="ax-no-products"><i class="fa fa-minus-circle"></i>{l s='No hay productos en esta lista'}</p></div>
+                {/if}
                 {if $list_desc['recieve_bond']}
                 <div class="product-card ax-bond-card col-md-3" data-id="{$list_desc['id']}">
                     <img src="{$modules_dir}/giftlist/views/img/details-lista.png">
@@ -96,7 +102,8 @@
                 </div>
                 {/if}
             </div>
-            <div class="jplist-panel">
+            {if !empty($products)}
+            <div class="jplist-panel cf">
                <div class="sortPagiBar">
                 <label for="nb_item"><span>Mostrar</span> </label>						
                 <select
@@ -118,6 +125,7 @@
                 data-control-action="paging">
                 </div>
             </div>
+            {/if}
         </div>
 	</div>
 </div>
