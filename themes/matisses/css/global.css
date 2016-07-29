@@ -4330,8 +4330,6 @@ font-family: 'Open Sans', sans-serif;
 font-size: 1rem;
 color: #ADADAD;
 line-height: 1.7;
-overflow: hidden;
-overflow-y: auto;
 }
 
 .layer-attributes .scroll-left {
