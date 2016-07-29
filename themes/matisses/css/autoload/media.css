@@ -4773,6 +4773,7 @@
     
     .category #pagination_bottom .pagination li span, .category #pagination_bottom .pagination li a {
         line-height: 30px;
+        padding-bottom: 0;
     }
     
     .enabled-filters li a:after {
