@@ -2369,7 +2369,7 @@
     }
     
     .search .content_sortPagiBar .sortPagiBar .select.selector1 > label {
-        padding: 0 0.4375rem;
+        padding: 0.55rem 0.6rem;
     }
     
     .category .parrilla-productos .container div#left_column {
@@ -2410,7 +2410,7 @@
         margin-top: 10px;
     }
     
-    .category .center_column .content_sortPagiBar .sortPagiBar {
+    #category.category .center_column .content_sortPagiBar .sortPagiBar {
         margin-bottom: 0;
     }
 
@@ -4784,7 +4784,6 @@
     
     .category #pagination_bottom .pagination li span, .category #pagination_bottom .pagination li a {
         line-height: 30px;
-        padding-bottom: 0;
     }
     
     .enabled-filters li a:after {
