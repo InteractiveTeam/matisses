@@ -418,8 +418,10 @@ function stopAjaxQuery() {
 	ajaxQueries = new Array();
 }
 
-function reloadContent(params_plus = false, num = null)
+function reloadContent(params_plus = false, num)
 {
+    if (typeof(num)==='undefined') num = null;
+    
 	stopAjaxQuery();
 
 	if (!ajaxLoaderOn)
