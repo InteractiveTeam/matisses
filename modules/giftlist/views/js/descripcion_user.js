@@ -53,8 +53,11 @@ $(document).ready(function(){
 	});
     
     $(".add-to-cart-modal").click(function(){
-        var el = $(this);
-        addFromList(el.attr("data-id"),el.attr("data-att"), $(".ax-mod-qty").val(), el,$(".products-associated").attr("data-id"));
+        var qtyModal = $(".ax-mod-qty").val();
+        $("#module-giftlist-descripcion #qty").val(qtyModal);
+        $(".add-to-cart").trigger('click');
+//        var el = $(this);
+//        addFromList(el.attr("data-id"),el.attr("data-att"), $(".ax-mod-qty").val(), el,$(".products-associated").attr("data-id"));
     });
 
 	//buy bond
