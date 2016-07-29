@@ -418,9 +418,9 @@ function stopAjaxQuery() {
 	ajaxQueries = new Array();
 }
 
-function reloadContent(params_plus = false, num)
-{
+function reloadContent(params_plus, num){
     if (typeof(num)==='undefined') num = null;
+    if (typeof(params_plus)==='undefined') params_plus = false;
     
 	stopAjaxQuery();
 
