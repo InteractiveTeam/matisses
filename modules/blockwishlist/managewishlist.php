@@ -87,6 +87,10 @@ if ($context->customer->isLogged())
 					if (!isset($products[$i]['cover']))
 						$products[$i]['cover'] = $context->language->iso_code.'-default';
 				}
+                
+                $image = ProductCore::getCombinationImageById( (int)$products[$i]['id_product_attribute'], Context::getContext()->language->id);
+                $products[$i]['image'] = $link->getImageLink($products[$i]['link_rewrite'], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image']), 'home_default');
+                
 				$products[$i]['bought'] = false;
 				for ($j = 0, $k = 0; $j < sizeof($bought); ++$j)
 				{

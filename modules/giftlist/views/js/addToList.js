@@ -112,7 +112,7 @@ $(function(){
                         'speedOut': 300,
                         'autoDimensions': true,
                         'centerOnScroll': true,
-                        'content' : 'No se puedo añadir a la lista, intentalo mas tarde'
+                        'content' : 'No se puedo añadir a la lista, inténtalo más tarde'
                     });
 				}
 			});
