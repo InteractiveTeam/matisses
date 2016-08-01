@@ -89,6 +89,8 @@ if ($context->customer->isLogged())
 				}
                 
                 $image = ProductCore::getCombinationImageById( (int)$products[$i]['id_product_attribute'], Context::getContext()->language->id);
+                if(!is_array($image))
+                    $image = Image::getImages(1, $products[$i]['id_product']);
                 $products[$i]['image'] = $link->getImageLink($products[$i]['link_rewrite'], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image']), 'home_default');
                 
 				$products[$i]['bought'] = false;
