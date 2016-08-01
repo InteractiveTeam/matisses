@@ -628,8 +628,8 @@ function reloadContent(params_plus, num){
                     current_price_slider = 'price'+'-'+$('#layered_'+sliderType+'_range_min').val()+'-'+$('#layered_'+sliderType+'_range_max').val();
 				}
 			});
-
-			window.location.href = current_friendly_url;
+            if(current_friendly_url !== "#" || getUrlParams() !== "#")
+                window.location.href = current_friendly_url;
 
 			if (current_friendly_url != '#/show-all')
 				$('div.clearfix.selector1').show();
