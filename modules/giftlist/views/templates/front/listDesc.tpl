@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<p class="ax-text-description-lista">{$list_desc['message']}</p>
+<p class="ax-text-description-lista">{html_entity_decode($list_desc['message'])}</p>
 
 <div class="ax-general-info ax-cont-admin-listas-regalos user">
     <div class="ax-cont-list desc">

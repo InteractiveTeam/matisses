@@ -174,7 +174,9 @@ var ax_admin = {
             data.append('image-prof', file);
         });
         var formData = $("#frmSaveList").serialize();
+        var message = $("#message").val().replace(/\n/g, "<br>");
         data.append("form",formData);
+        data.append("message",message);
         data.append("ajax",true);
         data.append("method",'saveList');
         $.ajax({
@@ -223,7 +225,7 @@ var ax_admin = {
         if(ax_admin.form.form()){
             if(error)
                 $(".ax-cont-form-date-lista").parent().append('<label id="date-error" class="error">La fecha seleccionada en este campo debe ser posterior a la fecha actual.</label>');
-            if(!ax_admin.validateSelect() || !error)
+            if(!ax_admin.validateSelect() || error)
                 return;
             if($(".tab-pane.active").attr("data-tab-id") === "1"){
                 var dir = $("#address").val();

@@ -22,7 +22,7 @@
                 <div class="part">{l s='Código' mod='giftlist'}<span>{$list_desc['code']}</span></div>
                 <div class="part">{l s='Días para el evento' mod='giftlist'}<span class="ax-day">{if {$days} >= 0}{{$days}|replace:'+':''}{else}{l s='Finalizado' mod='giftlist'}{/if}</span></div>
                 <div class="part">{l s='Tus regalos' mod='giftlist'}<span>{$numberProducts.products}</span></div>
-                <div class="part">{l s='Regalos restantes' mod='giftlist'}<span>{$numberProducts.products_bought}</span></div>
+                <div class="part">{l s='Regalos restantes' mod='giftlist'}<span>{$numberProducts.products - $numberProducts.products_bought}</span></div>
                 <div class="part">{l s='Registrante' mod='giftlist'}<span class="ax-creator-name">{$creator}</span></div>
                 <div class="part">{l s='Tipo de evento' mod='giftlist'}<span class="ax-event-type">{$event_type}</span></div>
                 <div class="part">{l s='Fecha' mod='giftlist'}<span class="ax-event-date">{date("d/m/Y",strtotime($list_desc['event_date']))}</span></div>
@@ -59,7 +59,7 @@
         <div class="ax-text-result-list ax-result-inline">
             <h2>{l s='Mensaje de bienvenida' mod='giftlist'}</h2>
         </div>
-        <p id="ax-message-content" class="ax-message-content">{$list_desc['message']}</p>
+        <p id="ax-message-content" class="ax-message-content">{html_entity_decode($list_desc['message'])}</p>
             <div id="ax-message-content" class="ax-message-content">
                 <a href="javascript:void(0);" id="ax-edit" class="ax-edit">{l s='Editar mensaje' mod='giftlist'}</a>
                 <a href="javascript:void(0);" id="ax-delete" class="ax-delete">{l s='Eliminar mensaje' mod='giftlist'}</a>

@@ -80,7 +80,7 @@ $(document).ready(function() {
     
     $("#ax-edit").click(function(){
         var mc = $("#ax-message-content");
-        var m = mc.text();
+        var m = mc.html();
         mc.hide();
         var bedit = $("#ax-edit");
         var bdelete = $("#ax-delete");
@@ -511,7 +511,7 @@ function setTown(id_state){
 }
 
 function saveMessage(){
-    var message = $(".ax-new-message").val();
+    var message = $(".ax-new-message").val().replace(/\n/g, "<br>");
     $(".ax-new-message").remove();
     $("#ax-save").remove();
     var mc = $("#ax-message-content");
@@ -540,7 +540,7 @@ function saveMessage(){
             });
         }, 
     }).always(function(){
-        mc.text(message);
+        mc.html(message);
         mc.show();
         $("#ax-edit").show();
         $("#ax-delete").show();
