@@ -3419,8 +3419,8 @@ box-sizing: border-box;
 	overflow: hidden !important;
 	}
     div#new_comment_form {
-        overflow-y: auto;
-        height: 100%;
+        /*overflow-y: auto;
+        height: 100%;*/
     }
     div#new_comment_form form {
         width: 100%
@@ -6300,6 +6300,7 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 
 .search .content_sortPagiBar .sortPagiBar .select.selector1 > label {
     padding: 0.85rem 0.6rem;
+    line-height: 1rem;
 }
 
 .category .content_sortPagiBar .sortPagiBar .cf.selector1 .chosen-container.chosen-container-single a {
