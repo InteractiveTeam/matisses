@@ -125,6 +125,15 @@ var ax_admin = {
                     $("#ammount_div").addClass("hidden");
             });
         });
+    },realDate:function(year, month, _date){
+        month -= 1;
+        var d = new Date(year, month, _date);
+        if (d.getFullYear() != year 
+        || d.getMonth() != month
+        || d.getDate() != _date) {
+            return true;
+        }
+        return false;
     },
     uploadMsg:function(el){
         var msg = $("<span>").addClass("ax-up-msg").html("<i class='fa fa-check'></i>");
@@ -216,16 +225,23 @@ var ax_admin = {
     changeTab:function(){
         var active = $(".nav-tabs li.active a");
         var next = parseInt(active.parent().attr("data-id")) + 1;
-        var error = false;
+        var error = false;            
+        var invalidDate = ax_admin.realDate($("#years").val(),$("#months").val(),$("#days").val());
+        if($("#months").val() === "0" && $("#days").val() === "0" && $("#years").val() === "0")
+            invalidDate = false;
         if(!ax_admin.validDate()){
             error = true;
         }else{
             $("#date-error").remove();
         }
+        if(!invalidDate)
+            $("#real-error").remove();
         if(ax_admin.form.form()){
+            if(invalidDate)
+                $(".ax-cont-form-date-lista").parent().append('<label id="real-error" class="error">Debes ingresar una fecha válida.</label>');
             if(error)
                 $(".ax-cont-form-date-lista").parent().append('<label id="date-error" class="error">La fecha seleccionada en este campo debe ser posterior a la fecha actual.</label>');
-            if(!ax_admin.validateSelect() || error)
+            if(!ax_admin.validateSelect() || error || invalidDate)
                 return;
             if($(".tab-pane.active").attr("data-tab-id") === "1"){
                 var dir = $("#address").val();
@@ -241,7 +257,9 @@ var ax_admin = {
             $("#step"+next+" a").attr("href","#step-"+next);
             $("#step"+next+" a").tab("show");
         }else{
-            if(error && $("#months").val() !== "0" || $("#days").val() !== "0" || $("#years").val() !== "0")
+            if(invalidDate)
+                $(".ax-cont-form-date-lista").parent().append('<label id="real-error" class="error">Debes ingresar una fecha válida.</label>');
+            if(error && $("#months").val() !== "0" && $("#days").val() !== "0" && $("#years").val() !== "0")
                 $(".ax-cont-form-date-lista").parent().append('<label id="date-error" class="error">La fecha seleccionada en este campo debe ser posterior a la fecha actual.</label>');
             if(!ax_admin.validateSelect() || !error)
                 ax_admin.validateSelect();

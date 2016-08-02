@@ -315,7 +315,16 @@ $(document).ready(function() {
 });
 
 function saveInfo(){
+    var invalidDate = realDate($("#years").val(),$("#months").val(),$("#days").val());
+    if($("#months").val() === "0" && $("#days").val() === "0" && $("#years").val() === "0")
+        invalidDate = false;
+    if(!invalidDate)
+        $("#real-error").remove();
     if(valFormInfo.form()){
+        if(invalidDate){
+            $(".date-cont").append('<label id="real-error" class="error">Debes ingresar una fecha válida.</label>');
+            return;
+        }
         $.ajax({
             type:"post",
             data:{
@@ -433,6 +442,17 @@ function uploadImage(prof,input){
             });
         }
     });
+}
+
+function realDate(year, month, _date){
+    month -= 1;
+    var d = new Date(year, month, _date);
+    if (d.getFullYear() != year 
+    || d.getMonth() != month
+    || d.getDate() != _date) {
+        return true;
+    }
+    return false;
 }
 
 function deleteImage(prof,el){
