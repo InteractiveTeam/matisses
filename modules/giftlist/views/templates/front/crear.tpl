@@ -118,7 +118,7 @@
                             </select>
                         </div>
                         <div class="row">
-                            <label for="town">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
+                            <label for="city">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
                             <select id="city" name="city" class="form-control ax-select">
                                 <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
                                 {foreach from=$countries item=c}
@@ -128,7 +128,7 @@
                         </div>
                         <div class="row">
                             <div class="required town unvisible">
-                                <label for="city">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
+                                <label for="town">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
                                 <select id="town" name="town" class="form-control ax-select">
                                     <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
                                 </select>
@@ -200,7 +200,7 @@
                 <div class="col-md-6">
                     <label for="message">
                     {l s='Mensaje' mod='giftlist'}</label>
-                    <p class="ax-text-descript">{l s='Este mensaje aparecerá como bienvenida a tu lista de regalos, cuéntales a tus amigos y familiares de qué se trata.' mod='giftlist'}</p>
+                    <p class="ax-text-descript">{l s='Este mensaje aparecerá como bienvenida a tu lista de regalos, cuéntale a tus amigos y familiares de qué se trata.' mod='giftlist'}</p>
                     
                     <textarea name="message" class="form-control" id="message"></textarea>
                 </div>

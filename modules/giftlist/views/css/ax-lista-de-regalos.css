@@ -31,6 +31,10 @@ label.error {
     margin-left: 17px;
 }
 
+#step-1 .row {
+    position: relative;
+}
+
 .module-giftlist-buscar .ax-btn-filter, .module-giftlist-empezar .ax-btn-filter, .module-giftlist-listas .ax-btn-filter, .module-giftlist-administrar .ax-btn-filter, .module-giftlist-descripcion .ax-btn-filter {
     display: none;
 }

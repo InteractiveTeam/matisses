@@ -112,7 +112,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
         $li->event_date = $ev_date;
         $li->guest_number = $data['guest_number'];
         $li->url = $li->slugify($data['url']);
-        $li->message = $data['message'];
+        $li->message =  htmlentities(Tools::getValue('message'));
         $li->recieve_bond = isset($data['recieve_bond']) && $data['recieve_bond'] == 'on' ? true : false;
         $li->min_amount = $data['min_ammount'];
         $li->address_before = $data['dir_before'];

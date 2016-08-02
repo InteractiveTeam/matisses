@@ -142,7 +142,9 @@ var ax_admin = {
         return ret;
     },
     setTown: function (id_state){
-	   var states = countries[id_state].states;
+        if(id_state === 0)
+            return false;
+	    var states = countries[id_state].states;
         $("#town").empty().append($('<option>', {
             value: 0,
             text: "Seleccione una opción"
@@ -172,7 +174,9 @@ var ax_admin = {
             data.append('image-prof', file);
         });
         var formData = $("#frmSaveList").serialize();
+        var message = $("#message").val().replace(/\n/g, "<br>");
         data.append("form",formData);
+        data.append("message",message);
         data.append("ajax",true);
         data.append("method",'saveList');
         $.ajax({
@@ -212,9 +216,16 @@ var ax_admin = {
     changeTab:function(){
         var active = $(".nav-tabs li.active a");
         var next = parseInt(active.parent().attr("data-id")) + 1;
-        
+        var error = false;
+        if(!ax_admin.validDate()){
+            error = true;
+        }else{
+            $("#date-error").remove();
+        }
         if(ax_admin.form.form()){
-            if(!ax_admin.validateSelect())
+            if(error)
+                $(".ax-cont-form-date-lista").parent().append('<label id="date-error" class="error">La fecha seleccionada en este campo debe ser posterior a la fecha actual.</label>');
+            if(!ax_admin.validateSelect() || error)
                 return;
             if($(".tab-pane.active").attr("data-tab-id") === "1"){
                 var dir = $("#address").val();
@@ -230,7 +241,10 @@ var ax_admin = {
             $("#step"+next+" a").attr("href","#step-"+next);
             $("#step"+next+" a").tab("show");
         }else{
-            ax_admin.validateSelect();
+            if(error && $("#months").val() !== "0" || $("#days").val() !== "0" || $("#years").val() !== "0")
+                $(".ax-cont-form-date-lista").parent().append('<label id="date-error" class="error">La fecha seleccionada en este campo debe ser posterior a la fecha actual.</label>');
+            if(!ax_admin.validateSelect() || !error)
+                ax_admin.validateSelect();
         }
     },
     convertToSlug: function (Text)
@@ -241,9 +255,16 @@ var ax_admin = {
         .replace(/ +/g,'-')
         ;
     },
+    validDate:function(){
+        var value = $("#months").val()+"/"+$("#days").val()+"/"+$("#years").val();
+        var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
+        var t = new Date(value.replace(pattern,'$3-$2-$1'));
+        var now = new Date();
+        return (dates.compare(t,now) == 1 ? true : false);
+    },
     validate: function(){
         $.validator.addMethod("selectRequired",function(value,element){
-            return value != 0;
+            return value !== 0;
         }, "El campo es requerido");
 
         $.validator.addMethod("guestNumber",function(value,element){
@@ -254,13 +275,6 @@ var ax_admin = {
             var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
             return pattern.test(value);
         }, "Por favor, escribe una dirección de correo válida.");
-
-        $.validator.addMethod("noTodayDate", function(value, element) {
-            var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
-            var t = new Date(value.replace(pattern,'$3-$2-$1'));
-            var now = new Date();
-            return (dates.compare(t,now) == 1 ? true : false);
-        }, "La fecha seleccionada en este campo debe ser posterior a la fecha actual.");
 
         ax_admin.form = $("#frmSaveList").validate({
             lang: 'es',
@@ -285,9 +299,15 @@ var ax_admin = {
                 message: {
                     maxlength:1000
                 },
-                country:"selectRequired",
-                city:"selectRequired",
-                town:"selectRequired",
+                country:{
+                    selectRequired: true,
+                },
+                city:{
+                    selectRequired: true,
+                },
+                town:{
+                    selectRequired: true,
+                },
                 tel:{
                     required:true,
                 },

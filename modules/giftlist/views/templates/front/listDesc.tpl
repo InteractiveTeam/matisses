@@ -14,14 +14,14 @@
     </div>
 </div>
 
-<p class="ax-text-description-lista">{$list_desc['message']}</p>
+<p class="ax-text-description-lista">{html_entity_decode($list_desc['message'])}</p>
 
 <div class="ax-general-info ax-cont-admin-listas-regalos user">
     <div class="ax-cont-list desc">
         <div class="ax-item">
             <div class="part">{if !$cocreator}{l s='Creador' mod='giftlist'}{else}{l s='Creadores' mod='giftlist'}{/if}<span>{$creator}</span>{if $cocreator}<span>{$cocreator}</span>{/if}</div>
             <div class="part">{l s='Código' mod='giftlist'}<span>{$list_desc['code']}</span></div><div class="part">{l s='Evento' mod='giftlist'}<span>{$event_type}</span></div>
-            <div class="part">{l s='Días para el evento' mod='giftlist'}<span class="ax-day">{$days}</span></div>
+            <div class="part">{l s='Días para el evento' mod='giftlist'}<span class="ax-day">{if {$days} >= 0}{{$days}|replace:'+':''}{else}{l s='Finalizado' mod='giftlist'}{/if}</span></div>
             <div class="part">{l s='Fecha' mod='giftlist'}<span>{date("d/m/Y",strtotime($list_desc['event_date']))}</span></div>
         </div>
     </div>

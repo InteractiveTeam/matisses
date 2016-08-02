@@ -49,7 +49,7 @@ $(document).ready(function(){
             }
         }            
         
-         addFromList(product_card.attr("data-id"),product_card.find(".prod-attr").val(), total, $(this),$(".products-associated").attr("data-id"));		
+         //addFromList(product_card.attr("data-id"),product_card.find(".prod-attr").val(), total, $(this),$(".products-associated").attr("data-id"));		
 	});
     
     $(".add-to-cart-modal").click(function(){
