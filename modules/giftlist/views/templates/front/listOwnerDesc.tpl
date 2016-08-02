@@ -302,7 +302,7 @@
                     </select>
                 </div>
         </div>
-        <div class="row">
+        <div class="row date-cont">
             {*
                 {l s='January' mod='giftlist'}
                 {l s='February' mod='giftlist'}
