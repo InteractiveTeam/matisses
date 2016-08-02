@@ -165,8 +165,8 @@ class GiftListModel extends ObjectModel
     public function getMissingDays($d1){
         $d1 = new DateTime($d1);
         $d2 = new DateTime(date('Y-m-d'));
-        $interval = $d1->diff($d2);
-        return $interval->format("%a");
+        $interval = $d2->diff($d1);
+        return $interval->format("%R%a");
     }
 
 	public function getSharedListByCoCreatorId($id){
