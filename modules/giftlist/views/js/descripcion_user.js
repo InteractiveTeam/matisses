@@ -36,8 +36,6 @@ $(document).ready(function(){
             }else{
                 $.fancybox({
                     'autoSize'      :   true,
-                    'minHeight'     :   100,    
-                    'minWidth'		:   200,
                     'transitionIn'	:	'elastic',
                     'transitionOut'	:	'elastic',
                     'speedIn'		:	600,
@@ -48,16 +46,16 @@ $(document).ready(function(){
                 return false;
             }
         }            
-        
-         //addFromList(product_card.attr("data-id"),product_card.find(".prod-attr").val(), total, $(this),$(".products-associated").attr("data-id"));		
+        addFromList(product_card.attr("data-id"),product_card.find(".prod-attr").val(), total, $(this),$(".products-associated").attr("data-id"));
 	});
     
     $(".add-to-cart-modal").click(function(){
+        var el = $(this);
         var qtyModal = $(".ax-mod-qty").val();
-        $("#module-giftlist-descripcion #qty").val(qtyModal);
-        $(".add-to-cart").trigger('click');
-//        var el = $(this);
-//        addFromList(el.attr("data-id"),el.attr("data-att"), $(".ax-mod-qty").val(), el,$(".products-associated").attr("data-id"));
+        $("#module-giftlist-descripcion #prod-"+el.attr("data-id")+" #qty").val(qtyModal);
+        $("#prod-"+el.attr("data-id")+" .add-to-cart").trigger('click');
+        
+        //addFromList(el.attr("data-id"),el.attr("data-att"), $(".ax-mod-qty").val(), el,$(".products-associated").attr("data-id"));
     });
 
 	//buy bond
