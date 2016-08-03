@@ -81,6 +81,7 @@ $(document).ready(function() {
     $("#ax-edit").click(function(){
         var mc = $("#ax-message-content");
         var m = mc.html();
+        m = replaceAll(m,"<br>","\n");
         mc.hide();
         var bedit = $("#ax-edit");
         var bdelete = $("#ax-delete");
@@ -313,6 +314,10 @@ $(document).ready(function() {
         saveInfo();  
     });
 });
+
+function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(find, 'g'), replace);
+}
 
 function saveInfo(){
     var invalidDate = realDate($("#years").val(),$("#months").val(),$("#days").val());
