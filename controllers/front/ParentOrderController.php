@@ -396,7 +396,15 @@ class ParentOrderControllerCore extends FrontController
 		if (Validate::isLoadedObject($customer))
 		{
 			/* Getting customer addresses */
-			$customerAddresses = $customer->getAddresses($this->context->language->id);
+            $id_list = 0;
+            foreach($this->context->cart->getProducts() as $p){
+                if($p['id_giftlist'] != 0){
+                    $id_list = GiftListModel::getListAddress($p['id_giftlist']);
+                    break;
+                }    
+            }
+            
+            $customerAddresses = $customer->getAddresses($this->context->language->id,$id_list);
 
 			// Getting a list of formated address fields with associated values
 			$formatedAddressFieldsValuesList = array();
@@ -443,6 +451,9 @@ class ParentOrderControllerCore extends FrontController
 			/* Setting default addresses for cart */
 			if (count($customerAddresses))
 			{
+                if($id_list != 0)
+                    $this->context->cart->id_address_delivery = $id_list;
+                
 				if ((!isset($this->context->cart->id_address_delivery) || empty($this->context->cart->id_address_delivery)) || !Address::isCountryActiveById((int)$this->context->cart->id_address_delivery))
 				{
 					$this->context->cart->id_address_delivery = (int)$customerAddresses[0]['id_address'];
