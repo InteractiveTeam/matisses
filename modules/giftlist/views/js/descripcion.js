@@ -208,14 +208,19 @@ $(document).ready(function() {
         });
     });
     
-    setTown($("#city option:selected").val());
-    $("#town").trigger("chosen:updated");
-    
     $("#city").on('change',function(){
-        setTown($("#city option:selected").val());
+        setTown($("#city option:selected").val(),"");
         $("#town").trigger("chosen:updated");
     });
-    
+    $("#before-city").on('change',function(){
+        setTown($("#before-city option:selected").val(),"before-");
+        $("#before-town").trigger("chosen:updated");
+    });
+    $("#after-city").on('change',function(){
+        setTown($("#after-city option:selected").val(),"after-");
+        $("#after-town").trigger("chosen:updated");
+    });
+
     $(".ax-save").on('click',saveAddress);
     
     jp = $('#ax-products').jplist({				
@@ -479,9 +484,25 @@ function deleteImage(prof,el){
     });
 }
 
+
+function validateSelect(){
+    var ret = true;
+    $("#address-div select").each(function(){
+        if($(this).val() === "0"){
+            $(this).parent().append('<label id="event_type-error" class="error">El campo es requerido</label>');
+            ret = false; 
+        }else{
+            $(this).parent().find("#event_type-error").remove();
+        }
+    });
+    return ret;
+}
+
 function saveAddress(){
     var form = $("#address-form").serializeObject();
-    if(valForm.form()){
+    var formVal = valForm.form();
+    var selectVal = validateSelect(); 
+    if(formVal && selectVal){
         $.ajax({
             type: 'POST',
             data: {
@@ -492,10 +513,9 @@ function saveAddress(){
             },
             success: function(res){
                 res = JSON.parse(res);
-                res.data = JSON.parse(res.data);
                 if(!res.error){
-                    $(".ax_address_bef").text(res.a_b + " " + res.data.town + " " + res.data.city +", "+ res.data.country);
-                    $(".ax_address_af").text(res.a_a + " " + res.data.town + " " + res.data.city +", "+ res.data.country);
+                    $(".ax_address_bef").text(res.a_b);
+                    $(".ax_address_af").text(res.a_a);
                     $(".ax-creator-name").text(res.name);
                     $.fancybox.close();
                      $.fancybox({
@@ -516,22 +536,19 @@ function saveAddress(){
     }
 }
 
-function setTown(id_state){
-   var states = countries[id_state].states;
-    $("#town").empty().append($('<option>', {
+function setTown(id_state,el){
+    if(id_state === 0 || id_state === "0")
+        return false;
+    var states = countries[id_state].states;
+    $("#"+el+"town").empty().append($('<option>', {
         value: 0,
         text: "Seleccione una opción"
     }));
     for(i = 0; i < states.length; i++){
-        var op = $('<option>', {
-            value: states[i].name,
-            text: states[i].name,
-        });
-        if(sel_town === states[i].name)
-            op.attr("selected",true);
-        
-        $("#town").append(op);
-        $("#town_chosen .chosen-drop .chosen-results").append('<li class="active-result" data-option-array-index="'+states[i].name+'">'+states[i].name+sel_town+'</li>');
+        $("#"+el+"town").append($('<option>', {
+            value: states[i].id_state,
+            text: states[i].name
+        }));
     }
 }
 
@@ -587,6 +604,48 @@ function validateAddressForm(){
             address:'required',
             dir_before:'required',
             dir_after:'required',
+            "after-firstname": {
+                required:true,
+            },
+            "after-lastname": {
+                required:true,
+            },
+            "after-country":{
+                selectRequired: true,
+            },
+            "after-city":{
+                selectRequired: true,
+            },
+            "after-town":{
+                selectRequired: true,
+            },
+            "after-tel":{
+                required:true,
+            },
+            "after-address":{
+                required:true,
+            },
+            "before-firstname": {
+                required:true,
+            },
+            "before-lastname": {
+                required:true,
+            },
+            "before-country":{
+                selectRequired: true,
+            },
+            "before-city":{
+                selectRequired: true,
+            },
+            "before-town":{
+                selectRequired: true,
+            },
+            "before-tel":{
+                required:true,
+            },
+            "before-address":{
+                required:true,
+            }
         },
         message:{
             required:"El campo es requerido"
