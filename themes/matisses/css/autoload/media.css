@@ -4632,10 +4632,6 @@
         font-size: 1.1rem;
     }
 
-    .left-down-menu #menu #giftlist{
-        display: none;
-    }
-
     li#search {
         top: 0;
     }
