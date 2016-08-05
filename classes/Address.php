@@ -34,6 +34,8 @@ class AddressCore extends ObjectModel
 
 	/** @var integer Supplier id which address belongs to */
 	public $id_supplier = null;
+    
+    public $id_giftlist;
 
 	/**
 	 * @since 1.5.0
@@ -114,6 +116,7 @@ class AddressCore extends ObjectModel
 			'id_manufacturer' => 	array('type' => self::TYPE_INT, 'validate' => 'isNullOrUnsignedId', 'copy_post' => false),
 			'id_supplier' => 		array('type' => self::TYPE_INT, 'validate' => 'isNullOrUnsignedId', 'copy_post' => false),
 			'id_warehouse' => 		array('type' => self::TYPE_INT, 'validate' => 'isNullOrUnsignedId', 'copy_post' => false),
+			'id_giftlist' => 		array('type' => self::TYPE_INT),
 			'id_country' => 		array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId', 'required' => true),
 			'id_state' => 			array('type' => self::TYPE_INT, 'validate' => 'isNullOrUnsignedId'),
 			'alias' => 				array('type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'required' => true, 'size' => 32),

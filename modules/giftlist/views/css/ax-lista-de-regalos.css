@@ -1019,6 +1019,14 @@ label.error:before {
 
 /* crear listas */
 
+.ax-modal-address .chosen-container {
+    width: 100% !important;
+}
+
+.ax-modal-address .row {
+    position:relative;
+}
+
 #frmSaveList .nav-tabs {
     padding: 0;
     margin: 0;
@@ -1251,9 +1259,8 @@ label.error:before {
     height: 100%;
 }
 
-#address-div a.chosen-single {
-    width: 190px;
-    width: 278px;
+#address-div .chosen-container {
+    width: 100% !important;
 }
 
 #address-div .btn-form-address, #info-div .btn-form-address {
@@ -1493,11 +1500,6 @@ label.error:before {
 
 .fancybox-overlay .fancybox-error {
     padding: 15px;
-}
-
-.module-giftlist-descripcion .chosen-container .chosen-results {
-    height: auto;
-    width: auto;
 }
 
 .module-giftlist-descripcion .jplist-panel .chosen-container .chosen-results {

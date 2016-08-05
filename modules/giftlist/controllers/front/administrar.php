@@ -82,10 +82,22 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
 		return false;
 	}
     
+    private function formatAddressArray($address,$key){
+        return array(
+            'firstname' => $address[$key.'firstname'],
+            'lastname' => $address[$key.'lastname'],
+            'address' => $address[$key.'address'],
+            'address_2' => $address[$key.'address_2'],
+            'town' => $address[$key.'town'],
+            'city' => $address[$key.'city'],
+            'tel' => $address[$key.'tel'],
+        );
+    }
+    
     private function _saveList(){
         $c = CountryCore::getCountries($this->context->language->id);
-        parse_str($_POST['form'],$data);
         $li = new GiftListModel();
+        parse_str($_POST['form'],$data);
         $r = $li->getListBySlug($data['url']);
         $ev_date = date("Y-m-d",strtotime($data['years']."-".$data['months']."-".$data['days']));
         $today = date("Y-m-d");
@@ -115,10 +127,8 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
         $li->message =  htmlentities(Tools::getValue('message'));
         $li->recieve_bond = isset($data['recieve_bond']) && $data['recieve_bond'] == 'on' ? true : false;
         $li->min_amount = $data['min_ammount'];
-        $li->address_before = $data['dir_before'];
-        $li->address_after = $data['dir_after'];
-        $li->real_not = $data['real_not'] == 'on' ? true : false;
-        $li->cons_not = $data['cons_not'] == 'on' ? true : false;
+        $li->real_not = $data['real_not'] && $data['real_not'] == 'on' ? true : false;
+        $li->cons_not = $data['cons_not'] && $data['cons_not'] == 'on' ? true : false;
         $li->firstname = $data['firstname'];
         $li->lastname = $data['lastname'];
         $li->info_creator = Tools::jsonEncode(array(
@@ -131,6 +141,24 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
         ));
         $li->created_at = date("Y-m-d");
         if($li->add()){
+            if($data['setBefore']){
+                parse_str($_POST['form_before'],$add);
+                $add = $this->formatAddressArray($add,"before-");
+                $add['name'] = $data['name']." antes de";
+                $id_add_before = $this->_addAddress($add,$li->id);
+            }else{
+                $id_add_before = $this->_addAddress($data,$li->id);
+            }
+            if($data['setAfter']){
+                parse_str($_POST['form_after'],$add);
+                $add = $this->formatAddressArray($add,"after-");
+                $add['name'] = $data['name']." después de";
+                $id_add_after = $this->_addAddress($add,$li->id);
+            }else{
+                $id_add_after = $this->_addAddress($data,$li->id);
+            }
+            $li->address_before = $id_add_before;
+            $li->address_after = $id_add_after;
             $li->image = $this->_uploadImage($li->id, false, 'image-p');
             $li->profile_img = $this->_uploadImage($li->id, true, 'image-prof');
             if(isset($data['email_co']) && $data['email_co'] != "")
@@ -151,4 +179,22 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
             ); 
         }
 	}
+    
+    private function _addAddress($data,$id){
+        $state = Db::getInstance()->getRow('SELECT * FROM '._DB_PREFIX_."state WHERE id_state = ".$data['town']);
+        $address = new AddressCore();
+        $address->id_giftlist = $id;
+        $address->id_customer = $this->context->customer->id;
+        $address->id_country = $data['city'];
+        $address->id_state = $data['town'];
+        $address->alias = $data['name'];
+        $address->firstname = $data['firstname'];
+        $address->lastname = $data['lastname'];
+        $address->address1 = $data['address'];
+        $address->address2 = $data['address_2'];
+        $address->city = $state['name'];
+        $address->postcode = $state['iso_code'];
+        $address->phone = $data['tel'];
+        return ($address->add() ? $address->id : 0);
+    }
 }
