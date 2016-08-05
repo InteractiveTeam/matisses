@@ -361,7 +361,7 @@ box-sizing: border-box;
 	.menu-experiencias {
 	padding: 1.1rem 0 0.9rem 0;
 	display: table;
-    width: 50%;
+    width: 56%;
 	}
 	.menu-experiencias li {
 	display: table-cell;
@@ -5348,10 +5348,6 @@ a.newPrint:hover {
     font-weight: 100;
     letter-spacing: 1px;
     font-size: 18px;
-}
-
-#menu #giftlist, .my-giftlist {
-    display: none !important;
 }
 /*lista de deseos*/
 
