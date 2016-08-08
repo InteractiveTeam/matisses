@@ -1482,7 +1482,7 @@
 	.menu-experiencias {
 		padding: 1.1rem 0 1.3rem 0.825rem;
         /*width: 80%;*/
-        width: 51%;
+        width: 412px;
 	}
 
 	.content-coleccion {
@@ -1542,7 +1542,8 @@
         
     #user {
         padding-top: 0.7rem !important;
-         height: 3.9375rem;
+        height: 3.9375rem;
+        padding: 0.3rem 1rem;
     }    
     
     body .submenu-container li > ul > li .SubCategory {
@@ -2115,12 +2116,12 @@
 	.header-container #search {
 	    position: absolute;
 	    right: 9px;
-	    bottom: 22px;
+        bottom: 8px;
 	}
 
 	.right-down-menu {
 	    padding: 0rem 1.875rem 0 0;
-	    margin: 10px 0 0 0;
+	    margin: 20px 0 0 0;
 	    display: block;
 	}
 
@@ -2344,7 +2345,7 @@
     }
     
     .fancybox-wrap.fancybox-desktop.fancybox-type-inline.fancybox-opened {
-        width: 90% !important;
+        width: 85% !important;
     }
     
     .wrap_buttons #btn_gift_list:before {
@@ -2369,7 +2370,16 @@
     }
     
     .search .content_sortPagiBar .sortPagiBar .select.selector1 > label {
-        padding: 0 0.4375rem;
+        padding: 0.55rem 0.6rem;
+    }
+    
+    .category .parrilla-productos .container div#left_column {
+        width: 33.3%;
+    }
+    
+    .parrilla-productos .container .center_column {
+        width: 66.3%;
+        padding: 0;
     }
     
 }
@@ -2388,6 +2398,23 @@
     .wrap_buttons #usefull_link_block li a {
         padding-left: 8px;
     }
+    
+    .container .ax-btn-filter {
+        display: inline-block;
+    }
+    
+    .category .parrilla-productos .container div#left_column {
+        width: 100%;
+    }
+    
+    .wrap_quan .product_store_available.grid_9 h2 {
+        margin-top: 10px;
+    }
+    
+    #category.category .center_column .content_sortPagiBar .sortPagiBar {
+        margin-bottom: 0;
+    }
+
     
 }
 
@@ -4617,10 +4644,6 @@
         font-size: 1.1rem;
     }
 
-    .left-down-menu #menu #giftlist{
-        display: none;
-    }
-
     li#search {
         top: 0;
     }
@@ -4750,6 +4773,82 @@
     	height: 30rem;
 	    position: relative;
 	}
+    
+    
+    .category .content_sortPagiBar .sortPagiBar .cf.selector1 .chosen-container.chosen-container-single a, .category #pagination_bottom .pagination {
+        height: 32px;
+    }
+    
+    .category #pagination_bottom .pagination li span, .category #pagination_bottom .pagination li a {
+        line-height: 30px;
+        padding-bottom: 0;
+    }
+    
+    .enabled-filters li a:after {
+        font-size: 1.1875rem;
+    }
+    
+    .precio #layered_weight_range span, .precio #layered_price_range span {
+        padding: 0.425rem 0.9375rem;
+        line-height: 0.6rem;
+    }
+    
+    #layered_block_left.layered-left {
+        margin-bottom: 2.375rem;
+    }
+    
+    .coleccion img {
+        height: 112px;
+        width: auto;
+    }
+    
+    .ax-btn-filter {
+        display: none;
+    }
+    
+    .category .product_list .product_img_link {
+        min-height: 157px;
+    }
+    
+    .layered-left .block_content ul li a {
+        font-size: 1rem;
+    }
+    
+    .category .center_column .content_sortPagiBar .sortPagiBar {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .category .center_column .content_sortPagiBar .top-pagination-content, .category .center_column .content_sortPagiBar .bottom-pagination-content {
+        float: left;
+    }
+    
+    .parrilla-productos .coleccion img {
+        height: auto;
+        width: auto;
+        margin: 0;
+    }
+    
+    #product .main-container #columns .center_column {
+        width: 100%;
+    }
+    
+    .box-cart-bottom .add_to_cart button {
+        width: 100%;
+    }
+    
+    .wrap_quan #quantity_wanted_p input {
+        width: 52px !important;
+    }
+    
+    .wrap_quan #product_store_available_chosen a {
+        width: 12.2rem;
+    }
+    
+    .box-info-product .wrap_buttons .grid_12.omega.alpha {
+        margin-top: 10px;
+    }
+    
 
 }
 

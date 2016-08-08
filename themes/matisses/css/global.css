@@ -361,7 +361,7 @@ box-sizing: border-box;
 	.menu-experiencias {
 	padding: 1.1rem 0 0.9rem 0;
 	display: table;
-    width: 50%;
+    width: 465px;
 	}
 	.menu-experiencias li {
 	display: table-cell;
@@ -3419,8 +3419,8 @@ box-sizing: border-box;
 	overflow: hidden !important;
 	}
     div#new_comment_form {
-        overflow-y: auto;
-        height: 100%;
+        /*overflow-y: auto;
+        height: 100%;*/
     }
     div#new_comment_form form {
         width: 100%
@@ -4330,8 +4330,6 @@ font-family: 'Open Sans', sans-serif;
 font-size: 1rem;
 color: #ADADAD;
 line-height: 1.7;
-overflow: hidden;
-overflow-y: auto;
 }
 
 .layer-attributes .scroll-left {
@@ -5351,10 +5349,6 @@ a.newPrint:hover {
     letter-spacing: 1px;
     font-size: 18px;
 }
-
-#menu #giftlist, .my-giftlist {
-    display: none !important;
-}
 /*lista de deseos*/
 
 .product_infos .product-name#s_title {
@@ -6301,7 +6295,8 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 }
 
 .search .content_sortPagiBar .sortPagiBar .select.selector1 > label {
-    padding: 0.58rem 0.6rem;
+    padding: 0.85rem 0.6rem;
+    line-height: 1rem;
 }
 
 .category .content_sortPagiBar .sortPagiBar .cf.selector1 .chosen-container.chosen-container-single a {

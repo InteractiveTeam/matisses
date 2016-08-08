@@ -31,6 +31,10 @@ label.error {
     margin-left: 17px;
 }
 
+#step-1 .row {
+    position: relative;
+}
+
 .module-giftlist-buscar .ax-btn-filter, .module-giftlist-empezar .ax-btn-filter, .module-giftlist-listas .ax-btn-filter, .module-giftlist-administrar .ax-btn-filter, .module-giftlist-descripcion .ax-btn-filter {
     display: none;
 }
@@ -1015,6 +1019,14 @@ label.error:before {
 
 /* crear listas */
 
+.ax-modal-address .chosen-container {
+    width: 100% !important;
+}
+
+.ax-modal-address .row {
+    position:relative;
+}
+
 #frmSaveList .nav-tabs {
     padding: 0;
     margin: 0;
@@ -1247,9 +1259,8 @@ label.error:before {
     height: 100%;
 }
 
-#address-div a.chosen-single {
-    width: 190px;
-    width: 278px;
+#address-div .chosen-container {
+    width: 100% !important;
 }
 
 #address-div .btn-form-address, #info-div .btn-form-address {
@@ -1494,6 +1505,26 @@ label.error:before {
 .module-giftlist-descripcion .chosen-container .chosen-results {
     height: auto;
     width: auto;
+}
+
+.module-giftlist-descripcion .jplist-panel .chosen-container .chosen-results {
+    width: 100%;
+}
+
+.product-card.ax-no-products {
+    min-height: auto;
+}
+
+p.ax-no-products {
+    margin-top: 20px;
+    text-align: center;
+    font-family: Georgia, 'Georgia';
+    font-size: 1rem !important;
+}
+
+p.ax-no-products .fa {
+    margin-right: 10px;
+    color: #eac78a;
 }
 
 @media screen and (max-width:1024px) {

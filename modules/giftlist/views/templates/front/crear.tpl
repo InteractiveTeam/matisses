@@ -118,7 +118,7 @@
                             </select>
                         </div>
                         <div class="row">
-                            <label for="town">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
+                            <label for="city">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
                             <select id="city" name="city" class="form-control ax-select">
                                 <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
                                 {foreach from=$countries item=c}
@@ -128,7 +128,7 @@
                         </div>
                         <div class="row">
                             <div class="required town unvisible">
-                                <label for="city">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
+                                <label for="town">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
                                 <select id="town" name="town" class="form-control ax-select">
                                     <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
                                 </select>
@@ -188,19 +188,19 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <label for="dir_before">{l s='Dirección de envío antes del evento' mod='giftlist'}<sup>*</sup></label>
-                    <input type="text" class="form-control" name="dir_before" id="dir_before">
+                    <label for="dir_before">{l s='Dirección de envío antes del evento' mod='giftlist'} <a href="#ax-modal-before" id="ax-add-before"><i class="fa fa-pencil" aria-hidden="true"></i></a></label>
+                    <input type="hidden" name="setBefore" id="setBefore" value="0"/>
                 </div>
                 <div class="col-md-6">
-                    <label for="dir_after">{l s='Dirección de envío después del evento' mod='giftlist'}<sup>*</sup></label>
-                    <input type="text" class="form-control" name="dir_after" id="dir_after">
+                    <label for="dir_after">{l s='Dirección de envío después del evento' mod='giftlist'} <a href="#ax-modal-after" id="ax-add-after"><i class="fa fa-pencil" aria-hidden="true"></i></a></label>
+                    <input type="hidden" name="setAfter" id="setAfter" value="0"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <label for="message">
                     {l s='Mensaje' mod='giftlist'}</label>
-                    <p class="ax-text-descript">{l s='Este mensaje aparecerá como bienvenida a tu lista de regalos, cuéntales a tus amigos y familiares de qué se trata.' mod='giftlist'}</p>
+                    <p class="ax-text-descript">{l s='Este mensaje aparecerá como bienvenida a tu lista de regalos, cuéntale a tus amigos y familiares de qué se trata.' mod='giftlist'}</p>
                     
                     <textarea name="message" class="form-control" id="message"></textarea>
                 </div>
@@ -298,6 +298,120 @@
       </div>
     </div>
 </form>
+<!-- dirección antes -->
+<div id="ax-modal-before" style="display:none" class="ax-modal-address">
+    <div class="form-container">
+        <form id="before-address-form">
+            <h3>{l s='Dirección de envío antes del evento' mod='giftlist'}</h3> 
+            <div class="col-md-6">
+                <div class="row">
+                    <label for="before-firstname">{l s='Nombre' mod='giftlist'}<sup>*</sup></label> 
+                    <input type="text" class="form-control" name="before-firstname" id="before-firstname">
+                </div>
+                <div class="row">
+                    <label for="before-lastname">{l s='Apellido' mod='giftlist'}<sup>*</sup></label> 
+                    <input type="text" class="form-control" name="before-lastname" id="before-lastname">
+                </div>
+                <div class="row">
+                    <label for="before-tel">{l s='Teléfono' mod='giftlist'}<sup>*</sup></label> 
+                    <input type="text" class="form-control" name="before-tel" id="before-tel">
+                </div>
+                <div class="row">
+                    <label for="before-country">{l s='País' mod='giftlist'}<sup>*</sup></label>
+                    <select id="before-country" name="before-country" class="form-control ax-select">
+                        <option value="1">{l s='COLOMBIA' mod='giftlist'}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <label for="before-city">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
+                    <select id="before-city" name="before-city" class="form-control ax-select">
+                        <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
+                        {foreach from=$countries item=c}
+                            <option value="{$c.id_country}">{$c.name}</option>
+                        {/foreach}
+                    </select>
+                </div>
+              <div class="row">
+                    <div class="required town unvisible">
+                        <label for="before-town">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
+                        <select id="before-town" name="before-town" class="form-control ax-select">
+                            <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
+                        </select>
+                    </div>
+                </div>
+              <div class="row">
+                    <label for="before-address">{l s='Dirección 1' mod='giftlist'}<sup>*</sup></label> <input type="text" id="before-address" class="form-control" name="before-address"/>
+                </div>
+                <div class="row">
+                    <label for="before-address_2">{l s='Dirección 2' mod='giftlist'}</label> <input type="text" id="before-address_2" class="form-control" name="before-address_2" placeholder="{l s='Apto, oficina, interior, bodega...' mod='giftlist'}" />
+                </div>
+            </div>
+            <div class="col-md-12 btn-form-address">
+                <a href="javascript:void(0);" class="ax-cancel btn btn-default btn-lista-regalos">{l s='Cancelar' mod='giftlist'}</a>
+                <a href="javascript:void(0);" class="ax-before-save btn btn-default btn-lista-regalos">{l s='Guardar' mod='giftlist'}</a>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- dirección despues -->
+<div id="ax-modal-after" style="display:none" class="ax-modal-address">
+    <div class="container">
+        <form id="after-address-form">
+            <h3>{l s='Dirección de envío después del evento' mod='giftlist'}</h3> 
+            <div class="col-md-6">
+                <div class="row">
+                    <label for="after-firstname">{l s='Nombre' mod='giftlist'}<sup>*</sup></label> 
+                    <input type="text" class="form-control" name="after-firstname" id="after-firstname">
+                </div>
+                <div class="row">
+                    <label for="after-lastname">{l s='Apellido' mod='giftlist'}<sup>*</sup></label> 
+                    <input type="text" class="form-control" name="after-lastname" id="after-lastname">
+                </div>
+                <div class="row">
+                    <label for="after-tel">{l s='Teléfono' mod='giftlist'}<sup>*</sup></label> 
+                    <input type="text" class="form-control" name="after-tel" id="after-tel">
+                </div>
+                <div class="row">
+                    <label for="after-country">{l s='País' mod='giftlist'}<sup>*</sup></label>
+                    <select id="after-country" name="after-country" class="form-control ax-select">
+                        <option value="1">{l s='COLOMBIA' mod='giftlist'}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <label for="after-city">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
+                    <select id="after-city" name="after-city" class="form-control ax-select">
+                        <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
+                        {foreach from=$countries item=c}
+                            <option value="{$c.id_country}">{$c.name}</option>
+                        {/foreach}
+                    </select>
+                </div>
+              <div class="row">
+                    <div class="required town unvisible">
+                        <label for="after-town">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
+                        <select id="after-town" name="after-town" class="form-control ax-select">
+                            <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
+                        </select>
+                    </div>
+                </div>
+              <div class="row">
+                    <label for="after-address">{l s='Dirección 1' mod='giftlist'}<sup>*</sup></label> <input type="text" id="after-address" class="form-control" name="after-address"/>
+                </div>
+                <div class="row">
+                    <label for="after-address_2">{l s='Dirección 2' mod='giftlist'}</label> <input type="text" id="after-address_2" class="form-control" name="after-address_2" placeholder="{l s='Apto, oficina, interior, bodega...' mod='giftlist'}" />
+                </div>
+            </div>
+            <div class="col-md-12 btn-form-address">
+                <a href="javascript:void(0);" class="ax-cancel btn btn-default btn-lista-regalos">{l s='Cancelar' mod='giftlist'}</a>
+                <a href="javascript:void(0);" class="ax-after-save btn btn-default btn-lista-regalos">{l s='Guardar' mod='giftlist'}</a>
+            </div>
+        </form>
+    </div>
+</div>
 {if isset($countries)}
 	{addJsDef countries=$countries}
 {/if}

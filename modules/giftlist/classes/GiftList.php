@@ -89,7 +89,7 @@ class GiftListModel extends ObjectModel
 	 * @return boolean
 	 */
 	public function updateInfo(){
-		$sql = "UPDATE `"._DB_PREFIX_."gift_list` SET `firstname` = '".$this->firstname."', `lastname` = '".$this->lastname."', `info_creator` = '".$this->info_creator."',`address_before` = '".$this->address_before."',`address_after` = '".$this->address_after."' WHERE `id` = ".$this->id.";";
+		$sql = "UPDATE `"._DB_PREFIX_."gift_list` SET `firstname` = '".$this->firstname."', `lastname` = '".$this->lastname."', `info_creator` = '".$this->info_creator."' WHERE `id` = ".$this->id.";";
 		if(!Db::getInstance()->execute($sql))
 			return false;
 		return true;
@@ -102,6 +102,7 @@ class GiftListModel extends ObjectModel
 
 		Db::getInstance()->delete('list_product_bond',"id_list = ".$this->id);
 		Db::getInstance()->delete('email_cocreator',"id_list = ".$this->id);
+		Db::getInstance()->delete('address',"id_giftlist = ".$this->id);
 
 		//$this->deleteImage();
 		return parent::delete();
@@ -113,7 +114,16 @@ class GiftListModel extends ObjectModel
 			return false;
 		return true;      
     }
-
+    
+    public static function getListAddress($id){
+        $l = Db::getInstance()->getRow("SELECT * FROM "._DB_PREFIX_."gift_list WHERE id = " . $id);
+        $today = date("Y-m-d");
+        $ev_date = date("Y-m-d",strtotime($l['event_date']));
+        if($today > $ev_date)
+            return $l['address_after'];
+        else
+            return $l['address_before'];
+    }
 
 	/**
 	 * @param number $id
@@ -165,8 +175,8 @@ class GiftListModel extends ObjectModel
     public function getMissingDays($d1){
         $d1 = new DateTime($d1);
         $d2 = new DateTime(date('Y-m-d'));
-        $interval = $d1->diff($d2);
-        return $interval->format("%a");
+        $interval = $d2->diff($d1);
+        return $interval->format("%R%a");
     }
 
 	public function getSharedListByCoCreatorId($id){

@@ -7,10 +7,6 @@
 .icon-giftlist:before, .icon-icon-giftlist:before { 
 	content: "\f06b";
 }
-
-#maintab-giftlist{
-    display: none;
-}
 .adminproducts #form-product td.text-right .btn-group.pull-right{
     display: none;
 }

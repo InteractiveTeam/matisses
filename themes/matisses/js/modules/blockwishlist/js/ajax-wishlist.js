@@ -381,13 +381,13 @@ function WishlistSend(id, id_wishlist, id_email)
 	if($('input#email').val()!='' && emails.length==0)
 	{
 		error = 1;
-		$.fancybox('Debe adicionar al menos un correo para el envío de la lista');
+		$.fancybox('Debes adicionar al menos un correo electrónico para el envío de la lista');
 	}
 	
 	if(error ==0 && emails.length==0)
 	{
 		error = 1;
-		$.fancybox('Ingresa al menos un correo para el envío de la lista');
+		$.fancybox('Ingresa al menos un correo electrónico para el envío de la lista');
 	}
 	
 	if(error==0)
