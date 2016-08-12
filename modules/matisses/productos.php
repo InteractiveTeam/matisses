@@ -56,13 +56,19 @@
             exit();
         }
     }
-    
-	$_References    = __getReferences($_Modelos,$banderaPost,$searchExist);
+    try{
+	   $_References    = __getReferences($_Modelos,$banderaPost,$searchExist);
 	/*if(Configuration::get('ax_simpleproduct_data')=='')	{
 		$ModelsExists = implode('","',array_keys($_References));
 		Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
 		Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
 	}*/
+    }catch(Exception  $s){
+        $message = utf8_decode("Durante la ejecución de la sonda de las 4:00am se ha presentado la siguiente excepción: \n" . date("H:i:s") . " ".$s->getMessage());
+        $headers = "From: Sonda Matisses";
+        mail("sistemas@matisses.co", utf8_decode("Error en ejeucución de la sonda"), $message, $headers);
+        die(" ".$s->getMessage());
+    }
 	
 	
 	
@@ -96,6 +102,10 @@
 	__MessaggeLog("TERMINA PROCESO ".date('H:i:s')." - ".$time."\n");
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
 	
+
+    __MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
+	__MessaggeLog("DESACTIVANDO REFERENCIAS ".date('H:i:s')." - ".$time."\n");
+	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
 	
 	Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN (select id_product from  '._DB_PREFIX_.'image group by id_product)');
 	Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN (select id_product from  '._DB_PREFIX_.'image group by id_product)');
@@ -112,6 +122,11 @@
 			where a.defaults = 0 
 			);
 	');
+
+    __MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
+	__MessaggeLog("TERMINA DESACTIVACIÓN ".date('H:i:s')." - ".$time."\n");
+	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
+
     __MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
 	__MessaggeLog("INDEXANDO ".date('H:i:s')." - ".$time."\n");
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
