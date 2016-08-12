@@ -310,17 +310,11 @@ src="https://www.facebook.com/tr?id=146264512398308&ev=PageView&noscript=1"
 <div class="main-container">
 
 {if $page_name !='index' && $page_name !='pagenotfound'}
-	<div class="top_banner_wrap"> {*hook h="displayBanner"*} </div>
+	{*<div class="top_banner_wrap"> {*hook h="displayBanner" </div>*}
 {/if}
-<div id="columns" class="cf {if $page_name !='index' && $page_name !='product' && $page_name != 'module-guestbookwithavatars-guestbook'}{/if}">
-{if $page_name !='index' && $page_name !='pagenotfound'}
-						{if $page_name =='product' || $page_name == 'module-guestbookwithavatars-guestbook'}
-{/if}
+<div id="columns" class="cf">
 
-  {include file="$tpl_dir./breadcrumb.tpl"}
-  {if $page_name =='product'  || $page_name == 'module-guestbookwithavatars-guestbook'}
-{/if}
-					{/if}
+{include file="$tpl_dir./breadcrumb.tpl"}
 {if $page_name =='index' && false}
 
 <div id="slider_row">
@@ -339,17 +333,16 @@ src="https://www.facebook.com/tr?id=146264512398308&ev=PageView&noscript=1"
 	  </div>
 </div>
 {/if}
-<div class="{if $page_name !='index' && $page_name !='pagenotfound'}{/if}">
+<div class>
 
-{if $page_name =='category'}
+{if $page_name == 'category'}
     {assign var="haschildrens" value=Category::getChildren($category->id,$cookie->id_lang,1,$cookie->id_shop)|count}
-    {if $haschildrens>0}
+    {*if $haschildrens>0}
         {assign var="left_column_size" value=0}
-    {/if}
+    {*/if*}
 {/if}
 
 {if isset($left_column_size) && !empty($left_column_size) && ($page_name != 'module-news-new')}
-
     {if $page_name =='category'}
 		<!--Bloque1 Visualizados-->
     
