@@ -313,8 +313,9 @@ src="https://www.facebook.com/tr?id=146264512398308&ev=PageView&noscript=1"
 	{*<div class="top_banner_wrap"> {*hook h="displayBanner" </div>*}
 {/if}
 <div id="columns" class="cf">
-
-{include file="$tpl_dir./breadcrumb.tpl"}
+{if $page_name !='index' && $page_name !='pagenotfound'}
+  {include file="$tpl_dir./breadcrumb.tpl"}
+{/if}
 {if $page_name =='index' && false}
 
 <div id="slider_row">
