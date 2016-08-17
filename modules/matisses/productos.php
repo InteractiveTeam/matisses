@@ -155,7 +155,7 @@
 		{
 			try{
                     if(!$_Combination['processImages'] && $_Product->getCombinationImages(1))
-                         //continue;
+                         continue;
 					// verifico si la combinacion esta para cambio de modelo
 					$_currentCombinations[] = $_Combination['itemCode'];
 					$id_product_attribute = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.$_Combination['itemCode'].'" and id_product = 0');
@@ -424,6 +424,8 @@
 					__MessaggeLog('Referencia: '.$_Product->reference." Id ".$_Product->id." - CREADO");
 				 }
 			  
+            if($_processImages==true)
+                $_Product->deleteImages();
 			 
 			if($_Product->id)
 			{
@@ -473,9 +475,6 @@
 							 
 					}
 				}
-
-				if($_processImages==true)
-					$_Product->deleteImages();
 			}
 			__MessaggeLog("\n");
 		}catch (Exception $e) {
