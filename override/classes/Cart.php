@@ -6588,6 +6588,11 @@ class Cart extends CartCore
 		$total_shipping 				= Hook::exec('actionCalculateShipping',$params);
 
         $total_shipping 				= (array)json_decode($total_shipping);
+        
+        if($this->id_carrier != $total_shipping['shippingCompany'])
+            $_shipping = 0;
+        else
+            $_shipping = $total_shipping['total'];
 
 		return array(
 
@@ -6627,13 +6632,13 @@ class Cart extends CartCore
 
 			'total_price' => $base_total_tax_inc + $total_shipping['total'],
 
-			'total_tax' => $total_tax + $total_shipping['total'],
+			'total_tax' => $total_tax = $total_shipping['total'],
 
 			'total_price_without_tax' => $base_total_tax_exc + $total_shipping['total'],
 
 			'is_multi_address_delivery' => $this->isMultiAddressDelivery() || ((int)Tools::getValue('multi-shipping') == 1),
 
-			'free_ship' => $total_shipping ? 0 : 1,
+			'free_ship' => $total_shipping['total'] ? 0 : 1,
 
 			'carrier' => new Carrier($this->id_carrier, $id_lang),
 
