@@ -3115,10 +3115,12 @@ class Cart extends CartCore
 		if ($with_shipping || $type == Cart::ONLY_DISCOUNTS)
 
 		{
+            
+            $shipping = $this->getTotalShippingCost(null, (boolean)$with_taxes);
 
 			if (is_null($products) && is_null($id_carrier))
 
-				$shipping_fees = $this->getTotalShippingCost(null, (boolean)$with_taxes);
+				$shipping_fees = $shipping->total;
 
 			else
 
@@ -5541,9 +5543,7 @@ class Cart extends CartCore
 		$delivery_option_list = $this->getDeliveryOptionList($default_country);
 
 		foreach ($delivery_option as $id_address => $key)
-
 		{
-
 			if (!isset($delivery_option_list[$id_address]) || !isset($delivery_option_list[$id_address][$key]))
 
 				continue;
@@ -5567,8 +5567,7 @@ class Cart extends CartCore
 		$params['products_cart']		= $this->getProducts();
 
 		$total_shipping = Hook::exec('actionCalculateShipping',$params);
-
-		return $total_shipping;
+		return json_decode($total_shipping);
 
 	}
 
@@ -6438,10 +6437,12 @@ class Cart extends CartCore
 		$gift_products = array();
 
 		$cart_rules = $this->getCartRules();
+        
+        $shipping = $this->getTotalShippingCost();
 
-		$total_shipping = $this->getTotalShippingCost();
+		$total_shipping = $shipping->total;
 
- 		$total_shipping_tax_exc = $this->getTotalShippingCost(null, false);
+ 		$total_shipping_tax_exc =  $shipping->total;
 
 		$total_products_wt = $this->getOrderTotal(true, Cart::ONLY_PRODUCTS);
 
