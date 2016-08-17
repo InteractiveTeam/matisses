@@ -4526,8 +4526,6 @@ class Cart extends CartCore
 
             $total_shipping 				= (array)json_decode($total_shipping);
 
-        
-
             if(empty($total_shipping['shippingCompany']))
 
                 return $cache[$this->id] = NULL;
@@ -6627,11 +6625,11 @@ class Cart extends CartCore
 
 			'total_products' => $total_products,
 
-			'total_price' => $base_total_tax_inc,
+			'total_price' => $base_total_tax_inc + $total_shipping['total'],
 
-			'total_tax' => $total_tax,
+			'total_tax' => $total_tax + $total_shipping['total'],
 
-			'total_price_without_tax' => $base_total_tax_exc,
+			'total_price_without_tax' => $base_total_tax_exc + $total_shipping['total'],
 
 			'is_multi_address_delivery' => $this->isMultiAddressDelivery() || ((int)Tools::getValue('multi-shipping') == 1),
 
