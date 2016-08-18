@@ -5,52 +5,31 @@
 include_once _PS_MODULE_DIR_ ."giftlist/classes/Bond.php";
 
 /*
-
 * 2007-2015 PrestaShop
-
 *
-
 * NOTICE OF LICENSE
-
 *
-
 * This source file is subject to the Open Software License (OSL 3.0)
-
 * that is bundled with this package in the file LICENSE.txt.
-
 * It is also available through the world-wide-web at this URL:
-
 * http:
 * If you did not receive a copy of the license and are unable to
-
 * obtain it through the world-wide-web, please send an email
-
 * to license@prestashop.com so we can send you a copy immediately.
-
 *
-
 * DISCLAIMER
-
 *
-
 * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
-
 * versions in the future. If you wish to customize PrestaShop for your
-
 * needs please refer to http:
 *
-
 *  @author PrestaShop SA <contact@prestashop.com>
-
 *  @copyright  2007-2015 PrestaShop SA
-
 *  @license    http:
 *  International Registered Trademark & Property of PrestaShop SA
-
 */
 
 class Cart extends CartCore
-
 {
 
 	/*
@@ -356,53 +335,29 @@ class Cart extends CartCore
 	* version: 1.0.0
 	*/
 	public static $definition = array(
-
 		'table' => 'cart',
-
 		'primary' => 'id_cart',
-
 		'fields' => array(
-
 			'id_shop_group' => 			array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
-
 			'id_shop' => 				array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
-
 			'id_address_delivery' => 	array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
-
 			'id_address_invoice' => 	array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
-
 			'id_carrier' => 			array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
-
 			'id_currency' => 			array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId', 'required' => true),
-
 			'id_customer' => 			array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
-
 			'id_guest' => 				array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
-
 			'id_lang' => 				array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId', 'required' => true),
-
 			'recyclable' => 			array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
-
 			'gift' => 					array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
-
 			'gift_message' => 			array('type' => self::TYPE_STRING, 'validate' => 'isMessage'),
-
 			'mobile_theme' => 			array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
-
 			'delivery_option' => 		array('type' => self::TYPE_STRING),
-
 			'secure_key' => 			array('type' => self::TYPE_STRING, 'size' => 32),
-
 			'allow_seperated_package' =>array('type' => self::TYPE_BOOL, 'validate' => 'isBool'),
-
 			'date_add' => 				array('type' => self::TYPE_DATE, 'validate' => 'isDateFormat'),
-
 			'date_upd' => 				array('type' => self::TYPE_DATE, 'validate' => 'isDateFormat'),
-
 		),
-
 	);
-
 
 
 	/*
@@ -3036,100 +2991,54 @@ class Cart extends CartCore
 	* version: 1.0.0
 	*/
 	public function getOrderTotal($with_taxes = true, $type = Cart::BOTH, $products = null, $id_carrier = null, $use_cache = true)
-
 	{
-
 		static $address = null;
 
-
-
 		if (!$this->id)
-
 			return 0;
 
-
-
 		$type = (int)$type;
-
 		$array_type = array(
-
 			Cart::ONLY_PRODUCTS,
-
 			Cart::ONLY_DISCOUNTS,
-
 			Cart::BOTH,
-
 			Cart::BOTH_WITHOUT_SHIPPING,
-
 			Cart::ONLY_SHIPPING,
-
 			Cart::ONLY_WRAPPING,
-
 			Cart::ONLY_PRODUCTS_WITHOUT_SHIPPING,
-
 			Cart::ONLY_PHYSICAL_PRODUCTS_WITHOUT_SHIPPING,
-
 		);
 
-
-
-		
 		$virtual_context = Context::getContext()->cloneContext();
-
 		$virtual_context->cart = $this;
-
-
-
+        
 		if (!in_array($type, $array_type))
-
 			die(Tools::displayError());
-
-
 
 		$with_shipping = in_array($type, array(Cart::BOTH, Cart::ONLY_SHIPPING));
 
-
-
-		
 		if ($type == Cart::ONLY_DISCOUNTS && !CartRule::isFeatureActive())
-
 			return 0;
 
-
-
-		
 		$virtual = $this->isVirtualCart();
 
 		if ($virtual && $type == Cart::ONLY_SHIPPING)
-
 			return 0;
 
-
-
 		if ($virtual && $type == Cart::BOTH)
-
 			$type = Cart::BOTH_WITHOUT_SHIPPING;
+        
+        
 
-
-
-		if ($with_shipping || $type == Cart::ONLY_DISCOUNTS)
-
+		if ($with_shipping /*|| $type == Cart::ONLY_DISCOUNTS*/)
 		{
-            
             $shipping = $this->getTotalShippingCost(null, (boolean)$with_taxes);
-
 			if (is_null($products) && is_null($id_carrier))
-
 				$shipping_fees = $shipping->total;
-
 			else
-
 				$shipping_fees = $this->getPackageShippingCost($id_carrier, (bool)$with_taxes, null, $products);
-
 		}
-
 		else
-
 			$shipping_fees = 0;
 
 
@@ -5525,45 +5434,26 @@ class Cart extends CartCore
 	public function getTotalShippingCost($delivery_option = null, $use_tax = true, Country $default_country = null)
 
 	{
-
 		if(isset(Context::getContext()->cookie->id_country))
-
 			$default_country = new Country(Context::getContext()->cookie->id_country);
-
 		if (is_null($delivery_option))
-
 			$delivery_option = $this->getDeliveryOption($default_country, false, false);
 
-
-
 		$total_shipping = 0;
-
 		$delivery_option_list = $this->getDeliveryOptionList($default_country);
-
 		foreach ($delivery_option as $id_address => $key)
 		{
 			if (!isset($delivery_option_list[$id_address]) || !isset($delivery_option_list[$id_address][$key]))
-
 				continue;
-
 			if ($use_tax)
-
 				$total_shipping += $delivery_option_list[$id_address][$key]['total_price_with_tax'];
-
 			else
-
 				$total_shipping += $delivery_option_list[$id_address][$key]['total_price_without_tax'];
-
 		}
-
 		$params['total_shipping'] 		= $total_shipping;
-
 		$params['delivery_option_list']	= $delivery_option_list;
-
-		$params['delivery_option']		= $delivery_option;
-
+		$params['delivery_option']		= $id_address;
 		$params['products_cart']		= $this->getProducts();
-
 		$total_shipping = Hook::exec('actionCalculateShipping',$params);
 		return json_decode($total_shipping);
 
@@ -6382,43 +6272,23 @@ class Cart extends CartCore
 	* version: 1.0.0
 	*/
 	public function getSummaryDetails($id_lang = null, $refresh = false)
-
 	{
-
 		$context = Context::getContext();
-
 		if (!$id_lang)
-
 			$id_lang = $context->language->id;
 
-
-
 		$delivery = new Address((int)$this->id_address_delivery);
-
 		$invoice = new Address((int)$this->id_address_invoice);
-
-
-
 		
 		$formatted_addresses = array(
-
 			'delivery' => AddressFormat::getFormattedLayoutData($delivery),
-
 			'invoice' => AddressFormat::getFormattedLayoutData($invoice)
-
 		);
 
-
-
 		$base_total_tax_inc = $this->getOrderTotal(true);
-
 		$base_total_tax_exc = $this->getOrderTotal(false);
 
-		
-
 		$total_tax = $base_total_tax_inc - $base_total_tax_exc;
-
-
 
 		if ($total_tax < 0)
 
@@ -6578,21 +6448,12 @@ class Cart extends CartCore
 
 
 		$params['total_shipping'] 		= $total_shipping;
-
 		$params['delivery_option_list']	= $delivery_option_list;
-
 		$params['delivery_option']		= $this->id_address_delivery;
-
 		$params['products_cart']		= $this->getProducts();
-
 		$total_shipping 				= Hook::exec('actionCalculateShipping',$params);
 
         $total_shipping 				= (array)json_decode($total_shipping);
-        
-        if($this->id_carrier != $total_shipping['shippingCompany'])
-            $_shipping = 0;
-        else
-            $_shipping = $total_shipping['total'];
 
 		return array(
 
@@ -6630,11 +6491,11 @@ class Cart extends CartCore
 
 			'total_products' => $total_products,
 
-			'total_price' => $base_total_tax_inc + $total_shipping['total'],
+			'total_price' => $base_total_tax_inc,
 
 			'total_tax' => $total_tax = $total_shipping['total'],
 
-			'total_price_without_tax' => $base_total_tax_exc + $total_shipping['total'],
+			'total_price_without_tax' => $base_total_tax_exc,
 
 			'is_multi_address_delivery' => $this->isMultiAddressDelivery() || ((int)Tools::getValue('multi-shipping') == 1),
 
