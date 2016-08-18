@@ -5457,7 +5457,7 @@ class Cart extends CartCore
 		$params['products_cart']		= $this->getProducts();
 		$total_shipping = Hook::exec('actionCalculateShipping',$params);
 		$res = json_decode($total_shipping);
-        $carrierFree = Db::getInstance()->getValue("SELECT is_free FROM "._DB_PREFIX_."carrier WHERE id_reference = ".$this->id_carrier);
+        $carrierFree = Db::getInstance()->getValue("SELECT is_free FROM "._DB_PREFIX_."carrier WHERE deleted = 0 AND id_reference = ".$this->id_carrier);
         if($carrierFree != "1")
             return $res;
         else{
