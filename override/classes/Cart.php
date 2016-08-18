@@ -6442,68 +6442,33 @@ class Cart extends CartCore
 
 		}
 
-
-
-
-
-		$params['total_shipping'] 		= $total_shipping;
-		$params['delivery_option_list']	= $delivery_option_list;
-		$params['delivery_option']		= $this->id_address_delivery;
-		$params['products_cart']		= $this->getProducts();
-		$total_shipping 				= Hook::exec('actionCalculateShipping',$params);
-
-        $total_shipping 				= (array)json_decode($total_shipping);
-
+		$shipping = $this->getTotalShippingCost();
+		$total_shipping = $shipping->total;
 		return array(
-
 			'delivery' => $delivery,
-
 			'delivery_state' => State::getNameById($delivery->id_state),
-
 			'invoice' => $invoice,
-
 			'invoice_state' => State::getNameById($invoice->id_state),
-
 			'formattedAddresses' => $formatted_addresses,
-
 			'products' => array_values($products),
-
 			'gift_products' => $gift_products,
-
 			'discounts' => array_values($cart_rules),
-
 			'is_virtual_cart' => (int)$this->isVirtualCart(),
-
 			'total_discounts' => $total_discounts,
-
 			'total_discounts_tax_exc' => $total_discounts_tax_exc,
-
 			'total_wrapping' => $this->getOrderTotal(true, Cart::ONLY_WRAPPING),
-
 			'total_wrapping_tax_exc' => $this->getOrderTotal(false, Cart::ONLY_WRAPPING),
-
-			'total_shipping' => $total_shipping['total'],
-
-			'total_shipping_tax_exc' => $total_shipping['total'],
-
+			'total_shipping' => $shipping->total,
+			'total_shipping_tax_exc' =>$shipping->total,
 			'total_products_wt' => $total_products_wt,
-
 			'total_products' => $total_products,
-
 			'total_price' => $base_total_tax_inc,
-
-			'total_tax' => $total_tax = $total_shipping['total'],
-
+			'total_tax' => $total_tax = $shipping->total,
 			'total_price_without_tax' => $base_total_tax_exc,
-
 			'is_multi_address_delivery' => $this->isMultiAddressDelivery() || ((int)Tools::getValue('multi-shipping') == 1),
-
-			'free_ship' => $total_shipping['total'] ? 0 : 1,
-
+			'free_ship' => $shipping->total ? 0 : 1,
 			'carrier' => new Carrier($this->id_carrier, $id_lang),
-
 		);
-
 	}
 
 
