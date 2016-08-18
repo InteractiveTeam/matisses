@@ -5450,13 +5450,20 @@ class Cart extends CartCore
 			else
 				$total_shipping += $delivery_option_list[$id_address][$key]['total_price_without_tax'];
 		}
+        
 		$params['total_shipping'] 		= $total_shipping;
 		$params['delivery_option_list']	= $delivery_option_list;
 		$params['delivery_option']		= $id_address;
 		$params['products_cart']		= $this->getProducts();
 		$total_shipping = Hook::exec('actionCalculateShipping',$params);
-		return json_decode($total_shipping);
-
+		$res = json_decode($total_shipping);
+        $carrierFree = Db::getInstance()->getValue("SELECT is_free FROM "._DB_PREFIX_."carrier WHERE id_reference = ".$this->id_carrier);
+        if($carrierFree != "1")
+            return $res;
+        else{
+            $res->total = 0;
+            return $res;
+        }
 	}
 
 	/**
