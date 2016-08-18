@@ -5457,7 +5457,7 @@ class Cart extends CartCore
 		$params['products_cart']		= $this->getProducts();
 		$total_shipping = Hook::exec('actionCalculateShipping',$params);
 		$res = json_decode($total_shipping);
-        $carrierFree = Db::getInstance()->getValue("SELECT is_free FROM "._DB_PREFIX_."carrier WHERE deleted = 0 AND id_reference = ".$this->id_carrier);
+        $carrierFree = Db::getInstance()->getValue("SELECT is_free FROM "._DB_PREFIX_."carrier WHERE deleted = 0 AND id_carrier = ".$this->id_carrier);
         if($carrierFree != "1")
             return $res;
         else{
@@ -5467,21 +5467,13 @@ class Cart extends CartCore
 	}
 
 	/**
-
 	* Return shipping total of a specific carriers for the cart
-
 	*
-
 	* @param int $id_carrier
-
 	* @param array $delivery_option Array of the delivery option for each address
-
 	* @param booleal $useTax
-
 	* @param Country $default_country
-
 	* @return float Shipping total
-
 	*/
 
 	/*
