@@ -95,7 +95,7 @@
 		{
 			unset($_Product);
             print_r($_Combinations);
-            if($_Combinations['subgroupCode'] != array()){
+            if(count($_Combinations['subgroupCode']) > 0){
                 $_IdProduct = Db::getInstance()->getValue('SELECT id_product FROM '._DB_PREFIX_.'product WHERE model = "'.$_Model.'"');
                 __MessaggeLog('---------------------------------------------------------------'.date('H:i:s')."\n");
                 __MessaggeLog('-- Actualizando producto ('.$_Model.'): '.date('H:i:s')." ");
