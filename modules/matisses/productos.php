@@ -102,7 +102,7 @@
 
                 __setCombinations($_Combinations,$_Product);
             }else{
-                __MessaggeLog('-- Actualizando producto ('.$_Model.'): '.date('H:i:s')." -> No se cargó, no existe la categoria.");
+                __MessaggeLog('-- Actualizando producto ('.$_Model.'): '.date('H:i:s')." -> No se cargó, no existe la categoria."."\n");
             }
             unset($_References[$_Model]);
 		}
