@@ -677,7 +677,7 @@ echo $noImages. "SELECT count(*) FROM "._DB_PREFIX_."product a LEFT JOIN "._DB_P
 			
 			if(!empty($_data['subgroupCode'])) {
 				$CategoriesProduct = array();
-				$sql = 'SELECT id_category 
+				echo $sql = 'SELECT id_category 
 					FROM ' . _DB_PREFIX_ . 'category
 					WHERE LENGTH( subgrupo ) =11 and (subgrupo like "%'.$_data['subgroupCode'].'" )
 					GROUP BY id_category'; 
