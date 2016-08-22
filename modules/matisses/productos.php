@@ -94,7 +94,7 @@
 		foreach($_References as $_Model => $_Combinations)
 		{
 			unset($_Product);
-            print_r($_Combinations);
+            print_r($_Combinations['subgroupCode']);
             if(count($_Combinations['subgroupCode']) > 0){
                 $_IdProduct = Db::getInstance()->getValue('SELECT id_product FROM '._DB_PREFIX_.'product WHERE model = "'.$_Model.'"');
                 __MessaggeLog('---------------------------------------------------------------'.date('H:i:s')."\n");
