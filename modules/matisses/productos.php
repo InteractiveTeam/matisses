@@ -18,11 +18,11 @@
     $ip = 0;
 
     if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-       echo $ip = $_SERVER['HTTP_CLIENT_IP'];
+       $ip = $_SERVER['HTTP_CLIENT_IP'];
     } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-         echo $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
     } else {
-        echo $ip = $_SERVER['REMOTE_ADDR'];
+        $ip = $_SERVER['REMOTE_ADDR'];
     }
 	
 	//if(Configuration::get('ax_simpleproduct_data')!='')
@@ -157,9 +157,7 @@
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
     
     // productos activos sin imagenes
-    $noImages = Db::getInstance()->getValue("SELECT count(*) FROM "._DB_PREFIX_."product a LEFT JOIN "._DB_PREFIX_."image b on b.id_product = a.id_product WHERE b.id_product is null AND a.active = 1");
-echo $noImages. "SELECT count(*) FROM "._DB_PREFIX_."product a LEFT JOIN "._DB_PREFIX_."image b on b.id_product = a.id_product WHERE b.id_product is null AND a.active = 1";
-    
+    $noImages = Db::getInstance()->getValue("SELECT count(*) FROM "._DB_PREFIX_."product a LEFT JOIN "._DB_PREFIX_."image b on b.id_product = a.id_product WHERE b.id_product is null AND a.active = 1");    
   
     if($noImages > 0){
         $message = utf8_decode("Han quedado $noImages productos activos con imagenes");
@@ -676,7 +674,7 @@ echo $noImages. "SELECT count(*) FROM "._DB_PREFIX_."product a LEFT JOIN "._DB_P
 			
 			if(!empty($_data['subgroupCode'])) {
 				$CategoriesProduct = array();
-				echo $sql = 'SELECT id_category 
+				$sql = 'SELECT id_category 
 					FROM ' . _DB_PREFIX_ . 'category
 					WHERE LENGTH( subgrupo ) =11 and (subgrupo like "%'.$_data['subgroupCode'].'" )
 					GROUP BY id_category'; 
