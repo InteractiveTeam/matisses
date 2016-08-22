@@ -15,6 +15,15 @@
 	include_once dirname(__FILE__).'/../../config/config.inc.php';
 	require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 	require_once dirname(__FILE__)."/matisses.php";
+    $ip = 0;
+
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+       echo $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+         echo $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } else {
+        echo $ip = $_SERVER['REMOTE_ADDR'];
+    }
 	
 	//if(Configuration::get('ax_simpleproduct_data')!='')
 	//	$_Modelos		= Tools::jsonDecode(Configuration::get('ax_simpleproduct_data'),true);
@@ -23,7 +32,7 @@
 	$_wsmatisses 	= new matisses;
 	$_Modelos = null;
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
-	__MessaggeLog("INICIA PROCESO ".date('H:i:s')." - ".$time."\n");
+	__MessaggeLog("INICIA PROCESO DESDE LA IP:" . $ip." ".  date('H:i:s')." - ".$time."\n")  ;
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
     
 	// Consulto las referencias
@@ -58,11 +67,11 @@
     }
     try{
 	   $_References    = __getReferences($_Modelos,$banderaPost,$searchExist);
-	if(Configuration::get('ax_simpleproduct_data')=='')	{
-		$ModelsExists = implode('","',array_keys($_References));
-		Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
-		Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
-	}
+        if(Configuration::get('ax_simpleproduct_data')=='')	{
+            $ModelsExists = implode('","',array_keys($_References));
+            Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
+            Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
+        }
     }catch(Exception  $s){
         $message = utf8_decode("Durante la ejecución de la sonda de las 4:00am se ha presentado la siguiente excepción: \n" . date("H:i:s") . " ".$s->getMessage());
         $headers = "From: Sonda Matisses";
@@ -85,13 +94,17 @@
 		foreach($_References as $_Model => $_Combinations)
 		{
 			unset($_Product);
-			$_IdProduct = Db::getInstance()->getValue('SELECT id_product FROM '._DB_PREFIX_.'product WHERE model = "'.$_Model.'"');
-			__MessaggeLog('---------------------------------------------------------------'.date('H:i:s')."\n");
-			__MessaggeLog('-- Actualizando producto ('.$_Model.'): '.date('H:i:s')." ");
-			$_Product 	= __setProduct($_Combinations,$_IdProduct);
-			
-			__setCombinations($_Combinations,$_Product);
-			unset($_References[$_Model]);
+            if(!empty($_Combinations['subgroupCode'])){
+                $_IdProduct = Db::getInstance()->getValue('SELECT id_product FROM '._DB_PREFIX_.'product WHERE model = "'.$_Model.'"');
+                __MessaggeLog('---------------------------------------------------------------'.date('H:i:s')."\n");
+                __MessaggeLog('-- Actualizando producto ('.$_Model.'): '.date('H:i:s')." ");
+                $_Product 	= __setProduct($_Combinations,$_IdProduct);
+
+                __setCombinations($_Combinations,$_Product);
+            }else{
+                __MessaggeLog('-- Actualizando producto ('.$_Model.'): '.date('H:i:s')." -> No se cargó, no existe la categoria.");
+            }
+            unset($_References[$_Model]);
 		}
 	}else{
         __MessaggeLog('SERVICIO SAP INACTIVO ---------------------------------------'."\n");
@@ -106,9 +119,16 @@
     __MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
 	__MessaggeLog("DESACTIVANDO REFERENCIAS ".date('H:i:s')." - ".$time."\n");
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
-	
-	Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN (select id_product from  '._DB_PREFIX_.'image group by id_product)');
-	Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN (select id_product from  '._DB_PREFIX_.'image group by id_product)');
+
+        Db::getInstance()->Execute('UPDATE '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN (select id_product from  '._DB_PREFIX_.'image group by id_product)');
+       /* Db::getInstance()->Execute('UPDATE '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN (select id_product from  '._DB_PREFIX_.'image group by id_product)');  */  
+
+    /*$activeNoimages = Db::getInstace()->getValue('SELECT count(*) as products FROM '._DB_PREFIX_.'product a LEFT JOIN '._DB_PREFIX_.'image b on b.id_product = a.id_product WHERE a.active = 1 AND b.id_product is null');
+    if($activeNoimages > 0){
+        $message = utf8_decode("Existen productos activos sin imagenes");
+        $headers = "From: Sonda Matisses";
+        mail("miguel.montoya@arkix.com", utf8_decode("Error en sql de la sonda"), $message, $headers);        
+    }*/
 
 	Db::getInstance()->Execute('
 		update '._DB_PREFIX_.'product_attribute set default_on = 1 where reference in (
