@@ -156,6 +156,18 @@
 	__MessaggeLog("TERMINA INDEXACIÓN ".date('H:i:s')." - ".$time."\n");
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
     
+    // productos activos sin imagenes
+    $noImages = Db::getInstance()->getValue("SELECT count(*) FROM "._DB_PREFIX_."product a LEFT JOIN "._DB_PREFIX_."image b on b.id_product = a.id_product WHERE b.id_product is null AND a.active = 1");
+echo $noImages. "SELECT count(*) FROM "._DB_PREFIX_."product a LEFT JOIN "._DB_PREFIX_."image b on b.id_product = a.id_product WHERE b.id_product is null AND a.active = 1";
+    
+  
+    if($noImages > 0){
+        $message = utf8_decode("Han quedado $noImages productos activos con imagenes");
+        $headers = "From: Sonda Matisses";
+        mail("miguel.montoya@arkix.com", utf8_decode("Reporte"), $message, $headers);
+        __MessaggeLog("Han quedado $noImages productos activos con imagenes"."\n");
+    }
+
     /*if($banderaPost){
         return 'ok';
         exit();
