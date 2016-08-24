@@ -373,7 +373,7 @@ var ax_admin = {
     validDate:function(){
         var value = $("#months").val()+"/"+$("#days").val()+"/"+$("#years").val();
         var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
-        var t = new Date(value.replace(pattern,'$3-$2-$1'));
+        var t = new Date(value.replace(pattern,'$1-$2-$3'));
         var now = new Date();
         return (dates.compare(t,now) == 1 ? true : false);
     },

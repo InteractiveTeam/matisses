@@ -121,7 +121,7 @@
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
 
         Db::getInstance()->Execute('UPDATE '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN (select id_product from  '._DB_PREFIX_.'image group by id_product)');
-       /* Db::getInstance()->Execute('UPDATE '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN (select id_product from  '._DB_PREFIX_.'image group by id_product)');  */  
+       Db::getInstance()->Execute('UPDATE '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN (select id_product from  '._DB_PREFIX_.'image group by id_product)'); 
 
     /*$activeNoimages = Db::getInstace()->getValue('SELECT count(*) as products FROM '._DB_PREFIX_.'product a LEFT JOIN '._DB_PREFIX_.'image b on b.id_product = a.id_product WHERE a.active = 1 AND b.id_product is null');
     if($activeNoimages > 0){
@@ -157,14 +157,14 @@
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
     
     // productos activos sin imagenes
-    $noImages = Db::getInstance()->getValue("SELECT count(*) FROM "._DB_PREFIX_."product a LEFT JOIN "._DB_PREFIX_."image b on b.id_product = a.id_product WHERE b.id_product is null AND a.active = 1");    
+    /*$noImages = Db::getInstance()->getValue("SELECT count(*) FROM "._DB_PREFIX_."product a LEFT JOIN "._DB_PREFIX_."image b on b.id_product = a.id_product WHERE b.id_product is null AND a.active = 1");    
   
     if($noImages > 0){
         $message = utf8_decode("Han quedado $noImages productos activos con imagenes");
         $headers = "From: Sonda Matisses";
         mail("miguel.montoya@arkix.com", utf8_decode("Reporte"), $message, $headers);
         __MessaggeLog("Han quedado $noImages productos activos con imagenes"."\n");
-    }
+    }*/
 
     /*if($banderaPost){
         return 'ok';
