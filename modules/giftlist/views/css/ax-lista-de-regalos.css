@@ -1502,6 +1502,11 @@ label.error:before {
     padding: 15px;
 }
 
+.module-giftlist-descripcion .chosen-container .chosen-results {
+    height: auto;
+    width: auto;
+}
+
 .module-giftlist-descripcion .jplist-panel .chosen-container .chosen-results {
     width: 100%;
 }
