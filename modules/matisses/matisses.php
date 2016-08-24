@@ -1189,7 +1189,7 @@ class matisses extends Module
 	
 	public function hookdisplayAvailableProduct($params)
 	{
-		$stores = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'store WHERE codmatisses in("'.str_replace(',',",",$params['product']->stores).'")');
+		$stores = Db::getInstance()->ExecuteS('SELECT * FROM '._DB_PREFIX_.'store WHERE codmatisses in("'.str_replace(',','","',$params['product']->stores).'")');
 		$this->context->smarty->assign('stores',$stores);	
 		return $this->display(__FILE__, 'views/templates/hook/product_available.tpl');
 	}
@@ -1908,29 +1908,32 @@ class matisses extends Module
 	{
 		//set_time_limit(15);
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
-		$client = new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
-		//echo "<pre>"; print_r($client); echo "</pre>";
-		//die();
-		$s 		= array('genericRequest' => array('data'=>$datos,'object'=>$objeto,'operation'=>$operacion,'source'=>$origen));
-		
-		$result = $client->call('callService', $s);
-		if($client->error_str)
-		{
-			return array('error_string' => $client->error_str);
-		}
-		if($return)
-			return $result;  
-		
-		if(!$result['return'])
-			return false;
-		
-		$datos 	= $this->xml_to_array(utf8_encode($result['return']['detail']));
         
+        $client = new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
+        //echo "<pre>"; print_r($client); echo "</pre>";
+        //die();
+        $s 		= array('genericRequest' => array('data'=>$datos,'object'=>$objeto,'operation'=>$operacion,'source'=>$origen));
+
+        $result = $client->call('callService', $s);
+        if($client->error_str)
+           throw new Exception($client->error_str);
+        if($client->error_str)
+        {
+            return array('error_string' => $client->error_str);
+        }
+        if($return)
+            return $result;  
+
+        if(!$result['return'])
+            return false;
+
+        $datos 	= $this->xml_to_array(utf8_encode($result['return']['detail']));
+
         if($code){
             $datos['inventoryItemDTO']['codeStatus'] = $result['return']['code'];
         }
-		
-		return $datos;
+
+        return $datos;
 	}
 	
 	public function wsmatisses_listStockChanges(){		

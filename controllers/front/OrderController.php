@@ -297,12 +297,12 @@ class OrderControllerCore extends ParentOrderController
 		$same = Tools::isSubmit('same');
 		if (!Tools::getValue('id_address_invoice', false) && !$same)
 			$same = true;
-
-		if (!Customer::customerHasAddress($this->context->customer->id, (int)Tools::getValue('id_address_delivery'))
-			|| (!$same && Tools::getValue('id_address_delivery') != Tools::getValue('id_address_invoice')
-				&& !Customer::customerHasAddress($this->context->customer->id, (int)Tools::getValue('id_address_invoice'))))
-			$this->errors[] = Tools::displayError('Invalid address', !Tools::getValue('ajax'));
-		else
+        
+        if (!Customer::customerHasAddress($this->context->customer->id, (int)Tools::getValue('id_address_delivery'))
+            || (!$same && Tools::getValue('id_address_delivery') != Tools::getValue('id_address_invoice')
+                && !Customer::customerHasAddress($this->context->customer->id, (int)Tools::getValue('id_address_invoice'))))
+            $this->errors[] = Tools::displayError('Invalid address', !Tools::getValue('ajax'));
+        else
 		{
 			$this->context->cart->id_address_delivery = (int)Tools::getValue('id_address_delivery');
 			$this->context->cart->id_address_invoice = $same ? $this->context->cart->id_address_delivery : (int)Tools::getValue('id_address_invoice');

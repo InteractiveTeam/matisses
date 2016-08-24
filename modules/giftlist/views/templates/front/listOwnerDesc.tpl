@@ -20,9 +20,9 @@
         <div class="ax-cont-list">
             <div class="ax-item">
                 <div class="part">{l s='Código' mod='giftlist'}<span>{$list_desc['code']}</span></div>
-                <div class="part">{l s='Días para el evento' mod='giftlist'}<span class="ax-day">{$days}</span></div>
+                <div class="part">{l s='Días para el evento' mod='giftlist'}<span class="ax-day">{if {$days} >= 0}{{$days}|replace:'+':''}{else}{l s='Finalizado' mod='giftlist'}{/if}</span></div>
                 <div class="part">{l s='Tus regalos' mod='giftlist'}<span>{$numberProducts.products}</span></div>
-                <div class="part">{l s='Regalos restantes' mod='giftlist'}<span>{$numberProducts.products_bought}</span></div>
+                <div class="part">{l s='Regalos restantes' mod='giftlist'}<span>{$numberProducts.products - $numberProducts.products_bought}</span></div>
                 <div class="part">{l s='Registrante' mod='giftlist'}<span class="ax-creator-name">{$creator}</span></div>
                 <div class="part">{l s='Tipo de evento' mod='giftlist'}<span class="ax-event-type">{$event_type}</span></div>
                 <div class="part">{l s='Fecha' mod='giftlist'}<span class="ax-event-date">{date("d/m/Y",strtotime($list_desc['event_date']))}</span></div>
@@ -59,7 +59,7 @@
         <div class="ax-text-result-list ax-result-inline">
             <h2>{l s='Mensaje de bienvenida' mod='giftlist'}</h2>
         </div>
-        <p id="ax-message-content" class="ax-message-content">{$list_desc['message']}</p>
+        <p id="ax-message-content" class="ax-message-content">{html_entity_decode($list_desc['message'])}</p>
             <div id="ax-message-content" class="ax-message-content">
                 <a href="javascript:void(0);" id="ax-edit" class="ax-edit">{l s='Editar mensaje' mod='giftlist'}</a>
                 <a href="javascript:void(0);" id="ax-delete" class="ax-delete">{l s='Eliminar mensaje' mod='giftlist'}</a>
@@ -74,11 +74,11 @@
         <div class="row">
             <div class="col-md-4">
             <p class="ax-title">{l s='Antes del evento' mod='giftlist'}</p>
-               <p class="ax_address_bef">{$list_desc['address_before']} {$address->town} {$address->city}, {$address->country}</p>
+               <p class="ax_address_bef">{$address_before.complete}</p>
             </div>
             <div class="col-md-4">
             <p class="ax-title">{l s='Despúes del evento' mod='giftlist'}</p>
-            <p class="ax_address_af">{$list_desc['address_after']} {$address->town} {$address->city}, {$address->country}</p>
+            <p class="ax_address_af">{$address_after.complete}</p>
             </div>
         </div>
     </div>
@@ -116,9 +116,10 @@
 		
         
         <div id="ax-products">
-            <div class="jplist-panel">
+            {if !empty($products)}
+            <div class="jplist-panel cf">
                <div class="sortPagiBar">
-               <label for="nb_item"> <span>Mostrar</span> </label>
+               <label for="nb_item"><span>Mostrar</span> </label>
                <select
                     class="jplist-select" 
                     data-control-type="items-per-page-select" 
@@ -138,7 +139,9 @@
                 data-control-action="paging">
                 </div>
             </div>
+            {/if}
             <div class="row ax-prod-cont">
+               {if !empty($products)}
                 {foreach from=$products item=row}
                     {$atribute_group = $row['options'][3]->value}
                         <div class="product-card col-md-3" data-attr-id="atribute_group" id="prod-{$row['id']}" data-id="{$row['id']}" data-group="{if $row['group']}1{else}0{/if}">
@@ -154,11 +157,17 @@
                                     <p>{$att_group['group_name']}: {$att_group['attribute_name']}</p>
                                 {/if}
                             {/foreach}
-                            <p>{l s='Cantidad:'}{if $row['group']}{$row['cant']}{else} <input class="cant_prod" type="number" min="0" value="{$row['cant']}" disabled/>{/if}</p>
+                            {if $row['group']}<p class="ax-cant-fija">{l s='Cantidad:'} {$row['cant']}</p>
+                            {else} 
+                                <p>{l s='Cantidad:'} <input class="cant_prod" type="number" min="0" value="{$row['cant']}" disabled/></p>
+                            {/if}
                         </div>
                         <a class="delete-product hidden" data-toggle="tooltip" data-placement="bottom" title="Quitar producto"><i class="fa fa-close"></i></a>
                     </div>
                 {/foreach}
+                {else}
+                <div class="product-card"><p class="ax-no-products"><i class="fa fa-minus-circle"></i>{l s='No hay productos en esta lista'}</p></div>
+                {/if}
                 {if $list_desc['recieve_bond']}
                 <div class="product-card ax-bond-card col-md-3" data-id="{$list_desc['id']}">
                     <img src="{$modules_dir}/giftlist/views/img/details-lista.png">
@@ -166,7 +175,8 @@
                 </div>
                 {/if}
             </div>
-            <div class="jplist-panel">
+            {if !empty($products)}
+            <div class="jplist-panel cf">
                <div class="sortPagiBar">
                <label for="nb_item"> <span>Mostrar</span> </label>
                <select
@@ -180,7 +190,7 @@
                     <option data-number="12"> 12 </option>
                     <option data-number="all"> Todos </option>
                 </select>	
-                </div>					
+                </div>
                 <div 
                 class="jplist-pagination" 
                 data-control-type="pagination" 
@@ -188,6 +198,7 @@
                 data-control-action="paging">
                 </div>
             </div>
+            {/if}
 		</div>
 	</div>
 </div>
@@ -215,6 +226,8 @@
                         <option value="1">{l s='COLOMBIA' mod='giftlist'}</option>
                     </select>
                 </div>
+            </div>
+            <div class="col-md-6">
                 <div class="row">
                     <label for="town">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
                     <select id="city" name="city" class="form-control ax-select">
@@ -224,14 +237,14 @@
                         {/foreach}
                     </select>
                 </div>
-            </div>
-            
-            <div class="col-md-6">
               <div class="row">
                     <div class="required town unvisible">
                         <label for="city">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
                         <select id="town" name="town" class="form-control ax-select">
                             <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
+                            {foreach from=$countries[$address_before.address->id_country].states item=s}
+                                <option value="{$s.id_state}" {if $s.id_state == $address->town} selected {/if}>{$s.name}</option>
+                            {/foreach}
                         </select>
                     </div>
                 </div>
@@ -241,14 +254,114 @@
                 <div class="row">
                     <label for="address_2">{l s='Dirección 2' mod='giftlist'}</label> <input type="text" id="address_2" class="form-control" name="address_2" value="{$address->address_2}" placeholder="{l s='Apto, oficina, interior, bodega...' mod='giftlist'}" />
                 </div>
-                <div class="row">
-                    <label for="dir_before">{l s='Dirección de envío antes del evento' mod='giftlist'}<sup>*</sup></label>
-                    <input type="text" class="form-control" value="{$list_desc['address_before']}" name="dir_before" id="dir_before">
+            </div>
+        </div>
+        
+        <!-- direccion antes -->
+        
+        <h3>{l s='Dirección de envío antes del evento' mod='giftlist'}</h3> 
+        <div class="col-md-6">
+            <div class="row">
+                <label for="before-firstname">{l s='Nombre' mod='giftlist'}<sup>*</sup></label> 
+                <input type="text" class="form-control" name="before-firstname" id="before-firstname" value="{$address_before.address->firstname}">
+            </div>
+            <div class="row">
+                <label for="before-lastname">{l s='Apellido' mod='giftlist'}<sup>*</sup></label> 
+                <input type="text" class="form-control" name="before-lastname" id="before-lastname"  value="{$address_before.address->lastname}">
+            </div>
+            <div class="row">
+                <label for="before-tel">{l s='Teléfono' mod='giftlist'}<sup>*</sup></label> 
+                <input type="text" class="form-control" name="before-tel" id="before-tel"  value="{$address_before.address->phone}">
+            </div>
+            <div class="row">
+                <label for="before-country">{l s='País' mod='giftlist'}<sup>*</sup></label>
+                <select id="before-country" name="before-country" class="form-control ax-select">
+                    <option value="1">{l s='COLOMBIA' mod='giftlist'}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <label for="before-city">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
+                <select id="before-city" name="before-city" class="form-control ax-select">
+                    <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
+                    {foreach from=$countries item=c}
+                        <option value="{$c.id_country}" {if $c.id_country == $address_before.address->id_country} selected {/if}>{$c.name}</option>
+                    {/foreach}
+                </select>
+            </div>
+          <div class="row">
+                <div class="required town unvisible">
+                    <label for="before-town">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
+                    <select id="before-town" name="before-town" class="form-control ax-select">
+                        <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
+                        {foreach from=$countries[$address_before.address->id_country].states item=s}
+                            <option value="{$s.id_state}" {if $s.id_state == $address_before.address->id_state} selected {/if}>{$s.name}</option>
+                        {/foreach}
+                    </select>
                 </div>
-                <div class="row">
-                    <label for="dir_after">{l s='Dirección de envío después del evento' mod='giftlist'}<sup>*</sup></label>
-                    <input type="text" class="form-control" value="{$list_desc['address_after']}" name="dir_after" id="dir_after">
+            </div>
+          <div class="row">
+                <label for="before-address">{l s='Dirección 1' mod='giftlist'}<sup>*</sup></label> 
+                <input type="text" id="before-address" class="form-control" name="before-address" value="{$address_before.address->address1}"/>
+            </div>
+            <div class="row">
+                <label for="before-address_2">{l s='Dirección 2' mod='giftlist'}</label>
+                <input type="text" id="before-address_2" class="form-control" name="before-address_2" value="{$address_before.address->address2}" placeholder="{l s='Apto, oficina, interior, bodega...' mod='giftlist'}" />
+            </div>
+        </div>
+        
+        <!-- direccion despues --> 
+        
+        <h3>{l s='Dirección de envío después del evento' mod='giftlist'}</h3> 
+        <div class="col-md-6">
+            <div class="row">
+                <label for="after-firstname">{l s='Nombre' mod='giftlist'}<sup>*</sup></label> 
+                <input type="text" class="form-control" name="after-firstname" id="after-firstname" value="{$address_after.address->firstname}">
+            </div>
+            <div class="row">
+                <label for="after-lastname">{l s='Apellido' mod='giftlist'}<sup>*</sup></label> 
+                <input type="text" class="form-control" name="after-lastname" id="after-lastname"  value="{$address_after.address->lastname}">
+            </div>
+            <div class="row">
+                <label for="after-tel">{l s='Teléfono' mod='giftlist'}<sup>*</sup></label> 
+                <input type="text" class="form-control" name="after-tel" id="after-tel"  value="{$address_after.address->phone}">
+            </div>
+            <div class="row">
+                <label for="after-country">{l s='País' mod='giftlist'}<sup>*</sup></label>
+                <select id="after-country" name="after-country" class="form-control ax-select">
+                    <option value="1">{l s='COLOMBIA' mod='giftlist'}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <label for="after-city">{l s='Estado/Departamento' mod='giftlist'}<sup>*</sup></label>
+                <select id="after-city" name="after-city" class="form-control ax-select">
+                    <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
+                    {foreach from=$countries item=c}
+                        <option value="{$c.id_country}" {if $c.id_country == $address_after.address->id_country} selected {/if}>{$c.name}</option>
+                    {/foreach}
+                </select>
+            </div>
+          <div class="row">
+                <div class="required town unvisible">
+                    <label for="after-town">{l s='Ciudad' mod='giftlist'}<sup>*</sup></label>
+                    <select id="after-town" name="after-town" class="form-control ax-select">
+                        <option value="0">{l s='Selecciona una opción' mod='giftlist'}</option>
+                        {foreach from=$countries[$address_before.address->id_country].states item=s}
+                            <option value="{$s.id_state}" {if $s.id_state == $address_after.address->id_state} selected {/if}>{$s.name}</option>
+                        {/foreach}
+                    </select>
                 </div>
+            </div>
+          <div class="row">
+                <label for="after-address">{l s='Dirección 1' mod='giftlist'}<sup>*</sup></label>
+                <input type="text" id="after-address" class="form-control" name="after-address"/  value="{$address_after.address->address1}">
+            </div>
+            <div class="row">
+                <label for="after-address_2">{l s='Dirección 2' mod='giftlist'}</label>
+                <input type="text" id="after-address_2" class="form-control" name="after-address_2" value="{$address_after.address->address2}" placeholder="{l s='Apto, oficina, interior, bodega...' mod='giftlist'}" />
             </div>
         </div>
  
@@ -291,7 +404,7 @@
                     </select>
                 </div>
         </div>
-        <div class="row">
+        <div class="row date-cont">
             {*
                 {l s='January' mod='giftlist'}
                 {l s='February' mod='giftlist'}

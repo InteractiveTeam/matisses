@@ -104,7 +104,8 @@
 		<div class="slider_container cf grid_12 alpha omega">
 		{hook h="underList"}
 		</div>
-		{if $products && !$subcategories}
+		{*if $products && $subcategories*}
+		{if $products}
 		<div class="content_sortPagiBar cf grid_12 alpha omega">
 			<div class="sortPagiBar grid_9 alpha omega">
 				{include file="./product-compare.tpl"}

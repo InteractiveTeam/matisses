@@ -53,6 +53,8 @@ var dates = {
 
 var ax_admin = {
     form: '',
+    formAfterAddress: '',
+    formBeforeAddress: '',
     init: function(){
         $(document).ready(function(){
             // Select your input element.
@@ -63,9 +65,19 @@ var ax_admin = {
             guest_number.onkeydown = ax_admin.negative// Listen for input event on numInput.
             min_amount.onkeydown = ax_admin.negative;
             ax_admin.validate();
+            ax_admin.validateAfter();
+            ax_admin.validateBefore();
             $("#city").on('change',function(){
-                ax_admin.setTown($("#city option:selected").val());
+                ax_admin.setTown($("#city option:selected").val(),"");
                 $("#town").trigger("chosen:updated");
+            });
+            $("#before-city").on('change',function(){
+                ax_admin.setTown($("#before-city option:selected").val(),"before-");
+                $("#before-town").trigger("chosen:updated");
+            });
+            $("#after-city").on('change',function(){
+                ax_admin.setTown($("#after-city option:selected").val(),"after-");
+                $("#after-town").trigger("chosen:updated");
             });
             $("select").on('change',function(){
                 $(this).parent().find("label.error").remove();
@@ -124,35 +136,113 @@ var ax_admin = {
                 else
                     $("#ammount_div").addClass("hidden");
             });
+            
+            $("#ax-add-before").fancybox({
+                'autoSize'      :   true,
+                'transitionIn'	:	'elastic',
+                'transitionOut'	:	'elastic',
+                'speedIn'		:	600,
+                'speedOut'		:	200,
+                'overlayShow'	:	false,
+            }); 
+            $("#ax-add-after").fancybox({
+                'autoSize'      :   true,
+                'transitionIn'	:	'elastic',
+                'transitionOut'	:	'elastic',
+                'speedIn'		:	600,
+                'speedOut'		:	200,
+                'overlayShow'	:	false,
+            });
+            $(document).on('click', '.popup-modal-dismiss', function (e) {
+                e.preventDefault();
+                $.fancybox.close();
+            });
+
+            $(".ax-cancel").on('click', function (e) {
+                e.preventDefault();
+                $.fancybox.close();
+            });
+            $(".ax-after-save").click(function(){
+                var form = ax_admin.formAfterAddress.form();
+                var select = ax_admin.validateAfterAddressSelect();
+                if(form && select){
+                    $("#setAfter").val(1);
+                    $.fancybox.close();
+                }
+            });
+            $(".ax-before-save").click(function(){
+                var form = ax_admin.formBeforeAddress.form();
+                var select = ax_admin.validateBeforeAddressSelect();
+                if(form && select){
+                    $("#setBefore").val(1);
+                    $.fancybox.close();
+                }
+            });
         });
+    },realDate:function(year, month, _date){
+        month -= 1;
+        var d = new Date(year, month, _date);
+        if (d.getFullYear() != year 
+        || d.getMonth() != month
+        || d.getDate() != _date) {
+            return true;
+        }
+        return false;
     },
     uploadMsg:function(el){
         var msg = $("<span>").addClass("ax-up-msg").html("<i class='fa fa-check'></i>");
         if(!el.parent().parent().parents(".col-md-6").find(".ax-up-msg").length)
             el.parent().parent().parents(".col-md-6").append(msg);
     },
-    validateSelect : function(element){
+    validateSelect : function(){
         var ret = true;
-        $("select").each(function(){
+        $("#step-1 select").each(function(){
             if($(this).val() === "0"){
                 $(this).parent().append('<label id="event_type-error" class="error">El campo es requerido</label>');
                 ret = false; 
+            }else{
+                $(this).parent().find("#event_type-error").remove();
             }
         });
         return ret;
     },
-    setTown: function (id_state){
-	   var states = countries[id_state].states;
-        $("#town").empty().append($('<option>', {
+    validateAfterAddressSelect : function(){
+        var ret = true;
+        $("#ax-modal-after select").each(function(){
+            if($(this).val() === "0"){
+                $(this).parent().append('<label id="event_type-error" class="error">El campo es requerido</label>');
+                ret = false; 
+            }else{
+                $(this).parent().find("#event_type-error").remove();
+            }
+        });
+        return ret;
+    },
+    validateBeforeAddressSelect : function(){
+        var ret = true;
+        $("#ax-modal-before select").each(function(){
+            if($(this).val() === "0"){
+                $(this).parent().append('<label id="event_type-error" class="error">El campo es requerido</label>');
+                ret = false; 
+            }else{
+                $(this).parent().find("#event_type-error").remove();
+            }
+        });
+        return ret;
+    },
+    setTown: function (id_state,el){
+        if(id_state === 0 || id_state === "0")
+            return false;
+	    var states = countries[id_state].states;
+        $("#"+el+"town").empty().append($('<option>', {
             value: 0,
             text: "Seleccione una opción"
         }));
         for(i = 0; i < states.length; i++){
-            $('#town').append($('<option>', {
-                value: states[i].name,
+            $("#"+el+"town").append($('<option>', {
+                value: states[i].id_state,
                 text: states[i].name
             }));
-            $("#town_chosen .chosen-drop .chosen-results").append('<li class="active-result" data-option-array-index="'+states[i].name+'">'+states[i].name+'</li>');
         }
     },
     prevTab: function(){
@@ -172,9 +262,15 @@ var ax_admin = {
             data.append('image-prof', file);
         });
         var formData = $("#frmSaveList").serialize();
+        var message = $("#message").val().replace(/\n/g, "<br>");
         data.append("form",formData);
+        data.append("message",message);
         data.append("ajax",true);
         data.append("method",'saveList');
+        if($("#setAfter").val() === "1")
+            data.append("form_after",$("#after-address-form").serialize()); 
+        if($("#setBefore").val() === "1")
+            data.append("form_before",$("#before-address-form").serialize()); 
         $.ajax({
             type: 'POST',
             async: false,
@@ -184,8 +280,19 @@ var ax_admin = {
             data:data,
             success: function(res){
                 res = JSON.parse(res);
-                if(res.error)
-                    console.log(res.msg);
+                if(res.error){
+                    $.fancybox({
+                        'autoScale': true,
+                        'transitionIn': 'elastic',
+                        'transitionOut': 'elastic',
+                        'speedIn': 500,
+                        'speedOut': 300,
+                        'autoDimensions': true,
+                        'centerOnScroll': true,
+                        'content' : '<p class="fancybox-error">'+res.msg+"</p>"
+                    });
+                }
+                    
                 else
                     window.location.href = res.url;
             }
@@ -201,9 +308,23 @@ var ax_admin = {
     changeTab:function(){
         var active = $(".nav-tabs li.active a");
         var next = parseInt(active.parent().attr("data-id")) + 1;
-        
+        var error = false;            
+        var invalidDate = ax_admin.realDate($("#years").val(),$("#months").val(),$("#days").val());
+        if($("#months").val() === "0" && $("#days").val() === "0" && $("#years").val() === "0")
+            invalidDate = false;
+        if(!ax_admin.validDate()){
+            error = true;
+        }else{
+            $("#date-error").remove();
+        }
+        if(!invalidDate)
+            $("#real-error").remove();
         if(ax_admin.form.form()){
-            if(!ax_admin.validateSelect())
+            if(invalidDate)
+                $(".ax-cont-form-date-lista").parent().append('<label id="real-error" class="error">Debes ingresar una fecha válida.</label>');
+            if(error)
+                $(".ax-cont-form-date-lista").parent().append('<label id="date-error" class="error">La fecha seleccionada en este campo debe ser posterior a la fecha actual.</label>');
+            if(!ax_admin.validateSelect() || error || invalidDate)
                 return;
             if($(".tab-pane.active").attr("data-tab-id") === "1"){
                 var dir = $("#address").val();
@@ -219,7 +340,26 @@ var ax_admin = {
             $("#step"+next+" a").attr("href","#step-"+next);
             $("#step"+next+" a").tab("show");
         }else{
-            ax_admin.validateSelect();
+            if(invalidDate)
+                $(".ax-cont-form-date-lista").parent().append('<label id="real-error" class="error">Debes ingresar una fecha válida.</label>');
+            if(error && $("#months").val() !== "0" && $("#days").val() !== "0" && $("#years").val() !== "0")
+                $(".ax-cont-form-date-lista").parent().append('<label id="date-error" class="error">La fecha seleccionada en este campo debe ser posterior a la fecha actual.</label>');
+            if(!ax_admin.validateSelect() || !error)
+                ax_admin.validateSelect();
+        }
+        
+        if(active.parent().attr("id") === "step1"){
+            $("#before-firstname,#after-firstname").val($("#firstname").val());
+            $("#before-lastname,#after-lastname").val($("#lastname").val());
+            $("#before-tel,#after-tel").val($("#tel").val());
+            $("#before-address,#after-address").val($("#address").val());
+            $("#before-address_2,#after-address_2").val($("#address_2").val());
+            $("#before-city option[value='"+$("#city").val()+"'],#after-city option[value='"+$("#city").val()+"']").attr("selected","selected");
+            $("#before-city,#after-city").trigger("chosen:updated");
+            ax_admin.setTown($("#city").val(),"before-");
+            ax_admin.setTown($("#city").val(),"after-");
+            $("#before-town option[value='"+$("#town").val()+"'],#after-town option[value='"+$("#town").val()+"']").attr("selected","selected");
+            $("#before-town,#after-town").trigger("chosen:updated");
         }
     },
     convertToSlug: function (Text)
@@ -230,9 +370,16 @@ var ax_admin = {
         .replace(/ +/g,'-')
         ;
     },
+    validDate:function(){
+        var value = $("#months").val()+"/"+$("#days").val()+"/"+$("#years").val();
+        var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
+        var t = new Date(value.replace(pattern,'$1-$2-$3'));
+        var now = new Date();
+        return (dates.compare(t,now) == 1 ? true : false);
+    },
     validate: function(){
         $.validator.addMethod("selectRequired",function(value,element){
-            return value != 0;
+            return value !== 0;
         }, "El campo es requerido");
 
         $.validator.addMethod("guestNumber",function(value,element){
@@ -243,13 +390,6 @@ var ax_admin = {
             var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
             return pattern.test(value);
         }, "Por favor, escribe una dirección de correo válida.");
-
-        $.validator.addMethod("noTodayDate", function(value, element) {
-            var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
-            var t = new Date(value.replace(pattern,'$3-$2-$1'));
-            var now = new Date();
-            return (dates.compare(t,now) == 1 ? true : false);
-        }, "La fecha seleccionada en este campo debe ser posterior a la fecha actual.");
 
         ax_admin.form = $("#frmSaveList").validate({
             lang: 'es',
@@ -274,9 +414,15 @@ var ax_admin = {
                 message: {
                     maxlength:1000
                 },
-                country:"selectRequired",
-                city:"selectRequired",
-                town:"selectRequired",
+                country:{
+                    selectRequired: true,
+                },
+                city:{
+                    selectRequired: true,
+                },
+                town:{
+                    selectRequired: true,
+                },
                 tel:{
                     required:true,
                 },
@@ -295,12 +441,6 @@ var ax_admin = {
                 address:{
                     required:true,
                 },
-                dir_before:{
-                    required:true,
-                },
-                dir_after:{
-                    required:true,
-                },
                 email_co:{
                     required:true,
                 },
@@ -315,7 +455,71 @@ var ax_admin = {
                 required:"El campo es requerido"
             }
         });
-    }
+    },
+    validateAfter:function(){
+        $.validator.addMethod("selectRequired",function(value,element){
+            return value !== 0;
+        }, "El campo es requerido");
+
+        ax_admin.formAfterAddress = $("#after-address-form").validate({
+            lang:'es',
+            rules:{
+                "after-firstname": {
+                    required:true,
+                },
+                "after-lastname": {
+                    required:true,
+                },
+                "after-country":{
+                    selectRequired: true,
+                },
+                "after-city":{
+                    selectRequired: true,
+                },
+                "after-town":{
+                    selectRequired: true,
+                },
+                "after-tel":{
+                    required:true,
+                },
+                "after-address":{
+                    required:true,
+                },
+            }
+        });
+    },
+    validateBefore:function(){
+        $.validator.addMethod("selectRequired",function(value,element){
+            return value !== 0;
+        }, "El campo es requerido");
+
+        ax_admin.formBeforeAddress = $("#before-address-form").validate({
+            lang:'es',
+            rules:{
+                "before-firstname": {
+                    required:true,
+                },
+                "before-lastname": {
+                    required:true,
+                },
+                "before-country":{
+                    selectRequired: true,
+                },
+                "before-city":{
+                    selectRequired: true,
+                },
+                "before-town":{
+                    selectRequired: true,
+                },
+                "before-tel":{
+                    required:true,
+                },
+                "before-address":{
+                    required:true,
+                }
+            }
+        });
+    },
 };
 
 ax_admin.init();

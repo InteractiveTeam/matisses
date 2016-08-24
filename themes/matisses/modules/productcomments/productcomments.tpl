@@ -150,7 +150,7 @@
 					{/if}
 					{if $allow_guests == true && !$is_logged}
 						<label>
-							{l s='Your name' mod='productcomments'}: <sup class="required">*</sup>
+							{l s='Your name' mod='productcomments'} <sup class="required">*</sup>
 						</label>
 						<input class="form-control" id="commentCustomerName" name="customer_name" type="text" value=""/>
 					{/if}

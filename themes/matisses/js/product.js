@@ -603,7 +603,13 @@ function updateDisplay()
 
     if (selectedCombination['short_description']){
         $("#short_description_content").text(selectedCombination['short_description']);
+    }
+    if (selectedCombination['description']){
+        $("#tabs-1").removeClass("hidden").html(selectedCombination['description']);
         $(".product-tabs #tabs-1").html('<p>'+selectedCombination['description']+'</p>');
+    }else{
+        $("#tabs-1").addClass("hidden");
+        $("#tab-li-1").addClass("hidden");
     }
     
     if (selectedCombination['itemname']){
@@ -611,7 +617,11 @@ function updateDisplay()
     }
     
     if(selectedCombination['garantias']){
-        $("#tabs-2").html(selectedCombination['garantias']);
+        $("#tabs-2").removeClass("hidden").html(selectedCombination['garantias']);
+        $("#tab-li-2").removeClass("hidden")
+    }else{
+        $("#tabs-2").addClass("hidden");
+        $("#tab-li-2").addClass("hidden");
     }
     
     document.getElementById('quantity_wanted').value = 1;

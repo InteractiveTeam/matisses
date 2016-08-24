@@ -80,7 +80,8 @@ $(document).ready(function() {
     
     $("#ax-edit").click(function(){
         var mc = $("#ax-message-content");
-        var m = mc.text();
+        var m = mc.html();
+        m = replaceAll(m,"<br>","\n");
         mc.hide();
         var bedit = $("#ax-edit");
         var bdelete = $("#ax-delete");
@@ -170,13 +171,11 @@ $(document).ready(function() {
                      'autoScale': true,
                      'transitionIn': 'elastic',
                      'transitionOut': 'elastic',
-                     'minWidth': 250,
-                     'minHeight': 50,
                      'speedIn': 500,
                      'speedOut': 300,
                      'autoDimensions': true,
                      'centerOnScroll': true,
-                     'content' : '<div><p class="fancybox-error">Se ha editado la lista</p></div>'
+                     'content' : '<div><p class="fancybox-error">Se ha editado la lista correctamente</p></div>'
                     });
                 } 
             });                      
@@ -209,14 +208,19 @@ $(document).ready(function() {
         });
     });
     
-    setTown($("#city option:selected").val());
-    $("#town").trigger("chosen:updated");
-    
     $("#city").on('change',function(){
-        setTown($("#city option:selected").val());
+        setTown($("#city option:selected").val(),"");
         $("#town").trigger("chosen:updated");
     });
-    
+    $("#before-city").on('change',function(){
+        setTown($("#before-city option:selected").val(),"before-");
+        $("#before-town").trigger("chosen:updated");
+    });
+    $("#after-city").on('change',function(){
+        setTown($("#after-city option:selected").val(),"after-");
+        $("#after-town").trigger("chosen:updated");
+    });
+
     $(".ax-save").on('click',saveAddress);
     
     jp = $('#ax-products').jplist({				
@@ -316,8 +320,21 @@ $(document).ready(function() {
     });
 });
 
+function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(find, 'g'), replace);
+}
+
 function saveInfo(){
+    var invalidDate = realDate($("#years").val(),$("#months").val(),$("#days").val());
+    if($("#months").val() === "0" && $("#days").val() === "0" && $("#years").val() === "0")
+        invalidDate = false;
+    if(!invalidDate)
+        $("#real-error").remove();
     if(valFormInfo.form()){
+        if(invalidDate){
+            $(".date-cont").append('<label id="real-error" class="error">Debes ingresar una fecha válida.</label>');
+            return;
+        }
         $.ajax({
             type:"post",
             data:{
@@ -328,9 +345,12 @@ function saveInfo(){
             },
             success:function(res){
                 res = JSON.parse(res);
-                $(".ax-creator-name").text(res.name);
-                $(".ax-event-date").text(res.date);
-                $(".ax-event-type").text(res.event);
+                if(!res.error){
+                    $(".ax-creator-name").text(res.name);
+                    $(".ax-event-date").text(res.date);
+                    $(".ax-event-type").text(res.event);
+                    $(".ax-day").text(res.days);
+                }
                 $.fancybox.close();
                 $.fancybox({
                  'autoScale': true,
@@ -342,7 +362,7 @@ function saveInfo(){
                  'speedOut': 300,
                  'autoDimensions': true,
                  'centerOnScroll': true,
-                 'content' : '<div><p class="fancybox-error">La lista ha sido editada</p></div>'
+                 'content' : '<div><p class="fancybox-error">'+res.msg+'</p></div>'
                 });
             }
         });
@@ -428,10 +448,21 @@ function uploadImage(prof,input){
              'speedOut': 300,
              'autoDimensions': true,
              'centerOnScroll': true,
-             'content' : '<div><p class="fancybox-error">Imagen cargada con éxito.</p></div>'
+             'content' : '<div><p class="fancybox-error">Imagen cargada con éxito</p></div>'
             });
         }
     });
+}
+
+function realDate(year, month, _date){
+    month -= 1;
+    var d = new Date(year, month, _date);
+    if (d.getFullYear() != year 
+    || d.getMonth() != month
+    || d.getDate() != _date) {
+        return true;
+    }
+    return false;
 }
 
 function deleteImage(prof,el){
@@ -453,9 +484,25 @@ function deleteImage(prof,el){
     });
 }
 
+
+function validateSelect(){
+    var ret = true;
+    $("#address-div select").each(function(){
+        if($(this).val() === "0"){
+            $(this).parent().append('<label id="event_type-error" class="error">El campo es requerido</label>');
+            ret = false; 
+        }else{
+            $(this).parent().find("#event_type-error").remove();
+        }
+    });
+    return ret;
+}
+
 function saveAddress(){
     var form = $("#address-form").serializeObject();
-    if(valForm.form()){
+    var formVal = valForm.form();
+    var selectVal = validateSelect(); 
+    if(formVal && selectVal){
         $.ajax({
             type: 'POST',
             data: {
@@ -466,10 +513,9 @@ function saveAddress(){
             },
             success: function(res){
                 res = JSON.parse(res);
-                res.data = JSON.parse(res.data);
                 if(!res.error){
-                    $(".ax_address_bef").text(res.a_b + " " + res.data.town + " " + res.data.city +", "+ res.data.country);
-                    $(".ax_address_af").text(res.a_a + " " + res.data.town + " " + res.data.city +", "+ res.data.country);
+                    $(".ax_address_bef").text(res.a_b);
+                    $(".ax_address_af").text(res.a_a);
                     $(".ax-creator-name").text(res.name);
                     $.fancybox.close();
                      $.fancybox({
@@ -490,27 +536,24 @@ function saveAddress(){
     }
 }
 
-function setTown(id_state){
-   var states = countries[id_state].states;
-    $("#town").empty().append($('<option>', {
+function setTown(id_state,el){
+    if(id_state === 0 || id_state === "0")
+        return false;
+    var states = countries[id_state].states;
+    $("#"+el+"town").empty().append($('<option>', {
         value: 0,
         text: "Seleccione una opción"
     }));
     for(i = 0; i < states.length; i++){
-        var op = $('<option>', {
-            value: states[i].name,
-            text: states[i].name,
-        });
-        if(sel_town === states[i].name)
-            op.attr("selected",true);
-        
-        $("#town").append(op);
-        $("#town_chosen .chosen-drop .chosen-results").append('<li class="active-result" data-option-array-index="'+states[i].name+'">'+states[i].name+sel_town+'</li>');
+        $("#"+el+"town").append($('<option>', {
+            value: states[i].id_state,
+            text: states[i].name
+        }));
     }
 }
 
 function saveMessage(){
-    var message = $(".ax-new-message").val();
+    var message = $(".ax-new-message").val().replace(/\n/g, "<br>");
     $(".ax-new-message").remove();
     $("#ax-save").remove();
     var mc = $("#ax-message-content");
@@ -539,7 +582,7 @@ function saveMessage(){
             });
         }, 
     }).always(function(){
-        mc.text(message);
+        mc.html(message);
         mc.show();
         $("#ax-edit").show();
         $("#ax-delete").show();
@@ -561,6 +604,48 @@ function validateAddressForm(){
             address:'required',
             dir_before:'required',
             dir_after:'required',
+            "after-firstname": {
+                required:true,
+            },
+            "after-lastname": {
+                required:true,
+            },
+            "after-country":{
+                selectRequired: true,
+            },
+            "after-city":{
+                selectRequired: true,
+            },
+            "after-town":{
+                selectRequired: true,
+            },
+            "after-tel":{
+                required:true,
+            },
+            "after-address":{
+                required:true,
+            },
+            "before-firstname": {
+                required:true,
+            },
+            "before-lastname": {
+                required:true,
+            },
+            "before-country":{
+                selectRequired: true,
+            },
+            "before-city":{
+                selectRequired: true,
+            },
+            "before-town":{
+                selectRequired: true,
+            },
+            "before-tel":{
+                required:true,
+            },
+            "before-address":{
+                required:true,
+            }
         },
         message:{
             required:"El campo es requerido"

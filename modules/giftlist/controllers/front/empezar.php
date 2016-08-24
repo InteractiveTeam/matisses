@@ -6,12 +6,19 @@ class giftlistempezarModuleFrontController extends ModuleFrontController {
         parent::initContent ();
         $this->display_column_left = false;
         $this->display_column_right = false;
+        if($this->context->customer->isLogged()){
+            $create = $this->context->link->getModuleLink('giftlist', 'administrar');
+            $lists = $this->context->link->getModuleLink('giftlist', 'listas');
+        }else{
+            $create = $this->context->link->getPageLink('authentication', true)."?back=".$this->context->link->getModuleLink('giftlist', 'administrar');
+            $lists = $this->context->link->getPageLink('authentication', true)."?back=".$this->context->link->getModuleLink('giftlist', 'listas');
+        }
         
         $this->context->smarty->assign(
 	  		array(
-                'gift_link' =>  $this->context->link->getModuleLink('giftlist', 'listas'),
+                'gift_link' =>  $lists,
   				'search_link' => $this->context->link->getModuleLink('giftlist', 'buscar'),
-  				'create_link' => $this->context->link->getModuleLink('giftlist', 'administrar'),
+  				'create_link' => $create,
         ));
         
         $this->setTemplate ('empezar.tpl');

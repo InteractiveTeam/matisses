@@ -361,7 +361,7 @@ box-sizing: border-box;
 	.menu-experiencias {
 	padding: 1.1rem 0 0.9rem 0;
 	display: table;
-    width: 50%;
+    width: 465px;
 	}
 	.menu-experiencias li {
 	display: table-cell;
@@ -1620,7 +1620,7 @@ box-sizing: border-box;
 	-o-transition:all .5s ease;
 	transition:all .5s ease;
 	font-family: 'Open Sans', sans-serif !important;
-    font-size: 1rem !important;
+    font-size: 1rem;
 	}
 
 	.table-bordered {
@@ -3419,8 +3419,8 @@ box-sizing: border-box;
 	overflow: hidden !important;
 	}
     div#new_comment_form {
-        overflow-y: auto;
-        height: 100%;
+        /*overflow-y: auto;
+        height: 100%;*/
     }
     div#new_comment_form form {
         width: 100%
@@ -4143,7 +4143,7 @@ box-sizing: border-box;
 .main-container .addresses .address li {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 1rem;
-	line-height: 1.2rem;
+	line-height: 1.6rem;
 }
 
 .main-container .address li.address_update a {
@@ -4329,7 +4329,7 @@ padding: 15px;
 font-family: 'Open Sans', sans-serif;
 font-size: 1rem;
 color: #ADADAD;
-line-height: 1.5;
+line-height: 1.7;
 }
 
 .layer-attributes .scroll-left {
@@ -4754,7 +4754,7 @@ body.new-products {
     
     .center_column .content_sortPagiBar {
         margin-bottom: 20px;
-        float: none;
+        float: left;
     } 
 
     .content_sortPagiBar.bottom_pagi{
@@ -5348,10 +5348,6 @@ a.newPrint:hover {
     font-weight: 100;
     letter-spacing: 1px;
     font-size: 18px;
-}
-
-#menu #giftlist, .my-giftlist {
-    display: none !important;
 }
 /*lista de deseos*/
 
@@ -6235,12 +6231,16 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     border-left: transparent solid 6px;
 }
 
+.category .chosen-container .chosen-results {
+    height: auto;
+}
+
 #frmAddGiftList .chosen-container .chosen-results {
     max-height: 160px;
 }
 
 .chosen-container.chosen-with-drop .chosen-drop {
-    top: 86%;
+    top: 100%;
 }
 
 .select .chosen-container-single .chosen-single {
@@ -6281,3 +6281,74 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     padding-left: 0;
     padding-right: 0;
 }
+
+.form-group div#lists_chosen {
+    width: 100% !important;
+}
+
+.layered_price {
+    min-height: 154px;
+}
+
+.search .parrilla-productos {
+    margin: 0;
+}
+
+.search .content_sortPagiBar .sortPagiBar .select.selector1 > label {
+    padding: 0.85rem 0.6rem;
+    line-height: 1rem;
+}
+
+.category .content_sortPagiBar .sortPagiBar .cf.selector1 .chosen-container.chosen-container-single a {
+    height: 46px;
+}
+
+.layered-left .checker {
+    margin: 4px;
+}
+
+#mywishlist #block-history .ax-wishlits-cont {
+    margin: 0;
+    width: 100%;
+    display: block;
+    padding: 20px 0 20px 0;
+    border-bottom: 1px solid #d7162f;
+}
+
+#mywishlist #block-history .ax-wishlist-item {
+    width: 16%;
+    display: inline-block;
+    margin: 10px 0;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    vertical-align: top;
+}
+
+#mywishlist #block-history .ax-wishlist-item .first_item, #mywishlist #block-history .ax-wishlist-item .mywishlist_first, #mywishlist #block-history .ax-wishlist-item .mywishlist_second  {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    color: black;
+    text-align: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eaeaea;
+    padding: 10px 0 5px 0;
+}
+
+#mywishlist #block-history .ax-wishlist-item a {
+    color: #d7162f;
+}
+
+.jplist-hidden {
+    display: none !important;
+}
+
+
+
+
+
+
+
+
+
+

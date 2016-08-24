@@ -53,7 +53,7 @@ font-size: 0.875rem;
 font-weight: bold;
 }
 .block-history table tbody{
-border: 1px solid #dbdbdb;
+/*border: 1px solid #dbdbdb;*/
 }
 .block-history table tbody > tr:first-child {
 background: #f8f8f8;

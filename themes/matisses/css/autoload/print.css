@@ -51,12 +51,13 @@
         display: inline-block;
         margin: 10px 0 0 0;
         padding: 0;
+        font-size: 0.8rem;
     }
     
     .menu-footer li a {
         border-left:#000 solid 1px;
         padding: 0;
-        padding: 0 10px;
+        padding: 0 8px;
     }
     
     .img-article img, img {
@@ -73,11 +74,15 @@
         padding: .0625rem 0;
     }
     
+    #footer {
+        margin: 70px 0 0 0;
+    }
+    
    #footer {
         border-top: #000 solid 4px;
     }
     
-    .ax-avatar-content, .ax-print,  h1, h2, h3, .jplist-panel {
+    .ax-avatar-content, .ax-print, h2, h3, .jplist-panel, .share.cf, .logo-copyright {
         display: none !important;
     }
     
@@ -87,15 +92,95 @@
     }
     
     .col-md-3 {
-        width: 50%;
+        width: 31.3%;
         float: left;
     }
     
+    #ax-products .col-md-3 {
+        width: 23.3%;
+        float: left;
+        height: 350px;
+    }
+    
     .col-md-3 .ax-cont-hover .img-container img {
-        width: 255px;
+        width: 255px !important;
+        float: none;
     }
     
     .ax-text-description-lista {
+        margin: 0;
+    }
+    
+    h1 {
+        border: none;
+    } 
+    
+    .ax-text-result-list.ax-result-inline {
+        display: none;
+    }
+    
+    .products-associated .product-card:first-child span {
+        margin:0;
+    }
+    
+    .products-associated .total_qty input {
+        border: 0;
+    }
+    
+    .parrilla-productos {
+        margin: 0;
+    }
+    
+    .products-associated .product-card.ax-bond-card {
+        text-align: center;
+    }
+    
+    .products-associated .product-card.ax-bond-card span {
+        margin-top: 20px;
+    }
+    
+    .products-associated .product-card img {
+        width: 100% !important;
+        margin: 0 auto;
+        display: block;
+        float: none;
+    }
+    
+    .footer-down {
+        padding: 0;
+    }
+
+    .ax-cont-admin-listas-regalos .ax-cont-list .part {
+        padding: 0px 0 15px 0;
+    }
+    
+    .menu-copyright {
+        padding: 0 0 1.2rem 0;
+        text-align: center;
+        WIDTH: 100%;
+    }
+    
+    .module-giftlist-descripcion .product-card {
+        min-height: 270px;
+    }
+    
+    .products-associated .product-card p.ax-name-list {
+        height: 45px;
+    }
+    
+    .products-associated .product-card .img-container {
+        height: 180px !important;
+    }
+    
+    .nav-breadcrum {
+        padding: 0.225rem;
+    }
+    
+    .breadcrumb {
+        display: none;
+    }
+    
+    .product-card .ax-info-list p:last-child, #productDiv .cant_prod {
         margin: 0;
     }
     

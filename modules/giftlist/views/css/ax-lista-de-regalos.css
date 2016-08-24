@@ -31,6 +31,10 @@ label.error {
     margin-left: 17px;
 }
 
+#step-1 .row {
+    position: relative;
+}
+
 .module-giftlist-buscar .ax-btn-filter, .module-giftlist-empezar .ax-btn-filter, .module-giftlist-listas .ax-btn-filter, .module-giftlist-administrar .ax-btn-filter, .module-giftlist-descripcion .ax-btn-filter {
     display: none;
 }
@@ -288,7 +292,9 @@ label.error:before {
 }
 
 .fancybox-outer .btn.btn-default.btn-lista-regalos {
-    margin: 0 2.5px;
+    margin: 20px 2.5px 0 2.5px;
+    display: inline-block;
+    float: none !important;
 }
 
 
@@ -737,6 +743,7 @@ label.error:before {
 .module-giftlist-descripcion .product-card {
     border: none;
     margin-bottom: 15px;
+    min-height: 405px;
 }
 
 .module-giftlist-descripcion .product-card label {
@@ -762,7 +769,7 @@ label.error:before {
 
 .products-associated .product-card .img-container {
     width: 100%;
-    height: auto;
+    height: 272px;
 }
 
 .products-associated .product-card .ax-info-list {
@@ -771,20 +778,19 @@ label.error:before {
 }
 
 .products-associated .total_qty {
-    position: relative;
-    z-index: 2;
-    margin: 10px 0;
-    font-family: georgia, 'Georgia';
-    font-weight: bold;
+    margin: 5px;
     font-size: 0.9rem;
-    color: #212121;
     display: inline-block;
+}
+
+.products-associated .total_qty.ax-price-fija-user {
+    margin-top: 10px;
 }
 
 .products-associated .total_qty input {
     width: 50px;
     padding: 2px 5px;
-    margin-left: 8px;
+    margin-left: 6px;
 }
 
 .products-associated .product-card .add_container {
@@ -848,16 +854,18 @@ label.error:before {
 }
 
 .product-card .ax-info-list p:last-child, #productDiv .cant_prod {
-    color: #212121;
-    margin: 10px 0;
-    font-family: georgia, 'Georgia';
-    font-weight: bold;
+    margin: 5px 0;
+}
+
+.product-card .ax-info-list p.ax-cant-fija {
+    height: 25px;
+    margin: 11px 0 6px 0;
 }
 
 .product-card .cant_prod {
     width: 60px;
     padding: 4px 5px;
-    margin-left: 8px;
+    margin-left: 6px;
 }
 
 .products-associated .ax-bond-card #add_bond {
@@ -947,8 +955,8 @@ label.error:before {
 }
 
 .module-giftlist-descripcion .jplist-panel .jplist-pagination {
-    margin: 0 0 0 20px;
-    float: left;
+    margin: 0 20px;
+    float: right;
 }
 
 .module-giftlist-descripcion .parrilla-productos .btn-lista-regalos {
@@ -1010,6 +1018,14 @@ label.error:before {
 }
 
 /* crear listas */
+
+.ax-modal-address .chosen-container {
+    width: 100% !important;
+}
+
+.ax-modal-address .row {
+    position:relative;
+}
 
 #frmSaveList .nav-tabs {
     padding: 0;
@@ -1111,6 +1127,7 @@ label.error:before {
     border: #dbdbdb solid 1px;
     font-family: Georgia, 'Georgia';
     padding-right: 15px;
+    float: left;
 }
 
 .tab-content #ax-img-prof i, .tab-content #ax-img i {
@@ -1242,9 +1259,8 @@ label.error:before {
     height: 100%;
 }
 
-#address-div a.chosen-single {
-    width: 190px;
-    width: 278px;
+#address-div .chosen-container {
+    width: 100% !important;
 }
 
 #address-div .btn-form-address, #info-div .btn-form-address {
@@ -1398,10 +1414,11 @@ label.error:before {
 }
 
 #frmSaveList span.ax-up-msg {
-    padding: 13px 11px;
+    padding: 12.5px 12px;
     color: #5e534d;
     border: #ffd594 solid 1px;
     background: rgba(255, 213, 148, 0.2);
+    float: left;
 }
 
 #frmSaveList span.ax-up-msg .fa {
@@ -1485,11 +1502,36 @@ label.error:before {
     padding: 15px;
 }
 
+.module-giftlist-descripcion .jplist-panel .chosen-container .chosen-results {
+    width: 100%;
+}
+
+.product-card.ax-no-products {
+    min-height: auto;
+}
+
+p.ax-no-products {
+    margin-top: 20px;
+    text-align: center;
+    font-family: Georgia, 'Georgia';
+    font-size: 1rem !important;
+}
+
+p.ax-no-products .fa {
+    margin-right: 10px;
+    color: #eac78a;
+}
+
 @media screen and (max-width:1024px) {
      
     .ax-search-home .ax-form-data-search input {
         width: 118px;
-    }  
+    } 
+    
+    .products-associated .product-card .img-container {
+        width: 100%;
+        height: 204px;
+    }
     
 }
 
@@ -1632,6 +1674,7 @@ label.error:before {
         display: block;
         margin: 10px 0;
         text-align: left;
+        float: none;
     }
     
     .module-giftlist-descripcion .ax-text-result-list {
@@ -1672,7 +1715,7 @@ label.error:before {
     #frmSaveList span.ax-up-msg {
         position: absolute;
         top: 0;
-        right: 2%;
+        right: 2.3%;
     }
     
     #frmSaveList .tab-pane .row {
@@ -1745,6 +1788,15 @@ label.error:before {
     
     .products-associated .ax-list-edit {
         margin-top: 40PX;
+    }
+    
+    #frmSaveList .nav-tabs li a {
+        padding: 10px 83.8px;
+    }
+    
+    .products-associated .product-card .img-container {
+        width: 100%;
+        height: 196px;
     }
 
 }
@@ -2066,6 +2118,11 @@ label.error:before {
     
     .ax-add-gift-card .btn.btn-default.btn-lista-regalos {
         padding: 8px 17.6px;
+    }
+    
+    .products-associated .product-card .img-container {
+        width: 100%;
+        height: auto;
     }
 
 }

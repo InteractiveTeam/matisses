@@ -38,7 +38,7 @@
       </ul>
 			<div class="linkGarantias">
 				<a class="btn btn-default button btn-red" href="{$link->getModuleLink('matisses','garantias')}/step2/producto/{$garantia.id_order}-{$garantia.id_product}-{$garantia.id_product_attribute}"> {l s='Modificar' mod='matisses'}</a>
-	      <a class="btn btn-default button btn-red" href="{$link->getModuleLink('matisses','garantias')}/estado"> {l s='Ir a mis garantias' mod='matisses'}</a>
+	      <a class="btn btn-default button btn-red" href="{$link->getModuleLink('matisses','garantias')}/estado"> {l s='Ir a mis garantías' mod='matisses'}</a>
 			</div>
     </div>
   </div>

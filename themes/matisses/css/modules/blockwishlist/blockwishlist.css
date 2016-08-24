@@ -78,7 +78,7 @@
 	padding: 9px;
 	border: 1px solid #d6d4d4;
 	margin: 0 0 1.25rem 0;
-	max-width: 260px;
+/*	max-width: 260px;*/
     }
 
 	ul.wlp_bought_list li .product-name small {
@@ -173,9 +173,10 @@
 	.order-close {
     background: #d7162f;
     width: 1.25rem;
-    padding: 0.3125rem;
     color: #fff;
     float: right;
+    padding: 3px;
+    text-align: center;
 	}
 	.order-close:hover{
 	background: #000;

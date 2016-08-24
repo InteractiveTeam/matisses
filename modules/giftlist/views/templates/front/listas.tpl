@@ -28,7 +28,7 @@
                             <div class="part">{l s='Tipo de evento' mod='giftlist'}<span>{$row['event']}</span></div>
                             <div class="part">{l s='Código' mod='giftlist'}<span>{$row['code']}</span></div>
                             <div class="part">{l s='Fecha' mod='giftlist'}<span>{date("d/m/Y", strtotime($row['event_date']))}</span></div>
-                            <div class="part">{l s='Días para tu evento' mod='giftlist'}<span>{$row['days']}</span></div>
+                            <div class="part">{l s='Días para tu evento' mod='giftlist'}<span>{if $row.days >= 0}{$row['days']|replace:'+':''}{else}{l s='Finalizado' mod='giftlist'}{/if}</span></div>
                             <div class="part">{l s='Tus regalos' mod='giftlist'}<span>{$row['products']}</span></div>
                             <div class="part">{l s='Regalos restantes' mod='giftlist'}<span>{$row['products'] - $row['products_bought']}</span></div>
                         </div>

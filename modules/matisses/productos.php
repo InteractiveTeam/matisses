@@ -15,6 +15,15 @@
 	include_once dirname(__FILE__).'/../../config/config.inc.php';
 	require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
 	require_once dirname(__FILE__)."/matisses.php";
+    $ip = 0;
+
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+       $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } else {
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
 	
 	//if(Configuration::get('ax_simpleproduct_data')!='')
 	//	$_Modelos		= Tools::jsonDecode(Configuration::get('ax_simpleproduct_data'),true);
@@ -23,7 +32,7 @@
 	$_wsmatisses 	= new matisses;
 	$_Modelos = null;
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
-	__MessaggeLog("INICIA PROCESO ".date('H:i:s')." - ".$time."\n");
+	__MessaggeLog("INICIA PROCESO DESDE LA IP:" . $ip." ".  date('H:i:s')." - ".$time."\n")  ;
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
     
 	// Consulto las referencias
@@ -56,13 +65,19 @@
             exit();
         }
     }
-    
-	$_References    = __getReferences($_Modelos,$banderaPost,$searchExist);
-	/*if(Configuration::get('ax_simpleproduct_data')=='')	{
-		$ModelsExists = implode('","',array_keys($_References));
-		Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
-		Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
-	}*/
+    try{
+	   $_References    = __getReferences($_Modelos,$banderaPost,$searchExist);
+        if(Configuration::get('ax_simpleproduct_data')=='')	{
+            $ModelsExists = implode('","',array_keys($_References));
+            Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
+            Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
+        }
+    }catch(Exception  $s){
+        $message = utf8_decode("Durante la ejecución de la sonda de las 4:00am se ha presentado la siguiente excepción: \n" . date("H:i:s") . " ".$s->getMessage());
+        $headers = "From: Sonda Matisses";
+        mail("sistemas@matisses.co", utf8_decode("Error en ejeucución de la sonda"), $message, $headers);
+        die(" ".$s->getMessage());
+    }
 	
 	
 	
@@ -79,13 +94,17 @@
 		foreach($_References as $_Model => $_Combinations)
 		{
 			unset($_Product);
-			$_IdProduct = Db::getInstance()->getValue('SELECT id_product FROM '._DB_PREFIX_.'product WHERE model = "'.$_Model.'"');
-			__MessaggeLog('---------------------------------------------------------------'.date('H:i:s')."\n");
-			__MessaggeLog('-- Actualizando producto ('.$_Model.'): '.date('H:i:s')." ");
-			$_Product 	= __setProduct($_Combinations,$_IdProduct);
-			
-			__setCombinations($_Combinations,$_Product);
-			unset($_References[$_Model]);
+            if(count($_Combinations[key($_Combinations)]['subgroupCode']) > 0){
+                $_IdProduct = Db::getInstance()->getValue('SELECT id_product FROM '._DB_PREFIX_.'product WHERE model = "'.$_Model.'"');
+                __MessaggeLog('---------------------------------------------------------------'.date('H:i:s')."\n");
+                __MessaggeLog('-- Actualizando producto ('.$_Model.'): '.date('H:i:s')." ");
+                $_Product 	= __setProduct($_Combinations,$_IdProduct);
+
+                __setCombinations($_Combinations,$_Product);
+            }else{
+                __MessaggeLog('-- Actualizando producto ('.$_Model.'): '.date('H:i:s')." -> No se cargó, no existe la categoria."."\n");
+            }
+            unset($_References[$_Model]);
 		}
 	}else{
         __MessaggeLog('SERVICIO SAP INACTIVO ---------------------------------------'."\n");
@@ -96,9 +115,20 @@
 	__MessaggeLog("TERMINA PROCESO ".date('H:i:s')." - ".$time."\n");
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
 	
-	
-	Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN (select id_product from  '._DB_PREFIX_.'image group by id_product)');
-	Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN (select id_product from  '._DB_PREFIX_.'image group by id_product)');
+
+    __MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
+	__MessaggeLog("DESACTIVANDO REFERENCIAS ".date('H:i:s')." - ".$time."\n");
+	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
+
+        Db::getInstance()->Execute('UPDATE '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN (select id_product from  '._DB_PREFIX_.'image group by id_product)');
+       Db::getInstance()->Execute('UPDATE '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN (select id_product from  '._DB_PREFIX_.'image group by id_product)'); 
+
+    /*$activeNoimages = Db::getInstace()->getValue('SELECT count(*) as products FROM '._DB_PREFIX_.'product a LEFT JOIN '._DB_PREFIX_.'image b on b.id_product = a.id_product WHERE a.active = 1 AND b.id_product is null');
+    if($activeNoimages > 0){
+        $message = utf8_decode("Existen productos activos sin imagenes");
+        $headers = "From: Sonda Matisses";
+        mail("miguel.montoya@arkix.com", utf8_decode("Error en sql de la sonda"), $message, $headers);        
+    }*/
 
 	Db::getInstance()->Execute('
 		update '._DB_PREFIX_.'product_attribute set default_on = 1 where reference in (
@@ -112,9 +142,30 @@
 			where a.defaults = 0 
 			);
 	');
-	
+
+    __MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
+	__MessaggeLog("TERMINA DESACTIVACIÓN ".date('H:i:s')." - ".$time."\n");
+	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
+
+    __MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
+	__MessaggeLog("INDEXANDO ".date('H:i:s')." - ".$time."\n");
+	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
 	Search::indexation(true);
+
+    __MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
+	__MessaggeLog("TERMINA INDEXACIÓN ".date('H:i:s')." - ".$time."\n");
+	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
     
+    // productos activos sin imagenes
+    /*$noImages = Db::getInstance()->getValue("SELECT count(*) FROM "._DB_PREFIX_."product a LEFT JOIN "._DB_PREFIX_."image b on b.id_product = a.id_product WHERE b.id_product is null AND a.active = 1");    
+  
+    if($noImages > 0){
+        $message = utf8_decode("Han quedado $noImages productos activos con imagenes");
+        $headers = "From: Sonda Matisses";
+        mail("miguel.montoya@arkix.com", utf8_decode("Reporte"), $message, $headers);
+        __MessaggeLog("Han quedado $noImages productos activos con imagenes"."\n");
+    }*/
+
     /*if($banderaPost){
         return 'ok';
         exit();
@@ -133,7 +184,7 @@
 		{
 			try{
                     if(!$_Combination['processImages'] && $_Product->getCombinationImages(1))
-                         //continue;
+                         continue;
 					// verifico si la combinacion esta para cambio de modelo
 					$_currentCombinations[] = $_Combination['itemCode'];
 					$id_product_attribute = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.$_Combination['itemCode'].'" and id_product = 0');
@@ -402,6 +453,8 @@
 					__MessaggeLog('Referencia: '.$_Product->reference." Id ".$_Product->id." - CREADO");
 				 }
 			  
+            if($_processImages==true)
+                $_Product->deleteImages();
 			 
 			if($_Product->id)
 			{
@@ -451,9 +504,6 @@
 							 
 					}
 				}
-
-				if($_processImages==true)
-					$_Product->deleteImages();
 			}
 			__MessaggeLog("\n");
 		}catch (Exception $e) {
@@ -637,8 +687,6 @@
 				unset($_data['subgroupCode']);	
 				$_data['subgroupCode'] = $CategoriesProduct;	
 			}
-
-            $_data['processImages']=1;
                 
 			if($_data['processImages']==1) {
 				unset($images);                

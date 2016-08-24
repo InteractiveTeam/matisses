@@ -418,8 +418,10 @@ function stopAjaxQuery() {
 	ajaxQueries = new Array();
 }
 
-function reloadContent(params_plus, num = null)
-{
+function reloadContent(params_plus, num){
+    if (typeof(num)==='undefined') num = null;
+    if (typeof(params_plus)==='undefined') params_plus = false;
+    
 	stopAjaxQuery();
 
 	if (!ajaxLoaderOn)
@@ -626,8 +628,8 @@ function reloadContent(params_plus, num = null)
                     current_price_slider = 'price'+'-'+$('#layered_'+sliderType+'_range_min').val()+'-'+$('#layered_'+sliderType+'_range_max').val();
 				}
 			});
-
-			window.location.href = current_friendly_url;
+            if(current_friendly_url !== "#" || getUrlParams() !== "#")
+                window.location.href = current_friendly_url;
 
 			if (current_friendly_url != '#/show-all')
 				$('div.clearfix.selector1').show();

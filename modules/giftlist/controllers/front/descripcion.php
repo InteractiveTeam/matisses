@@ -5,9 +5,9 @@ include_once __DIR__ . '/../../classes/ListProductBond.php';
 include_once __DIR__ . '/../../classes/Bond.php';
 include_once _PS_MODULE_DIR_ . "matisses/matisses.php";
 include_once _PS_OVERRIDE_DIR_ ."controllers/front/CartController.php";
-define("_ERROR_","Ha ocurrido un error, vuelva a intentarlo mas tarde");
-define("_DELETED_","Elmininado Correctamente");
-define("_EDITED_","Se ha editado la información");
+define("_ERROR_","Ha ocurrido un error, vuelve a intentarlo más tarde");
+define("_DELETED_","Elmininado correctamente");
+define("_EDITED_","Se ha editado la información correctamente");
 
 class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	public $uploadDir = _PS_UPLOAD_DIR_."giftlist/";
@@ -47,9 +47,11 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 		$this->context->smarty->assign ( array (
 			'list_desc' => $res,
             'ev_date' => explode("-",substr($res['event_date'],0,-9)),
+            'address' => Tools::jsonDecode($res['info_creator']),
+            'address_before' => $this->getAddressBefore($res['address_before']),
+            'address_after' => $this->getAddressAfter($res['address_after']),
 			'all_link' => $this->context->link->getModuleLink('giftlist', 'listas'),
 			'admin_link' => $this->context->link->getModuleLink('giftlist', 'administrar',array("url" => Tools::getValue('url'))),
-			'address' => Tools::jsonDecode($res['info_creator']),
 			'form' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/form_save_list.php",
 			'form_edit' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/form_edit_list.php",
 			'form_cocreator' => _MODULE_DIR_ ."giftlist/views/templates/front/partials/cocreator_info.php",
@@ -83,6 +85,26 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			$this->setTemplate ( 'listDesc.tpl' );
 		}
 	}
+    
+    private function getAddressAfter($id){
+        $add = new AddressCore($id);
+        $cName = Db::getInstance()->getValue("SELECT name FROM "._DB_PREFIX_."country_lang WHERE id_country = ". $add->id_country . " AND id_lang = " . $this->context->language->id );
+        $ret = array(
+            'complete' => $add->address1.  " " . $add->address2 . " - " . ucfirst(strtolower($add->city)) .", " . ucfirst(strtolower($cName)),
+            'address' => $add,
+        );
+        return $ret;
+    }
+    
+    private function getAddressBefore($id){
+        $add = new AddressCore($id);
+        $cName = Db::getInstance()->getValue("SELECT name FROM "._DB_PREFIX_."country_lang WHERE id_country = ". $add->id_country . " AND id_lang = " . $this->context->language->id );
+        $ret = array(
+            'complete' => $add->address1.  " " . $add->address2 . " - " . ucfirst(strtolower($add->city)) .", " . ucfirst(strtolower($cName)),
+            'address' => $add,
+        );
+        return $ret;
+    }
 
 	public function init(){
 		parent::init();
@@ -130,8 +152,10 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
                 'msg' => "No hay suficiente producto en inventario"
             )));
         }else{
+            $prod = Db::getInstance()->getRow("SELECT cant,missing FROM "._DB_PREFIX_."list_product_bond WHERE id_product = ".$id_prod . " AND id_list = ".$id_list);
             Db::getInstance()->update('list_product_bond',array(
-                'cant' => $cant
+                'cant' => $cant,
+                'missing' => ($prod['cant'] == $prod['missing'] ? $cant : $cant - ($prod['cant'] - $prod['missing'])),
             ),"id_product = ".$id_prod . " AND id_list = ".$id_list);
             die(Tools::jsonEncode(array(
                 'error' => false,
@@ -207,11 +231,20 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
     }
     
     private function _editInfo($id,$data){
-        $data =(object)$data;
+        $data = (object)$data;
+        $ev_date = date("Y-m-d",strtotime($data->years."-".$data->months."-".$data->days));
+        $today = date("Y-m-d");
         $l = new GiftListModel($id);
+        if($today >= $ev_date)
+            die(
+                Tools::jsonEncode(array(
+                    'msg' => $this->module->l('La fecha seleccionada debe ser posterior a la fecha actual.'),
+                    'error' => 1
+                ))
+            );    
         if($data->email_co && $data->email_co != "")
             $l->id_cocreator = $l->setCoCreator($l->id,$data->email_co,$data->firstname . " " .$data->lastname,$l->url);
-        $l->event_date = date("Y-m-d",strtotime($data->years."-".$data->months."-".$data->days));
+        $l->event_date = $ev_date;
         $ev = "SELECT name FROM "._DB_PREFIX_."event_type WHERE id =".$data->event_type;
         Db::getInstance()->update('gift_list',array(
             'firstname' => $data->firstname,
@@ -221,9 +254,12 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
             'event_type' => $data->event_type
         ),"id = " . $id);
         die(Tools::jsonEncode(array(
+            'msg' => $this->module->l('La lista ha sido editada exitosamente.'),
             'name' => $data->firstname . " " . $data->lastname, 
-            'date' => date("Y/m/d",strtotime($data->years."-".$data->months."-".$data->days)),
-            'event' => Db::getInstance()->getValue($ev)
+            'date' => date("d/m/Y",strtotime($data->years."-".$data->months."-".$data->days)),
+            'event' => Db::getInstance()->getValue($ev),
+            'days' => $l->getMissingDays($ev_date),
+            'error' => 0
         )));
     }
     
@@ -246,7 +282,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
     }
     private function _saveMessaage($id, $message){
         if(Db::getInstance()->update('gift_list', array('message' => $message),"id = ".$id))
-            die(Tools::jsonEncode("Se ha actualizado el mensaje"));
+            die(Tools::jsonEncode("Se ha actualizado el mensaje correctamente"));
         else
             die(Tools::jsonEncode("Ha ocurrido un error"));
     }
@@ -395,8 +431,6 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	private function _saveAddress($id,$data){
         $c = CountryCore::getCountries($this->context->language->id);
 		$li = new GiftListModel ($id);
-        $li->address_before = $data['dir_before'];
-        $li->address_after = $data['dir_after'];
         $li->firstname = $data['firstname'];
         $li->lastname = $data['lastname'];
 		$li->info_creator = Tools::jsonEncode(array(
@@ -407,14 +441,45 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
             'address_2' => $data['address_2'],
             'tel' => $data['tel'],
         ));
+        $state = Db::getInstance()->getRow('SELECT * FROM '._DB_PREFIX_."state WHERE id_state = ".$data['before-town']);
+        Db::getInstance()->update(
+            'address',
+            array(
+                'firstname' => $data['before-firstname'],
+                'lastname' => $data['before-lastname'],
+                'phone' => $data['before-tel'],
+                'id_country' => $data['before-city'],
+                'id_state' => $data['before-town'],
+                'city' => $state['name'],
+                'postcode' => $state['isocode'],
+                'address1' => $data['before-address'],
+                'address2' => $data['before-address_2'],
+            ),"id_address = " . $li->address_before
+        );
+        $state = Db::getInstance()->getRow('SELECT * FROM '._DB_PREFIX_."state WHERE id_state = ".$data['after-town']);
+        Db::getInstance()->update(
+            'address',
+            array(
+                'firstname' => $data['after-firstname'],
+                'lastname' => $data['after-lastname'],
+                'phone' => $data['after-tel'],
+                'id_country' => $data['after-city'],
+                'id_state' => $data['after-town'],
+                'city' => $state['name'],
+                'postcode' => $state['isocode'],
+                'address1' => $data['after-address'],
+                'address2' => $data['after-address_2'],
+            ),"id_address = " . $li->address_after
+        );
 		try {
 			if ($li->updateInfo()){
+                $ab = $this->getAddressBefore($li->address_before);
+                $aa = $this->getAddressAfter($li->address_after);
 				die( Tools::jsonEncode(array (
 					'response' => _EDITED_,
                     'name' => $data['firstname'] . " " . $data['lastname'],
-                    'data' => $li->info_creator,
-                    'a_b' => $li->address_before,
-                    'a_a' => $li->address_after,
+                    'a_b' => $ab['complete'],
+                    'a_a' => $aa['complete'],
 					'error' => false
 				)));
 			}
@@ -480,12 +545,12 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 			MailCore::l('Te han compartido una lista'), 1),
 			$params, Tools::getValue('email'), $customer->firstname.' '.$customer->lastname,
 			null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
-			die("Se ha compartido la lista");
+			die("Se ha compartido la lista correctamente");
 		}
 		MailCore::Send($id_lang, 'share-list-no-cocreator', sprintf(
 		MailCore::l('Te han compartido una lista'), 1),
 		$params, Tools::getValue('email'), $customer->firstname.' '.$customer->lastname,
 		null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
-		die("Se ha compartido la lista");
+		die("Se ha compartido la lista correctamente");
 	}
 }
