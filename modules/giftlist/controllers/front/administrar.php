@@ -119,6 +119,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
         $li->id_cocreator = 0;
         $li->code = $li->returnCode();
         $li->name = $data['name'];
+        $li->email = $data['email'];
         $li->public = ($data['list_type'] == 1 ? true : false);
         $li->event_type = $data['event_type'];
         $li->event_date = $ev_date;

@@ -1,6 +1,6 @@
 Productos que no tienen unidades disponibles en inventario:
 {foreach from=$products item=c}
-
+{if $c['bond'] == 0}
 Nombre: {$c['name']}
 
 Color: {$c['color']}
@@ -16,9 +16,9 @@ Und. Faltantes: {$c['missing']}
 {/foreach}
 
 
-Productos que fueron comprados:
 
-{foreach from=$products item=c}
+{foreach from=$data item=c}
+Productos que fueron comprados:
 {if $c['bond'] == 1}
 
 Nombre: {$c['name']}

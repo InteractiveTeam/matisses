@@ -1,9 +1,10 @@
-{if !emtpy($out)}
+{if !empty($products)}
 <p style="text-align:left;"><span style="font-size:16px;font-weight:normal;">Productos que no tienen unidades disponibles en inventario:</span></p>
-{foreach from=$out item=c}
+<table>
+{foreach from=$products item=c}
 <tr>
 <td>
-<p>Imagen: <img src="{$c['image']}" /></p>
+<p>Imagen: <img src="{$c['image']}" width="200" /></p>
 <p>Nombre: {$c['name']}</p>
 <p>Color: {$c['color']}</p>
 <p>Precio: {$c['price']}</p>
@@ -12,13 +13,15 @@
 </td>
 </tr>
 {/foreach}
+</table>
 {/if}
-<p style="text-align:left;"><span style="font-size:16px;font-weight:normal;"> Productos que fueron comprados:</span></p>
+<table>
 {foreach from=$data item=c}
-{if $c['bond] == 1'}
+<p style="text-align:left;"><span style="font-size:16px;font-weight:normal;"> Productos que fueron comprados:</span></p>
+{if $c['bond'] == 1}
 <tr>
 <td>
-<p>Imagen: <img src="{$c['image']}" /></p>
+<p>Imagen: <img src="{$c['image']}" width="200" /></p>
 <p>Nombre: {$c['name']}</p>
 <p>Precio: {$c['price']}</p>
 <p>Comprador: {$c['buyer']}</p>
@@ -29,7 +32,7 @@
 {else}
 <tr>
 <td>
-<p>Imagen: <img src="{$c['image']}" /></p>
+<p>Imagen: <img src="{$c['image']}" width="200" /></p>
 <p>Nombre: {$c['name']}</p>
 <p>Color: {$c['color']}</p>
 <p>Precio: {$c['price']}</p>
@@ -42,3 +45,4 @@
 </tr>
 {/if}
 {/foreach}
+</table>
