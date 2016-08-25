@@ -319,7 +319,7 @@ class giftlist extends Module
                         'id_list' => $product['id_giftlist'],
                         'id_product' => 0,
                         'id_bond' => $product['id_bond'],
-                        'group' => "[]",
+                        'group' => 0,
                         'option' => "[]",
                         'favorite' => 0,
                         'bought' => 0,
@@ -327,12 +327,12 @@ class giftlist extends Module
                     ));
                 }
             }else{
-                $sqlB = "SELECT * FROM " . _DB_PREFIX_ . "list_product_bond WHERE id_list = ". $product['id_giftlist']. " AND id_product = ".$product['id_product'] . " AND id_bond = 0";
+                $sqlB = "SELECT * FROM " . _DB_PREFIX_ . "list_product_bond WHERE id_list = ". $product['id_giftlist']. " AND id_product = ".$product['id_product'] . " AND id_bond = 0 AND bought = 0 LIMIT 1";
                 $prod = Db::getInstance()->getRow($sqlB);
                 $prod['missing'] -= $product['quantity'];
                 Db::getInstance()->update('list_product_bond',array(
-                    'group' => Tools::jsonEncode($cant),
-                    'bought' => $cant->missing > 0 ? 1 : 0,
+                    'missing' => $prod['missing'];
+                    'bought' => $prod['missing'] > 0 ? 1 : 0,
                     'updated_at' => date( "Y-m-d H:i:s" )
                 ),"id_product = ".$product['id_product']);
             }

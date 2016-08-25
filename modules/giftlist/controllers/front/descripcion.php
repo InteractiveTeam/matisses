@@ -109,7 +109,8 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	public function init(){
 		parent::init();
 		if($this->ajax){
-			if(!empty(Tools::getValue("method"))){
+            $method = Tools::getValue("method");
+			if(!empty($method)){
 				switch(Tools::getValue("method")){
 					case "delete-product":
 						$this->_deteleProductFromList(Tools::getValue("id_list"),Tools::getValue('id_product'));
