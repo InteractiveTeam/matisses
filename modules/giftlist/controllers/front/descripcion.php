@@ -10,7 +10,7 @@ define("_DELETED_","Elmininado correctamente");
 define("_EDITED_","Se ha editado la información correctamente");
 
 class giftlistdescripcionModuleFrontController extends ModuleFrontController {
-	public $uploadDir = _PS_UPLOAD_DIR_."giftlist/";
+	public $uploadDir;
 	public $module;
 	/**
 	* Select all event types
@@ -320,6 +320,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	}
 
 	public function __construct() {
+        $this->uploadDir = _PS_UPLOAD_DIR_."giftlist/"
 		$this->module = Module::getInstanceByName ( Tools::getValue ( 'module' ) );
 		if (! $this->module->active)
 			Tools::redirect ( 'index' );
