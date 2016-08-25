@@ -1,7 +1,7 @@
 <?php
 
 class giftlistadministrarModuleFrontController extends ModuleFrontController {
-    public $uploadDir = _PS_UPLOAD_DIR_."giftlist/";
+    public $uploadDir;
     
     public function initContent() {
 		if(!$this->context->customer->isLogged()){
@@ -54,6 +54,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
     
     public function __construct() {
 		parent::__construct ();
+        $this->uploadDir = _PS_UPLOAD_DIR_."giftlist/";
 	}
     
     	/**

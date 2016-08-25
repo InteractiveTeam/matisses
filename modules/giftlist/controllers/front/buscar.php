@@ -2,7 +2,7 @@
 include_once __DIR__ . '/../../classes/GiftList.php';
 
 class giftlistbuscarModuleFrontController extends ModuleFrontController {
-	public $uploadDir = __DIR__. "../../../uploads/";
+	public $uploadDir;
 	public $module;
 
 	public function initContent() {
@@ -62,6 +62,7 @@ class giftlistbuscarModuleFrontController extends ModuleFrontController {
 	}
 	
 	public function __construct() {
+        $this->uploadDir = __DIR__."../../../uploads/";
 		$this->module = Module::getInstanceByName ( Tools::getValue ( 'module' ) );
 		if (! $this->module->active)
 			Tools::redirect ( 'index' );
