@@ -28,7 +28,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
     public function init(){
 		parent::init();
 		if($this->ajax){
-			if(!empty(Tools::getValue("method"))){
+			if(isset(ToolsCore::getValue("method")) && !empty(ToolsCore::getValue("method"))){
 				switch(Tools::getValue("method")){
 					case "saveList":
 						$this->_saveList();
