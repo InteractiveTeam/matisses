@@ -2,7 +2,7 @@
 define('_DB_SERVER_', 'localhost');
 define('_DB_NAME_', 'matissesmaster');
 define('_DB_USER_', 'prestauser16014');
-define('_DB_PASSWD_', 'M4T2015&&!10');
+define('_DB_PASSWD_', '123M4T2015&&!10');
 define('_DB_PREFIX_', 'ps_');
 define('_MYSQL_ENGINE_', 'InnoDB');
 define('_PS_CACHING_SYSTEM_', 'CacheMemcache');
