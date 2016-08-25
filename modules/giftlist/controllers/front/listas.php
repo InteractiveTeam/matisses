@@ -35,7 +35,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 		parent::init();
 		if($this->ajax)
 		{
-			if(!empty(trim(Tools::getValue('method')))){ 
+			if(trim(Tools::getValue('method'))){ 
 				switch(Tools::getValue('method')){
 					case "delete" :
 						$this->_ajaxProcessDeleteList(Tools::getValue('id_list'));
@@ -46,7 +46,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 					default:
 						die();
 						break;
-				}
+				} 
 			}
 		}
 	}
@@ -149,6 +149,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
                     'value' => "<span class='ax-color-list'>".$row['group_name']."</span>: ". $row['attribute_name']
                 ];
         }
+        $link = $this->context->link;
         die(Tools::jsonEncode(array(
             'msg' => $msg,
             'prod_name' => $prod->getProductName($id_product),
