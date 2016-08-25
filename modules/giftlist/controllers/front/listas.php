@@ -87,7 +87,6 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 	private function _addProduct($id_product,$data){
 		$list = new GiftListModel($data['list']);
 		$prod = new ProductCore($id_product);
-		$options = Tools::sjonDecode
         
         $response = StockAvailable::getQuantityAvailableByProduct((int)$id_product,(int)$data['form'][3]['value']);
         $image = ProductCore::getCombinationImageById( (int)$data['form'][3]['value'], $this->context->language->id);
