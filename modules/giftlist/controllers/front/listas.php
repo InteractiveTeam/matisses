@@ -87,7 +87,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 	private function _addProduct($id_product,$data){
 		$list = new GiftListModel($data['list']);
 		$prod = new ProductCore($id_product);
-		$link = new LinkCore();
+		$options = Tools::sjonDecode
         
         $response = StockAvailable::getQuantityAvailableByProduct((int)$id_product,(int)$data['form'][3]['value']);
         $image = ProductCore::getCombinationImageById( (int)$data['form'][3]['value'], $this->context->language->id);
@@ -97,7 +97,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
                 'error' => true))
                );
         
-        if($list->validateProductinList($id_product,$data['list']))
+        if($list->validateProductinList($id_product,(int)$data['form'][3]['value'],$data['list']))
             die(Tools::jsonEncode(array(
                 'msg' => "Este producto ya existe en tu lista",
                 'error' => true))
