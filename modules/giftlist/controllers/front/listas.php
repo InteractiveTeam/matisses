@@ -35,7 +35,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 		parent::init();
 		if($this->ajax)
 		{
-			if(!empty(Tools::getValue('method'))){
+			if(!empty(trim(Tools::getValue('method')))){
 				switch(Tools::getValue('method')){
 					case "delete" :
 						$this->_ajaxProcessDeleteList(Tools::getValue('id_list'));
