@@ -35,7 +35,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 		parent::init();
 		if($this->ajax)
 		{
-			if(!empty(trim(Tools::getValue('method')))){
+			if(!empty(trim(Tools::getValue('method')))){ 
 				switch(Tools::getValue('method')){
 					case "delete" :
 						$this->_ajaxProcessDeleteList(Tools::getValue('id_list'));
@@ -69,7 +69,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 			_MODULE_DIR_ . '/giftlist/views/css/vendor/jplist/jplist.textbox-filter.min.css',
 			_MODULE_DIR_ . '/giftlist/views/css/ax-lista-de-regalos.css'
 		) );
-	}
+	} 
 
 	public function __construct() {
 		$this->module = Module::getInstanceByName ( Tools::getValue ( 'module' ) );
