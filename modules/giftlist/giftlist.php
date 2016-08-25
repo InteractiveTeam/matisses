@@ -331,7 +331,7 @@ class giftlist extends Module
                 $prod = Db::getInstance()->getRow($sqlB);
                 $prod['missing'] -= $product['quantity'];
                 Db::getInstance()->update('list_product_bond',array(
-                    'missing' => $prod['missing'];
+                    'missing' => $prod['missing'],  
                     'bought' => $prod['missing'] > 0 ? 1 : 0,
                     'updated_at' => date( "Y-m-d H:i:s" )
                 ),"id_product = ".$product['id_product']);
