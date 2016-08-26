@@ -57,12 +57,19 @@ class ListProductBondModel extends ObjectModel
 		return parent::delete();
 	}
 
-	public function deleteProduct($id_list,$id_product){
-		$sql = "DELETE FROM `"._DB_PREFIX_."list_product_bond` WHERE id_list = ".$id_list." AND id_product ="
-				.$id_product;
-		if(!Db::getInstance()->execute($sql))
-			return false;
-		return true;
+	public function deleteProduct($id_list,$id_product,$id_att){
+		$sql = "SELECT * FROM `"._DB_PREFIX_."list_product_bond` WHERE id_list = ".$id_list." AND id_product = ".$id_product;
+		$prod = Db::getInstance()->executeS($sql);
+        $deleted = false;
+        foreach($prod as $row){
+            $op = Tools::jsonDecode($row['option']);
+            if($op[3]->value == $id_att){
+                Db::getInstance()->delete('list_product_bond','id = '. $row['id'],1);
+                $deleted = true;
+                break;
+            }
+        }
+        return $deleted;
 	}
 
 	/**
@@ -70,29 +77,31 @@ class ListProductBondModel extends ObjectModel
 	 * @return array of products associated in a list
 	 */
 	public function getProductsByList($id){
+         $context = Context::getContext();
 		 $sql = "SELECT * FROM "._DB_PREFIX_."list_product_bond WHERE id_list = ".$id." AND id_product <> 0 AND bought = 0 ORDER BY favorite";
          $res  = Db::getInstance()->executeS($sql);
 		 $prod = array();
 		 $link = new LinkCore();
 		 foreach ($res as $row){
             $option = Tools::jsonDecode($row['option']);
-            $image = ProductCore::getCombinationImageById( (int)$option[3]->value, Context::getContext()->language->id);
+            $image = ProductCore::getCombinationImageById( (int)$option[3]->value, $context->language->id);
             $my_prod = new ProductCore($row['id_product']);
             $images = Image::getImages(1, $row['id_product']);
+            
             $prod[] = [
                 'id' => $row['id_product'],
-                'id_att' => $attr_op[3]->value,
+                'id_att' => $option[3]->value,
                 'name' => $my_prod->getProductName($my_prod->id),
-                'data' => $my_prod->getAttributeCombinations(1),
                 'image' =>  (Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').$link->getImageLink($my_prod->link_rewrite[1], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image']), 'home_default'),
                 'price' => $my_prod->getPrice(),
                 'cant' => $row['cant'],
                 'missing' => $row['missing'],
-                'options' => $my_prod->getAttributeCombinationsById($attr_op[3]->value,1),//[3] = id_attribute,
+                'options' => $my_prod->getAttributeCombinationsById($option[3]->value,1),//[3] = id_attribute,
                 'favorite' => $row['favorite'],
                 'group' => ($row['group'] ? true : false)
             ];
 		 }
+		 //echo "<pre>"; print_r($my_prod);echo "</pre>";die();
 		 return $prod;
 	}
     

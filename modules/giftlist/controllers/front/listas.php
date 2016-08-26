@@ -155,7 +155,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
             'prod_name' => $prod->getProductName($id_product),
             'attributes' => $att,
             'price' => Tools::displayPrice($prod->getPrice()),
-            'image' => Tools::getShopProtocol().$link->getImageLink($prod->link_rewrite[1], (int)$image['id_image'], 'home_default'),
+            'image' => $link->getImageLink($prod->link_rewrite[1], (int)$image['id_image'], 'home_default'),
             'description_link' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url)),
             'error' => false
         )));

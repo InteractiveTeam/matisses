@@ -857,6 +857,13 @@ label.error:before {
     margin: 5px 0;
 }
 
+#productDiv a.color_pick {
+    display: block;
+    height: 2.5rem;
+    width: 2.5rem;
+    cursor: pointer;
+}
+
 .product-card .ax-info-list p.ax-cant-fija {
     height: 25px;
     margin: 11px 0 6px 0;

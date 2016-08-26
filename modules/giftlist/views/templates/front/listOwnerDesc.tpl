@@ -143,8 +143,7 @@
             <div class="row ax-prod-cont">
                {if !empty($products)}
                 {foreach from=$products item=row}
-                    {$atribute_group = $row['options'][3]->value}
-                        <div class="product-card col-md-3" data-attr-id="atribute_group" id="prod-{$row['id']}" data-id="{$row['id']}" data-group="{if $row['group']}1{else}0{/if}">
+                        <div class="product-card col-md-3" data-attr-id="{$row['id_att']}" id="prod-{$row['id']}" data-id="{$row['id']}" data-group="{if $row['group']}1{else}0{/if}">
                             <div class="img-container">
                                 <img src="{$row['image']}">
                             </div>
@@ -152,10 +151,9 @@
                             <i class="fa fa-heart  {if $row['favorite']}ax-favorite{/if}" aria-hidden="true"></i>
                             <p class="ax-name-list">{$row['name']}</p>
                             <p class="ax-price-list">{convertPrice price=$row['price']}</p>
-                            {foreach from=$row['data'] item=att_group}
-                                {if $att_group['id_product_attribute'] == $atribute_group}
-                                    <p>{$att_group['group_name']}: {$att_group['attribute_name']}</p>
-                                {/if}
+                            {foreach from=$row['options'] item=att_group}
+                                <p>{$att_group['group_name']}: {$att_group['attribute_name']}</p>
+                                <input type="hidden" class="prod-attr" value="{$att_group['id_product_attribute']}">
                             {/foreach}
                             {if $row['group']}<p class="ax-cant-fija">{l s='Cantidad:'} {$row['cant']}</p>
                             {else} 
