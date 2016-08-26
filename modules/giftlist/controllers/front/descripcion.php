@@ -205,6 +205,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
         $group = $prod->getAttributeCombinationsById((int)$id_att,Context::getContext()->language->id);
         $styleColor = ""; 
         $attr = new AttributeCore($group[0]['id_attribute']);
+        $sPrice = Db::getInstance()->getValue("SELECT price FROM `"._DB_PREFIX_."specific_price` WHERE `id_product` = ".$id_prod." AND`id_product_attribute` = ".(int)$id_att);
         
         if(file_exists(_PS_COL_IMG_DIR_.$group[0]['id_attribute']."jpg"))
             $styleColor = 'url('._PS_COL_IMG_DIR_.$group[0]['id_attribute']."jpg)";
@@ -217,7 +218,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
             'reference' => hook::exec('actionMatChangeReference',$params),
             'desc' => $prod->description_short[1],
             'color' => "blue",
-            'price' => Tools::displayPrice($prod->price),
+            'price' => Tools::displayPrice(($sPrice == 0 ? $prod->price : $sPrice)),
             'missing' => $infoList['missing'],
             'bought' => $infoList['bought'],
             'total' => $infoList['total'],
