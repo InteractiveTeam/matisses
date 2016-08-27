@@ -233,6 +233,10 @@ $(document).ready(function() {
             $(".delete-product").parent().addClass('ax-edit-list');
             $(".ax-bond-value").addClass("hidden");
             $(".fa-heart").addClass("ax-fav-icon");
+            $(".delete-product").click(function(){
+                deleteProd($(this));
+            });
+
             if($(".ax-bond-cont").length == 0 ){
                 $(".ax-bond-card").append('<div class="ax-bond-cont"><label for="min_amount">Monto mínimo</label><input type="number" step="20000" min="0" id="min_amount" value="'+min_amount+'" name="min_amount"></div>');
                 $(".cant_prod").attr("disabled",false);
@@ -270,37 +274,7 @@ $(document).ready(function() {
    });
     
     $(".delete-product").click(function(){
-		var id_product = $(this).parent().attr("data-id");
-		$.ajax({
-			type: 'POST',
-			data: {
-				ajax: true,
-				method: "delete-product",
-				id_product: id_product,
-				id_list: $(".products-associated").attr("data-id")
-			},
-			headers: { "cache-control": "no-cache" },
-			success: function(result){
-                $.fancybox({
-                     'autoScale': true,
-                     'transitionIn': 'elastic',
-                     'transitionOut': 'elastic',
-                     'minWidth': 240,
-                     'minHeight': 50,
-                     'speedIn': 500,
-                     'speedOut': 300,
-                     'autoDimensions': true,
-                     'centerOnScroll': true,
-                     'content' : '<div><p class="fancybox-error">'+result+'</p></div>'
-                });
-                jp.jplist({
-                      command: 'del'
-                      ,commandData: {
-                         $item:  $("#prod-"+id_product)
-                      }
-                   });
-                }
-		});
+		deleteProd($(this));
 	});
     
     $(".ax-edit-info").fancybox({
@@ -319,6 +293,42 @@ $(document).ready(function() {
         saveInfo();  
     });
 });
+
+function deleteProd(el){
+    var id_product = el.parent().attr("data-id");
+    var id_att = el.parent().attr("data-attr-id");
+    $.ajax({
+        type: 'POST',
+        data: {
+            ajax: true,
+            method: "delete-product",
+            id_product: id_product,
+            id_att: id_att,
+            id_list: $(".products-associated").attr("data-id")
+        },
+        headers: { "cache-control": "no-cache" },
+        success: function(result){
+            $.fancybox({
+                 'autoScale': true,
+                 'transitionIn': 'elastic',
+                 'transitionOut': 'elastic',
+                 'minWidth': 240,
+                 'minHeight': 50,
+                 'speedIn': 500,
+                 'speedOut': 300,
+                 'autoDimensions': true,
+                 'centerOnScroll': true,
+                 'content' : '<div><p class="fancybox-error">'+result+'</p></div>'
+            });
+            jp.jplist({
+                  command: 'del'
+                  ,commandData: {
+                     $item:  $("#prod-"+id_product)
+                  }
+               });
+            }
+    });
+}
 
 function replaceAll(str, find, replace) {
   return str.replace(new RegExp(find, 'g'), replace);

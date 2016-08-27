@@ -82,6 +82,7 @@ $(document).ready(function(){
             type: "POST",
             data:{
                 'id_prod':el.parent().parent().attr('data-id'),
+                id_att: el.parent().parent().attr('data-attr-id'),
                 ajax:true,
                 method:"productDetail",
                 id_list: $(".products-associated").attr('data-id'),

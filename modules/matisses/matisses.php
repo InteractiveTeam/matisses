@@ -1017,7 +1017,7 @@ class matisses extends Module
         
         $objprod = new Product();
         $link = new LinkCore();
-        $products = $objprod->getProducts($idlang,'0','10000','id_product','asc');
+        $products = $objprod->getProducts($idlang,'0','10000','id_product','asc',false,true);
         
         foreach ($products as $product) {
             $prod = new Product($product['id_product']);

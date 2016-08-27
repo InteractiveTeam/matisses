@@ -107,8 +107,32 @@ class AddressControllerCore extends FrontController
 	 */
 	public function postProcess()
 	{
-		if (Tools::isSubmit('submitAddress'))
-			$this->processSubmitAddress();
+        //no edit address in giftlist.
+        if($this->_address!= 0 && $this->context->customer->id != $this->_address->id_customer){
+            $this->errors[] = Tools::displayError('No es posible editar esta dirección, puesto que esta corresponde a una Lista de regalos.');
+            if ($this->ajax && Configuration::get('PS_ORDER_PROCESS_TYPE'))
+            {
+                $this->errors = array_unique(array_merge($this->errors, $address->validateController()));
+                if (count($this->errors))
+                {
+                    $return = array(
+                        'hasError' => (bool)$this->errors,
+                        'errors' => $this->errors
+                    );
+                    $this->ajaxDie(Tools::jsonEncode($return));
+                }
+            }
+        }
+		if (Tools::isSubmit('submitAddress')){
+            if(Tools::getValue("id_address") != 0 && $this->context->customer->id != $this->_address->id_customer){
+                $this->errors = [];
+                $this->errors[] = Tools::displayError('No es posible editar esta dirección, puesto que esta corresponde a una Lista de regalos.');
+                return;
+                $this->ajaxDie(Tools::jsonEncode($return));
+            }else
+                $this->processSubmitAddress();
+        }
+        
 		elseif (!Validate::isLoadedObject($this->_address) && Validate::isLoadedObject($this->context->customer))
 		{
 			$_POST['firstname'] = $this->context->customer->firstname;
