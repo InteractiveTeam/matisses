@@ -348,6 +348,9 @@ class PlacetoPay extends PaymentModule
 		null,
 		false,
 		$cart->secure_key);
+        $fp = fopen('data.txt', 'w');
+        fwrite($fp, Tools::jsonEncode($cart));
+        fclose($fp);
 		// inserta la transacción en la tabla de PlacetoPay
 		$this->insertTransaction($cart->id, $cart->id_currency, $totalAmount, $status, $orderMessage);
 
@@ -676,6 +679,12 @@ class PlacetoPay extends PaymentModule
 
 	private function insertTransaction($orderID, $currencyID, $amount, $status, $message)
 	{
+        $fp = fopen('data.txt', 'w');
+fwrite($fp, 'INSERT INTO `'._DB_PREFIX_.'payment_placetopay` (`id_order`, `id_currency`, `date`, `amount`, `status`, `reason`, `reason_description`, `conversion`, `ipaddress`)
+			VALUES ('.$orderID.','.$currencyID.',\''.date('Y-m-d H:i:s').'\','.$amount.','.$status.',\''.$reason.'\',\''.pSQL($message).'\',1,\'' . pSQL($_SERVER['REMOTE_ADDR']) . '\')');
+fwrite($fp, '\n');
+fclose($fp);
+
 		$reason = ($status == PlacetoPayConnector::P2P_ERROR) ? '?C': '?-';
 		Db::getInstance()->Execute('
 			INSERT INTO `'._DB_PREFIX_.'payment_placetopay` (`id_order`, `id_currency`, `date`, `amount`, `status`, `reason`, `reason_description`, `conversion`, `ipaddress`)
