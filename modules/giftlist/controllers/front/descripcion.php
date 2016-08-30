@@ -342,11 +342,8 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	*/
 	private function _deteleProductFromList($id_list,$id_product,$id_attr){
 		$lpd = new ListProductBondModel();
-		if(!$lpd->deleteProduct($id_list, $id_product, $id_attr)){
-			die(_ERROR_);
-		}else{
-			die(_DELETED_);
-		}
+		$lpd->deleteProduct($id_list, $id_product, $id_attr);
+        die(_DELETED_);
 	}
 
 	private function _addBond($id_list, $data){

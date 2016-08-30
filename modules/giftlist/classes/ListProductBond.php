@@ -88,13 +88,16 @@ class ListProductBondModel extends ObjectModel
             $my_prod = new ProductCore($row['id_product']);
             $images = Image::getImages(1, $row['id_product']);
             $sPrice = Db::getInstance()->getValue("SELECT price FROM `"._DB_PREFIX_."specific_price` WHERE `id_product` = ".$row['id_product']." AND`id_product_attribute` = ".(int)$option[3]->value);
-            
+            $price = ($sPrice == 0 ? $my_prod->getPrice() : $sPrice);
+            if($row['group']){
+                $price = $price * $row['cant'];
+            }
             $prod[] = [
                 'id' => $row['id_product'],
                 'id_att' => $option[3]->value,
                 'name' => $my_prod->getProductName($my_prod->id),
                 'image' =>  (Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').$link->getImageLink($my_prod->link_rewrite[1], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image']), 'home_default'),
-                'price' => ($sPrice == 0 ? $my_prod->getPrice() : $sPrice),
+                'price' => $price,
                 'cant' => $row['cant'],
                 'missing' => $row['missing'],
                 'options' => $my_prod->getAttributeCombinationsById($option[3]->value,1),//[3] = id_attribute,

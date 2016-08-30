@@ -925,7 +925,6 @@ class CartController extends CartControllerCore
         if(count($products) > 0){
 
             foreach($products as $product){
-
                 if($product['id_giftlist'] != 0 && $product['id_giftlist'] != $this->id_giftlist){
 
                     $this->errors [] = Tools::displayError ( 'Recuerda que solo puedes agregar productos de una misma Lista de regalos a un solo carrito de compras', ! Tools::getValue ( 'ajax' ) );
@@ -939,11 +938,17 @@ class CartController extends CartControllerCore
                     return;
 
                 }
+                if($this->id_product == $product['id_product'] && $this->id_giftlist != 0){
+                    $cant = GiftlistModel::getCantByListAndProduct($this->id_giftlist,$this->id_product,$this->id_product_attribute);
+                    if($cant < ($this->qty + $product['cart_quantity'])){
+                        $this->errors [] = Tools::displayError ( 'La cantidad que elegiste supera la requerida por el creador de la lista.', ! Tools::getValue ( 'ajax' ) );
+                        return;
+                    }
 
+                }
             }
-
         }
-
+        
 		$mode = (Tools::getIsset ( 'updateFromList' ) && $this->id_product) ? 'update' : 'add';
 
         $params['id_product'] = $this->id_product;

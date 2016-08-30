@@ -2564,3 +2564,10 @@ p.ax-no-products .fa {
 .fa {
     font-family: FontAwesome;
 }
+
+.checkbox.gift_card .checker .checked:before, .checkbox .radio .checked:before {
+    color: #d7162f;
+    position: absolute;
+    top: 0;
+    left: 0px;
+}

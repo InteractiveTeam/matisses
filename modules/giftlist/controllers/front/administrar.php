@@ -128,8 +128,8 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
         $li->guest_number = $data['guest_number'];
         $li->url = $li->slugify($data['url']);
         $li->message =  htmlentities(Tools::getValue('message'));
-        $li->recieve_bond = isset($data['recieve_bond']) && $data['recieve_bond'] == 'on' ? true : false;
-        $li->min_amount = $data['min_ammount'];
+        $li->recieve_bond = isset($data['recieve_bond']) && $data['recieve_bond'] == '1' ? true : false;
+        $li->min_amount = str_replace(".","",$data['min_ammount']);
         $li->real_not = $data['real_not'] && $data['real_not'] == 'on' ? true : false;
         $li->cons_not = $data['cons_not'] && $data['cons_not'] == 'on' ? true : false;
         $li->firstname = $data['firstname'];

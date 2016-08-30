@@ -126,6 +126,23 @@ class GiftListModel extends ObjectModel
         else
             return $l['address_before'];
     }
+    
+    public static function getCantByListAndProduct($id_list,$id_product,$id_att){
+        $sql = "SELECT * FROM "._DB_PREFIX_."list_product_bond WHERE id_list = ". $id_list. " AND id_product = ".$id_product;
+        $res = Db::getInstance()->executeS($sql);
+        $cant = 0;
+        foreach($res as $row){
+            $op = Tools::jsonDecode($row['option']);
+            if(!$row['group']){
+                if($op[3]->value == $id_att)
+                    return $row['missing'];
+            }else{
+                if($op[3]->value == $id_att)
+                    $cant += $row['cant'];
+            }
+        }
+        return $cant;
+    }
 
 	/**
 	 * @param number $id

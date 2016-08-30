@@ -50,7 +50,6 @@ var dates = {
     }
 };
 
-
 var ax_admin = {
     form: '',
     formAfterAddress: '',
@@ -106,6 +105,10 @@ var ax_admin = {
                 ax_admin.uploadMsg($(this));
             });
             
+            $("#min_ammount").on('change keyup',function(){
+                ax_admin.format(document.getElementById('min_ammount'));
+            });
+            
             $("a[role=tab]").on('shown.bs.tab',function(){
                 var tab = $(".tab-pane.active").attr("data-tab-id");
                 $(this).parent().removeClass("active");
@@ -130,8 +133,8 @@ var ax_admin = {
                     $("#cocreator-div").addClass("hidden");
             });
             
-            $("#recieve_bond").click(function(){
-                if($(this).attr('checked') == "checked")
+            $(".recieve_bond").click(function(){
+                if($('input[name=recieve_bond]:checked').val() == "1")
                     $("#ammount_div").removeClass("hidden");
                 else
                     $("#ammount_div").addClass("hidden");
@@ -520,6 +523,14 @@ var ax_admin = {
             }
         });
     },
+    format :function(input){
+        var num = input.value.replace(/\./g,'');
+        if(!isNaN(num)){
+            num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+            num = num.split('').reverse().join('').replace(/^[\.]/,'');
+            input.value = num;
+        }
+    }
 };
 
 ax_admin.init();
