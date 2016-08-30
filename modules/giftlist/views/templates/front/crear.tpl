@@ -235,15 +235,17 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="checkbox">
-					   <label>
-                        <span>{l s='Recibir bono' mod='giftlist'}</span>
-                        <input type="checkbox" id="recieve_bond" name="recieve_bond">
+                        <label>
+                        <span>{l s='¿Quieres recibir Gift card?' mod='giftlist'}</span>
+                        <input type="radio" value="1" class="recieve_bond" name="recieve_bond"> Si
+                        <input type="radio" value="0" class="recieve_bond" name="recieve_bond"> No
 					   </label>
 				    </div>
                 </div>
                 <div class="col-md-6 hidden" id="ammount_div">
                     <label for="min_ammount">{l s='Monto mínimo' mod='giftlist'}<sup>*</sup></label>
-                    <input type="number" class="form-control" name="min_ammount" id="min_ammount" step="20000" min="0">
+                    <span class="ax-text-descript">Elige el valor mínimo de cada Gift card que te regalen</span>
+                    <input type="text" class="form-control" name="min_ammount" id="min_ammount" min="0">
                 </div>
             </div>
             <div class="row">
@@ -264,7 +266,7 @@
                                 {l s='Privado' mod='giftlist'}
                             </label>
                         </div>
-                        <span class="ax-text-descript hidden">{l s='Tu lista quedará privada y solo podrá ser encontrada por el código de la misma.' mod='giftlist'}</span>
+                        <span class="ax-text-descript">{l s='Al hacer tu lista privada solamente podrán acceder mediante el código o el link directo, recuerda compartir esta información con tus invitados' mod='giftlist'}</span>
 				    </div>
                 </div>
                 <div class="col-md-6">
@@ -279,6 +281,7 @@
                         <span>{l s='Notificaciones en tiempo real' mod='giftlist'}</span>
                         <input name="real_not" type="checkbox" id="real_not">
 					   </label>
+                       <span class="ax-text-descript">{l s='¿Deseas recibir un correo electrónico cada vez que recibas un regalo?' mod='giftlist'}</span>
 				    </div>
                 </div>
                 <div class="col-md-6">
@@ -287,6 +290,7 @@
                         <span>{l s='Notificaciones en consolidado' mod='giftlist'}</span>
                         <input name="cons_not" type="checkbox" id="cons_not">
 					   </label>
+                       <span class="ax-text-descript">{l s='¿Deseas recibir un correo electrónico con el consolidado de reaglos que has recibido?' mod='giftlist'}</span>
 				    </div>
                 </div>
             </div>
