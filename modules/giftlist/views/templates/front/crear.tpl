@@ -234,7 +234,7 @@
         <div data-tab-id="3" role="tabpanel" class="tab-pane" id="step-3">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="checkbox">
+                    <div class="checkbox gift_card">
                         <label>
                         <span>{l s='¿Quieres recibir Gift card?' mod='giftlist'}</span>
                         <input type="radio" value="1" class="recieve_bond" name="recieve_bond"> Si
