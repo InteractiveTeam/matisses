@@ -770,6 +770,14 @@ $fp = fopen('data.txt', 'a+');
 						$delivery = new Address($order->id_address_delivery);
 						$delivery_state = $delivery->id_state ? new State($delivery->id_state) : false;
 						$invoice_state = $invoice->id_state ? new State($invoice->id_state) : false;
+                        $fp = fopen('data.txt', 'a+');
+                        fwrite($fp, Tools::jsonEncode($invoice) . PHP_EOL );
+                        fwrite($fp, "texto" . PHP_EOL );
+                        fwrite($fp, Tools::jsonEncode($delivery) . PHP_EOL );
+                        fwrite($fp, "textooo" );
+                        fwrite($fp, Tools::jsonEncode($delivery_state) . PHP_EOL );
+                        fwrite($fp, Tools::jsonEncode($invoice_state) . PHP_EOL );
+                        fclose($fp);
 
 						$data = array(
 						'{firstname}' => $this->context->customer->firstname,
