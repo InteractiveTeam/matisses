@@ -832,7 +832,7 @@ $fp = fopen('data.txt', 'a+');
 						'{total_tax_paid}' => Tools::displayPrice(($order->total_products_wt - $order->total_products) + ($order->total_shipping_tax_incl - $order->total_shipping_tax_excl), $this->context->currency, false));
                         
                         $fp = fopen('data.txt', 'a+');
-        fwrite($fp, Toola::jsonEncode($data) . PHP_EOL );
+        fwrite($fp, Tools::jsonEncode($data) . PHP_EOL );
         fclose($fp);
 
 						if (is_array($extra_vars))
