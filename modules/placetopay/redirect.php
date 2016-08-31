@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
 /**
  * Modulo para el procesamiento de pagos a traves de PlacetoPay.
  * @author    Enrique Garcia M. <ingenieria@egm.co>
