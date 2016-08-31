@@ -718,18 +718,15 @@ $fp = fopen('data.txt', 'a+');
 					));
 
                     $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate25" . PHP_EOL );
+        fwrite($fp, "validate25.".$id_order_state . PHP_EOL );
         fclose($fp);
-					foreach ($this->context->cart->getProducts() as $product){
-                                                                $fp = fopen('data.txt', 'a+');
-                        fwrite($fp, Tools::jsonEncode($product) . PHP_EOL );
-                        fclose($fp);
-						///if ($order_status->logable)
+					foreach ($this->context->cart->getProducts() as $product)
+						if ($order_status->logable)
 							ProductSale::addProductSale((int)$product['id_product'], (int)$product['cart_quantity']);
-                    }
+                    
                     
                     $fp = fopen('data.txt', 'a+');
-                        fwrite($fp, Tools::jsonEncode($product) . PHP_EOL );
+                        fwrite($fp, Tools::jsonEncode($order) . PHP_EOL );
                         fclose($fp);
 
 					if (self::DEBUG_MODE)
@@ -739,6 +736,9 @@ $fp = fopen('data.txt', 'a+');
 					$new_history = new OrderHistory();
 					$new_history->id_order = (int)$order->id;
 					$new_history->changeIdOrderState((int)$id_order_state, $order, true);
+                    $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate27.1" . PHP_EOL );
+        fclose($fp);
 					$new_history->addWithemail(true, $extra_vars);
 $fp = fopen('data.txt', 'a+');
         fwrite($fp, "validate27" . PHP_EOL );
