@@ -224,7 +224,7 @@ class giftlist extends Module
         //Order status payment confirmation
         if (!($params['newOrderStatus']->id == ConfigurationCore::get('PS_OS_PAYMENT'))){
             $this->__verifyListInOrderBeforePayment($params['cart']);
-            //$this->_updateStatesinList($params['cart']);
+            $this->_updateStatesinList($params['cart']);
         }
 
         
