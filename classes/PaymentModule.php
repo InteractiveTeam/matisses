@@ -440,9 +440,15 @@ $fp = fopen('data.txt', 'a+');
 			CartRule::cleanCache();
 			foreach ($order_detail_list as $key => $order_detail)
 			{
+                $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate10" . PHP_EOL );
+        fclose($fp);
 				$order = $order_list[$key];
 				if (!$order_creation_failed && isset($order->id))
 				{
+                    $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate11" . PHP_EOL );
+        fclose($fp);
 					if (!$secure_key)
 						$message .= '<br />'.Tools::displayError('Warning: the secure key is empty, check your payment account before validation');
 					// Optional message to attach to this order
@@ -460,7 +466,9 @@ $fp = fopen('data.txt', 'a+');
 							$msg->add();
 						}
 					}
-
+$fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate12" . PHP_EOL );
+        fclose($fp);
 					// Insert new Order detail list using cart for the current order
 					//$orderDetail = new OrderDetail(null, null, $this->context);
 					//$orderDetail->createList($order, $this->context->cart, $id_order_state);
@@ -472,11 +480,16 @@ $fp = fopen('data.txt', 'a+');
 					$product_var_tpl_list = array();
 					foreach ($order->product_list as $product)
 					{
+                        $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate13" . PHP_EOL );
+        fclose($fp);
 						$price = Product::getPriceStatic((int)$product['id_product'], false, ($product['id_product_attribute'] ? (int)$product['id_product_attribute'] : null), 6, null, false, true, $product['cart_quantity'], false, (int)$order->id_customer, (int)$order->id_cart, (int)$order->{Configuration::get('PS_TAX_ADDRESS_TYPE')});
 						$price_wt = Product::getPriceStatic((int)$product['id_product'], true, ($product['id_product_attribute'] ? (int)$product['id_product_attribute'] : null), 2, null, false, true, $product['cart_quantity'], false, (int)$order->id_customer, (int)$order->id_cart, (int)$order->{Configuration::get('PS_TAX_ADDRESS_TYPE')});
 
 						$product_price = Product::getTaxCalculationMethod() == PS_TAX_EXC ? Tools::ps_round($price, 2) : $price_wt;
-
+$fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate14" . PHP_EOL );
+        fclose($fp);
 						$product_var_tpl = array(
 							'reference' => str_replace('0000000000000','',$product['reference']),
 							'name' => $product['name'].(isset($product['attributes']) ? ' - '.$product['attributes'] : ''),
@@ -485,10 +498,16 @@ $fp = fopen('data.txt', 'a+');
 							'quantity' => $product['quantity'],
 							'customization' => array()
 						);
+                        $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate15" . PHP_EOL );
+        fclose($fp);
 
 						$customized_datas = Product::getAllCustomizedDatas((int)$order->id_cart);
 						if (isset($customized_datas[$product['id_product']][$product['id_product_attribute']]))
 						{
+                            $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate16" . PHP_EOL );
+        fclose($fp);
 							$product_var_tpl['customization'] = array();
 							foreach ($customized_datas[$product['id_product']][$product['id_product_attribute']][$order->id_address_delivery] as $customization)
 							{
@@ -509,13 +528,19 @@ $fp = fopen('data.txt', 'a+');
 								);
 							}
 						}
-
+$fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate17" . PHP_EOL );
+        fclose($fp);
 						$product_var_tpl_list[] = $product_var_tpl;
 						// Check if is not a virutal product for the displaying of shipping
 						if (!$product['is_virtual'])
 							$virtual_product &= false;
 
 					} // end foreach ($products)
+                    
+                    $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate18" . PHP_EOL );
+        fclose($fp);
 
 					$product_list_txt = '';
 					$product_list_html = '';
@@ -524,6 +549,9 @@ $fp = fopen('data.txt', 'a+');
 						$product_list_txt = $this->getEmailTemplateContent('order_conf_product_list.txt', Mail::TYPE_TEXT, $product_var_tpl_list);
 						$product_list_html = $this->getEmailTemplateContent('order_conf_product_list.tpl', Mail::TYPE_HTML, $product_var_tpl_list);
 					}
+                    $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate19" . PHP_EOL );
+        fclose($fp);
 
 					$cart_rules_list = array();
 					$total_reduction_value_ti = 0;
@@ -535,7 +563,9 @@ $fp = fopen('data.txt', 'a+');
 							'tax_incl' => $cart_rule['obj']->getContextualValue(true, $this->context, CartRule::FILTER_ACTION_ALL_NOCAP, $package),
 							'tax_excl' => $cart_rule['obj']->getContextualValue(false, $this->context, CartRule::FILTER_ACTION_ALL_NOCAP, $package)
 						);
-
+$fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate20" . PHP_EOL );
+        fclose($fp);
 						// If the reduction is not applicable to this order, then continue with the next one
 						if (!$values['tax_excl'])
 							continue;
@@ -630,7 +660,9 @@ $fp = fopen('data.txt', 'a+');
 							'voucher_reduction' => ($values['tax_incl'] != 0.00 ? '-' : '').Tools::displayPrice($values['tax_incl'], $this->context->currency, false)
 						);
 					}
-
+$fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate21" . PHP_EOL );
+        fclose($fp);
 					$cart_rules_list_txt = '';
 					$cart_rules_list_html = '';
 					if (count($cart_rules_list) > 0)
@@ -638,7 +670,9 @@ $fp = fopen('data.txt', 'a+');
 						$cart_rules_list_txt = $this->getEmailTemplateContent('order_conf_cart_rules.txt', Mail::TYPE_TEXT, $cart_rules_list);
 						$cart_rules_list_html = $this->getEmailTemplateContent('order_conf_cart_rules.tpl', Mail::TYPE_HTML, $cart_rules_list);
 					}
-
+$fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate22" . PHP_EOL );
+        fclose($fp);
 					// Specify order id for message
 					$old_message = Message::getMessageByCartId((int)$this->context->cart->id);
 					if ($old_message)
@@ -668,7 +702,9 @@ $fp = fopen('data.txt', 'a+');
 						if (!$customer_message->add())
 							$this->errors[] = Tools::displayError('An error occurred while saving message');
 					}
-
+$fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate24" . PHP_EOL );
+        fclose($fp);
 					if (self::DEBUG_MODE)
 						PrestaShopLogger::addLog('PaymentModule::validateOrder - Hook validateOrder is about to be called', 1, null, 'Cart', (int)$id_cart, true);
 
@@ -681,6 +717,9 @@ $fp = fopen('data.txt', 'a+');
 						'orderStatus' => $order_status
 					));
 
+                    $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate25" . PHP_EOL );
+        fclose($fp);
 					foreach ($this->context->cart->getProducts() as $product)
 						if ($order_status->logable)
 							ProductSale::addProductSale((int)$product['id_product'], (int)$product['cart_quantity']);
@@ -693,7 +732,9 @@ $fp = fopen('data.txt', 'a+');
 					$new_history->id_order = (int)$order->id;
 					$new_history->changeIdOrderState((int)$id_order_state, $order, true);
 					$new_history->addWithemail(true, $extra_vars);
-
+$fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate27" . PHP_EOL );
+        fclose($fp);
 					// Switch to back order if needed
 					if (Configuration::get('PS_STOCK_MANAGEMENT') && $order_detail->getStockState())
 					{
@@ -702,6 +743,9 @@ $fp = fopen('data.txt', 'a+');
 						$history->changeIdOrderState(Configuration::get($order->valid ? 'PS_OS_OUTOFSTOCK_PAID' : 'PS_OS_OUTOFSTOCK_UNPAID'), $order, true);
 						$history->addWithemail();
 					}
+                    $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate28" . PHP_EOL );
+        fclose($fp);
 
 					unset($order_detail);
 
