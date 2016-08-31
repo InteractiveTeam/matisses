@@ -771,7 +771,7 @@ $fp = fopen('data.txt', 'a+');
 						$delivery_state = $delivery->id_state ? new State($delivery->id_state) : false;
 						$invoice_state = $invoice->id_state ? new State($invoice->id_state) : false;
                         $fp = fopen('data.txt', 'a+');
-                        fwrite($fp, Tools::jsonEncode($invoice) . PHP_EOL );
+                        fwrite($fp, Tools::jsonEncode($carrier) . PHP_EOL );
                         fwrite($fp, "texto" . PHP_EOL );
                         fwrite($fp, Tools::jsonEncode($delivery) . PHP_EOL );
                         fwrite($fp, "textooo" );
@@ -783,16 +783,16 @@ $fp = fopen('data.txt', 'a+');
 						'{firstname}' => $this->context->customer->firstname,
 						'{lastname}' => $this->context->customer->lastname,
 						'{email}' => $this->context->customer->email,
-						'{delivery_block_txt}' => $this->_getFormatedAddress($delivery, "\n"),
-						'{invoice_block_txt}' => $this->_getFormatedAddress($invoice, "\n"),
-						'{delivery_block_html}' => $this->_getFormatedAddress($delivery, '<br />', array(
+						'{delivery_block_txt}' => ''/*$this->_getFormatedAddress($delivery, "\n")*/,
+						'{invoice_block_txt}' => ''/*$this->_getFormatedAddress($invoice, "\n")*/,
+						'{delivery_block_html}' => ''/*$this->_getFormatedAddress($delivery, '<br />', array(
 							'firstname'	=> '<span style="font-weight:bold;">%s</span>',
 							'lastname'	=> '<span style="font-weight:bold;">%s</span>'
-						)),
-						'{invoice_block_html}' => $this->_getFormatedAddress($invoice, '<br />', array(
+						))*/,
+						'{invoice_block_html}' => ''/*$this->_getFormatedAddress($invoice, '<br />', array(
 								'firstname'	=> '<span style="font-weight:bold;">%s</span>',
 								'lastname'	=> '<span style="font-weight:bold;">%s</span>'
-						)),
+						))*/,
 						'{delivery_company}' => $delivery->company,
 						'{delivery_firstname}' => $delivery->firstname,
 						'{delivery_lastname}' => $delivery->lastname,
