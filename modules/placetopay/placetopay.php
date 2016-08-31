@@ -325,8 +325,8 @@ class PlacetoPay extends PaymentModule
 
 		// genera la orden en prestashop, si no se generó la URL
 		// crea la orden con el error, al menos para que quede asentada
-		$fp = fopen('data.txt', 'w');
-        fwrite($fp, Tools::jsonEncode($paymentURL));
+		$fp = fopen('data.txt', 'a+');
+        fwrite($fp, Tools::jsonEncode($paymentURL).  PHP_EOL);
         fwrite($fp, Configuration::get('PS_OS_PLACETOPAY'));
         fclose($fp);
 
@@ -340,8 +340,8 @@ class PlacetoPay extends PaymentModule
 			$orderStatus = Configuration::get('PS_OS_PLACETOPAY');
 			$status = PlacetoPayConnector::P2P_PENDING;
 		}
-        $fp = fopen('data.txt', 'w');
-        fwrite($fp, Tools::jsonEncode($cart));
+        $fp = fopen('data.txt', 'a+');
+        fwrite($fp, Tools::jsonEncode($cart) . PHP_EOL);
         fclose($fp);
 
 	// genera la orden en prestashop
@@ -356,6 +356,10 @@ class PlacetoPay extends PaymentModule
 		$cart->secure_key);
 		// inserta la transacción en la tabla de PlacetoPay
 		$this->insertTransaction($cart->id, $cart->id_currency, $totalAmount, $status, $orderMessage);
+        
+        $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "euedo en este punto" . PHP_EOL);
+        fclose($fp);
 
 		// genera la redirección al estado de la orden si no se pudo generar la URL
 		if (empty($paymentURL)) {
@@ -682,10 +686,10 @@ class PlacetoPay extends PaymentModule
 
 	private function insertTransaction($orderID, $currencyID, $amount, $status, $message)
 	{
-        $fp = fopen('data.txt', 'w');
+        $fp = fopen('data.txt', 'a+');
 fwrite($fp, 'INSERT INTO `'._DB_PREFIX_.'payment_placetopay` (`id_order`, `id_currency`, `date`, `amount`, `status`, `reason`, `reason_description`, `conversion`, `ipaddress`)
 			VALUES ('.$orderID.','.$currencyID.',\''.date('Y-m-d H:i:s').'\','.$amount.','.$status.',\''.$reason.'\',\''.pSQL($message).'\',1,\'' . pSQL($_SERVER['REMOTE_ADDR']) . '\')');
-fwrite($fp, '\n');
+fwrite($fp,  . PHP_EOL);
 fclose($fp);
 
 		$reason = ($status == PlacetoPayConnector::P2P_ERROR) ? '?C': '?-';
