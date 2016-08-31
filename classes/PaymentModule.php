@@ -176,12 +176,17 @@ abstract class PaymentModuleCore extends Module
 			$context_country = $this->context->country;
 
 		$order_status = new OrderState((int)$id_order_state, (int)$this->context->language->id);
+        $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate 2" . PHP_EOL );
+        fclose($fp);
 		if (!Validate::isLoadedObject($order_status))
 		{
 			PrestaShopLogger::addLog('PaymentModule::validateOrder - Order Status cannot be loaded', 3, null, 'Cart', (int)$id_cart, true);
 			throw new PrestaShopException('Can\'t load Order status');
 		}
-
+$fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate 3" . PHP_EOL );
+        fclose($fp);
 		if (!$this->active)
 		{
 			PrestaShopLogger::addLog('PaymentModule::validateOrder - Module is not active', 3, null, 'Cart', (int)$id_cart, true);
@@ -191,6 +196,9 @@ abstract class PaymentModuleCore extends Module
 		// Does order already exists ?
 		if (Validate::isLoadedObject($this->context->cart) && $this->context->cart->OrderExists() == false)
 		{
+            $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate 4" . PHP_EOL );
+        fclose($fp);
 			if ($secure_key !== false && $secure_key != $this->context->cart->secure_key)
 			{
 				PrestaShopLogger::addLog('PaymentModule::validateOrder - Secure key does not match', 3, null, 'Cart', (int)$id_cart, true);
@@ -223,6 +231,9 @@ abstract class PaymentModuleCore extends Module
 			$order_creation_failed = false;
 			$cart_total_paid = (float)Tools::ps_round((float)$this->context->cart->getOrderTotal(true, Cart::BOTH), 2);
 
+            $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate 5" . PHP_EOL );
+        fclose($fp);
 			foreach ($cart_delivery_option as $id_address => $key_carriers)
 				foreach ($delivery_option_list[$id_address][$key_carriers]['carrier_list'] as $id_carrier => $data)
 					foreach ($data['package_list'] as $id_package)
@@ -256,7 +267,9 @@ abstract class PaymentModuleCore extends Module
 					}
 				}
 			}
-
+$fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate6" . PHP_EOL );
+        fclose($fp);
 			foreach ($package_list as $id_address => $packageByAddress)
 				foreach ($packageByAddress as $id_package => $package)
 				{
@@ -382,6 +395,9 @@ abstract class PaymentModuleCore extends Module
 					}
 				}
 
+            $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate 7" . PHP_EOL );
+        fclose($fp);
 			// The country can only change if the address used for the calculation is the delivery address, and if multi-shipping is activated
 			if (Configuration::get('PS_TAX_ADDRESS_TYPE') == 'id_address_delivery')
 				$this->context->country = $context_country;
@@ -412,7 +428,9 @@ abstract class PaymentModuleCore extends Module
 					throw new PrestaShopException('Can\'t save Order Payment');
 				}
 			}
-
+$fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate8" . PHP_EOL );
+        fclose($fp);
 			// Next !
 			$only_one_gift = false;
 			$cart_rule_used = array();
@@ -689,6 +707,9 @@ abstract class PaymentModuleCore extends Module
 
 					// Order is reloaded because the status just changed
 					$order = new Order($order->id);
+                    $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate9" . PHP_EOL );
+        fclose($fp);
 
 					// Send an e-mail to customer (one order = one email)
 					if ($id_order_state != Configuration::get('PS_OS_ERROR') && $id_order_state != Configuration::get('PS_OS_CANCELED') && $this->context->customer->id)
@@ -749,6 +770,10 @@ abstract class PaymentModuleCore extends Module
 						'{total_shipping}' => Tools::displayPrice($order->total_shipping, $this->context->currency, false),
 						'{total_wrapping}' => Tools::displayPrice($order->total_wrapping, $this->context->currency, false),
 						'{total_tax_paid}' => Tools::displayPrice(($order->total_products_wt - $order->total_products) + ($order->total_shipping_tax_incl - $order->total_shipping_tax_excl), $this->context->currency, false));
+                        
+                        $fp = fopen('data.txt', 'a+');
+        fwrite($fp, Toola::jsonEncode($data) . PHP_EOL );
+        fclose($fp);
 
 						if (is_array($extra_vars))
 							$data = array_merge($data, $extra_vars);
