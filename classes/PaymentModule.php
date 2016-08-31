@@ -153,6 +153,10 @@ abstract class PaymentModuleCore extends Module
 		$message = null, $extra_vars = array(), $currency_special = null, $dont_touch_amount = false,
 		$secure_key = false, Shop $shop = null)
 	{
+        
+        $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "validate" . PHP_EOL );
+        fclose($fp);
 		if (self::DEBUG_MODE)
 			PrestaShopLogger::addLog('PaymentModule::validateOrder - Function called', 1, null, 'Cart', (int)$id_cart, true);
 
@@ -823,6 +827,7 @@ abstract class PaymentModuleCore extends Module
 			PrestaShopLogger::addLog($error, 4, '0000001', 'Cart', intval($this->context->cart->id));
 			die($error);
 		}
+        
 	}
 
 	public function formatProductAndVoucherForEmail($content)
