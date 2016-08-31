@@ -336,12 +336,8 @@ class PlacetoPay extends PaymentModule
 			$orderStatus = Configuration::get('PS_OS_PLACETOPAY');
 			$status = PlacetoPayConnector::P2P_PENDING;
 		}
-        $fp = fopen('data.txt', 'a+');
-        fwrite($fp, $totalAmount." ".$status." ".$orderMessage. " " . $orderStatus. PHP_EOL );
-        fclose($fp);
 
 	// genera la orden en prestashop
-        try{
 		$this->validateOrder($cart->id,
 		$orderStatus,
 		$totalAmount,
@@ -351,17 +347,8 @@ class PlacetoPay extends PaymentModule
 		null,
 		false,
 		$cart->secure_key);
-        }catch(Exception $e){
-           $fp = fopen('data.txt', 'a+');
-        fwrite($fp, $e->getMessage(). PHP_EOL );
-        fclose($fp);  
-        }
 		// inserta la transacción en la tabla de PlacetoPay
 		$this->insertTransaction($cart->id, $cart->id_currency, $totalAmount, $status, $orderMessage);
-        
-        $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "euedo en este punto" );
-        fclose($fp);
 
 		// genera la redirección al estado de la orden si no se pudo generar la URL
 		if (empty($paymentURL)) {
@@ -688,14 +675,6 @@ class PlacetoPay extends PaymentModule
 
 	private function insertTransaction($orderID, $currencyID, $amount, $status, $message)
 	{
-        $fp = fopen('data.txt', 'a+');
-        fwrite($fp,'inse 12');
-fwrite($fp, 'INSERT INTO `'._DB_PREFIX_.'payment_placetopay` (`id_order`, `id_currency`, `date`, `amount`, `status`, `reason`, `reason_description`, `conversion`, `ipaddress`)
-			VALUES ('.$orderID.','.$currencyID.',\''.date('Y-m-d H:i:s').'\','.$amount.','.$status.',\''.$reason.'\',\''.pSQL($message).'\',1,\'' . pSQL($_SERVER['REMOTE_ADDR']) . '\')'. PHP_EOL);
-        
-        
-fclose($fp);
-
 		$reason = ($status == PlacetoPayConnector::P2P_ERROR) ? '?C': '?-';
 		Db::getInstance()->Execute('
 			INSERT INTO `'._DB_PREFIX_.'payment_placetopay` (`id_order`, `id_currency`, `date`, `amount`, `status`, `reason`, `reason_description`, `conversion`, `ipaddress`)

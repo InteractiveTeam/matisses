@@ -153,10 +153,6 @@ abstract class PaymentModuleCore extends Module
 		$message = null, $extra_vars = array(), $currency_special = null, $dont_touch_amount = false,
 		$secure_key = false, Shop $shop = null)
 	{
-        
-        $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate" . PHP_EOL );
-        fclose($fp);
 		if (self::DEBUG_MODE)
 			PrestaShopLogger::addLog('PaymentModule::validateOrder - Function called', 1, null, 'Cart', (int)$id_cart, true);
 
@@ -176,17 +172,12 @@ abstract class PaymentModuleCore extends Module
 			$context_country = $this->context->country;
 
 		$order_status = new OrderState((int)$id_order_state, (int)$this->context->language->id);
-        $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate 2" . PHP_EOL );
-        fclose($fp);
+
 		if (!Validate::isLoadedObject($order_status))
 		{
 			PrestaShopLogger::addLog('PaymentModule::validateOrder - Order Status cannot be loaded', 3, null, 'Cart', (int)$id_cart, true);
 			throw new PrestaShopException('Can\'t load Order status');
 		}
-$fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate 3" . PHP_EOL );
-        fclose($fp);
 		if (!$this->active)
 		{
 			PrestaShopLogger::addLog('PaymentModule::validateOrder - Module is not active', 3, null, 'Cart', (int)$id_cart, true);
@@ -196,9 +187,6 @@ $fp = fopen('data.txt', 'a+');
 		// Does order already exists ?
 		if (Validate::isLoadedObject($this->context->cart) && $this->context->cart->OrderExists() == false)
 		{
-            $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate 4" . PHP_EOL );
-        fclose($fp);
 			if ($secure_key !== false && $secure_key != $this->context->cart->secure_key)
 			{
 				PrestaShopLogger::addLog('PaymentModule::validateOrder - Secure key does not match', 3, null, 'Cart', (int)$id_cart, true);
@@ -231,9 +219,6 @@ $fp = fopen('data.txt', 'a+');
 			$order_creation_failed = false;
 			$cart_total_paid = (float)Tools::ps_round((float)$this->context->cart->getOrderTotal(true, Cart::BOTH), 2);
 
-            $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate 5" . PHP_EOL );
-        fclose($fp);
 			foreach ($cart_delivery_option as $id_address => $key_carriers)
 				foreach ($delivery_option_list[$id_address][$key_carriers]['carrier_list'] as $id_carrier => $data)
 					foreach ($data['package_list'] as $id_package)
@@ -267,9 +252,7 @@ $fp = fopen('data.txt', 'a+');
 					}
 				}
 			}
-$fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate6" . PHP_EOL );
-        fclose($fp);
+            
 			foreach ($package_list as $id_address => $packageByAddress)
 				foreach ($packageByAddress as $id_package => $package)
 				{
@@ -394,10 +377,6 @@ $fp = fopen('data.txt', 'a+');
 						$order_carrier->add();
 					}
 				}
-
-            $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate 7" . PHP_EOL );
-        fclose($fp);
 			// The country can only change if the address used for the calculation is the delivery address, and if multi-shipping is activated
 			if (Configuration::get('PS_TAX_ADDRESS_TYPE') == 'id_address_delivery')
 				$this->context->country = $context_country;
@@ -428,9 +407,6 @@ $fp = fopen('data.txt', 'a+');
 					throw new PrestaShopException('Can\'t save Order Payment');
 				}
 			}
-$fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate8" . PHP_EOL );
-        fclose($fp);
 			// Next !
 			$only_one_gift = false;
 			$cart_rule_used = array();
@@ -439,16 +415,9 @@ $fp = fopen('data.txt', 'a+');
 			// Make sure CarRule caches are empty
 			CartRule::cleanCache();
 			foreach ($order_detail_list as $key => $order_detail)
-			{
-                $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate10" . PHP_EOL );
-        fclose($fp);
-				$order = $order_list[$key];
+			{				$order = $order_list[$key];
 				if (!$order_creation_failed && isset($order->id))
 				{
-                    $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate11" . PHP_EOL );
-        fclose($fp);
 					if (!$secure_key)
 						$message .= '<br />'.Tools::displayError('Warning: the secure key is empty, check your payment account before validation');
 					// Optional message to attach to this order
@@ -466,9 +435,6 @@ $fp = fopen('data.txt', 'a+');
 							$msg->add();
 						}
 					}
-$fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate12" . PHP_EOL );
-        fclose($fp);
 					// Insert new Order detail list using cart for the current order
 					//$orderDetail = new OrderDetail(null, null, $this->context);
 					//$orderDetail->createList($order, $this->context->cart, $id_order_state);
@@ -480,16 +446,10 @@ $fp = fopen('data.txt', 'a+');
 					$product_var_tpl_list = array();
 					foreach ($order->product_list as $product)
 					{
-                        $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate13" . PHP_EOL );
-        fclose($fp);
 						$price = Product::getPriceStatic((int)$product['id_product'], false, ($product['id_product_attribute'] ? (int)$product['id_product_attribute'] : null), 6, null, false, true, $product['cart_quantity'], false, (int)$order->id_customer, (int)$order->id_cart, (int)$order->{Configuration::get('PS_TAX_ADDRESS_TYPE')});
 						$price_wt = Product::getPriceStatic((int)$product['id_product'], true, ($product['id_product_attribute'] ? (int)$product['id_product_attribute'] : null), 2, null, false, true, $product['cart_quantity'], false, (int)$order->id_customer, (int)$order->id_cart, (int)$order->{Configuration::get('PS_TAX_ADDRESS_TYPE')});
 
 						$product_price = Product::getTaxCalculationMethod() == PS_TAX_EXC ? Tools::ps_round($price, 2) : $price_wt;
-$fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate14" . PHP_EOL );
-        fclose($fp);
 						$product_var_tpl = array(
 							'reference' => str_replace('0000000000000','',$product['reference']),
 							'name' => $product['name'].(isset($product['attributes']) ? ' - '.$product['attributes'] : ''),
@@ -497,17 +457,11 @@ $fp = fopen('data.txt', 'a+');
 							'price' => Tools::displayPrice($product_price * $product['quantity'], $this->context->currency, false),
 							'quantity' => $product['quantity'],
 							'customization' => array()
-						);
-                        $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate15" . PHP_EOL );
-        fclose($fp);
+						);                        
 
 						$customized_datas = Product::getAllCustomizedDatas((int)$order->id_cart);
 						if (isset($customized_datas[$product['id_product']][$product['id_product_attribute']]))
 						{
-                            $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate16" . PHP_EOL );
-        fclose($fp);
 							$product_var_tpl['customization'] = array();
 							foreach ($customized_datas[$product['id_product']][$product['id_product_attribute']][$order->id_address_delivery] as $customization)
 							{
@@ -528,19 +482,12 @@ $fp = fopen('data.txt', 'a+');
 								);
 							}
 						}
-$fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate17" . PHP_EOL );
-        fclose($fp);
 						$product_var_tpl_list[] = $product_var_tpl;
 						// Check if is not a virutal product for the displaying of shipping
 						if (!$product['is_virtual'])
 							$virtual_product &= false;
 
 					} // end foreach ($products)
-                    
-                    $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate18" . PHP_EOL );
-        fclose($fp);
 
 					$product_list_txt = '';
 					$product_list_html = '';
@@ -549,9 +496,6 @@ $fp = fopen('data.txt', 'a+');
 						$product_list_txt = $this->getEmailTemplateContent('order_conf_product_list.txt', Mail::TYPE_TEXT, $product_var_tpl_list);
 						$product_list_html = $this->getEmailTemplateContent('order_conf_product_list.tpl', Mail::TYPE_HTML, $product_var_tpl_list);
 					}
-                    $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate19" . PHP_EOL );
-        fclose($fp);
 
 					$cart_rules_list = array();
 					$total_reduction_value_ti = 0;
@@ -563,9 +507,6 @@ $fp = fopen('data.txt', 'a+');
 							'tax_incl' => $cart_rule['obj']->getContextualValue(true, $this->context, CartRule::FILTER_ACTION_ALL_NOCAP, $package),
 							'tax_excl' => $cart_rule['obj']->getContextualValue(false, $this->context, CartRule::FILTER_ACTION_ALL_NOCAP, $package)
 						);
-$fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate20" . PHP_EOL );
-        fclose($fp);
 						// If the reduction is not applicable to this order, then continue with the next one
 						if (!$values['tax_excl'])
 							continue;
@@ -660,9 +601,6 @@ $fp = fopen('data.txt', 'a+');
 							'voucher_reduction' => ($values['tax_incl'] != 0.00 ? '-' : '').Tools::displayPrice($values['tax_incl'], $this->context->currency, false)
 						);
 					}
-$fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate21" . PHP_EOL );
-        fclose($fp);
 					$cart_rules_list_txt = '';
 					$cart_rules_list_html = '';
 					if (count($cart_rules_list) > 0)
@@ -670,9 +608,6 @@ $fp = fopen('data.txt', 'a+');
 						$cart_rules_list_txt = $this->getEmailTemplateContent('order_conf_cart_rules.txt', Mail::TYPE_TEXT, $cart_rules_list);
 						$cart_rules_list_html = $this->getEmailTemplateContent('order_conf_cart_rules.tpl', Mail::TYPE_HTML, $cart_rules_list);
 					}
-$fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate22" . PHP_EOL );
-        fclose($fp);
 					// Specify order id for message
 					$old_message = Message::getMessageByCartId((int)$this->context->cart->id);
 					if ($old_message)
@@ -702,9 +637,6 @@ $fp = fopen('data.txt', 'a+');
 						if (!$customer_message->add())
 							$this->errors[] = Tools::displayError('An error occurred while saving message');
 					}
-$fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate24" . PHP_EOL );
-        fclose($fp);
 					if (self::DEBUG_MODE)
 						PrestaShopLogger::addLog('PaymentModule::validateOrder - Hook validateOrder is about to be called', 1, null, 'Cart', (int)$id_cart, true);
 
@@ -717,17 +649,9 @@ $fp = fopen('data.txt', 'a+');
 						'orderStatus' => $order_status
 					));
 
-                    $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate25.".$id_order_state . PHP_EOL );
-        fclose($fp);
 					foreach ($this->context->cart->getProducts() as $product)
 						if ($order_status->logable)
 							ProductSale::addProductSale((int)$product['id_product'], (int)$product['cart_quantity']);
-                    
-                    
-                    $fp = fopen('data.txt', 'a+');
-                        fwrite($fp, Tools::jsonEncode($order) . PHP_EOL );
-                        fclose($fp);
 
 					if (self::DEBUG_MODE)
 						PrestaShopLogger::addLog('PaymentModule::validateOrder - Order Status is about to be added', 1, null, 'Cart', (int)$id_cart, true);
@@ -758,14 +682,6 @@ $fp = fopen('data.txt', 'a+');
 						$delivery = new Address($order->id_address_delivery);
 						$delivery_state = $delivery->id_state ? new State($delivery->id_state) : false;
 						$invoice_state = $invoice->id_state ? new State($invoice->id_state) : false;
-                        $fp = fopen('data.txt', 'a+');
-                        fwrite($fp, Tools::jsonEncode($carrier) . PHP_EOL );
-                        fwrite($fp, "texto" . PHP_EOL );
-                        fwrite($fp, Tools::jsonEncode($delivery) . PHP_EOL );
-                        fwrite($fp, "textooo" );
-                        fwrite($fp, Tools::jsonEncode($delivery_state) . PHP_EOL );
-                        fwrite($fp, Tools::jsonEncode($invoice_state) . PHP_EOL );
-                        fclose($fp);
 
 						$data = array(
 						'{firstname}' => $this->context->customer->firstname,
