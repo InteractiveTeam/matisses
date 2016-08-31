@@ -327,14 +327,31 @@ class giftlist extends Module
                     ));
                 }
             }else{
-                $sqlB = "SELECT * FROM " . _DB_PREFIX_ . "list_product_bond WHERE id_list = ". $product['id_giftlist']. " AND id_product = ".$product['id_product'] . " AND id_bond = 0 AND bought = 0 LIMIT 1";
-                $prod = Db::getInstance()->getRow($sqlB);
-                $prod['missing'] -= $product['quantity'];
-                Db::getInstance()->update('list_product_bond',array(
-                    'missing' => $prod['missing'],  
-                    'bought' => $prod['missing'] > 0 ? 1 : 0,
-                    'updated_at' => date( "Y-m-d H:i:s" )
-                ),"id_product = ".$product['id_product']);
+                $sqlB = "SELECT * FROM " . _DB_PREFIX_ . "list_product_bond WHERE id_list = ". $product['id_giftlist']. " AND id_product = ".$product['id_product'] . " AND id_bond = 0 AND bought = 0";
+                $prod = Db::getInstance()->executeS($sqlB);
+                foreach($prod as $row){
+                    $op = Tools::jsonDeccode($row['option']);
+                    if($row['group']){
+                        if($op[3]->value == $product['id_product_attribute']){
+                            if($product['quantity'] > 0){
+                                Db::getInstance()->update('list_product_bond',array(
+                                    'bought' => 1,
+                                    'updated_at' => date( "Y-m-d H:i:s" )
+                                ),"id_product = ".$product['id_product']);
+                                $product['quantity'] -= $row['cant'];
+                            }
+                        }
+                    }else{
+                        if($op[3]->value == $product['id_product_attribute']){
+                            $prod['missing'] -= $product['quantity'];
+                            Db::getInstance()->update('list_product_bond',array(
+                                'missing' => $prod['missing'],  
+                                'bought' => $prod['missing'] > 0 ? 1 : 0,
+                                'updated_at' => date( "Y-m-d H:i:s" )
+                            ),"id_product = ".$product['id_product']);
+                        }
+                    }
+                }
             }
         }
     }
