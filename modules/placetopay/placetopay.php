@@ -341,6 +341,7 @@ class PlacetoPay extends PaymentModule
         fclose($fp);
 
 	// genera la orden en prestashop
+        try{
 		$this->validateOrder($cart->id,
 		$orderStatus,
 		$totalAmount,
@@ -350,6 +351,11 @@ class PlacetoPay extends PaymentModule
 		null,
 		false,
 		$cart->secure_key);
+        }catch(Exception $e){
+           $fp = fopen('data.txt', 'a+');
+        fwrite($fp, $e->getMessage(). PHP_EOL );
+        fclose($fp);  
+        }
 		// inserta la transacción en la tabla de PlacetoPay
 		$this->insertTransaction($cart->id, $cart->id_currency, $totalAmount, $status, $orderMessage);
         
