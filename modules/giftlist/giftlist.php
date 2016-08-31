@@ -348,16 +348,11 @@ class giftlist extends Module
                             }
                         }
                     }else{
-                        $fp = fopen('data.txt', 'a+');
-        fwrite($fp, Tools::jsonEncode($product) . PHP_EOL );
-        fwrite($fp, "textooooo". PHP_EOL  );
-        fwrite($fp, Tools::jsonEncode($op) . PHP_EOL );
-        fclose($fp);
                         if($op[3]->value == $product['id_product_attribute']){
-                            $prod['missing'] -= $product['quantity'];
+                            $row['missing'] -= $product['quantity'];
                             Db::getInstance()->update('list_product_bond',array(
-                                'missing' => $prod['missing'],  
-                                'bought' => $prod['missing'] > 0 ? 1 : 0,
+                                'missing' => $row['missing'],  
+                                'bought' => $row['missing'] > 0 ? 1 : 0,
                                 'updated_at' => date( "Y-m-d H:i:s" )
                             ),"id_product = ".$product['id_product']);
                         }
