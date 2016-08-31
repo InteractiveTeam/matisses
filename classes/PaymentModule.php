@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
 /*
 * 2007-2015 PrestaShop
 *
