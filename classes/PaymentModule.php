@@ -720,9 +720,13 @@ $fp = fopen('data.txt', 'a+');
                     $fp = fopen('data.txt', 'a+');
         fwrite($fp, "validate25" . PHP_EOL );
         fclose($fp);
-					foreach ($this->context->cart->getProducts() as $product)
+					foreach ($this->context->cart->getProducts() as $product){
+                                                                $fp = fopen('data.txt', 'a+');
+                        fwrite($fp, Tools::jsonEncode($product) . PHP_EOL );
+                        fclose($fp);
 						if ($order_status->logable)
 							ProductSale::addProductSale((int)$product['id_product'], (int)$product['cart_quantity']);
+                    }
 
 					if (self::DEBUG_MODE)
 						PrestaShopLogger::addLog('PaymentModule::validateOrder - Order Status is about to be added', 1, null, 'Cart', (int)$id_cart, true);
