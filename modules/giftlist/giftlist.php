@@ -336,7 +336,7 @@ class giftlist extends Module
         fwrite($fp, Tools::jsonEncode($prod) . PHP_EOL );
         fclose($fp);
                 foreach($prod as $row){
-                    $op = Tools::jsonDeccode($row['option']);
+                    $op = Tools::jsonDecode($row['option']);
                     if($row['group']){
                         if($op[3]->value == $product['id_product_attribute']){
                             if($product['quantity'] > 0){
