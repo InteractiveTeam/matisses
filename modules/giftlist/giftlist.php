@@ -310,6 +310,9 @@ class giftlist extends Module
         $buyer = new Customer($cart->id_customer);
         $sql = "SELECT id_product FROM "._DB_PREFIX_."product WHERE reference = 'BOND-LIST'";
 		$id_product = Db::getInstance()->getValue($sql);
+        $fp = fopen('data.txt', 'a+');
+        fwrite($fp, "giftliat" . PHP_EOL );
+        fclose($fp);
         foreach($products as $product){
             if($product['id_bond'] != 0){
                 $sqlB = "SELECT count(id_bond)  as bonos FROM " . _DB_PREFIX_ . "list_product_bond WHERE id_bond = ". $product['id_bond'];
@@ -329,6 +332,9 @@ class giftlist extends Module
             }else{
                 $sqlB = "SELECT * FROM " . _DB_PREFIX_ . "list_product_bond WHERE id_list = ". $product['id_giftlist']. " AND id_product = ".$product['id_product'] . " AND id_bond = 0 AND bought = 0";
                 $prod = Db::getInstance()->executeS($sqlB);
+                        $fp = fopen('data.txt', 'a+');
+        fwrite($fp, Tools::jsonEncode($prod) . PHP_EOL );
+        fclose($fp);
                 foreach($prod as $row){
                     $op = Tools::jsonDeccode($row['option']);
                     if($row['group']){
@@ -342,6 +348,11 @@ class giftlist extends Module
                             }
                         }
                     }else{
+                        $fp = fopen('data.txt', 'a+');
+        fwrite($fp, Tools::jsonEncode($product) . PHP_EOL );
+        fwrite($fp, "textooooo". PHP_EOL  );
+        fwrite($fp, Tools::jsonEncode($op) . PHP_EOL );
+        fclose($fp);
                         if($op[3]->value == $product['id_product_attribute']){
                             $prod['missing'] -= $product['quantity'];
                             Db::getInstance()->update('list_product_bond',array(
