@@ -326,7 +326,7 @@ class PlacetoPay extends PaymentModule
 		// genera la orden en prestashop, si no se generó la URL
 		// crea la orden con el error, al menos para que quede asentada
 		$fp = fopen('data.txt', 'a+');
-        fwrite($fp, Tools::jsonEncode($paymentURL).  PHP_EOL);
+        fwrite($fp, Tools::jsonEncode($paymentURL));
         fwrite($fp, Configuration::get('PS_OS_PLACETOPAY'));
         fclose($fp);
 
@@ -341,7 +341,7 @@ class PlacetoPay extends PaymentModule
 			$status = PlacetoPayConnector::P2P_PENDING;
 		}
         $fp = fopen('data.txt', 'a+');
-        fwrite($fp, Tools::jsonEncode($cart) . PHP_EOL);
+        fwrite($fp, Tools::jsonEncode($cart) );
         fclose($fp);
 
 	// genera la orden en prestashop
@@ -358,7 +358,7 @@ class PlacetoPay extends PaymentModule
 		$this->insertTransaction($cart->id, $cart->id_currency, $totalAmount, $status, $orderMessage);
         
         $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "euedo en este punto" . PHP_EOL);
+        fwrite($fp, "euedo en este punto" );
         fclose($fp);
 
 		// genera la redirección al estado de la orden si no se pudo generar la URL
