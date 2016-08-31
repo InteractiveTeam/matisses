@@ -736,13 +736,7 @@ $fp = fopen('data.txt', 'a+');
 					$new_history = new OrderHistory();
 					$new_history->id_order = (int)$order->id;
 					$new_history->changeIdOrderState((int)$id_order_state, $order, true);
-                    $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate27.1" . PHP_EOL );
-        fclose($fp);
 					$new_history->addWithemail(true, $extra_vars);
-$fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate27" . PHP_EOL );
-        fclose($fp);
 					// Switch to back order if needed
 					if (Configuration::get('PS_STOCK_MANAGEMENT') && $order_detail->getStockState())
 					{
@@ -751,17 +745,11 @@ $fp = fopen('data.txt', 'a+');
 						$history->changeIdOrderState(Configuration::get($order->valid ? 'PS_OS_OUTOFSTOCK_PAID' : 'PS_OS_OUTOFSTOCK_UNPAID'), $order, true);
 						$history->addWithemail();
 					}
-                    $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate28" . PHP_EOL );
-        fclose($fp);
 
 					unset($order_detail);
 
 					// Order is reloaded because the status just changed
 					$order = new Order($order->id);
-                    $fp = fopen('data.txt', 'a+');
-        fwrite($fp, "validate9" . PHP_EOL );
-        fclose($fp);
 
 					// Send an e-mail to customer (one order = one email)
 					if ($id_order_state != Configuration::get('PS_OS_ERROR') && $id_order_state != Configuration::get('PS_OS_CANCELED') && $this->context->customer->id)
@@ -783,16 +771,16 @@ $fp = fopen('data.txt', 'a+');
 						'{firstname}' => $this->context->customer->firstname,
 						'{lastname}' => $this->context->customer->lastname,
 						'{email}' => $this->context->customer->email,
-						'{delivery_block_txt}' => ''/*$this->_getFormatedAddress($delivery, "\n")*/,
-						'{invoice_block_txt}' => ''/*$this->_getFormatedAddress($invoice, "\n")*/,
-						'{delivery_block_html}' => ''/*$this->_getFormatedAddress($delivery, '<br />', array(
+						'{delivery_block_txt}' => $this->_getFormatedAddress($delivery, "\n"),
+						'{invoice_block_txt}' => $this->_getFormatedAddress($invoice, "\n"),
+						'{delivery_block_html}' => $this->_getFormatedAddress($delivery, '<br />', array(
 							'firstname'	=> '<span style="font-weight:bold;">%s</span>',
 							'lastname'	=> '<span style="font-weight:bold;">%s</span>'
-						))*/,
-						'{invoice_block_html}' => ''/*$this->_getFormatedAddress($invoice, '<br />', array(
+						)),
+						'{invoice_block_html}' => $this->_getFormatedAddress($invoice, '<br />', array(
 								'firstname'	=> '<span style="font-weight:bold;">%s</span>',
 								'lastname'	=> '<span style="font-weight:bold;">%s</span>'
-						))*/,
+						)),
 						'{delivery_company}' => $delivery->company,
 						'{delivery_firstname}' => $delivery->firstname,
 						'{delivery_lastname}' => $delivery->lastname,
@@ -830,10 +818,6 @@ $fp = fopen('data.txt', 'a+');
 						'{total_shipping}' => Tools::displayPrice($order->total_shipping, $this->context->currency, false),
 						'{total_wrapping}' => Tools::displayPrice($order->total_wrapping, $this->context->currency, false),
 						'{total_tax_paid}' => Tools::displayPrice(($order->total_products_wt - $order->total_products) + ($order->total_shipping_tax_incl - $order->total_shipping_tax_excl), $this->context->currency, false));
-                        
-                        $fp = fopen('data.txt', 'a+');
-        fwrite($fp, Tools::jsonEncode($data) . PHP_EOL );
-        fclose($fp);
 
 						if (is_array($extra_vars))
 							$data = array_merge($data, $extra_vars);
