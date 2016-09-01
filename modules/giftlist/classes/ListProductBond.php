@@ -184,7 +184,7 @@ class ListProductBondModel extends ObjectModel
 		return false;
 	}
     
-    public static function getByProductAndList($id_product,$id_list){
+    public static function getByProductAndList($id_product,$id_list,$id_att){
         $totalCant = "SELECT SUM(cant) FROM `ps_list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_product." AND `group` = 1 GROUP BY id_product";
         $boughtCant = "SELECT SUM(cant) FROM `ps_list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_product." AND `group` = 1 AND bought =1 GROUP BY id_product";
         $missingtCant = "SELECT `missing` FROM `ps_list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_product." AND bought = 0";
@@ -197,13 +197,18 @@ class ListProductBondModel extends ObjectModel
         return $prod;
     }
     
-    public static function getByProductAndListNotAgroup($id_prod,$id_list){
+    public static function getByProductAndListNotAgroup($id_prod,$id_list,$id_att){
         $totalCant = "SELECT `cant`,`missing`,`option` FROM `"._DB_PREFIX_."list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_prod." AND `group` = 0";
-        $totalCant = Db::getInstance()->getRow($totalCant);
-        $prod['total'] = $totalCant['cant'];
-        $prod['bought'] = $totalCant['cant'] - $totalCant['missing'];
-        $prod['missing'] = $totalCant['missing'];
-        $prod['option'] = Tools::jsonDecode($totalCant['option']);
-        return $prod;
+        $totalCant = Db::getInstance()->executeS($totalCant);
+        foreach($totalCant as $row)
+        {
+            $prod['option'] = Tools::jsonDecode($row['option']);
+            if($prod['option'][3]->value == $id_att){
+                $prod['total'] = $row['cant'];
+                $prod['bought'] = $row['cant'] - $row['missing'];
+                $prod['missing'] = $row['missing'];
+                return $prod;
+            }
+        }
     }
 }

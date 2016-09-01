@@ -6,7 +6,7 @@ include_once __DIR__ . '/../../classes/Bond.php';
 include_once _PS_MODULE_DIR_ . "matisses/matisses.php";
 include_once _PS_OVERRIDE_DIR_ ."controllers/front/CartController.php";
 define("_ERROR_","Ha ocurrido un error, vuelve a intentarlo más tarde");
-define("_DELETED_","Elmininado correctamente");
+define("_DELETED_","Eliminado correctamente");
 define("_EDITED_","Se ha editado la información correctamente");
 
 class giftlistdescripcionModuleFrontController extends ModuleFrontController {
@@ -198,7 +198,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
         if((int)Tools::getValue('group'))
             $infoList = ListProductBondModel::getByProductAndList($id_prod,$id_list);
         else
-            $infoList = ListProductBondModel::getByProductAndListNotAgroup($id_prod,$id_list);
+            $infoList = ListProductBondModel::getByProductAndListNotAgroup($id_prod,$id_list,$id_att);
         $image = ProductCore::getCombinationImageById( (int)$infoList['option'][3]->value, Context::getContext()->language->id);
         $params['reference'] = $prod->reference;
         $params['product']['id_product'] = (int)$id_prod;
@@ -253,7 +253,9 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
             'lastname' => $data->lastname,
             'id_cocreator' =>  $l->id_cocreator,
             'event_date' => $l->event_date,
-            'event_type' => $data->event_type
+            'event_type' => $data->event_type,
+            'real_not' => isset($data->real_not) ? 1 : 0,
+            'cons_not' => isset($data->cons_not) ? 1 : 0,
         ),"id = " . $id);
         die(Tools::jsonEncode(array(
             'msg' => $this->module->l('La lista ha sido editada exitosamente.'),
