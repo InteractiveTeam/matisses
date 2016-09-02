@@ -63,7 +63,7 @@
                 {if !empty($products)}
                 {foreach from=$products item=row}
                     {$atribute_group = $row['options'][3]->value}
-                        <div class="product-card col-md-3" id="prod-{$row['id']}" data-attr-id="{$row['id_att']}" data-id="{$row['id']}">
+                        <div class="product-card col-md-3" id="prod-{$row['id']}" data-lpd-id="{$row['id_lpd']}" data-attr-id="{$row['id_att']}" data-id="{$row['id']}">
                             <div class="ax-cont-hover">
                                 <div class="img-container">
                                     <img src="{$row['image']}" />

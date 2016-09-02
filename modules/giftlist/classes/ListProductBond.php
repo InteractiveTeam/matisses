@@ -93,6 +93,7 @@ class ListProductBondModel extends ObjectModel
                 $price = $price * $row['cant'];
             }
             $prod[] = [
+                'id_lpd' => $row['id'],
                 'id' => $row['id_product'],
                 'id_att' => $option[3]->value,
                 'name' => $my_prod->getProductName($my_prod->id),
@@ -184,10 +185,12 @@ class ListProductBondModel extends ObjectModel
 		return false;
 	}
     
-    public static function getByProductAndList($id_product,$id_list,$id_att){
+    public static function getByProductAndList($id_product,$id_list,$id_att,$id_lpd){
         $sql = "SELECT * FROM ". _DB_PREFIX_ ."list_product_bond WHERE id_list = ".$id_list." AND id_product = ".$id_product;
         $prod = [];
         $products = Db::getInstance()->executeS($sql);
+        $sqlCant = "SELECT cant FROM ". _DB_PREFIX_ ."list_product_bond WHERE id = ".$id_lpd;
+        $cantP = Db::getInstance()->getValue($sqlCant);
         foreach($products as $row){
             $op = Tools::jsonDecode($row['option']);
             if($op[3]->value == $id_att){
@@ -195,7 +198,7 @@ class ListProductBondModel extends ObjectModel
                 $prod['bought'] += $row['bought'] ? $row['cant'] : 0;
                 $prod['missing'] +=$row['bought'] ? 0 : $row['cant'];
                 $prod['option'] = $op;
-                $prod['cant'] = $row['cant'];
+                $prod['cant'] = $cantP;
                 $prod['group'] = true;
             }
         }
