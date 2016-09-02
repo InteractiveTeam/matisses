@@ -338,7 +338,6 @@ class giftlist extends Module
                                         'updated_at' => date( "Y-m-d H:i:s" )
                                     ),"id_product = ".$product['id_product']);
                                     $product['quantity'] -= $row['cant'];
-                                    break;
                                 }elseif($product['quantity'] == $row['cant']){
                                     Db::getInstance()->update('list_product_bond',array(
                                         'bought' => 1,
