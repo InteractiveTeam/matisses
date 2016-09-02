@@ -195,6 +195,8 @@ class ListProductBondModel extends ObjectModel
                 $prod['bought'] += $row['bought'] ? $row['cant'] : 0;
                 $prod['missing'] +=$row['bought'] ? 0 : $row['cant'];
                 $prod['option'] = $op;
+                $prod['cant'] = $row['cant'];
+                $prod['group'] = true;
             }
         }
         return $prod;

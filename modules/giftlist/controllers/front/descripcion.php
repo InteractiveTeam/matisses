@@ -212,13 +212,14 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
         else
             $styleColor = $attr->color;
         
+        $price = ($sPrice == 0 ? $prod->price : $sPrice);
+        
         die(Tools::jsonEncode(array(
             'image' => (Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').$link->getImageLink($prod->link_rewrite[1], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image'])),
             'name' => $prod->name[1],
             'reference' => hook::exec('actionMatChangeReference',$params),
             'desc' => $prod->description_short[1],
-            'color' => "blue",
-            'price' => Tools::displayPrice(($sPrice == 0 ? $prod->price : $sPrice)),
+            'price' => Tools::displayPrice($price * (int)$infoList['cant']),
             'missing' => $infoList['missing'],
             'bought' => $infoList['bought'],
             'total' => $infoList['total'],
