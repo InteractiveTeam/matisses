@@ -938,7 +938,7 @@ class CartController extends CartControllerCore
                     return;
 
                 }
-                if($this->id_product == $product['id_product'] && $this->id_giftlist != 0){
+                if($this->id_product == $product['id_product'] && $this->id_giftlist != 0 && $product['id_product_attribute'] == $this->id_product_attribute){
                     $cant = GiftlistModel::getCantByListAndProduct($this->id_giftlist,$this->id_product,$this->id_product_attribute);
                     if($cant < ($this->qty + $product['cart_quantity'])){
                         $this->errors [] = Tools::displayError ( 'La cantidad que elegiste supera la requerida por el creador de la lista.', ! Tools::getValue ( 'ajax' ) );

@@ -389,18 +389,18 @@
                 <input type="text" class="form-control" name="email_co" id="email_co" value="{$email_co}">
             </div>
             <div class="col-md-6">
-                    <label for="event_type">{l s='Tipo de evento' mod='giftlist'}<sup>*</sup></label>
-                    <select id="event_type" name="event_type" class="form-control ax-select" data-placeholder=" ">
-                        <option value="0" selected="selected"></option> 
-                        {foreach from=$events item=event}
-                            {if $list_desc['event_type'] == $event['id']}
-                                <option value="{$event['id']}" selected>{$event['name']}</option>
-                            {else}
-                                <option value="{$event['id']}">{$event['name']}</option>
-                            {/if}
-                        {/foreach}
-                    </select>
-                </div>
+                <label for="event_type">{l s='Tipo de evento' mod='giftlist'}<sup>*</sup></label>
+                <select id="event_type" name="event_type" class="form-control ax-select" data-placeholder=" ">
+                    <option value="0" selected="selected"></option> 
+                    {foreach from=$events item=event}
+                        {if $list_desc['event_type'] == $event['id']}
+                            <option value="{$event['id']}" selected>{$event['name']}</option>
+                        {else}
+                            <option value="{$event['id']}">{$event['name']}</option>
+                        {/if}
+                    {/foreach}
+                </select>
+            </div>
         </div>
         <div class="row date-cont">
             {*
@@ -444,6 +444,26 @@
                         <option value="{$i}" {if $i == $ev_date[0]}selected{/if}>{$i}&nbsp;&nbsp;</option>
                     {/for}
                 </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="checkbox">
+                   <label>
+                    <span>{l s='Notificaciones en tiempo real' mod='giftlist'}</span>
+                    <input name="real_not" type="checkbox" id="real_not" {if $list_desc['real_not']}checked{/if}>
+                   </label>
+                   {*<span class="ax-text-descript">{l s='¿Deseas recibir un correo electrónico cada vez que recibas un regalo?' mod='giftlist'}</span>*}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="checkbox">
+                   <label>
+                    <span>{l s='Notificaciones en consolidado' mod='giftlist'}</span>
+                    <input name="cons_not" type="checkbox" id="cons_not" {if $list_desc['cons_not']}checked{/if}>
+                   </label>
+                   {*<span class="ax-text-descript">{l s='¿Deseas recibir un correo electrónico con el consolidado de reaglos que has recibido?' mod='giftlist'}</span>*}
+                </div>
             </div>
         </div>
         <div class="row btn-form-info">

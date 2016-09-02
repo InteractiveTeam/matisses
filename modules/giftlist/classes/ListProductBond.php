@@ -184,26 +184,36 @@ class ListProductBondModel extends ObjectModel
 		return false;
 	}
     
-    public static function getByProductAndList($id_product,$id_list){
-        $totalCant = "SELECT SUM(cant) FROM `ps_list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_product." AND `group` = 1 GROUP BY id_product";
-        $boughtCant = "SELECT SUM(cant) FROM `ps_list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_product." AND `group` = 1 AND bought =1 GROUP BY id_product";
-        $missingtCant = "SELECT `missing` FROM `ps_list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_product." AND bought = 0";
-        $sql = "SELECT * FROM ". _DB_PREFIX_ ."list_product_bond WHERE id_list = ".$id_list." AND id_product = ".$id_product . " GROUP BY id_product";
-        $prod = Db::getInstance()->getRow($sql);
-        $prod['total'] = Db::getInstance()->getValue($totalCant);
-        $prod['bought'] = Db::getInstance()->getValue($boughtCant);
-        $prod['missing'] = Db::getInstance()->getValue($missingtCant);
-        $prod['option'] = Tools::jsonDecode($prod['option']);
+    public static function getByProductAndList($id_product,$id_list,$id_att){
+        $sql = "SELECT * FROM ". _DB_PREFIX_ ."list_product_bond WHERE id_list = ".$id_list." AND id_product = ".$id_product;
+        $prod = [];
+        $products = Db::getInstance()->executeS($sql);
+        foreach($products as $row){
+            $op = Tools::jsonDecode($row['option']);
+            if($op[3]->value == $id_att){
+                $prod['total'] += $row['cant'];
+                $prod['bought'] += $row['bought'] ? $row['cant'] : 0;
+                $prod['missing'] +=$row['bought'] ? 0 : $row['cant'];
+                $prod['option'] = $op;
+                $prod['cant'] = $row['cant'];
+                $prod['group'] = true;
+            }
+        }
         return $prod;
     }
     
-    public static function getByProductAndListNotAgroup($id_prod,$id_list){
+    public static function getByProductAndListNotAgroup($id_prod,$id_list,$id_att){
         $totalCant = "SELECT `cant`,`missing`,`option` FROM `"._DB_PREFIX_."list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_prod." AND `group` = 0";
-        $totalCant = Db::getInstance()->getRow($totalCant);
-        $prod['total'] = $totalCant['cant'];
-        $prod['bought'] = $totalCant['cant'] - $totalCant['missing'];
-        $prod['missing'] = $totalCant['missing'];
-        $prod['option'] = Tools::jsonDecode($totalCant['option']);
-        return $prod;
+        $totalCant = Db::getInstance()->executeS($totalCant);
+        foreach($totalCant as $row)
+        {
+            $prod['option'] = Tools::jsonDecode($row['option']);
+            if($prod['option'][3]->value == $id_att){
+                $prod['total'] = $row['cant'];
+                $prod['bought'] = $row['cant'] - $row['missing'];
+                $prod['missing'] = $row['missing'];
+                return $prod;
+            }
+        }
     }
 }
