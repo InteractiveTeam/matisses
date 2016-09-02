@@ -138,7 +138,7 @@ class GiftListModel extends ObjectModel
                     return $row['missing'];
             }else{
                 if($op[3]->value == $id_att)
-                    $cant += $row['cant'];
+                    $cant += $row['bought'] ? 0 : $row['cant'];
             }
         }
         return $cant;
