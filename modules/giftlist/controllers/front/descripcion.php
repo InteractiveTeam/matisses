@@ -196,7 +196,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
         $prod = new ProductCore((int)$id_prod);
         $link = new LinkCore();
         if((int)Tools::getValue('group'))
-            $infoList = ListProductBondModel::getByProductAndList($id_prod,$id_list);
+            $infoList = ListProductBondModel::getByProductAndList($id_prod,$id_list,$id_att);
         else
             $infoList = ListProductBondModel::getByProductAndListNotAgroup($id_prod,$id_list,$id_att);
         $image = ProductCore::getCombinationImageById( (int)$infoList['option'][3]->value, Context::getContext()->language->id);
