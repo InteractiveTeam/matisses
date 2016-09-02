@@ -219,7 +219,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
             'name' => $prod->name[1],
             'reference' => hook::exec('actionMatChangeReference',$params),
             'desc' => $prod->description_short[1],
-            'price' => Tools::displayPrice($price * (int)$infoList['cant']),
+            'price' => ((int)Tools::getValue('group') ? Tools::displayPrice($price * (int)$infoList['cant']) : Tools::displayPrice($price)),
             'missing' => $infoList['missing'],
             'bought' => $infoList['bought'],
             'total' => $infoList['total'],
