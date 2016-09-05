@@ -108,6 +108,10 @@ $(document).ready(function(){
                     $(".ax-mod-qty").attr("disabled", true);
                     $(".ax-mod-qty").val(res.cantGroup);
                 }
+                else{
+                    $(".ax-mod-qty").attr("disabled", false);
+                    $(".ax-mod-qty").val(1);
+                }
                 $.fancybox({
                     'autoSize'      :   false, 
                     'minWidth'		:   600,
