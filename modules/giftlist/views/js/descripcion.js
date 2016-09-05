@@ -228,14 +228,14 @@ $(document).ready(function() {
       itemPath: '.product-card' ,
       panelPath: '.jplist-panel',
       redrawCallback: function(){
+          $(".delete-product").click(function(){
+                deleteProd($(this));
+          });
           if($(".ax-list-edit").hasClass("hidden")){
             $(".delete-product").removeClass('hidden');
             $(".delete-product").parent().addClass('ax-edit-list');
             $(".ax-bond-value").addClass("hidden");
             $(".fa-heart").addClass("ax-fav-icon");
-            $(".delete-product").click(function(){
-                deleteProd($(this));
-            });
 
             if($(".ax-bond-cont").length == 0 ){
                 $(".ax-bond-card").append('<div class="ax-bond-cont"><label for="min_amount">Monto mínimo</label><input type="number" step="20000" min="0" id="min_amount" value="'+min_amount+'" name="min_amount"></div>');
