@@ -265,9 +265,9 @@ class giftlist extends Module
                 $creator = $list->getCreator($list->getCreator($list->id_creator));
                 $sql = "SELECT count(*) FROM `"._DB_PREFIX_."list_product_bond` WHERE `id_list` = ".$product['id_giftlist']." AND `id_product` = ". $product['id_product'];
                 if(Db::getInstance()->getValue($sql) > 1)
-                    $lpd = ListProductBondModel::getByProductAndList($product['id_product'],$product['id_giftlist']);
+                    $lpd = ListProductBondModel::getByProductAndList($product['id_product'],$product['id_giftlist'],$product['id_product_attribute']);
                 else
-                    $lpd = ListProductBondModel::getByProductAndListNotAgroup($product['id_product'],$product['id_giftlist']);
+                    $lpd = ListProductBondModel::getByProductAndListNotAgroup($product['id_product'],$product['id_giftlist'],$product['id_product_attribute'],0);
                 $attr = $prod->getAttributeCombinationsById($lpd['option'][3]->value,Context::getContext()->language->id);
                 $id_image = ProductCore::getCover($product['id_product']);
                 // get Image by id

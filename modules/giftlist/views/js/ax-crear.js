@@ -193,9 +193,25 @@ var ax_admin = {
         return false;
     },
     uploadMsg:function(el){
-        var msg = $("<span>").addClass("ax-up-msg").html("<i class='fa fa-check'></i>");
-        if(!el.parent().parent().parents(".col-md-6").find(".ax-up-msg").length)
+        if(el[0].files[0].size > 2000000){
+            el.parent().parent().parents(".col-md-6").find(".ax-up-msg").remove();
+            $("#image-p").val(null);
+            var msg = $("<span>").addClass("ax-up-msg").html("<i class='fa fa-times'></i>");
             el.parent().parent().parents(".col-md-6").append(msg);
+            $.fancybox({
+                'autoSize'      :   true,
+                'transitionIn'	:	'elastic',
+                'transitionOut'	:	'elastic',
+                'speedIn'		:	600,
+                'speedOut'		:	200,
+                'overlayShow'	:	false,
+                'content'       :   "Tu imagen supera el tamaño establecido (2mb))"
+            }); 
+        }else{
+            el.parent().parent().parents(".col-md-6").find(".ax-up-msg").remove();
+            var msg = $("<span>").addClass("ax-up-msg").html("<i class='fa fa-check'></i>");
+            el.parent().parent().parents(".col-md-6").append(msg);
+        }
     },
     validateSelect : function(){
         var ret = true;
