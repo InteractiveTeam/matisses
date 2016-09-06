@@ -336,26 +336,24 @@ class giftlist extends Module
                                     Db::getInstance()->update('list_product_bond',array(
                                         'bought' => 1,
                                         'updated_at' => date( "Y-m-d H:i:s" )
-                                    ),"id_product = ".$product['id_product']);
+                                    ),"id = ".$row['id']);
                                     $product['quantity'] -= $row['cant'];
                                 }elseif($product['quantity'] == $row['cant']){
                                     Db::getInstance()->update('list_product_bond',array(
                                         'bought' => 1,
                                         'updated_at' => date( "Y-m-d H:i:s" )
-                                    ),"id_product = ".$product['id_product']);
+                                    ),"id = ".$row['id']);
                                     $product['quantity'] -= $row['cant'];
                                 }
                             }
                         }
                     }else{
-                        if($op[3]->value == $product['id_product_attribute']){
-                            $row['missing'] -= $product['quantity'];
-                            Db::getInstance()->update('list_product_bond',array(
-                                'missing' => $row['missing'],  
-                                'bought' => $row['missing'] > 0 ? 0 : 1,
-                                'updated_at' => date( "Y-m-d H:i:s" )
-                            ),"id_product = ".$product['id_product']);
-                        }
+                        $row['missing'] -= $product['quantity'];
+                        Db::getInstance()->update('list_product_bond',array(
+                            'missing' => $row['missing'],  
+                            'bought' => $row['missing'] > 0 ? 0 : 1,
+                            'updated_at' => date( "Y-m-d H:i:s" )
+                        ),"id = ".$row['id']);
                     }
                 }
             }
