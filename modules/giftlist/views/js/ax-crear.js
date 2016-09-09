@@ -205,7 +205,7 @@ var ax_admin = {
                 'speedIn'		:	600,
                 'speedOut'		:	200,
                 'overlayShow'	:	false,
-                'content'       :   "Tu imagen supera el tamaño establecido (2mb))"
+                'content'       :   "Tu imagen supera el tamaño establecido (2mb)"
             }); 
         }else{
             el.parent().parent().parents(".col-md-6").find(".ax-up-msg").remove();
