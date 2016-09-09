@@ -1,4 +1,4 @@
-{creator}, un product de tu lista de regalos fue comprado:
+{creator}, un producto de tu lista de regalos fue comprado:
 
 Nombre del producto: {name}
 
