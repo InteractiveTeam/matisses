@@ -13,6 +13,7 @@ class giftlistbuscarModuleFrontController extends ModuleFrontController {
         $name = Tools::getValue("name");
         $lastName = Tools::getValue("lastname");
         $code = Tools::getValue("code");
+        $res = array();
         if(trim($name) && trim($lastName)){
             $res = $list->searchByCustomerNames($name,$lastName);
 		}elseif(trim($code)){
