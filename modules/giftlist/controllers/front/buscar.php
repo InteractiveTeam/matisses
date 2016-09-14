@@ -35,12 +35,15 @@ class giftlistbuscarModuleFrontController extends ModuleFrontController {
 	public function init(){
 		parent::init();
 		if($this->ajax){
+            $name = Tools::getValue("name");
+            $lastName = Tools::getValue("lastname");
+            $code = Tools::getValue("code");          
 			$list = new GiftListModel();
-			if(!empty(Tools::getValue("name")) && !empty(Tools::getValue("lastname"))){
-				$res = $list->searchByCustomerNames(Tools::getValue("name"),Tools::getValue("lastname"));
+			if(trim($name) && trim($lastName)){
+				$res = $list->searchByCustomerNames($name,$lastName);
 				die(Tools::jsonEncode($res));
-			}elseif(!empty(Tools::getValue("code"))){
-				$res = $list->searchByCode(Tools::getValue("code"));
+			}elseif(trim($code)){
+				$res = $list->searchByCode($code);
 				if($res != ""){
 					die(Tools::jsonEncode($this->context->link->getModuleLink('giftlist', 'descripcion', $res)));
 				}
