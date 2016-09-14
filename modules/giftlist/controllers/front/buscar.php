@@ -10,10 +10,13 @@ class giftlistbuscarModuleFrontController extends ModuleFrontController {
         $this->display_column_left = false;
         $this->display_column_right = false;
 		$list = new GiftListModel();
-        if(!empty(Tools::getValue("name")) && !empty(Tools::getValue("lastname"))){
-            $res = $list->searchByCustomerNames(Tools::getValue("name"),Tools::getValue("lastname"));
-		}elseif(!empty(Tools::getValue("code"))){
-			$res = $list->searchByCode(Tools::getValue("code"));
+        $name = Tools::getValue("name");
+        $lastName = Tools::getValue("lastname");
+        $code = Tools::getValue("code");
+        if(trim($name) && trim($lastName)){
+            $res = $list->searchByCustomerNames($name,$lastName);
+		}elseif(trim($code)){
+			$res = $list->searchByCode($code);
 			if($res != ""){
 				Tools::redirect($this->context->link->getModuleLink('giftlist', 'descripcion', $res));
 			}
@@ -22,7 +25,7 @@ class giftlistbuscarModuleFrontController extends ModuleFrontController {
 			
 		$this->context->smarty->assign ( array (
             "lists" => $res,
-            'parameter' => Tools::getValue("name") . Tools::getValue("lastname"),
+            'parameter' => $name . $lastName,
 			'description_link' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => "")),
 			'items_per_page' => 5
 		) );
