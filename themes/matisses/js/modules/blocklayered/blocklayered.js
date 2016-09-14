@@ -144,7 +144,7 @@ $(document).ready(function(){
 
 	//Custom scroll
 	$(".scroll-pane").mCustomScrollbar();
-    reloadContent(true);
+    //reloadContent(true);
 });
 
 

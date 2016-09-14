@@ -205,7 +205,7 @@ var ax_admin = {
                 'speedIn'		:	600,
                 'speedOut'		:	200,
                 'overlayShow'	:	false,
-                'content'       :   "Tu imagen supera el tamaño establecido (2mb))"
+                'content'       :   "Tu imagen supera el tamaño establecido (2mb)"
             }); 
         }else{
             el.parent().parent().parents(".col-md-6").find(".ax-up-msg").remove();
@@ -391,8 +391,8 @@ var ax_admin = {
     },
     validDate:function(){
         var value = $("#months").val()+"/"+$("#days").val()+"/"+$("#years").val();
-        var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
-        var t = new Date(value.replace(pattern,'$1-$2-$3'));
+        //var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
+        var t = new Date(value);
         var now = new Date();
         return (dates.compare(t,now) == 1 ? true : false);
     },

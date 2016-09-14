@@ -257,6 +257,8 @@ class AuthControllerCore extends FrontController
 			$this->errors[] = Tools::displayError('An email address required.');
 		elseif (!Validate::isEmail($email))
 			$this->errors[] = Tools::displayError('Invalid email address.');
+        elseif (Db::getInstance()->getValue("SELECT customer_acount_type FROM "._DB_PREFIX_."customer WHERE email = '".$email."'") == "facebook")
+			$this->errors[] = Tools::displayError('Debes ingresar con la opción de facebook');
 		elseif (empty($passwd))
 			$this->errors[] = Tools::displayError('Password is required.');
 		elseif (!Validate::isPasswd($passwd))
