@@ -595,6 +595,8 @@ function reloadContent(params_plus, num){
 			filters = result.filters;
 			initFilters();
 			initSliders();
+            
+            current_friendly_url = result.current_friendly_url;
 
 			// Currente page url
 			if (typeof(current_friendly_url) === 'undefined')
@@ -692,7 +694,7 @@ function reloadContent(params_plus, num){
                     } else {
                         $(this).removeClass('result-selected highlighted');
                         $(this).bind('click', function() {
-                            reloadContent(true, $(this).text());
+                            //reloadContent(true, $(this).text());
                         });
                     }
                 });
