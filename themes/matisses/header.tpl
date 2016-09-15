@@ -344,19 +344,7 @@ src="https://www.facebook.com/tr?id=146264512398308&ev=PageView&noscript=1"
 {/if}
 
 {if isset($left_column_size) && !empty($left_column_size) && ($page_name != 'module-news-new')}
-    {if $page_name =='category'}
-		<!--Bloque1 Visualizados-->
     
-	    <div id="displayed-category" class="displayed-category">
-			<div class="container">
-			    <!-- Chaordic Top -->
-                <div chaordic="top"></div>
-			</div>
-	    </div>
-		<!--Fin Bloque1 Visualizados-->
-    {/if}
-
-
 		<!--Bloque2 Parrilla Productos-->
 		<div class="parrilla-productos">
 			<div class="container">
