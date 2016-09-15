@@ -579,8 +579,12 @@ $.fn.ayoshare = function() {
             crossDomain: true,
             dataType: 'jsonp',
             success: function(a) {
-                var b = ayo_num(a[0].share_count);
-                $(xxx + ' .ayo_count_fb').html(b)
+                if(typeof a.error_code !== 'undefined')
+                    $(xxx + ' .ayo_count_fb').html(0)
+                else{
+                    var b = ayo_num(a[0].share_count);
+                    $(xxx + ' .ayo_count_fb').html(b)
+                }
             },
             error: function() {
                 $(xxx + ' .ayo_count_fb').html(0)
