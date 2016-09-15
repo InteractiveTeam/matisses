@@ -31,18 +31,6 @@
 
 {if isset($right_column_size) && !empty($right_column_size) && ($page_name != 'module-news-new')}
 
-    {if $page_name =='category'}
-		<!--Bloque1 Visualizados-->
-    
-	    <div id="displayed-category" class="displayed-category">
-			<div class="container">
-			    <!-- Chaordic Top -->
-                <div chaordic="top"></div>
-			</div>
-	    </div>
-		<!--Fin Bloque1 Visualizados-->
-    {/if}
-
 <div id="right_column" class="col-sm-{$right_column_size|intval} column">{$HOOK_RIGHT_COLUMN}</div>
 {/if}
 </div>
@@ -51,6 +39,16 @@
 </div>
 
 {if $page_name=='category'}
+
+<!--Bloque1 Visualizados-->
+    
+<div id="displayed-category" class="displayed-category">
+    <div class="container">
+        <!-- Chaordic Top -->
+        <div chaordic="top"></div>
+    </div>
+</div>
+<!--Fin Bloque1 Visualizados-->
 
 <div id="purchased-block" class="purchased-block">
     {if $category->level_depth < 5}
