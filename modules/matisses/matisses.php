@@ -1547,7 +1547,7 @@ class matisses extends Module
 														'source'	=>'prestashop')
 												);
 		$result = $client->call('callService', $s);
-        $result = $this->xml_to_array($result['return']['detail']);
+        $result = $this->xml_to_array_utf8($result['return']['detail']);
         return $result;
 	}
     
@@ -2159,6 +2159,14 @@ class matisses extends Module
 		}
 		return false; 
 	}
+    
+    public function xml_to_array_utf8($xml)
+	{
+		$xml = $this->xml2array(utf8_encode($xml));
+		$xml = $this->NormalizeArray($xml);
+		return $xml;
+	}
+    
 	/*******************************************************
 	*	@author:	Sebastian casta�o
 	*	@package:	Matisses integracion (Funciones de Comunicacion sap)
