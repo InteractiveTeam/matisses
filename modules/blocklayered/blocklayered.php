@@ -1708,7 +1708,6 @@ class BlockLayered extends Module
 
 	private function getSelectedFilters()
 	{
-		
 		$home_category = Configuration::get('PS_HOME_CATEGORY');
 		$id_parent = (int)Tools::getValue('id_category', Tools::getValue('id_category_layered', $home_category));
 		if ($id_parent == $home_category)
@@ -1723,7 +1722,7 @@ class BlockLayered extends Module
 				$url = preg_replace('/\/(?:\w*)\/(?:[0-9]+[-\w]*)([^\?]*)\??.*/', '$1', Tools::safeOutput($_SERVER['REQUEST_URI'], true));
 
 			$url_attributes = explode('/', ltrim($url, '/'));
-
+            
 			$selected_filters = array('category' => array());
 			if (!empty($url_attributes))
 			{
@@ -1735,10 +1734,10 @@ class BlockLayered extends Module
 						$url_attribute = str_replace('-', $this->getAnchor(), $url_attribute);
 					$url_parameters = explode($this->getAnchor(), $url_attribute);
 
-					
-
 					$attribute_name  = array_shift($url_parameters);
 					$attribute_name = str_replace('material','material_',$attribute_name);
+					$attribute_name = str_replace('marca','fabricante',$attribute_name);
+                    
 
 					if ($attribute_name == 'page')
 						$this->page = (int)$url_parameters[0];
@@ -3086,7 +3085,6 @@ class BlockLayered extends Module
 	public function ajaxCall()
 	{
 		global $smarty, $cookie;
-
 		$selected_filters = $this->getSelectedFilters();
 		$filter_block = $this->getFilterBlock($selected_filters);
 		$this->getProducts($selected_filters, $products, $nb_products, $p, $n, $pages_nb, $start, $stop, $range);

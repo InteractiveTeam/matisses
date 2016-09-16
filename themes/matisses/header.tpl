@@ -76,6 +76,14 @@
 {/foreach}
 {/if}
 		{$HOOK_HEADER}
+<script type="text/javascript">
+    window.smartlook||(function(d) {
+    var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+    var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
+    c.charset='utf-8';c.src='//rec.getsmartlook.com/recorder.js';h.appendChild(c);
+    })(document);
+    smartlook('init', '7df174a3cc5a08475e87eeffd09e9b9e5fd18d9f');
+</script>
 <link rel="stylesheet" type="text/css" href="/themes/matisses/css/autoload/print.css" media="print" />
 <!--[if IE 8]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
