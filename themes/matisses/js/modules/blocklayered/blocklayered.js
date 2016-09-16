@@ -30,6 +30,7 @@ var slidersInit = false;
 var current_price_slider = '';
 var upCount = false;
 var current_sort = '--';
+var s = 0;
 
 $(document).ready(function(){
 	cancelFilter();
@@ -38,11 +39,15 @@ $(document).ready(function(){
 
 	// Click on color
 	$(document).on('click', '#layered_form input[type=button], #layered_form label.layered_color', function(e) {
-		if (!$('input[name='+$(this).attr('name')+'][type=hidden]').length)
+		if (!$('input[name='+$(this).attr('name')+'][type=hidden]').length){
 			$('<input />').attr('type', 'hidden').attr('name', $(this).attr('name')).val($(this).data('rel')).appendTo('#layered_form');
-		else
+            s = $(this).data('rel');
+            s = s.substring(0, s.indexOf('_'));
+        }else{
 			$('input[name='+$(this).attr('name')+'][type=hidden]').remove();
-		reloadContent(true);
+            s = 0;
+        }
+		reloadContent(true);            
 	});
 
 	$(document).on('click', '#layered_form .select, #layered_form input[type=checkbox], #layered_form input[type=radio]', function(e) {
@@ -699,6 +704,8 @@ function reloadContent(params_plus, num){
             });
 			
 			$(".scroll-pane").mCustomScrollbar();
+            if(s !== 0)
+                $("a[data-idattribute="+s+"]").click();
 		}
 	});
 	
