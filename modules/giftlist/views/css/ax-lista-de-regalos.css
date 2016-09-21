@@ -1250,8 +1250,8 @@ label.error:before {
         height: 0.9375rem;
     }
     #frmSaveList div.radio span.checked:before {
-        width: 0.5625rem;
-        height: 0.5625rem;
+        width: 0.7rem;
+        height: 0.8rem;
         background: #5e534d;
     }
 
@@ -1259,6 +1259,29 @@ label.error:before {
         width: 100% !important;
         margin-top: 10px;
     }
+
+
+#frmSaveList #step-3 .radio {
+    min-height: 20px;
+}
+
+
+.radio+.radio, .checkbox+.checkbox {
+    margin-top: 0px;
+}
+
+#step-3 .gift_card h3 {
+    margin-bottom: 13px;
+}
+
+
+#module-giftlist-descripcion .fancybox-overlay {
+    overflow: auto;
+    overflow-y: auto;
+    position: fixed;
+}
+
+
 
 #info-div, #productDiv {
     overflow: hidden;

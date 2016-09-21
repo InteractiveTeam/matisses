@@ -236,6 +236,7 @@
                 <div class="col-md-6">
                     <div class="checkbox gift_card">
                         <label>
+                        <h3>{l s='Bono de regalo' mod='giftlist'}</h3>
                         <span>{l s='¿Quieres recibir Gift card?' mod='giftlist'}</span>
                         <input type="radio" value="1" class="recieve_bond" name="recieve_bond"> Si
                         <input type="radio" value="0" class="recieve_bond" name="recieve_bond"> No
@@ -266,7 +267,9 @@
                                 {l s='Privado' mod='giftlist'}
                             </label>
                         </div>
-                        <span class="ax-text-descript">{l s='Al hacer tu lista privada solamente podrán acceder mediante el código o el link directo, recuerda compartir esta información con tus invitados' mod='giftlist'}</span>
+                        <span class="ax-text-descript">{l s='Al hacer tu lista privada solamente podrán acceder mediante el código o el link directo, recuerda compartir esta información con tus invitados.' mod='giftlist'}</span>
+
+
 				    </div>
                 </div>
                 <div class="col-md-6">
@@ -281,7 +284,7 @@
                         <span>{l s='Notificaciones en tiempo real' mod='giftlist'}</span>
                         <input name="real_not" type="checkbox" id="real_not">
 					   </label>
-                       <span class="ax-text-descript">{l s='¿Deseas recibir un correo electrónico cada vez que recibas un regalo?' mod='giftlist'}</span>
+                       <span class="ax-text-descript">{l s='¿Deseas recibir un correo electrónico cada vez recibas un regalo?' mod='giftlist'}</span>
 				    </div>
                 </div>
                 <div class="col-md-6">
@@ -290,7 +293,7 @@
                         <span>{l s='Notificaciones en consolidado' mod='giftlist'}</span>
                         <input name="cons_not" type="checkbox" id="cons_not">
 					   </label>
-                       <span class="ax-text-descript">{l s='¿Deseas recibir un correo electrónico con el consolidado de reaglos que has recibido?' mod='giftlist'}</span>
+                       <span class="ax-text-descript">{l s='¿Deseas recibir un correo electrónico con el consolidado de regalos que has recibido?' mod='giftlist'}</span>
 				    </div>
                 </div>
             </div>
