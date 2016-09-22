@@ -279,6 +279,20 @@
 /* media */
 
 @media (max-width: 1199px) {
+
+	#module-giftlist-descripcion div.fancybox-mobile{
+		opacity: 1;
+		overflow: visible;
+		height: auto;
+		width: 660px;
+		position: fixed;
+		top: 20px;
+		left: 182px;
+	}
+
+
+
+	
 	#cart_summary tbody td.cart_description small{
 		font-size: 11px;
 	}
@@ -1977,6 +1991,9 @@
 }
 
 @media screen and (max-width :768px) {
+
+
+
 
 	#category .content_sortPagiBar .top-pagination-content{
 	    float: left;
