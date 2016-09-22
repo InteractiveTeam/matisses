@@ -150,7 +150,7 @@
     overflow-y: hidden !important;
 	}
 .fancybox-overlay {
-	position: absolute;
+	position: fixed !important;
 	top: 0;
 	left: 0;
 	overflow: hidden;
