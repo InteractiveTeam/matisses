@@ -2468,7 +2468,7 @@
         z-index: 99;
     }
     
-    #menu.menu-experiencias {
+    #header .main_panel #menu-left #menu.menu-experiencias {
         width: 98% !important ;
         display: block;
     }
