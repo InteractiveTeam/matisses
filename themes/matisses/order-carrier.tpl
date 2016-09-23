@@ -278,6 +278,10 @@
                                         allstores = '<p class="carrier_title">';
                                         allstores += '{l s="Seleccione Tienda"}';
                                         allstores += '</p>';
+                                        allstores = '<p class="carrier_text">';
+                                        allstores += '{l s="Selecciona la tienda en la que deseas recoger tu pedido. Cuando esté listo nos contactaremos contigo para que puedas pasar por este."}';
+                                        allstores += '</p>';
+                                        allstores += '</p>';
                                         allstores += '<table class="available_stores table table-bordered">';
                                         allstores += '<thead>';
                                         allstores += '<tr>';
