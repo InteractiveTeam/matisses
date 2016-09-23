@@ -2436,6 +2436,7 @@
     
 }
 
+
 @media screen and (max-width :480px) {
     
     .right-down-menu .search a {
@@ -2483,6 +2484,7 @@
     #header .main_panel #menu-left #menu.menu-experiencias {
         width: 100% ;
         display: block;
+	    top: 7.8rem;
     }
     
     .left-down-menu #menu #wishlist, .left-down-menu #menu #giftlist {
@@ -2740,6 +2742,7 @@
     }
     
 }
+
 
 @media screen and (max-width :380px) {
     
