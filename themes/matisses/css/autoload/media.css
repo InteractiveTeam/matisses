@@ -1994,6 +1994,18 @@
 
 
 
+	#module-blockwishlist-mywishlist .main-container .center_column {
+    	width: 100%;
+	    padding: 0 0.9375rem;
+	    margin: 0 auto;
+	    float: none;
+	}
+
+
+	html body .search a {
+        padding-top: 0px;
+	}
+
 
 	#category .content_sortPagiBar .top-pagination-content{
 	    float: left;
@@ -4675,11 +4687,19 @@
 	    right: 161px;
 	    z-index: 999;
 	}
+	
+	#header #menu.menu-experiencias {
+		top: 22rem;
+	    width: 60%;
+	}
 
+
+    
+/*
 	#header #menu.menu-experiencias {
 	    top: 7.8rem;
         width: 100%;
-	}
+	}*/
 
 
     header .search-container {
