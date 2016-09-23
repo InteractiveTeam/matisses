@@ -2469,7 +2469,7 @@
     }
     
     #header .main_panel #menu-left #menu.menu-experiencias {
-        width: 98% !important ;
+        width: 100% ;
         display: block;
     }
     
@@ -2480,7 +2480,7 @@
     }
     
     .left-down-menu #menu #wishlist a, .left-down-menu #menu #giftlist a {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
     
     .newsletter-footer .newsletter-input {
