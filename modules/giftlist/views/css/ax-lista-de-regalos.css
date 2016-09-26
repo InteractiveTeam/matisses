@@ -1275,6 +1275,15 @@ label.error:before {
 }
 
 
+#frmSaveList #uniform-list_type #list_type {
+    display: none;
+}
+
+#step-3 .gift_card .radio .recieve_bond{
+        opacity: 0;
+}
+
+
 #module-giftlist-descripcion .fancybox-overlay {
     overflow: auto;
     overflow-y: auto;
