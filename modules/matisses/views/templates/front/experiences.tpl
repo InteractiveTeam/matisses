@@ -17,7 +17,7 @@
                                 {assign var="button_url" value="add=1&amp;id_product=`$pointer.id_product`&amp;id_product_attribute=`$pointer.id_product_attribute`"} 
                                 
                                 <a class="btn btn-default btn-red ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, $button_url , false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$pointer.id_product|intval}">
-                                    {l s='Comprar ahora'}
+                                    {l s='Agregar al carrito'}
                                 </a>
                             </div>
                             <div class="pointer-detail-right grid_4 alpha omega">
