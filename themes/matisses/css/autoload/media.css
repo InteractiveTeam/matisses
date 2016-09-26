@@ -1664,7 +1664,7 @@
     }  
 }
 
-@media only screen and (max-width :1024px) and (min-width: 361px) {
+@media only screen and (max-width :1024px) and (min-width: 361px) {º
     
     #user {
         padding-top: 0.2rem !important;
@@ -1990,8 +1990,23 @@
 
 }
 
+
+
 @media screen and (max-width :768px) {
 
+	html body .left-down-menu .sf-contener .menu-content > li > a {
+
+	    padding: 20px 0 0px 2rem;
+	}
+
+
+	body .sf-contener .sf-menu > li span{
+		    width: 100px;
+		    z-index: 2;
+		    margin-left: 15px;
+		    position: absolute;
+		    top: 75px;
+	}
 
 	body #header .category-thumbnail.cf {
 	    display: none;
@@ -4198,6 +4213,15 @@
 
 @media screen and (max-width: 414px){
 
+html body .sf-contener .sf-menu > li span{
+	top: 19px;
+    left: 0;
+}
+html body .left-down-menu .sf-contener .menu-content > li > a {
+    padding: 26px 0 0px 3rem;
+}
+
+
 
 	#module-blockwishlist-mywishlist #mywishlist .wlp_bought ul.row.wlp_bought_list li {
 	    padding: 0;
@@ -4888,6 +4912,8 @@
 
 
 @media screen and (max-width:360px) {
+
+
 
 	#contact .submit {
 	    margin-bottom: 20px;
