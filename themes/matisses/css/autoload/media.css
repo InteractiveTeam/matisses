@@ -1993,6 +1993,11 @@
 @media screen and (max-width :768px) {
 
 
+	body #header .category-thumbnail.cf {
+	    display: none;
+	}
+
+
 
 	#module-blockwishlist-mywishlist .main-container .center_column {
     	width: 100%;
