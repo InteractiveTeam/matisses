@@ -279,6 +279,20 @@
 /* media */
 
 @media (max-width: 1199px) {
+
+	#module-giftlist-descripcion div.fancybox-mobile{
+		opacity: 1;
+		overflow: visible;
+		height: auto;
+		width: 660px;
+		position: fixed;
+		top: 20px;
+		left: 182px;
+	}
+
+
+
+	
 	#cart_summary tbody td.cart_description small{
 		font-size: 11px;
 	}
@@ -851,6 +865,22 @@
     }
     
 }
+
+
+@media (max-width: 460px){
+
+	html body .sf-contener .sf-menu > li span {
+	    top: 11px;
+	    left: 0;
+	}
+
+	html body .left-down-menu .sf-contener .menu-content .sf-menu li > a {
+	    padding: 20px 0 0px 3rem;
+	}
+
+}
+
+
 @media (max-width: 419px){
 	#order-detail-content #cart_summary td.cart_product{
 		width: 100%;
@@ -1444,6 +1474,15 @@
     }
 }
 
+
+@media only screen and (max-width :1024px) {
+
+    .product_list.grid .product-container:hover .wrap_view, .c_item .product-container:hover .wrap_view, .product_list.grid .product-container:hover:before, .c_item .product-container:hover:before, .product_list.grid .product-container:hover:after, .c_item .product-container:hover:after {
+        display: none;
+    }
+
+}
+
 @media only screen and (max-width :1366px) {
    .sf-contener ul.menu-experiencias {
         padding: 1.5625rem 0 1.0rem 0.625rem;
@@ -1650,7 +1689,7 @@
     }  
 }
 
-@media only screen and (max-width :1024px) and (min-width: 361px) {
+@media only screen and (max-width :1024px) and (min-width: 361px) {º
     
     #user {
         padding-top: 0.2rem !important;
@@ -1976,7 +2015,42 @@
 
 }
 
+
+
 @media screen and (max-width :768px) {
+
+	html body .left-down-menu .sf-contener .menu-content > li > a {
+
+	    padding: 20px 0 0px 2rem;
+	}
+
+
+	body .sf-contener .sf-menu > li span{
+		    width: 100px;
+		    z-index: 2;
+		    margin-left: 15px;
+		    position: absolute;
+		    top: 75px;
+	}
+
+	body #header .category-thumbnail.cf {
+	    display: none;
+	}
+
+
+
+	#module-blockwishlist-mywishlist .main-container .center_column {
+    	width: 100%;
+	    padding: 0 0.9375rem;
+	    margin: 0 auto;
+	    float: none;
+	}
+
+
+	html body .search a {
+        padding-top: 0px;
+	}
+
 
 	#category .content_sortPagiBar .top-pagination-content{
 	    float: left;
@@ -2418,6 +2492,7 @@
     
 }
 
+
 @media screen and (max-width :480px) {
     
     .right-down-menu .search a {
@@ -2462,9 +2537,10 @@
         z-index: 99;
     }
     
-    #menu.menu-experiencias {
-        width: 100%;
+    #header .main_panel #menu-left #menu.menu-experiencias {
+        width: 100% ;
         display: block;
+	    top: 7.8rem;
     }
     
     .left-down-menu #menu #wishlist, .left-down-menu #menu #giftlist {
@@ -2474,7 +2550,7 @@
     }
     
     .left-down-menu #menu #wishlist a, .left-down-menu #menu #giftlist a {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
     
     .newsletter-footer .newsletter-input {
@@ -2722,6 +2798,7 @@
     }
     
 }
+
 
 @media screen and (max-width :380px) {
     
@@ -4172,6 +4249,15 @@
 
 @media screen and (max-width: 414px){
 
+html body .sf-contener .sf-menu > li span{
+	top: 19px;
+    left: 0;
+}
+html body .left-down-menu .sf-contener .menu-content > li > a {
+    padding: 26px 0 0px 3rem;
+}
+
+
 
 	#module-blockwishlist-mywishlist #mywishlist .wlp_bought ul.row.wlp_bought_list li {
 	    padding: 0;
@@ -4669,11 +4755,19 @@
 	    right: 161px;
 	    z-index: 999;
 	}
+	
+	#header #menu.menu-experiencias {
+		top: 22rem;
+	    width: 60%;
+	}
 
+
+    
+/*
 	#header #menu.menu-experiencias {
 	    top: 7.8rem;
         width: 100%;
-	}
+	}*/
 
 
     header .search-container {
@@ -4854,6 +4948,8 @@
 
 
 @media screen and (max-width:360px) {
+
+
 
 	#contact .submit {
 	    margin-bottom: 20px;

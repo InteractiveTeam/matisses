@@ -227,14 +227,15 @@
 											array('id_attribute' => (int) $_Combination['color']['id_attribute']), 
 											'id_product_attribute = '.(int)$id_product_attribute
 										);
+                        
 										
 						// teindas disponibles por combinacion				
 						Db::getInstance()->update('product_attribute', 
 											array('available' => $_Combination['stock']['WarehouseCode'],
-                                                 'garantias'=> $_Combination['materials'],
-                                                  'itemname'=> $_Combination['itemName'],
-                                                  'short_description'=> $_Combination['shortDescription'],
-                                                  'description'=> $_Combination['description'] 
+                                                 'garantias'=> addslashes($_Combination['materials']),
+                                                  'itemname'=> addslashes($_Combination['itemName']),
+                                                  'short_description'=> addslashes($_Combination['shortDescription']),
+                                                  'description'=> addslashes($_Combination['description']) 
                                             ), 
 											'id_product_attribute = '.(int)$id_product_attribute
 										);
@@ -327,6 +328,7 @@
 	function __setImages($_Images,$_Product)
 	{
 		//echo "<pre>"; print_r($_Images); echo "</pre>";
+        
 		if(sizeof($_Images)>0)
 		{
 			foreach($_Images as $d => $v)
