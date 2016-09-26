@@ -1474,6 +1474,15 @@
     }
 }
 
+
+@media only screen and (max-width :1024px) {
+
+    .product_list.grid .product-container:hover .wrap_view, .c_item .product-container:hover .wrap_view, .product_list.grid .product-container:hover:before, .c_item .product-container:hover:before, .product_list.grid .product-container:hover:after, .c_item .product-container:hover:after {
+        display: none;
+    }
+
+}
+
 @media only screen and (max-width :1366px) {
    .sf-contener ul.menu-experiencias {
         padding: 1.5625rem 0 1.0rem 0.625rem;
