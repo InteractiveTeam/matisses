@@ -1993,6 +1993,23 @@
 @media screen and (max-width :768px) {
 
 
+	body #header .category-thumbnail.cf {
+	    display: none;
+	}
+
+
+
+	#module-blockwishlist-mywishlist .main-container .center_column {
+    	width: 100%;
+	    padding: 0 0.9375rem;
+	    margin: 0 auto;
+	    float: none;
+	}
+
+
+	html body .search a {
+        padding-top: 0px;
+	}
 
 
 	#category .content_sortPagiBar .top-pagination-content{
@@ -2424,6 +2441,7 @@
     
 }
 
+
 @media screen and (max-width :480px) {
     
     .right-down-menu .search a {
@@ -2469,8 +2487,9 @@
     }
     
     #header .main_panel #menu-left #menu.menu-experiencias {
-        width: 98% !important ;
+        width: 100% ;
         display: block;
+	    top: 7.8rem;
     }
     
     .left-down-menu #menu #wishlist, .left-down-menu #menu #giftlist {
@@ -2480,7 +2499,7 @@
     }
     
     .left-down-menu #menu #wishlist a, .left-down-menu #menu #giftlist a {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
     
     .newsletter-footer .newsletter-input {
@@ -2728,6 +2747,7 @@
     }
     
 }
+
 
 @media screen and (max-width :380px) {
     
@@ -4675,11 +4695,19 @@
 	    right: 161px;
 	    z-index: 999;
 	}
+	
+	#header #menu.menu-experiencias {
+		top: 22rem;
+	    width: 60%;
+	}
 
+
+    
+/*
 	#header #menu.menu-experiencias {
 	    top: 7.8rem;
         width: 100%;
-	}
+	}*/
 
 
     header .search-container {
