@@ -1198,6 +1198,8 @@
 
 @media (min-width:768px) and (max-width :1024px){
 
+
+
 	/*Header*/
 	.left-up-menu {
 		padding-left: 0.9375rem;
@@ -1434,6 +1436,7 @@
 	.menu-mobile .category-thumbnail, .category-thumbnail .wrap_scale {
 		width:100%;
 	}
+
     
     .menu-mobile .category-thumbnail .wrap_scale .banner_thumb {
         background: #e3e3e3;
@@ -4832,6 +4835,11 @@ html body .left-down-menu .sf-contener .menu-content > li > a {
 }
 
 @media screen and (max-width: 1024px){
+
+
+	#header .sf-contener .menu-mobile .category-thumbnail {
+		display: none;
+	}
 
 	.banner #homeslider video {
 	    width: 100%;
