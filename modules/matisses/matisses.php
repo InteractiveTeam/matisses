@@ -446,7 +446,7 @@ class matisses extends Module
         if(!empty($cache) && $cache['cart_products'] == $cant_prod && $cache['id_address'] == $params['delivery_option'])
             return json_encode($cache);
         $id_address = $params['delivery_option'];
-        $id_carrier = str_replace(',','',current(array_values($params['delivery_option'])));
+        $id_carrier = str_replace(',','',current(array_values($params['delivery_option_list'])));
         $shipping_cost = array();
         if($id_address)
         {
@@ -479,16 +479,25 @@ class matisses extends Module
         ************************************************************/
         $errorMessage = $shipping_cost['shippingQuotationResultDTO']['errorMessage'];
         /***********************************************************/
-        $res = array(
-            'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
-            'shippingCompany' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany'],
-            'error' => (!empty($errorMessage) ? true : false),
-            'cart_products' => count($cart->getProducts()),
-            'id_address' => $id_address
-        );
+        if($errorMessage){
+            $res = array(
+                'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
+                'error' => (!empty($errorMessage) ? true : false),
+                'cart_products' => count($cart->getProducts()),
+                'id_address' => $id_address
+            );
+        }else{
+            $res = array(
+                'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
+                'shippingCompany' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany'],
+                'error' => (!empty($errorMessage) ? true : false),
+                'cart_products' => count($cart->getProducts()),
+                'id_address' => $id_address
+            );
+        }
+            
         Cache::store("cart_".$cart->id,$res);
-
-        return json_encode($res);
+        return Tools::jsonEncode($res);
 	}
 	
 	
@@ -2547,7 +2556,7 @@ class matisses extends Module
 	*******************************************************/
 	public function array_to_xml($array,$header=true)
 	{ 
-	
+	    $xml = "";
 		foreach($array as $d => $v)
 		{
 			if(is_array($array[$d]))
@@ -2568,6 +2577,7 @@ class matisses extends Module
 	*******************************************************/
 	private function array_to_xml_parse_array($array, $key)
 	{
+        $xml = "";
 		$xml.= "<$key>";
 		foreach($array as $d => $v)
 		{
