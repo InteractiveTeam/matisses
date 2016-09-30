@@ -281,14 +281,14 @@ function display(view)
 	if (view == 'list')
 	{
 		$('.product_list').removeClass('grid').addClass('list row');
-		$('.product_list .ajax_block_product').removeClass('grid_4').addClass('grid_4');
+		$('.product_list .ajax_block_product').removeClass('grid_4').addClass('grid_12');
 		$('.product_list .ajax_block_product').each(function(index, element) {
 			html = '';
-			html = '<div class="product-container"><div class="row">';
+			html = '<div class="product-container" id="'+$(element).find(".product-container").attr("id")+'"><div class="row">';
 				html += '<div class="left-block grid_4">' + $(element).find('.left-block').html() + '</div>';
 				html += '<div class="center-block grid_5">';
 					html += '<div class="product-flags">'+ $(element).find('.product-flags').html() + '</div>';
-					html += '<h5 itemprop="name">'+ $(element).find('h5').html() + '</h5>';
+					html += '<h2 itemprop="name" class="product-name">'+ $(element).find('.product-name').html() + '</h2>';
 					html += '<p class="product-desc">'+ $(element).find('.product-desc').html() + '</p>';
 					var colorList = $(element).find('.color-list-container').html();
 					if (colorList != null) {
@@ -296,7 +296,7 @@ function display(view)
 					}
 				html += '</div>';
 					html += '<div class="right-block grid_3"><div class="right-block-content row">';
-					html += '<div class=" comments_note  cf">'+ $(element).find('.comments_note').html() + '</div>';
+					/*html += '<div class=" comments_note  cf">'+ $(element).find('.comments_note').html() + '</div>';*/
 					var price = $(element).find('.content_price').html();       // check : catalog mode is enabled
 					if (price != null) {
 						html += '<div class="content_price grid_12">'+ price + '</div>';
@@ -304,10 +304,13 @@ function display(view)
 					html += '<div class="wrap_view grid_12">'+ $(element).find('.wrap_view ').html() +'</div>';
 				html += '</div>';
 			html += '</div></div>';
+        
 		$(element).html(html);
+            $(element).find(".right-block-content .color-list-container").remove();
+            $(element).find(".center-block .color-list-container").show();
 		});
-		$('.display').find('li.list').addClass('selected');
-		$('.display').find('li.grid').removeAttr('class');
+		$('.display').find('li.list_btn').addClass('selected');
+		$('.display').find('li.grid_btn').removeAttr('class');
 		$.totalStorage('display', 'list');
 	}
 	else
@@ -316,13 +319,13 @@ function display(view)
 		$('.product_list .ajax_block_product').removeClass('grid_12').addClass('grid_4');
 		$('.product_list .ajax_block_product').each(function(index, element) {
 		html = '';
-		html += '<div class="product-container">';
+		html = '<div class="product-container" id="'+$(element).find(".product-container").attr("id")+'"><div class="row">';
 			html += '<div class="left-block">' + $(element).find('.left-block').html() + '</div>';
 			html += '<div class="right-block"><div class="wrap_content_price">';
-				html += '<div class="comments_note  cf">'+ $(element).find('.comments_note').html() + '</div>';
+				/*html += '<div class="comments_note  cf">'+ $(element).find('.comments_note').html() + '</div>';*/
 				html += '<div class="product-flags">'+ $(element).find('.product-flags').html() + '</div>';
 
-				html += '<h5 itemprop="name">'+ $(element).find('h5').html() + '</h5>';
+				html += '<h2 itemprop="name" class="product-name">'+ $(element).find('.product-name').html() + '</h2>';
 				html += '<p itemprop="description" class="product-desc">'+ $(element).find('.product-desc').html() + '</p>';
 				var price = $(element).find('.content_price').html(); // check : catalog mode is enabled
 					if (price != null) {
@@ -336,9 +339,11 @@ function display(view)
 			html += '<div class="wrap_view">'+ $(element).find('.wrap_view ').html() +'</div>';
 		html += '</div>';
 		$(element).html(html);
+            $(element).find(".center-block .color-list-container").show();
+            $(element).find(".right-block-content .color-list-container").remove();
 		});
-		$('.display').find('li.grid').addClass('selected');
-		$('.display').find('li.list').removeAttr('class');
+		$('.display').find('li.grid_btn').addClass('selected');
+		$('.display').find('li.list_btn').removeAttr('class');
 		$.totalStorage('display', 'grid');
 	}
 }

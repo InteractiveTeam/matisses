@@ -62,10 +62,10 @@
         $('.product-container[id='+idprod+'] .button-container .showmore').attr("href", linkp[0]+"#/color-"+name);
         
        /* var linkw = $('.product-container[id='+idprod+'] .wrap_view .quick-view').attr("href").split("#");
-        $('.product-container[id='+idprod+'] .wrap_view .quick-view').attr("href", linkw[0]+"#/color-"+name);*/
+        $('.product-container[id='+idprod+'] .wrap_view .quick-view').attr("href", linkw[0]+"#/color-"+name);
         
         var linkb = $('.product-container[id='+idprod+'] .wrap_view .lnk_view').attr("href").split("#");
-        $('.product-container[id='+idprod+'] .wrap_view .lnk_view').attr("href", linkb[0]+"#/color-"+name);
+        $('.product-container[id='+idprod+'] .wrap_view .lnk_view').attr("href", linkb[0]+"#/color-"+name);*/
           
         $('.product-container[id='+idprod+'] .wrap_view .wishlistProd_'+idprod).addClass('addToWS');
         $('.product-container[id='+idprod+'] .wrap_view .addToWS').removeClass('addToWishlist');
