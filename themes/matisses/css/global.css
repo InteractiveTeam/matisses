@@ -4337,6 +4337,10 @@ line-height: 1.7;
     max-height: 230px;
 }
 
+#layered_block_left .layer-attributes .scroll-left {
+    overflow-y: hidden;
+}
+
 #layered_block_left .scroll-left.scroll-pane.mCustomScrollbar._mCS_1 {
     border: none;
 }
