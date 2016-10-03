@@ -6401,3 +6401,7 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 .category_list.list .button-container .btn-default.showmore:hover span {
     color: #e26c7b;
 }
+
+form .radio input{
+    visibility: hidden;
+}

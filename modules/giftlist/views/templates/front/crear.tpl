@@ -235,18 +235,18 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="checkbox gift_card">
-                        <label>
+                        
                         <h3>{l s='Bono de regalo' mod='giftlist'}</h3>
                         <span>{l s='¿Quieres recibir Gift card?' mod='giftlist'}</span>
-                        <input type="radio" value="1" class="recieve_bond" name="recieve_bond"> Si
-                        <input type="radio" value="0" class="recieve_bond" name="recieve_bond"> No
-					   </label>
+                        <label><input type="radio" value="1" class="recieve_bond" name="recieve_bond"> Si</label>
+                        <label><input type="radio" value="0" class="recieve_bond" name="recieve_bond"> No</label>
+					   
 				    </div>
                 </div>
                 <div class="col-md-6 hidden" id="ammount_div">
                     <label for="min_ammount">{l s='Monto mínimo' mod='giftlist'}<sup>*</sup></label>
                     <span class="ax-text-descript">Elige el valor mínimo de cada Gift card que te regalen</span>
-                    <input type="text" class="form-control" name="min_ammount" id="min_ammount" min="0">
+                    <input type="text" class="form-control" name="min_ammount" id="min_ammount">
                 </div>
             </div>
             <div class="row">

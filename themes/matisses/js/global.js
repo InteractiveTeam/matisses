@@ -35,6 +35,10 @@ $(window).load(function() {
     $('body').delay((Date.now()-timerStart)).css({'overflow':'visible'});
 })
 */
+var isMobileM = false;
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    isMobileM = true;
+}
 
 $(document).ready(function() {
     

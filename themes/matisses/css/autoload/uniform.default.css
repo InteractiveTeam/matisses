@@ -393,7 +393,7 @@ div.uploader span.action {
     border-radius: 50%;
     top: 0;
     bottom: 0;
-    left: 0;
+    left: -1px;
     right: 0;
     margin: auto;
     }
@@ -421,12 +421,13 @@ div.uploader span.action {
     padding-left: 0;
     }
     .personal-data .radio span {
-    border: 3px solid #d7162f;
-    width: 0.9375rem;
-    height: 0.9375rem;
+        border: 3px solid #d7162f;
+        width: 0.9375rem;
+        height: 0.9375rem;
+        border-radius: 50%;
     }
     .personal-data div.radio span.checked:before {
-    width: 0.5625rem;
+    width: 0.7rem;
     height: 0.5625rem;
     background: #d7162f;
     }
