@@ -1528,7 +1528,7 @@
 	.menu-experiencias {
 		padding: 1.1rem 0 1.3rem 0.825rem;
         /*width: 80%;*/
-        width: 412px;
+        width: 445px;
 	}
 
 	.content-coleccion {
@@ -1696,16 +1696,12 @@
     }  
 }
 
-
-
 @media only screen and (max-width :767px) and (min-width: 310px) {
 	html body #page  .header-container {
-		height: 190px;
+		height: 195px;
 		min-height: 6.9rem;
 	}
-
 }
-
 
 @media only screen and (max-width :768px) {
 
@@ -1716,10 +1712,7 @@
 	#page .nav-breadcrum {
 	    height: 47px;
 	}
-
 }
-
-
 
 @media only screen and (max-width :1024px) and (min-width: 361px) {
     
@@ -2387,6 +2380,7 @@
     .content_sortPagiBar.bottom_pagi {
         position: absolute;
         width: 542.25px;
+        width: 491.25px;
     }
     
     #columns .parrilla-productos .sortPagiBar form label, .content_sortPagiBar .sortPagiBar label {
@@ -2489,6 +2483,23 @@
         font-size: 18px;
     }
     
+    .category_list.list .product-container .grid_4, .category_list.list .product-container .grid_5 {
+        width: 50%;
+    }
+    
+    .category_list.list .product-container .grid_3 {
+        width: 100%;
+    }
+    
+    .category_list.grid .inner-product-list .grid_4 {
+        width: 50%;
+        padding: 0;
+    }
+    
+    .product_attributes #attributes fieldset {
+        width: 100%;
+    }
+
 }
 
 @media screen and (max-width :568px) {
