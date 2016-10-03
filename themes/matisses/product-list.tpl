@@ -207,7 +207,7 @@
 									</a>
 								{/if}
 							{else}
-								<span class=" btn btn_border ajax_add_to_cart_button disabled">
+								<span class="btn btn-default buy-now customAddToCart ajax_add_to_cart_button disabled">
 									<span>{l s='Add to cart'}</span>
 								</span>
 							{/if}
