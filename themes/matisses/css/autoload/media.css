@@ -3941,6 +3941,7 @@
     .primary_block .pb-left-column #views_block {
         height: auto;
         float: left;
+        width: 100%;
     }
     
     .primary_block .pb-left-column {
