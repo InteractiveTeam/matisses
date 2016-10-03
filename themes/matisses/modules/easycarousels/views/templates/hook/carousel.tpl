@@ -128,10 +128,10 @@
 	</div>
 			<div class="wrap_view wrap_visible_hover">
 			{if $general_settings.show_view_more}
-				<a itemprop="url" class="scale_hover_in lnk_view" href="{$item.link|escape:'html':'UTF-8'}" title="{l s='View' mod='easycarousels'}">
+				{*<a itemprop="url" class="scale_hover_in lnk_view" href="{$item.link|escape:'html':'UTF-8'}" title="{l s='View' mod='easycarousels'}">
 					<i class="fa fa-search"></i>
 					<span>{if (isset($item.customization_required) && $item.customization_required)}{l s='Customize' mod='easycarousels'}{else}{l s='More' mod='easycarousels'}{/if}</span>
-				</a>
+				</a>*}
 			{/if}
 			{hook h='displayProductListFunctionalButtons' product=$item}
 			{if $general_settings.show_quick_view}

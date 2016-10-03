@@ -610,10 +610,10 @@
 
 				</div>
 				<div class="wrap_view wrap_visible_hover">
-							<a itemprop="url" class="scale_hover_in lnk_view" href="{$accessory.link|escape:'html':'UTF-8'}" title="{l s='View'}">
+							{*<a itemprop="url" class="scale_hover_in lnk_view" href="{$accessory.link|escape:'html':'UTF-8'}" title="{l s='View'}">
 								<i class="fa fa-search"></i>
 								<span>{l s='More'}</span>
-							</a>
+							</a>*}
 							{hook h='displayProductListFunctionalButtons' product=$accessory}
 							{if isset($quick_view) && $quick_view}
 								<a class="scale_hover_in quick-view" href="{$accessory.link|escape:'html':'UTF-8'}" rel="{$accessory.link|escape:'html':'UTF-8'}">
