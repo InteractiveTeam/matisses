@@ -6355,3 +6355,6 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     overflow: hidden;
 }
 
+form .radio input{
+    visibility: hidden;
+}

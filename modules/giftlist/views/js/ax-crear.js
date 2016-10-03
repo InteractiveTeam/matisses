@@ -90,7 +90,9 @@ var ax_admin = {
             }); 
             
             $(".ax-save").on('click',function(){
-                ax_admin.saveList();
+                if(parseInt($('#min_ammount').val()) > 0){                    
+                    ax_admin.saveList();
+                }
             });
             
             $("#ax-img-prof").click(function(){
