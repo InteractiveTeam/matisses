@@ -190,7 +190,8 @@ $(document).ready(function(e){
 				item.prepend('<div class="more"></div>');
 			}
 		});
-
+        
+        $('.menu-mobile .SubCategory').css('display','none');
 		$('.menu-mobile li .more').on('click', function(){
 			$(this).siblings('ul').slideToggle();
 			$(this).toggleClass('rotate-o');

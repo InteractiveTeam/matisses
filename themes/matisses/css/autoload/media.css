@@ -1716,6 +1716,8 @@
 	#page .nav-breadcrum {
 	    height: 47px;
 	}
+    
+    
 
 }
 
@@ -2453,13 +2455,13 @@
     
     .pb-left-column #views_block, .product_schemes {
         float: left;
-        width: 100%;
+        width: 50%;
         height: auto;
     }
-    
+    /*
     .pb-left-column .product_schemes {
         width: 100%;
-    }
+    }*/
     
     .search .content_sortPagiBar .sortPagiBar .select.selector1 > label {
         padding: 0.55rem 0.6rem;
@@ -2472,6 +2474,14 @@
     .parrilla-productos .container .center_column {
         width: 66.3%;
         padding: 0;
+    }
+    
+    .center_column .primary_block .grid_6.pb-left-column, .center_column .primary_block .grid_6.pb-right-column {
+        width: 100%;
+    }
+    
+    #buy_block .wrap_buttons span.hidden-xxs {
+        font-size: 18px;
     }
     
 }
