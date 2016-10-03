@@ -179,7 +179,13 @@ $(document).ready(function(e){
 			var item = $(objeto);
 
 			if(item.find('ul').length > 0) {
-				item.prepend('<div class="more"></div>');
+				//item.prepend('<div class="more"></div>');
+                if(isMobileM){                    
+                    item.children('a').attr('href','#');
+                }
+                    
+                item.children('a').wrap('<div class="ax-wrap-desplegableM"></div>');
+                item.children('.ax-wrap-desplegableM').prepend('<div class="more"></div>');
 			}
 		});
     
@@ -187,15 +193,20 @@ $(document).ready(function(e){
 			var item = $(obj);
 
 			if(item.find('.SubCategory').length > 0) {
-				item.prepend('<div class="more"></div>');
+				//item.prepend('<div class="more"></div>');
+                if(isMobileM){                    
+                    item.children('a').attr('href','#');
+                }
+                item.children('a').wrap('<div class="ax-wrap-desplegableM"></div>');
+                item.children('.ax-wrap-desplegableM').prepend('<div class="more"></div>');
 			}
 		});
 
-		$('.menu-mobile li .more').on('click', function(){
-			$(this).siblings('ul').slideToggle();
-			$(this).toggleClass('rotate-o');
+        $('.menu-mobile li .ax-wrap-desplegableM').on('click', function(){
+            $(this).siblings('ul').slideToggle();
             $(this).siblings('.SubCategory').slideToggle();
-		})
+            $(this).children('.more').toggleClass('rotate-o');
+        })
 
 		var sub = $('li.sfHover');
 
