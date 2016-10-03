@@ -179,7 +179,6 @@ $(document).ready(function(e){
 			var item = $(objeto);
 
 			if(item.find('ul').length > 0) {
-				//item.prepend('<div class="more"></div>');
                 if(isMobileM){                    
                     item.children('a').attr('href','#');
                 }
@@ -193,7 +192,6 @@ $(document).ready(function(e){
 			var item = $(obj);
 
 			if(item.find('.SubCategory').length > 0) {
-				//item.prepend('<div class="more"></div>');
                 if(isMobileM){                    
                     item.children('a').attr('href','#');
                 }
@@ -201,11 +199,13 @@ $(document).ready(function(e){
                 item.children('.ax-wrap-desplegableM').prepend('<div class="more"></div>');
 			}
 		});
-
+        
+        $('.menu-mobile .SubCategory').css('display','none');
+    
         $('.menu-mobile li .ax-wrap-desplegableM').on('click', function(){
-            $(this).siblings('ul').slideToggle();
-            $(this).siblings('.SubCategory').slideToggle();
+			$(this).siblings('ul').slideToggle();
             $(this).children('.more').toggleClass('rotate-o');
+            $(this).siblings('.SubCategory').slideToggle();
         })
 
 		var sub = $('li.sfHover');

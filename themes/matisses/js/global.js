@@ -310,7 +310,7 @@ function display(view)
 			html += '</div></div>';
         
 		$(element).html(html);
-            $(element).find(".right-block-content .color-list-container").remove();
+            $(element).find(".right-block-content .color-list-container").hide();
             $(element).find(".center-block .color-list-container").show();
 		});
 		$('.display').find('li.list_btn').addClass('selected');
@@ -343,8 +343,8 @@ function display(view)
 			html += '<div class="wrap_view">'+ $(element).find('.wrap_view ').html() +'</div>';
 		html += '</div>';
 		$(element).html(html);
-            $(element).find(".center-block .color-list-container").show();
-            $(element).find(".right-block-content .color-list-container").remove();
+            $(element).find(".wrap_view .color-list-container").show();
+            $(element).find(".right-block .color-list-container").hide();
 		});
 		$('.display').find('li.grid_btn').addClass('selected');
 		$('.display').find('li.list_btn').removeAttr('class');
