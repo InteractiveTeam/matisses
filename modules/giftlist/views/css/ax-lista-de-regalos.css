@@ -1248,6 +1248,7 @@ label.error:before {
         border: 3px solid #5e534d;
         width: 0.9375rem;
         height: 0.9375rem;
+        border-radius: 50%;
     }
     #frmSaveList div.radio span.checked:before {
         width: 0.7rem;
@@ -2587,7 +2588,12 @@ p.ax-no-products .fa {
     }
     
 }
-
+.checkbox.gift_card label{
+    display: inline-block;
+}
+.checkbox.gift_card span{
+    padding-right: 4px;
+}
 .fa {
     font-family: FontAwesome;
 }
@@ -2596,5 +2602,5 @@ p.ax-no-products .fa {
     color: #d7162f;
     position: absolute;
     top: 0;
-    left: 0px;
+    left: -1px;
 }
