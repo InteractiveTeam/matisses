@@ -5,7 +5,7 @@ $(document).ready(function(e) {
 			window.location.hash = '';
 		},1500)
     if(isMobileM){
-        $('.product-360').attr('href','https://www.matisses.co'+$('.product-360').attr('data-url'));
+        $('.product-360').attr('href',$('.product-360').attr('data-url'));
         $('.product-360').attr('data-url','');
         $('.product-360').attr('target','_blank');
     }else{
@@ -26,7 +26,7 @@ $(document).ready(function(e) {
     }
 	
     if(isMobileM){
-        $('.product-wow').attr('href','https://www.matisses.co'+$('.product-wow').attr('data-url'));
+        $('.product-wow').attr('href',$('.product-wow').attr('data-url'));
         $('.product-wow').attr('data-url','');
         $('.product-wow').attr('target','_blank');
     }else{
