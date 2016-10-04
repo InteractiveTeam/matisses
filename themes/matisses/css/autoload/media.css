@@ -1705,10 +1705,6 @@
 	body #page .header-container {
 		height: 100px;
 	}
-
-	#page .nav-breadcrum {
-	    height: 47px;
-	}
 }
 
 @media only screen and (max-width :1024px) and (min-width: 361px) {
@@ -5002,18 +4998,15 @@ html body .left-down-menu .sf-contener .menu-content > li > a {
 	#sitemap  #footer {
 	    margin: 20px 0 0 0;
 	}
-
-
-    .fancybox-outer .fancybox-inner #frmAddGiftList {
-        width: 264px;
-    }
     
     .fancybox-inner #frmAddGiftList .chosen-single {
-        width: 259px;
+        /*width: 259px;*/
+        width: 100%;
     }
     
     .fancybox-outer .fancybox-inner #frmAddGiftList {
-        width: 264px;
+        /*width: 264px;*/
+        width: 100%;
     }
 }
 
