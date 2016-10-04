@@ -68,6 +68,10 @@ $(document).ready(function(){
 		$(document).on('change', 'select[name="currency_payment"]', function(){
 			setCurrency($(this).val());
 		});
+        
+        $(".product-container").click(function(){
+            location.href = $(this).attr('data-href');
+        });
 	}
 
 	$(document).on('change', 'select[name="manufacturer_list"], select[name="supplier_list"]', function(){
