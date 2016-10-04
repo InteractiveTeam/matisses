@@ -149,6 +149,12 @@ $(document).ready(function(){
 	}
     
      $('.tooltipDetail').tooltip();
+    
+
+    $(".category_list .product-container").on('click',function(e){
+        if(e.target != this) return;
+        window.location.href = $(this).attr('data-href');
+    });
 });
 
 function highdpiInit()
