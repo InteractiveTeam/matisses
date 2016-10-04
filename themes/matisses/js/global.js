@@ -294,7 +294,7 @@ function display(view)
 		$('.product_list .ajax_block_product').removeClass('grid_4').addClass('grid_12');
 		$('.product_list .ajax_block_product').each(function(index, element) {
 			html = '';
-			html = '<div class="product-container" id="'+$(element).find(".product-container").attr("id")+'"><div class="row">';
+			html = '<div class="product-container" id="'+$(element).find(".product-container").attr("id")+'" data-href="'+$(element).find(".product-container").data('href')+'"><div class="row">';
 				html += '<div class="left-block grid_4">' + $(element).find('.left-block').html() + '</div>';
 				html += '<div class="center-block grid_5">';
 					html += '<div class="product-flags">'+ $(element).find('.product-flags').html() + '</div>';
@@ -329,7 +329,7 @@ function display(view)
 		$('.product_list .ajax_block_product').removeClass('grid_12').addClass('grid_4');
 		$('.product_list .ajax_block_product').each(function(index, element) {
 		html = '';
-		html = '<div class="product-container" id="'+$(element).find(".product-container").attr("id")+'"><div class="row">';
+		html = '<div class="product-container" id="'+$(element).find(".product-container").attr("id")+'" data-href="'+$(element).find(".product-container").data('href')+'"><div class="row">';
 			html += '<div class="left-block">' + $(element).find('.left-block').html() + '</div>';
 			html += '<div class="right-block"><div class="wrap_content_price">';
 				/*html += '<div class="comments_note  cf">'+ $(element).find('.comments_note').html() + '</div>';*/
@@ -352,6 +352,10 @@ function display(view)
             $(element).find(".wrap_view .color-list-container").show();
             $(element).find(".right-block .color-list-container").hide();
 		});
+        $(".category_list .product-container").on('click',function(e){
+            if(e.target != this) return;
+            window.location.href = $(this).attr('data-href');
+        });
 		$('.display').find('li.grid_btn').addClass('selected');
 		$('.display').find('li.list_btn').removeAttr('class');
 		$.totalStorage('display', 'grid');
