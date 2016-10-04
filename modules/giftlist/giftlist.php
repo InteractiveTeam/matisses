@@ -222,6 +222,7 @@ class giftlist extends Module
 	public function hookactionOrderStatusUpdate($params){
         //Order status payment confirmation
         if ((int)$params['newOrderStatus']->id == (int)ConfigurationCore::get('PS_OS_PAYMENT')){
+            $file = fopen("logpagos.txt",'a+');
             fwrite($file,json_encode($params['newOrderStatus']));
             fwrite($file,json_encode($params['cart']));
             fwrite($file,'id'.json_encode($params['newOrderStatus']->id));
