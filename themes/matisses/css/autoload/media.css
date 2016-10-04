@@ -2031,8 +2031,20 @@
 }
 
 
+@media only screen and (max-width :1024px) {
+    #buy_block .box-info-product .elem_butt, #buy_block .wrap_buttons #btn_gift_list, #buy_block .box-info-product #usefull_link_block {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+
 
 @media screen and (max-width :768px) {
+    
+    #category .fancybox-outer div.fancybox-inner {
+        overflow: auto !important;
+    }
 
 	html body .left-down-menu .sf-contener .menu-content > li > a {
 	    padding: 20px 0 0px 2rem;
@@ -2522,6 +2534,10 @@
 
 
 @media screen and (max-width :480px) {
+    
+    .header-container #header_logo .logo-desktop {
+        padding: 0;
+    }
     
     .right-down-menu .search a {
         margin: 0;
