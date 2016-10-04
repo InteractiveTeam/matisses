@@ -518,6 +518,9 @@ class Blocktopmenu extends Module
 		}
 		return $html;
 	}
+    public function isMobile() {
+        return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+    }
 	private function generateCategoriesMenu($categories, $is_children = 0)
 	{
 		$html = '';
@@ -550,18 +553,12 @@ class Blocktopmenu extends Module
 						
 						if($category['level_depth']<=4)
 							$html .= '<li class="'. $show .(($this->page_name == 'category' && (int)Tools::getValue('id_category') == (int)$category['id_category']) ? 'sfHoverForce"' : '').'">';
-						
-                        if(($category['level_depth']==3 || $category['level_depth']==4) && !empty($category['children'])){
-                            $html .= '<div class="ax-wrap-desplegableM"><div class="more"></div><a 
-                                        class="'. $show .'"
-                                        href="#" 
-                                        title="'.$category['name'].'">'.$category['name'].'</a></div>';
-                        }else{                            
+					    
                             $html .= '<a 
                                         class="'. $show .'"
                                         href="'.$link.'" 
                                         title="'.$category['name'].'">'.$category['name'].'</a>';
-                        }
+                        
 					
 					/*}
 					

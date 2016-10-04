@@ -172,7 +172,7 @@ $(document).ready(function(e){
 	})
 	//MENU responsiveMenu
 
-		/*var itemsMenu = $('.menu-mobile li');
+		var itemsMenu = $('.menu-mobile li');
         var subItemsMenu = $('.menu-mobile li ul li');
 		
         $.each(itemsMenu, function(indice, objeto){
@@ -198,7 +198,7 @@ $(document).ready(function(e){
                 item.children('a').wrap('<div class="ax-wrap-desplegableM"></div>');
                 item.children('.ax-wrap-desplegableM').prepend('<div class="more"></div>');
 			}
-		});*/
+		});
         
         $('.menu-mobile .SubCategory').css('display','none');
     
