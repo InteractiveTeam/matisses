@@ -551,10 +551,17 @@ class Blocktopmenu extends Module
 						if($category['level_depth']<=4)
 							$html .= '<li class="'. $show .(($this->page_name == 'category' && (int)Tools::getValue('id_category') == (int)$category['id_category']) ? 'sfHoverForce"' : '').'">';
 						
-						$html .= '<a 
-									class="'. $show .'"
-									href="'.$link.'" 
-									title="'.$category['name'].'">'.$category['name'].'</a>';
+                        if(($category['level_depth']==3 || $category['level_depth']==4) && !empty($category['children'])){
+                            $html .= '<div class="ax-wrap-desplegableM"><div class="more"></div><a 
+                                        class="'. $show .'"
+                                        href="#" 
+                                        title="'.$category['name'].'">'.$category['name'].'</a></div>';
+                        }else{                            
+                            $html .= '<a 
+                                        class="'. $show .'"
+                                        href="'.$link.'" 
+                                        title="'.$category['name'].'">'.$category['name'].'</a>';
+                        }
 					
 					/*}
 					
