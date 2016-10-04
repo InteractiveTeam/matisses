@@ -44,7 +44,6 @@ class IdentityControllerCore extends FrontController
 	public function postProcess()
 	{
 		
-		
 		$origin_newsletter = (bool)$this->customer->newsletter;
 		if (Tools::isSubmit('submitIdentity'))
 		{
@@ -95,7 +94,7 @@ class IdentityControllerCore extends FrontController
 				$this->errors[] = Tools::displayError('This email address is not valid');
 			elseif ($this->customer->email != $email && Customer::customerExists($email, true))
 				$this->errors[] = Tools::displayError('An account using this email address has already been registered.');
-			elseif (!Tools::getIsset('old_passwd') || (Tools::encrypt($old_passwd) != $this->context->cookie->passwd))
+			elseif (!Tools::getIsset('old_passwd') || (Tools::encrypt($old_passwd) != $this->context->cookie->passwd && $this->customer->facebookid != 0))
 				$this->errors[] = Tools::displayError('The password you entered is incorrect.');
 			elseif (Tools::getValue('passwd') != Tools::getValue('confirmation'))
 				$this->errors[] = Tools::displayError('The password and confirmation do not match.');
