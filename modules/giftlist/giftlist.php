@@ -221,7 +221,7 @@ class giftlist extends Module
     
 	public function hookactionOrderStatusUpdate($params){
         //Order status payment confirmation
-        if ($params['newOrderStatus']->id == ConfigurationCore::get('PS_OS_PAYMENT')){
+        if ((int)$params['newOrderStatus']->id == (int)ConfigurationCore::get('PS_OS_PAYMENT')){
             $this->__verifyListInOrderBeforePayment($params['cart']);
             $this->_updateStatesinList($params['cart']);
         }

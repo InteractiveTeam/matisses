@@ -518,6 +518,7 @@ class Blocktopmenu extends Module
 		}
 		return $html;
 	}
+    
 	private function generateCategoriesMenu($categories, $is_children = 0)
 	{
 		$html = '';
@@ -550,11 +551,12 @@ class Blocktopmenu extends Module
 						
 						if($category['level_depth']<=4)
 							$html .= '<li class="'. $show .(($this->page_name == 'category' && (int)Tools::getValue('id_category') == (int)$category['id_category']) ? 'sfHoverForce"' : '').'">';
-						
-						$html .= '<a 
-									class="'. $show .'"
-									href="'.$link.'" 
-									title="'.$category['name'].'">'.$category['name'].'</a>';
+					    
+                            $html .= '<a 
+                                        class="'. $show .'"
+                                        href="'.$link.'" 
+                                        title="'.$category['name'].'">'.$category['name'].'</a>';
+                        
 					
 					/*}
 					
