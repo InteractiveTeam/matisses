@@ -224,7 +224,7 @@ class giftlist extends Module
     
 	public function hookactionOrderStatusUpdate($params){
         //Order status payment confirmation
-        $this->registerHook("actionGiftlistProccess");
+        //$this->registerHook("actionGiftlistProccess");
 	}
     
     public function hookactionGiftlistProccess($params){
