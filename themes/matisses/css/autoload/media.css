@@ -2036,15 +2036,19 @@
         width: 100%;
         margin-bottom: 10px;
     }
+    
+    #category .fancybox-type-iframe .fancybox-outer div.fancybox-inner {
+        overflow: auto !important;
+    }
+    
+    .wrap_extra_right .ax-shareContent p {
+        float: left;
+    }
 }
 
 
 
 @media screen and (max-width :768px) {
-    
-    #category .fancybox-outer div.fancybox-inner {
-        overflow: auto !important;
-    }
 
 	html body .left-down-menu .sf-contener .menu-content > li > a {
 	    padding: 20px 0 0px 2rem;
