@@ -266,7 +266,7 @@ class giftlist extends Module
                         $this->_sendEmail('bond-bought','¡Han comprado un bono para ti!',$cust,$params);
                 }else{
                     $prod = new ProductCore($product['id_product']);
-                    $creator = $list->getCreator($list->getCreator($list->id_creator));
+                    $creator = $list->getCreator($list->id_creator);
                     $sql = "SELECT count(*) FROM `"._DB_PREFIX_."list_product_bond` WHERE `id_list` = ".$product['id_giftlist']." AND `id_product` = ". $product['id_product'];
                     if(Db::getInstance()->getValue($sql) > 1)
                         $lpd = ListProductBondModel::getByProductAndList($product['id_product'],$product['id_giftlist'],$product['id_product_attribute']);
