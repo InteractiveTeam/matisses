@@ -53,7 +53,7 @@
 		);
 
 
-		$('#views_block li a').hover(
+		$('#views_block li a').click(
 			function(){
 			restartElevateZoom();
 			}
