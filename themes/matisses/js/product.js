@@ -130,9 +130,11 @@ $(document).ready(function(){
 	$('#thumbs_list').trigger('goto', 0);
 
 	//hover 'other views' images management
-	$('#views_block li a').hover(
-		function(){displayImage($(this));},
-		function(){}
+	$('#views_block li a').click(function(){
+            displayImage($(this));
+            //$('#zoomWindowContainer .zoomWindow').css('background-image','url('+$(this).attr('href')+')');
+            return false;
+        }
 	);
 
 	//set jqZoom parameters if needed
@@ -207,12 +209,12 @@ $(document).ready(function(){
 
 	if (contentOnly == false)
 	{
-		if (!!$.prototype.fancybox)
-			$('li:visible .fancybox, .fancybox.shown').fancybox({
-				'hideOnContentClick': true,
-				'openEffect'	: 'elastic',
-				'closeEffect'	: 'elastic'
-			});
+        /*if (!!$.prototype.fancybox)
+            $('li:visible .fancybox, .fancybox.shown').fancybox({
+                'hideOnContentClick': true,
+                'openEffect'	: 'elastic',
+                'closeEffect'	: 'elastic'
+            });*/
 	}
 	else
 	{
