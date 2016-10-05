@@ -76,10 +76,10 @@
 							<p>{$product.description_short|strip_tags:'UTF-8'|truncate:75:'...'}</p>
 						</div>
 				<div class="wrap_view wrap_visible_hover">
-							<a itemprop="url" class="scale_hover_in lnk_view" href="{$product.link|escape:'html':'UTF-8'}" title="{l s='View'}">
+							{*<a itemprop="url" class="scale_hover_in lnk_view" href="{$product.link|escape:'html':'UTF-8'}" title="{l s='View'}">
 								<i class="fa fa-search"></i>
 								<span>{l s='More'}</span>
-							</a>
+							</a>*}
 							{hook h='displayProductListFunctionalButtons' product=$product}
 							{if isset($quick_view) && $quick_view}
 								<a class="scale_hover_in quick-view" href="{$product.link|escape:'html':'UTF-8'}" rel="{$product.link|escape:'html':'UTF-8'}">
@@ -100,8 +100,8 @@
 								{if (!isset($product.customization_required) || !$product.customization_required) && ($product.allow_oosp || $product.quantity > 0)}
 									{if isset($static_token)}
 										<a class=" btn btn-default
-buy-now ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, "add=1&amp;id_product={$product.id_product|intval}&amp;id_product_attribute={$product.id_product_attribute|intval}&amp;token={$static_token}", false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Comprar ahora'}" data-id-product="{$product.id_product|intval}">
-											<span>{l s='Comprar ahora'}</span>
+buy-now ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, "add=1&amp;id_product={$product.id_product|intval}&amp;id_product_attribute={$product.id_product_attribute|intval}&amp;token={$static_token}", false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Agregar al carrito'}" data-id-product="{$product.id_product|intval}">
+											<span>{l s='Agregar al carrito'}</span>
 										</a>
 									{else}
 										<a class=" btn btn_border ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, 'add=1&amp;id_product={$product.id_product|intval}', false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}">

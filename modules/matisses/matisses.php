@@ -446,7 +446,7 @@ class matisses extends Module
         if(!empty($cache) && $cache['cart_products'] == $cant_prod && $cache['id_address'] == $params['delivery_option'])
             return json_encode($cache);
         $id_address = $params['delivery_option'];
-        $id_carrier = str_replace(',','',current(array_values($params['delivery_option'])));
+        $id_carrier = str_replace(',','',current(array_values($params['delivery_option_list'])));
         $shipping_cost = array();
         if($id_address)
         {
@@ -479,16 +479,25 @@ class matisses extends Module
         ************************************************************/
         $errorMessage = $shipping_cost['shippingQuotationResultDTO']['errorMessage'];
         /***********************************************************/
-        $res = array(
-            'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
-            'shippingCompany' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany'],
-            'error' => (!empty($errorMessage) ? true : false),
-            'cart_products' => count($cart->getProducts()),
-            'id_address' => $id_address
-        );
+        if($errorMessage){
+            $res = array(
+                'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
+                'error' => (!empty($errorMessage) ? true : false),
+                'cart_products' => count($cart->getProducts()),
+                'id_address' => $id_address
+            );
+        }else{
+            $res = array(
+                'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
+                'shippingCompany' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany'],
+                'error' => (!empty($errorMessage) ? true : false),
+                'cart_products' => count($cart->getProducts()),
+                'id_address' => $id_address
+            );
+        }
+            
         Cache::store("cart_".$cart->id,$res);
-
-        return json_encode($res);
+        return Tools::jsonEncode($res);
 	}
 	
 	
@@ -1017,7 +1026,7 @@ class matisses extends Module
         
         $objprod = new Product();
         $link = new LinkCore();
-        $products = $objprod->getProducts($idlang,'0','10000','id_product','asc');
+        $products = $objprod->getProducts($idlang,'0','10000','id_product','asc',false,true);
         
         foreach ($products as $product) {
             $prod = new Product($product['id_product']);
@@ -1547,7 +1556,7 @@ class matisses extends Module
 														'source'	=>'prestashop')
 												);
 		$result = $client->call('callService', $s);
-        $result = $this->xml_to_array($result['return']['detail']);
+        $result = $this->xml_to_array_utf8($result['return']['detail']);
         return $result;
 	}
     
@@ -1908,29 +1917,32 @@ class matisses extends Module
 	{
 		//set_time_limit(15);
 		require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
-		$client = new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
-		//echo "<pre>"; print_r($client); echo "</pre>";
-		//die();
-		$s 		= array('genericRequest' => array('data'=>$datos,'object'=>$objeto,'operation'=>$operacion,'source'=>$origen));
-		
-		$result = $client->call('callService', $s);
-		if($client->error_str)
-		{
-			return array('error_string' => $client->error_str);
-		}
-		if($return)
-			return $result;  
-		
-		if(!$result['return'])
-			return false;
-		
-		$datos 	= $this->xml_to_array(utf8_encode($result['return']['detail']));
         
+        $client = new nusoap_client(Configuration::get($this->name.'_UrlWs'), true); 
+        //echo "<pre>"; print_r($client); echo "</pre>";
+        //die();
+        $s 		= array('genericRequest' => array('data'=>$datos,'object'=>$objeto,'operation'=>$operacion,'source'=>$origen));
+
+        $result = $client->call('callService', $s);
+        if($client->error_str)
+           throw new Exception($client->error_str);
+        if($client->error_str)
+        {
+            return array('error_string' => $client->error_str);
+        }
+        if($return)
+            return $result;  
+
+        if(!$result['return'])
+            return false;
+
+        $datos 	= $this->xml_to_array(utf8_encode($result['return']['detail']));
+
         if($code){
             $datos['inventoryItemDTO']['codeStatus'] = $result['return']['code'];
         }
-		
-		return $datos;
+
+        return $datos;
 	}
 	
 	public function wsmatisses_listStockChanges(){		
@@ -2156,6 +2168,14 @@ class matisses extends Module
 		}
 		return false; 
 	}
+    
+    public function xml_to_array_utf8($xml)
+	{
+		$xml = $this->xml2array(utf8_encode($xml));
+		$xml = $this->NormalizeArray($xml);
+		return $xml;
+	}
+    
 	/*******************************************************
 	*	@author:	Sebastian casta�o
 	*	@package:	Matisses integracion (Funciones de Comunicacion sap)
@@ -2536,7 +2556,7 @@ class matisses extends Module
 	*******************************************************/
 	public function array_to_xml($array,$header=true)
 	{ 
-	
+	    $xml = "";
 		foreach($array as $d => $v)
 		{
 			if(is_array($array[$d]))
@@ -2557,6 +2577,7 @@ class matisses extends Module
 	*******************************************************/
 	private function array_to_xml_parse_array($array, $key)
 	{
+        $xml = "";
 		$xml.= "<$key>";
 		foreach($array as $d => $v)
 		{

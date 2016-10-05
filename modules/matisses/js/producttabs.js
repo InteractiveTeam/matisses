@@ -4,35 +4,47 @@ $(document).ready(function(e) {
 	setTimeout(function(){
 			window.location.hash = '';
 		},1500)
-	$('.product-360').on('click',function(e){
-		e.preventDefault();
-		url = $(this).attr('data-url');
-		if(url)
-			//$.fancybox('<iframe width="650" allowfullscreen height="500" src="'+window.location.origin+url+'"></iframe>');
-            $.fancybox({
-                href:window.location.origin+url,
-                type: 'iframe',
-                maxWidth:iframeWidth,
-                width:iframeWidth,
-                height:500,
-                scrolling:'no'
-            });
-	})
+    if(isMobileM){
+        $('.product-360').attr('href',$('.product-360').attr('data-url'));
+        $('.product-360').attr('data-url','');
+        $('.product-360').attr('target','_blank');
+    }else{
+        $('.product-360').on('click',function(e){
+            e.preventDefault();
+            url = $(this).attr('data-url');
+            if(url)
+                //$.fancybox('<iframe width="650" allowfullscreen height="500" src="'+window.location.origin+url+'"></iframe>');
+                $.fancybox({
+                    href:window.location.origin+url,
+                    type: 'iframe',
+                    maxWidth:iframeWidth,
+                    width:iframeWidth,
+                    height:500,
+                    scrolling:'no'
+                });
+        })
+    }
 	
-	$('.product-wow').on('click',function(e){
-		e.preventDefault();
-		url = $(this).attr('data-url');
-		if(url)
-			//$.fancybox('<iframe scrolling="no" width="640" height="426" src="'+url+'"></iframe>');
-            $.fancybox({
-                href:window.location.origin+url,
-                type: 'iframe',
-                maxWidth:iframeWidth,
-                width:iframeWidth,
-                height:500,
-                scrolling:'no'
-            });
-	})
+    if(isMobileM){
+        $('.product-wow').attr('href',$('.product-wow').attr('data-url'));
+        $('.product-wow').attr('data-url','');
+        $('.product-wow').attr('target','_blank');
+    }else{
+        $('.product-wow').on('click',function(e){
+            e.preventDefault();
+            url = $(this).attr('data-url');
+            if(url)
+                //$.fancybox('<iframe scrolling="no" width="640" height="426" src="'+url+'"></iframe>');
+                $.fancybox({
+                    href:window.location.origin+url,
+                    type: 'iframe',
+                    maxWidth:iframeWidth,
+                    width:iframeWidth,
+                    height:500,
+                    scrolling:'no'
+                });
+        })
+    }   
 	
 	
 	$('.product-scheme').on('click',function(e){

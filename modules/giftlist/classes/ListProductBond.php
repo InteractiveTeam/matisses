@@ -57,12 +57,19 @@ class ListProductBondModel extends ObjectModel
 		return parent::delete();
 	}
 
-	public function deleteProduct($id_list,$id_product){
-		$sql = "DELETE FROM `"._DB_PREFIX_."list_product_bond` WHERE id_list = ".$id_list." AND id_product ="
-				.$id_product;
-		if(!Db::getInstance()->execute($sql))
-			return false;
-		return true;
+	public function deleteProduct($id_list,$id_product,$id_att){
+		$sql = "SELECT * FROM `"._DB_PREFIX_."list_product_bond` WHERE id_list = ".$id_list." AND id_product = ".$id_product;
+		$prod = Db::getInstance()->executeS($sql);
+        $deleted = false;
+        foreach($prod as $row){
+            $op = Tools::jsonDecode($row['option']);
+            if($op[3]->value == $id_att){
+                Db::getInstance()->delete('list_product_bond','id = '. $row['id'],1);
+                $deleted = true;
+                break;
+            }
+        }
+        return $deleted;
 	}
 
 	/**
@@ -70,30 +77,82 @@ class ListProductBondModel extends ObjectModel
 	 * @return array of products associated in a list
 	 */
 	public function getProductsByList($id){
+         $context = Context::getContext();
 		 $sql = "SELECT * FROM "._DB_PREFIX_."list_product_bond WHERE id_list = ".$id." AND id_product <> 0 AND bought = 0 ORDER BY favorite";
          $res  = Db::getInstance()->executeS($sql);
 		 $prod = array();
 		 $link = new LinkCore();
 		 foreach ($res as $row){
             $option = Tools::jsonDecode($row['option']);
+            $image = ProductCore::getCombinationImageById( (int)$option[3]->value, $context->language->id);
+            $my_prod = new ProductCore($row['id_product']);
+            $images = Image::getImages(1, $row['id_product']);
+            $sPrice = Db::getInstance()->getValue("SELECT price FROM `"._DB_PREFIX_."specific_price` WHERE `id_product` = ".$row['id_product']." AND`id_product_attribute` = ".(int)$option[3]->value);
+            $price = ($sPrice == 0 ? $my_prod->getPrice() : $sPrice);
+            if($row['group']){
+                $price = $price * $row['cant'];
+            }
+            $prod[] = [
+                'id_lpd' => $row['id'],
+                'id' => $row['id_product'],
+                'id_att' => $option[3]->value,
+                'name' => $my_prod->getProductName($my_prod->id),
+                'image' =>  (Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').$link->getImageLink($my_prod->link_rewrite[1], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image']), 'home_default'),
+                'price' => $price,
+                'cant' => $row['cant'],
+                'missing' => $row['missing'],
+                'options' => $my_prod->getAttributeCombinationsById($option[3]->value,1),//[3] = id_attribute,
+                'favorite' => $row['favorite'],
+                'group' => ($row['group'] ? true : false)
+            ];
+		 }
+		 //echo "<pre>"; print_r($my_prod);echo "</pre>";die();
+		 return $prod;
+	}
+    
+    public function getProductsForMail($listId){
+        $link = new LinkCore();
+        $groupP = "SELECT * FROM `"._DB_PREFIX_."list_product_bond` WHERE id_list = ".$listId." AND `group` = 1";
+        $res = Db::getInstance()->executeS($groupP);
+        $prod = array();
+        foreach($res as $row){
+            $option = Tools::jsonDecode($row['option']);
             $image = ProductCore::getCombinationImageById( (int)$option[3]->value, Context::getContext()->language->id);
             $my_prod = new ProductCore($row['id_product']);
             $images = Image::getImages(1, $row['id_product']);
-            $prod[] = [
+            $prod[$row['id_product']] = array(
                 'id' => $row['id_product'],
+                'id_att' => $option[3]->value,
                 'name' => $my_prod->getProductName($my_prod->id),
-                'data' => $my_prod->getAttributeCombinations(1),
+                'options' => $my_prod->getAttributeCombinationsById($option[3]->value,1),//[3] = id_attribute,
+                'image' =>  (Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').$link->getImageLink($my_prod->link_rewrite[1], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image']), 'home_default'),
+                'price' => $my_prod->getPrice(),
+                'cant' => $prod[$row['id_product']]['cant'] + $row['cant'],
+                'missing' => (!$row['bought'] ? $prod[$row['id_product']]['missing'] + $row['cant'] :$prod[$row['id_product']]['missing']),
+            );
+        }
+        unset($res);
+        $groupP = "SELECT * FROM `"._DB_PREFIX_."list_product_bond` WHERE id_list = ".$listId." AND `group` = 0 AND bought = 0";
+        $res = Db::getInstance()->executeS($groupP);
+        foreach($res as $row){
+            $option = Tools::jsonDecode($row['option']);
+            $image = ProductCore::getCombinationImageById( (int)$option[3]->value, Context::getContext()->language->id);
+            $my_prod = new ProductCore($row['id_product']);
+            $images = Image::getImages(1, $row['id_product']);
+            $prod[$row['id_product']] = array(
+                'id' => $row['id_product'],
+                'id_att' => $option[3]->value,
+                'name' => $my_prod->getProductName($my_prod->id),
+                'options' => $my_prod->getAttributeCombinationsById($option[3]->value,1),//[3] = id_attribute,
                 'image' =>  (Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').$link->getImageLink($my_prod->link_rewrite[1], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image']), 'home_default'),
                 'price' => $my_prod->getPrice(),
                 'cant' => $row['cant'],
                 'missing' => $row['missing'],
-                'options' => Tools::jsonDecode($row['option']),
-                'favorite' => $row['favorite'],
-                'group' => ($row['group'] ? true : false)
-            ]; 
-		 }
-		 return $prod;
-	}
+            );
+        }
+        return $prod;
+        
+    }
 
 	public function getBondsByList($id)
 	{
@@ -126,26 +185,38 @@ class ListProductBondModel extends ObjectModel
 		return false;
 	}
     
-    public static function getByProductAndList($id_product,$id_list){
-        $totalCant = "SELECT SUM(cant) FROM `ps_list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_product." AND `group` = 1 GROUP BY id_product";
-        $boughtCant = "SELECT SUM(cant) FROM `ps_list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_product." AND `group` = 1 AND bought =1 GROUP BY id_product";
-        $missingtCant = "SELECT SUM(cant) FROM `ps_list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_product." AND `group` = 1 AND bought = 0 GROUP BY id_product";
-        $sql = "SELECT * FROM ". _DB_PREFIX_ ."list_product_bond WHERE id_list = ".$id_list." AND id_product = ".$id_product . " GROUP BY id_product";
-        $prod = Db::getInstance()->getRow($sql);
-        $prod['total'] = Db::getInstance()->getValue($totalCant);
-        $prod['bought'] = Db::getInstance()->getValue($boughtCant);
-        $prod['missing'] = Db::getInstance()->getValue($missingtCant);
-        $prod['option'] = Tools::jsonDecode($prod['option']);
+    public static function getByProductAndList($id_product,$id_list,$id_att,$id_lpd){
+        $sql = "SELECT * FROM ". _DB_PREFIX_ ."list_product_bond WHERE id_list = ".$id_list." AND id_product = ".$id_product;
+        $prod = [];
+        $products = Db::getInstance()->executeS($sql);
+        $sqlCant = "SELECT cant FROM ". _DB_PREFIX_ ."list_product_bond WHERE id = ".$id_lpd;
+        $cantP = Db::getInstance()->getValue($sqlCant);
+        foreach($products as $row){
+            $op = Tools::jsonDecode($row['option']);
+            if($op[3]->value == $id_att){
+                $prod['total'] += $row['cant'];
+                $prod['bought'] += $row['bought'] ? $row['cant'] : 0;
+                $prod['missing'] +=$row['bought'] ? 0 : $row['cant'];
+                $prod['option'] = $op;
+                $prod['cant'] = $cantP;
+                $prod['group'] = true;
+            }
+        }
         return $prod;
     }
     
-    public static function getByProductAndListNotAgroup($id_prod,$id_list){
+    public static function getByProductAndListNotAgroup($id_prod,$id_list,$id_att){
         $totalCant = "SELECT `cant`,`missing`,`option` FROM `"._DB_PREFIX_."list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_prod." AND `group` = 0";
-        $totalCant = Db::getInstance()->getRow($totalCant);
-        $prod['total'] = $totalCant['cant'];
-        $prod['bought'] = $totalCant['cant'] - $totalCant['missing'];
-        $prod['missing'] = $totalCant['missing'];
-        $prod['option'] = Tools::jsonDecode($totalCant['option']);
-        return $prod;
+        $totalCant = Db::getInstance()->executeS($totalCant);
+        foreach($totalCant as $row)
+        {
+            $prod['option'] = Tools::jsonDecode($row['option']);
+            if($prod['option'][3]->value == $id_att){
+                $prod['total'] = $row['cant'];
+                $prod['bought'] = $row['cant'] - $row['missing'];
+                $prod['missing'] = $row['missing'];
+                return $prod;
+            }
+        }
     }
 }

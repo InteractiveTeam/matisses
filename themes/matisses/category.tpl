@@ -104,7 +104,8 @@
 		<div class="slider_container cf grid_12 alpha omega">
 		{hook h="underList"}
 		</div>
-		{if $products && !$subcategories}
+		{*if $products && $subcategories*}
+		{if $products}
 		<div class="content_sortPagiBar cf grid_12 alpha omega">
 			<div class="sortPagiBar grid_9 alpha omega">
 				{include file="./product-compare.tpl"}
@@ -115,6 +116,18 @@
 				{include file="$tpl_dir./pagination.tpl"}
 			</div>
 		</div>
+        <ul class="view display hidden-xs">
+            <li class="grid-btn">
+                <a rel="nofollow" href="#" title="Cuadrícula">
+                    <span></span>
+                </a>
+            </li>
+            <li class="list-btn">
+                <a rel="nofollow" href="#" title="Lista">
+                    <span></span>
+                </a>
+            </li>
+        </ul>
 			{include file="./product-list.tpl" products=$products categoryname=$category->name}
 			<div class="content_sortPagiBar cf grid_12 alpha omega bottom_pagi">
 				<div class="sortPagiBar grid_9 alpha omega">

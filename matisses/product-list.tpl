@@ -152,10 +152,10 @@
 					</a>
 					{/if}
 					{hook h='displayProductListFunctionalButtons' product=$product}
-					<a itemprop="url" class="scale_hover_in lnk_view" href="{$product.link|escape:'html':'UTF-8'}" title="{l s='View'}">
+					{*<a itemprop="url" class="scale_hover_in lnk_view" href="{$product.link|escape:'html':'UTF-8'}" title="{l s='View'}">
 						<i class="fa fa-search"></i>
 						<span>{l s='More'}</span>
-					</a>
+					</a>*}
 
 					{if $page_name != 'index'}
 						{if isset($comparator_max_item) && $comparator_max_item}
@@ -174,7 +174,7 @@
 								{if isset($static_token)}
 									<a class=" btn btn-default
 buy-now ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, "add=1&amp;id_product={$product.id_product|intval}&amp;token={$static_token}", false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}">
-										<span>{l s='Comprar ahora'}</span>
+										<span>{l s='Agregar al carrito'}</span>
 									</a>
 								{else}
 									<a class=" btn btn_border ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, 'add=1&amp;id_product={$product.id_product|intval}', false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}">

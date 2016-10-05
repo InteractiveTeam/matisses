@@ -325,7 +325,6 @@ class PlacetoPay extends PaymentModule
 
 		// genera la orden en prestashop, si no se generó la URL
 		// crea la orden con el error, al menos para que quede asentada
-		
 
 		if (empty($paymentURL)) {
 			$orderMessage = $p2p->getErrorMessage();

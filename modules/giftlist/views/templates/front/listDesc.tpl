@@ -63,7 +63,7 @@
                 {if !empty($products)}
                 {foreach from=$products item=row}
                     {$atribute_group = $row['options'][3]->value}
-                        <div class="product-card col-md-3" id="prod-{$row['id']}" data-id="{$row['id']}">
+                        <div class="product-card col-md-3" id="prod-{$row['id']}" data-lpd-id="{$row['id_lpd']}" data-attr-id="{$row['id_att']}" data-id="{$row['id']}">
                             <div class="ax-cont-hover">
                                 <div class="img-container">
                                     <img src="{$row['image']}" />
@@ -72,13 +72,10 @@
                                     {if $row['favorite']}<i class="fa fa-heart  ax-favorite" aria-hidden="true"><span>{l s='Favorito' mod='giftlist'}</span></i>{/if}
                                     <p class="ax-name-list">{$row['name']}</p>
                                     <p class="ax-price-list">{convertPrice price=$row['price']}</p>
-                                        {foreach from=$row['data'] item=att_group}
-                                            {if $att_group['id_product_attribute'] == $atribute_group}
-                                                <p>{$att_group['group_name']}: {$att_group['attribute_name']}</p>
-                                                <input type="hidden" class="prod-attr" value="{$att_group['id_product_attribute']}">
-                                            {/if}
-                                        {/foreach} 
-                                    
+                                        {foreach from=$row['options'] item=att_group}
+                                            <p>{$att_group['group_name']}: {$att_group['attribute_name']}</p>
+                                            <input type="hidden" class="prod-attr" value="{$att_group['id_product_attribute']}">
+                                        {/foreach}
                                     </p>
                                 </div>
                                 <button data-toggle="tooltip" data-placement="bottom" title="{l s='Descubre más' mod='giftlist'}" {if $row['group']}data-group="true"{/if} class="ax-more btn btn-default btn-lista-regalos">{l s='Descubre más' mod='giftlist'}</button>

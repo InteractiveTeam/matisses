@@ -1,12 +1,18 @@
-{creator}, un bono de regalo para tu lista de regalos fue comprado:
+{creator}, un producto de tu lista de regalos fue comprado:
 
 Nombre del producto: {name}
-Precio: ${product_price}
-Color: {color}
-Comprador: {buyer}
-Und. compradas: {qty_buy}
-Und. solicitadas: {qty_want}
-Und. faltantes: {qty_rest}
-Ingresa a tu lista para seguir añadiendo productos: {description_link}
 
+Precio: {product_price}
+
+Color: {color_prod}
+
+Comprador: {buyer}
+
+Und. compradas: {qty_buy}
+
+Und. solicitadas: {qty_want}
+
+Und. faltantes: {qty_rest}
+
+ Ingresa a tu lista para seguir añadiendo productos: {description_link}
 Mensaje: {message}

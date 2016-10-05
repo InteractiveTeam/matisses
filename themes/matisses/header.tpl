@@ -38,7 +38,7 @@
 {/if}
 <meta name="generator" content="PrestaShop" />
 <meta name="robots" content="{if isset($nobots)}no{/if}index,{if isset($nofollow) && $nofollow}no{/if}follow" />
-<meta name="viewport" content="width=device-width, minimum-scale=0.25, maximum-scale=1.6, initial-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <link rel="icon" type="image/vnd.microsoft.icon" href="{$favicon_url}?{$img_update_time}" />
 <link rel="shortcut icon" type="image/x-icon" href="{$favicon_url}?{$img_update_time}" />
@@ -76,6 +76,14 @@
 {/foreach}
 {/if}
 		{$HOOK_HEADER}
+<script type="text/javascript">
+    window.smartlook||(function(d) {
+    var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+    var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
+    c.charset='utf-8';c.src='//rec.getsmartlook.com/recorder.js';h.appendChild(c);
+    })(document);
+    smartlook('init', '7df174a3cc5a08475e87eeffd09e9b9e5fd18d9f');
+</script>
 <link rel="stylesheet" type="text/css" href="/themes/matisses/css/autoload/print.css" media="print" />
 <!--[if IE 8]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -310,17 +318,12 @@ src="https://www.facebook.com/tr?id=146264512398308&ev=PageView&noscript=1"
 <div class="main-container">
 
 {if $page_name !='index' && $page_name !='pagenotfound'}
-	<div class="top_banner_wrap"> {*hook h="displayBanner"*} </div>
+	{*<div class="top_banner_wrap"> {*hook h="displayBanner" </div>*}
 {/if}
-<div id="columns" class="cf {if $page_name !='index' && $page_name !='product' && $page_name != 'module-guestbookwithavatars-guestbook'}{/if}">
+<div id="columns" class="cf">
 {if $page_name !='index' && $page_name !='pagenotfound'}
-						{if $page_name =='product' || $page_name == 'module-guestbookwithavatars-guestbook'}
-{/if}
-
   {include file="$tpl_dir./breadcrumb.tpl"}
-  {if $page_name =='product'  || $page_name == 'module-guestbookwithavatars-guestbook'}
 {/if}
-					{/if}
 {if $page_name =='index' && false}
 
 <div id="slider_row">
@@ -339,30 +342,17 @@ src="https://www.facebook.com/tr?id=146264512398308&ev=PageView&noscript=1"
 	  </div>
 </div>
 {/if}
-<div class="{if $page_name !='index' && $page_name !='pagenotfound'}{/if}">
+<div class>
 
-{if $page_name =='category'}
+{if $page_name == 'category'}
     {assign var="haschildrens" value=Category::getChildren($category->id,$cookie->id_lang,1,$cookie->id_shop)|count}
-    {if $haschildrens>0}
+    {*if $haschildrens>0}
         {assign var="left_column_size" value=0}
-    {/if}
+    {*/if*}
 {/if}
 
 {if isset($left_column_size) && !empty($left_column_size) && ($page_name != 'module-news-new')}
-
-    {if $page_name =='category'}
-		<!--Bloque1 Visualizados-->
     
-	    <div id="displayed-category" class="displayed-category">
-			<div class="container">
-			    <!-- Chaordic Top -->
-                <div chaordic="top"></div>
-			</div>
-	    </div>
-		<!--Fin Bloque1 Visualizados-->
-    {/if}
-
-
 		<!--Bloque2 Parrilla Productos-->
 		<div class="parrilla-productos">
 			<div class="container">

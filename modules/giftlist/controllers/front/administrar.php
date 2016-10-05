@@ -1,7 +1,7 @@
 <?php
 
 class giftlistadministrarModuleFrontController extends ModuleFrontController {
-    public $uploadDir = _PS_UPLOAD_DIR_."giftlist/";
+    public $uploadDir;
     
     public function initContent() {
 		if(!$this->context->customer->isLogged()){
@@ -28,7 +28,8 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
     public function init(){
 		parent::init();
 		if($this->ajax){
-			if(!empty(Tools::getValue("method"))){
+            $method = ToolsCore::getValue("method");
+			if(!empty($method)){
 				switch(Tools::getValue("method")){
 					case "saveList":
 						$this->_saveList();
@@ -54,6 +55,7 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
     
     public function __construct() {
 		parent::__construct ();
+        $this->uploadDir = _PS_UPLOAD_DIR_."giftlist/";
 	}
     
     	/**
@@ -119,14 +121,15 @@ class giftlistadministrarModuleFrontController extends ModuleFrontController {
         $li->id_cocreator = 0;
         $li->code = $li->returnCode();
         $li->name = $data['name'];
+        $li->email = $data['email'];
         $li->public = ($data['list_type'] == 1 ? true : false);
         $li->event_type = $data['event_type'];
         $li->event_date = $ev_date;
         $li->guest_number = $data['guest_number'];
         $li->url = $li->slugify($data['url']);
         $li->message =  htmlentities(Tools::getValue('message'));
-        $li->recieve_bond = isset($data['recieve_bond']) && $data['recieve_bond'] == 'on' ? true : false;
-        $li->min_amount = $data['min_ammount'];
+        $li->recieve_bond = isset($data['recieve_bond']) && $data['recieve_bond'] == '1' ? true : false;
+        $li->min_amount = str_replace(".","",$data['min_ammount']);
         $li->real_not = $data['real_not'] && $data['real_not'] == 'on' ? true : false;
         $li->cons_not = $data['cons_not'] && $data['cons_not'] == 'on' ? true : false;
         $li->firstname = $data['firstname'];

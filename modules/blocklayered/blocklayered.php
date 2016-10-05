@@ -1708,7 +1708,6 @@ class BlockLayered extends Module
 
 	private function getSelectedFilters()
 	{
-		
 		$home_category = Configuration::get('PS_HOME_CATEGORY');
 		$id_parent = (int)Tools::getValue('id_category', Tools::getValue('id_category_layered', $home_category));
 		if ($id_parent == $home_category)
@@ -1723,7 +1722,7 @@ class BlockLayered extends Module
 				$url = preg_replace('/\/(?:\w*)\/(?:[0-9]+[-\w]*)([^\?]*)\??.*/', '$1', Tools::safeOutput($_SERVER['REQUEST_URI'], true));
 
 			$url_attributes = explode('/', ltrim($url, '/'));
-
+            
 			$selected_filters = array('category' => array());
 			if (!empty($url_attributes))
 			{
@@ -1735,10 +1734,10 @@ class BlockLayered extends Module
 						$url_attribute = str_replace('-', $this->getAnchor(), $url_attribute);
 					$url_parameters = explode($this->getAnchor(), $url_attribute);
 
-					
-
 					$attribute_name  = array_shift($url_parameters);
 					$attribute_name = str_replace('material','material_',$attribute_name);
+					$attribute_name = str_replace('marca','fabricante',$attribute_name);
+                    
 
 					if ($attribute_name == 'page')
 						$this->page = (int)$url_parameters[0];
@@ -2037,8 +2036,8 @@ class BlockLayered extends Module
 				DATEDIFF('.$alias_where.'.`date_add`, DATE_SUB(NOW(), INTERVAL '.(int)$nb_day_new_product.' DAY)) > 0 AS new,
 				stock.out_of_stock, IFNULL(stock.quantity, 0) as quantity
 			FROM `'._DB_PREFIX_.'category_product` cp
-			LEFT JOIN '._DB_PREFIX_.'category c ON (c.id_category = cp.id_category)
-			LEFT JOIN `'._DB_PREFIX_.'product` p ON p.`id_product` = cp.`id_product`
+			STRAIGHT_JOIN '._DB_PREFIX_.'category c ON (c.id_category = cp.id_category)
+			STRAIGHT_JOIN `'._DB_PREFIX_.'product` p ON p.`id_product` = cp.`id_product`
 			'.Shop::addSqlAssociation('product', 'p').'
 			LEFT JOIN `'._DB_PREFIX_.'product_attribute` pa ON (p.`id_product` = pa.`id_product`)
 			'.Shop::addSqlAssociation('product_attribute', 'pa', false, 'product_attribute_shop.`default_on` = 1').'
@@ -3086,7 +3085,6 @@ class BlockLayered extends Module
 	public function ajaxCall()
 	{
 		global $smarty, $cookie;
-
 		$selected_filters = $this->getSelectedFilters();
 		$filter_block = $this->getFilterBlock($selected_filters);
 		$this->getProducts($selected_filters, $products, $nb_products, $p, $n, $pages_nb, $start, $stop, $range);

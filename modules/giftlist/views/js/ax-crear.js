@@ -50,7 +50,6 @@ var dates = {
     }
 };
 
-
 var ax_admin = {
     form: '',
     formAfterAddress: '',
@@ -91,7 +90,9 @@ var ax_admin = {
             }); 
             
             $(".ax-save").on('click',function(){
-                ax_admin.saveList();
+                if(parseInt($('#min_ammount').val()) > 0){                    
+                    ax_admin.saveList();
+                }
             });
             
             $("#ax-img-prof").click(function(){
@@ -104,6 +105,10 @@ var ax_admin = {
             
             $("input[type=file]").on('change',function(){
                 ax_admin.uploadMsg($(this));
+            });
+            
+            $("#min_ammount").on('change keyup',function(){
+                ax_admin.format(document.getElementById('min_ammount'));
             });
             
             $("a[role=tab]").on('shown.bs.tab',function(){
@@ -130,8 +135,8 @@ var ax_admin = {
                     $("#cocreator-div").addClass("hidden");
             });
             
-            $("#recieve_bond").click(function(){
-                if($(this).attr('checked') == "checked")
+            $(".recieve_bond").click(function(){
+                if($('input[name=recieve_bond]:checked').val() == "1")
                     $("#ammount_div").removeClass("hidden");
                 else
                     $("#ammount_div").addClass("hidden");
@@ -190,9 +195,25 @@ var ax_admin = {
         return false;
     },
     uploadMsg:function(el){
-        var msg = $("<span>").addClass("ax-up-msg").html("<i class='fa fa-check'></i>");
-        if(!el.parent().parent().parents(".col-md-6").find(".ax-up-msg").length)
+        if(el[0].files[0].size > 2000000){
+            el.parent().parent().parents(".col-md-6").find(".ax-up-msg").remove();
+            $("#image-p").val(null);
+            var msg = $("<span>").addClass("ax-up-msg").html("<i class='fa fa-times'></i>");
             el.parent().parent().parents(".col-md-6").append(msg);
+            $.fancybox({
+                'autoSize'      :   true,
+                'transitionIn'	:	'elastic',
+                'transitionOut'	:	'elastic',
+                'speedIn'		:	600,
+                'speedOut'		:	200,
+                'overlayShow'	:	false,
+                'content'       :   "Tu imagen supera el tamaño establecido (2mb)"
+            }); 
+        }else{
+            el.parent().parent().parents(".col-md-6").find(".ax-up-msg").remove();
+            var msg = $("<span>").addClass("ax-up-msg").html("<i class='fa fa-check'></i>");
+            el.parent().parent().parents(".col-md-6").append(msg);
+        }
     },
     validateSelect : function(){
         var ret = true;
@@ -372,8 +393,8 @@ var ax_admin = {
     },
     validDate:function(){
         var value = $("#months").val()+"/"+$("#days").val()+"/"+$("#years").val();
-        var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
-        var t = new Date(value.replace(pattern,'$3-$2-$1'));
+        //var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
+        var t = new Date(value);
         var now = new Date();
         return (dates.compare(t,now) == 1 ? true : false);
     },
@@ -520,6 +541,14 @@ var ax_admin = {
             }
         });
     },
+    format :function(input){
+        var num = input.value.replace(/\./g,'');
+        if(!isNaN(num)){
+            num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+            num = num.split('').reverse().join('').replace(/^[\.]/,'');
+            input.value = num;
+        }
+    }
 };
 
 ax_admin.init();

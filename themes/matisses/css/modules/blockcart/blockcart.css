@@ -249,7 +249,7 @@
 	background-color: white;
 	position: absolute;
 	display: none;
-	z-index: 99;
+	z-index: 99999;
 	width: 70%;
 	left: 0;
 	right: 0;

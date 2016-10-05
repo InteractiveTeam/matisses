@@ -151,6 +151,13 @@ class OrderControllerCore extends ParentOrderController
 			break;
 
 			case 1:
+                $prod = $this->context->cart->getProducts();
+                foreach($prod as $row){
+                    if($row['id_giftlist'] != 0){
+                        $this->context->smarty->assign('fromList', true);
+                        break;
+                    }
+                }
 				$this->_assignAddress();
 				$this->processAddressFormat();
 				if (Tools::getValue('multi-shipping') == 1)

@@ -35,7 +35,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 		parent::init();
 		if($this->ajax)
 		{
-			if(!empty(Tools::getValue('method'))){
+			if(trim(Tools::getValue('method'))){ 
 				switch(Tools::getValue('method')){
 					case "delete" :
 						$this->_ajaxProcessDeleteList(Tools::getValue('id_list'));
@@ -46,7 +46,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 					default:
 						die();
 						break;
-				}
+				} 
 			}
 		}
 	}
@@ -69,7 +69,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 			_MODULE_DIR_ . '/giftlist/views/css/vendor/jplist/jplist.textbox-filter.min.css',
 			_MODULE_DIR_ . '/giftlist/views/css/ax-lista-de-regalos.css'
 		) );
-	}
+	} 
 
 	public function __construct() {
 		$this->module = Module::getInstanceByName ( Tools::getValue ( 'module' ) );
@@ -87,7 +87,6 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
 	private function _addProduct($id_product,$data){
 		$list = new GiftListModel($data['list']);
 		$prod = new ProductCore($id_product);
-		$link = new LinkCore();
         
         $response = StockAvailable::getQuantityAvailableByProduct((int)$id_product,(int)$data['form'][3]['value']);
         $image = ProductCore::getCombinationImageById( (int)$data['form'][3]['value'], $this->context->language->id);
@@ -97,7 +96,7 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
                 'error' => true))
                );
         
-        if($list->validateProductinList($id_product,$data['list']))
+        if($list->validateProductinList($id_product,(int)$data['form'][3]['value'],$data['list']))
             die(Tools::jsonEncode(array(
                 'msg' => "Este producto ya existe en tu lista",
                 'error' => true))
@@ -150,12 +149,13 @@ class giftlistlistasModuleFrontController extends ModuleFrontController {
                     'value' => "<span class='ax-color-list'>".$row['group_name']."</span>: ". $row['attribute_name']
                 ];
         }
+        $link = $this->context->link;
         die(Tools::jsonEncode(array(
             'msg' => $msg,
             'prod_name' => $prod->getProductName($id_product),
             'attributes' => $att,
             'price' => Tools::displayPrice($prod->getPrice()),
-            'image' => Tools::getShopProtocol().$link->getImageLink($prod->link_rewrite[1], (int)$image['id_image'], 'home_default'),
+            'image' => $link->getImageLink($prod->link_rewrite[1], (int)$image['id_image'], 'home_default'),
             'description_link' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url)),
             'error' => false
         )));

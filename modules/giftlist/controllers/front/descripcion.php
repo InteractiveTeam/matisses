@@ -6,11 +6,11 @@ include_once __DIR__ . '/../../classes/Bond.php';
 include_once _PS_MODULE_DIR_ . "matisses/matisses.php";
 include_once _PS_OVERRIDE_DIR_ ."controllers/front/CartController.php";
 define("_ERROR_","Ha ocurrido un error, vuelve a intentarlo más tarde");
-define("_DELETED_","Elmininado correctamente");
+define("_DELETED_","Eliminado correctamente");
 define("_EDITED_","Se ha editado la información correctamente");
 
 class giftlistdescripcionModuleFrontController extends ModuleFrontController {
-	public $uploadDir = _PS_UPLOAD_DIR_."giftlist/";
+	public $uploadDir;
 	public $module;
 	/**
 	* Select all event types
@@ -109,10 +109,11 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	public function init(){
 		parent::init();
 		if($this->ajax){
-			if(!empty(Tools::getValue("method"))){
+            $method = Tools::getValue("method");
+			if(trim($method)){
 				switch(Tools::getValue("method")){
 					case "delete-product":
-						$this->_deteleProductFromList(Tools::getValue("id_list"),Tools::getValue('id_product'));
+						$this->_deteleProductFromList(Tools::getValue("id_list"),Tools::getValue('id_product'),Tools::getValue('id_att'));
 						break;
 					case "addBond":
 						$this->_addBond(Tools::getValue('id_list'), Tools::getValue('data'));
@@ -134,7 +135,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
                     case "editInfo":
 						$this->_editInfo(Tools::getValue('id_list'), Tools::getValue('data'));
                     case "productDetail":
-						$this->_productDetail(Tools::getValue('id_prod'),Tools::getValue('id_list'));
+						$this->_productDetail(Tools::getValue('id_prod'),Tools::getValue('id_list'),Tools::getValue('id_att'));
                     case "changeFavorite":
 						$this->_changeFavorite(Tools::getValue('id_prod'),Tools::getValue('id_list'),Tools::getValue('fav'));
                     case "updateQty":
@@ -191,32 +192,34 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 		return $this->context->smarty->fetch(_PS_THEME_DIR_.'/modules/productcomments/productcomments_reviews.tpl');
 	}
     
-    private function _productDetail($id_prod,$id_list){
+    private function _productDetail($id_prod,$id_list,$id_att){
         $prod = new ProductCore((int)$id_prod);
         $link = new LinkCore();
         if((int)Tools::getValue('group'))
-            $infoList = ListProductBondModel::getByProductAndList($id_prod,$id_list);
+            $infoList = ListProductBondModel::getByProductAndList($id_prod,$id_list,$id_att,Tools::getValue('id_lpd'));
         else
-            $infoList = ListProductBondModel::getByProductAndListNotAgroup($id_prod,$id_list);
+            $infoList = ListProductBondModel::getByProductAndListNotAgroup($id_prod,$id_list,$id_att);
         $image = ProductCore::getCombinationImageById( (int)$infoList['option'][3]->value, Context::getContext()->language->id);
         $params['reference'] = $prod->reference;
         $params['product']['id_product'] = (int)$id_prod;
-        $group = $prod->getAttributeCombinationsById((int)$infoList['option'][3]->value,Context::getContext()->language->id);
+        $group = $prod->getAttributeCombinationsById((int)$id_att,Context::getContext()->language->id);
         $styleColor = ""; 
         $attr = new AttributeCore($group[0]['id_attribute']);
+        $sPrice = Db::getInstance()->getValue("SELECT price FROM `"._DB_PREFIX_."specific_price` WHERE `id_product` = ".$id_prod." AND`id_product_attribute` = ".(int)$id_att);
         
         if(file_exists(_PS_COL_IMG_DIR_.$group[0]['id_attribute']."jpg"))
             $styleColor = 'url('._PS_COL_IMG_DIR_.$group[0]['id_attribute']."jpg)";
         else
             $styleColor = $attr->color;
         
+        $price = ($sPrice == 0 ? $prod->price : $sPrice);
+        
         die(Tools::jsonEncode(array(
             'image' => (Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').$link->getImageLink($prod->link_rewrite[1], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image'])),
             'name' => $prod->name[1],
             'reference' => hook::exec('actionMatChangeReference',$params),
             'desc' => $prod->description_short[1],
-            'color' => "blue",
-            'price' => Tools::displayPrice($prod->price),
+            'price' => ((int)Tools::getValue('group') ? Tools::displayPrice($price * (int)$infoList['cant']) : Tools::displayPrice($price)),
             'missing' => $infoList['missing'],
             'bought' => $infoList['bought'],
             'total' => $infoList['total'],
@@ -226,7 +229,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
             'colorName' => $attr->name[1],
             'group' => ($infoList['group'] ? true : false),
             'id_product' => $id_prod,
-            'id_product_attribute' => (int)$infoList['option'][3]->value,
+            'id_product_attribute' => (int)$id_att,
         )));
     }
     
@@ -251,7 +254,9 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
             'lastname' => $data->lastname,
             'id_cocreator' =>  $l->id_cocreator,
             'event_date' => $l->event_date,
-            'event_type' => $data->event_type
+            'event_type' => $data->event_type,
+            'real_not' => isset($data->real_not) ? 1 : 0,
+            'cons_not' => isset($data->cons_not) ? 1 : 0,
         ),"id = " . $id);
         die(Tools::jsonEncode(array(
             'msg' => $this->module->l('La lista ha sido editada exitosamente.'),
@@ -319,6 +324,7 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	}
 
 	public function __construct() {
+        $this->uploadDir = _PS_UPLOAD_DIR_."giftlist/";
 		$this->module = Module::getInstanceByName ( Tools::getValue ( 'module' ) );
 		if (! $this->module->active)
 			Tools::redirect ( 'index' );
@@ -337,13 +343,10 @@ class giftlistdescripcionModuleFrontController extends ModuleFrontController {
 	* @param int $id_list
 	* @param int $id_product
 	*/
-	private function _deteleProductFromList($id_list,$id_product){
+	private function _deteleProductFromList($id_list,$id_product,$id_attr){
 		$lpd = new ListProductBondModel();
-		if(!$lpd->deleteProduct($id_list, $id_product)){
-			die(_ERROR_);
-		}else{
-			die(_DELETED_);
-		}
+		$lpd->deleteProduct($id_list, $id_product, $id_attr);
+        die(_DELETED_);
 	}
 
 	private function _addBond($id_list, $data){

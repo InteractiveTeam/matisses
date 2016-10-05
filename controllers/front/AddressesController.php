@@ -64,7 +64,7 @@ class AddressesControllerCore extends FrontController
 		$total = 0;
 		$multiple_addresses_formated = array();
 		$ordered_fields = array();
-		$addresses = $this->context->customer->getAddressesMyAccount($this->context->language->id);
+		$addresses = $this->context->customer->getAddresses($this->context->language->id,0);
 		// @todo getAddresses() should send back objects
 		foreach ($addresses as $detail)
 		{

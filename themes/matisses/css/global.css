@@ -3418,6 +3418,9 @@ box-sizing: border-box;
 	.fancybox-outer,.fancybox-type-iframe .fancybox-inner{
 	overflow: hidden !important;
 	}
+    #category .fancybox-type-iframe .fancybox-inner{
+    width: 100% !important;
+    }
     div#new_comment_form {
         /*overflow-y: auto;
         height: 100%;*/
@@ -4335,6 +4338,10 @@ line-height: 1.7;
 .layer-attributes .scroll-left {
     height: auto;
     max-height: 230px;
+}
+
+#layered_block_left .layer-attributes .scroll-left {
+    overflow-y: hidden;
 }
 
 #layered_block_left .scroll-left.scroll-pane.mCustomScrollbar._mCS_1 {
@@ -6241,6 +6248,7 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 
 .chosen-container.chosen-with-drop .chosen-drop {
     top: 100%;
+    z-index: 10;
 }
 
 .select .chosen-container-single .chosen-single {
@@ -6343,12 +6351,65 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     display: none !important;
 }
 
+.product_list .wrap_visible_hover .lnk_view{
+	display: none;
+}
 
+#layered_form .mCustomScrollbar .mCustomScrollBox {
+    overflow: hidden;
+}
 
+.product_list.list .product-container .right-block {
+    padding-top: 0;
+    margin-top: 0;
+}
 
+.product_list.list .product-container .content_price {
+    padding: 0;
+    line-height: 1.5rem;
+}
 
+.product_list.list .product-container .price {
+    display: block;
+    font-size: 1.8rem;
+}
 
+.product_list.list .product-container .content_price .colors {
+    float:none;
+}
 
+.category_list.list .inner-product-list .ajax_block_product {
+    border-bottom: #dbdbdb solid 1px;
+}
 
+.category_list.list .right-block-content .wrap_view {
+    padding: 0;
+}
 
+.category_list.list .right-block-content .wrap_view a {
+    box-shadow: inset 0px 0px 0px 30px #f5f5f5;
+    -webkit-box-shadow: inset 0px 0px 0px 30px #f5f5f5;
+}
 
+.category_list.list .right-block-content .wrap_view a:hover {
+    box-shadow: inset 0px 0px 0px 1px #f5f5f5;
+    -webkit-box-shadow: inset 0px 0px 0px 1px #f5f5f5;
+}
+
+.category_list.list .button-container .btn-default.showmore {
+    border-color: #d9282e;
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+}
+
+.category_list.list .button-container .btn-default.showmore:hover {
+    border-color: #eb8b97;
+}
+
+.category_list.list .button-container .btn-default.showmore:hover span {
+    color: #e26c7b;
+}
+
+form .radio input{
+    visibility: hidden;
+}

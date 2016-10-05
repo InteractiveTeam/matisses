@@ -24,6 +24,9 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
+{if isset($fromList)}
+    {addJsDef fromlist=true}
+{/if}
 {if !$opc}
 	{assign var='current_step' value='address'}
 	{capture name=path}{l s='Addresses'}{/capture}

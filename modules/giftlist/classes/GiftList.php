@@ -6,6 +6,7 @@ class GiftListModel extends ObjectModel
 	public $id_creator;
 	public $id_cocreator;
 	public $code;
+    public $email;
 	public $name;
     public $firstname;
     public $lastname;
@@ -40,6 +41,7 @@ class GiftListModel extends ObjectModel
 			'id_creator' => array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId', 'required' => true),
 			'id_cocreator' => array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
 			'code' => array('type' => self::TYPE_STRING, 'required' => true, 'size' => 11),
+			'email' => array('type' => self::TYPE_STRING, 'required' => true, 'size' => 50),
 			'name' => array('type' => self::TYPE_STRING, 'required' => true, 'size' => 100),
 			'firstname' => array('type' => self::TYPE_STRING, 'required' => true, 'size' => 100),
 			'lastname' => array('type' => self::TYPE_STRING, 'required' => true, 'size' => 100),
@@ -123,6 +125,23 @@ class GiftListModel extends ObjectModel
             return $l['address_after'];
         else
             return $l['address_before'];
+    }
+    
+    public static function getCantByListAndProduct($id_list,$id_product,$id_att){
+        $sql = "SELECT * FROM "._DB_PREFIX_."list_product_bond WHERE id_list = ". $id_list. " AND id_product = ".$id_product;
+        $res = Db::getInstance()->executeS($sql);
+        $cant = 0;
+        foreach($res as $row){
+            $op = Tools::jsonDecode($row['option']);
+            if(!$row['group']){
+                if($op[3]->value == $id_att)
+                    return $row['missing'];
+            }else{
+                if($op[3]->value == $id_att)
+                    $cant += $row['bought'] ? 0 : $row['cant'];
+            }
+        }
+        return $cant;
     }
 
 	/**
@@ -324,26 +343,26 @@ class GiftListModel extends ObjectModel
         return Db::getInstance()->executeS($sql);
     }
     
-    public function sendMessage($out){
+    public function sendMessage($data,$out){
         $context = Context::getContext();
         $id_shop = (int)Context::getContext()->shop->id;
 		$id_lang = $context->language->id;
-        $product_list_txt = $this->getEmailTemplateContent('cron-mail-products.txt', Mail::TYPE_TEXT,$out);
-        $product_list_html = $this->getEmailTemplateContent('cron-mail-products.txt', Mail::TYPE_HTML,$out);
+        $product_list_txt = $this->getEmailTemplateContent('cron-mail-products.txt', Mail::TYPE_TEXT,$out,$data);
+        $product_list_html = $this->getEmailTemplateContent('cron-mail-products.tpl', Mail::TYPE_HTML,$out,$data);
 		$params = array(
             '{creator}' => $out[0]['creator'],
             '{description_link}' => $out[0]['description_link'],
 			'{products_html}' => $product_list_html,
             '{products_txt}' => $product_list_txt,
-            '{message}' => "HOLI"
+            '{message}' => $out[0]['message']
 		);
         MailCore::Send($id_lang, 'cron-mail', sprintf(
         MailCore::l('resumen de lista'), 1),
-        $params, $data[0]['email'], $out[0]['creator'],
+        $params, $out[0]['email'], $out[0]['creator'],
         null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
     }
     
-    protected function getEmailTemplateContent($template_name, $mail_type,$out)
+    protected function getEmailTemplateContent($template_name, $mail_type,$out,$data)
     {
 		$email_configuration = Configuration::get('PS_MAIL_TYPE');
 		if ($email_configuration != $mail_type && $email_configuration != Mail::TYPE_BOTH)
@@ -357,7 +376,8 @@ class GiftListModel extends ObjectModel
 		if (Tools::file_exists_cache($default_mail_template_path))
 		{
 			$this->context->smarty->assign(array(
-                'out' => $out
+                'products' => $out,
+                'data' => $data
             ));
 			return $this->context->smarty->fetch($default_mail_template_path);
 		}
@@ -376,9 +396,17 @@ class GiftListModel extends ObjectModel
 		return true;  
     }
     
-    public function validateProductinList($id_prod,$id_list){
-        $sql = "SELECT count(*) FROM ". _DB_PREFIX_ ."list_product_bond WHERE id_list = ".$id_list." AND id_product = ".$id_prod;
-        $value = Db::getInstance()->getValue($sql);
-        return ($value > 0 ? true : false);
+    public function validateProductinList($id_prod,$id_att,$id_list){
+        $sql = "SELECT * FROM ". _DB_PREFIX_ ."list_product_bond WHERE id_list = ".$id_list." AND id_product = ".$id_prod;
+        $value = Db::getInstance()->executeS($sql);
+        $exist = false;
+        foreach($value as $p){
+            $op = Tools::jsonDecode($p['option']);
+            if($id_att == $op[3]->value){
+                $exist = true;
+                break;
+            }
+        }
+        return $exist;
     }
 }

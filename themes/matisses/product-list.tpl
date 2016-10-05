@@ -56,9 +56,9 @@
             {$product.specific_prices = $status.specific_price}
             {$product.quantity = $status.qty}
         {/if}
-        
 		<div itemscope itemprop="itemListElement" itemtype="http://schema.org/Product" class="ajax_block_product{if $page_name == 'index' || $page_name == 'product'} grid_4 {else} grid_4 {/if}{if $smarty.foreach.products.iteration%$nbItemsPerLine == 0} last-in-line{elseif $smarty.foreach.products.iteration%$nbItemsPerLine == 1} first-in-line{/if}{if $smarty.foreach.products.iteration > ($smarty.foreach.products.total - $totModulo)} last-line{/if}{if $smarty.foreach.products.iteration%$nbItemsPerLineTablet == 0} last-item-of-tablet-line{elseif $smarty.foreach.products.iteration%$nbItemsPerLineTablet == 1} first-item-of-tablet-line{/if}{if $smarty.foreach.products.iteration%$nbItemsPerLineMobile == 0} last-item-of-mobile-line{elseif $smarty.foreach.products.iteration%$nbItemsPerLineMobile == 1} first-item-of-mobile-line{/if}{if $smarty.foreach.products.iteration > ($smarty.foreach.products.total - $totModuloMobile)} last-mobile-line{/if}">
-			<div class="product-container" id="{$product.id_product}">
+            <!-- prod-cont -->
+			<div class="product-container" data-href="{$product.link|escape:'html':'UTF-8'}" id="{$product.id_product}">
 				<div class="left-block">
 					<div class="product-image-container">
 					<div class="wrap_image_list">
@@ -79,7 +79,7 @@
 								</a>
 							{/if}
 							{if $product.specific_prices.reduction_type == 'percentage'}
-											<span class="tag price-percent-reduction">-{$product.specific_prices.reduction * 100}%</span>
+								<span class="tag price-percent-reduction">-{$product.specific_prices.reduction * 100}%</span>
 							{/if}
 							</div>
 						{/if}
@@ -175,10 +175,10 @@
 					</a>
 					{/if}
 					{hook h='displayProductListFunctionalButtons' product=$product}
-					<a itemprop="url" class="scale_hover_in lnk_view" href="{$product.link|escape:'html':'UTF-8'}" title="{l s='View'}">
+					{*<a itemprop="url" class="scale_hover_in lnk_view" href="{$product.link|escape:'html':'UTF-8'}" title="{l s='View'}">
 						<i class="fa fa-search"></i>
 						<span>{l s='More'}</span>
-					</a>
+					</a>*}
 
 					{if $page_name != 'index'}
 						{if isset($comparator_max_item) && $comparator_max_item}
@@ -197,7 +197,7 @@
 								{if isset($static_token)}
 									<!--<a class="btn btn-default buy-now ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, "add=1&amp;id_product={$product.id_product|intval}&amp;token={$static_token}", false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}">-->
                                     <a class="btn btn-default buy-now customAddToCart" href="javascript:void(0)" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}" onclick="customAddTocart({$product.id_product},{$product.id_product_attribute})">
-										<span>{l s='Comprar ahora'}</span>
+										<span>{l s='Agregar al carrito'}</span>
 									</a>
 								{else}
 									<!--<a class=" btn btn_border ajax_add_to_cart_button" href="{$link->getPageLink('cart',false, NULL, 'add=1&amp;id_product={$product.id_product|intval}', false)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Add to cart'}" data-id-product="{$product.id_product|intval}" >-->
@@ -207,7 +207,7 @@
 									</a>
 								{/if}
 							{else}
-								<span class=" btn btn_border ajax_add_to_cart_button disabled">
+								<span class="btn btn-default buy-now customAddToCart ajax_add_to_cart_button disabled">
 									<span>{l s='Add to cart'}</span>
 								</span>
 							{/if}
@@ -226,7 +226,7 @@
                         {/if}
 					</div>
 			</div><!-- .product-container> -->
-
+            </a>
 		</div>
 	{/foreach}
 	</div>

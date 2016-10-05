@@ -203,7 +203,7 @@ function buildAddressBlock(id_address, address_type, dest_comp)
 	ordered_fields_name = ordered_fields_name.concat(['update']);
 	dest_comp.html('');
 	li_content['title'] = adr_titles_vals[address_type];
-	if (typeof liUpdate !== 'undefined')
+	if (typeof liUpdate !== 'undefined' && typeof fromlist === "undefined")
 	{
 		var items = liUpdate.split(reg);
 		var regUrl = new RegExp('(https?://[^"]*)', 'gi');
