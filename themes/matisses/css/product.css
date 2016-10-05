@@ -102,9 +102,6 @@ a.fancybox-nav {
 	top: 6px;
 	left: 6px;
 	}
-.pb-left-column #image-block #view_full_size .span_link.no-print {
-    display: none;
-}
 .pb-left-column #image-block #view_full_size .span_link {
 	display: block;
 	width: 36px;
