@@ -132,7 +132,7 @@ $(document).ready(function(){
 	//hover 'other views' images management
 	$('#views_block li a').click(function(){
             displayImage($(this));
-            $('#zoomWindowContainer .zoomWindow').css('background-image',$(this).attr('href'));
+            //$('#zoomWindowContainer .zoomWindow').css('background-image','url('+$(this).attr('href')+')');
             return false;
         }
 	);
