@@ -88,6 +88,8 @@ class giftlist extends Module
 
 		if (!Configuration::get('MYMODULE_NAME'))
 			$this->warning = $this->l('No name provided');
+        
+       // $this->registerHook("actionGiftlistProccess");
 	}
 
 	public function install(){
@@ -99,6 +101,7 @@ class giftlist extends Module
 			$this->registerHook('displayProductButtons');
 			$this->registerHook('displayBackOfficeHeader');
 			$this->registerHook("actionOrderStatusUpdate");
+			$this->registerHook("actionGiftlistProccess");
             $this->registerHook("actionCustomerAccountAdd");
             $this->registerHook("actionProductInList");
             $this->registerHook('header');
@@ -221,89 +224,93 @@ class giftlist extends Module
     
 	public function hookactionOrderStatusUpdate($params){
         //Order status payment confirmation
-        if ((int)$params['newOrderStatus']->id == (int)ConfigurationCore::get('PS_OS_PAYMENT')){
-            $this->__verifyListInOrderBeforePayment($params['cart']);
-            $this->_updateStatesinList($params['cart']);
-        }        
+        $this->registerHook("actionGiftlistProccess");
 	}
     
+    public function hookactionGiftlistProccess($params){
+        $this->__verifyListInOrderBeforePayment($params['id_order']);
+        $this->_updateStatesinList($params['id_order']);
+    }
+
     private function _updateStatesinList($cart){
-        $sql = "SELECT * FROM "._DB_PREFIX_."cart_product WHERE id_cart = " . $cart->id;
+        $sql = "SELECT * FROM "._DB_PREFIX_."cart_product WHERE id_cart = " . $cart;
         $products = Db::getInstance()->executeS($sql);
-        $sql = "SELECT id_customer FROM "._DB_PREFIX_."orders WHERE id_cart = ".$cart->id;
+        $sql = "SELECT id_customer FROM "._DB_PREFIX_."orders WHERE id_cart = ".$cart;
         $id_customer = Db::getInstance()->getValue($sql);
         $buyer = new CustomerCore($id_customer);
         $link = new LinkCore();
         foreach($products as $product){
-            $list = new GiftListModel($product['id_giftlist']);
-            if($product['id_bond'] != 0){
-                $sql="SELECT id FROM "._DB_PREFIX_."list_product_bond WHERE id_bond = ".$product['id_bond']." AND id_list = ".$product['id_giftlist'];
-                $id = Db::getInstance()->getRow($sql);
-                $lpd = new ListProductBondModel($id['id']);
-                $lpd->bought = 1;
-                $lpd->save();
-                $bond = new BondModel($product['id_bond']);
-                $creator = $list->getCreator($list->id_creator);
-                $params = array(
-                    '{creator}' =>  $creator->firstname.' '.$creator->lastname,
-                    '{value}' => $bond->value,
-                    '{message}' => $bond->message == "" ? "Ningun Mensaje" : $bond->message,
-                    '{buyer}' => $buyer->firstname . " " . $buyer->lastname,
-                    '{description_link}' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url))
-                );
+            if($product['id_giftlist'] != 0){
+                $list = new GiftListModel($product['id_giftlist']);
+                if($product['id_bond'] != 0){
+                    $sql="SELECT id FROM "._DB_PREFIX_."list_product_bond WHERE id_bond = ".$product['id_bond']." AND id_list = ".$product['id_giftlist'];
+                    $id = Db::getInstance()->getRow($sql);
+                    $lpd = new ListProductBondModel($id['id']);
+                    $lpd->bought = 1;
+                    $lpd->save();
+                    $bond = new BondModel($product['id_bond']);
+                    $creator = $list->getCreator($list->id_creator);
+                    $params = array(
+                        '{creator}' =>  $creator->firstname.' '.$creator->lastname,
+                        '{value}' => $bond->value,
+                        '{message}' => $bond->message == "" ? "Ningun Mensaje" : $bond->message,
+                        '{buyer}' => $buyer->firstname . " " . $buyer->lastname,
+                        '{description_link}' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url))
+                    );
 
-                $cust = array(
-                    'name' => $creator->firstname.' '.$creator->lastname,
-                    'email' => $list->email
-                );
-                if($list->real_not)
-                    $this->_sendEmail('bond-bought','¡Han comprado un bono para ti!',$cust,$params);
-            }else{
-                $prod = new ProductCore($product['id_product']);
-                $creator = $list->getCreator($list->getCreator($list->id_creator));
-                $sql = "SELECT count(*) FROM `"._DB_PREFIX_."list_product_bond` WHERE `id_list` = ".$product['id_giftlist']." AND `id_product` = ". $product['id_product'];
-                if(Db::getInstance()->getValue($sql) > 1)
-                    $lpd = ListProductBondModel::getByProductAndList($product['id_product'],$product['id_giftlist'],$product['id_product_attribute']);
-                else
-                    $lpd = ListProductBondModel::getByProductAndListNotAgroup($product['id_product'],$product['id_giftlist'],$product['id_product_attribute'],0);
-                $attr = $prod->getAttributeCombinationsById($lpd['option'][3]->value,Context::getContext()->language->id);
-                $id_image = ProductCore::getCover($product['id_product']);
-                // get Image by id
-                if (sizeof($id_image) > 0) {
-                    $image = new Image($id_image['id_image']);
-                    // get image full URL
-                    $image_url = _PS_BASE_URL_._THEME_PROD_DIR_.$image->getExistingImgPath().".jpg";
+                    $cust = array(
+                        'name' => $creator->firstname.' '.$creator->lastname,
+                        'email' => $list->email
+                    );
+                    if($list->real_not)
+                        $this->_sendEmail('bond-bought','¡Han comprado un bono para ti!',$cust,$params);
+                }else{
+                    $prod = new ProductCore($product['id_product']);
+                    $creator = $list->getCreator($list->getCreator($list->id_creator));
+                    $sql = "SELECT count(*) FROM `"._DB_PREFIX_."list_product_bond` WHERE `id_list` = ".$product['id_giftlist']." AND `id_product` = ". $product['id_product'];
+                    if(Db::getInstance()->getValue($sql) > 1)
+                        $lpd = ListProductBondModel::getByProductAndList($product['id_product'],$product['id_giftlist'],$product['id_product_attribute']);
+                    else
+                        $lpd = ListProductBondModel::getByProductAndListNotAgroup($product['id_product'],$product['id_giftlist'],$product['id_product_attribute'],0);
+                    $attr = $prod->getAttributeCombinationsById($lpd['option'][3]->value,Context::getContext()->language->id);
+                    $id_image = ProductCore::getCover($product['id_product']);
+                    // get Image by id
+                    if (sizeof($id_image) > 0) {
+                        $image = new Image($id_image['id_image']);
+                        // get image full URL
+                        $image_url = _PS_BASE_URL_._THEME_PROD_DIR_.$image->getExistingImgPath().".jpg";
+                    }
+                    $sPrice = Db::getInstance()->getValue("SELECT price FROM `"._DB_PREFIX_."specific_price` WHERE `id_product` = ".$product['id_product']." AND`id_product_attribute` = ".(int)$lpd['option'][3]->value);
+                    $price = ($sPrice == 0 ? $prod->getPrice() : $sPrice);
+                    $params = array(
+                        '{creator}' => $creator->firstname.' '.$creator->lastname,
+                        '{image}' => $image_url,
+                        '{name}' => $prod->name[1],
+                        '{product_price}' => Tools::displayPrice($price),
+                        '{color_prod}' => $attr[0]['attribute_name'],
+                        '{buyer}' => $buyer->firstname . " " . $buyer->lastname,
+                        '{qty_buy}' => $product['quantity'],
+                        '{qty_want}' => $lpd['total'],
+                        '{qty_rest}' => $lpd['missing'],
+                        '{message}' => $lpd->message == "" ? "Ningun Mensaje" : $lpd->message,
+                        '{description_link}' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url))
+                    );
+                    $cust = array(
+                        'name' => $creator->firstname.' '.$creator->lastname,
+                        'email' => $list->email
+                    );
+
+                    if($list->real_not)
+                        $this->_sendEmail('product-bought','¡Han comprado un producto para ti!',$cust,$params);
                 }
-                $sPrice = Db::getInstance()->getValue("SELECT price FROM `"._DB_PREFIX_."specific_price` WHERE `id_product` = ".$product['id_product']." AND`id_product_attribute` = ".(int)$lpd['option'][3]->value);
-                $price = ($sPrice == 0 ? $prod->getPrice() : $sPrice);
-                $params = array(
-                    '{creator}' => $creator->firstname.' '.$creator->lastname,
-                    '{image}' => $image_url,
-                    '{name}' => $prod->name[1],
-                    '{product_price}' => Tools::displayPrice($price),
-                    '{color_prod}' => $attr[0]['attribute_name'],
-                    '{buyer}' => $buyer->firstname . " " . $buyer->lastname,
-                    '{qty_buy}' => $product['quantity'],
-                    '{qty_want}' => $lpd['total'],
-                    '{qty_rest}' => $lpd['missing'],
-                    '{message}' => $lpd->message == "" ? "Ningun Mensaje" : $lpd->message,
-                    '{description_link}' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url))
-                );
-                $cust = array(
-                    'name' => $creator->firstname.' '.$creator->lastname,
-                    'email' => $list->email
-                );
-
-                if($list->real_not)
-                    $this->_sendEmail('product-bought','¡Han comprado un producto para ti!',$cust,$params);
             }
         }
     }
     
     private function __verifyListInOrderBeforePayment($cart){
-        $sql = "SELECT * FROM "._DB_PREFIX_."cart_product WHERE id_cart = " .$cart->id;
+        $sql = "SELECT * FROM "._DB_PREFIX_."cart_product WHERE id_cart = " .$cart;
         $products = Db::getInstance()->executeS($sql);
-        $buyer = new Customer($cart->id_customer);
+        $buyer = Db::getInstance()->getValue("SELECT id_customer FROM "._DB_PREFIX_."cart WHERE id_cart = ".$cart);
         $sql = "SELECT id_product FROM "._DB_PREFIX_."product WHERE reference = 'BOND-LIST'";
 		$id_product = Db::getInstance()->getValue($sql);
         foreach($products as $product){

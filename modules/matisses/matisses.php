@@ -1691,8 +1691,10 @@ class matisses extends Module
 	
 	public function hookactionPaymentProccess($params)
 	{
-		if($params['status']=='ok')
+		if($params['status']=='ok'){
 			self::wsmatisses_registrar($params);
+            Hook::exec('actionGiftlistProccess',$params);
+        }
 			
 		if($params['status']=='fail' || $params['status']=='rejected')
 			self::wsmatisses_anular($params);			
