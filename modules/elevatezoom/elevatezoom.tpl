@@ -40,17 +40,17 @@
 
 	$(document).ready(function(){
 		applyElevateZoom();
-		$('#color_to_pick_list').click(
+		$('#color_to_pick_list li a').click(
 			function(){
 				restartElevateZoom();
 			}
 		);
 
-		$('#color_to_pick_list').hover(
+		/*$('#color_to_pick_list').hover(
 			function(){
 				restartElevateZoom();
 			}
-		);
+		);*/
 
 
 		$('#views_block li a').click(

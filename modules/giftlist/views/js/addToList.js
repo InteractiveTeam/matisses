@@ -16,7 +16,7 @@ $(function(){
 		'transitionOut'	:	'elastic',
 		'speedIn'		:	600, 
 		'speedOut'		:	200, 
-		'overlayShow'	:	false,
+		'overlayShow'	:	true,
         afterShow       :   function(){
             var min_val = document.getElementById('cant');
             min_val.onkeydown = function(e) {
