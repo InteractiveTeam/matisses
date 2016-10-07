@@ -7,26 +7,29 @@ $(function(){
 		e.preventDefault();
 		$("#cant").val($("#quantity_wanted").val());
 	});
-
-	$("#btn_gift_list").fancybox({        
-        'afterLoad': function(){
+/*'afterLoad': function(){
             if(!$('html').hasClass('fancybox-margin')){
                 $('html').addClass('fancybox-margin fancybox-lock');
             }
             console.log($('html').hasClass('fancybox-margin'));
         },
         'afterClose': function(){
-            $('html').removeClass('fancybox-margin fancybox-lock');
-        },
+            $('html').removeClass('fancybox-margin fancybox-lock');            
+        },*/
+	$("#btn_gift_list").fancybox({
 		'autoSize'      :   false,
 		'height'        :   340,
 		'width'			:    600,
 		'transitionIn'	:	'elastic',
 		'transitionOut'	:	'elastic',
-		'speedIn'		:	600, 
-		'speedOut'		:	200, 
-		'overlayShow'	:	true,
+		'speedIn'		:	600,
+		'speedOut'		:	200,
+		'overlayShow'	:	true,        
+        afterClose      : function(){
+            if(isApple()){ $('body').css({'position': ''}); }
+        },
         afterShow       :   function(){
+            if(isApple()){ $('body').css({'position': 'fixed'}); }
             var min_val = document.getElementById('cant');
             min_val.onkeydown = function(e) {
                 if(!((e.keyCode > 95 && e.keyCode < 106)
@@ -76,15 +79,6 @@ $(function(){
 					res = JSON.parse(res);
                     if(res.error == true){
                          $.fancybox({
-                            'afterLoad': function(){
-                                if(!$('html').hasClass('fancybox-margin')){
-                                    $('html').addClass('fancybox-margin fancybox-lock');
-                                }
-                                console.log($('html').hasClass('fancybox-margin'));
-                            },
-                            'afterClose': function(){
-                                $('html').removeClass('fancybox-margin fancybox-lock');
-                            },
                             'autoScale': true,
                             'transitionIn': 'elastic',
                             'transitionOut': 'elastic',
@@ -108,15 +102,6 @@ $(function(){
                         $(".see-list").attr("href",res.description_link);
                         $.fancybox.close();
                         $.fancybox({
-                            'afterLoad': function(){
-                                if(!$('html').hasClass('fancybox-margin')){
-                                    $('html').addClass('fancybox-margin fancybox-lock');
-                                }
-                                console.log($('html').hasClass('fancybox-margin'));
-                            },
-                            'afterClose': function(){
-                                $('html').removeClass('fancybox-margin fancybox-lock');
-                            },
                              'autoScale': true,
                              'transitionIn': 'elastic',
                              'transitionOut': 'elastic',
@@ -131,15 +116,6 @@ $(function(){
 				},
 				error: function(res){
 					 $.fancybox({
-                        'afterLoad': function(){
-                            if(!$('html').hasClass('fancybox-margin')){
-                                $('html').addClass('fancybox-margin fancybox-lock');
-                            }
-                            console.log($('html').hasClass('fancybox-margin'));
-                        },
-                        'afterClose': function(){
-                            $('html').removeClass('fancybox-margin fancybox-lock');
-                        },
                         'autoScale': true,
                         'transitionIn': 'elastic',
                         'transitionOut': 'elastic',
