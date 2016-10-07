@@ -59,7 +59,13 @@ $(document).ready(function() {
 		'speedOut'		:	200, 
 		'overlayShow'	:	false,
 		'type'			: 	'ajax',
-		afterShow		: 	validateShareList
+        afterShow       :   function(){
+            if(isApple()){ $('body').css({'position': 'fixed'}); }
+            validateShareList();
+        },
+        'afterClose' : function () {
+            if(isApple()){ $('body').css({'position': ''}); }
+        }
 	});
 	
 	$(".share-list").click(function(){
@@ -74,8 +80,14 @@ $(document).ready(function() {
         'transitionOut'	:	'elastic',
         'speedIn'		:	600,
         'speedOut'		:	200,
-        'overlayShow'	:	false,
-        afterShow		: 	validateAddressForm
+        'overlayShow'	:	false,        
+        afterShow       :   function(){
+            if(isApple()){ $('body').css({'position': 'fixed'}); }
+            validateAddressForm();
+        },
+        'afterClose' : function () {
+            if(isApple()){ $('body').css({'position': ''}); }
+        }
 	});
     
     $("#ax-edit").click(function(){
@@ -168,14 +180,20 @@ $(document).ready(function() {
                     $(".fa-heart").removeClass("ax-fav-icon");
                     $(".ax-bond-cont").remove();
                     $.fancybox({
-                     'autoScale': true,
-                     'transitionIn': 'elastic',
-                     'transitionOut': 'elastic',
-                     'speedIn': 500,
-                     'speedOut': 300,
-                     'autoDimensions': true,
-                     'centerOnScroll': true,
-                     'content' : '<div><p class="fancybox-error">Se ha editado la lista correctamente</p></div>'
+                        afterShow       :   function(){
+                            if(isApple()){ $('body').css({'position': 'fixed'}); }
+                        },
+                        'afterClose' : function () {
+                            if(isApple()){ $('body').css({'position': ''}); }
+                        },
+                         'autoScale': true,
+                         'transitionIn': 'elastic',
+                         'transitionOut': 'elastic',
+                         'speedIn': 500,
+                         'speedOut': 300,
+                         'autoDimensions': true,
+                         'centerOnScroll': true,
+                         'content' : '<div><p class="fancybox-error">Se ha editado la lista correctamente</p></div>'
                     });
                 } 
             });                      
@@ -188,6 +206,12 @@ $(document).ready(function() {
     
     $("#ax-delete").click(function(){
         $.fancybox({
+            afterShow       :   function(){
+                if(isApple()){ $('body').css({'position': 'fixed'}); }
+            },
+            'afterClose' : function () {
+                if(isApple()){ $('body').css({'position': ''}); }
+            },
             'autoScale': true,
             'transitionIn': 'elastic',
             'transitionOut': 'elastic',
@@ -286,7 +310,13 @@ $(document).ready(function() {
         'speedIn'		:	600,
         'speedOut'		:	200,
         'overlayShow'	:	false,
-        afterShow		: 	editInfo
+        afterShow       :   function(){
+            if(isApple()){ $('body').css({'position': 'fixed'}); }
+            editInfo();
+        },
+        'afterClose' : function () {
+            if(isApple()){ $('body').css({'position': ''}); }
+        }
 	});
     
     $(".ax-save-info").click(function(){
@@ -309,6 +339,12 @@ function deleteProd(el){
         headers: { "cache-control": "no-cache" },
         success: function(result){
             $.fancybox({
+                afterShow       :   function(){
+                    if(isApple()){ $('body').css({'position': 'fixed'}); }
+                },
+                'afterClose' : function () {
+                    if(isApple()){ $('body').css({'position': ''}); }
+                },
                  'autoScale': true,
                  'transitionIn': 'elastic',
                  'transitionOut': 'elastic',
@@ -363,16 +399,22 @@ function saveInfo(){
                 }
                 $.fancybox.close();
                 $.fancybox({
-                 'autoScale': true,
-                 'minWidth': 250,
-                 'minHeight': 50,
-                 'transitionIn': 'elastic',
-                 'transitionOut': 'elastic',
-                 'speedIn': 500,
-                 'speedOut': 300,
-                 'autoDimensions': true,
-                 'centerOnScroll': true,
-                 'content' : '<div><p class="fancybox-error">'+res.msg+'</p></div>'
+                    afterShow       :   function(){
+                        if(isApple()){ $('body').css({'position': 'fixed'}); }
+                    },
+                    'afterClose' : function () {
+                        if(isApple()){ $('body').css({'position': ''}); }
+                    },
+                     'autoScale': true,
+                     'minWidth': 250,
+                     'minHeight': 50,
+                     'transitionIn': 'elastic',
+                     'transitionOut': 'elastic',
+                     'speedIn': 500,
+                     'speedOut': 300,
+                     'autoDimensions': true,
+                     'centerOnScroll': true,
+                     'content' : '<div><p class="fancybox-error">'+res.msg+'</p></div>'
                 });
             }
         });
@@ -411,17 +453,23 @@ function deleteMsg(){
         success: function(){
         $("#ax-message-content").text("");
             $.fancybox({
-            'autoScale': true,
-            'transitionIn': 'elastic',
-            'transitionOut': 'elastic',
-            'minWidth': 250,
-            'minHeight': 60,
-            'speedIn': 500,
-            'speedOut': 300,
-            'autoDimensions': true,
-            'centerOnScroll': true,
-            'content' : '<div><p class="fancybox-error">El mensaje se ha eliminado</p></div>'
-        });
+                afterShow       :   function(){
+                    if(isApple()){ $('body').css({'position': 'fixed'}); }
+                },
+                'afterClose' : function () {
+                    if(isApple()){ $('body').css({'position': ''}); }
+                },
+                'autoScale': true,
+                'transitionIn': 'elastic',
+                'transitionOut': 'elastic',
+                'minWidth': 250,
+                'minHeight': 60,
+                'speedIn': 500,
+                'speedOut': 300,
+                'autoDimensions': true,
+                'centerOnScroll': true,
+                'content' : '<div><p class="fancybox-error">El mensaje se ha eliminado</p></div>'
+            });
         }
     });
 }
@@ -449,16 +497,22 @@ function uploadImage(prof,input){
             else
                 $(".ax-cover-img").css("background-image","url("+res+"?"+today.getTime()+")");
             $.fancybox({
-             'autoScale': true,
-             'minWidth': 250,
-             'minHeight': 50,
-             'transitionIn': 'elastic',
-             'transitionOut': 'elastic',
-             'speedIn': 500,
-             'speedOut': 300,
-             'autoDimensions': true,
-             'centerOnScroll': true,
-             'content' : '<div><p class="fancybox-error">Imagen cargada con éxito</p></div>'
+                afterShow       :   function(){
+                    if(isApple()){ $('body').css({'position': 'fixed'}); }
+                },
+                'afterClose' : function () {
+                    if(isApple()){ $('body').css({'position': ''}); }
+                },
+                 'autoScale': true,
+                 'minWidth': 250,
+                 'minHeight': 50,
+                 'transitionIn': 'elastic',
+                 'transitionOut': 'elastic',
+                 'speedIn': 500,
+                 'speedOut': 300,
+                 'autoDimensions': true,
+                 'centerOnScroll': true,
+                 'content' : '<div><p class="fancybox-error">Imagen cargada con éxito</p></div>'
             });
         }
     });
@@ -529,6 +583,12 @@ function saveAddress(){
                     $(".ax-creator-name").text(res.name);
                     $.fancybox.close();
                      $.fancybox({
+                         afterShow       :   function(){
+                            if(isApple()){ $('body').css({'position': 'fixed'}); }
+                        },
+                        'afterClose' : function () {
+                            if(isApple()){ $('body').css({'position': ''}); }
+                        },
                          'autoScale': true,
                          'transitionIn': 'elastic',
                          'transitionOut': 'elastic',
@@ -578,6 +638,12 @@ function saveMessage(){
         success: function(res){
             $("#message").text(JSON.parse(res));
             $.fancybox({
+                afterShow       :   function(){
+                    if(isApple()){ $('body').css({'position': 'fixed'}); }
+                },
+                'afterClose' : function () {
+                    if(isApple()){ $('body').css({'position': ''}); }
+                },
                 autoSize    : true,
                 autoScale   : true,
                 fitToView   : true,
@@ -692,6 +758,12 @@ function callAjaxSend(e){
 		success: function(result){
             $.fancybox.close();
             $.fancybox({
+                afterShow       :   function(){
+                    if(isApple()){ $('body').css({'position': 'fixed'}); }
+                },
+                'afterClose' : function () {
+                    if(isApple()){ $('body').css({'position': ''}); }
+                },
                  'autoScale': true,
                  'transitionIn': 'elastic',
                  'transitionOut': 'elastic',
@@ -748,15 +820,21 @@ function updateQty(el){
             result = JSON.parse(result);
             if(result.error){
                 $.fancybox({
-                 'autoScale': true,
-                 'transitionIn': 'elastic',
-                 'transitionOut': 'elastic',
-                 'speedIn': 500,
-                 'speedOut': 300,
-                 'autoDimensions': true,
-                 'centerOnScroll': true,
-                 dataType : 'html',
-                 'content' : '<div><p class="fancybox-error">'+result.msg+'</p></div>'
+                    afterShow       :   function(){
+                        if(isApple()){ $('body').css({'position': 'fixed'}); }
+                    },
+                    'afterClose' : function () {
+                        if(isApple()){ $('body').css({'position': ''}); }
+                    },
+                     'autoScale': true,
+                     'transitionIn': 'elastic',
+                     'transitionOut': 'elastic',
+                     'speedIn': 500,
+                     'speedOut': 300,
+                     'autoDimensions': true,
+                     'centerOnScroll': true,
+                     dataType : 'html',
+                     'content' : '<div><p class="fancybox-error">'+result.msg+'</p></div>'
                 });
             }
 		}
