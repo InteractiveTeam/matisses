@@ -187,6 +187,10 @@ $(document).ready(function(){
 		e.preventDefault();
 		colorPickerClick($(this));
 		getProductAttribute();
+        $.each($('#thumbs_list li:visible'),function(i,value){
+            $(this).children('a').trigger('click');
+            return false;
+        });
 	});
 	$(window).resize(function(){
 		refreshProductImages(0);
