@@ -35,13 +35,7 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('.fancybox-quick-view').fancybox({
-            afterClose      : function(){
-                if(isApple()){ $('body').css({'position': ''}); }
-            },
-            afterShow       :   function(){
-                if(isApple()){ $('body').css({'position': 'fixed'}); }
-            },
+		$('.fancybox-quick-view').fancybox({            
 			type: 'ajax',
 			autoDimensions: false,
 			autoSize: false,
