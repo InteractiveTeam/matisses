@@ -157,6 +157,11 @@ $(document).ready(function(){
     });
 });
 
+/*Validar si el dispositivo es apple*/
+function isApple() {
+    return (navigator.userAgent.match(/(iPhone|iPod|iPad)/i));
+}
+
 function highdpiInit()
 {
 	if($('.replace-2x').css('font-size') == "1px")
@@ -254,15 +259,6 @@ function quick_view()
 
 		if (!!$.prototype.fancybox)
 			$.fancybox({
-                'afterLoad': function(){
-                    if(!$('html').hasClass('fancybox-margin')){
-                        $('html').addClass('fancybox-margin fancybox-lock');
-                    }
-                    console.log($('html').hasClass('fancybox-margin'));
-                },
-                'afterClose': function(){
-                    $('html').removeClass('fancybox-margin fancybox-lock');
-                },
 				'padding':  0,
 				'width':    1087,
 				'height':   610,
