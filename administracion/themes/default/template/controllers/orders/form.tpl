@@ -283,6 +283,12 @@
 	function resetBind()
 	{
 		$('.fancybox').fancybox({
+            afterClose      : function(){
+                if(isApple()){ $('body').css({'position': ''}); }
+            },
+            afterShow       :   function(){
+                if(isApple()){ $('body').css({'position': 'fixed'}); }
+            },
 			'type': 'iframe',
 			'width': '90%',
 			'height': '90%',
@@ -292,7 +298,11 @@
 			'type': 'iframe',
 			'width': '90%',
 			'height': '90%',
+            afterShow       :   function(){
+                if(isApple()){ $('body').css({'position': 'fixed'}); }
+            },
 			'afterClose' : function () {
+                if(isApple()){ $('body').css({'position': ''}); }
 				searchCustomers();
 			}
 		});

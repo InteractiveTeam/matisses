@@ -35,6 +35,12 @@ $(document).ready(function(){
                 return true;
             }else{
                 $.fancybox({
+                    afterShow       :   function(){
+                        if(isApple()){ $('body').css({'position': 'fixed'}); }
+                    },
+                    'afterClose' : function () {
+                        if(isApple()){ $('body').css({'position': ''}); }
+                    },
                     'autoSize'      :   true,
                     'transitionIn'	:	'elastic',
                     'transitionOut'	:	'elastic',
@@ -67,8 +73,12 @@ $(document).ready(function(){
         'speedIn'		:	600,
         'speedOut'		:	200,
         'overlayShow'	:	false,
-        type: 'ajax',
+        type: 'ajax',        
+        'afterClose' : function () {
+            if(isApple()){ $('body').css({'position': ''}); }
+        },
         afterShow  :   function() {
+            if(isApple()){ $('body').css({'position': 'fixed'}); }
             $("#luxury_bond").uniform();
             validateBondForm();
             $("#mount").attr("min",min_amount);
@@ -112,6 +122,12 @@ $(document).ready(function(){
                     $(".ax-mod-qty").val(1);
                 }
                 $.fancybox({
+                    afterShow       :   function(){
+                        if(isApple()){ $('body').css({'position': 'fixed'}); }
+                    },
+                    'afterClose' : function () {
+                        if(isApple()){ $('body').css({'position': ''}); }
+                    },
                     'autoSize'      :   false, 
                     'minWidth'		:   600,
                     'height'        :   500, 
@@ -252,6 +268,12 @@ function validateBondForm(){
                     $("#message").text(result.msg);
                     ajaxCart.refresh();
                     $.fancybox({
+                        afterShow       :   function(){
+                            if(isApple()){ $('body').css({'position': 'fixed'}); }
+                        },
+                        'afterClose' : function () {
+                            if(isApple()){ $('body').css({'position': ''}); }
+                        },
                          'autoScale': true,
                          'transitionIn': 'elastic',
                          'transitionOut': 'elastic',
