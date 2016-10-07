@@ -254,6 +254,15 @@ function quick_view()
 
 		if (!!$.prototype.fancybox)
 			$.fancybox({
+                'afterLoad': function(){
+                    if(!$('html').hasClass('fancybox-margin')){
+                        $('html').addClass('fancybox-margin fancybox-lock');
+                    }
+                    console.log($('html').hasClass('fancybox-margin'));
+                },
+                'afterClose': function(){
+                    $('html').removeClass('fancybox-margin fancybox-lock');
+                },
 				'padding':  0,
 				'width':    1087,
 				'height':   610,

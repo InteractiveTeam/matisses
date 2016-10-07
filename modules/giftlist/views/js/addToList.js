@@ -8,7 +8,16 @@ $(function(){
 		$("#cant").val($("#quantity_wanted").val());
 	});
 
-	$("#btn_gift_list").fancybox({
+	$("#btn_gift_list").fancybox({        
+        'afterLoad': function(){
+            if(!$('html').hasClass('fancybox-margin')){
+                $('html').addClass('fancybox-margin fancybox-lock');
+            }
+            console.log($('html').hasClass('fancybox-margin'));
+        },
+        'afterClose': function(){
+            $('html').removeClass('fancybox-margin fancybox-lock');
+        },
 		'autoSize'      :   false,
 		'height'        :   340,
 		'width'			:    600,
@@ -67,6 +76,15 @@ $(function(){
 					res = JSON.parse(res);
                     if(res.error == true){
                          $.fancybox({
+                            'afterLoad': function(){
+                                if(!$('html').hasClass('fancybox-margin')){
+                                    $('html').addClass('fancybox-margin fancybox-lock');
+                                }
+                                console.log($('html').hasClass('fancybox-margin'));
+                            },
+                            'afterClose': function(){
+                                $('html').removeClass('fancybox-margin fancybox-lock');
+                            },
                             'autoScale': true,
                             'transitionIn': 'elastic',
                             'transitionOut': 'elastic',
@@ -90,6 +108,15 @@ $(function(){
                         $(".see-list").attr("href",res.description_link);
                         $.fancybox.close();
                         $.fancybox({
+                            'afterLoad': function(){
+                                if(!$('html').hasClass('fancybox-margin')){
+                                    $('html').addClass('fancybox-margin fancybox-lock');
+                                }
+                                console.log($('html').hasClass('fancybox-margin'));
+                            },
+                            'afterClose': function(){
+                                $('html').removeClass('fancybox-margin fancybox-lock');
+                            },
                              'autoScale': true,
                              'transitionIn': 'elastic',
                              'transitionOut': 'elastic',
@@ -104,6 +131,15 @@ $(function(){
 				},
 				error: function(res){
 					 $.fancybox({
+                        'afterLoad': function(){
+                            if(!$('html').hasClass('fancybox-margin')){
+                                $('html').addClass('fancybox-margin fancybox-lock');
+                            }
+                            console.log($('html').hasClass('fancybox-margin'));
+                        },
+                        'afterClose': function(){
+                            $('html').removeClass('fancybox-margin fancybox-lock');
+                        },
                         'autoScale': true,
                         'transitionIn': 'elastic',
                         'transitionOut': 'elastic',
