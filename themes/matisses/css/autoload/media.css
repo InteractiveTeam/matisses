@@ -2194,7 +2194,7 @@
 	}
 
     .fancybox-wrap {
-        width: 80% !important;
+        /*width: 80% !important;*/
     }
 
 	.header-container #search {
