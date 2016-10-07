@@ -282,13 +282,7 @@
 
 	function resetBind()
 	{
-		$('.fancybox').fancybox({
-            afterClose      : function(){
-                if(isApple()){ $('body').css({'position': ''}); }
-            },
-            afterShow       :   function(){
-                if(isApple()){ $('body').css({'position': 'fixed'}); }
-            },
+		$('.fancybox').fancybox({            
 			'type': 'iframe',
 			'width': '90%',
 			'height': '90%',
@@ -297,14 +291,7 @@
 		$('.fancybox_customer').fancybox({
 			'type': 'iframe',
 			'width': '90%',
-			'height': '90%',
-            afterShow       :   function(){
-                if(isApple()){ $('body').css({'position': 'fixed'}); }
-            },
-			'afterClose' : function () {
-                if(isApple()){ $('body').css({'position': ''}); }
-				searchCustomers();
-			}
+			'height': '90%'            
 		});
 		/*$("#new_address").fancybox({
 			onClosed: useCart(id_cart)
