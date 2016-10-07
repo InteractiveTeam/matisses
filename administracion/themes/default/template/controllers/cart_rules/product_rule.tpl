@@ -29,6 +29,12 @@
 <script type="text/javascript">
 	$('#product_rule_{$product_rule_group_id|intval}_{$product_rule_id|intval}_choose_content').parent().hide();
 	$("#product_rule_{$product_rule_group_id|intval}_{$product_rule_id|intval}_choose_link").fancybox({
+        afterClose      : function(){
+            if(isApple()){ $('body').css({'position': ''}); }
+        },
+        afterShow       :   function(){
+            if(isApple()){ $('body').css({'position': 'fixed'}); }
+        },
 		autoDimensions: false,
 		autoSize: false,
 		width: 600,

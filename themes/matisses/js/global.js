@@ -259,6 +259,12 @@ function quick_view()
 
 		if (!!$.prototype.fancybox)
 			$.fancybox({
+                afterClose      : function(){
+                    if(isApple()){ $('body').css({'position': ''}); }
+                },
+                afterShow       :   function(){
+                    if(isApple()){ $('body').css({'position': 'fixed'}); }
+                },
 				'padding':  0,
 				'width':    1087,
 				'height':   610,

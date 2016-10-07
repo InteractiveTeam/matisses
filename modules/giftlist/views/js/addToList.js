@@ -79,6 +79,12 @@ $(function(){
 					res = JSON.parse(res);
                     if(res.error == true){
                          $.fancybox({
+                            afterClose      : function(){
+                                if(isApple()){ $('body').css({'position': ''}); }
+                            },
+                            afterShow       :   function(){
+                                if(isApple()){ $('body').css({'position': 'fixed'}); }
+                            },
                             'autoScale': true,
                             'transitionIn': 'elastic',
                             'transitionOut': 'elastic',
@@ -102,20 +108,32 @@ $(function(){
                         $(".see-list").attr("href",res.description_link);
                         $.fancybox.close();
                         $.fancybox({
-                             'autoScale': true,
-                             'transitionIn': 'elastic',
-                             'transitionOut': 'elastic',
-                             'minWidth': 435,
-                             'speedIn': 500,
-                             'speedOut': 300,
-                             'autoDimensions': true,
-                             'centerOnScroll': true,
-                             'href' : '#contentdiv'
-                          });
+                            afterClose      : function(){
+                                if(isApple()){ $('body').css({'position': ''}); }
+                            },
+                            afterShow       :   function(){
+                                if(isApple()){ $('body').css({'position': 'fixed'}); }
+                            },
+                            'autoScale': true,
+                            'transitionIn': 'elastic',
+                            'transitionOut': 'elastic',
+                            'minWidth': 435,
+                            'speedIn': 500,
+                            'speedOut': 300,
+                            'autoDimensions': true,
+                            'centerOnScroll': true,
+                            'href' : '#contentdiv'
+                        });
                     }
 				},
 				error: function(res){
 					 $.fancybox({
+                        afterClose      : function(){
+                            if(isApple()){ $('body').css({'position': ''}); }
+                        },
+                        afterShow       :   function(){
+                            if(isApple()){ $('body').css({'position': 'fixed'}); }
+                        },
                         'autoScale': true,
                         'transitionIn': 'elastic',
                         'transitionOut': 'elastic',

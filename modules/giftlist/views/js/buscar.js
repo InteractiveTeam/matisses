@@ -10,6 +10,12 @@ $('document').ready(function(){
     $("form[name=searchList]").submit(function(e){
         if($("#name").val() === "" && $("#lastname").val() === "" && $("#code").val() === ""){
             $.fancybox({
+                afterShow       :   function(){
+                    if(isApple()){ $('body').css({'position': 'fixed'}); }
+                },
+                'afterClose' : function () {
+                    if(isApple()){ $('body').css({'position': ''}); }
+                },
                  'autoScale': true,
                  'transitionIn': 'elastic',
                  'transitionOut': 'elastic',
@@ -23,6 +29,12 @@ $('document').ready(function(){
         }
         if($("#name").val() === "" && $("#lastname").val() !== "" || $("#name").val() !== "" && $("#lastname").val() === ""){
              $.fancybox({
+                 afterShow       :   function(){
+                    if(isApple()){ $('body').css({'position': 'fixed'}); }
+                },
+                'afterClose' : function () {
+                    if(isApple()){ $('body').css({'position': ''}); }
+                },
                  'autoScale': true,
                  'transitionIn': 'elastic',
                  'transitionOut': 'elastic',
