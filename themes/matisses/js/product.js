@@ -893,6 +893,11 @@ function refreshProductImages(id_product_attribute)
 	$('#thumbs_list_frame').width((parseInt((thumb_width) * $('#thumbs_list_frame >li').length + 200)) + 'px');
 	$('#thumbs_list').trigger('goto', 0);
 	serialScrollFixLock('', '', '', '', 0);// SerialScroll Bug on goto 0 ?
+    
+    $.each($('#thumbs_list li:visible'),function(i,value){
+        $(this).children('a').trigger('click');
+        return false;
+    });
 }
 
 function saveCustomization()
