@@ -312,6 +312,10 @@ abstract class PaymentModuleCore extends Module
                     $params['delivery_option']		= (int)$id_address;
                     $total_shipping 				= Hook::exec('actionCalculateShipping',$params);
                     $total_shipping 				= (array)json_decode($total_shipping);
+                    
+                    $carrierFree = Db::getInstance()->getValue("SELECT is_free FROM "._DB_PREFIX_."carrier WHERE deleted = 0 AND id_carrier = ".$id_carrier);
+                    if($carrierFree == "1")
+                        $total_shipping['total'] = 0;
                         
 
 					$order->total_shipping_tax_excl = $total_shipping['total'];
