@@ -806,7 +806,7 @@ table.table-product-discounts {
 
 /* SEND TO FRIEND (pop-in) ##################################################################### */
 #send_friend_form {
-  width: 555px;
+  width: 100%;
   overflow: hidden; }
   @media (max-width: 767px) {
     #send_friend_form {
