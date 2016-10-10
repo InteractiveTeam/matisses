@@ -27,13 +27,13 @@ $(document).ready(function(){
  		goToPage();
 	window.addEventListener('scroll', function() {
 	  clearTimeout(timer);
-	  if(!body.classList.contains('disable-hover')) {
+	  /*if(!body.classList.contains('disable-hover')) {
 		body.classList.add('disable-hover')
-	  }
+	  }*/
 
-	  timer = setTimeout(function(){
+	  /*timer = setTimeout(function(){
 		body.classList.remove('disable-hover')
-	  },500);
+	  },500);*/
 	}, false);
 	/*map fix*/
 	$('.maps_content').click(function () {
