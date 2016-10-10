@@ -1824,14 +1824,14 @@ p.ax-no-products .fa {
     }
     
     #address-div a.chosen-single {
-        width: 600px;
+        width: 100%;
     }
     
     .fancybox-outer .btn.btn-default.btn-lista-regalos {
         margin: 0 2.5px;
     }
     
-    .products-associated .ax-list-edit {
+    .products-associated .ax-list-edit, .products-associated .ax-finish-edit {
         margin-top: 40PX;
     }
     
