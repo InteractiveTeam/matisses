@@ -2505,6 +2505,36 @@
         display: inline-block;
         vertical-align: middle;
     }
+    
+    .my-shopping .grid_5 .btn.btn-default {
+        margin-top: 10px;
+    }
+    
+    .my-giftlist .col-md-2 {
+        width: 40%;
+        float: left;
+        margin-top: 15px;
+    }
+    
+    .my-giftlist .ax-logo-lista-regalos {
+        width: 20%;
+        float: left;
+    }
+    
+    .my-giftlist .ax-logo-formularios-regalos {
+        width: 80%;
+        float: left;
+    }
+    
+    .my-giftlist .ax-logo-formularios-regalos button.btn.btn-default.btn-red {
+        padding: 0.37rem 1.3rem;
+        vertical-align: top;
+        margin-top: 5px;
+    }
+    
+    .my-giftlist .ax-logo-formularios-regalos .form-control.code {
+        margin: 5px 5px 5px 0;
+    }
 
 }
 
@@ -4792,6 +4822,30 @@ html body .left-down-menu .sf-contener .menu-content > li > a {
     
     .pb-left-column #views_block {
         height: auto;
+    }
+    
+    .my-shopping .grid_5 .btn.btn-default {
+        margin-top: 10px;
+    }
+    
+    .my-giftlist .col-md-2, .my-giftlist .ax-logo-lista-regalos, .my-giftlist .ax-logo-formularios-regalos  {
+        width: 100%;
+        float: none;
+        margin-top: 20px;
+    }
+    
+    .my-giftlist .ax-logo-formularios-regalos button.btn.btn-default.btn-red {
+        padding: 0.37rem 1.3rem;
+        vertical-align: top;
+        margin-top: 5px;
+    }
+    
+    .my-giftlist .ax-logo-formularios-regalos .form-control.code {
+        margin: 5px 5px 5px 0;
+    }
+    
+    .my-giftlist .ax-form-lista-deseos .form-control {
+        width: 100%;
     }
     
     
