@@ -1175,6 +1175,10 @@ label.error:before {
     left: 0;
 }
 
+.checkbox label span {
+    white-space: normal;
+}
+
 .fancybox-skin .fancybox-close:after {
     color: #5e534d !important;
 }
