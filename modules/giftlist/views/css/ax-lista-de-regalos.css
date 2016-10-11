@@ -1165,8 +1165,14 @@ label.error:before {
     background: #5e534d;
 }
 
-.checker .checked:before, .radio .checked:before {
+.checkbox .checker .checked:before, .checkbox .radio .checked:before {
     color: #ffd594 !important;
+    background: url(/themes/matisses/img/ax-icon-check-ok.svg);
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .fancybox-skin .fancybox-close:after {
