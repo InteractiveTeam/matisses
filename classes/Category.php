@@ -1122,6 +1122,50 @@ class CategoryCore extends ObjectModel
 			$id_current = $result['id_parent'];
 		}
 	}
+    public static function getParents($id_cat,$id_lang = null)
+	{
+		$context = Context::getContext()->cloneContext();
+		$context->shop = clone($context->shop);
+
+		if (is_null($id_lang))
+			$id_lang = $context->language->id;
+
+		$categories = null;
+		$id_current = $id_cat;
+		if (count(Category::getCategoriesWithoutParent()) > 1 && Configuration::get('PS_MULTISHOP_FEATURE_ACTIVE') && count(Shop::getShops(true, null, true)) != 1)
+			$context->shop->id_category = (int)Configuration::get('PS_ROOT_CATEGORY');
+		elseif (!$context->shop->id)
+			$context->shop = new Shop(Configuration::get('PS_SHOP_DEFAULT'));
+		$id_shop = $context->shop->id;
+		while (true)
+		{
+			$sql = '
+			SELECT c.*, cl.*
+			FROM `'._DB_PREFIX_.'category` c
+			LEFT JOIN `'._DB_PREFIX_.'category_lang` cl
+				ON (c.`id_category` = cl.`id_category`
+				AND `id_lang` = '.(int)$id_lang.Shop::addSqlRestrictionOnLang('cl').')';
+			if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP)
+				$sql .= ' LEFT JOIN `'._DB_PREFIX_.'category_shop` cs ON (c.`id_category` = cs.`id_category` AND cs.`id_shop` = '.(int)$id_shop.')';
+			$sql .= ' WHERE c.`id_category` = '.(int)$id_current;
+			if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP)
+				$sql .= ' AND cs.`id_shop` = '.(int)$context->shop->id;
+            $sql .= ' AND c.`level_depth` > 2';
+			$root_category = Category::getRootCategory();
+			if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP
+				&& (!Tools::isSubmit('id_category') || (int)Tools::getValue('id_category') == (int)$root_category->id || (int)$root_category->id == (int)$context->shop->id_category))
+				$sql .= ' AND c.`id_parent` != 0';
+			$result = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow($sql);
+            
+			if ($result)
+				$categories[] = $result;
+			elseif (!$categories)
+				$categories = array();
+			if (!$result || ($result['id_category'] == $context->shop->id_category))
+				return array_reverse($categories);
+			$id_current = $result['id_parent'];
+		}
+	}
 	/**
 	* Specify if a category already in base
 	*

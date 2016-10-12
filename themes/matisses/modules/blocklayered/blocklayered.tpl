@@ -72,25 +72,46 @@ param_product_url = '';
 					</ul>
 				</div>
 				{/if}
-                
-                <h2 class="layered_subtitle"> {l s='Categoría'}</h2>
-					<div id="enabled_filters" class="enabled-filters">
-                        <ul>
-                            <li>
-                                <a href="javascript:void(0)" data-rel="layered_id_feature_146" title="Cancelar"></a>
-                                {assign var="categoria" value=Category::getCategorybyId(Tools::getValue('id_category'))}
-                                {if $categoria}
-                                	{$categoria}
+                {if $category}
+                    {assign var="cat" value=Category::getParents($category->id)}
+                {else}
+                    {assign var="cat" value=Category::getParents(Tools::getValue('id_category'))}
+                {/if}
+                {assign var=nCat value=count($cat)}
+                {*pre>{$cat|print_r}</pre>*}
+				
+                {for $i=0 to $nCat - 1}
+                    {if $i == 0}
+                        <div id="enabled_filters" class="enabled-filters">
+                            <ul>
+                                <li>
+                                {*if $nCat > 1 }
+                                    <a href="/{$cat[$i]['id_category']}-{$cat[$i]['link_rewrite']}" title="Cancelar"></a>
                                 {else}
-                                	{$category->name}
-                                {/if}
-                            </li>
-                        </ul>
-                    </div>
+                                    <a href="javascript:void(0)" title="Cancelar"></a>
+                                {/if*}
+                                {$cat[$i]['name']}
+                                 </li>
+                             </ul>
+                         </div>
+                     {else}
+                        {if $cat[$i]['level_depth'] > 4}
+                            <h2 class="layered_subtitle"> {l s='Subcategoría'}</h2>
+                        {else}
+                            <h2 class="layered_subtitle"> {l s='Categoría'}</h2>
+                        {/if}
+                        <div id="enabled_filters" class="enabled-filters">
+                            <ul>
+                                <li>
+                                <a href="/{$cat[$i-1]['id_category']}-{$cat[$i-1]['link_rewrite']}" title="Cancelar"></a>
+                                {$cat[$i]['name']}
+                                 </li>
+                             </ul>
+                        </div>
+                     {/if}
+                {/for}
                 
-                
-
-               {$filter2 = Hook::exec('actionSortFilters', ['filters' => $filters], null, true)}
+                {$filter2 = Hook::exec('actionSortFilters', ['filters' => $filters], null, true)}
                 {assign var='filters' value=$filter2.matisses}
 
 				{foreach from=$filters item=filter}
@@ -109,8 +130,15 @@ param_product_url = '';
                             {$cont = $cont + 1}
                         	{/if}
                         	{else}
-
-							<h2 class="layered_subtitle"> {$filter.name|escape:html:'UTF-8'}</h2>
+                            {if $filter.type == "category"}
+                                {if $nCat >= 2}
+				                    <h2 class="layered_subtitle"> {l s='Subcategorías'}</h2>
+                                {else}
+                                    <h2 class="layered_subtitle"> {l s='Categorías'}</h2>
+                                {/if}
+                            {else}
+                                 <h2 class="layered_subtitle"> {$filter.name|escape:html:'UTF-8'}</h2>
+                            {/if}
 
                         {/if}
       {if isset($selected_filters) && $n_filters > 0}
