@@ -1070,7 +1070,7 @@ Quick View Styles
 	padding-right: 5px;
 	}
 	.elem_butt .hidden-xxs{
-	font-size: 0.8em;
+	/*font-size: 0.8em;*/
 	}
 	}
 	@media (max-width: 1199px) {

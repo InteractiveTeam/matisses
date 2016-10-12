@@ -60,8 +60,18 @@
 			</p>
 		</div>
 		<div class="grid_6">
+			
 			<div id="address_invoice_form" class="select form-group selector1"{if $cart->id_address_invoice == $cart->id_address_delivery} style="display: none;"{/if}>
-				{if $addresses|@count > 1}
+				{if $id_list > 1}
+					<label for="id_address_invoice" class="strong">{l s='Choose a billing address:'}</label>
+					<select name="id_address_invoice" id="id_address_invoice" class="address_select form-control">
+					{section loop=$addressGift step=-1 name=address}
+						<option value="{$addressGift[address].id_address|intval}"{if $addressGift[address].id_address == $cart->id_address_invoice && $cart->id_address_delivery != $cart->id_address_invoice} selected="selected"{/if}>
+							{$addressGift[address].alias|escape:'html':'UTF-8'}
+						</option>
+					{/section}
+					</select><span class="waitimage"></span>
+				{elseif $addresses|@count > 1}
 					<label for="id_address_invoice" class="strong">{l s='Choose a billing address:'}</label>
 					<select name="id_address_invoice" id="id_address_invoice" class="address_select form-control">
 					{section loop=$addresses step=-1 name=address}
@@ -136,6 +146,8 @@
 {capture name=addressUrlAdd}{$smarty.capture.addressUrl|cat:'&id_address='}{/capture}
 {addJsDef addressUrlAdd=$smarty.capture.addressUrlAdd}
 {addJsDef formatedAddressFieldsValuesList=$formatedAddressFieldsValuesList}
+{addJsDef formatedAddressFieldsValuesListGift=$formatedAddressFieldsValuesListGift}
+{addJsDef isGiftAddress=$isGiftAddress}
 {addJsDef opc=$opc|boolval}
 {capture}<h3 class="page-subheading">{l s='Your billing address' js=1}</h3>{/capture}
 {addJsDefL name=titleInvoice}{$smarty.capture.default|@addcslashes:'\''}{/addJsDefL}
