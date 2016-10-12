@@ -6,10 +6,10 @@
 		</a>
 	</div>
 	<div class="content-account row">
-		<div class="col-md-2">
+		<div class="col-md-2 ax-logo-lista-regalos">
 			<img src="{$modules_dir}/giftlist/views/img/regalo.png" />
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-6 ax-logo-formularios-regalos">
 			<h3>{l s='Buscar lista' mod='giftlist'}</h3>
 			<p>{l s='Busca una lista de regalos existente' mod='giftlist'}</p>
 			<form action="{$search_link}" method="post" id="ax-buscar">

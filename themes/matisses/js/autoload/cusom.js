@@ -27,13 +27,13 @@ $(document).ready(function(){
  		goToPage();
 	window.addEventListener('scroll', function() {
 	  clearTimeout(timer);
-	  if(!body.classList.contains('disable-hover')) {
+	  /*if(!body.classList.contains('disable-hover')) {
 		body.classList.add('disable-hover')
-	  }
+	  }*/
 
-	  timer = setTimeout(function(){
+	  /*timer = setTimeout(function(){
 		body.classList.remove('disable-hover')
-	  },500);
+	  },500);*/
 	}, false);
 	/*map fix*/
 	$('.maps_content').click(function () {
@@ -203,7 +203,7 @@ $(document).ready(function(){
 					if (isTouch()) {
 							$(window).off("scroll.onlyDesktop");
 					} else {
-							if(($(window).width() +  scrollWidth()) < 768){
+							if(($(window).width() +  scrollWidth()) <= 768){
 								$('#header').removeClass('fixedHeader').css('margin-top','0');
 							}
 							$navbarTop = $("#topMain").outerHeight();
@@ -211,7 +211,9 @@ $(document).ready(function(){
 							$(window).on("scroll.onlyDesktop", function() {
 									var scrollX = $(window).scrollTop();
 									if (scrollX > $navbarTop && ($(window).width() +  scrollWidth()) >767) {
-											$("#header").addClass('fixedHeader').css('margin-top', '0');
+                                        if(($(window).width() +  scrollWidth()) > 768){
+                                            $("#header").addClass('fixedHeader').css('margin-top', '0'); 
+                                        }
 											$('.local-block .current').each(
 												function(){
 													if($(this).hasClass('active')){

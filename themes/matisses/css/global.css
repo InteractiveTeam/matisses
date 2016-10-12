@@ -6201,8 +6201,9 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 
 #contentdiv .image-prod {
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: auto 100%;
     height: 180px !important;
+    background-position: center;
 }
 
 #frmAddGiftList .form-group {

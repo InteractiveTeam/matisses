@@ -524,7 +524,7 @@
 				
 			 $ddf = fopen(dirname(__FILE__).'/log/'.date("Y-m-d").'.log','a'); 
 			 fwrite($ddf,$msm); 
-			 fclose($ddf);  
+			 fclose($ddf);
 		}
 	}
 	
@@ -683,11 +683,18 @@
 				
 				$Categories = Db::getInstance()->ExecuteS($sql);
 				
-				foreach($Categories as $d => $v)
-					array_push($CategoriesProduct,$Categories[$d]['id_category']);
-				
+				foreach($Categories as $d => $v){
+                    $c = new Category((int)$Categories[$d]['id_category']);          
+                    $pCategories = $c->getParentsCategories(1);
+					//array_push($CategoriesProduct,$Categories[$d]['id_category']);
+                    $i = 0;
+                    while($pCategories[$i]['level_depth'] > 2){
+                        array_push($CategoriesProduct,$pCategories[$i]['id_category']);
+                        $i++;
+                    }
+                }  
 				unset($_data['subgroupCode']);	
-				$_data['subgroupCode'] = $CategoriesProduct;	
+				$_data['subgroupCode'] = $CategoriesProduct;    	
 			}
                 
 			if($_data['processImages']==1) {

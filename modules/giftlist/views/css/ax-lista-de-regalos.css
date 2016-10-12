@@ -1165,8 +1165,21 @@ label.error:before {
     background: #5e534d;
 }
 
-.checker .checked:before, .radio .checked:before {
+.checkbox .checker .checked:before, .checkbox .radio .checked:before {
     color: #ffd594 !important;
+    background: url(themes/matisses/img/ax-icon-check-ok.svg) no-repeat;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    background-size: 100%;
+    font-size: 0;
+}
+
+.checkbox label span {
+    white-space: normal;
 }
 
 .fancybox-skin .fancybox-close:after {
@@ -1771,7 +1784,7 @@ p.ax-no-products .fa {
     } 
     
     #info-div .chosen-single {
-        width: 600px;
+        width: 566px;
     }
     
     #info-div .ax-date-event {
@@ -1819,14 +1832,14 @@ p.ax-no-products .fa {
     }
     
     #address-div a.chosen-single {
-        width: 600px;
+        width: 100%;
     }
     
     .fancybox-outer .btn.btn-default.btn-lista-regalos {
         margin: 0 2.5px;
     }
     
-    .products-associated .ax-list-edit {
+    .products-associated .ax-list-edit, .products-associated .ax-finish-edit {
         margin-top: 40PX;
     }
     
