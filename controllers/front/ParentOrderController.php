@@ -401,14 +401,11 @@ class ParentOrderControllerCore extends FrontController
                 if($p['id_giftlist'] != 0){
                     $id_list = GiftListModel::getListAddress($p['id_giftlist']);
                     break;
-                }
+                }    
             }
-
+            
             $customerAddresses = $customer->getAddresses($this->context->language->id,$id_list);
-            if($id_list > 0){
-            	$customerAddressesGift = $customer->getAddresses($this->context->language->id,0,1);            	            	
-            }
-			
+
 			// Getting a list of formated address fields with associated values
 			$formatedAddressFieldsValuesList = array();
 
@@ -425,24 +422,10 @@ class ParentOrderControllerCore extends FrontController
 				unset($tmpAddress);
 			}
 
-			if($id_list > 0){
-				foreach ($customerAddressesGift as $i => $address){
-					if (!Address::isCountryActiveById((int)$address['id_address']))
-						unset($customerAddressesGift[$i]);
-					$tmpAddress = new Address($address['id_address']);
-					$formatedAddressFieldsValuesListGift[$address['id_address']]['ordered_fields'] = AddressFormat::getOrderedAddressFields($address['id_country']);
-					$formatedAddressFieldsValuesListGift[$address['id_address']]['formated_fields_values'] = AddressFormat::getFormattedAddressFieldsValues(
-						$tmpAddress,
-						$formatedAddressFieldsValuesListGift[$address['id_address']]['ordered_fields']);
-
-					unset($tmpAddress);
-				}
-			}
-
 			$customerAddresses = array_values($customerAddresses);
-			
+
 			if (!count($customerAddresses) && !Tools::isSubmit('ajax'))
-			{				
+			{
 				$bad_delivery = false;
 				if (($bad_delivery = (bool)!Address::isCountryActiveById((int)$this->context->cart->id_address_delivery)) || !Address::isCountryActiveById((int)$this->context->cart->id_address_invoice))
 				{
@@ -460,41 +443,28 @@ class ParentOrderControllerCore extends FrontController
 					Tools::redirect($this->context->link->getPageLink('address', true, (int)$this->context->language->id, $params));
 				}
 			}
-
-			/*print_r($formatedAddressFieldsValuesList);
-			echo "<br>";
-			print_r($formatedAddressFieldsValuesListGift);
-			exit();*/
 			$this->context->smarty->assign(array(
 				'addresses' => $customerAddresses,
-				'addressGift' => $customerAddressesGift,
-				'isGiftAddress'=>$id_list,
-				'id_list'=>$id_list,
-				'formatedAddressFieldsValuesList' => $formatedAddressFieldsValuesList,
-				'formatedAddressFieldsValuesListGift' => $formatedAddressFieldsValuesListGift)
+				'formatedAddressFieldsValuesList' => $formatedAddressFieldsValuesList)
 			);
 
 			/* Setting default addresses for cart */
 			if (count($customerAddresses))
 			{
-                if($id_list != 0){                	
+                if($id_list != 0)
                     $this->context->cart->id_address_delivery = $id_list;
-                    $this->context->cart->id_address_invoice = $customerAddressesGift[0]['id_address'];
-                }
                 
 				if ((!isset($this->context->cart->id_address_delivery) || empty($this->context->cart->id_address_delivery)) || !Address::isCountryActiveById((int)$this->context->cart->id_address_delivery))
 				{
 					$this->context->cart->id_address_delivery = (int)$customerAddresses[0]['id_address'];
 					$update = 1;
 				}
-
 				if ((!isset($this->context->cart->id_address_invoice) || empty($this->context->cart->id_address_invoice)) || !Address::isCountryActiveById((int)$this->context->cart->id_address_invoice))
-				{					
+				{
 					$this->context->cart->id_address_invoice = (int)$customerAddresses[0]['id_address'];
-					
 					$update = 1;
 				}
-				
+
 				/* Update cart addresses only if needed */
 				if (isset($update) && $update)
 				{

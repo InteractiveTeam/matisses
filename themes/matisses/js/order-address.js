@@ -26,11 +26,10 @@
 
 
 $(document).ready(function(){
-	console.log(isGiftAddress,formatedAddressFieldsValuesListGift);
 	if (typeof formatedAddressFieldsValuesList !== 'undefined')
 		updateAddressesDisplay(true);
 
-	$(document).on('change', 'select[name=id_address_delivery], select[name=id_address_invoice]', function(){		
+	$(document).on('change', 'select[name=id_address_delivery], select[name=id_address_invoice]', function(){
 		updateAddressesDisplay();
 		if (typeof opc !=='undefined' && opc)
 			updateAddressSelection();
@@ -61,13 +60,8 @@ function updateAddressesDisplay(first_view)
 		if ($('#multishipping_mode_checkbox:checked').length === 0) {
 			$('#address_invoice_form:visible').hide('fast');
 		}
+		$('ul#address_invoice').html($('ul#address_delivery').html());
 		$('ul#address_invoice li.address_title').html(txtInvoiceTitle);
-
-		if (isGiftAddress > 0) {
-			updateAddressDisplay('invoice');
-		}else{
-			$('ul#address_invoice').html($('ul#address_delivery').html());
-		}
 	}
 	else
 	{
@@ -202,18 +196,10 @@ function buildAddressBlock(id_address, address_type, dest_comp)
 	if (isNaN(id_address))
 		return;
 	var adr_titles_vals = getAddressesTitles();
-	if (isGiftAddress > 0 && address_type=='invoice') {
-		var li_content = formatedAddressFieldsValuesListGift[id_address]['formated_fields_values'];
-	}else{
-		var li_content = formatedAddressFieldsValuesList[id_address]['formated_fields_values'];
-	}
+	var li_content = formatedAddressFieldsValuesList[id_address]['formated_fields_values'];
 	var ordered_fields_name = ['title'];
 	var reg = new RegExp("[ ]+", "g");
-	if (isGiftAddress > 0 && address_type=='invoice') {
-		ordered_fields_name = ordered_fields_name.concat(formatedAddressFieldsValuesListGift[id_address]['ordered_fields']);
-	}else{
-		ordered_fields_name = ordered_fields_name.concat(formatedAddressFieldsValuesList[id_address]['ordered_fields']);
-	}
+	ordered_fields_name = ordered_fields_name.concat(formatedAddressFieldsValuesList[id_address]['ordered_fields']);
 	ordered_fields_name = ordered_fields_name.concat(['update']);
 	dest_comp.html('');
 	li_content['title'] = adr_titles_vals[address_type];
