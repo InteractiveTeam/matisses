@@ -3169,6 +3169,22 @@ class Cart extends CartCore
 		if (!$id_lang)
 			$id_lang = $context->language->id;
 
+		/*$id_list = 0;
+        foreach($context->cart->getProducts() as $p){
+            if($p['id_giftlist'] != 0){
+                $id_list = 1;//GiftListModel::getListAddress($p['id_giftlist']);
+                break;
+            }
+        }
+
+        if($id_list != 0){
+			$customer = $context->customer;
+			$delivery = $customer->getAddresses($id_lang,0,$id_list);
+			$deliveryNew = $delivery[0]['id_address'];
+			$this->updateAddressId((int)$this->id_address_delivery,$delivery[0]['id_address']);
+			$this->id_address_delivery = $deliveryNew;
+        }*/
+
 		$delivery = new Address((int)$this->id_address_delivery);
 		$invoice = new Address((int)$this->id_address_invoice);
 		

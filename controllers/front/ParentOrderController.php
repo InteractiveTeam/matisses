@@ -406,7 +406,7 @@ class ParentOrderControllerCore extends FrontController
 
             $customerAddresses = $customer->getAddresses($this->context->language->id,$id_list);
             if($id_list > 0){
-            	$customerAddressesGift = $customer->getAddresses($this->context->language->id,0,1);            	            	
+            	$customerAddressesGift = $customer->getAddresses($this->context->language->id,0,1);
             }
 			
 			// Getting a list of formated address fields with associated values
@@ -461,10 +461,6 @@ class ParentOrderControllerCore extends FrontController
 				}
 			}
 
-			/*print_r($formatedAddressFieldsValuesList);
-			echo "<br>";
-			print_r($formatedAddressFieldsValuesListGift);
-			exit();*/
 			$this->context->smarty->assign(array(
 				'addresses' => $customerAddresses,
 				'addressGift' => $customerAddressesGift,
