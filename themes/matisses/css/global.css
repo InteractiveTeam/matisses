@@ -6054,12 +6054,13 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
     margin: 0 3px 0 0;
     float: left;
     text-align: center;
-    padding: 0.41rem 6px;
+    padding: 6.5px 6px;
     color: #F00;
     border: #E3E0E0 solid 1px;
     background: #f8f8f8;
     font-family: 'gothic';
     font-size: 15px;
+    height: 38px;
 }
 
 .fancybox-wrap .wrap_buttons #btn_gift_list {
@@ -6417,4 +6418,14 @@ form .radio input{
 
 #carrier_area form .radio input{
     visibility: visible;
+}
+
+.ax-title-parents {
+    color: #d71b2a;
+    font-size: 1.25rem;
+    font-family: 'condensed';
+    text-transform: uppercase;
+    margin-bottom: 0.9375rem;
+    padding: 0 10px 10px 10px;
+    border-bottom: solid 1px;
 }

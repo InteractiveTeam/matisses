@@ -82,7 +82,7 @@ param_product_url = '';
 				
                 {for $i=0 to $nCat - 1}
                     {if $i == 0}
-                        <div id="enabled_filters" class="enabled-filters">
+                        <div id="enabled_filters" class="ax-title-parents">
                             <ul>
                                 <li>
                                 {*if $nCat > 1 }
