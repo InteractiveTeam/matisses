@@ -2433,8 +2433,12 @@
     
     #buy_block .box-info-product .elem_butt, .wrap_buttons #btn_gift_list, #buy_block .box-info-product #usefull_link_block {
         width: 100%;
-        font-size: 1rem;
+        font-size: 18px;
         margin: 5px 0;
+    }
+    
+    #buy_block .box-info-product #usefull_link_block {
+        margin: 0;
     }
     
     .wrap_buttons #btn_gift_list {

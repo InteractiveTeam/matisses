@@ -1167,12 +1167,15 @@ label.error:before {
 
 .checkbox .checker .checked:before, .checkbox .radio .checked:before {
     color: #ffd594 !important;
-    background: url(/themes/matisses/img/ax-icon-check-ok.svg);
+    background: url(themes/matisses/img/ax-icon-check-ok.svg) no-repeat;
     width: 16px;
     height: 16px;
     position: absolute;
     top: 0;
     left: 0;
+    display: block;
+    background-size: 100%;
+    font-size: 0;
 }
 
 .checkbox label span {
