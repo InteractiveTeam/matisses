@@ -400,7 +400,7 @@
 						array_push($_Categories, $_Category);
 				}
 				
-				if($_Combination['processImages']==1)
+				if(is_array($_Combination['processImages']))
 					$_processImages = true;
 				
 				
@@ -451,12 +451,13 @@
 				$_Product->update();
 				__MessaggeLog('Referencia: '.$_Product->reference." Id ".$_Product->id." - ACTUALIZADO");
 			}else{
-					$_Product->add();
-					__MessaggeLog('Referencia: '.$_Product->reference." Id ".$_Product->id." - CREADO");
-				 }
-			  
-            if($_processImages==true)
-                $_Product->deleteImages();
+				$_Product->add();
+				__MessaggeLog('Referencia: '.$_Product->reference." Id ".$_Product->id." - CREADO");
+			 }
+			 
+            if($_processImages){
+                $_Product->deleteImages();            
+            }
 			 
 			if($_Product->id)
 			{
@@ -556,22 +557,22 @@
                 
 		$_Data2 = $_Data;        
         
-		foreach($_Data2 as $key => $_Model) {
-			if(is_array($_Model['references'])) {                
-				foreach($_Model['references'] as $k => $_Reference) {					
+		foreach($_Data2 as $key => $_Model) {			
+			if(is_array($_Model['references'])) {
+				foreach($_Model['references'] as $k => $_Reference) {
 					 __MessaggeLog(' ------------ Consultando ('.$_Model['code'].') '.date('H:i:s').' '.$_Reference."\n");
 					$_data =  __parseData($_wsmatisses->wsmatisses_getInfoProduct($_Reference,$includeall),$_Model['status']);
 					if($_data)
 						$_Models[$_Model['code']][$_Reference] =$_data;			
 				}
-			}else{     
+			}else{
                 __MessaggeLog(' ------------ Consultando ('.$_Model['code'].') '.date('H:i:s').' '.$_Model['references']."\n");
                 $_data =  __parseData($_wsmatisses->wsmatisses_getInfoProduct($_Model['references'],$includeall),$_Model['status']);
                 //$_data2 =  $_wsmatisses->wsmatisses_getInfoProduct($_Model['references'],$includeall);
                 if($_data)
                     $_Models[$_Model['code']][$_Model['references']] = $_data;
                 
-             }
+            }
 		}
         
 		// desactivo los productos que no existen
@@ -597,13 +598,13 @@
 		return $_Models;
 	}
 	
-	function __parseData($_data,$status = null){        
+	function __parseData($_data,$status = null){
 		if($_data['description'] && $_data['shortDescription'] && $_data['price'] && $_data['itemName'] && $_data['model'] && $_data['subgroupCode'] && sizeof($_data['color'])==3)
 		{
             if(empty($_data['webName'])) {
                $_data['webName'] = str_replace(' ','-',strtolower($_data['itemName'])); 
             }
-				
+			
 			$path		= dirname(__FILE__).'/files/'.$_data['itemCode'];
 			$materials 	= $_data['materials'];
 			//echo "Materiales  ".count(array_filter($materials,'is_array'));
@@ -636,8 +637,8 @@
 			$_data['video']					=  strstr($_data['itemCode'].'/animacion/'.basename(current(glob($path.'/animacion/*.html'))),'.html') ? $_data['itemCode'].'/animacion/'.basename(current(glob($path.'/animacion/*.html'))) : NULL;
             
             $_data['manufacture'] = saveManufacture($_data['brand']['code'],$_data['brand']['name']);
-			$_data['status'] = ($status && $_data['processImages']==1)?true:false;
-                        
+			$_data['status'] = ($status && (int)$_data['processImages']==1)?true:false;
+            
 			if($_data['newFrom']) {
 				unset($date);
 				$date = explode('-',date('Y-m-d',$_data['newFrom']/1000));
@@ -697,10 +698,10 @@
 				$_data['subgroupCode'] = $CategoriesProduct;    	
 			}
                 
-			if($_data['processImages']==1) {
-				unset($images);                
+			if((int)$_data['processImages']==1) {
+				unset($images);
 				if(sizeof($images = glob($path.'/images/*.jpg'))>0) {
-					foreach($images as $dd => $image) {                                                
+					foreach($images as $dd => $image) {
 						if(filesize($image)>Configuration::get("PS_PRODUCT_PICTURE_MAX_SIZE") || (substr($image, -27,20) != $_data['itemCode'])){
 							unset($images[$dd]);
                         }
@@ -737,7 +738,7 @@
 						$_data['color']  = Db::getInstance()->getRow("SELECT * FROM "._DB_PREFIX_."attribute WHERE id_sap='".$Attribute->id_sap."'");;
 					 }
 			}
-			return $_data;
+			return $_data;			
 		}else{
             return NULL;
          }
