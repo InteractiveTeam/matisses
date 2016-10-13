@@ -85,12 +85,7 @@ param_product_url = '';
                         <div id="enabled_filters" class="ax-title-parents">
                             <ul>
                                 <li>
-                                {*if $nCat > 1 }
-                                    <a href="/{$cat[$i]['id_category']}-{$cat[$i]['link_rewrite']}" title="Cancelar"></a>
-                                {else}
-                                    <a href="javascript:void(0)" title="Cancelar"></a>
-                                {/if*}
-                                {$cat[$i]['name']}
+                                    <a href="/{$cat[$i]['id_category']}-{$cat[$i]['link_rewrite']}">{$cat[$i]['name']}</a>
                                  </li>
                              </ul>
                          </div>
