@@ -1,4 +1,7 @@
-<?php 
+<?php
+	ini_set("memory_limit", "-1");
+	set_time_limit(0);
+
 	include_once dirname(__FILE__).'/../../config/config.inc.php';
 
 
@@ -8,6 +11,7 @@
 
 	date_default_timezone_set("American/Bogota");
 	
+
 	echo "Start<br>";
 	echo date('Y-m-d H:i:s');
 	$_Product->deleteImages();
