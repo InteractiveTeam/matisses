@@ -78,7 +78,7 @@ class ListProductBondModel extends ObjectModel
 	 */
 	public function getProductsByList($id){
          $context = Context::getContext();
-		 $sql = "SELECT * FROM "._DB_PREFIX_."list_product_bond WHERE id_list = ".$id." AND id_product <> 0 AND bought = 0 ORDER BY favorite";
+		 $sql = "SELECT * FROM "._DB_PREFIX_."list_product_bond a INNER JOIN "._DB_PREFIX_."product b ON a.id_product = b.id_product INNER JOIN ps_product_shop c ON a.id_product = c.id_product  WHERE id_list = ".$id." AND a.id_product <> 0 AND bought = 0 AND b.active = 1 AND c.active = 1 ORDER BY favorite";
          $res  = Db::getInstance()->executeS($sql);
 		 $prod = array();
 		 $link = new LinkCore();
@@ -205,7 +205,7 @@ class ListProductBondModel extends ObjectModel
         return $prod;
     }
     
-    public static function getByProductAndListNotAgroup($id_prod,$id_list,$id_att){
+    public static function getByProductAndListNotAgroup($id_prod,$id_list,$id_att = 0){
         $totalCant = "SELECT `cant`,`missing`,`option` FROM `"._DB_PREFIX_."list_product_bond` WHERE `id_list`= ".$id_list." AND `id_product` = ".$id_prod." AND `group` = 0";
         $totalCant = Db::getInstance()->executeS($totalCant);
         foreach($totalCant as $row)
