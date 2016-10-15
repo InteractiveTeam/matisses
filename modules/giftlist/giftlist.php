@@ -103,6 +103,7 @@ class giftlist extends Module
 			$this->registerHook("actionOrderStatusUpdate");
 			$this->registerHook("actionGiftlistProccess");
             $this->registerHook("actionCustomerAccountAdd");
+            $this->registerHook("actionUpdateQuantity");
             $this->registerHook("actionProductInList");
             $this->registerHook('header');
 			$this->dbstruct->CreateListConfigurationTable();
@@ -170,19 +171,33 @@ class giftlist extends Module
 		}
 	}
     
-    public function hookActionProductInList($params){
+    public function hookactionUpdateQuantity($params){
+        if($params['quantity'] == 0){
+            $lists = DB::getInstance()->executeS('SELECT id_list FROM '._DB_PREFIX_.'list_product_bond WHERE id_product = '.$params['id_product']);
+            foreach($lists as $l){
+                $params['id_list'] = $l['id_list'];
+                $this->outOfStock($params);
+            }
+        }
+    }
+    
+    public function outOfStock($params){
+        if($params['id_product_attribute'] == 0)
+            if(!empty($_REQUEST['id_product_attribute']) && $_REQUEST['id_product_attribute'] != 0)
+                $params['id_product_attribute'] = $_REQUEST['id_product_attribute'];
         $l = new GiftListModel($params['id_list']);
         if(!$l->real_not)
             return true;
         $p = new ProductCore($params["id_product"]);
         $sql = "SELECT count(*) AS total FROM `"._DB_PREFIX_."list_product_bond` WHERE `id_list` = ".$params['id_list']." AND `id_product` = ". $params["id_product"];
         if(Db::getInstance()->getValue($sql) > 1)
-            $lpd = ListProductBondModel::getByProductAndListNotAgroup($params['id_product'],$params['id_list']);
+            $lpd = ListProductBondModel::getByProductAndList($params['id_product'],$params['id_list'],$params['id_product_attribute']);
         else
-            $lpd = ListProductBondModel::getByProductAndList($params['id_product'],$params['id_list']);
+            $lpd = ListProductBondModel::getByProductAndListNotAgroup($params['id_product'],$params['id_list'],$params['id_product_attribute']);
         $customer = new CustomerCore($l->id_creator);
         $attr = $p->getAttributeCombinationsById($lpd['option'][3]->value,Context::getContext()->language->id);
         $id_image = ProductCore::getCover($params['id_product']);
+        
         // get Image by id
         if (sizeof($id_image) > 0) {
             $image = new Image($id_image['id_image']);
@@ -195,7 +210,7 @@ class giftlist extends Module
             '{name}' => $p->name[1],
             '{price}' => Tools::displayPrice($p->getPrice(),Context::getContext()->currency),
             "{colorProd}" => $attr[0]['attribute_name'],
-            "{wanted}" => $lpd['cant'],
+            "{wanted}" => $lpd['total'],
             "{missing}" => $lpd['missing'],
             "{description_link}" => Context::getContext()->link->getModuleLink('giftlist', 'descripcion',array('url' => $l->url)),
             '{message}' => $l->message,
@@ -205,6 +220,10 @@ class giftlist extends Module
             'email' => $l->email
         );
         $this->_sendEmail("out-stock","Producto agotado",$cust,$out);
+    }
+    
+    public function hookActionProductInList($params){
+         //$this->outOfStock($params);
     }
 
     public function hookactionCustomerAccountAdd($params){
