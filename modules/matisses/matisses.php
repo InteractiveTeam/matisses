@@ -1927,7 +1927,7 @@ class matisses extends Module
 
         $result = $client->call('callService', $s);
         if($client->error_str)
-           //throw new Exception($client->error_str);
+           throw new Exception($client->error_str);
         if($client->error_str)
         {
             return array('error_string' => $client->error_str);
