@@ -543,7 +543,6 @@
 		}else{
             $_Data = $_wsmatisses->wsmatisses_getModelInfo();
         }
-        $_Data = validProductExist($_Data,$bandera);
         
 	  	if($_Data['error_string'])
 		{
