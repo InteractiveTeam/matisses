@@ -68,9 +68,9 @@
     try{
 	   $_References    = __getReferences($_Modelos,$banderaPost,$searchExist);
         if(Configuration::get('ax_simpleproduct_data')=='')	{
-            $ModelsExists = implode('","',array_keys($_References));
+            /*$ModelsExists = implode('","',array_keys($_References));
             Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
-            Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
+            Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');*/
         }
     }catch(Exception  $s){
         $message = utf8_decode("Durante la ejecución de la sonda de las 4:00am se ha presentado la siguiente excepción: \n" . date("H:i:s") . " ".$s->getMessage());
@@ -120,8 +120,8 @@
 	__MessaggeLog("DESACTIVANDO REFERENCIAS ".date('H:i:s')." - ".$time."\n");
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
 
-        Db::getInstance()->Execute('UPDATE '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN (select id_product from  '._DB_PREFIX_.'image group by id_product)');
-       Db::getInstance()->Execute('UPDATE '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN (select id_product from  '._DB_PREFIX_.'image group by id_product)'); 
+        /*Db::getInstance()->Execute('UPDATE '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN (select id_product from  '._DB_PREFIX_.'image group by id_product)');
+       Db::getInstance()->Execute('UPDATE '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN (select id_product from  '._DB_PREFIX_.'image group by id_product)'); */
 
     /*$activeNoimages = Db::getInstace()->getValue('SELECT count(*) as products FROM '._DB_PREFIX_.'product a LEFT JOIN '._DB_PREFIX_.'image b on b.id_product = a.id_product WHERE a.active = 1 AND b.id_product is null');
     if($activeNoimages > 0){
