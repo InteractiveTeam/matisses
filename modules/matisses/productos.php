@@ -456,7 +456,7 @@
 			 }
 			 
             if($_processImages){
-                $_Product->deleteImages();            
+                //$_Product->deleteImages();            
             }
 			 
 			if($_Product->id)
@@ -705,8 +705,9 @@
 							unset($images[$dd]);
                         }
 					}
-					$_data['processImages']	= $images;
+					//$_data['processImages']	= $images;
 				}
+				$_data['processImages'] = 0;
 			}
 			
 			if($_data['color']['code']) {
