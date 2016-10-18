@@ -130,6 +130,13 @@
         mail("miguel.montoya@arkix.com", utf8_decode("Error en sql de la sonda"), $message, $headers);        
     }*/
 
+    $query = "UPDATE ps_product_shop AS t inner join (SELECT a.id_product,a.active FROM ps_product a LEFT JOIN ps_image b on b.id_product = a.id_product INNER JOIN ps_stock_available c ON c.id_product = a.id_product WHERE b.id_product is not null AND c.quantity > 0 GROUP BY a.id_product) as P on t.id_product= P.id_product SET  t.active = 1;
+UPDATE ps_product AS t inner join (SELECT a.id_product,a.active FROM ps_product a LEFT JOIN ps_image b on b.id_product = a.id_product INNER JOIN ps_stock_available c ON c.id_product = a.id_product WHERE b.id_product is not null AND c.quantity > 0 GROUP BY a.id_product) as P on t.id_product= P.id_product SET  t.active = 1;
+UPDATE ps_product_shop AS t  inner join (SELECT a.id_product,a.active FROM ps_product a LEFT JOIN ps_image b on b.id_product = a.id_product INNER JOIN ps_stock_available c ON c.id_product = a.id_product WHERE b.id_product is null AND c.quantity = 0 GROUP BY a.id_product) as P on t.id_product= P.id_product SET  t.active = 0;
+UPDATE ps_product AS t  inner join (SELECT a.id_product,a.active FROM ps_product a LEFT JOIN ps_image b on b.id_product = a.id_product INNER JOIN ps_stock_available c ON c.id_product = a.id_product WHERE b.id_product is null AND c.quantity = 0 GROUP BY a.id_product) as P on t.id_product= P.id_product SET  t.active = 0;";
+		
+	Db::getInstance()->Execute($query);
+
 	Db::getInstance()->Execute('
 		update '._DB_PREFIX_.'product_attribute set default_on = 1 where reference in (
 			select x.reference from (
@@ -378,9 +385,8 @@
 	
 			//extraigo referencia del producto para los datos principales
 			$_Product 		= new Product($_IdProduct,false,(int)Configuration::get('PS_SHOP_DEFAULT'),(int)Configuration::get('PS_LANG_DEFAULT'));
-			$_ProductData 	= is_array($_Combinations[$_Product->model]) ? $_Combinations[$_Product->model] : current($_Combinations); 
-			
-			
+			$_ProductData 	= is_array($_Combinations[$_Product->model]) ? $_Combinations[$_Product->model] : current($_Combinations);
+
 			// extraigo la informacion necesaria de todas las combinaciones
 	
 			unset($featuresmaterials);
@@ -433,7 +439,7 @@
 			$_Product->quantity				= $_Quantity;
 			$_Product->stores				= implode(',',array_unique(array_filter($_Available_now)));
 			$_Product->available_now		= '';
-            $_Product->active			    = ($_data['status'])?true:false;
+            $_Product->active			    = ($_ProductData['status'])?true:false;
 			$_Product->redirect_type		= '404';
 			$_Product->ean13				= '0';
             
@@ -456,7 +462,7 @@
 			 }
 			 
             if($_processImages){
-                //$_Product->deleteImages();            
+            	$_Product->deleteImages();            
             }
 			 
 			if($_Product->id)
@@ -560,13 +566,13 @@
 			if(is_array($_Model['references'])) {
 				foreach($_Model['references'] as $k => $_Reference) {
 					 __MessaggeLog(' ------------ Consultando ('.$_Model['code'].') '.date('H:i:s').' '.$_Reference."\n");
-					$_data =  __parseData($_wsmatisses->wsmatisses_getInfoProduct($_Reference,$includeall),$_Model['status']);
+					$_data =  __parseData($_wsmatisses->wsmatisses_getInfoProduct($_Reference,$includeall));
 					if($_data)
 						$_Models[$_Model['code']][$_Reference] =$_data;			
 				}
 			}else{
                 __MessaggeLog(' ------------ Consultando ('.$_Model['code'].') '.date('H:i:s').' '.$_Model['references']."\n");
-                $_data =  __parseData($_wsmatisses->wsmatisses_getInfoProduct($_Model['references'],$includeall),$_Model['status']);
+                $_data =  __parseData($_wsmatisses->wsmatisses_getInfoProduct($_Model['references'],$includeall));
                 //$_data2 =  $_wsmatisses->wsmatisses_getInfoProduct($_Model['references'],$includeall);
                 if($_data)
                     $_Models[$_Model['code']][$_Model['references']] = $_data;
@@ -575,7 +581,7 @@
 		}
         
 		// desactivo los productos que no existen
-		foreach($_Data2 as $d => $v) {
+		/*foreach($_Data2 as $d => $v) {
 			$code = $v['code'];
 			if(!array_key_exists($code,$_Models)) {
 				$_IdProduct = Db::getInstance()->getValue('SELECT id_product FROM '._DB_PREFIX_.'product WHERE model = "'.$code.'"');
@@ -592,7 +598,7 @@
 					
 				}
 			}	
-		}		
+		}*/		
 		__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
 		return $_Models;
 	}
@@ -618,9 +624,9 @@
 			if(count(array_filter($_data['stock'],'is_array'))==0)
 			{
 				unset($_data['stock']);
-				$_data['stock'][] = $stock;	 
+				$_data['stock'][] = $stock;				
 			}
-			             
+
             //$_data['processImages'] = 1;
             
 			$_data['itemName'] 				= pSQL(mb_strtoupper(substr($_data['itemName'],0,1)).mb_strtolower(substr($_data['itemName'],1)));
@@ -661,6 +667,7 @@
 				$_data['arraymaterials'] = $arraymaterials;
 			}
 			
+			
 			$stock = $_data['stock'];
 			if(sizeof($stock)>0) {
 				$quantity = 0;
@@ -673,6 +680,8 @@
 				$_data['stock']['quantity'] 		= $quantity;
 				$_data['stock']['WarehouseCode'] 	= implode(',',array_unique(array_filter($WarehouseCode)));
 			}
+
+			$_data['status'] = ((int)$_data['stock']['quantity'])?true:false;
 			
 			if(!empty($_data['subgroupCode'])) {
 				$CategoriesProduct = array();
@@ -705,9 +714,9 @@
 							unset($images[$dd]);
                         }
 					}
-					//$_data['processImages']	= $images;
+					$_data['processImages']	= $images;
 				}
-				$_data['processImages'] = 0;
+				//$_data['processImages'] = 0;
 			}
 			
 			if($_data['color']['code']) {
@@ -773,6 +782,7 @@
     * $models => todos los modelos delimitados por ","
     */
     function getProductsByModel($models, $all = false){
+        __MessaggeLog('---- AJAX Consultando productos por referencia ('.$models.'): '.date('H:i:s')." ");
         $_wsmatisses = new matisses;
         
         $models = explode(',',$models);
@@ -789,6 +799,7 @@
                 $auxModels[] = array('code'=>$models[$i],'references'=>$dataModel['itemCode']);
             }            
         }
+        __MessaggeLog('---- AJAX Termino de consultar productos por referencia: '.date('H:i:s')." ");
         return $auxModels;        
     }
     
