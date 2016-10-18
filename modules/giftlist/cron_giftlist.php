@@ -6,7 +6,8 @@ require_once 'classes/GiftList.php';
 require_once 'classes/ListProductBond.php';
 $context = Context::getContext();
 $id_lang = $context->language->id;
-/*The following code is used to get all the products bought, this products are linked to a list
+/*The following code is used to get all the products bought, 
+this products are linked to a list
 And return all the info of thses products*/
 $context = Context::getContext();
 $paidOrders = GiftListModel::getPaidStatusOrder();
@@ -35,7 +36,7 @@ foreach($paidOrders as $order){
                     'bond' => 1,
                     'creator' => $customer->firstname . " " . $customer->lastname,
                     'image' => $image_url,
-                    'name' => $product->name[1],
+                    'name' => $product->name,
                     'buyer' => $buyer->firstname. " " . $buyer->lastname,
                     'price' => $bond->value,
                     'color' => 0,
@@ -54,7 +55,7 @@ foreach($paidOrders as $order){
                     'bond' => 0,
                     'creator' => $customer->firstname . " " . $customer->lastname,
                     'image' => $image_url,
-                    'name' => $product->name[1],
+                    'name' => $product->name,
                     'buyer' => $buyer->firstname. " " . $buyer->lastname,
                     'price' => $product->price,
                     'color' => attr['attribute_name'],
@@ -70,30 +71,32 @@ foreach($paidOrders as $order){
                 products are linked to a list, and return the info
                 */
                 if(!$l->validated){
-                    $p = new ListProductBondModel();
-                    $prod = $p->getProductsByList($l->id);
+                    $lpd = new ListProductBondModel();
+                    $prod = $p->getProductsForMail($l->id);
                     foreach($prod as $p){
-                        $cant = ToolsCore::jsonDecode($p['group']);
-                        $attr_op = Tools::jsonDecode($p['option']);
-                        $attr = $p->getAttributeCombinationsById($attr_op[3]->value,$id_lang);//[3] = id_attribute
-                        $id_image = ProductCore::getCover($p['id']);
+                        $id_image = ProductCore::getCover($p['id_product']);
                         // get Image by id
                         if (sizeof($id_image) > 0) {
                             $image = new Image($id_image['id_image']);
                             // get image full URL
                             $image_url = _PS_BASE_URL_._THEME_PROD_DIR_.$image->getExistingImgPath().".jpg";
                         }
-                        $s = StockAvailable::getQuantityAvailableByProduct($p->id,$attr_op[3]->value);
-                        if(s <= 0){
+                        $s = StockAvailable::getQuantityAvailableByProduct($p['id'],$p['id_att']);
+                        if($s <= 0){
                             $out[] = array (
+                                'message' => $l->message,
                                 'image' => $image_url,
-                                'name' => $p->name[1],
-                                'price' => $p->price,
-                                'color' => attr['attribute_name'],
-                                "wanted" => $cant->wanted,
-                                "missing" => $cant->missing,
+                                'description_link' => Context::getContext()->link->getModuleLink('giftlist', 'descripcion',array('url' => $l->url)),
+                                'creator' => $customer->firstname . " " . $customer->lastname,
+                                'name' => $p['name'],
+                                'price' => $p['price'],
+                                'color' => $p['options'][0]['attribute_name'],
+                                "wanted" => $p['cant'],
+                                "missing" => $p['missing'],
+                                "bought" => $p['missing'] == 0 ? 1 : 0,
+                                "email" => $l->email,
                             );
-                        }  
+                        }
                     }
                 }
                 $l->setValidated();
@@ -106,38 +109,44 @@ foreach($paidOrders as $order){
 }
 
 //validate gift list without bought products
-
-$list = GiftList::getAllList();
-foreach($list as $l){
-    $p = new ListProductBondModel();
-    $prod = $p->getProductsByList($l->id);
-    $customer = new CustomerCore($l->id_creator);
-    foreach($prod as $p){
-        $attr_op = Tools::jsonDecode($p['option']);
-        $attr = $p->getAttributeCombinationsById($attr_op[3]->value,$id_lang);//[3] = id_attribute
-        $id_image = ProductCore::getCover($p['id']);
-        // get Image by id
-        if (sizeof($id_image) > 0) {
-            $image = new Image($id_image['id_image']);
-            // get image full URL
-            $image_url = _PS_BASE_URL_._THEME_PROD_DIR_.$image->getExistingImgPath().".jpg";
+$list = GiftListModel::getAllList();
+$out = array();
+if(count($list) > 0){
+    foreach($list as $l){
+        $gl = new GiftListModel($l['id']);
+        $lpd = new ListProductBondModel();
+        $prod = $lpd->getProductsForMail($l['id']);
+        $customer = new CustomerCore($l['id_creator']);
+        foreach($prod as $p){
+            $id_image = ProductCore::getCover($p['id_produt']);
+            // get Image by id
+            if (sizeof($id_image) > 0) {
+                $image = new Image($id_image['id_image']);
+                // get image full URL
+                $image_url = _PS_BASE_URL_._THEME_PROD_DIR_.$image->getExistingImgPath().".jpg";
+            }
+            $s = StockAvailable::getQuantityAvailableByProduct($p['id'],$p['id_att']);
+            if($s <= 0){
+                $out[] = array (
+                    'message' => $gl->message,
+                    'image' => $image_url,
+                    'description_link' => Context::getContext()->link->getModuleLink('giftlist', 'descripcion',array('url' => $gl->url)),
+                    'creator' => $customer->firstname . " " . $customer->lastname,
+                    'name' => $p['name'],
+                    'price' => $p['price'],
+                    'color' => $p['options'][0]['attribute_name'],
+                    "wanted" => $p['cant'],
+                    "missing" => $p['missing'],
+                    "bought" => $p['missing'] == 0 ? 1 : 0,
+                    "email" => $gl->email,
+                );
+            }
         }
-        $s = StockAvailable::getQuantityAvailableByProduct($p->id,$attr_op[3]->value);
-        if(s <= 0){
-            $out[] = array (
-                'image' => $image_url,
-                'creator' => $customer->firstname . " " . $customer->lastname,
-                'name' => $p->name[1],
-                'price' => $p->price,
-                'color' => attr['attribute_name'],
-                "wanted" => $prod['cant'],
-                "missing" => $prod['missing'],
-                "email" => $l->email
-            );
-        }
+        if($l['cons_not'] && count($out) > 0)
+            $gl->sendMessage(array(),$out);
+        
+        unset($out);
     }
-    if($l->cons_not)
-        $l->sendMessage($out);
 }
-
-Giftlist::setValidatedFalse();
+GiftListModel::setValidatedFalse();
+echo 'finalizado';

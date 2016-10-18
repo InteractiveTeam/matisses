@@ -126,7 +126,7 @@ class ListProductBondModel extends ObjectModel
                 'name' => $my_prod->getProductName($my_prod->id),
                 'options' => $my_prod->getAttributeCombinationsById($option[3]->value,1),//[3] = id_attribute,
                 'image' =>  (Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').$link->getImageLink($my_prod->link_rewrite[1], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image']), 'home_default'),
-                'price' => $my_prod->getPrice(),
+                'price' => Tools::displayPrice(Db::getInstance()->getValue('SELECT price FROM '._DB_PREFIX_.'specific_price WHERE id_product = '.$row['id_product'] . ' AND id_product_attribute = '.$option[3]->value),1),
                 'cant' => $prod[$row['id_product']]['cant'] + $row['cant'],
                 'missing' => (!$row['bought'] ? $prod[$row['id_product']]['missing'] + $row['cant'] :$prod[$row['id_product']]['missing']),
             );
@@ -145,7 +145,7 @@ class ListProductBondModel extends ObjectModel
                 'name' => $my_prod->getProductName($my_prod->id),
                 'options' => $my_prod->getAttributeCombinationsById($option[3]->value,1),//[3] = id_attribute,
                 'image' =>  (Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').$link->getImageLink($my_prod->link_rewrite[1], (isset($image[0]['id_image']) ? $image[0]['id_image'] : $image['id_image']), 'home_default'),
-                'price' => $my_prod->getPrice(),
+                'price' =>Tools::displayPrice(Db::getInstance()->getValue('SELECT price FROM '._DB_PREFIX_.'specific_price WHERE id_product = '.$row['id_product'] . ' AND id_product_attribute = '.$option[3]->value),1),
                 'cant' => $row['cant'],
                 'missing' => $row['missing'],
             );
