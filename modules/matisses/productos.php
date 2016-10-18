@@ -11,6 +11,8 @@
 	set_time_limit(0);
 	ini_set('memory_limit','1024M');
 	$print 			= true;
+	error_reporting(E_ALL);
+	ini_set('display_errors', 1);
 	
 	include_once dirname(__FILE__).'/../../config/config.inc.php';
 	require_once dirname(__FILE__)."/classes/nusoap/nusoap.php";
@@ -706,7 +708,7 @@ UPDATE ps_product AS t  inner join (SELECT a.id_product,a.active FROM ps_product
 				$_data['subgroupCode'] = $CategoriesProduct;    	
 			}
                 
-			if((int)$_data['processImages']==1) {
+			if((int)$_data['processImages']) {
 				unset($images);
 				if(sizeof($images = glob($path.'/images/*.jpg'))>0) {
 					foreach($images as $dd => $image) {
@@ -716,10 +718,6 @@ UPDATE ps_product AS t  inner join (SELECT a.id_product,a.active FROM ps_product
 					}
 					$_data['processImages']	= $images;
 				}
-<<<<<<< HEAD
-				//$_data['processImages'] = 0;
-=======
->>>>>>> origin/PruebasArkix
 			}
 			
 			if($_data['color']['code']) {
