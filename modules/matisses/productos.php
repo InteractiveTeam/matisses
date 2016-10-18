@@ -132,12 +132,19 @@
         mail("miguel.montoya@arkix.com", utf8_decode("Error en sql de la sonda"), $message, $headers);        
     }*/
 
+    __MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
+	__MessaggeLog("VALIDAR PRODUCTOS CON IMAGENES E INVENTARIO ".date('H:i:s')." - ".$time."\n");
+	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
     $query = "UPDATE ps_product_shop AS t inner join (SELECT a.id_product,a.active FROM ps_product a LEFT JOIN ps_image b on b.id_product = a.id_product INNER JOIN ps_stock_available c ON c.id_product = a.id_product WHERE b.id_product is not null AND c.quantity > 0 GROUP BY a.id_product) as P on t.id_product= P.id_product SET  t.active = 1;
 UPDATE ps_product AS t inner join (SELECT a.id_product,a.active FROM ps_product a LEFT JOIN ps_image b on b.id_product = a.id_product INNER JOIN ps_stock_available c ON c.id_product = a.id_product WHERE b.id_product is not null AND c.quantity > 0 GROUP BY a.id_product) as P on t.id_product= P.id_product SET  t.active = 1;
 UPDATE ps_product_shop AS t  inner join (SELECT a.id_product,a.active FROM ps_product a LEFT JOIN ps_image b on b.id_product = a.id_product INNER JOIN ps_stock_available c ON c.id_product = a.id_product WHERE b.id_product is null AND c.quantity = 0 GROUP BY a.id_product) as P on t.id_product= P.id_product SET  t.active = 0;
 UPDATE ps_product AS t  inner join (SELECT a.id_product,a.active FROM ps_product a LEFT JOIN ps_image b on b.id_product = a.id_product INNER JOIN ps_stock_available c ON c.id_product = a.id_product WHERE b.id_product is null AND c.quantity = 0 GROUP BY a.id_product) as P on t.id_product= P.id_product SET  t.active = 0;";
 		
 	Db::getInstance()->Execute($query);
+
+	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
+	__MessaggeLog("TERMINA VALIDAR PRODUCTOS CON IMAGENES E INVENTARIO ".date('H:i:s')." - ".$time."\n");
+	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
 
 	Db::getInstance()->Execute('
 		update '._DB_PREFIX_.'product_attribute set default_on = 1 where reference in (
@@ -155,16 +162,16 @@ UPDATE ps_product AS t  inner join (SELECT a.id_product,a.active FROM ps_product
     __MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
 	__MessaggeLog("TERMINA DESACTIVACIÓN ".date('H:i:s')." - ".$time."\n");
 	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
+	if(!$banderaPost){
+	    __MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
+		__MessaggeLog("INDEXANDO ".date('H:i:s')." - ".$time."\n");
+		__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
+		Search::indexation(true);
 
-    __MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
-	__MessaggeLog("INDEXANDO ".date('H:i:s')." - ".$time."\n");
-	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
-	Search::indexation(true);
-
-    __MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
-	__MessaggeLog("TERMINA INDEXACIÓN ".date('H:i:s')." - ".$time."\n");
-	__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
-    
+	    __MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");
+		__MessaggeLog("TERMINA INDEXACIÓN ".date('H:i:s')." - ".$time."\n");
+		__MessaggeLog('---------------------------------------------------------------------------------------------------------------'."\n");   
+	}
     // productos activos sin imagenes
     /*$noImages = Db::getInstance()->getValue("SELECT count(*) FROM "._DB_PREFIX_."product a LEFT JOIN "._DB_PREFIX_."image b on b.id_product = a.id_product WHERE b.id_product is null AND a.active = 1");    
   
