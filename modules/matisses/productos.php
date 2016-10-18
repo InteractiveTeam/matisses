@@ -636,7 +636,7 @@
 			$_data['video']					=  strstr($_data['itemCode'].'/animacion/'.basename(current(glob($path.'/animacion/*.html'))),'.html') ? $_data['itemCode'].'/animacion/'.basename(current(glob($path.'/animacion/*.html'))) : NULL;
             
             $_data['manufacture'] = saveManufacture($_data['brand']['code'],$_data['brand']['name']);
-			$_data['status'] = ($status && (int)$_data['processImages']==1)?true:false;
+			$_data['status'] = ((int)$_data['processImages']==1)?true:false;
             
 			if($_data['newFrom']) {
 				unset($date);
