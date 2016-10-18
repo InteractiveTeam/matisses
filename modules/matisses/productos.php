@@ -67,11 +67,11 @@
     }
     try{
 	   $_References    = __getReferences($_Modelos,$banderaPost,$searchExist);
-        if(Configuration::get('ax_simpleproduct_data')=='')	{
-            /*$ModelsExists = implode('","',array_keys($_References));
+        /*if(Configuration::get('ax_simpleproduct_data')=='')	{
+            $ModelsExists = implode('","',array_keys($_References));
             Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
-            Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');*/
-        }
+            Db::getInstance()->Execute('UPDATE  '._DB_PREFIX_.'product_shop SET active = 0 WHERE id_product NOT IN ("'.$ModelsExists.'")');
+        }*/
     }catch(Exception  $s){
         $message = utf8_decode("Durante la ejecución de la sonda de las 4:00am se ha presentado la siguiente excepción: \n" . date("H:i:s") . " ".$s->getMessage());
         $headers = "From: Sonda Matisses";
@@ -705,9 +705,8 @@
 							unset($images[$dd]);
                         }
 					}
-					//$_data['processImages']	= $images;
+					$_data['processImages']	= $images;
 				}
-				$_data['processImages'] = 0;
 			}
 			
 			if($_data['color']['code']) {
