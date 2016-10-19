@@ -173,7 +173,7 @@ class giftlist extends Module
     
     public function hookactionUpdateQuantity($params){
         if($params['quantity'] == 0){
-            $lists = DB::getInstance()->executeS('SELECT id_list FROM '._DB_PREFIX_.'list_product_bond WHERE id_product = '.$params['id_product']);
+            $lists = DB::getInstance()->executeS('SELECT id_list FROM '._DB_PREFIX_.'list_product_bond WHERE id_product = '.$params['id_product'] . " GROUP BY id_list");
             foreach($lists as $l){
                 $params['id_list'] = $l['id_list'];
                 $this->outOfStock($params);

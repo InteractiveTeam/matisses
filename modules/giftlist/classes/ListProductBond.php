@@ -78,7 +78,7 @@ class ListProductBondModel extends ObjectModel
 	 */
 	public function getProductsByList($id){
          $context = Context::getContext();
-		 $sql = "SELECT * FROM "._DB_PREFIX_."list_product_bond a INNER JOIN "._DB_PREFIX_."product b ON a.id_product = b.id_product INNER JOIN ps_product_shop c ON a.id_product = c.id_product  WHERE id_list = ".$id." AND a.id_product <> 0 AND bought = 0 AND b.active = 1 AND c.active = 1 ORDER BY favorite";
+		 $sql = "SELECT * FROM "._DB_PREFIX_."list_product_bond a INNER JOIN "._DB_PREFIX_."product b ON a.id_product = b.id_product INNER JOIN "._DB_PREFIX_."product_shop c ON a.id_product = c.id_product INNER JOIN "._DB_PREFIX_."stock_available d ON a.id_product = d.id_product WHERE id_list = ".$id." AND a.id_product <> 0 AND bought = 0 AND b.active = 1 AND c.active = 1  AND d.quantity > 0 GROUP BY a.id ORDER BY favorite";
          $res  = Db::getInstance()->executeS($sql);
 		 $prod = array();
 		 $link = new LinkCore();
