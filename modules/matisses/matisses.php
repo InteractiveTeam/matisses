@@ -1282,21 +1282,21 @@ class matisses extends Module
 		$this->context->cookie->passwd = $customer->passwd;
 		$this->context->cookie->email = $customer->email;
 		// Add customer to the context
-		$this->context->customer = $customer;
-		
+		$this->context->customer = $customer;   
+        
 		if(empty($this->context->cart))
 		{
-			$this->context->cart = new Cart($id_cart);
+			$this->context->cart = new Cart((int)Cart::lastNoneOrderedCart($this->context->customer->id));
 			$this->context->cart->id_currency = 1;
 		}
-		$id_carrier = (int)$this->context->cart->id_carrier;
-		$this->context->cart->id_carrier = 0;
-		$this->context->cart->setDeliveryOption(null);
-		$this->context->cart->id_address_delivery = (int)Address::getFirstCustomerAddressId((int)($customer->id));
-		$this->context->cart->id_address_invoice = (int)Address::getFirstCustomerAddressId((int)($customer->id));
+        $id_carrier = (int)$this->context->cart->id_carrier;
+        $this->context->cart->id_carrier = 0;
+        $this->context->cart->setDeliveryOption(null);
+        $this->context->cart->id_address_delivery = (int)Address::getFirstCustomerAddressId((int)($customer->id));
+        $this->context->cart->id_address_invoice = (int)Address::getFirstCustomerAddressId((int)($customer->id));
 		$this->context->cart->id_customer = (int)$customer->id;
 		$this->context->cart->secure_key = $customer->secure_key;
-		if ($this->ajax && isset($id_carrier) && $id_carrier && Configuration::get('PS_ORDER_PROCESS_TYPE'))
+		if (isset($id_carrier) && $id_carrier && Configuration::get('PS_ORDER_PROCESS_TYPE'))
 		{
 			$delivery_option = array($this->context->cart->id_address_delivery => $id_carrier.',');
 			$this->context->cart->setDeliveryOption($delivery_option);
@@ -1305,10 +1305,19 @@ class matisses extends Module
 		$this->context->cookie->id_cart = (int)$this->context->cart->id;
 		$this->context->cookie->write();
 		$this->context->cart->autosetProductAddress();
-		// Login information have changed, so we check if the cart rules still apply
+        
+        Hook::exec('actionAuthentication');
+        
+		//Login information have changed, so we check if the cart rules still apply
 		CartRule::autoRemoveFromCart($this->context);
 		CartRule::autoAddToCart($this->context);
-		return 'index.php?controller='.(($this->authRedirection !== false) ? urlencode($this->authRedirection) : $back);
+        if ($back = Tools::getValue('back'))
+        {
+            if(strpos(urldecode($back),_PS_BASE_URL_) === false)
+                $back = 'index.php?controller=' . $back;
+            return urldecode($back);
+        }
+        return 'index.php?controller=my-account';
 	}
 // FUNCIONES DE INTEGRACION CON CLIENTES
 	

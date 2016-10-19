@@ -7,6 +7,14 @@ window.fbAsyncInit = function() {
 	});
 };
 
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
 (function(d, s, id){
  var js, fjs = d.getElementsByTagName(s)[0];
  if (d.getElementById(id)) {return;}
@@ -23,7 +31,8 @@ fb_login = function(){
 			
 			user_id = response.authResponse.userID; 
 			FB.api(user_id,{ locale: 'en_US', fields: 'name,email,about,gender,last_name,first_name,birthday' }, function(response) {
-				$.post(ajaxurl, {option: 'fblogin', 'request': response }, function(response) {
+                var vars = getUrlVars();
+				$.post(ajaxurl, {option: 'fblogin', 'request': response,back : vars.back}, function(response) {
 					response = JSON.parse(response);
 					if(response.action=='create')
 					{
@@ -32,7 +41,7 @@ fb_login = function(){
 					
 					if(response.action=='reload')
 					{
-						location.reload();
+						window.location.href = response.url;
 					}
 					
 				})
