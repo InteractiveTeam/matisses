@@ -1313,7 +1313,7 @@ class matisses extends Module
 		CartRule::autoAddToCart($this->context);
         if ($back = Tools::getValue('back'))
         {
-            if(strpos(urldecode($back),_PS_BASE_URL_) === false)
+            if(strpos(urldecode($back),_PS_BASE_URL_SSL) === false)
                 $back = 'index.php?controller=' . $back;
             return urldecode($back);
         }
