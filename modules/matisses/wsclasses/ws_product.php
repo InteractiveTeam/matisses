@@ -157,8 +157,8 @@ class ws_product extends matisses
 		return true;
 	}
 
-	public function product_listStockChanges($datos){        
-		if(!is_array($datos))
+	public function product_listStockChanges($datos){
+        if(!is_array($datos))
 			return false;
 		
 		$inventario = $datos['inventoryChangesDTO']['changes'];
@@ -166,7 +166,7 @@ class ws_product extends matisses
         
 		foreach($inventario as $k => $v) {
 			$_Quantity  = 0;
-			$_Row 		= Db::getInstance()->getRow('SELECT id_product, id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.trim($v['itemCode']).'"');			
+			$_Row 		= Db::getInstance()->getRow('SELECT id_product, id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.trim($v['itemCode']).'"');	
             
 			if($_Row['id_product']!='' && $_Row['id_product_attribute']!='') {
                 
@@ -179,13 +179,13 @@ class ws_product extends matisses
                         $_Quantity += $dataRef['stock'][$i]['quantity'];
                     }    
                 }
-                
                 StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);                
                                 
-                $qty = Product::getQuantity($_Row['id_product']);
-                if(!$qty){
+                $qty = Product::getQuantity($_Row['id_product'],$_Row['id_product_attribute']);
+                if(!$qty)
                     $str_ids .= $_Row['id_product'].',';
-                }
+                else
+                    $str_qty_id .= $_Row['id_product'].',';
 			}
 		}
 
@@ -193,6 +193,13 @@ class ws_product extends matisses
             $query = 'UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product IN ('.substr($str_ids,0,-1).')';            
             $query2 = str_replace(_DB_PREFIX_.'product',_DB_PREFIX_.'product_shop',$query);
                         
+            Db::getInstance()->Execute($query);
+            Db::getInstance()->Execute($query2);
+        }
+        if($str_qty_id){
+            $query = 'UPDATE ps_product a LEFT JOIN ps_image b ON a.id_product = b.id_product SET a.active = 1 WHERE b.id_product IS NOT NULL AND a.id_product IN ('.substr($str_qty_id,0,-1).')';
+            $query2 = 'UPDATE ps_product_shop a LEFT JOIN ps_image b ON a.id_product = b.id_product SET a.active = 1 WHERE b.id_product IS NOT NULL AND a.id_product IN ('.substr($str_qty_id,0,-1).')';
+            
             Db::getInstance()->Execute($query);
             Db::getInstance()->Execute($query2);
         }
