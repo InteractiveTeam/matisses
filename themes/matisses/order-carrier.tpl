@@ -375,7 +375,7 @@
                                                 type: 'inline',
                                                 autoScale: true,
                                                 minHeight: 30,
-                                                content: "<p class='fancybox-error'>{/literal}{l s='Please select the shop.' js=1}{literal}</p>"
+                                                content: "<p class='fancybox-error'>{/literal}{l s='Por favor seleccione la tienda.' js=1}{literal}</p>"
                                             }],
                                             {
                                                 padding: 0
