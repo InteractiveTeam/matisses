@@ -1284,10 +1284,13 @@ class matisses extends Module
 		// Add customer to the context
 		$this->context->customer = $customer;   
         
-		if(empty($this->context->cart))
+		if(!empty($this->context->cookie->id_cart))
 		{
-			$this->context->cart = new Cart((int)Cart::lastNoneOrderedCart($this->context->customer->id));
-			$this->context->cart->id_currency = 1;
+            $this->context->cart = new Cart($this->context->cookie->id_cart);
+            $this->cntext->cart->id_currency = 1;
+        }else{
+            $this->context->cart = new Cart((int)Cart::lastNoneOrderedCart($this->context->customer->id));
+            $this->cntext->cart->id_currency = 1;
 		}
         $id_carrier = (int)$this->context->cart->id_carrier;
         $this->context->cart->id_carrier = 0;
