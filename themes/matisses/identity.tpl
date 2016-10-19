@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="required form-group grid_6">
-                    <label for="secondname" class="required">
+                    <label for="secondname">
                         {l s='Segundo nombre'}
                     </label>
                     <input class="is_required validate form-control" data-validate="isName" type="text" name="secondname" id="secondname" value="{$smarty.post.secondname}" />
@@ -86,15 +86,15 @@
                     <label for="lastname" class="required">
                         {l s='Last name'}
                     </label>
-                    <input class="is_required validate form-control" data-validate="isName" type="text" name="lastname" id="lastname" value="{$smarty.post.lastname}" />
+                    <input class="validate form-control" data-validate="isName" type="text" name="lastname" id="lastname" value="{$smarty.post.lastname}" />
                 </div>
 
 
                  <div class="required form-group grid_6">
-                    <label for="surname" class="required">
+                    <label for="surname">
                         {l s='Segundo apellido'}
                     </label>
-                    <input class="is_required validate form-control" data-validate="isName" type="text" name="surname" id="surname" value="{$smarty.post.surname}" />
+                    <input class="validate form-control" data-validate="isName" type="text" name="surname" id="surname" value="{$smarty.post.surname}" />
                 </div>
 
                  <div class="required form-group grid_6">
