@@ -200,6 +200,7 @@ class ListProductBondModel extends ObjectModel
                 $prod['option'] = $op;
                 $prod['cant'] = $cantP;
                 $prod['group'] = true;
+                $prod['message'] = $row['message'];
             }
         }
         return $prod;
@@ -215,6 +216,7 @@ class ListProductBondModel extends ObjectModel
                 $prod['total'] = $row['cant'];
                 $prod['bought'] = $row['cant'] - $row['missing'];
                 $prod['missing'] = $row['missing'];
+                $prod['message'] = $row['message'];
                 return $prod;
             }
         }
