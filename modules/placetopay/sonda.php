@@ -12,6 +12,10 @@
 include(realpath(dirname(__FILE__).'/../../config/config.inc.php'));
 include(realpath(dirname(__FILE__).'/placetopay.php'));
 
+ini_set("log_errors", 1);
+ini_set("error_log", _PS_THEME_DIR_."php-error.log");
+error_log( "Hello, errors!" );
+
 // instancia el objeto link en el contexto si no viene inicializado
 if (empty(Context::getContext()->link))
 	Context::getContext()->link = new Link();
