@@ -6284,12 +6284,14 @@ form[name="carrier_area"] .order_carrier_content .carrier_title {
 }
 
 .category_list.product_list.grid .ajax_block_product {
-    padding: 2rem 15px 0 15px;
+    padding: 2rem 0 0 0;
+    margin: 0 15px;
 }
 
 .category_list.product_list.grid .ajax_block_product:nth-child(3n), .category_list.product_list.grid .ajax_block_product:nth-child(3n+1) {
     padding-left: 0;
     padding-right: 0;
+    margin: 0;
 }
 
 .form-group div#lists_chosen {
