@@ -311,7 +311,7 @@ class giftlist extends Module
                         '{qty_buy}' => $product['quantity'],
                         '{qty_want}' => $lpd['total'],
                         '{qty_rest}' => $lpd['missing'],
-                        '{message}' => $lpd['message'] == "" ? "Ningun Mensaje" : $lpd->message,
+                        '{message}' => $lpd['message'] == "" ? "Ningun Mensaje" : $lpd['message'],
                         '{description_link}' => $this->context->link->getModuleLink('giftlist', 'descripcion',array('url' => $list->url))
                     );
                     $cust = array(
