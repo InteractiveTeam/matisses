@@ -102,6 +102,10 @@
                 __MessaggeLog('-- Actualizando producto ('.$_Model.'): '.date('H:i:s')." ");
                 $_Product 	= __setProduct($_Combinations,$_IdProduct);
 
+                if($banderaPost){
+					Search::indexation(true,$_IdProduct);
+				}
+
                 __setCombinations($_Combinations,$_Product);
             }else{
                 __MessaggeLog('-- Actualizando producto ('.$_Model.'): '.date('H:i:s')." -> No se cargó, no existe la categoria."."\n");
