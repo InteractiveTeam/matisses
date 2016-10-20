@@ -166,23 +166,27 @@ class ws_product extends matisses
         
 		foreach($inventario as $k => $v) {
 			$_Quantity  = 0;
-			$_Row 		= Db::getInstance()->getRow('SELECT id_product, id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.trim($v['itemCode']).'"');	
-            
-			if($_Row['id_product']!='' && $_Row['id_product_attribute']!='') {
+			$_Row 		= Db::getInstance()->getRow('SELECT id_product, id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.trim($v['itemCode']).'"');
                 
+			if(!empty($_Row['id_product']) && !empty($_Row['id_product_attribute'])) {
                 $dataRef = parent::wsmatisses_getInfoProduct($v['itemCode'],false,true);
-                
-                if($dataRef['codeStatus'] == 0101909){//valido el código si existe o no tiene inventario la ref...
+                if($dataRef['codeStatus'] == 0101909){//No disponible para la web
                     $_Quantity = 0;
                 }else{
-                    for($i = 0;$i < count($dataRef['stock']);$i++){
-                        $_Quantity += $dataRef['stock'][$i]['quantity'];
-                    }    
+                    if(isset($dataRef['stock']['warehouseCode'])){
+                        $stores = [$dataRef['stock']['warehouseCode']];
+                        $_Quantity += $dataRef['stock']['quantity'];
+                    }else{
+                        for($i = 0;$i < count($dataRef['stock']);$i++){
+                            $stores = [$dataRef['stock'][$i]['warehouseCode']];
+                            $_Quantity += $dataRef['stock'][$i]['quantity'];
+                        } 
+                    }   
                 }
                 StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);                
                                 
                 $qty = Product::getQuantity($_Row['id_product'],$_Row['id_product_attribute']);
-                if(!$qty)
+                if($qty == 0)
                     $str_ids .= $_Row['id_product'].',';
                 else
                     $str_qty_id .= $_Row['id_product'].',';
