@@ -33,7 +33,7 @@ class CargaProductos{
     }
 
     private function parseData($_data){
-        if($_data->description && $_data->shortDescription && $_data->price && $_data->itemName && $_data->model && $_data->subgroupCode && sizeof($_data->color)==3) {
+        if($_data->description && $_data->shortDescription && $_data->price && $_data->itemName && $_data->model && $_data->subgroupCode && count((array)$_data->color)==3) {
 
             $path = dirname(__FILE__).'/files/'.$_data->itemCode;
 
@@ -43,11 +43,13 @@ class CargaProductos{
                 unset($_data->materials);
                 $_data->materials[] = $materials; 
             }
-
+            //print_r($_data->stock);
+            /*echo $this->countIsArray($_data->materials).'<br>';
+            echo $this->countIsArray($_data->stock).'<br>';*/
             $stock = $_data->stock;
             if(!$this->countIsArray($_data->stock)){
                 unset($_data->stock);
-                $_data->stock[] = $stock;             
+                $_data->stock[] = $stock;
             }
 
             $_data->itemName = ucfirst(strtolower($_data->itemName));
@@ -55,12 +57,16 @@ class CargaProductos{
             $_data->sketch = basename(current(glob($path.'/plantilla/*.jpg')));
             $_data->three_sixty = strstr($_data->itemCode.'/360/'.basename(current(glob($path.'/360/*.html'))),'.html') ? $_data->itemCode.'/360/'.basename(current(glob($path.'/360/*.html'))) : NULL;
             $_data->keyWords = strtolower(pSQL(implode(',',array_unique(array_filter(explode(' ',$_data->keyWords))))));
-            $_data->link_rewrite = Tools::link_rewrite($_data['webName']);
+            $_data->link_rewrite = Tools::link_rewrite($_data->webName);
             $_data->id_category_default = (int)Configuration::get('PS_HOME_CATEGORY');
             $_data->shortDescription = Tools::truncate(($_data->shortDescription),190,'...');
             $_data->meta_description = Tools::truncate(($_data->shortDescription),130,'...');
             $_data->meta_title = $_data->itemName;
             $_data->video =  strstr($_data->itemCode.'/animacion/'.basename(current(glob($path.'/animacion/*.html'))),'.html') ? $_data->itemCode.'/animacion/'.basename(current(glob($path.'/animacion/*.html'))) : NULL;
+        
+            //$_data->manufacture = saveManufacture($_data->brand->code,$_data->brand->name);
+        }else{
+            echo "El producto con REF => ".$_data->itemCode.' No se pudo cargar. Posiblemente no tiene precio,descripción, color etc...';
         }
         return $_data;
     }
