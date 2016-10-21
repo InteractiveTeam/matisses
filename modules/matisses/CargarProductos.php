@@ -18,6 +18,7 @@ class CargaProductos{
         $this->totalProducts = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/consulta';
         $this->fiveMin = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/consultaRecientes5M';
         $this->pStatus = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/estado';
+        $this->data = array();
         $this->loadProcess();
     }
     
@@ -130,7 +131,19 @@ class CargaProductos{
     }
     
     public function productStatus(){
-        $this->callService($this->totalProducts);
+        $this->callService($this->pStatus);
+        foreach($this->data as $product){
+            echo "<pre>";print_r($product);echo "</pre>";
+            //$id_prod = Db::getInstance()->getValue("SELECT id_product FROM "._DB_PREFIX_."product WHERE reference = '".$product->referencia."'");
+            /*if(!empty($id_prod)){
+                
+            }
+            $combinations = Db::getInstance()->executeS("SELECT id_product,id_product_attribute,default_on FROM "._DB_PREFIX_."product_attribute WHERE reference = '".$product->referencia."'");
+            if(!empty($combinations)){
+                echo "<pre>";print_r($product);echo "</pre>";
+                die(print_r($combinations));
+            }*/
+        }
     }
 }
 ?>
