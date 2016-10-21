@@ -156,56 +156,89 @@ class ws_product extends matisses
 		}
 		return true;
 	}
+    
+    function isAssoc(array $arr){
+        if (array() === $arr) return false;
+        return array_keys($arr) !== range(0, count($arr) - 1);
+    }
+    
+    public function updateProductQty($ref){
+        $_Quantity  = 0;
+        $str_ids = "";
+        $str_qty_id = "";
+        $_Row 		= Db::getInstance()->getRow('SELECT id_product, id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.trim($ref).'"');
+
+        if(!empty($_Row['id_product']) && !empty($_Row['id_product_attribute'])) {
+            $dataRef = parent::wsmatisses_getInfoProduct($ref,false,true);
+            if($dataRef['codeStatus'] == 0101909){//No disponible para la web
+                $_Quantity = 0;
+            }else{
+                if(isset($dataRef['stock']['warehouseCode'])){
+                    $_Quantity += $dataRef['stock']['quantity'];
+                }else{
+                    for($i = 0;$i < count($dataRef['stock']);$i++){
+                        $_Quantity += $dataRef['stock'][$i]['quantity'];
+                    } 
+                }   
+            }
+            StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);                
+
+            //$qty = Product::getQuantity($_Row['id_product'],$_Row['id_product_attribute']);
+            if($_Quantity == 0)
+                $str_ids .= $_Row['id_product'].',';
+            else
+                $str_qty_id .= $_Row['id_product'].',';
+            
+        }
+        return array('str_ids' => $str_ids, 'str_qty_id' => $str_qty_id);
+    }
 
 	public function product_listStockChanges($datos){
         if(!is_array($datos))
-			return false;
-		
-		$inventario = $datos['inventoryChangesDTO']['changes'];
-		$stock = array();
+			return false;       
         
-		foreach($inventario as $k => $v) {
-			$_Quantity  = 0;
-			$_Row 		= Db::getInstance()->getRow('SELECT id_product, id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.trim($v['itemCode']).'"');
-                
-			if(!empty($_Row['id_product']) && !empty($_Row['id_product_attribute'])) {
-                $dataRef = parent::wsmatisses_getInfoProduct($v['itemCode'],false,true);
-                if($dataRef['codeStatus'] == 0101909){//No disponible para la web
-                    $_Quantity = 0;
-                }else{
-                    if(isset($dataRef['stock']['warehouseCode'])){
-                        $stores = [$dataRef['stock']['warehouseCode']];
-                        $_Quantity += $dataRef['stock']['quantity'];
-                    }else{
-                        for($i = 0;$i < count($dataRef['stock']);$i++){
-                            $stores = [$dataRef['stock'][$i]['warehouseCode']];
-                            $_Quantity += $dataRef['stock'][$i]['quantity'];
-                        } 
-                    }   
-                }
-                StockAvailable::setQuantity($_Row['id_product'],$_Row['id_product_attribute'],(int)$_Quantity);                
-                                
-                $qty = Product::getQuantity($_Row['id_product'],$_Row['id_product_attribute']);
-                if($qty == 0)
-                    $str_ids .= $_Row['id_product'].',';
-                else
-                    $str_qty_id .= $_Row['id_product'].',';
-			}
+        $inventario = $datos['inventoryChangesDTO']['changes'];
+		$stock = array();
+        $prods = array();
+        if(!$this->isAssoc($inventario)){
+            foreach($inventario as $k => $v) {
+                array_push($prods,$this->updateProductQty($v['itemCode']));
+            }
+        }else{
+            $prods = $this->updateProductQty($inventario['itemCode']);
 		}
+        if(!$this->isAssoc($prods)){
+            foreach($prods as $p){
+                if($p['str_ids']){
+                    $query = 'UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product IN ('.substr($p['str_ids'],0,-1).')';            
+                    $query2 = str_replace(_DB_PREFIX_.'product',_DB_PREFIX_.'product_shop',$query);
 
-        if($str_ids){
-            $query = 'UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product IN ('.substr($str_ids,0,-1).')';            
-            $query2 = str_replace(_DB_PREFIX_.'product',_DB_PREFIX_.'product_shop',$query);
-                        
-            Db::getInstance()->Execute($query);
-            Db::getInstance()->Execute($query2);
-        }
-        if($str_qty_id){
-            $query = 'UPDATE ps_product a LEFT JOIN ps_image b ON a.id_product = b.id_product SET a.active = 1 WHERE b.id_product IS NOT NULL AND a.id_product IN ('.substr($str_qty_id,0,-1).')';
-            $query2 = 'UPDATE ps_product_shop a LEFT JOIN ps_image b ON a.id_product = b.id_product SET a.active = 1 WHERE b.id_product IS NOT NULL AND a.id_product IN ('.substr($str_qty_id,0,-1).')';
-            
-            Db::getInstance()->Execute($query);
-            Db::getInstance()->Execute($query2);
+                    Db::getInstance()->Execute($query);
+                    Db::getInstance()->Execute($query2);
+                }
+                if($p['str_qty_id']){
+                    $query = 'UPDATE ps_product a LEFT JOIN ps_image b ON a.id_product = b.id_product SET a.active = 1 WHERE b.id_product IS NOT NULL AND a.id_product IN ('.substr($p['str_qty_id'],0,-1).')';
+                    $query2 = str_replace(_DB_PREFIX_.'product',_DB_PREFIX_.'product_shop',$query);
+
+                    Db::getInstance()->Execute($query);
+                    Db::getInstance()->Execute($query2);
+                }
+            }
+        }else{
+            if($prods['str_ids']){
+                $query = 'UPDATE  '._DB_PREFIX_.'product SET active = 0 WHERE id_product IN ('.substr($prods['str_ids'],0,-1).')';            
+                $query2 = str_replace(_DB_PREFIX_.'product',_DB_PREFIX_.'product_shop',$query);
+
+                Db::getInstance()->Execute($query);
+                Db::getInstance()->Execute($query2);
+            }
+            if($prods['str_qty_id']){
+                $query = 'UPDATE ps_product a LEFT JOIN ps_image b ON a.id_product = b.id_product SET a.active = 1 WHERE b.id_product IS NOT NULL AND a.id_product IN ('.substr($prods['str_qty_id'],0,-1).')';
+                $query2 = str_replace(_DB_PREFIX_.'product',_DB_PREFIX_.'product_shop',$query);
+
+                Db::getInstance()->Execute($query);
+                Db::getInstance()->Execute($query2);
+            }
         }
 		return true;
 	}
