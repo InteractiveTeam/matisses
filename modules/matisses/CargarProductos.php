@@ -12,6 +12,7 @@ class CargaProductos{
     private $totalProducts;
     private $fiveMin;
     private $pStatus;
+    private $data;
     
     public function __construct(){
         $this->totalProducts = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/consulta';
@@ -41,7 +42,7 @@ class CargaProductos{
             //$error    = curl_error($ch);
             //$errno    = curl_errno($ch);
             curl_close ($ch);
-            return $server_output;
+            $this->data = $server_output;
         }catch(Exception $e){
             die($e->getMessage());
         }
