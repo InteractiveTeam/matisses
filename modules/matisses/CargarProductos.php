@@ -230,18 +230,29 @@ class CargaProductos{
     
     public function productStatus(){
         $this->callService($this->pStatus);
+        $active = "";
+        $inactive = "";
         foreach($this->data as $product){
-            echo "<pre>";print_r($product);echo "</pre>";
-            //$id_prod = Db::getInstance()->getValue("SELECT id_product FROM "._DB_PREFIX_."product WHERE reference = '".$product->referencia."'");
-            /*if(!empty($id_prod)){
-                
+            $id_prod = Db::getInstance()->getValue("SELECT id_product FROM "._DB_PREFIX_."product WHERE reference = '".$product->referencia."'");
+            if($id_prod){
+                if((int)$product->activo){
+                    if(Db::getInstance()->getValue("SELECT count(*) FROM "._DB_PREFIX_."image WHERE id_product = ".$id_prod.";") > 0)
+                        $active .= $id_prod.",";
+                    else
+                        $inactive .= $id_prod.",";
+                }else{
+                    $inactive .= $id_prod.",";
+                }
             }
-            $combinations = Db::getInstance()->executeS("SELECT id_product,id_product_attribute,default_on FROM "._DB_PREFIX_."product_attribute WHERE reference = '".$product->referencia."'");
-            if(!empty($combinations)){
-                echo "<pre>";print_r($product);echo "</pre>";
-                die(print_r($combinations));
-            }*/
         }
+        $query = "UPDATE "._DB_PREFIX_."product SET active = 0 WHERE id_product IN (".rtrim($inactive,",").")";
+        $query2 = str_replace(_DB_PREFIX_."product",_DB_PREFIX_."product_shop",$query);
+        Db::getInstance()->execute($query);
+        Db::getInstance()->execute($query2);
+        $query = "UPDATE "._DB_PREFIX_."product SET active = 1 WHERE id_product IN (".rtrim($active,",").")";
+        $query2 = str_replace(_DB_PREFIX_."product",_DB_PREFIX_."product_shop",$query);
+        Db::getInstance()->execute($query);
+        Db::getInstance()->execute($query2);
     }
 }
 ?>
