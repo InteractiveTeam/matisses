@@ -5,7 +5,6 @@ ini_set('memory_limit','1024M');
 include_once('../../config/config.inc.php');
 
 $ob = new CargaProductos();
-$ob->printLog("oliii, this is a test for log :D");
 exit();
 $ob->productStatus();
 
@@ -31,10 +30,40 @@ class CargaProductos{
         foreach ($this->data as $key => $value) {
             $auxData[$value->model][$value->itemCode] = $this->parseData($this->data[$key]);
         }
-        
+        $this->printLog('Termino de consultar los productos');
+        $this->uploadProduct($auxData);
         //echo "<pre>";print_r($auxData); echo "</pre>";
     }
 
+    //Cargar la informacion de los prod de SAP
+    public function uploadProduct($_References) {
+        if(sizeof($_References)>0) {
+            echo "<pre>";print_r($_References); echo "</pre>";
+            exit();       
+            foreach($_References as $_Model => $_Combinations) {
+                unset($_Product);
+                if(count($_Combinations[key($_Combinations)]['subgroupCode']) > 0){
+                    $_IdProduct = Db::getInstance()->getValue('SELECT id_product FROM '._DB_PREFIX_.'product WHERE model = "'.$_Model.'"');
+                    
+                    $_Product   = __setProduct($_Combinations,$_IdProduct);
+
+                    if($banderaPost){
+                        Search::indexation(true,$_IdProduct);
+                    }
+
+                    __setCombinations($_Combinations,$_Product);
+                }else{
+                    $this->printLog('-- Actualizando producto ('.$_Model.'): '.date('H:i:s')." -> No se cargó, no existe la categoria."."\n");
+                }
+                unset($_References[$_Model]);
+            }
+        }else{
+            //$this->printLog('SERVICIO SAP INACTIVO ---------------------------------------'."\n");
+            $this->printLog('No se caragon productos. El servicio retorno 0 resultados');
+        }
+    }
+
+    //consultar imagenes,categorias,colores y asociarlos a los prod de SAP
     private function parseData($_data){
         if($_data->description && $_data->shortDescription && $_data->price && $_data->itemName && $_data->model && $_data->subgroupCode && count((array)$_data->color)==3) {
 
@@ -131,12 +160,12 @@ class CargaProductos{
                         if(filesize($image)>Configuration::get("PS_PRODUCT_PICTURE_MAX_SIZE") || (substr($image, -27,20) != $_data->itemCode)){
                             unset($images[$dd]);
                         }else{
-                            $msg = 'La ref => '.$_data->itemCode.' NO coincide con las imagenes';
+                            $this->printLog('La ref => '.$_data->itemCode.' NO coincide con las imagenes.');
                         }
                     }
                     $_data->processImages = $images;
                 }else{
-                    $msg = 'La ref => '.$_data->itemCode.' NO tiene imagenes en el directorio';
+                    $this->printLog('La ref => '.$_data->itemCode.' NO tiene imagenes en el directorio');
                 }
             }
 
@@ -167,7 +196,7 @@ class CargaProductos{
                 }
             }
         }else{
-            echo "El producto con REF => ".$_data->itemCode.' No se pudo cargar. Posiblemente no tiene precio,descripción, color etc...';
+            $this->printLog("El producto con REF => ".$_data->itemCode.' No se pudo cargar. Posiblemente no tiene precio,descripción, color etc...');
             $_data = NULL;
         }
         return $_data;
