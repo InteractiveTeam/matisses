@@ -5,6 +5,8 @@ ini_set('memory_limit','1024M');
 include_once('../../config/config.inc.php');
 
 $ob = new CargaProductos();
+$ob->printLog("oliii, this is a test for log :D");
+exit();
 $ob->productStatus();
 
 
@@ -30,7 +32,7 @@ class CargaProductos{
             $auxData[$value->model][$value->itemCode] = $this->parseData($this->data[$key]);
         }
         
-        echo "<pre>";print_r($auxData); echo "</pre>";
+        //echo "<pre>";print_r($auxData); echo "</pre>";
     }
 
     private function parseData($_data){
@@ -256,6 +258,9 @@ class CargaProductos{
     }
     
     public function printLog($message){
+        $log = fopen("log".date("y_m_d"), "a+");
+        fwrite($log, "------- " . strtoupper($message) . " ------> ". date("H:i:s") . PHP_EOL);
+        fclose($log);
         echo "------- " . strtoupper($message) . " ------> ". date("H:i:s") . "<br>";
     }
 }
