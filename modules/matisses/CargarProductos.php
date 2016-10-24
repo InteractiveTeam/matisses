@@ -256,7 +256,7 @@ class CargaProductos{
     }
     
     public function printLog($message){
-        echo "------- " . strtoupper($message) . " ------> ". date("H:i:s");
+        echo "------- " . strtoupper($message) . " ------> ". date("H:i:s") . "<br>";
     }
 }
 ?>
