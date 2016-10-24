@@ -5,7 +5,7 @@ ini_set('memory_limit','1024M');
 include_once('../../config/config.inc.php');
 
 $ob = new CargaProductos();
-$ob->productStatus();
+//$ob->productStatus();
 
 
 class CargaProductos{
@@ -29,11 +29,22 @@ class CargaProductos{
         foreach ($this->data as $key => $value) {
             $auxData[$value->model][$value->itemCode] = $this->parseData($this->data[$key]);
         }
-        
         $this->printLog('Termino de consultar los productos');
         $this->uploadProduct($auxData);
         echo "<pre>";print_r($auxData); echo "</pre>";
     }
+    
+    public function fiveMinutes(){
+        $this->callService($this->fiveMin);
+        $auxData = array();
+        //asociamos todas la ref a un modelo
+        foreach ($this->data as $key => $value) {
+            $auxData[$value->model][$value->itemCode] = $this->parseData($this->data[$key]);
+        }
+        $this->printLog('Termino de consultar los productos');
+        $this->uploadProduct($auxData);
+        //echo "<pre>";print_r($auxData); echo "</pre>";
+    }  
 
     //Cargar la informacion de los prod de SAP
     public function uploadProduct($_References) {
@@ -419,6 +430,9 @@ class CargaProductos{
     }
     
     public function printLog($message){
+        $log = fopen("log".date("y_m_d"), "a+");
+        fwrite($log, "------- " . strtoupper($message) . " ------> ". date("H:i:s") . PHP_EOL);
+        fclose($log);
         echo "------- " . strtoupper($message) . " ------> ". date("H:i:s") . "<br>";
     }
 }
