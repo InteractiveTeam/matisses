@@ -285,5 +285,9 @@ class CargaProductos{
         Db::getInstance()->execute($query);
         Db::getInstance()->execute($query2);
     }
+    
+    public function printLog($message){
+        echo "------- " . strtoupper($message) . " ------> ". date("H:i:s") . "<br>";
+    }
 }
 ?>
