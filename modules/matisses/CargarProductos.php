@@ -30,7 +30,7 @@ class CargaProductos{
             $auxData[$value->model][$value->itemCode] = $this->parseData($this->data[$key]);
         }
         
-        echo "<pre>";print_r($auxData); echo "</pre>";        
+        echo "<pre>";print_r($auxData); echo "</pre>";
     }
 
     private function parseData($_data){
@@ -40,15 +40,13 @@ class CargaProductos{
 
             $_data->webName = str_replace(' ','-',strtolower($_data->itemName));
             $materials  = $_data->materials;
-            if(!$this->countIsArray($_data->materials)){
+            if(!$this->countIsArrayObj($_data->materials)){
                 unset($_data->materials);
                 $_data->materials[] = $materials; 
             }
-            //print_r($_data->stock);
-            /*echo $this->countIsArray($_data->materials).'<br>';
-            echo $this->countIsArray($_data->stock).'<br>';*/
+            
             $stock = $_data->stock;
-            if(!$this->countIsArray($_data->stock)){
+            if(!$this->countIsArrayObj($_data->stock)){
                 unset($_data->stock);
                 $_data->stock[] = $stock;
             }
@@ -65,9 +63,110 @@ class CargaProductos{
             $_data->meta_title = $_data->itemName;
             $_data->video =  strstr($_data->itemCode.'/animacion/'.basename(current(glob($path.'/animacion/*.html'))),'.html') ? $_data->itemCode.'/animacion/'.basename(current(glob($path.'/animacion/*.html'))) : NULL;
         
-            //$_data->manufacture = saveManufacture($_data->brand->code,$_data->brand->name);
+            $_data->manufacture = $this->saveManufacture($_data->brand->code,$_data->brand->name);
+            
+            if($_data->newFrom) {
+                $date = explode('-',date('Y-m-d',$_data->newFrom/1000));
+                if(checkdate ( $date[1] , $date[2] , $date[0] ))
+                    $_data->newFrom   = date('Y-m-d',$_data->newFrom/1000);
+            }
+
+            if(sizeof($_data->materials)>0) {
+                $cares = "";
+                $arraymaterials = array();
+                foreach($_data->materials as $d => $v) {
+                    $arraymaterials[$v->code] =  $v->name;
+                    if($_data->materials[$d]->name)
+                        $cares.= '<h3>'.$_data->materials[$d]->name.'</h3>';
+                        
+                    $cares.= '<p>'.$_data->materials[$d]->cares.'</p><br>';
+                }
+                $_data->materials = $cares;
+                $_data->arraymaterials = $arraymaterials;
+            }
+            
+            if(sizeof($stock)>0) {
+                $quantity = 0;
+                $WarehouseCode = array();
+                foreach($stock as $d => $v) {
+                    $quantity+= (int)$stock[$d]->quantity;
+                    array_push($WarehouseCode,$stock[$d]->warehouseCode);
+                }
+                unset($_data->stock);
+                $_data->stock = (object)array(
+                    'quantity'=>$quantity,
+                    'warehouseCode'=>implode(',',array_unique(array_filter($WarehouseCode)))
+                );
+            }
+            $_data->status = ((int)$_data->stock->quantity)?true:false;//validamos la cantidad para validar el status
+
+            if(!empty($_data->subgroupCode)) {
+                $CategoriesProduct = array();
+                $sql = 'SELECT id_category 
+                    FROM ' . _DB_PREFIX_ . 'category
+                    WHERE LENGTH( subgrupo ) =11 and (subgrupo like "%'.$_data->subgroupCode.'" )
+                    GROUP BY id_category'; 
+                
+                $Categories = Db::getInstance()->ExecuteS($sql);
+                
+                foreach($Categories as $d => $v){
+                    $c = new Category((int)$Categories[$d]['id_category']);          
+                    $pCategories = $c->getParentsCategories(1);
+                    $i = 0;
+                    while($pCategories[$i]['level_depth'] > 2){
+                        array_push($CategoriesProduct,$pCategories[$i]['id_category']);
+                        $i++;
+                    }
+                }  
+                unset($_data->subgroupCode);  
+                $_data->subgroupCode = $CategoriesProduct;        
+            }
+                
+            if((int)$_data->processImages){
+                unset($images);
+                if(sizeof($images = glob($path.'/images/*.jpg'))>0) {
+                    foreach($images as $dd => $image) {
+                        if(filesize($image)>Configuration::get("PS_PRODUCT_PICTURE_MAX_SIZE") || (substr($image, -27,20) != $_data->itemCode)){
+                            unset($images[$dd]);
+                        }else{
+                            $msg = 'La ref => '.$_data->itemCode.' NO coincide con las imagenes';
+                        }
+                    }
+                    $_data->processImages = $images;
+                }else{
+                    $msg = 'La ref => '.$_data->itemCode.' NO tiene imagenes en el directorio';
+                }
+            }
+
+            if($_data->color->code) {
+                unset($color);
+                $color =  Db::getInstance()->getRow("SELECT * FROM "._DB_PREFIX_."attribute WHERE id_sap='".$_data->color->code."'");
+                if(sizeof($color)>1) {
+                    $Attribute  = new Attribute($color['id_attribute'],(int)Configuration::get('PS_LANG_DEFAULT'), (int)Configuration::get('PS_SHOP_DEFAULT'));
+                    $name = $_data->color->name ? $_data->color->name : $Attribute->name;
+                    $name = mb_strtoupper(substr($name,0,1)).mb_strtolower(substr($name,1));
+                    $Attribute->id_attribute_group = 3;
+                    $Attribute->color   =  ($_data->color->hexa && strlen($_data->color->hexa)==6) ? '#'.strtoupper($_data->color->hexa) : $color['color'];
+                    $Attribute->name    = $name;
+                    $Attribute->id_sap  = $color['id_sap'];
+                    $Attribute->update();
+                    $_data->color  = $color;
+                }else{
+                    $time = time();
+                    $Attribute  = new Attribute($color->id_attribute,(int)Configuration::get('PS_LANG_DEFAULT'), (int)Configuration::get('PS_SHOP_DEFAULT'));
+                    $name = $_data->color->name ? $_data->color->name : 'Color temporal';
+                    $name = mb_strtoupper(substr($name,0,1)).mb_strtolower(substr($name,1));
+                    $Attribute->id_attribute_group = 3;
+                    $Attribute->name    = pSQL($name);
+                    $Attribute->color   = ($_data->color->hexa && strlen($_data->color->hexa)==6) ? '#'.strtoupper($_data->color->hexa) : '#FFFFFF';
+                    $Attribute->id_sap  = $_data->color->code ? $_data->color->code : time();
+                    $Attribute->add();
+                    $_data->color  = Db::getInstance()->getRow("SELECT * FROM "._DB_PREFIX_."attribute WHERE id_sap='".$Attribute->id_sap."'");;
+                }
+            }
         }else{
             echo "El producto con REF => ".$_data->itemCode.' No se pudo cargar. Posiblemente no tiene precio,descripción, color etc...';
+            $_data = NULL;
         }
         return $_data;
     }
@@ -76,7 +175,7 @@ class CargaProductos{
     * $brandcode => brand code of matisses
     * $nameBrand => brand name
     */
-    function saveManufacture($brandcode,$brandName){
+    public function saveManufacture($brandcode,$brandName){
         $row = Db::getInstance()->getRow('SELECT * FROM '._DB_PREFIX_.'manufacturer WHERE brandcode ="'.trim($brandcode).'"');
         
         if(!$row['id_manufacturer']){
@@ -93,13 +192,12 @@ class CargaProductos{
             Db::getInstance()->insert('manufacturer_lang', $attributes_list);
 
             Db::getInstance()->insert('manufacturer_shop', array('id_manufacturer' => $row['id_last'],'id_shop'=>1));
-        }
-        
+        }        
         return $row;        
     }
 
-    public function countIsArray($value){
-        return count(array_filter($value,'is_array'));
+    public function countIsArrayObj($value){
+        return (int)count(array_filter($value,'is_object'));
     }
 
     public function callService($url){
