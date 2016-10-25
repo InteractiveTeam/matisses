@@ -16,7 +16,6 @@ class CargaProductos{
         $this->pStatus = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/estado';
         $this->data = array();
         if(!$five){
-            die("no deberia entrar");
             $this->loadProcess($this->totalProducts);
             $this->printLog('Termino de consultar los productos');
         }
@@ -32,6 +31,7 @@ class CargaProductos{
         $this->printLog('Termino de consultar los productos');
         $this->uploadProduct($auxData);
         $this->printLog("Cambiando estados");
+        Search::indexation(true);
         $this->productStatus();
         //echo "<pre>";print_r($auxData); echo "</pre>";
         $this->printLog("Fin proceso");
@@ -325,7 +325,7 @@ class CargaProductos{
                     $SpecificPrice->to                      = date('Y-m-d H:i:s',strtotime('+1 year'));
                     $SpecificPrice->add();
                  }  
-                $this->printLog('---- Combinacion : '.$_Combination->itemCode." \n");   
+                //$this->printLog('---- Combinacion : '.$_Combination->itemCode." \n");   
             }catch (Exception $e) {
                 $this->printLog('---- Combinacion error: itemCode: '.$_Combination->itemCode.' id_product: '.$_Product->id.' id_product_attribute: '.$id_product_attribute.' '.$e->getMessage()." \n"); 
             }
