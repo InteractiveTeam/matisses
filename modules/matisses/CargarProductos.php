@@ -23,6 +23,7 @@ class CargaProductos{
             $this->printLog('Termino de consultar los productos');
             //$this->uploadProduct($auxData);
             //echo "<pre>";print_r($auxData); echo "</pre>";
+            $this->productStatus();
         }
     }
 
