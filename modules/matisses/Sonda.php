@@ -13,5 +13,8 @@ if (base64_decode($_GET['token']) == "sondaMatisses"){
        $ob = new CargaProductos(false); 
     }
 }
+else{
+    Tools::redirect('404');
+}
 
 ?>

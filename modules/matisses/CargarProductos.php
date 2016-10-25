@@ -566,35 +566,40 @@ class CargaProductos{
             curl_close ($ch);
             $this->data = json_decode($server_output);
         }catch(Exception $e){
-            die($e->getMessage());
+            $this->printLog($e->getMessage());
+            exit();
         }
     }
     
     public function productStatus(){
-        $this->callService($this->pStatus);
-        $active = "";
-        $inactive = "";
-        foreach($this->data as $product){
-            $id_prod = Db::getInstance()->getValue("SELECT id_product FROM "._DB_PREFIX_."product WHERE reference = '".$product->referencia."'");
-            if($id_prod){
-                if((int)$product->activo){
-                    if(Db::getInstance()->getValue("SELECT count(*) FROM "._DB_PREFIX_."image WHERE id_product = ".$id_prod.";") > 0)
-                        $active .= $id_prod.",";
-                    else
+        try{
+            $this->callService($this->pStatus);
+            $active = "";
+            $inactive = "";
+            foreach($this->data as $product){
+                $id_prod = Db::getInstance()->getValue("SELECT id_product FROM "._DB_PREFIX_."product WHERE reference = '".$product->referencia."'");
+                if($id_prod){
+                    if((int)$product->activo){
+                        if(Db::getInstance()->getValue("SELECT count(*) FROM "._DB_PREFIX_."image WHERE id_product = ".$id_prod.";") > 0)
+                            $active .= $id_prod.",";
+                        else
+                            $inactive .= $id_prod.",";
+                    }else{
                         $inactive .= $id_prod.",";
-                }else{
-                    $inactive .= $id_prod.",";
+                    }
                 }
             }
+            $query = "UPDATE "._DB_PREFIX_."product SET active = 0 WHERE id_product IN (".rtrim($inactive,",").")";
+            $query2 = str_replace(_DB_PREFIX_."product",_DB_PREFIX_."product_shop",$query);
+            Db::getInstance()->execute($query);
+            Db::getInstance()->execute($query2);
+            $query = "UPDATE "._DB_PREFIX_."product SET active = 1 WHERE id_product IN (".rtrim($active,",").")";
+            $query2 = str_replace(_DB_PREFIX_."product",_DB_PREFIX_."product_shop",$query);
+            Db::getInstance()->execute($query);
+            Db::getInstance()->execute($query2);
+        }catch(Exception $e){
+            $this->printLog("Error: ". $e->getMessage());
         }
-        $query = "UPDATE "._DB_PREFIX_."product SET active = 0 WHERE id_product IN (".rtrim($inactive,",").")";
-        $query2 = str_replace(_DB_PREFIX_."product",_DB_PREFIX_."product_shop",$query);
-        Db::getInstance()->execute($query);
-        Db::getInstance()->execute($query2);
-        $query = "UPDATE "._DB_PREFIX_."product SET active = 1 WHERE id_product IN (".rtrim($active,",").")";
-        $query2 = str_replace(_DB_PREFIX_."product",_DB_PREFIX_."product_shop",$query);
-        Db::getInstance()->execute($query);
-        Db::getInstance()->execute($query2);
     }
     
     public function printLog($message){
