@@ -5,7 +5,7 @@ ini_set('memory_limit','1024M');
 include_once('../../config/config.inc.php');
 
 $ob = new CargaProductos();
-//$ob->productStatus();
+$ob->productStatus();
 
 
 class CargaProductos{
@@ -29,22 +29,11 @@ class CargaProductos{
         foreach ($this->data as $key => $value) {
             $auxData[$value->model][$value->itemCode] = $this->parseData($this->data[$key]);
         }
+        
         $this->printLog('Termino de consultar los productos');
         $this->uploadProduct($auxData);
         echo "<pre>";print_r($auxData); echo "</pre>";
     }
-    
-    public function fiveMinutes(){
-        $this->callService($this->fiveMin);
-        $auxData = array();
-        //asociamos todas la ref a un modelo
-        foreach ($this->data as $key => $value) {
-            $auxData[$value->model][$value->itemCode] = $this->parseData($this->data[$key]);
-        }
-        $this->printLog('Termino de consultar los productos');
-        $this->uploadProduct($auxData);
-        //echo "<pre>";print_r($auxData); echo "</pre>";
-    }  
 
     //Cargar la informacion de los prod de SAP
     public function uploadProduct($_References) {
@@ -204,6 +193,190 @@ class CargaProductos{
             $this->printLog('---- Product error: itemCode: '.$_Product->reference.' id_product: '.$_Product->id.' '.$e->getMessage()." \n");
         }   
         return $_Product;
+    }
+
+    public function setCombinations($_Combinations,$_Product) {        
+        $_currentCombinations = array();
+        foreach($_Combinations as $d => $_Combination) {
+            try{
+                if(!$_Combination['processImages'] && $_Product->getCombinationImages(1))
+                     continue;
+                // verifico si la combinacion esta para cambio de modelo
+                $_currentCombinations[] = $_Combination['itemCode'];
+                $id_product_attribute = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.$_Combination['itemCode'].'" and id_product = 0');
+                if($id_product_attribute)
+                {
+                    Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'product_attribute SET id_product = '.$_Product->id.' 
+                                                WHERE id_product_attribute = '.$id_product_attribute.' 
+                                                    and id_product = 0');   
+                }
+                
+                unset($id_product_attribute);
+                $id_product_attribute   = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.$_Combination['itemCode'].'" and id_product = '.$_Product->id);
+                $default                = $_Combination['mainCombination'];
+                $images                 = ($_Combination['processImages'] ? __setImages($_Combination['processImages'],$_Product) : array());
+                
+                if($id_product_attribute)
+                {
+                                
+                    $_Product->updateAttribute($id_product_attribute,
+                                                0,
+                                                0,
+                                                NULL,
+                                                NULL,
+                                                NULL,
+                                                $images,
+                                                $_Combination['itemCode'],
+                                                $ean13,
+                                                $default,
+                                                NULL,
+                                                NULL,
+                                                NULL,
+                                                '0000-00-00',
+                                                true,
+                                                array(),
+                                                $_Combination['itemName'],
+                                                utf8_decode($_Combination['shortDescription']));
+                    
+                    Db::getInstance()->update(
+                                        'product_attribute_combination', 
+                                        array('id_attribute' => (int) $_Combination['color']['id_attribute']), 
+                                        'id_product_attribute = '.(int)$id_product_attribute
+                                    );
+                    
+                                    
+                    // teindas disponibles por combinacion              
+                    Db::getInstance()->update('product_attribute', 
+                                        array('available' => $_Combination['stock']['WarehouseCode'],
+                                             'garantias'=> addslashes($_Combination['materials']),
+                                              'itemname'=> addslashes($_Combination['itemName']),
+                                              'short_description'=> addslashes($_Combination['shortDescription']),
+                                              'description'=> addslashes($_Combination['description']) 
+                                        ), 
+                                        'id_product_attribute = '.(int)$id_product_attribute
+                                    );
+                    
+                }else{
+                        $id_product_attribute = $_Product->addAttribute(0,
+                                                                        NULL,
+                                                                        NULL,
+                                                                        NULL,
+                                                                        $images,
+                                                                        $_Combination['itemCode'],
+                                                                        NULL,
+                                                                        $default,
+                                                                        NULL,
+                                                                        NULL,
+                                                                        1,
+                                                                        array(),
+                                                                        '0000-00-00',
+                                                                        $_Combination['itemName'],
+                                                                        utf8_decode($_Combination['shortDescription'])
+                                                                        );
+                        
+                        $attributes_list = array(
+                                        'id_product_attribute'  => (int)$id_product_attribute,
+                                        'id_attribute'          => (int)$_Combination['color']['id_attribute'],
+                                    );
+    
+                        Db::getInstance()->insert('product_attribute_combination', $attributes_list);
+                        // teindas disponibles por combinacion
+                        Db::getInstance()->update('product_attribute', 
+                                        array('available' => $_Combination['stock']['WarehouseCode'],
+                                              'garantias'=> $_Combination['materials'],
+                                              'itemname'=> $_Combination['itemName'],
+                                              'short_description'=> $_Combination['shortDescription'],
+                                              'description'=> $_Combination['description']
+                                             ), 
+                                        'id_product_attribute = '.(int)$id_product_attribute
+                                    );
+                     }
+     
+                StockAvailable::setQuantity($_Product->id,$id_product_attribute,(int)$_Combination['stock']['quantity']);
+                
+                //precios especificos
+                
+                $spid=SpecificPrice::getIdsByProductId($_Product->id,$id_product_attribute);
+                $spid=$spid[0]['id_specific_price'];
+                
+                if($spid)
+                {
+                    $SpecificPrice = new SpecificPrice($spid);
+                    $SpecificPrice->price       = $_Combination['price'];   
+                    $SpecificPrice->reduction   = 0;
+                    $SpecificPrice->update();
+    
+                }else{
+    
+                        $SpecificPrice = new SpecificPrice();
+                        $SpecificPrice->id_product              = $_Product->id;
+                        $SpecificPrice->id_specific_price_rule  = 0;
+                         $SpecificPrice->id_cart                = 0;
+                        $SpecificPrice->id_product_attribute    = $id_product_attribute;
+                        $SpecificPrice->id_shop                 = (int)Context::getContext()->shop->id;
+                        $SpecificPrice->id_shop_group           = Context::getContext()->shop->id_shop_group;
+                        $SpecificPrice->id_currency             = 0;
+                        $SpecificPrice->id_country              = 0;
+                        $SpecificPrice->id_group                = 0;
+                        $SpecificPrice->id_customer             = 0;
+                        $SpecificPrice->price                   = $_Combination['price'];                   
+                        $SpecificPrice->from_quantity           = 1;
+                        $SpecificPrice->reduction               = 0;
+                        $SpecificPrice->reduction_type          = 'percentage';
+                        $SpecificPrice->from                    = date('Y-m-d H:i:s',time());
+                        $SpecificPrice->to                      = date('Y-m-d H:i:s',strtotime('+1 year'));
+                        $SpecificPrice->add();
+                     }  
+                __MessaggeLog('---- Combinacion : '.$_Combination['itemCode']." \n");   
+            }catch (Exception $e) {
+                __MessaggeLog('---- Combinacion error: itemCode: '.$_Combination['itemCode'].' id_product: '.$_Product->id.' id_product_attribute: '.$id_product_attribute.' '.$e->getMessage()." \n"); 
+            }       
+        }
+        
+        if(sizeof($_currentCombinations)>0)
+            Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'product_attribute SET id_product = 0 WHERE id_product = '.$_Product->id.' AND reference not in ("'.implode('","',$_currentCombinations).'")');
+        
+        
+        return true;
+    }
+    
+    
+    public function setImages($_Images,$_Product)    {
+        //echo "<pre>"; print_r($_Images); echo "</pre>";
+        
+        if(sizeof($_Images)>0)
+        {
+            foreach($_Images as $d => $v)
+            {   
+                try{
+                        $image = new Image();
+                        $image->id_product  = (int)($_Product->id);
+                        $image->position    = Image::getHighestPosition((int)($_Product->id)) + 1;
+                        $image->cover       = !Image::getCover($image->id_product) ? 1 : 0;
+                        if($image->add())
+                        {
+                            $image          = new Image($image->id);
+                            $new_path       = $image->getPathForCreation();
+                            ImageManager::resize($v, $new_path.'.'.$image->image_format);
+                            $imagesTypes    = ImageType::getImagesTypes('products');
+                            foreach ($imagesTypes as $imageType)
+                            {
+                                ImageManager::resize($v, $new_path.'-'.stripslashes($imageType['name']).'.'.$image->image_format, $imageType['width'], $imageType['height'], $image->image_format);
+                            }
+                            $_IdImages[$d] = $image->id;
+                            //verifico que todas las imagenes se hallan cargado
+                            foreach($imagesTypes as $dd => $vv)
+                            {
+                                if(!file_exists(_PS_ROOT_DIR_._THEME_PROD_DIR_.$image->getImgFolderStatic($image->id).$image->id.'-'.$imagesTypes[$dd]['name'].'.jpg'))
+                                    $image->delete();   
+                            }
+                        }
+                }catch (Exception $e) {
+                    __MessaggeLog('---- Images error: itemCode: '.$_Product->reference.' id_product: '.$_Product->id.' id_product_attribute: '.$e->getMessage()." \n"); 
+                }       
+            }
+            return $_IdImages;
+        }
     }
 
     //consultar imagenes,categorias,colores y asociarlos a los prod de SAP
@@ -430,9 +603,6 @@ class CargaProductos{
     }
     
     public function printLog($message){
-        $log = fopen("log".date("y_m_d"), "a+");
-        fwrite($log, "------- " . strtoupper($message) . " ------> ". date("H:i:s") . PHP_EOL);
-        fclose($log);
         echo "------- " . strtoupper($message) . " ------> ". date("H:i:s") . "<br>";
     }
 }
