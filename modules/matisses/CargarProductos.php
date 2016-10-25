@@ -4,9 +4,6 @@ set_time_limit(0);
 ini_set('memory_limit','1024M');
 include_once('../../config/config.inc.php');
 
-$ob = new CargaProductos(false);
-//$ob->productStatus();
-
 class CargaProductos{
     private $totalProducts;
     public $fiveMin;
@@ -19,11 +16,9 @@ class CargaProductos{
         $this->pStatus = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/estado';
         $this->data = array();
         if(!$five){
+            die("no deberia entrar");
             $this->loadProcess($this->totalProducts);
             $this->printLog('Termino de consultar los productos');
-            //$this->uploadProduct($auxData);
-            //echo "<pre>";print_r($auxData); echo "</pre>";
-            $this->productStatus();
         }
     }
 
@@ -36,7 +31,10 @@ class CargaProductos{
         }
         $this->printLog('Termino de consultar los productos');
         $this->uploadProduct($auxData);
+        $this->printLog("Cambiando estados");
+        $this->productStatus();
         //echo "<pre>";print_r($auxData); echo "</pre>";
+        $this->printLog("Fin proceso");
     }
 
     //Cargar la informacion de los prod de SAP
@@ -600,6 +598,9 @@ class CargaProductos{
     }
     
     public function printLog($message){
+        $log = fopen("log".date("y_m_d"), "a+");
+        fwrite($log, "------- " . strtoupper($message) . " ------> ". date("H:i:s") . PHP_EOL);
+        fclose($log);
         echo "------- " . strtoupper($message) . " ------> ". date("H:i:s") . "<br>";
     }
 }
