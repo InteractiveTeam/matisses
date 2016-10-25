@@ -1517,10 +1517,10 @@ class ProductCore extends ObjectModel
 		$combination->available_date = $available_date ? pSQL($available_date) : '0000-00-00';
 		
 		if($itemName)
-			$combination->itemname = $itemname;
+			$combination->itemname = $itemName;
 			
-		if($shortDescription)
-			$combination->short_description = $shortDescription;	
+		if($short_description)
+			$combination->short_description = $short_description;	
 		
 
 		if (count($id_shop_list))
@@ -1581,7 +1581,7 @@ class ProductCore extends ObjectModel
 		$combination->available_date = $available_date;
 		
 		if($itemName)
-			$combination->itemname = $itemname;
+			$combination->itemname = $itemName;
 			
 		if($shortDescription)
 			$combination->short_description = $shortDescription;	

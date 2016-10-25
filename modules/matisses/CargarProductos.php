@@ -21,7 +21,7 @@ class CargaProductos{
         if(!$five){
             $this->loadProcess($this->totalProducts);
             $this->printLog('Termino de consultar los productos');
-            $this->uploadProduct($auxData);
+            //$this->uploadProduct($auxData);
             //echo "<pre>";print_r($auxData); echo "</pre>";
         }
     }
@@ -220,7 +220,6 @@ class CargaProductos{
                 
                 if($id_product_attribute)
                 {
-                                
                     $_Product->updateAttribute($id_product_attribute,
                                                 0,
                                                 0,
@@ -228,8 +227,8 @@ class CargaProductos{
                                                 NULL,
                                                 NULL,
                                                 $images,
-                                                $_Combination->temCode,
-                                                $ean13,
+                                                $_Combination->itemCode,
+                                                '0',//ean13
                                                 $default,
                                                 NULL,
                                                 NULL,
@@ -242,18 +241,18 @@ class CargaProductos{
                     
                     Db::getInstance()->update(
                                         'product_attribute_combination', 
-                                        array('id_attribute' => (int) $_Combination['color']['id_attribute']), 
+                                        array('id_attribute' => (int) $_Combination->color['id_attribute']), 
                                         'id_product_attribute = '.(int)$id_product_attribute
                                     );
                     
                                     
-                    // teindas disponibles por combinacion              
+                    // teindas disponibles por combinacion
                     Db::getInstance()->update('product_attribute', 
-                                        array('available' => $_Combination['stock']['WarehouseCode'],
-                                             'garantias'=> addslashes($_Combination['materials']),
-                                              'itemname'=> addslashes($_Combination['itemName']),
-                                              'short_description'=> addslashes($_Combination['shortDescription']),
-                                              'description'=> addslashes($_Combination['description']) 
+                                        array('available' => $_Combination->stock->warehouseCode,
+                                             'garantias'=> addslashes($_Combination->materials),
+                                              'itemname'=> addslashes($_Combination->itemName),
+                                              'short_description'=> addslashes($_Combination->shortDescription),
+                                              'description'=> addslashes($_Combination->description) 
                                         ), 
                                         'id_product_attribute = '.(int)$id_product_attribute
                                     );
@@ -341,7 +340,7 @@ class CargaProductos{
     }
     
     
-    public function setImages($_Images,$_Product)    {        
+    public function setImages($_Images,$_Product){
         if(sizeof($_Images)>0)
         {
             foreach($_Images as $d => $v)
