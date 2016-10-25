@@ -7,29 +7,33 @@ include_once('../../config/config.inc.php');
 $ob = new CargaProductos();
 $ob->productStatus();
 
-
 class CargaProductos{
     private $totalProducts;
-    private $fiveMin;
+    public $fiveMin;
     private $pStatus;
     private $data;
     
-    public function __construct(){
+    public function __construct($five){
         $this->totalProducts = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/consulta';
         $this->fiveMin = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/consultaRecientes5M';
         $this->pStatus = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/estado';
         $this->data = array();
-        $this->loadProcess();
+        if(!$five){
+            $this->loadProcess($this->totalProducts);
+        }
+        
+        $this->printLog('Termino de consultar los productos');
+        $this->uploadProduct($auxData);
+        echo "<pre>";print_r($auxData); echo "</pre>";
     }
-    
-    private function loadProcess(){
-        $this->callService($this->totalProducts);
+
+    public function loadProcess($url){
+        $this->callService($url);
         $auxData = array();
         //asociamos todas la ref a un modelo
         foreach ($this->data as $key => $value) {
             $auxData[$value->model][$value->itemCode] = $this->parseData($this->data[$key]);
         }
-        
         $this->printLog('Termino de consultar los productos');
         $this->uploadProduct($auxData);
         echo "<pre>";print_r($auxData); echo "</pre>";
