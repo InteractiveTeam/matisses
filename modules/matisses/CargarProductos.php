@@ -4,8 +4,8 @@ set_time_limit(0);
 ini_set('memory_limit','1024M');
 include_once('../../config/config.inc.php');
 
-$ob = new CargaProductos();
-$ob->productStatus();
+$ob = new CargaProductos(false);
+//$ob->productStatus();
 
 class CargaProductos{
     private $totalProducts;
@@ -20,11 +20,10 @@ class CargaProductos{
         $this->data = array();
         if(!$five){
             $this->loadProcess($this->totalProducts);
+            $this->printLog('Termino de consultar los productos');
+            $this->uploadProduct($auxData);
+            //echo "<pre>";print_r($auxData); echo "</pre>";
         }
-        
-        $this->printLog('Termino de consultar los productos');
-        $this->uploadProduct($auxData);
-        echo "<pre>";print_r($auxData); echo "</pre>";
     }
 
     public function loadProcess($url){
@@ -36,13 +35,12 @@ class CargaProductos{
         }
         $this->printLog('Termino de consultar los productos');
         $this->uploadProduct($auxData);
-        echo "<pre>";print_r($auxData); echo "</pre>";
+        //echo "<pre>";print_r($auxData); echo "</pre>";
     }
 
     //Cargar la informacion de los prod de SAP
     public function uploadProduct($_References) {
         if(sizeof($_References)>0) {
-
             foreach($_References as $_Model => $_Combinations) {
                 
                 unset($_Product);
@@ -55,9 +53,9 @@ class CargaProductos{
                         Search::indexation(true,$_IdProduct);
                     }*/
 
-                    //__setCombinations($_Combinations,$_Product);
+                    $this->setCombinations($_Combinations,$_Product);
                 }else{
-                    $this->printLog('-- Actualizando producto ('.$_Model.'): '.date('H:i:s')." -> No se cargó, no existe la categoria."."\n");
+                    $this->printLog('-- Actualizando producto ('.$_Model.'): '." -> No se cargó, no existe la categoria."."\n");
                 }
                 unset($_References[$_Model]);
             }
@@ -199,15 +197,15 @@ class CargaProductos{
         return $_Product;
     }
 
-    public function setCombinations($_Combinations,$_Product) {        
+    public function setCombinations($_Combinations,$_Product) {
         $_currentCombinations = array();
         foreach($_Combinations as $d => $_Combination) {
             try{
-                if(!$_Combination['processImages'] && $_Product->getCombinationImages(1))
+                if(!$_Combination->processImages && $_Product->getCombinationImages(1))
                      continue;
                 // verifico si la combinacion esta para cambio de modelo
-                $_currentCombinations[] = $_Combination['itemCode'];
-                $id_product_attribute = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.$_Combination['itemCode'].'" and id_product = 0');
+                $_currentCombinations[] = $_Combination->itemCode;
+                $id_product_attribute = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.$_Combination->itemCode.'" and id_product = 0');
                 if($id_product_attribute)
                 {
                     Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'product_attribute SET id_product = '.$_Product->id.' 
@@ -216,9 +214,9 @@ class CargaProductos{
                 }
                 
                 unset($id_product_attribute);
-                $id_product_attribute   = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.$_Combination['itemCode'].'" and id_product = '.$_Product->id);
-                $default                = $_Combination['mainCombination'];
-                $images                 = ($_Combination['processImages'] ? __setImages($_Combination['processImages'],$_Product) : array());
+                $id_product_attribute   = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'. $_Combination->itemCode.'" and id_product = '.$_Product->id);
+                $default                = $_Combination->mainCombination;
+                $images                 = ($_Combination->processImages ? $this->setImages($_Combination->processImages,$_Product) : array());
                 
                 if($id_product_attribute)
                 {
@@ -230,7 +228,7 @@ class CargaProductos{
                                                 NULL,
                                                 NULL,
                                                 $images,
-                                                $_Combination['itemCode'],
+                                                $_Combination->temCode,
                                                 $ean13,
                                                 $default,
                                                 NULL,
@@ -239,8 +237,8 @@ class CargaProductos{
                                                 '0000-00-00',
                                                 true,
                                                 array(),
-                                                $_Combination['itemName'],
-                                                utf8_decode($_Combination['shortDescription']));
+                                                $_Combination->itemName,
+                                                utf8_decode($_Combination->shortDescription));
                     
                     Db::getInstance()->update(
                                         'product_attribute_combination', 
@@ -266,7 +264,7 @@ class CargaProductos{
                                                                         NULL,
                                                                         NULL,
                                                                         $images,
-                                                                        $_Combination['itemCode'],
+                                                                        $_Combination->itemCode,
                                                                         NULL,
                                                                         $default,
                                                                         NULL,
@@ -274,29 +272,29 @@ class CargaProductos{
                                                                         1,
                                                                         array(),
                                                                         '0000-00-00',
-                                                                        $_Combination['itemName'],
-                                                                        utf8_decode($_Combination['shortDescription'])
+                                                                        $_Combination->itemName,
+                                                                        utf8_decode($_Combination->shortDescription)
                                                                         );
                         
                         $attributes_list = array(
                                         'id_product_attribute'  => (int)$id_product_attribute,
-                                        'id_attribute'          => (int)$_Combination['color']['id_attribute'],
+                                        'id_attribute'          => (int)$_Combination->color['id_attribute'],
                                     );
     
                         Db::getInstance()->insert('product_attribute_combination', $attributes_list);
                         // teindas disponibles por combinacion
                         Db::getInstance()->update('product_attribute', 
-                                        array('available' => $_Combination['stock']['WarehouseCode'],
-                                              'garantias'=> $_Combination['materials'],
-                                              'itemname'=> $_Combination['itemName'],
-                                              'short_description'=> $_Combination['shortDescription'],
-                                              'description'=> $_Combination['description']
+                                        array('available' => $_Combination->stock->WarehouseCode,
+                                              'garantias'=> $_Combination->materials,
+                                              'itemname'=> $_Combination->itemName,
+                                              'short_description'=> $_Combination->shortDescription,
+                                              'description'=> $_Combination->description
                                              ), 
                                         'id_product_attribute = '.(int)$id_product_attribute
                                     );
                      }
      
-                StockAvailable::setQuantity($_Product->id,$id_product_attribute,(int)$_Combination['stock']['quantity']);
+                StockAvailable::setQuantity($_Product->id,$id_product_attribute,(int)$_Combination->stock->quantity);
                 
                 //precios especificos
                 
@@ -306,35 +304,33 @@ class CargaProductos{
                 if($spid)
                 {
                     $SpecificPrice = new SpecificPrice($spid);
-                    $SpecificPrice->price       = $_Combination['price'];   
+                    $SpecificPrice->price       = $_Combination->price;   
                     $SpecificPrice->reduction   = 0;
                     $SpecificPrice->update();
-    
                 }else{
-    
-                        $SpecificPrice = new SpecificPrice();
-                        $SpecificPrice->id_product              = $_Product->id;
-                        $SpecificPrice->id_specific_price_rule  = 0;
-                         $SpecificPrice->id_cart                = 0;
-                        $SpecificPrice->id_product_attribute    = $id_product_attribute;
-                        $SpecificPrice->id_shop                 = (int)Context::getContext()->shop->id;
-                        $SpecificPrice->id_shop_group           = Context::getContext()->shop->id_shop_group;
-                        $SpecificPrice->id_currency             = 0;
-                        $SpecificPrice->id_country              = 0;
-                        $SpecificPrice->id_group                = 0;
-                        $SpecificPrice->id_customer             = 0;
-                        $SpecificPrice->price                   = $_Combination['price'];                   
-                        $SpecificPrice->from_quantity           = 1;
-                        $SpecificPrice->reduction               = 0;
-                        $SpecificPrice->reduction_type          = 'percentage';
-                        $SpecificPrice->from                    = date('Y-m-d H:i:s',time());
-                        $SpecificPrice->to                      = date('Y-m-d H:i:s',strtotime('+1 year'));
-                        $SpecificPrice->add();
-                     }  
-                __MessaggeLog('---- Combinacion : '.$_Combination['itemCode']." \n");   
+                    $SpecificPrice = new SpecificPrice();
+                    $SpecificPrice->id_product              = $_Product->id;
+                    $SpecificPrice->id_specific_price_rule  = 0;
+                    $SpecificPrice->id_cart                = 0;
+                    $SpecificPrice->id_product_attribute    = $id_product_attribute;
+                    $SpecificPrice->id_shop                 = (int)Context::getContext()->shop->id;
+                    $SpecificPrice->id_shop_group           = Context::getContext()->shop->id_shop_group;
+                    $SpecificPrice->id_currency             = 0;
+                    $SpecificPrice->id_country              = 0;
+                    $SpecificPrice->id_group                = 0;
+                    $SpecificPrice->id_customer             = 0;
+                    $SpecificPrice->price                   = $_Combination->price;                   
+                    $SpecificPrice->from_quantity           = 1;
+                    $SpecificPrice->reduction               = 0;
+                    $SpecificPrice->reduction_type          = 'percentage';
+                    $SpecificPrice->from                    = date('Y-m-d H:i:s',time());
+                    $SpecificPrice->to                      = date('Y-m-d H:i:s',strtotime('+1 year'));
+                    $SpecificPrice->add();
+                 }  
+                $this->printLog('---- Combinacion : '.$_Combination->itemCode." \n");   
             }catch (Exception $e) {
-                __MessaggeLog('---- Combinacion error: itemCode: '.$_Combination['itemCode'].' id_product: '.$_Product->id.' id_product_attribute: '.$id_product_attribute.' '.$e->getMessage()." \n"); 
-            }       
+                $this->printLog('---- Combinacion error: itemCode: '.$_Combination->itemCode.' id_product: '.$_Product->id.' id_product_attribute: '.$id_product_attribute.' '.$e->getMessage()." \n"); 
+            }
         }
         
         if(sizeof($_currentCombinations)>0)
@@ -345,9 +341,7 @@ class CargaProductos{
     }
     
     
-    public function setImages($_Images,$_Product)    {
-        //echo "<pre>"; print_r($_Images); echo "</pre>";
-        
+    public function setImages($_Images,$_Product)    {        
         if(sizeof($_Images)>0)
         {
             foreach($_Images as $d => $v)
@@ -472,14 +466,13 @@ class CargaProductos{
                 unset($_data->subgroupCode);  
                 $_data->subgroupCode = $CategoriesProduct;        
             }
-                
             if((int)$_data->processImages){
                 unset($images);
                 if(sizeof($images = glob($path.'/images/*.jpg'))>0) {
                     foreach($images as $dd => $image) {
                         if(filesize($image)>Configuration::get("PS_PRODUCT_PICTURE_MAX_SIZE") || (substr($image, -27,20) != $_data->itemCode)){
                             unset($images[$dd]);
-                        }else{
+                        }elseif((substr($image, -27,20) != $_data->itemCode)){
                             $this->printLog('La ref => '.$_data->itemCode.' NO coincide con las imagenes.');
                         }
                     }
