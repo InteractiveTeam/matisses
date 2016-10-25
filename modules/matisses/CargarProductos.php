@@ -22,6 +22,9 @@ class CargaProductos{
         if(!$five){
             $this->loadProcess($this->totalProducts);
         }
+        $this->printLog('Termino de consultar los productos');
+        $this->uploadProduct($auxData);
+        echo "<pre>";print_r($auxData); echo "</pre>";
     }
     
     public function loadProcess($url){
@@ -32,27 +35,27 @@ class CargaProductos{
             $auxData[$value->model][$value->itemCode] = $this->parseData($this->data[$key]);
         }
         $this->printLog('Termino de consultar los productos');
-        //$this->uploadProduct($auxData);
+        $this->uploadProduct($auxData);
         echo "<pre>";print_r($auxData); echo "</pre>";
     }  
 
     //Cargar la informacion de los prod de SAP
     public function uploadProduct($_References) {
         if(sizeof($_References)>0) {
-            echo "<pre>";print_r($_References); echo "</pre>";
-            exit();       
+
             foreach($_References as $_Model => $_Combinations) {
+                
                 unset($_Product);
-                if(count($_Combinations[key($_Combinations)]['subgroupCode']) > 0){
+                if(count($_Combinations[key($_Combinations)]->subgroupCode) > 0){
                     $_IdProduct = Db::getInstance()->getValue('SELECT id_product FROM '._DB_PREFIX_.'product WHERE model = "'.$_Model.'"');
                     
-                    $_Product   = __setProduct($_Combinations,$_IdProduct);
+                    $_Product   = $this->__setProduct($_Combinations,$_IdProduct);
 
-                    if($banderaPost){
+                    /*if($banderaPost){
                         Search::indexation(true,$_IdProduct);
-                    }
+                    }*/
 
-                    __setCombinations($_Combinations,$_Product);
+                    //__setCombinations($_Combinations,$_Product);
                 }else{
                     $this->printLog('-- Actualizando producto ('.$_Model.'): '.date('H:i:s')." -> No se cargó, no existe la categoria."."\n");
                 }
@@ -62,6 +65,138 @@ class CargaProductos{
             //$this->printLog('SERVICIO SAP INACTIVO ---------------------------------------'."\n");
             $this->printLog('No se caragon productos. El servicio retorno 0 resultados');
         }
+    }
+
+    function __setProduct($_Combinations,$_IdProduct){
+        try{
+            unset($_Product);
+            unset($_ProductData);
+            $_Quantity      = 0;
+            $_Available_now = array();
+            $_DateNew       = array();
+            $_Categories    = array();
+            $_processImages = false;
+            
+            //extraigo referencia del producto para los datos principales
+            $_Product = new Product($_IdProduct,false,(int)Configuration::get('PS_SHOP_DEFAULT'),(int)Configuration::get('PS_LANG_DEFAULT'));
+            /*echo "<pre>";print_r($_Product->model); echo "</pre>";
+            echo "<pre>";print_r($_Combinations); echo "</pre>";
+            exit();*/
+            //$_ProductData = is_array($_Combinations[$_Product->model]) ? $_Combinations[$_Product->model] : current($_Combinations);
+            $_ProductData = current($_Combinations);
+
+            // extraigo la informacion necesaria de todas las combinaciones
+            unset($featuresmaterials);
+            $featuresmaterials = array();
+            foreach($_Combinations as $k => $_Combination) {
+                $_Quantity          += $_Combination->stock->quantity;
+                
+                $_Available_now[]   =  $_Combination->stock->warehouseCode;
+                
+                if($_Combination->newFrom)
+                    $_DateNew[]         = $_Combination->newFrom;
+                
+                if($_Combination->subgroupCode) {
+                    foreach($_Combination->subgroupCode as $d => $_Category)
+                        array_push($_Categories, $_Category);
+                }
+                
+                if(is_array($_Combination->processImages))
+                    $_processImages = true;
+                
+                
+                foreach($_Combination->arraymaterials as $km => $material)
+                    $featuresmaterials[$km] =   $material;
+
+            }
+            // cargo las caracteristicas            
+            $_Product->name                 = $_ProductData->itemName;
+            $_Product->reference            = $_ProductData->itemCode;
+            $_Product->itemname             = $_ProductData->itemName;
+            $_Product->price                = $_ProductData->price;
+            $_Product->description          = $_ProductData->description;
+            $_Product->meta_keywords        = $_ProductData->keyWords;
+            $_Product->link_rewrite         = $_ProductData->link_rewrite;
+            $_Product->model                = $_ProductData->model;
+            $_Product->id_category_default  = $_ProductData->id_category_default;
+            $_Product->description_short    = $_ProductData->shortDescription;
+            $_Product->meta_description     = $_ProductData->meta_description;
+            $_Product->meta_title           = $_ProductData->meta_title;
+            $_Product->cuidados             = $_ProductData->materials;
+    
+            $_Product->video                = $_ProductData->video;
+            $_Product->sketch               = $_ProductData->sketch;
+            $_Product->three_sixty          = $_ProductData->three_sixty;
+            $_Product->date_new             = sizeof($_DateNew)>0 ? max($_DateNew) : NULL;
+            $_Product->quantity             = $_Quantity;
+            $_Product->stores               = implode(',',array_unique(array_filter($_Available_now)));
+            $_Product->available_now        = '';
+            $_Product->active               = ($_ProductData->status)?true:false;
+            $_Product->redirect_type        = '404';
+            $_Product->ean13                = '0';
+            
+            $_Product->id_manufacturer = $_ProductData->manufacture['id_manufacturer'];
+            
+            if(!$_Product->link_rewrite)
+                $_Product->link_rewrite = Tools::link_rewrite(trim($_Product->name));
+            
+            if(sizeof($_Categories)>0)
+                $_Product->id_category_default = end($_Categories);
+    
+            if($_Product->id) {
+                $_Product->update();
+                $this->printLog('Referencia: '.$_Product->reference." Id ".$_Product->id." - ACTUALIZADO");
+            }else{
+                $_Product->add();
+                $this->printLog('Referencia: '.$_Product->reference." Id ".$_Product->id." - CREADO");
+            }
+             
+            if($_processImages)
+                $_Product->deleteImages();            
+                         
+            if($_Product->id) {
+                if(sizeof($_Categories)>0) {
+                    $_Product->deleteCategories(true);
+                    $_Product->addToCategories(array_unique(array_filter($_Categories)));
+                }
+                // proceso las featurematerial
+                if(sizeof($featuresmaterials)>0) {
+                    foreach($featuresmaterials as $fk => $material) {
+                        unset($featurename);
+                        $featurename = 'material_'.$fk;
+                        $id_feature = Db::getInstance()->getValue('SELECT id_feature FROM '._DB_PREFIX_.'feature_lang WHERE name ="'.$featurename.'"');
+                        $Feature = new Feature(($id_feature ? $id_feature : 1));
+                        if($id_feature) {
+                            $Feature->name[(int)Configuration::get('PS_LANG_DEFAULT')] =  $featurename;
+                            $Feature->update();
+                        }else{
+                                $Feature->name[(int)Configuration::get('PS_LANG_DEFAULT')] =  $featurename;
+                                $Feature->add();
+                             }
+                        $id_feature = Db::getInstance()->getValue('SELECT id_feature FROM '._DB_PREFIX_.'feature_lang WHERE name ="'.$featurename.'"');
+                        $FeatureValues = FeatureValue::getFeatureValues($id_feature);
+                        if(sizeof($FeatureValues)==0) {
+                            $FeatureVal = new FeatureValue(1);
+                            $FeatureVal->id_feature = $id_feature;
+                            $FeatureVal->value[(int)Configuration::get('PS_LANG_DEFAULT')] = mb_strtoupper(substr($material,0,1)).mb_strtolower(substr($material,1,strlen($material))); 
+                            $FeatureVal->add();
+                        }else{
+                            $FeatureVal = new FeatureValue(1);
+                            $FeatureVal->id_feature = $id_feature;
+                            $FeatureVal->value[(int)Configuration::get('PS_LANG_DEFAULT')] = mb_strtoupper(substr($material,0,1)).mb_strtolower(substr($material,1,strlen($material))); ; 
+                            $FeatureVal->update();
+                        }
+                        Db::getInstance()->Execute('DELETE FROM '._DB_PREFIX_.'feature_value_lang WHERE id_feature_value = 0');
+                        $id_feature = Db::getInstance()->getValue('SELECT id_feature FROM '._DB_PREFIX_.'feature_lang WHERE name ="'.$featurename.'"');
+                        $FeatureValues = FeatureValue::getFeatureValues($id_feature);
+                        $_Product->addFeatureProductImport($_Product->id,$FeatureValues[0]['id_feature'],$FeatureValues[0]['id_feature_value']);                             
+                    }
+                }
+            }
+        }catch (Exception $e) {
+            $this->printLog('---- Product error: itemCode: '.$_Product->reference.' id_product: '.$_Product->id.' '.$e->getMessage()." \n");
+        }   
+        return $_Product;
     }
 
     //consultar imagenes,categorias,colores y asociarlos a los prod de SAP
