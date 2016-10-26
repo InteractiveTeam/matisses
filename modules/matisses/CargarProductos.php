@@ -18,6 +18,8 @@ class CargaProductos{
         if(!$five){
             $this->loadProcess($this->totalProducts);
             $this->printLog('Termino de consultar los productos');
+        }else{
+            $this->printLog('Proceso 5 minutos');
         }
     }
 
@@ -31,9 +33,6 @@ class CargaProductos{
             }
             $this->printLog('Termino de consultar los productos');
             $this->uploadProduct($auxData);
-            $this->printLog("Cambiando estados");
-            Search::indexation(true);
-            $this->productStatus();
             //echo "<pre>";print_r($auxData); echo "</pre>";
             $this->printLog("Fin proceso");
         }catch(Exception $e){
@@ -62,6 +61,10 @@ class CargaProductos{
                 }
                 unset($_References[$_Model]);
             }
+            
+            $this->printLog("Cambiando estados");
+            $this->productStatus();
+            Search::indexation(true);
         }else{
             //$this->printLog('SERVICIO SAP INACTIVO ---------------------------------------'."\n");
             $this->printLog('No se caragon productos. El servicio retorno 0 resultados');
@@ -616,6 +619,7 @@ class CargaProductos{
     
     public function printLog($message){
         try{
+            @unlink("log".date("y_m_d").strtotime('-1 day'));
             $log = fopen("log".date("y_m_d"), "a+");
             fwrite($log, "------- " . strtoupper($message) . " ------> ". date("H:i:s") . PHP_EOL);
             fclose($log);
