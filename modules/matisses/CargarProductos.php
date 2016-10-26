@@ -22,19 +22,23 @@ class CargaProductos{
     }
 
     public function loadProcess($url){
-        $this->callService($url);
-        $auxData = array();
-        //asociamos todas la ref a un modelo
-        foreach ($this->data as $key => $value) {
-            $auxData[$value->model][$value->itemCode] = $this->parseData($this->data[$key]);
+        try{
+            $this->callService($url);
+            $auxData = array();
+            //asociamos todas la ref a un modelo
+            foreach ($this->data as $key => $value) {
+                $auxData[$value->model][$value->itemCode] = $this->parseData($this->data[$key]);
+            }
+            $this->printLog('Termino de consultar los productos');
+            $this->uploadProduct($auxData);
+            $this->printLog("Cambiando estados");
+            Search::indexation(true);
+            $this->productStatus();
+            //echo "<pre>";print_r($auxData); echo "</pre>";
+            $this->printLog("Fin proceso");
+        }catch(Exception $e){
+             $this->printLog("Error: ". $e->getMessage());
         }
-        $this->printLog('Termino de consultar los productos');
-        $this->uploadProduct($auxData);
-        $this->printLog("Cambiando estados");
-        Search::indexation(true);
-        $this->productStatus();
-        //echo "<pre>";print_r($auxData); echo "</pre>";
-        $this->printLog("Fin proceso");
     }
 
     //Cargar la informacion de los prod de SAP
@@ -142,10 +146,10 @@ class CargaProductos{
     
             if($_Product->id) {
                 $_Product->update();
-                $this->printLog('Referencia: '.$_Product->reference." Id ".$_Product->id." - ACTUALIZADO");
+                //$this->printLog('Referencia: '.$_Product->reference." Id ".$_Product->id." - ACTUALIZADO");
             }else{
                 $_Product->add();
-                $this->printLog('Referencia: '.$_Product->reference." Id ".$_Product->id." - CREADO");
+                //$this->printLog('Referencia: '.$_Product->reference." Id ".$_Product->id." - CREADO");
             }
              
             if($_processImages)
@@ -377,140 +381,144 @@ class CargaProductos{
 
     //consultar imagenes,categorias,colores y asociarlos a los prod de SAP
     private function parseData($_data){
-        if($_data->description && $_data->shortDescription && $_data->price && $_data->itemName && $_data->model && $_data->subgroupCode && count((array)$_data->color)==3) {
+        try{
+            if($_data->description && $_data->shortDescription && $_data->price && $_data->itemName && $_data->model && $_data->subgroupCode && count((array)$_data->color)==3) {
 
-            $path = dirname(__FILE__).'/files/'.$_data->itemCode;
+                $path = dirname(__FILE__).'/files/'.$_data->itemCode;
 
-            $_data->webName = str_replace(' ','-',strtolower($_data->itemName));
-            $materials  = $_data->materials;
-            if(!$this->countIsArrayObj($_data->materials)){
-                unset($_data->materials);
-                $_data->materials[] = $materials; 
-            }
-            
-            $stock = $_data->stock;
-            if(!$this->countIsArrayObj($_data->stock)){
-                unset($_data->stock);
-                $_data->stock[] = $stock;
-            }
-
-            $_data->itemName = ucfirst(strtolower($_data->itemName));
-            $_data->color->name = strtolower($_data->color->name);
-            $_data->sketch = basename(current(glob($path.'/plantilla/*.jpg')));
-            $_data->three_sixty = strstr($_data->itemCode.'/360/'.basename(current(glob($path.'/360/*.html'))),'.html') ? $_data->itemCode.'/360/'.basename(current(glob($path.'/360/*.html'))) : NULL;
-            $_data->keyWords = strtolower(pSQL(implode(',',array_unique(array_filter(explode(' ',$_data->keyWords))))));
-            $_data->link_rewrite = Tools::link_rewrite($_data->webName);
-            $_data->id_category_default = (int)Configuration::get('PS_HOME_CATEGORY');
-            $_data->shortDescription = Tools::truncate(($_data->shortDescription),190,'...');
-            $_data->meta_description = Tools::truncate(($_data->shortDescription),130,'...');
-            $_data->meta_title = $_data->itemName;
-            $_data->video =  strstr($_data->itemCode.'/animacion/'.basename(current(glob($path.'/animacion/*.html'))),'.html') ? $_data->itemCode.'/animacion/'.basename(current(glob($path.'/animacion/*.html'))) : NULL;
-        
-            $_data->manufacture = $this->saveManufacture($_data->brand->code,$_data->brand->name);
-            
-            if($_data->newFrom) {
-                $date = explode('-',date('Y-m-d',$_data->newFrom/1000));
-                if(checkdate ( $date[1] , $date[2] , $date[0] ))
-                    $_data->newFrom   = date('Y-m-d',$_data->newFrom/1000);
-            }
-
-            if(sizeof($_data->materials)>0) {
-                $cares = "";
-                $arraymaterials = array();
-                foreach($_data->materials as $d => $v) {
-                    $arraymaterials[$v->code] =  $v->name;
-                    if($_data->materials[$d]->name)
-                        $cares.= '<h3>'.$_data->materials[$d]->name.'</h3>';
-                        
-                    $cares.= '<p>'.$_data->materials[$d]->cares.'</p><br>';
+                $_data->webName = str_replace(' ','-',strtolower($_data->itemName));
+                $materials  = $_data->materials;
+                if(!$this->countIsArrayObj($_data->materials)){
+                    unset($_data->materials);
+                    $_data->materials[] = $materials; 
                 }
-                $_data->materials = $cares;
-                $_data->arraymaterials = $arraymaterials;
-            }
-            
-            if(sizeof($stock)>0) {
-                $quantity = 0;
-                $WarehouseCode = array();
-                foreach($stock as $d => $v) {
-                    $quantity+= (int)$stock[$d]->quantity;
-                    array_push($WarehouseCode,$stock[$d]->warehouseCode);
-                }
-                unset($_data->stock);
-                $_data->stock = (object)array(
-                    'quantity'=>$quantity,
-                    'warehouseCode'=>implode(',',array_unique(array_filter($WarehouseCode)))
-                );
-            }
-            $_data->status = ((int)$_data->stock->quantity)?true:false;//validamos la cantidad para validar el status
 
-            if(!empty($_data->subgroupCode)) {
-                $CategoriesProduct = array();
-                $sql = 'SELECT id_category 
-                    FROM ' . _DB_PREFIX_ . 'category
-                    WHERE LENGTH( subgrupo ) =11 and (subgrupo like "%'.$_data->subgroupCode.'" )
-                    GROUP BY id_category'; 
-                
-                $Categories = Db::getInstance()->ExecuteS($sql);
-                
-                foreach($Categories as $d => $v){
-                    $c = new Category((int)$Categories[$d]['id_category']);          
-                    $pCategories = $c->getParentsCategories(1);
-                    $i = 0;
-                    while($pCategories[$i]['level_depth'] > 2){
-                        array_push($CategoriesProduct,$pCategories[$i]['id_category']);
-                        $i++;
+                $stock = $_data->stock;
+                if(!$this->countIsArrayObj($_data->stock)){
+                    unset($_data->stock);
+                    $_data->stock[] = $stock;
+                }
+
+                $_data->itemName = ucfirst(strtolower($_data->itemName));
+                $_data->color->name = strtolower($_data->color->name);
+                $_data->sketch = basename(current(glob($path.'/plantilla/*.jpg')));
+                $_data->three_sixty = strstr($_data->itemCode.'/360/'.basename(current(glob($path.'/360/*.html'))),'.html') ? $_data->itemCode.'/360/'.basename(current(glob($path.'/360/*.html'))) : NULL;
+                $_data->keyWords = strtolower(pSQL(implode(',',array_unique(array_filter(explode(' ',$_data->keyWords))))));
+                $_data->link_rewrite = Tools::link_rewrite($_data->webName);
+                $_data->id_category_default = (int)Configuration::get('PS_HOME_CATEGORY');
+                $_data->shortDescription = Tools::truncate(($_data->shortDescription),190,'...');
+                $_data->meta_description = Tools::truncate(($_data->shortDescription),130,'...');
+                $_data->meta_title = $_data->itemName;
+                $_data->video =  strstr($_data->itemCode.'/animacion/'.basename(current(glob($path.'/animacion/*.html'))),'.html') ? $_data->itemCode.'/animacion/'.basename(current(glob($path.'/animacion/*.html'))) : NULL;
+
+                $_data->manufacture = $this->saveManufacture($_data->brand->code,$_data->brand->name);
+
+                if($_data->newFrom) {
+                    $date = explode('-',date('Y-m-d',$_data->newFrom/1000));
+                    if(checkdate ( $date[1] , $date[2] , $date[0] ))
+                        $_data->newFrom   = date('Y-m-d',$_data->newFrom/1000);
+                }
+
+                if(sizeof($_data->materials)>0) {
+                    $cares = "";
+                    $arraymaterials = array();
+                    foreach($_data->materials as $d => $v) {
+                        $arraymaterials[$v->code] =  $v->name;
+                        if($_data->materials[$d]->name)
+                            $cares.= '<h3>'.$_data->materials[$d]->name.'</h3>';
+
+                        $cares.= '<p>'.$_data->materials[$d]->cares.'</p><br>';
                     }
-                }  
-                unset($_data->subgroupCode);  
-                $_data->subgroupCode = $CategoriesProduct;        
-            }
-            if((int)$_data->processImages){
-                unset($images);
-                if(sizeof($images = glob($path.'/images/*.jpg'))>0) {
-                    foreach($images as $dd => $image) {
-                        if(filesize($image)>Configuration::get("PS_PRODUCT_PICTURE_MAX_SIZE") || (substr($image, -27,20) != $_data->itemCode)){
-                            unset($images[$dd]);
-                        }elseif((substr($image, -27,20) != $_data->itemCode)){
-                            $this->printLog('La ref => '.$_data->itemCode.' NO coincide con las imagenes.');
+                    $_data->materials = $cares;
+                    $_data->arraymaterials = $arraymaterials;
+                }
+
+                if(sizeof($stock)>0) {
+                    $quantity = 0;
+                    $WarehouseCode = array();
+                    foreach($stock as $d => $v) {
+                        $quantity+= (int)$stock[$d]->quantity;
+                        array_push($WarehouseCode,$stock[$d]->warehouseCode);
+                    }
+                    unset($_data->stock);
+                    $_data->stock = (object)array(
+                        'quantity'=>$quantity,
+                        'warehouseCode'=>implode(',',array_unique(array_filter($WarehouseCode)))
+                    );
+                }
+                $_data->status = ((int)$_data->stock->quantity)?true:false;//validamos la cantidad para validar el status
+
+                if(!empty($_data->subgroupCode)) {
+                    $CategoriesProduct = array();
+                    $sql = 'SELECT id_category 
+                        FROM ' . _DB_PREFIX_ . 'category
+                        WHERE LENGTH( subgrupo ) =11 and (subgrupo like "%'.$_data->subgroupCode.'" )
+                        GROUP BY id_category'; 
+
+                    $Categories = Db::getInstance()->ExecuteS($sql);
+
+                    foreach($Categories as $d => $v){
+                        $c = new Category((int)$Categories[$d]['id_category']);          
+                        $pCategories = $c->getParentsCategories(1);
+                        $i = 0;
+                        while($pCategories[$i]['level_depth'] > 2){
+                            array_push($CategoriesProduct,$pCategories[$i]['id_category']);
+                            $i++;
                         }
+                    }  
+                    unset($_data->subgroupCode);  
+                    $_data->subgroupCode = $CategoriesProduct;        
+                }
+                if((int)$_data->processImages){
+                    unset($images);
+                    if(sizeof($images = glob($path.'/images/*.jpg'))>0) {
+                        foreach($images as $dd => $image) {
+                            if(filesize($image)>Configuration::get("PS_PRODUCT_PICTURE_MAX_SIZE") || (substr($image, -27,20) != $_data->itemCode)){
+                                unset($images[$dd]);
+                            }elseif((substr($image, -27,20) != $_data->itemCode)){
+                                $this->printLog('La ref => '.$_data->itemCode.' NO coincide con las imagenes.');
+                            }
+                        }
+                        $_data->processImages = $images;
+                    }else{
+                        $this->printLog('La ref => '.$_data->itemCode.' NO tiene imagenes en el directorio');
                     }
-                    $_data->processImages = $images;
-                }else{
-                    $this->printLog('La ref => '.$_data->itemCode.' NO tiene imagenes en el directorio');
                 }
-            }
 
-            if($_data->color->code) {
-                unset($color);
-                $color =  Db::getInstance()->getRow("SELECT * FROM "._DB_PREFIX_."attribute WHERE id_sap='".$_data->color->code."'");
-                if(sizeof($color)>1) {
-                    $Attribute  = new Attribute($color['id_attribute'],(int)Configuration::get('PS_LANG_DEFAULT'), (int)Configuration::get('PS_SHOP_DEFAULT'));
-                    $name = $_data->color->name ? $_data->color->name : $Attribute->name;
-                    $name = mb_strtoupper(substr($name,0,1)).mb_strtolower(substr($name,1));
-                    $Attribute->id_attribute_group = 3;
-                    $Attribute->color   =  ($_data->color->hexa && strlen($_data->color->hexa)==6) ? '#'.strtoupper($_data->color->hexa) : $color['color'];
-                    $Attribute->name    = $name;
-                    $Attribute->id_sap  = $color['id_sap'];
-                    $Attribute->update();
-                    $_data->color  = $color;
-                }else{
-                    $time = time();
-                    $Attribute  = new Attribute($color->id_attribute,(int)Configuration::get('PS_LANG_DEFAULT'), (int)Configuration::get('PS_SHOP_DEFAULT'));
-                    $name = $_data->color->name ? $_data->color->name : 'Color temporal';
-                    $name = mb_strtoupper(substr($name,0,1)).mb_strtolower(substr($name,1));
-                    $Attribute->id_attribute_group = 3;
-                    $Attribute->name    = pSQL($name);
-                    $Attribute->color   = ($_data->color->hexa && strlen($_data->color->hexa)==6) ? '#'.strtoupper($_data->color->hexa) : '#FFFFFF';
-                    $Attribute->id_sap  = $_data->color->code ? $_data->color->code : time();
-                    $Attribute->add();
-                    $_data->color  = Db::getInstance()->getRow("SELECT * FROM "._DB_PREFIX_."attribute WHERE id_sap='".$Attribute->id_sap."'");;
+                if($_data->color->code) {
+                    unset($color);
+                    $color =  Db::getInstance()->getRow("SELECT * FROM "._DB_PREFIX_."attribute WHERE id_sap='".$_data->color->code."'");
+                    if(sizeof($color)>1) {
+                        $Attribute  = new Attribute($color['id_attribute'],(int)Configuration::get('PS_LANG_DEFAULT'), (int)Configuration::get('PS_SHOP_DEFAULT'));
+                        $name = $_data->color->name ? $_data->color->name : $Attribute->name;
+                        $name = mb_strtoupper(substr($name,0,1)).mb_strtolower(substr($name,1));
+                        $Attribute->id_attribute_group = 3;
+                        $Attribute->color   =  ($_data->color->hexa && strlen($_data->color->hexa)==6) ? '#'.strtoupper($_data->color->hexa) : $color['color'];
+                        $Attribute->name    = $name;
+                        $Attribute->id_sap  = $color['id_sap'];
+                        $Attribute->update();
+                        $_data->color  = $color;
+                    }else{
+                        $time = time();
+                        $Attribute  = new Attribute($color->id_attribute,(int)Configuration::get('PS_LANG_DEFAULT'), (int)Configuration::get('PS_SHOP_DEFAULT'));
+                        $name = $_data->color->name ? $_data->color->name : 'Color temporal';
+                        $name = mb_strtoupper(substr($name,0,1)).mb_strtolower(substr($name,1));
+                        $Attribute->id_attribute_group = 3;
+                        $Attribute->name    = pSQL($name);
+                        $Attribute->color   = ($_data->color->hexa && strlen($_data->color->hexa)==6) ? '#'.strtoupper($_data->color->hexa) : '#FFFFFF';
+                        $Attribute->id_sap  = $_data->color->code ? $_data->color->code : time();
+                        $Attribute->add();
+                        $_data->color  = Db::getInstance()->getRow("SELECT * FROM "._DB_PREFIX_."attribute WHERE id_sap='".$Attribute->id_sap."'");;
+                    }
                 }
+            }else{
+                $this->printLog("El producto con REF => ".$_data->itemCode.' No se pudo cargar. Posiblemente no tiene precio,descripción, color etc...');
+                $_data = NULL;
             }
-        }else{
-            $this->printLog("El producto con REF => ".$_data->itemCode.' No se pudo cargar. Posiblemente no tiene precio,descripción, color etc...');
-            $_data = NULL;
+            return $_data;
+        }catch(Exception $e){
+             $this->printLog("Error : ".$e->getMessage());
         }
-        return $_data;
     }
 
     /*Creación de la marca en casi no existir
@@ -518,24 +526,28 @@ class CargaProductos{
     * $nameBrand => brand name
     */
     public function saveManufacture($brandcode,$brandName){
-        $row = Db::getInstance()->getRow('SELECT * FROM '._DB_PREFIX_.'manufacturer WHERE brandcode ="'.trim($brandcode).'"');
-        
-        if(!$row['id_manufacturer']){
-            Db::getInstance()->Execute('INSERT INTO '._DB_PREFIX_.'manufacturer VALUES (null,"'.$brandName.'",
-            "'.date('Y-m-d H:i:s').'", "'.date('Y-m-d H:i:s').'",1,"'.$brandcode.'")');
- 
-            $row = Db::getInstance()->getRow('SELECT *,MAX(id_manufacturer) id_last FROM '._DB_PREFIX_.'manufacturer GROUP BY id_manufacturer DESC');
+        try{
+            $row = Db::getInstance()->getRow('SELECT * FROM '._DB_PREFIX_.'manufacturer WHERE brandcode ="'.trim($brandcode).'"');
 
-            $attributes_list = array(
-                'id_manufacturer' => $row['id_last'],
-                'id_lang' => 1
-            );
+            if(!$row['id_manufacturer']){
+                Db::getInstance()->Execute('INSERT INTO '._DB_PREFIX_.'manufacturer VALUES (null,"'.$brandName.'",
+                "'.date('Y-m-d H:i:s').'", "'.date('Y-m-d H:i:s').'",1,"'.$brandcode.'")');
 
-            Db::getInstance()->insert('manufacturer_lang', $attributes_list);
+                $row = Db::getInstance()->getRow('SELECT *,MAX(id_manufacturer) id_last FROM '._DB_PREFIX_.'manufacturer GROUP BY id_manufacturer DESC');
 
-            Db::getInstance()->insert('manufacturer_shop', array('id_manufacturer' => $row['id_last'],'id_shop'=>1));
-        }        
-        return $row;        
+                $attributes_list = array(
+                    'id_manufacturer' => $row['id_last'],
+                    'id_lang' => 1
+                );
+
+                Db::getInstance()->insert('manufacturer_lang', $attributes_list);
+
+                Db::getInstance()->insert('manufacturer_shop', array('id_manufacturer' => $row['id_last'],'id_shop'=>1));
+            }        
+            return $row; 
+        }catch(Exception $e){
+            $this->printLog("Error : ".$e->getMessage());
+        }
     }
 
     public function countIsArrayObj($value){
@@ -603,9 +615,14 @@ class CargaProductos{
     }
     
     public function printLog($message){
-        $log = fopen("log".date("y_m_d"), "a+");
-        fwrite($log, "------- " . strtoupper($message) . " ------> ". date("H:i:s") . PHP_EOL);
-        fclose($log);
+        try{
+            $log = fopen("log".date("y_m_d"), "a+");
+            fwrite($log, "------- " . strtoupper($message) . " ------> ". date("H:i:s") . PHP_EOL);
+            fclose($log);
+        }
+        catch(Exception $e){
+            echo $e->getMessage();
+        }
         echo "------- " . strtoupper($message) . " ------> ". date("H:i:s") . "<br>";
     }
 }
