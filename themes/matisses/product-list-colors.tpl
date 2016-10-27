@@ -40,9 +40,9 @@
                 {$price = Product::getPriceStatic($color.id_product,true,$color.id_product_attribute)}
                 {$mainIPA = matisses::getCombinationMain($color.id_product,$color.id_product_attribute)}
                 
-                {if $smarty.foreach.index.index > 0 && $mainIPA == 1}                
+                {if $smarty.foreach.index.index > 0 && $mainIPA.default_on == 1}                
                     <script type="text/javascript">                    
-                      changeImageColor('{$color.id_product}','{$color.name}','{$img_prod_color}','{$color.id_product_attribute}','{$price}')
+                      changeImageColor('{$color.id_product}','{$color.name}','{$img_prod_color}','{$color.id_product_attribute}','{$price}','{$mainIPA.itemname}')
                     </script>          
                 {/if}         
                 <a 
@@ -50,7 +50,7 @@
                     data-idattribute="{$color.id_attribute}"
                     data-idproduct="{$color.id_product}"
 
-                href="javascript:void(0)" {if !empty($id_image_p)}onclick="changeImageColor('{$color.id_product}','{$color.name}','{$img_prod_color}','{$color.id_product_attribute}','{$price}')"{/if} class="color_pick"{if !$img_color_exists && isset($color.color) && $color.color} style="background:{$color.color};"{/if}>
+                href="javascript:void(0)" {if !empty($id_image_p)}onclick="changeImageColor('{$color.id_product}','{$color.name}','{$img_prod_color}','{$color.id_product_attribute}','{$price}','{$mainIPA.itemname}')"{/if} class="color_pick"{if !$img_color_exists && isset($color.color) && $color.color} style="background:{$color.color};"{/if}>
                     {if $img_color_exists}
                         <img src="{$img_col_dir}{$color.id_attribute|intval}.jpg" alt="{$color.name|escape:'html':'UTF-8'}" title="{$color.name|escape:'html':'UTF-8'}" width="20" height="20" />
                     {/if}
@@ -61,11 +61,12 @@
 </ul>
 {literal}
 <script type="text/javascript">
-    function changeImageColor(idprod,namec,image,idattr,price) {
+    function changeImageColor(idprod,namec,image,idattr,price,itemnamee) {
         var name = namec.replace(" ", "_").toLowerCase();
         name = getCleanedString(name);
         $('.product-container[id='+idprod+'] .left-block .product_img_link img').attr("src", image);
         $('.product-container[id='+idprod+'] .price.product-price').html('$ '+formatCurrency(price,3,"",""));
+        $('.product-container[id='+idprod+'] .product-name a').html(itemnamee);
         
         var linkp = $('.product-container[id='+idprod+'] .button-container .showmore').attr("href").split("#");
         $('.product-container[id='+idprod+'] .button-container .showmore').attr("href", linkp[0]+"#/color-"+name);
