@@ -59,7 +59,7 @@ class CargaProductos{
 
                     $this->setCombinations($_Combinations,$_Product);
                 }else{
-                    $this->printLog('-- Actualizando producto ('.$_Model.'): '." -> No se cargó, no existe la categoria."."\n");
+                    $this->printLog('-- Actualizando producto ('.$_Combinations[key($_Combinations)]->itemCode.'): '." -> No se cargó, no existe la categoria."."\n");
                 }
                 unset($_References[$_Model]);
             }
