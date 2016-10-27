@@ -34,6 +34,8 @@ class CargaProductos{
             $this->printLog('Termino de consultar los productos');
             $this->uploadProduct($auxData);
             //echo "<pre>";print_r($auxData); echo "</pre>";
+            $this->productStatus();
+            Search::indexation(true);
             $this->printLog("Fin proceso");
         }catch(Exception $e){
              $this->printLog("Error: ". $e->getMessage());
@@ -63,8 +65,6 @@ class CargaProductos{
             }
             
             $this->printLog("Cambiando estados");
-            $this->productStatus();
-            Search::indexation(true);
         }else{
             //$this->printLog('SERVICIO SAP INACTIVO ---------------------------------------'."\n");
             $this->printLog('No se caragon productos. El servicio retorno 0 resultados');
@@ -207,8 +207,8 @@ class CargaProductos{
         $_currentCombinations = array();
         foreach($_Combinations as $d => $_Combination) {
             try{
-                if(!$_Combination->processImages && $_Product->getCombinationImages(1))
-                     continue;
+                /*if(!$_Combination->processImages && $_Product->getCombinationImages(1))
+                     continue;*/
                 // verifico si la combinacion esta para cambio de modelo
                 $_currentCombinations[] = $_Combination->itemCode;
                 $id_product_attribute = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute WHERE reference = "'.$_Combination->itemCode.'" and id_product = 0');
@@ -338,9 +338,10 @@ class CargaProductos{
             }
         }
         
-        if(sizeof($_currentCombinations)>0)
-            Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'product_attribute SET id_product = 0 WHERE id_product = '.$_Product->id.' AND reference not in ("'.implode('","',$_currentCombinations).'")');
-        
+        /*if(!empty($_GET['five']) && !$_GET['five']){
+            if(sizeof($_currentCombinations)>0)
+                Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'product_attribute SET id_product = 0 WHERE id_product = '.$_Product->id.' AND reference not in ("'.implode('","',$_currentCombinations).'")');
+        }*/
         
         return true;
     }
