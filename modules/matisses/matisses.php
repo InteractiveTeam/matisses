@@ -26,7 +26,10 @@ class matisses extends Module
     /*public function hookmoduleRoutes() {
         return self::$moduleRoutes;
     }*/
-    
+    public static function getCombinationMain($id_product,$ipa) {
+    	$data = Db::getInstance()->getValue("SELECT default_on FROM "._DB_PREFIX_."product_attribute WHERE id_product = " . $id_product . "  AND id_product_attribute = " .$ipa);
+    	return $data;
+    }
 	/***********************************************
 	* BACKEND
 	***********************************************/
