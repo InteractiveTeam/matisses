@@ -34,6 +34,7 @@ class CargaProductos{
             $this->printLog('Termino de consultar los productos');
             $p = $this->uploadProduct($auxData);
             //echo "<pre>";print_r($p); echo "</pre>"; exit();
+            $this->printLog("Cambiando estados");
             $this->productStatus();
             //if($_GET['five']){
                 foreach($p as $k){
@@ -71,7 +72,6 @@ class CargaProductos{
                 unset($_References[$_Model]);
             }
             return $product_ids;
-            $this->printLog("Cambiando estados");
         }else{
             //$this->printLog('SERVICIO SAP INACTIVO ---------------------------------------'."\n");
             $this->printLog('No se caragon productos. El servicio retorno 0 resultados');
@@ -600,10 +600,10 @@ class CargaProductos{
             $active = "";
             $inactive = "";
             foreach($this->data as $product){
-                $id_prod = Db::getInstance()->getValue("SELECT id_product FROM "._DB_PREFIX_."product WHERE reference = '".$product->referencia."'");
+                $id_prod = Db::getInstance()->getRow("SELECT a.id_product,COUNT(*) as images FROM "._DB_PREFIX_."product a INNER JOIN ps_image b ON a.id_product = b.id_product WHERE a.reference = '".$product->referencia."'");
                 if($id_prod){
                     if((int)$product->activo){
-                        if(Db::getInstance()->getValue("SELECT count(*) FROM "._DB_PREFIX_."image WHERE id_product = ".$id_prod.";") > 0)
+                        if($id_prod['image'] > 0)
                             $active .= $id_prod.",";
                         else
                             $inactive .= $id_prod.",";
