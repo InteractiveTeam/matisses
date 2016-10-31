@@ -604,11 +604,11 @@ class CargaProductos{
                 if($id_prod){
                     if((int)$product->activo){
                         if($id_prod['images'] > 0)
-                            $active .= $id_prod.",";
+                            $active .= !empty($id_prod['id_product']) ? $id_prod['id_product']."," : "";
                         else
-                            $inactive .= $id_prod.",";
+                            $inactive .= !empty($id_prod['id_product']) ? $id_prod['id_product']."," : "";
                     }else{
-                        $inactive .= $id_prod.",";
+                        $inactive .= !empty($id_prod['id_product']) ? $id_prod['id_product']."," : "";
                     }
                 }
             }
