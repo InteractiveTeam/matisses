@@ -31,7 +31,7 @@ class CargaProductos{
             foreach ($this->data as $key => $value) {
                 $auxData[$value->model][$value->itemCode] = $this->parseData($this->data[$key]);
             }
-            $this->printLog('Termino de consultar los productos');
+            $this->printLog('Termino de consultar los productos ('.count((array)$this->data).')');
             $p = $this->uploadProduct($auxData);
             //echo "<pre>";print_r($p); echo "</pre>"; exit();
             $this->printLog("Cambiando estados");
