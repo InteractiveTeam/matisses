@@ -612,6 +612,8 @@ class CargaProductos{
                     }
                 }
             }
+            echo $active . "<br>";
+            echo $inactive . "<br>";
             $query = "UPDATE "._DB_PREFIX_."product SET active = 0 WHERE id_product IN (".rtrim($inactive,",").")";
             $query2 = str_replace(_DB_PREFIX_."product",_DB_PREFIX_."product_shop",$query);
             Db::getInstance()->execute($query);
