@@ -32,10 +32,16 @@ class CargaProductos{
                 $auxData[$value->model][$value->itemCode] = $this->parseData($this->data[$key]);
             }
             $this->printLog('Termino de consultar los productos');
-            $this->uploadProduct($auxData);
-            //echo "<pre>";print_r($auxData); echo "</pre>";
+            $p = $this->uploadProduct($auxData);
+            //echo "<pre>";print_r($p); echo "</pre>"; exit();
             $this->productStatus();
-            Search::indexation(true);
+            //if($_GET['five']){
+                /*foreach($p as $k){
+                    Search::indexation(true,$k);
+                }*/
+            /*}else{
+            }*/
+                Search::indexation(true);
             $this->printLog("Fin proceso");
         }catch(Exception $e){
              $this->printLog("Error: ". $e->getMessage());
@@ -44,26 +50,27 @@ class CargaProductos{
 
     //Cargar la informacion de los prod de SAP
     public function uploadProduct($_References) {
+        $product_ids = array();
         if(sizeof($_References)>0) {
             foreach($_References as $_Model => $_Combinations) {
                 
                 unset($_Product);
                 if(count($_Combinations[key($_Combinations)]->subgroupCode) > 0){
                     $_IdProduct = Db::getInstance()->getValue('SELECT id_product FROM '._DB_PREFIX_.'product WHERE model = "'.$_Model.'"');
+                    if(!empty($_IdProduct))
+                        array_push($product_ids, $_IdProduct);
                     
                     $_Product   = $this->__setProduct($_Combinations,$_IdProduct);
-
                     /*if($banderaPost){
                         Search::indexation(true,$_IdProduct);
                     }*/
-
                     $this->setCombinations($_Combinations,$_Product);
                 }else{
                     $this->printLog('-- Actualizando producto ('.$_Combinations[key($_Combinations)]->itemCode.'): '." -> No se cargó, no existe la categoria."."\n");
                 }
                 unset($_References[$_Model]);
             }
-            
+            return $product_ids;
             $this->printLog("Cambiando estados");
         }else{
             //$this->printLog('SERVICIO SAP INACTIVO ---------------------------------------'."\n");
