@@ -37,6 +37,7 @@ class CargaProductos{
             $this->printLog("Cambiando estados");
             $this->productStatus();
             //if($_GET['five']){
+            $this->printLog("Indexando");
                 foreach($p as $k){
                     Search::indexation(true,$k);
                 }
