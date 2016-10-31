@@ -36,12 +36,12 @@ class CargaProductos{
             //echo "<pre>";print_r($p); echo "</pre>"; exit();
             $this->productStatus();
             //if($_GET['five']){
-                /*foreach($p as $k){
+                foreach($p as $k){
                     Search::indexation(true,$k);
-                }*/
+                }
             /*}else{
             }*/
-                Search::indexation(true);
+                //Search::indexation(true);
             $this->printLog("Fin proceso");
         }catch(Exception $e){
              $this->printLog("Error: ". $e->getMessage());
