@@ -18,12 +18,13 @@ class CargaProductos{
         if(!$five){
             $this->loadProcess($this->totalProducts);
             $this->printLog('Termino de consultar los productos');
-        }else{
-            $this->printLog('Proceso 5 minutos');
         }
     }
 
     public function loadProcess($url){
+        if($_GET['five']){
+            $this->printLog('Proceso 5 minutos');
+        }
         try{
             $this->callService($url);
             $auxData = array();
@@ -565,14 +566,30 @@ class CargaProductos{
     public function countIsArrayObj($value){
         return (int)count(array_filter($value,'is_object'));
     }
+    
+    public function loadProductByReference($ref){
+        $this->callService($this->totalProducts,$ref);
+        $auxData = array();
+        //asociamos todas la ref a un modelo
+        foreach ($this->data as $key => $value) {
+            $auxData[$value->model][$value->itemCode] = $this->parseData($this->data[$key]);
+        }
+        $this->printLog('Termino de consultar los productos ('.count((array)$this->data).')');
+        $p = $this->uploadProduct($auxData);
+        if(count($p) > 0)
+            return true;
+        else 
+            return false;
+    }
 
-    public function callService($url){
+    public function callService($url,$params = array()){
         try{
             $ch = curl_init();
 
             curl_setopt($ch, CURLOPT_URL,$url);
             curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch,CURLOPT_POSTFIELDS,json_encode(array()));
+            if(count($params) > 0)
+                curl_setopt($ch,CURLOPT_POSTFIELDS,json_encode($params));
             //curl_setopt($ch, CURLOPT_ENCODING, '');
 
             // receive server response ...
@@ -580,7 +597,7 @@ class CargaProductos{
             
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
                 "Content-Type: application/json",
-                'Content-Length: 0' )                                                                  
+            )                                                                  
             );    
             
 

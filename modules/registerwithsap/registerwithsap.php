@@ -29,12 +29,14 @@ if (!defined('_PS_VERSION_'))
 
 require_once __DIR__ . '/dbregister.php';
 require_once _PS_MODULE_DIR_.'matisses/matisses.php';
+require_once _PS_MODULE_DIR_.'matisses/CargarProductos.php';
 
 class registerWithSap extends Module
 {
 	private $_html = '';
 	private $_postErrors = array();
 	public $context;
+    private $sonda;
 
 	function __construct($dontTranslate = false)
  	{
@@ -124,15 +126,14 @@ class registerWithSap extends Module
                             $cart->update();
                             Db::getInstance()->update('cart',array('id_factura' => $ordersap['invoiceNumber']),'id_cart = '.$cart->id);
 
+                            $sonda = new CargarProducts(true);
                             if ($this->isNumericArray($ordersap['items'])) {
                                 foreach ($ordersap['items'] as $item) {
                                     if ($item['quantity'] != 0) {
                                         $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
 
                                         if (empty($prod)) {
-                                            $prodsap = $mat->wsmatisses_getInfoProduct($item['itemCode'], true);
-                                            $modeloSAP = $prodsap['model'];
-                                            include_once dirname(__FILE__).'/../matisses/productos.php';
+                                            $sonda->loadProductByReference($item['itemCode']);
                                             $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
                                             $product = new Product($prod[0]['id_product']);
                                             $product->quantity = $product->quantity+1;
@@ -155,9 +156,7 @@ class registerWithSap extends Module
                                     $prod = Product::searchByName($cart->id_lang, $ordersap['items']['itemCode']);
 
                                     if (empty($prod)) {
-                                        $prodsap = $mat->wsmatisses_getInfoProduct($ordersap['items']['itemCode'], true);
-                                        $modeloSAP = $prodsap['model'];
-                                        include_once dirname(__FILE__).'/../matisses/productos.php';
+                                        $sonda->loadProductByReference($item['itemCode']);
                                         $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
                                         $product = new Product($prod[0]['id_product']);
                                         $product->quantity = $product->quantity+1;
@@ -269,15 +268,14 @@ class registerWithSap extends Module
                         $cart->update();
                         Db::getInstance()->update('cart',array('id_factura' => $ordersWithSap['invoiceNumber']),'id_cart = '.$cart->id);
 
+                        $sonda = new CargarProducts(true);
                         if ($this->isNumericArray($ordersWithSap['items'])) {
                             foreach ($ordersWithSap['items'] as $item) {
                                 if ($item['quantity'] != 0) {
                                     $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
 
                                     if (empty($prod)) {
-                                        $prodsap = $mat->wsmatisses_getInfoProduct($item['itemCode'], true);
-                                        $modeloSAP = $prodsap['model'];
-                                        include_once dirname(__FILE__).'/../matisses/productos.php';
+                                        $sonda->loadProductByReference($item['itemCode']);
                                         $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
                                         $product = new Product($prod[0]['id_product']);
                                         $product->quantity = $product->quantity+1;
@@ -300,9 +298,7 @@ class registerWithSap extends Module
                                 $prod = Product::searchByName($cart->id_lang, $ordersWithSap['items']['itemCode']);
 
                                 if (empty($prod)) {
-                                    $prodsap = $mat->wsmatisses_getInfoProduct($ordersWithSap['items']['itemCode'], true);
-                                    $modeloSAP = $prodsap['model'];
-                                    include_once dirname(__FILE__).'/../matisses/productos.php';
+                                    $sonda->loadProductByReference($item['itemCode']);
                                     $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
                                     $product = new Product($prod[0]['id_product']);
                                     $product->quantity = $product->quantity+1;
