@@ -618,7 +618,7 @@ class CargaProductos{
             $active = "";
             $inactive = "";
             foreach($this->data as $product){
-                $id_prod = Db::getInstance()->getRow("SELECT a.id_product,COUNT(*) as images FROM "._DB_PREFIX_."product a INNER JOIN ps_image b ON a.id_product = b.id_product WHERE a.reference = '".$product->referencia."'");
+                $id_prod = Db::getInstance()->getRow("SELECT a.id_product,COUNT(b.id_image) as images FROM "._DB_PREFIX_."product a LEFT JOIN ps_image b ON a.id_product = b.id_product WHERE a.reference = '".$product->referencia."'");
                 if($id_prod){
                     if((int)$product->activo){
                         if($id_prod['images'] > 0)
