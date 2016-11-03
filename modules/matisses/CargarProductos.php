@@ -623,8 +623,6 @@ class CargaProductos{
                 LEFT JOIN "._DB_PREFIX_."product_attribute_image d on a.id_product_attribute = d.id_product_attribute
                 INNER JOIN "._DB_PREFIX_."product c ON a.id_product = c.id_product
                 WHERE a.reference ='".$product->referencia."'";
-                if($product->referencia == "22200000000000000307")
-                    die($sql);
                 $id_prod = Db::getInstance()->getRow($sql);
                 if($id_prod){
                     if((int)$product->activo){
@@ -646,7 +644,6 @@ class CargaProductos{
                 }
             }
             
-            die($stockid);
             $query = "UPDATE "._DB_PREFIX_."stock_available  SET quantity = 0 WHERE id_stock_available IN (".rtrim($stockid,",").")";
             Db::getInstance()->execute($query);
             $query = "UPDATE "._DB_PREFIX_."product SET active = 0 WHERE id_product IN (".rtrim($inactive,",").")";
