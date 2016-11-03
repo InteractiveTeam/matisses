@@ -17,7 +17,6 @@ class CargaProductos{
         $this->data = array();
         if(!$five){
             $this->loadProcess($this->totalProducts);
-            $this->printLog('Termino de consultar los productos');
         }
     }
 
@@ -298,7 +297,7 @@ class CargaProductos{
                         Db::getInstance()->insert('product_attribute_combination', $attributes_list);
                         // teindas disponibles por combinacion
                         Db::getInstance()->update('product_attribute', 
-                                        array('available' => $_Combination->stock->WarehouseCode,
+                                        array('available' => $_Combination->stock->warehouseCode,
                                               'garantias'=> $_Combination->materials,
                                               'itemname'=> $_Combination->itemName,
                                               'short_description'=> $_Combination->shortDescription,
@@ -617,19 +616,39 @@ class CargaProductos{
             $this->callService($this->pStatus);
             $active = "";
             $inactive = "";
+            $stockid = "";
             foreach($this->data as $product){
-                $id_prod = Db::getInstance()->getRow("SELECT a.id_product,COUNT(b.id_image) as images FROM "._DB_PREFIX_."product a LEFT JOIN ps_image b ON a.id_product = b.id_product WHERE a.reference = '".$product->referencia."'");
+                $sql = "SELECT a.id_product,a.id_product_attribute,COUNT(d.id_image) as images,c.reference as product,a.reference as attribute  
+                FROM "._DB_PREFIX_."product_attribute a 
+                LEFT JOIN "._DB_PREFIX_."product_attribute_image d on a.id_product_attribute = d.id_product_attribute
+                INNER JOIN "._DB_PREFIX_."product c ON a.id_product = c.id_product
+                WHERE a.reference ='".$product->referencia."'";
+                if($product->referencia == "22200000000000000307")
+                    die($sql);
+                $id_prod = Db::getInstance()->getRow($sql);
                 if($id_prod){
                     if((int)$product->activo){
                         if($id_prod['images'] > 0)
                             $active .= !empty($id_prod['id_product']) ? $id_prod['id_product']."," : "";
+                        else{
+                            if($id_prod['product'] != $id_prod["attribute"]){
+                                $stockid .= StockAvailable::getStockAvailableIdByProductId((int)$id_prod['id_product'], (int)$id_prod['id_product_attribute'], 1).",";
+                            }
+                            else
+                                $inactive .= !empty($id_prod['id_product']) ? $id_prod['id_product']."," : "";
+                        }
+                    }else{
+                        if($id_prod['product'] != $id_prod["attribute"])
+                            $stockid .= StockAvailable::getStockAvailableIdByProductId((int)$id_prod['id_product'], (int)$id_prod['id_product_attribute'], 1).",";
                         else
                             $inactive .= !empty($id_prod['id_product']) ? $id_prod['id_product']."," : "";
-                    }else{
-                        $inactive .= !empty($id_prod['id_product']) ? $id_prod['id_product']."," : "";
                     }
                 }
             }
+            
+            die($stockid);
+            $query = "UPDATE "._DB_PREFIX_."stock_available  SET quantity = 0 WHERE id_stock_available IN (".rtrim($stockid,",").")";
+            Db::getInstance()->execute($query);
             $query = "UPDATE "._DB_PREFIX_."product SET active = 0 WHERE id_product IN (".rtrim($inactive,",").")";
             $query2 = str_replace(_DB_PREFIX_."product",_DB_PREFIX_."product_shop",$query);
             Db::getInstance()->execute($query);

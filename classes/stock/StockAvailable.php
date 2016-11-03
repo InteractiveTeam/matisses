@@ -456,6 +456,7 @@ class StockAvailableCore extends ObjectModel
 	 */
 	public static function updateQuantity($id_product, $id_product_attribute, $delta_quantity, $id_shop = null)
 	{
+        $ipa = $id_product_attribute;
 		if (!Validate::isUnsignedId($id_product))
 			return false;
 
@@ -495,11 +496,10 @@ class StockAvailableCore extends ObjectModel
 		}
 
 		Cache::clean('StockAvailable::getQuantityAvailableByProduct_'.(int)$id_product.'*');
-
 		Hook::exec('actionUpdateQuantity',
 				   array(
 				   	'id_product' => $id_product,
-				   	'id_product_attribute' => $id_product_attribute,
+				   	'id_product_attribute' => $ipa,
 				   	'quantity' => $stock_available->quantity
 				   )
 				  );
