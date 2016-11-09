@@ -146,7 +146,6 @@ class giftlist extends Module
 		$this->__uninstallTabs('giftlist');
 		return true;
 	}
-
 	public function hookDisplayCustomerAccount($params)
 	{
 	  $this->context->smarty->assign(
@@ -157,7 +156,11 @@ class giftlist extends Module
 	  		));
 	  return $this->display(__FILE__, 'giftlistbtn.tpl');
 	}
-
+    
+    
+    /*
+    * Mostrar el boton de añadir a lista de regalos en el detalle del producto
+    */
 	public function hookDisplayProductButtons($params)
 	{
 		if($this->context->customer->isLogged()){
@@ -170,7 +173,6 @@ class giftlist extends Module
 			return $this->display(__FILE__, 'addToListBtn.tpl');
 		}
 	}
-    
     public function hookactionUpdateQuantity($params){
         if($params['quantity'] == 0){
             $lists = DB::getInstance()->executeS('SELECT id_list FROM '._DB_PREFIX_.'list_product_bond WHERE id_product = '.$params['id_product'] . " GROUP BY id_list");
@@ -181,6 +183,10 @@ class giftlist extends Module
         }
     }
     
+    
+    /*
+    * Validar si un producto perteneciente a una lista de regalos se quedo sin inventario, notificar al cliente.
+    */
     public function outOfStock($params){
         if($params['id_product_attribute'] == 0)
             if(!empty($_REQUEST['id_product_attribute']) && $_REQUEST['id_product_attribute'] != 0)
@@ -226,6 +232,9 @@ class giftlist extends Module
          //$this->outOfStock($params);
     }
 
+    /*
+    * Validar cocreador
+    */
     public function hookactionCustomerAccountAdd($params){
         //get the email
         echo $sql = "SELECT * FROM "._DB_PREFIX_."email_cocreator WHERE email = '".$params['newCustomer']->email."'";
@@ -246,9 +255,13 @@ class giftlist extends Module
         //$this->registerHook("actionGiftlistProccess");
 	}
     
+    /*
+    * En cuanto una compra se realiza, si la orden es correcta, notifica al usuario que han comprado un producto y
+    * descuenta la cantidad comprada en la lista de regalos
+    */
     public function hookactionGiftlistProccess($params){
-        $this->__verifyListInOrderBeforePayment($params['id_order']);
-        $this->_updateStatesinList($params['id_order']);
+        $this->__verifyListInOrderBeforePayment($params['id_order']);//correo
+        $this->_updateStatesinList($params['id_order']);//estados
     }
 
     private function _updateStatesinList($cart){
