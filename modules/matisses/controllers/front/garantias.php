@@ -336,9 +336,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							$params['problems']			= explode(',',Tools::getValue('tipo'));
 							$params['images']			= $realimages;
 							$params['images_64']         = $uploadedImg;
-							
-							
-							echo "response <pre>"; print_r($params); echo "</pre>";die();
+                            
 							$response = Hook::exec('actionAddGarantia', $params );
 							Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'garantias SET imgs = "'.str_replace(_PS_IMG_DIR_,'',implode(',',$imagesuploaded)).'" WHERE id = '.$id_insert );
 							$link = new link;

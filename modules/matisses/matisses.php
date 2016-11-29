@@ -1770,7 +1770,8 @@ class matisses extends Module
 		$garantia['serviceRequestDTO']['description'] 	= $params['description'];
 		$garantia['serviceRequestDTO']['invoiceNumber'] = $params['invoiceNumber'];
 		$garantia['serviceRequestDTO']['itemCode'] 		= $params['itemCode'];
-		$garantia['serviceRequestDTO']['subject'] 		= $params['subject'];	
+		$garantia['serviceRequestDTO']['subject'] 		= $params['subject'];
+        echo "response <pre>"; print_r($garantia); echo "</pre>";die();
 		
 		foreach($params['images'] as $d => $v)
 			$garantia['serviceRequestDTO']['images'][]['imageName'] = $v;
