@@ -1779,6 +1779,8 @@ class matisses extends Module
 			$garantia['serviceRequestDTO']['problems'][]['name'] = $v; 	
 			
 		$garantia 	= self::array_to_xml($garantia,false);
+        
+		print_r($garantia);die();
 		$s 			= array('genericRequest' => array('data'		=>$garantia,
 														'object'	=>'serviceRequest',
 														'operation'	=>'createServiceRequest',
@@ -1786,7 +1788,6 @@ class matisses extends Module
 												); 
 		
 		$result = $client->call('callService', $s);
-		print_r($result);die($result);
 		return $result;	 			
 	}
 	public function wsmatisses_registrar($params) 
