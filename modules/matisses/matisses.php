@@ -1771,7 +1771,6 @@ class matisses extends Module
 		$garantia['serviceRequestDTO']['invoiceNumber'] = $params['invoiceNumber'];
 		$garantia['serviceRequestDTO']['itemCode'] 		= $params['itemCode'];
 		$garantia['serviceRequestDTO']['subject'] 		= $params['subject'];
-        echo "response <pre>"; print_r($garantia); echo "</pre>";die();
 		
 		foreach($params['images'] as $d => $v)
 			$garantia['serviceRequestDTO']['images'][]['imageName'] = $v;
@@ -1787,7 +1786,7 @@ class matisses extends Module
 												); 
 		
 		$result = $client->call('callService', $s);
-		//print_r($result);
+		print_r($result);die($result);
 		return $result;	 			
 	}
 	public function wsmatisses_registrar($params) 
