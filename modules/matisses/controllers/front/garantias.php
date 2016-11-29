@@ -316,7 +316,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							
 							$itemCode = Db::getInstance()->getValue('SELECT reference 
 																	 FROM '._DB_PREFIX_.'product_attribute 
-																	 WHERE id_product_attribute = "'.$orderdetail[1].'" 
+																	 WHERE id_product_attribute = '.$orderdetail[1].'
 																	  ');
 							
 							$invoiceNumber = Db::getInstance()->getValue('SELECT a.id_factura 
@@ -338,8 +338,8 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							$params['images_64']         = $uploadedImg;
 							
 							
+							echo "response <pre>"; print_r($params); echo "</pre>";die();
 							$response = Hook::exec('actionAddGarantia', $params );
-							//echo "response <pre>"; print_r($response); echo "</pre>";
 							Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'garantias SET imgs = "'.str_replace(_PS_IMG_DIR_,'',implode(',',$imagesuploaded)).'" WHERE id = '.$id_insert );
 							$link = new link;
 							
