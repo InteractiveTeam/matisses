@@ -316,7 +316,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							
 							$itemCode = Db::getInstance()->getValue('SELECT reference 
 																	 FROM '._DB_PREFIX_.'product_attribute 
-																	 WHERE id_product_attribute = '.$orderdetail[1].'
+																	 WHERE id_product_attribute = '.$orderdetail[2].'
 																	  ');
 							
 							$invoiceNumber = Db::getInstance()->getValue('SELECT a.id_factura 
