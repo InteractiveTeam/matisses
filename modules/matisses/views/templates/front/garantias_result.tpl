@@ -29,7 +29,7 @@
         <li><strong>{l s="Referencia:"}</strong>{$garantia.reference}</li>
         <li><strong>{l s="Tipo de daño:"}</strong>{$garantia.tipo}</li>
         <li><strong>{l s="Descripcion del daño:"}</strong><br />
-         {$garantia.description_dano}f</li>
+         {$garantia.description_dano}</li>
         <li><strong>{l s="Respuesta de matisses:"}</strong>
           <textarea readonly="readonly" class="form-control">
 
