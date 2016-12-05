@@ -79,6 +79,13 @@ $(document).ready(function(e) {
 		{
 			if(tipo)
 			{
+                iddanos = $('#id-tipo').val().split(',');
+				for(var i = 0; i < iddanos.length; i++){
+					if(iddanos[i] == $(this).attr('data-id')){
+						$.fancybox('<div class="error">No puedes seleccionar más de una vez el mismo daño</div>');
+						return;
+					}
+				}
 				var danos = $('#tipo').val()+', '+$(this).attr('data-value');
                 var ids = $('#id-tipo').val()+', '+$(this).attr('data-id');
 			}else{
@@ -88,7 +95,7 @@ $(document).ready(function(e) {
 			$('#tipo').val(danos);
 			$('#id-tipo').val(ids);
 		}else{
-				$.fancybox('<div class="error">No puedes seleccionar mas daños</div>')
+				$.fancybox('<div class="error">No puedes seleccionar más daños</div>')
 			 }
 	})
 	
