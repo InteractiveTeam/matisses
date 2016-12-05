@@ -1786,7 +1786,6 @@ class matisses extends Module
 												); 
 		
 		$result = $client->call('callService', $s);
-        echo "<pre>"; echo print_r($result); echo "</pre>"; die();
 		return $result;	 			
 	}
 	public function wsmatisses_registrar($params) 

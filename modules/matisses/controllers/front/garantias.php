@@ -284,6 +284,37 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 						{
 							//creo
 							$orderdetail = explode('-',$_POST['data']);
+													
+							
+							$itemCode = Db::getInstance()->getValue('SELECT reference 
+																	 FROM '._DB_PREFIX_.'product_attribute 
+																	 WHERE id_product_attribute = '.$orderdetail[2].'
+																	  ');
+							
+							$invoiceNumber = Db::getInstance()->getValue('SELECT a.id_factura 
+																	 FROM '._DB_PREFIX_.'cart as a
+																	 	INNER JOIN '._DB_PREFIX_.'orders as b
+																	 		ON a.id_cart = b.id_cart
+																	  WHERE b.id_order = "'.$orderdetail[0].'"');										  
+																	  
+																	  
+								 
+							$customer = new Customer($this->context->customer->id);
+							$params['customerId'] 		= $customer->charter.'CL';
+							$params['description'] 		= Tools::getValue('resumen') ;
+							$params['invoiceNumber'] 	= $invoiceNumber;
+							$params['itemCode'] 		= $itemCode;
+							$params['subject'] 			= Tools::getValue('asunto');	
+							$params['problems']			= explode(',',Tools::getValue('tipo'));
+							$params['images']			= $realimages;
+							$params['images_64']         = $uploadedImg;
+                            
+							$response = Hook::exec('actionAddGarantia', $params );
+                            if(9 == substr ($response['return']['code'], 4 , 1)){
+                                $this->errors[] = Tools::displayError($response['return']['detail']);
+				                break;
+                            }
+                            
 							Db::getInstance()->insert('garantias', array(
 								'id_lang' 		=>	$this->context->language->id,
 								'id_shop' 		=>	$this->context->shop->id,
@@ -312,37 +343,9 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 //							print_r($realimages);
 //							echo "</pre>";
 //                            die();
-							
-							
-							$itemCode = Db::getInstance()->getValue('SELECT reference 
-																	 FROM '._DB_PREFIX_.'product_attribute 
-																	 WHERE id_product_attribute = '.$orderdetail[2].'
-																	  ');
-							
-							$invoiceNumber = Db::getInstance()->getValue('SELECT a.id_factura 
-																	 FROM '._DB_PREFIX_.'cart as a
-																	 	INNER JOIN '._DB_PREFIX_.'orders as b
-																	 		ON a.id_cart = b.id_cart
-																	  WHERE b.id_order = "'.$orderdetail[0].'"');										  
-																	  
-																	  
-								 
-							$customer = new Customer($this->context->customer->id);
-							$params['customerId'] 		= $customer->charter.'CL';
-							$params['description'] 		= Tools::getValue('resumen') ;
-							$params['invoiceNumber'] 	= $invoiceNumber;
-							$params['itemCode'] 		= $itemCode;
-							$params['subject'] 			= Tools::getValue('asunto');	
-							$params['problems']			= explode(',',Tools::getValue('tipo'));
-							$params['images']			= $realimages;
-							$params['images_64']         = $uploadedImg;
                             
-							$response = Hook::exec('actionAddGarantia', $params );
-							Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'garantias SET imgs = "'.str_replace(_PS_IMG_DIR_,'',implode(',',$imagesuploaded)).'" WHERE id = '.$id_insert );
+                            Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'garantias SET imgs = "'.str_replace(_PS_IMG_DIR_,'',implode(',',$imagesuploaded)).'" WHERE id = '.$id_insert );
 							$link = new link;
-							
-							
-							
 							
 							Tools::redirect($link->getModuleLink('matisses','garantias').'/step3/producto/'.$_POST['data']); 
 						}else{
