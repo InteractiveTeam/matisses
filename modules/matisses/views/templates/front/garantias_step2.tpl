@@ -47,14 +47,14 @@
 
 				<div class="form-group grid_12 alpha omega">
 					<label for="asunto">{l s='Asunto:'}</label>
-					<input type="text" name="asunto" id="asunto" value="{$asunto}" class="form-control" />
+					<input type="text" name="asunto" id="asunto" value="{Tools::getValue('asunto')}" class="form-control" />
 				</div>
 				<div class="form-group grid_12 alpha omega">
 					<div class="grid_12 alpha omega">
 						<label class="" for="resumen">{l s='Resumen (Detalle del daño)'}</label>
 					</div>
 					<div class="grid_12 alpha omega">
-						<textarea class="grid_12 alpha omega form-control" name="resumen" cols="25" id="resumen" >{$resumen}</textarea>
+						<textarea class="grid_12 alpha omega form-control" name="resumen" cols="25" id="resumen" >{Tools::getValue('resumen')}</textarea>
 
                         <div class="captions grid_12 alpha omega">
                             <ul id="image-holder" class="slider">
