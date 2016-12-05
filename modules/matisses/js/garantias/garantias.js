@@ -87,7 +87,7 @@ $(document).ready(function(e) {
 					}
 				}
 				var danos = $('#tipo').val()+', '+$(this).attr('data-value');
-                var ids = $('#id-tipo').val()+', '+$(this).attr('data-id');
+                var ids = $('#id-tipo').val()+','+$(this).attr('data-id');
 			}else{
                 var danos = $(this).attr('data-value');
                 var ids = $(this).attr('data-id');
