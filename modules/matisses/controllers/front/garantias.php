@@ -312,42 +312,45 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							$response = Hook::exec('actionAddGarantia', $params );
                             if(9 == substr ($response['return']['code'], 4 , 1)){
                                 $this->errors[] = Tools::displayError($response['return']['detail']);
-				                break;
                             }
                             
-							Db::getInstance()->insert('garantias', array(
-								'id_lang' 		=>	$this->context->language->id,
-								'id_shop' 		=>	$this->context->shop->id,
-								'asunto' 		=>	Tools::getValue('asunto'),
-								'tipo' 			=>	Tools::getValue('tipo'),
-								'description' 	=>	Tools::getValue('resumen'),
-								'id_customer' 	=>	$this->context->customer->id,
-								'id_order'		=> 	$orderdetail[0],
-								'id_product'	=>  	$orderdetail[1],
-								'id_product_attribute'	=> $orderdetail[2],
-								'fecha'	=> time(),
-								
-							));
-
-
-							$id_insert = Db::getInstance()->Insert_ID();
-							//echo "<br><br><br><br><br><br><br><br><br>id_insert:  ".$id_insert."<br>";
-							foreach($imagenes as $k => $imagen)
-							{
-								move_uploaded_file($imagen['tmp_name'],_PS_IMG_DIR_.'garantias/'.$id_insert.'_'.$k.'.jpg');
-								$imagesuploaded[] = $id_insert.'_'.$k;
-								$realimages[] = _PS_BASE_URL_.__PS_BASE_URI__.'img/garantias/'.$id_insert.'_'.$k.'.jpg';
-							}
-
-//							echo "<pre>";
-//							print_r($realimages);
-//							echo "</pre>";
-//                            die();
+                            if(sizeof($this->errors)==0)
+					        {
                             
-                            Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'garantias SET imgs = "'.str_replace(_PS_IMG_DIR_,'',implode(',',$imagesuploaded)).'" WHERE id = '.$id_insert );
-							$link = new link;
-							
-							Tools::redirect($link->getModuleLink('matisses','garantias').'/step3/producto/'.$_POST['data']); 
+                                Db::getInstance()->insert('garantias', array(
+                                    'id_lang' 		=>	$this->context->language->id,
+                                    'id_shop' 		=>	$this->context->shop->id,
+                                    'asunto' 		=>	Tools::getValue('asunto'),
+                                    'tipo' 			=>	Tools::getValue('tipo'),
+                                    'description' 	=>	Tools::getValue('resumen'),
+                                    'id_customer' 	=>	$this->context->customer->id,
+                                    'id_order'		=> 	$orderdetail[0],
+                                    'id_product'	=>  	$orderdetail[1],
+                                    'id_product_attribute'	=> $orderdetail[2],
+                                    'fecha'	=> time(),
+
+                                ));
+
+
+                                $id_insert = Db::getInstance()->Insert_ID();
+                                //echo "<br><br><br><br><br><br><br><br><br>id_insert:  ".$id_insert."<br>";
+                                foreach($imagenes as $k => $imagen)
+                                {
+                                    move_uploaded_file($imagen['tmp_name'],_PS_IMG_DIR_.'garantias/'.$id_insert.'_'.$k.'.jpg');
+                                    $imagesuploaded[] = $id_insert.'_'.$k;
+                                    $realimages[] = _PS_BASE_URL_.__PS_BASE_URI__.'img/garantias/'.$id_insert.'_'.$k.'.jpg';
+                                }
+
+    //							echo "<pre>";
+    //							print_r($realimages);
+    //							echo "</pre>";
+    //                            die();
+
+                                Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'garantias SET imgs = "'.str_replace(_PS_IMG_DIR_,'',implode(',',$imagesuploaded)).'" WHERE id = '.$id_insert );
+                                $link = new link;
+
+                                Tools::redirect($link->getModuleLink('matisses','garantias').'/step3/producto/'.$_POST['data']);
+                            }
 						}else{
 								//actualizo
 								$id_insert = $garantia['id_garantia'];
