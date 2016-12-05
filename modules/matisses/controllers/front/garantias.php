@@ -312,12 +312,12 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							$response = Hook::exec('actionAddGarantia', $params );
                             $response = Tools::jsonDecode($response);
                             if((int)substr($response->return->code, 4 , 1)  === 9){
-                                $this->errors[] = Tools::displayError($response->return->code);
+                                $this->errors[] = Tools::displayError($response->return->detail);
                             }
-                            echo "<pre>"; var_dump($response); echo "</pre>";
+                            /*echo "<pre>"; var_dump($response); echo "</pre>";
                             echo "<pre>"; print_r($this->errors); echo "</pre>";
                             die();
-                            
+                            */
                             
                             if(sizeof($this->errors)==0)
 					        {
