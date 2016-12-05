@@ -1785,8 +1785,8 @@ class matisses extends Module
 														'source'	=>'prestashop')
 												); 
 		
-		$result = $client->call('callService', $s);
-		return $result;	 			
+		return $client->call('callService', $s);
+			 			
 	}
 	public function wsmatisses_registrar($params) 
 	{

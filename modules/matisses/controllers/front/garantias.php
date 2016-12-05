@@ -313,7 +313,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
                             if((int)substr($response['return']['code'], 4 , 1)  === 9){
                                 $this->errors[] = Tools::displayError($response['return']['detail']);
                             }
-                            echo "<pre>"; print_r($response); echo "</pre>";
+                            echo "<pre>"; var_dump($response['return']); echo "</pre>";
                             echo "<pre>"; print_r($this->errors); echo "</pre>";
                             die();
                             
