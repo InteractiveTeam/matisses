@@ -39,7 +39,7 @@
             <div class="form-group">
                 <label for="asunto">{l s='Tipo de dano Reportado:'}</label>  <a href="javascript:void(0)" onclick="$('#tipo').val('')">{l s='Borrar'}</a>
                 <input type="text" name="tipo" id="tipo" readonly="readonly" class="form-control" value="{Tools::getValue('tipo')}" />
-                <input type="hidden" name"id-tipo" id="id-tipo" />
+                <input type="hidden" name"id-tipo" id="id-tipo"  value="{Tools::getValue('id-tipo')}"/>
             </div>  
         {/if}
 		</div> 
