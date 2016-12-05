@@ -309,7 +309,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							$params['images']			= $realimages;
 							$params['images_64']         = $uploadedImg;
                             
-							$response = Hook::exec('actionAddGarantia', $params );
+							$response = Tools::jsonDecode(Hook::exec('actionAddGarantia', $params ));
                             if((int)substr($response['return']['code'], 4 , 1)  === 9){
                                 $this->errors[] = Tools::displayError($response['return']['detail']);
                             }
