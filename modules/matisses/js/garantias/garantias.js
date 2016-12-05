@@ -80,10 +80,13 @@ $(document).ready(function(e) {
 			if(tipo)
 			{
 				var danos = $('#tipo').val()+', '+$(this).attr('data-value');
+                var ids = $('#id-tipo').val()+', '+$(this).attr('data-id');
 			}else{
-					var danos = $(this).attr('data-value');
-				 }
-			$('#tipo').val(danos);	
+                var danos = $(this).attr('data-value');
+                var ids = $(this).attr('data-id');
+             }
+			$('#tipo').val(danos);
+			$('#id-tipo').val(ids);
 		}else{
 				$.fancybox('<div class="error">No puedes seleccionar mas daños</div>')
 			 }
