@@ -1786,7 +1786,7 @@ class matisses extends Module
 												); 
 		
 		$result = $client->call('callService', $s);
-		return Tools::jsonEncode($result['return']);	 			
+		return Tools::jsonEncode($result);	 			
 	}
 	public function wsmatisses_registrar($params) 
 	{
