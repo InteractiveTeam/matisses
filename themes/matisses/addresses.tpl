@@ -53,7 +53,7 @@
 			<div class="adress_update grid_12 alpha omega">
 				<a class="btn btn-default btn-red" href="{$link->getPageLink('address', true, null, "id_address={$address.object.id|intval}")|escape:'html':'UTF-8'}" title="{l s='Update'}">{l s='Update'}</a>
 
-				<a class="btn btn-default btn-red" href="{$link->getPageLink('address', true, null, "id_address={$address.object.id|intval}")|escape:'html':'UTF-8'}" title="{l s='Update'}">{l s='Modificar'}</a>
+				{* <a class="btn btn-default btn-red" href="{$link->getPageLink('address', true, null, "id_address={$address.object.id|intval}")|escape:'html':'UTF-8'}" title="{l s='Update'}">{l s='Modificar'}</a> *}
 
 				<a class="btn btn-default btn-red" href="{$link->getPageLink('address', true, null, "id_address={$address.object.id|intval}&delete")|escape:'html':'UTF-8'}" onclick="return confirm('{l s='Are you sure?' js=1}');" title="{l s='Delete'}">{l s='Delete'}</a>
 			</div>
@@ -72,11 +72,9 @@
 
 
 <div class="footer-links-address grid_12">
+    <a href="{$link->getPageLink('address', true)|escape:'html':'UTF-8'}" title="{l s='Add an address'}" class="btn btn-default btn-red">{l s='Add a new address'}</a>
 
-		<a href="{$link->getPageLink('address', true)|escape:'html':'UTF-8'}" title="{l s='Add an address'}" class="btn btn-default btn-red">{l s='Add a new address'}</a>
+    <a class="btn btn-default button btn-red" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}"> <i class="fa fa-chevron-left"></i> {l s='Volver a mi cuenta'}
 
-		<a class="btn btn-default button btn-red" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}"> <i class="fa fa-chevron-left"></i> {l s='Volver a mi cuenta'}
-
-		</a>
-
+    </a>
 </div>
