@@ -38,7 +38,11 @@
             
             <div class="form-group">
                 <label for="asunto">{l s='Tipo de dano Reportado:'}</label>  <a href="javascript:void(0)" onclick="$('#tipo').val('')">{l s='Borrar'}</a>
-                <input type="text" name="tipo" id="tipo" readonly="readonly" class="form-control" value="{Tools::getValue('tipo')}" />
+                {if Tools::getValue('id-tipo') != ""}
+                    <input type="text" name="tipo" id="tipo" readonly="readonly" class="form-control" value="{Tools::getValue('tipo')}" />
+                {else}
+                    <input type="text" name="tipo" id="tipo" readonly="readonly" class="form-control" value="{$tipo}" />
+                {/if}
                 <input type="hidden" name"id-tipo" id="id-tipo"  value="{Tools::getValue('id-tipo')}"/>
             </div>  
         {/if}
@@ -47,15 +51,22 @@
 
 				<div class="form-group grid_12 alpha omega">
 					<label for="asunto">{l s='Asunto:'}</label>
-					<input type="text" name="asunto" id="asunto" value="{Tools::getValue('asunto')}" class="form-control" />
+					{if Tools::getValue('asunto') != ""}
+                        <input type="text" name="asunto" id="asunto" class="form-control" value="{Tools::getValue('asunto')}" />
+                    {else}
+                        <input type="text" name="asunto" id="asunto" value="{Tools::getValue('asunto')}" class="form-control" />
+                    {/if}
 				</div>
 				<div class="form-group grid_12 alpha omega">
 					<div class="grid_12 alpha omega">
 						<label class="" for="resumen">{l s='Resumen (Detalle del daño)'}</label>
 					</div>
 					<div class="grid_12 alpha omega">
-						<textarea class="grid_12 alpha omega form-control" name="resumen" cols="25" id="resumen" >{Tools::getValue('resumen')}</textarea>
-
+					    {if Tools::getValue('asunto') != ""}
+						    <textarea class="grid_12 alpha omega form-control" name="resumen" cols="25" id="resumen" >{Tools::getValue('resumen')}</textarea>
+                        {else}
+                            <textarea class="grid_12 alpha omega form-control" name="resumen" cols="25" id="resumen" >{$resumen}</textarea>
+                        {/if}
                         <div class="captions grid_12 alpha omega">
                             <ul id="image-holder" class="slider">
                                 {foreach from=$garantia.imgs item=$img key=kimg}
