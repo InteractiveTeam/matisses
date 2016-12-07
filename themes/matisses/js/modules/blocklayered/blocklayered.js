@@ -600,6 +600,19 @@ function reloadContent(params_plus, num){
 			filters = result.filters;
 			initFilters();
 			initSliders();
+            if(result.nbRenderedProducts > 12){
+                $("#nb_item option").last().html(result.nbRenderedProducts);
+                $("#nb_item option").last().val(result.nbRenderedProducts);
+                $("#nb_item_bottom option").last().html(result.nbRenderedProducts);
+                $("#nb_item_bottom option").last().val(result.nbRenderedProducts);
+            }else{
+                $("#nb_item option").last().html(30);
+                $("#nb_item option").last().val(30);
+                $("#nb_item_bottom option").last().html(30);
+                $("#nb_item_bottom option").last().val(30);
+            }
+            $("#nb_item").trigger("chosen:updated");
+            $("#nb_item_bottom").trigger("chosen:updated");
 
 			// Currente page url
 			if (typeof(current_friendly_url) === 'undefined')
