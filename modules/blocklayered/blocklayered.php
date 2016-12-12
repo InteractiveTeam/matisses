@@ -1737,6 +1737,7 @@ class BlockLayered extends Module
 					$attribute_name  = array_shift($url_parameters);
 					$attribute_name = str_replace('material','material_',$attribute_name);
 					$attribute_name = str_replace('marca','fabricante',$attribute_name);
+					$attribute_name = str_replace('subcategorias','categorias',$attribute_name);
                     
 
 					if ($attribute_name == 'page')
