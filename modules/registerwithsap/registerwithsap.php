@@ -85,6 +85,7 @@ class registerWithSap extends Module
                 // Registering address
                 $addresses = $userSap['customerDTO']['addresses'];
                 
+                
                 if (isset($addresses) && !empty($addresses)) {
                     $addressObj = new Address();
                     
@@ -111,7 +112,8 @@ class registerWithSap extends Module
                     if ($this->isNumericArray($sapOrders['customerOrdersDTO']['orders'])) {
                         foreach ($sapOrders['customerOrdersDTO']['orders'] as $ordersap) {
 
-                            // create new cart if needed    
+                            // create new cart if needed
+                            $ordersap['total'] = 0;
                             $cart = new Cart();
                             $cart->id_customer = $idcustomer;
                             $cart->id_address_delivery = $addressObj->id;
@@ -126,26 +128,30 @@ class registerWithSap extends Module
                             $cart->update();
                             Db::getInstance()->update('cart',array('id_factura' => $ordersap['invoiceNumber']),'id_cart = '.$cart->id);
 
-                            $sonda = new CargarProducts(true);
+                            $sonda = new CargaProductos(true);
                             if ($this->isNumericArray($ordersap['items'])) {
                                 foreach ($ordersap['items'] as $item) {
                                     if ($item['quantity'] != 0) {
                                         $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
-
                                         if (empty($prod)) {
-                                            $sonda->loadProductByReference($item['itemCode']);
+                                            //die(print_r($item['itemCode']));
+                                            $sonda->loadProductByReferenceWithoutStock($item['itemCode']);
                                             $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
-                                            $product = new Product($prod[0]['id_product']);
-                                            $product->quantity = $product->quantity+1;
-                                            $product->active = true;
-                                            $product->update();
-                                            $cart->updateQty($item['quantity'], $prod[0]['id_product']);    
+                                            if(is_array($prod)){
+                                                $product = new Product($prod[0]['id_product']);
+                                                $product->quantity = $product->quantity+1;
+                                                $product->active = true;
+                                                $product->update();
+                                                $cart->updateQty($item['quantity'], $prod[0]['id_product']);  
+                                                $ordersap['total'] += $item['price'];
+                                            }
                                         } else {
                                             $product = new Product($prod[0]['id_product']);
                                             $product->quantity = $product->quantity+1;
                                             $product->active = true;
                                             $product->update();
                                             $cart->updateQty($item['quantity'], $prod[0]['id_product']);   
+                                            $ordersap['total'] += $item['price'];
                                         }
                                     } else {
                                         unset($cart);
@@ -156,13 +162,14 @@ class registerWithSap extends Module
                                     $prod = Product::searchByName($cart->id_lang, $ordersap['items']['itemCode']);
 
                                     if (empty($prod)) {
-                                        $sonda->loadProductByReference($item['itemCode']);
+                                        $sonda->loadProductByReferenceWithoutStock($item['itemCode']);
                                         $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
                                         $product = new Product($prod[0]['id_product']);
                                         $product->quantity = $product->quantity+1;
                                         $product->active = true;
                                         $product->update();
                                         $cart->updateQty($item['quantity'], $prod[0]['id_product']);     
+                                        $ordersap['total'] += $item['price'];
                                         die();
                                     } else {
                                         $product = new Product($prod[0]['id_product']);
@@ -170,6 +177,7 @@ class registerWithSap extends Module
                                         $product->active = true;
                                         $product->update();
                                         $cart->updateQty($ordersap['items']['quantity'], $prod[0]['id_product']);   
+                                        $ordersap['total'] += $item['price'];
                                     }
                                 } else {
                                    unset($cart);
@@ -267,27 +275,30 @@ class registerWithSap extends Module
                         $this->context->cookie->id_cart = (int)($cart->id); 
                         $cart->update();
                         Db::getInstance()->update('cart',array('id_factura' => $ordersWithSap['invoiceNumber']),'id_cart = '.$cart->id);
+                        $ordersWithSap['total'] = 0;
 
-                        $sonda = new CargarProducts(true);
+                        $sonda = new CargaProductos(true);
                         if ($this->isNumericArray($ordersWithSap['items'])) {
                             foreach ($ordersWithSap['items'] as $item) {
                                 if ($item['quantity'] != 0) {
                                     $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
 
                                     if (empty($prod)) {
-                                        $sonda->loadProductByReference($item['itemCode']);
+                                        $sonda->loadProductByReferenceWithoutStock($item['itemCode']);
                                         $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
                                         $product = new Product($prod[0]['id_product']);
                                         $product->quantity = $product->quantity+1;
                                         $product->active = true;
                                         $product->update();
-                                        $cart->updateQty($item['quantity'], $prod[0]['id_product']);    
+                                        $cart->updateQty($item['quantity'], $prod[0]['id_product']); 
+                                        $ordersWithSap['total'] += $item['price'];
                                     } else {
                                         $product = new Product($prod[0]['id_product']);
                                         $product->quantity = $product->quantity+1;
                                         $product->active = true;
                                         $product->update();
-                                        $cart->updateQty($item['quantity'], $prod[0]['id_product']);   
+                                        $cart->updateQty($item['quantity'], $prod[0]['id_product']);  
+                                        $ordersWithSap['total'] += $item['price'];
                                     }
                                 } else {
                                     unset($cart);
@@ -298,13 +309,14 @@ class registerWithSap extends Module
                                 $prod = Product::searchByName($cart->id_lang, $ordersWithSap['items']['itemCode']);
 
                                 if (empty($prod)) {
-                                    $sonda->loadProductByReference($item['itemCode']);
+                                    $sonda->loadProductByReferenceWithoutStock($item['itemCode']);
                                     $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
                                     $product = new Product($prod[0]['id_product']);
                                     $product->quantity = $product->quantity+1;
                                     $product->active = true;
                                     $product->update();
                                     $cart->updateQty($item['quantity'], $prod[0]['id_product']);     
+                                    $ordersWithSap['total'] += $item['price'];
                                     die();
                                 } else {
                                     $product = new Product($prod[0]['id_product']);
@@ -312,6 +324,7 @@ class registerWithSap extends Module
                                     $product->active = true;
                                     $product->update();
                                     $cart->updateQty($ordersWithSap['items']['quantity'], $prod[0]['id_product']);   
+                                    $ordersWithSap['total'] += $item['price'];
                                 }
                             } else {
                                unset($cart);

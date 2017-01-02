@@ -426,6 +426,9 @@ class AuthControllerCore extends FrontController
 		$secondname = Tools::getValue('secondname');
 		$surname = Tools::getValue('surname');
 		$charter = Tools::getValue('charter');
+        $customer->email = $_POST['email'];
+        $customer->passwd = $_POST['passwd'];
+        $customer->medio = Tools::getValue('medio');
 		
 		
 		$_POST['lastname'] = Tools::getValue('customer_lastname', $lastnameAddress);
@@ -466,15 +469,17 @@ class AuthControllerCore extends FrontController
 
 		if (!Configuration::get('PS_REGISTRATION_PROCESS_TYPE') && !$this->ajax && !Tools::isSubmit('submitGuestAccount'))
 		{
+            
 			if (!count($this->errors))
 			{
 				if (Tools::isSubmit('newsletter'))
 					$this->processCustomerNewsletter($customer);
-
-				$customer->firstname = Tools::ucwords($customer->firstname);
-				$customer->secondname = Tools::ucwords($customer->secondname);
-				$customer->lastname = Tools::ucwords($customer->lastname);
-				$customer->surname = Tools::ucwords($customer->surname);
+                //echo "<pre>"; print_r($_POST); echo "</pre>";die();
+				$customer->firstname = Tools::ucwords($_POST['firstname']);
+				$customer->secondname = Tools::ucwords($_POST['secondname']);
+				$customer->lastname = Tools::ucwords($_POST['lastname']);
+				$customer->surname = Tools::ucwords($_POST['surname']);
+				$customer->id_gender = (int)$_POST['id_gender'];
 				$customer->birthday = (empty($_POST['years']) ? '' : (int)Tools::getValue('years').'-'.(int)Tools::getValue('months').'-'.(int)Tools::getValue('days'));
 				if (!Validate::isBirthDate($customer->birthday))
 					$this->errors[] = Tools::displayError('Invalid date of birth.');

@@ -2,18 +2,20 @@
 mb_internal_encoding("UTF-8");
 set_time_limit(0);
 ini_set('memory_limit','1024M');
-include_once('../../config/config.inc.php');
+include_once '../../config/config.inc.php';
 
 class CargaProductos{
     private $totalProducts;
     public $fiveMin;
     private $pStatus;
     private $data;
+    private $sinSaldo;
     
-    public function __construct($five){
+    public function __construct($five,$reg = false){
         $this->totalProducts = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/consulta';
         $this->fiveMin = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/consultaRecientes5M';
         $this->pStatus = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/estado';
+        $this->sinSaldo = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/consultaSinSaldo';
         $this->data = array();
         if(!$five){
             $this->loadProcess($this->totalProducts);
@@ -567,7 +569,22 @@ class CargaProductos{
     }
     
     public function loadProductByReference($ref){
-        $this->callService($this->totalProducts,$ref);
+        $this->callService($this->totalProducts,array($ref));
+        $auxData = array();
+        //asociamos todas la ref a un modelo
+        foreach ($this->data as $key => $value) {
+            $auxData[$value->model][$value->itemCode] = $this->parseData($this->data[$key]);
+        }
+        $this->printLog('Termino de consultar los productos ('.count((array)$this->data).')');
+        $p = $this->uploadProduct($auxData);
+        if(count($p) > 0)
+            return true;
+        else 
+            return false;
+    }
+    
+    public function loadProductByReferenceWithoutStock($ref){
+        $this->callService($this->sinSaldo,array($ref));
         $auxData = array();
         //asociamos todas la ref a un modelo
         foreach ($this->data as $key => $value) {
@@ -601,6 +618,7 @@ class CargaProductos{
             
 
             $server_output = curl_exec($ch);
+            echo $server_output;
             //$error    = curl_error($ch);
             //$errno    = curl_errno($ch);
             curl_close ($ch);

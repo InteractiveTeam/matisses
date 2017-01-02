@@ -151,11 +151,13 @@
     border: 3px solid #d7162f;
     width: 0.9375rem;
     height: 0.9375rem;
+    border-radius: 50%;
     }
     .account_creation div.radio span.checked:before{
     width: 9px;
     height: 9px;
     background: #d7162f;
+    position: static
     }
     /*Plugin Facebook*/
     .facebook-login {
