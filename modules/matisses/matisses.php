@@ -1385,8 +1385,7 @@ class matisses extends Module
 		//die();
 		$xml = new Template(dirname(__FILE__)."/xml/sap_customer.xml");
 		$xml->addParam('infoxml',$infoxml);
-		$xml = $xml->output();
-		
+		$xml = $xml->output();		
 		
  		if($this->wsmatisses_client('customer',$opt,'prestashop',$xml))
 			$this->wsmatisses_homologacion('customer','id',$customer->id,$infoxml[0]['id']);
@@ -1448,6 +1447,8 @@ class matisses extends Module
             $addresses[$d]['other']			= $InfAddresses[$d]['other'];
 		}
 		$infoxml[0]['addresses'] = $addresses;
+		//print_r($infoxml);
+		//die();
 		$xml = new Template(dirname(__FILE__)."/xml/sap_customer.xml");
 		$xml->addParam('infoxml',$infoxml);
 		$xml = $xml->output();
@@ -1919,7 +1920,7 @@ class matisses extends Module
 		$location 	= Configuration::get($this->name.'_LocationWs');
 		$request 	= $datos;
 		try{
-			$response = $client->__doRequest($request, $location, $action, $version);
+			$response = $client->__doRequest($datos, $request, $action, $version);
 			$return = true;
 		} catch(SoapFault $ex){
 			$response = $ex->getMessage();
