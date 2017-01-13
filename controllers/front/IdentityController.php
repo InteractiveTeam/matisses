@@ -43,11 +43,9 @@ class IdentityControllerCore extends FrontController
 	 */
 	public function postProcess()
 	{
-		
 		$origin_newsletter = (bool)$this->customer->newsletter;
 		if (Tools::isSubmit('submitIdentity'))
 		{
-			
 			$email = trim(Tools::getValue('email'));
 
 			if(Tools::getValue('confirmation'))
@@ -109,7 +107,11 @@ class IdentityControllerCore extends FrontController
 			if (!count($this->errors))
 			{
 				$this->customer->id_default_group = (int)$prev_id_default_group;
-				$this->customer->firstname = Tools::ucwords($this->customer->firstname);
+				$this->customer->firstname = Tools::ucwords(Tools::getValue('firstname'));
+				$this->customer->secondname = Tools::ucwords(Tools::getValue('secondname'));
+				$this->customer->lastname = Tools::ucwords(Tools::getValue('lastname'));
+				$this->customer->surname = Tools::ucwords(Tools::getValue('surname'));
+				$this->customer->id_gender = Tools::ucwords(Tools::getValue('id_gender'));
 
 				if (Configuration::get('PS_B2B_ENABLE'))
 				{
@@ -133,9 +135,9 @@ class IdentityControllerCore extends FrontController
 					$this->context->cookie->customer_lastname = $this->customer->lastname;
 					$this->context->cookie->customer_firstname = $this->customer->firstname;
 					
-					$this->context->cookie->customer_secondname = $customer->secondname;
-					$this->context->cookie->customer_surname = $customer->surname;
-					$this->context->cookie->customer_charter = $customer->charter;
+					$this->context->cookie->customer_secondname = $this->customer->secondname;
+					$this->context->cookie->customer_surname = $this->customer->surname;
+					$this->context->cookie->customer_charter = $this->customer->charter;
 					
 					$this->context->smarty->assign('confirmation', 1);
 				}
