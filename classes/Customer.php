@@ -534,7 +534,7 @@ class CustomerCore extends ObjectModel
 	 */
 	public static function checkPassword($id_customer, $passwd)
 	{
-		if (!Validate::isUnsignedId($id_customer) || !Validate::isMd5($passwd))
+		if (!Validate::isUnsignedId($id_customer) || !Validate::isMd5(md5($passwd)))
 			die (Tools::displayError());
 		$cache_id = 'Customer::checkPassword'.(int)$id_customer.'-'.$passwd;
 		if (!Cache::isStored($cache_id))
