@@ -111,7 +111,7 @@ class IdentityControllerCore extends FrontController
 				$this->customer->secondname = Tools::ucwords(Tools::getValue('secondname'));
 				$this->customer->lastname = Tools::ucwords(Tools::getValue('lastname'));
 				$this->customer->surname = Tools::ucwords(Tools::getValue('surname'));
-				$this->customer->id_gender = Tools::ucwords(Tools::getValue('id_gender'));
+				$this->customer->id_gender = Tools::getValue('id_gender');
 
 				if (Configuration::get('PS_B2B_ENABLE'))
 				{
