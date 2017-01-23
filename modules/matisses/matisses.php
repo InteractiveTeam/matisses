@@ -1729,7 +1729,7 @@ class matisses extends Module
 														'source'	=>'prestashop')
 												); 
 		$result = $client->call('callService', $s);
-		return $result;	
+		return json_encode($result);	
 	}
 	
 	
@@ -1743,8 +1743,8 @@ class matisses extends Module
 														'source'	=>'prestashop')
 												); 
 		$result = $client->call('callService', $s);
-		$result = $this->xml_to_array($result['return']['detail']);
-		return $result;	
+		$result = $this->xml_to_array_utf8($result['return']['detail']);
+		return json_encode($result['serviceRequestHistoryDTO']);	
 	}
 	
 	public function hookactionListInvoice($params)
@@ -1772,9 +1772,11 @@ class matisses extends Module
 		$garantia['serviceRequestDTO']['invoiceNumber'] = $params['invoiceNumber'];
 		$garantia['serviceRequestDTO']['itemCode'] 		= $params['itemCode'];
 		$garantia['serviceRequestDTO']['subject'] 		= $params['subject'];
-		
+
 		foreach($params['images'] as $d => $v)
 			$garantia['serviceRequestDTO']['images'][]['imageName'] = $v;
+
+		
 			
 		foreach($params['problems'] as $d => $v)
 			$garantia['serviceRequestDTO']['problems'][]['name'] = $v; 	

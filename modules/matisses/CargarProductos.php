@@ -15,7 +15,7 @@ class CargaProductos{
         $this->totalProducts = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/consulta';
         $this->fiveMin = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/consultaRecientes5M';
         $this->pStatus = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/estado';
-        $this->sinSaldo = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/consultaSinSaldo';
+        $this->sinSaldo = 'http://181.143.4.46:8280/WebIntegrator/webresources/iteminventario/consultaSinSaldo';
         $this->data = array();
         if(!$five){
             $this->loadProcess($this->totalProducts);
@@ -677,7 +677,7 @@ class CargaProductos{
         }
     }
     
-    public function printLog($message){
+    public function printLog($message,$show = false){
         try{
             @unlink("log".date("y_m_d").strtotime('-1 day'));
             $log = fopen("log".date("y_m_d"), "a+");
@@ -687,7 +687,8 @@ class CargaProductos{
         catch(Exception $e){
             echo $e->getMessage();
         }
-        echo "------- " . strtoupper($message) . " ------> ". date("H:i:s") . "<br>";
+        if($show)
+            echo "------- " . strtoupper($message) . " ------> ". date("H:i:s") . "<br>";
     }
 }
 ?>

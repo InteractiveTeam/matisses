@@ -49,7 +49,7 @@
                 <li><strong>{l s="Referencia:"}</strong> {$garantia.reference}</li>
                 <li><strong>{l s="Tipo de daño:"}</strong> {$garantia.tipo}</li>
                 <li><strong>{l s="Descripcion del daño:"}</strong><br />
-                 {$garantia.resumen}</li>
+                 {$garantia.description_dano}</li>
                 <li><strong>{l s="Historial:"}</strong>
                   <table class="tbl-history">
                     {foreach from=$garantia.history item=history}
@@ -60,9 +60,19 @@
                     {/foreach}
                   </table>
                 </li>
+                <li class="add hidden">
+                  <div class="col-md-12">
+                    <label for="comment">Añadir comentario</label>
+                    <textarea class="form-control" rows=5 id="comment"></textarea>
+                    </br>
+                    <a class="btn btn-default btn-red sendComment" href="javascript:void(0);" data-value="{$garantia.id_request}"> {l s='Enviar comentario' mod='matisses'}</a>
+                    <a class="btn btn-default btn-red cancelComment" href="javascript:void(0);"> {l s='Cancelar' mod='matisses'}</a>
+                  </div>
+                </li>
               </ul>
                 <div class="footer_links grid_12">
-                  <a class="btn btn-default btn-red" href="{$link->getModuleLink('matisses','garantias')}/step2/producto/{$garantia.id_order}-{$garantia.id_product}-{$garantia.id_product_attribute}"> {l s='Modificar' mod='matisses'}</a>
+                  {*<a class="btn btn-default btn-red" href="{$link->getModuleLink('matisses','garantias')}/step2/producto/{$garantia.id_order}-{$garantia.id_product}-{$garantia.id_product_attribute}"> {l s='Modificar' mod='matisses'}</a>*}
+                  <a class="btn btn-default btn-red addComment" href="javascript:void(0);"> {l s='Añadir comentario' mod='matisses'}</a>
                   <a class="btn btn-default btn-red" href="{$link->getModuleLink('matisses','garantias')}/nueva"> {l s='Ir a mis garantías' mod='matisses'}</a>
                   </div>
             </div>

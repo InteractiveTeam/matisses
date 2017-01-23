@@ -132,25 +132,24 @@ class registerWithSap extends Module
                             if ($this->isNumericArray($ordersap['items'])) {
                                 foreach ($ordersap['items'] as $item) {
                                     if ($item['quantity'] != 0) {
-                                        $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
+                                        $prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
                                         if (empty($prod)) {
-                                            //die(print_r($item['itemCode']));
                                             $sonda->loadProductByReferenceWithoutStock($item['itemCode']);
-                                            $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
+                                            $prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
                                             if(is_array($prod)){
-                                                $product = new Product($prod[0]['id_product']);
+                                                $product = new Product($prod['id_product']);
                                                 $product->quantity = $product->quantity+1;
                                                 $product->active = true;
                                                 $product->update();
-                                                $cart->updateQty($item['quantity'], $prod[0]['id_product']);  
+                                                $cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);  
                                                 $ordersap['total'] += $item['price'];
                                             }
                                         } else {
-                                            $product = new Product($prod[0]['id_product']);
+                                            $product = new Product($prod['id_product']);
                                             $product->quantity = $product->quantity+1;
                                             $product->active = true;
                                             $product->update();
-                                            $cart->updateQty($item['quantity'], $prod[0]['id_product']);   
+                                            $cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
                                             $ordersap['total'] += $item['price'];
                                         }
                                     } else {

@@ -1,6 +1,7 @@
 <?php
 
 require_once _PS_MODULE_DIR_ . "matisses/classes/Danos.php";
+require_once _PS_MODULE_DIR_.'matisses/CargarProductos.php';
 
 class matissesgarantiasModuleFrontController extends ModuleFrontController
 {
@@ -14,6 +15,14 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 	{
 		parent::init();
 		include_once(dirname(__FILE__).'/../../classes/Experiences.php');
+		if($this->ajax){
+			if(Tools::getValue("method") == "addComment"){
+				$params['id_garantia'] = Tools::getValue("id_request");
+				$params['comment'] = Tools::getValue("comment");
+				$res = json_decode(hook::exec("actionAddCommetsGarantia",$params));
+				die($response->return->detail);
+			}
+		}
 	}
 	
 	public function setMedia()
@@ -132,14 +141,28 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 												  	and a.id_shop = '.$this->context->shop->id.'
 													and a.id_customer = '.$this->context->customer->id;
 		$garantias = Db::getInstance()->executeS($sql);
-		
+		$history = "";
 		foreach($garantias as $k => $garantia)
 		{
+			$history = (array)json_decode(hook::exec("actionListGarantia", array('id_garantia' => $garantia['id_request'])));
 			$garantias[$k]['imgs'] = array_filter(explode(',',$garantias[$k]['imgs']));
-			$garantias[$k]['status'] = 'Pendiente';
+			$garantias[$k]['status'] = $history['statusName'];
+			$garantias[$k]['id_request'] = $garantia['id_request'];
 			$garantias[$k]['fecha']	= date('Y/m/d - H:i:s',$garantia['fecha']);
 			$garantias[$k]['history'][0]['fecha'] = date('Y/m/d',$garantia['fecha']);
 			$garantias[$k]['history'][0]['description'] = 'Solicitud recibida';
+			$i = 1;
+			if(sizeof($history['history']) > 1){
+				foreach($history['history'] as $log){
+					$garantias[$k]['history'][$i]['fecha'] = date('Y/m/d',strtotime($log->fecha));
+					$garantias[$k]['history'][$i]['description'] = $log->name;
+					$i++;
+				}
+			}
+			else{
+				$garantias[$k]['history'][$i]['fecha'] = date('Y/m/d',strtotime($history['history']->fecha));
+				$garantias[$k]['history'][$i]['description'] = $history['history']->name;
+			}
 		}
 		return $garantias;
  	}
@@ -152,9 +175,168 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 		));
 		$this->setTemplate('garantias_estado.tpl');
 	}
+
+	public function registerOrder($ordersap){
+		//echo "<pre>"; print_r($ordersap); echo "</pre>";die();
+		$add = $this->registerAddress($this->context->customer->email);
+		if($add){
+			$ordersap['total'] = 0;
+			$cart = new Cart();
+			$cart->id_customer = $this->context->customer->id;
+			$cart->id_address_delivery = $add;
+			$cart->id_address_invoice = $cart->id_address_delivery;
+			$cart->id_lang = (int)($this->context->cookie->id_lang);
+			$cart->id_currency = (int)($this->context->cookie->id_currency);
+			$cart->id_carrier = 0;
+			$cart->recyclable = 0;
+			$cart->gift = 0;
+			$cart->add();                        
+			$this->context->cookie->id_cart = (int)($cart->id); 
+			$cart->update();
+			Db::getInstance()->update('cart',array('id_factura' => $ordersap['invoiceNumber']),'id_cart = '.$cart->id);
+
+			$sonda = new CargaProductos(true);
+			foreach ($ordersap['items'] as $item) {
+				if ($item['quantity'] != 0) {
+					$prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
+					if (empty($prod)) {
+						$sonda->loadProductByReferenceWithoutStock($item['itemCode']);
+						$prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
+						if(is_array($prod)){
+							$product = new Product($prod['id_product']);
+							$product->quantity = $product->quantity+1;
+							$product->active = true;
+							$product->update();
+							$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);  
+							$ordersap['total'] += $item['price'];
+						}
+					} else {
+						$product = new Product($prod['id_product']);
+						$product->quantity = $product->quantity+1;
+						$product->active = true;
+						$product->update();
+						$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
+						$ordersap['total'] += $item['price'];
+					}
+				} else {
+					unset($cart);
+				}
+			}
+
+			// Create Orders
+			if (isset($cart)) {
+				$order = new Order();
+				$order->current_state = 5;
+				$prodlist = array();
+				foreach ($cart->getProducts() as $prodcart) {
+					array_push($prodlist, $prodcart);
+				} 
+				$order->product_list = $prodlist;
+				$carrier = null;
+				if (!$cart->isVirtualCart() && isset($package['id_carrier'])) {
+					$carrier = new Carrier((int)$package['id_carrier'], (int)$cart->id_lang);
+					$order->id_carrier = (int)$carrier->id;
+					$id_carrier = (int)$carrier->id;
+				} else {
+					$order->id_carrier = 0;
+					$id_carrier = 0;
+				}
+				$order->id_customer = $cart->id_customer;
+				$order->id_address_invoice = $cart->id_address_invoice;
+				$order->id_address_delivery = $cart->id_address_delivery;
+				$order->id_currency = $this->context->currency->id;
+				$order->id_lang = $cart->id_lang;
+				$order->id_cart = $cart->id;
+				$order->reference = $order->generateReference();
+				$order->id_shop = (int)$this->context->shop->id;
+				$order->id_shop_group = (int)$this->context->shop->id_shop_group;
+				$order->secure_key = md5(uniqid(rand(), true));
+				$order->payment = 'Pago en Tienda Física';
+				$order->module = "matisses";
+				$order->recyclable = $cart->recyclable;
+				$order->gift = (int)$cart->gift;
+				$order->gift_message = $cart->gift_message;
+				$order->mobile_theme = $cart->mobile_theme;
+				$order->conversion_rate = $this->context->currency->conversion_rate;
+				$order->total_paid_real = $ordersap['total'];
+				$order->total_products = (float)$cart->getOrderTotal(false);
+				$order->total_products_wt = (float)$cart->getOrderTotal(true);
+				$order->total_discounts_tax_excl = 0;
+				$order->total_discounts_tax_incl = 0;
+				$order->total_discounts = 0;
+				$order->total_shipping = 0;
+				$order->carrier_tax_rate = 0;
+				$order->total_paid = $ordersap['total'];
+				$order->total_paid_tax_incl = $ordersap['total'];
+				$order->total_paid_tax_excl = $ordersap['total'];
+				$order->round_mode = 0;
+				$order->round_type = Configuration::get('PS_ROUND_TYPE');
+				$order->invoice_date = $ordersap['documentDate'];
+				$order->delivery_date = '0000-00-00 00:00:00';                            
+
+				// Creating order
+				$result = $order->add();
+				if (!$result) {
+					echo "<pre><h1>Error creating Order</h1>"; print_r($result); echo "</pre>";
+				}
+				
+				$order->date_add = $ordersap['documentDate'];
+				$order->date_up = $ordersap['documentDate'];
+
+				$order->update();
+
+				$id_order_state = $order->current_state;
+				$order_list[] = $order;
+				// Insert new Order detail list using cart for the current order
+				$order_detail = new OrderDetail(null, null, $this->context);
+				$order_detail->createList($order, $cart, $id_order_state, $order->product_list, 0, true);
+				$order_detail_list[] = $order_detail;
+
+				unset($order);
+				unset($order_detail);
+			}
+		}
+	}
+
+	public function registerAddress($email){
+		$mat = new matisses();
+		$userSap = $mat->wsmatissess_getCustomerbyEmail($email);
+		$addresses = $userSap['customerDTO']['addresses'];
+		if(empty($addresses))
+			return false;
+
+		$addressObj = new Address();
+		foreach ($addresses as $addr) {
+			if ($addr['addressType'] == 'E') {
+				$addressObj->id_customer = $this->context->customer->id;
+				$addressObj->firstname = $this->context->customer->firstname;
+				$addressObj->secondname = $this->context->customer->secondname;
+				$addressObj->lastname = $this->context->customer->lastname;
+				$addressObj->surname = $this->context->customer->surname;
+				$addressObj->phone = $addr['phone'];
+				$addressObj->phone_mobile = $addr['mobile'];
+				$addressObj->address1 = $addr['address'];
+				$addressObj->postcode = $addr['cityCode'];
+				$addressObj->city = $addr['cityName'];
+				$addressObj->id_country = Db::getInstance()->getValue("SELECT id_country FROM "._DB_PREFIX_."country WHERE iso_code = ".$addr['stateCode']);
+				$addressObj->id_state = Db::getInstance()->getValue("SELECT id_state FROM "._DB_PREFIX_."state WHERE iso_code = ".$addr['cityCode']);
+				$addressObj->alias = $addr['addressName'];
+				$addressObj->add();
+			}
+		}
+		return $addressObj->id;
+	}
 	
 	public function nueva()
 	{
+		$mat = new matisses();
+		$sapOrders = $mat->wsmatissess_getOrdersByCharter($this->context->customer->charter);
+		foreach($sapOrders['customerOrdersDTO']['orders'] as $order){
+			$psOrders = Db::getInstance()->getRow("SELECT * FROM "._DB_PREFIX_.'cart WHERE id_factura = "'. $order['invoiceNumber']. '"');
+			if(sizeof($psOrders) == 1){
+				$this->registerOrder($order);
+			}
+		}
 		if ($orders = Order::getCustomerOrders($this->context->customer->id))
 		foreach ($orders as &$order)
 		{
@@ -175,7 +357,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 	
 	public function step2()
 	{
-		$garantia = $this->getGarantia();
+		//$garantia = $this->getGarantia();
 		if(Tools::isSubmit('submitStep2'))
 		{
             //echo "<pre>";print_r($_POST);echo "</pre>";die();
@@ -295,10 +477,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 																	 FROM '._DB_PREFIX_.'cart as a
 																	 	INNER JOIN '._DB_PREFIX_.'orders as b
 																	 		ON a.id_cart = b.id_cart
-																	  WHERE b.id_order = "'.$orderdetail[0].'"');										  
-																	  
-																	  
-								 
+																	  WHERE b.id_order = "'.$orderdetail[0].'"');								
 							$customer = new Customer($this->context->customer->id);
 							$params['customerId'] 		= $customer->charter.'CL';
 							$params['description'] 		= Tools::getValue('resumen') ;
@@ -310,6 +489,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							$params['images_64']         = $uploadedImg;
                             
 							$response = Hook::exec('actionAddGarantia', $params );
+							
                             $response = Tools::jsonDecode($response);
                             if((int)substr($response->return->code, 4 , 1)  === 9){
                                 $this->errors[] = Tools::displayError($response->return->detail);
@@ -328,6 +508,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
                                     'id_order'		=> 	$orderdetail[0],
                                     'id_product'	=>  	$orderdetail[1],
                                     'id_product_attribute'	=> $orderdetail[2],
+									'id_request' => $response->return->detail,
                                     'fecha'	=> time(),
 
                                 ));

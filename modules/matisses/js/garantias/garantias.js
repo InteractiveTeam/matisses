@@ -171,4 +171,50 @@ $(document).ready(function(e) {
         var id_val = $(this).attr("data-id");
         $(".danos"+id_val).slideToggle();
     });
+
+	//comentario
+
+	$(".addComment").click(function(){
+		$(".add").removeClass("hidden");
+		$(this).hide();
+	});
+
+	$(".cancelComment").click(function(){
+		$(".add").addClass("hidden");
+		$(".addComment").show();
+	});
+
+	function getDate() {         
+		var hoy = new Date();  
+        var yyyy = hoy.getFullYear().toString();                                    
+        var mm = (hoy.getMonth()+1).toString(); // getMonth() is zero-based
+        var dd  = hoy.getDate().toString();             
+                            
+        return yyyy + '/' + (mm[1]?mm:"0"+mm[0]) + '/' + (dd[1]?dd:"0"+dd[0]);
+   };  
+
+	$(".sendComment").click(function(){
+		if($(this).parent().find("textarea").val().trim() != ""){
+			comment = $(this).parent().find("textarea").val().trim();
+			$.ajax({
+				type : "POST",
+				data : {
+					ajax: true,
+					method: "addComment",
+					id_request: $(this).data("value"),
+					comment: comment
+				},
+				success: function(e){
+					
+					var html = '<tr><td width="105px"><span>' + getDate() + '</span></td><td>'+ comment + "</td></tr>";
+					$(".tbl-history").append(html)
+				},
+				complete: function(){
+					$(".add").addClass("hidden");
+					$(".addComment").show();
+					$(this).parent().find("textarea").val("");
+				}
+			})
+		}
+	});
 });
