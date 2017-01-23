@@ -54,7 +54,7 @@
                   <table class="tbl-history">
                     {foreach from=$garantia.history item=history}
                     <tr>
-                      <td width="105px"><span>{$history.fecha}</span></td>
+                      <td width="165px"><span>{$history.fecha}</span></td>
                       <td>{$history.description}</td>
                     </tr>
                     {/foreach}
@@ -72,7 +72,9 @@
               </ul>
                 <div class="footer_links grid_12">
                   {*<a class="btn btn-default btn-red" href="{$link->getModuleLink('matisses','garantias')}/step2/producto/{$garantia.id_order}-{$garantia.id_product}-{$garantia.id_product_attribute}"> {l s='Modificar' mod='matisses'}</a>*}
+                  {if $garantia.code != "-1"}
                   <a class="btn btn-default btn-red addComment" href="javascript:void(0);"> {l s='Añadir comentario' mod='matisses'}</a>
+                  {/if}
                   <a class="btn btn-default btn-red" href="{$link->getModuleLink('matisses','garantias')}/nueva"> {l s='Ir a mis garantías' mod='matisses'}</a>
                   </div>
             </div>

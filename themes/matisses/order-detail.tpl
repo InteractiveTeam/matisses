@@ -83,7 +83,7 @@
 			<tr class="{if $smarty.foreach.orderStates.first}first_item{elseif $smarty.foreach.orderStates.last}last_item{/if} {if $smarty.foreach.orderStates.index % 2}alternate_item{else}item{/if}">
 				<td class="step-by-step-date">{dateFormat date=$state.date_add full=1}</td>
 				<td>
-                {if $state.id_order_state ==2}{assign var=showgaratiabutton value=1} {/if}
+                {if $state.id_order_state == 5}{assign var=showgaratiabutton value=1} {/if}
                 <span{if isset($state.color) && $state.color} style="background-color:{$state.color|escape:'html':'UTF-8'}; border-color:{$state.color|escape:'html':'UTF-8'};"{/if} class="label{if isset($state.color) && Tools::getBrightness($state.color) > 128} dark{/if}">{$state.ostate_name|escape:'html':'UTF-8'}</span></td>
 			</tr>
 		{/foreach}

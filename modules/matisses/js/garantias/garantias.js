@@ -188,9 +188,12 @@ $(document).ready(function(e) {
 		var hoy = new Date();  
         var yyyy = hoy.getFullYear().toString();                                    
         var mm = (hoy.getMonth()+1).toString(); // getMonth() is zero-based
-        var dd  = hoy.getDate().toString();             
+        var dd  = hoy.getDate().toString();
+		var hour = hoy.getHours();
+		var min = hoy.getMinutes();
+		var sec = hoy.getSeconds();
                             
-        return yyyy + '/' + (mm[1]?mm:"0"+mm[0]) + '/' + (dd[1]?dd:"0"+dd[0]);
+        return yyyy + '/' + (mm[1]?mm:"0"+mm[0]) + '/' + (dd[1]?dd:"0"+dd[0]) + " - " + hour + ":" + min + ":" + sec;
    };  
 
 	$(".sendComment").click(function(){
@@ -206,7 +209,7 @@ $(document).ready(function(e) {
 				},
 				success: function(e){
 					
-					var html = '<tr><td width="105px"><span>' + getDate() + '</span></td><td>'+ comment + "</td></tr>";
+					var html = '<tr><td width="165px"><span>' + getDate() + '</span></td><td>'+ comment + "</td></tr>";
 					$(".tbl-history").append(html)
 				},
 				complete: function(){

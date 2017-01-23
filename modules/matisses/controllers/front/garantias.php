@@ -148,19 +148,20 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 			$garantias[$k]['imgs'] = array_filter(explode(',',$garantias[$k]['imgs']));
 			$garantias[$k]['status'] = $history['statusName'];
 			$garantias[$k]['id_request'] = $garantia['id_request'];
+			$garantias[$k]['code'] = $history['statusCode'];
 			$garantias[$k]['fecha']	= date('Y/m/d - H:i:s',$garantia['fecha']);
-			$garantias[$k]['history'][0]['fecha'] = date('Y/m/d',$garantia['fecha']);
+			$garantias[$k]['history'][0]['fecha'] = date('Y/m/d - H:i:s',$garantia['fecha']);
 			$garantias[$k]['history'][0]['description'] = 'Solicitud recibida';
 			$i = 1;
 			if(sizeof($history['history']) > 1){
 				foreach($history['history'] as $log){
-					$garantias[$k]['history'][$i]['fecha'] = date('Y/m/d',strtotime($log->fecha));
+					$garantias[$k]['history'][$i]['fecha'] = date('Y/m/d - H:i:s',strtotime($log->fecha));
 					$garantias[$k]['history'][$i]['description'] = $log->name;
 					$i++;
 				}
 			}
 			else{
-				$garantias[$k]['history'][$i]['fecha'] = date('Y/m/d',strtotime($history['history']->fecha));
+				$garantias[$k]['history'][$i]['fecha'] = date('Y/m/d - H:i:s',strtotime($history['history']->fecha));
 				$garantias[$k]['history'][$i]['description'] = $history['history']->name;
 			}
 		}
