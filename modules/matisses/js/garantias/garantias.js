@@ -208,14 +208,19 @@ $(document).ready(function(e) {
 					comment: comment
 				},
 				success: function(e){
-					
-					var html = '<tr><td width="165px"><span>' + getDate() + '</span></td><td>'+ comment + "</td></tr>";
-					$(".tbl-history").append(html)
+					e = JSON.parse(e);
+					if(e.error){
+						$.fancybox('<div class="error">'+ e.message + '</div>');
+					}else{
+						var html = '<tr><td width="165px"><span>' + getDate() + '</span></td><td>'+ comment + "</td></tr>";
+						$(".tbl-history").append(html);
+						$.fancybox(e.message);
+					}
 				},
 				complete: function(){
 					$(".add").addClass("hidden");
 					$(".addComment").show();
-					$(this).parent().find("textarea").val("");
+					$("textarea").val("");
 				}
 			})
 		}

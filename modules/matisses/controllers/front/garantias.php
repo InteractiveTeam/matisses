@@ -20,7 +20,19 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 				$params['id_garantia'] = Tools::getValue("id_request");
 				$params['comment'] = Tools::getValue("comment");
 				$res = json_decode(hook::exec("actionAddCommetsGarantia",$params));
-				die($response->return->detail);
+				$ret = array();
+				if((int)substr($res->return->code, 4 , 1)  === 9){
+					$ret = array(
+						'message' => $res->return->detail,
+						'error' => true
+					);
+				}else{
+					$ret = array(
+						'message' => $res->return->detail,
+						'error' => false
+					);
+				}
+				die(json_encode($ret));
 			}
 		}
 	}
@@ -478,7 +490,16 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 																	 FROM '._DB_PREFIX_.'cart as a
 																	 	INNER JOIN '._DB_PREFIX_.'orders as b
 																	 		ON a.id_cart = b.id_cart
-																	  WHERE b.id_order = "'.$orderdetail[0].'"');								
+																	  WHERE b.id_order = "'.$orderdetail[0].'"');	
+
+							foreach($imagenes as $k => $imagen)
+							{
+								$name = hook::exec('actionMatChangeReference',array('reference'=> $itemCode)). $invoiceNumber ."_".$k;
+								move_uploaded_file($imagen['tmp_name'],_PS_IMG_DIR_.'garantias/'.$name.'.jpg');
+								$imagesuploaded[] = $name;
+								$realimages[] = _PS_BASE_URL_.__PS_BASE_URI__.'img/garantias/'.$name.'.jpg';
+							}
+							
 							$customer = new Customer($this->context->customer->id);
 							$params['customerId'] 		= $customer->charter.'CL';
 							$params['description'] 		= Tools::getValue('resumen') ;
@@ -487,7 +508,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							$params['subject'] 			= Tools::getValue('asunto');	
 							$params['problems']			= explode(',',Tools::getValue('tipo'));
 							$params['images']			= $realimages;
-							$params['images_64']         = $uploadedImg;
+							$params['images_64']         = $realimages;
                             
 							$response = Hook::exec('actionAddGarantia', $params );
 							
@@ -517,12 +538,12 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 
                                 $id_insert = Db::getInstance()->Insert_ID();
                                 //echo "<br><br><br><br><br><br><br><br><br>id_insert:  ".$id_insert."<br>";
-                                foreach($imagenes as $k => $imagen)
-                                {
-                                    move_uploaded_file($imagen['tmp_name'],_PS_IMG_DIR_.'garantias/'.$id_insert.'_'.$k.'.jpg');
-                                    $imagesuploaded[] = $id_insert.'_'.$k;
-                                    $realimages[] = _PS_BASE_URL_.__PS_BASE_URI__.'img/garantias/'.$id_insert.'_'.$k.'.jpg';
-                                }
+                                // foreach($imagenes as $k => $imagen)
+                                // {
+                                //     move_uploaded_file($imagen['tmp_name'],_PS_IMG_DIR_.'garantias/'.$id_insert.'_'.$k.'.jpg');
+                                //     $imagesuploaded[] = $id_insert.'_'.$k;
+                                //     $realimages[] = _PS_BASE_URL_.__PS_BASE_URI__.'img/garantias/'.$id_insert.'_'.$k.'.jpg';
+                                // }
 
     //							echo "<pre>";
     //							print_r($realimages);

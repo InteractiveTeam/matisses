@@ -1775,8 +1775,6 @@ class matisses extends Module
 
 		foreach($params['images'] as $d => $v)
 			$garantia['serviceRequestDTO']['images'][]['imageName'] = $v;
-
-		
 			
 		foreach($params['problems'] as $d => $v)
 			$garantia['serviceRequestDTO']['problems'][]['name'] = $v; 	
