@@ -210,29 +210,33 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 
 			$sonda = new CargaProductos(true);
 			foreach ($ordersap['items'] as $item) {
-				if ($item['quantity'] != 0) {
-					$prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
-					if (empty($prod)) {
-						$sonda->loadProductByReferenceWithoutStock($item['itemCode']);
+				try{
+					if ($item['quantity'] != 0) {
 						$prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
-						if(is_array($prod)){
+						if (empty($prod)) {
+							$sonda->loadProductByReferenceWithoutStock($item['itemCode']);
+							$prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
+							if(is_array($prod)){
+								$product = new Product($prod['id_product']);
+								$product->quantity = $product->quantity+1;
+								$product->active = true;
+								$product->update();
+								$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);  
+								$ordersap['total'] += $item['price'];
+							}
+						} else {
 							$product = new Product($prod['id_product']);
 							$product->quantity = $product->quantity+1;
 							$product->active = true;
 							$product->update();
-							$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);  
+							$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
 							$ordersap['total'] += $item['price'];
 						}
 					} else {
-						$product = new Product($prod['id_product']);
-						$product->quantity = $product->quantity+1;
-						$product->active = true;
-						$product->update();
-						$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
-						$ordersap['total'] += $item['price'];
+						unset($cart);
 					}
-				} else {
-					unset($cart);
+				}catch(Exception $e){
+					return;
 				}
 			}
 
@@ -321,33 +325,54 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 		$addressObj = new Address();
 		foreach ($addresses as $addr) {
 			if ($addr['addressType'] == 'E') {
-				$addressObj->id_customer = $this->context->customer->id;
-				$addressObj->firstname = $this->context->customer->firstname;
-				$addressObj->secondname = $this->context->customer->secondname;
-				$addressObj->lastname = $this->context->customer->lastname;
-				$addressObj->surname = $this->context->customer->surname;
-				$addressObj->phone = $addr['phone'];
-				$addressObj->phone_mobile = $addr['mobile'];
-				$addressObj->address1 = $addr['address'];
-				$addressObj->postcode = $addr['cityCode'];
-				$addressObj->city = $addr['cityName'];
-				$addressObj->id_country = Db::getInstance()->getValue("SELECT id_country FROM "._DB_PREFIX_."country WHERE iso_code = ".$addr['stateCode']);
-				$addressObj->id_state = Db::getInstance()->getValue("SELECT id_state FROM "._DB_PREFIX_."state WHERE iso_code = ".$addr['cityCode']);
-				$addressObj->alias = $addr['addressName'];
-				$addressObj->add();
-			}
+                $id = Db::getInstance()->getValue("SELECT id_address FROM "._DB_PREFIX_."address WHERE address1 = '".$addr['address'] . "' AND lastname = '" .$addr['lastname']. "' AND firstname = '" .$addr['firstname'] . "'");
+                if(!empty($id) || $id == 0){
+                    $addressObj->id_customer = $params['idcustomer'];
+                    $addressObj->firstname = $params['firstname'];
+                    $addressObj->secondname = $params['secondname'];
+                    $addressObj->lastname = $params['lastname'];
+                    $addressObj->surname = $params['surname'];
+                    $addressObj->phone = $addr['phone'];
+                    $addressObj->phone_mobile = $addr['mobile'];
+                    $addressObj->address1 = $addr['address'];
+                    $addressObj->postcode = $addr['cityCode'];
+                    $addressObj->city = $addr['cityName'];
+                    $addressObj->id_country = Db::getInstance()->getValue("SELECT id_country FROM "._DB_PREFIX_."country WHERE iso_code = ".$addr['stateCode']);
+                    $addressObj->id_state = Db::getInstance()->getValue("SELECT id_state FROM "._DB_PREFIX_."state WHERE iso_code = ".$addr['cityCode']);
+                    $addressObj->alias = $addr['addressName'];
+                    $addressObj->add();
+                }else{
+                    $addressObj = new Address($id);
+                }
+            }
 		}
 		return $addressObj->id;
 	}
+
+	protected function isNumericArray($array) {
+        foreach ($array as $a => $b) {
+            if (!is_int($a)) {
+                return false;
+            }
+        }
+        return true;
+    }
 	
 	public function nueva()
 	{
 		$mat = new matisses();
 		$sapOrders = $mat->wsmatissess_getOrdersByCharter($this->context->customer->charter);
-		foreach($sapOrders['customerOrdersDTO']['orders'] as $order){
-			$psOrders = Db::getInstance()->getRow("SELECT * FROM "._DB_PREFIX_.'cart WHERE id_factura = "'. $order['invoiceNumber']. '"');
-			if(sizeof($psOrders) == 1){
-				$this->registerOrder($order);
+		if($this->isNumericArray($sapOrders['customerOrdersDTO']['orders'])){
+			foreach($sapOrders['customerOrdersDTO']['orders'] as $order){
+				$psOrders = Db::getInstance()->getRow("SELECT * FROM "._DB_PREFIX_.'cart WHERE id_factura = "'. $order['invoiceNumber']. '"');;
+				if(sizeof($psOrders) == 1){
+					$this->registerOrder($order);
+				}
+			}
+		}else{
+			$psOrders = Db::getInstance()->getRow("SELECT * FROM "._DB_PREFIX_.'cart WHERE id_factura = "'. $sapOrders['customerOrdersDTO']['orders']['invoiceNumber']. '"');
+			if(empty($psOrders)){
+				$this->registerOrder($sapOrders['customerOrdersDTO']['orders']);
 			}
 		}
 		if ($orders = Order::getCustomerOrders($this->context->customer->id))

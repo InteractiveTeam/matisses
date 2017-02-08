@@ -91,20 +91,25 @@ class registerWithSap extends Module
                     
                     foreach ($addresses as $addr) {
                         if ($addr['addressType'] == 'E') {
-                            $addressObj->id_customer = $params['idcustomer'];
-                            $addressObj->firstname = $params['firstname'];
-                            $addressObj->secondname = $params['secondname'];
-                            $addressObj->lastname = $params['lastname'];
-                            $addressObj->surname = $params['surname'];
-                            $addressObj->phone = $addr['phone'];
-                            $addressObj->phone_mobile = $addr['mobile'];
-                            $addressObj->address1 = $addr['address'];
-                            $addressObj->postcode = $addr['cityCode'];
-                            $addressObj->city = $addr['cityName'];
-                            $addressObj->id_country = Db::getInstance()->getValue("SELECT id_country FROM "._DB_PREFIX_."country WHERE iso_code = ".$addr['stateCode']);
-                            $addressObj->id_state = Db::getInstance()->getValue("SELECT id_state FROM "._DB_PREFIX_."state WHERE iso_code = ".$addr['cityCode']);
-                            $addressObj->alias = $addr['addressName'];
-                            $addressObj->add();
+                            $id = Db::getInstance()->getValue("SELECT id_address FROM "._DB_PREFIX_."address WHERE address1 = '".$addr['address'] . "' AND lastname = '" .$addr['lastname']. "' AND firstname = '" .$addr['firstname'] . "'");
+                            if(!empty($id) || $id == 0){
+                                $addressObj->id_customer = $params['idcustomer'];
+                                $addressObj->firstname = $params['firstname'];
+                                $addressObj->secondname = $params['secondname'];
+                                $addressObj->lastname = $params['lastname'];
+                                $addressObj->surname = $params['surname'];
+                                $addressObj->phone = $addr['phone'];
+                                $addressObj->phone_mobile = $addr['mobile'];
+                                $addressObj->address1 = $addr['address'];
+                                $addressObj->postcode = $addr['cityCode'];
+                                $addressObj->city = $addr['cityName'];
+                                $addressObj->id_country = Db::getInstance()->getValue("SELECT id_country FROM "._DB_PREFIX_."country WHERE iso_code = ".$addr['stateCode']);
+                                $addressObj->id_state = Db::getInstance()->getValue("SELECT id_state FROM "._DB_PREFIX_."state WHERE iso_code = ".$addr['cityCode']);
+                                $addressObj->alias = $addr['addressName'];
+                                $addressObj->add();
+                            }else{
+                                $addressObj = new Address($id);
+                            }
                         }
                     }
                     
@@ -278,55 +283,61 @@ class registerWithSap extends Module
 
                         $sonda = new CargaProductos(true);
                         if ($this->isNumericArray($ordersWithSap['items'])) {
-                            foreach ($ordersWithSap['items'] as $item) {
-                                if ($item['quantity'] != 0) {
-                                    $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
-
+                            try{
+                                foreach ($ordersWithSap['items'] as $item) {
+                                    if ($item['quantity'] != 0) {
+                                        $prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
+                                        if (empty($prod)) {
+                                            $sonda->loadProductByReferenceWithoutStock($item['itemCode']);
+                                            $prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
+                                            $product = new Product($prod['id_product']);
+                                            $product->quantity = $product->quantity+1;
+                                            $product->active = true;
+                                            $product->update();
+                                            $cart->updateQty($item['quantity'], $prod[0]['id_product']); 
+                                            $ordersWithSap['total'] += $item['price'];
+                                        } else {
+                                            $product = new Product($prod['id_product']);
+                                            $product->quantity = $product->quantity+1;
+                                            $product->active = true;
+                                            $product->update();
+                                            $cart->updateQty($item['quantity'], $prod[0]['id_product']);  
+                                            $ordersWithSap['total'] += $item['price'];
+                                        }
+                                    } else {
+                                        unset($cart);
+                                    }
+                                }
+                            }catch(Exception $e){
+                                echo "";
+                            }
+                        } else {
+                            try{
+                                if ($ordersWithSap['items']['quantity'] != 0) {
+                                    $prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$ordersWithSap['items']['itemCode']."'");
                                     if (empty($prod)) {
                                         $sonda->loadProductByReferenceWithoutStock($item['itemCode']);
-                                        $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
-                                        $product = new Product($prod[0]['id_product']);
+                                        $prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$ordersWithSap['items']['itemCode']."'");
+                                        $product = new Product($prod['id_product']);
                                         $product->quantity = $product->quantity+1;
                                         $product->active = true;
                                         $product->update();
-                                        $cart->updateQty($item['quantity'], $prod[0]['id_product']); 
+                                        $cart->updateQty($item['quantity'], $prod[0]['id_product']);     
                                         $ordersWithSap['total'] += $item['price'];
+                                        die();
                                     } else {
-                                        $product = new Product($prod[0]['id_product']);
+                                        $product = new Product($prod['id_product']);
                                         $product->quantity = $product->quantity+1;
                                         $product->active = true;
                                         $product->update();
-                                        $cart->updateQty($item['quantity'], $prod[0]['id_product']);  
+                                        $cart->updateQty($ordersWithSap['items']['quantity'], $prod[0]['id_product']);   
                                         $ordersWithSap['total'] += $item['price'];
                                     }
                                 } else {
-                                    unset($cart);
+                                unset($cart);
                                 }
-                            }
-                        } else {
-                            if ($ordersWithSap['items']['quantity'] != 0) {
-                                $prod = Product::searchByName($cart->id_lang, $ordersWithSap['items']['itemCode']);
-
-                                if (empty($prod)) {
-                                    $sonda->loadProductByReferenceWithoutStock($item['itemCode']);
-                                    $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
-                                    $product = new Product($prod[0]['id_product']);
-                                    $product->quantity = $product->quantity+1;
-                                    $product->active = true;
-                                    $product->update();
-                                    $cart->updateQty($item['quantity'], $prod[0]['id_product']);     
-                                    $ordersWithSap['total'] += $item['price'];
-                                    die();
-                                } else {
-                                    $product = new Product($prod[0]['id_product']);
-                                    $product->quantity = $product->quantity+1;
-                                    $product->active = true;
-                                    $product->update();
-                                    $cart->updateQty($ordersWithSap['items']['quantity'], $prod[0]['id_product']);   
-                                    $ordersWithSap['total'] += $item['price'];
-                                }
-                            } else {
-                               unset($cart);
+                            }catch(Exception $e){
+                                echo "";
                             }
                         }
 
