@@ -19,6 +19,10 @@ $(document).ready(function(e) {
 	
 		 //Get count of selected files
 		 var countFiles = $(this)[0].files.length;
+         if(countFiles > 10){
+             $.fancybox('<div class="error">Solo puedes subir 10 imagenes</div>');
+             return;
+         }
 	
 		 var imgPath = $(this)[0].value;
 		 var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
@@ -98,8 +102,11 @@ $(document).ready(function(e) {
 				$.fancybox('<div class="error">No puedes seleccionar más daños</div>')
 			 }
 	})
+    
+    var files = {};
 	
 	$("label[for=imagen]").click(function(){
+        files = $("input[type=file]").prop('files');
 		$("input[type=file]").trigger('click');
 	 });
 	

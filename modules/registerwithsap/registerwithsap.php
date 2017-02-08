@@ -240,7 +240,8 @@ class registerWithSap extends Module
                                 $order->round_type = Configuration::get('PS_ROUND_TYPE');
                                 $order->invoice_date = $ordersap['documentDate'];
                                 $order->delivery_date = '0000-00-00 00:00:00';                            
-
+                                $order->valid = 1;
+                                
                                 // Creating order
                                 $result = $order->add();
                                 if (!$result) {
@@ -254,6 +255,13 @@ class registerWithSap extends Module
 
                                 $id_order_state = $order->current_state;
                                 $order_list[] = $order;
+                                
+                                Db::getInstance()->insert('order_history', array(
+                                    'id_employee' => 1,
+                                    'id_order' => $order->id,
+                                    'id_order_state' => $id_order_state,
+                                    'date_add' => date('Y-m-d H:i:s')
+                                ));
                                 // Insert new Order detail list using cart for the current order
                                 $order_detail = new OrderDetail(null, null, $this->context);
                                 $order_detail->createList($order, $cart, $id_order_state, $order->product_list, 0, true);
@@ -392,7 +400,8 @@ class registerWithSap extends Module
                             $order->round_mode = 0;
                             $order->round_type = Configuration::get('PS_ROUND_TYPE');
                             $order->invoice_date = $ordersWithSap['documentDate'];
-                            $order->delivery_date = '0000-00-00 00:00:00';                            
+                            $order->delivery_date = '0000-00-00 00:00:00';
+                            $order->valid = 1;
 
                             // Creating order
                             $result = $order->add();
@@ -408,6 +417,14 @@ class registerWithSap extends Module
 
                             $id_order_state = $order->current_state;
                             $order_list[] = $order;
+                            
+                            Db::getInstance()->insert('order_history', array(
+                                'id_employee' => 1,
+                                'id_order' => $order->id,
+                                'id_order_state' => $id_order_state,
+                                'date_add' => date('Y-m-d H:i:s')
+                            ));
+                            
                             // Insert new Order detail list using cart for the current order
                             $order_detail = new OrderDetail(null, null, $this->context);
                             $order_detail->createList($order, $cart, $id_order_state, $order->product_list, 0, true);

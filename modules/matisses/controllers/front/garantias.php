@@ -289,7 +289,8 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 				$order->round_mode = 0;
 				$order->round_type = Configuration::get('PS_ROUND_TYPE');
 				$order->invoice_date = $ordersap['documentDate'];
-				$order->delivery_date = '0000-00-00 00:00:00';                            
+				$order->delivery_date = '0000-00-00 00:00:00';
+                $order->valid = 1;
 
 				// Creating order
 				$result = $order->add();
@@ -303,6 +304,14 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 				$order->update();
 
 				$id_order_state = $order->current_state;
+                
+                Db::getInstance()->insert('order_history', array(
+                    'id_employee' => 1,
+                    'id_order' => $order->id,
+                    'id_order_state' => $id_order_state,
+                    'date_add' => date('Y-m-d H:i:s')
+                ));
+                
 				$order_list[] = $order;
 				// Insert new Order detail list using cart for the current order
 				$order_detail = new OrderDetail(null, null, $this->context);
@@ -321,11 +330,19 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 		$addresses = $userSap['customerDTO']['addresses'];
 		if(empty($addresses))
 			return false;
+        
+        $params = array(
+            'firstname' => $this->context->customer->firstname,
+            'secondname' => $this->context->customer->secondname,
+            'lastname' => $this->context->customer->lastname,
+            'surname' => $this->context->customer->surname,
+            'idcustomer' => $this->context->customer->id
+        );
 
 		$addressObj = new Address();
 		foreach ($addresses as $addr) {
 			if ($addr['addressType'] == 'E') {
-                $id = Db::getInstance()->getValue("SELECT id_address FROM "._DB_PREFIX_."address WHERE address1 = '".$addr['address'] . "' AND lastname = '" .$addr['lastname']. "' AND firstname = '" .$addr['firstname'] . "'");
+                $id = Db::getInstance()->getValue("SELECT id_address FROM "._DB_PREFIX_."address WHERE address1 = '".$addr['address'] . "' AND lastname = '" .$params['lastname']. "' AND firstname = '" .$params['firstname'] . "'");
                 if(!empty($id) || $id == 0){
                     $addressObj->id_customer = $params['idcustomer'];
                     $addressObj->firstname = $params['firstname'];
