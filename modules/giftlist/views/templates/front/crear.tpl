@@ -239,7 +239,7 @@
                         <h3>{l s='Bono de regalo' mod='giftlist'}</h3>
                         <span>{l s='¿Quieres recibir Gift card?' mod='giftlist'}</span>
                         <label><input type="radio" value="1" class="recieve_bond" name="recieve_bond"> Si</label>
-                        <label><input type="radio" value="0" class="recieve_bond" name="recieve_bond"> No</label>
+                        <label><input type="radio" value="0" class="recieve_bond" name="recieve_bond" checked="checked"> No</label>
 					   
 				    </div>
                 </div>
