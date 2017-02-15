@@ -91,7 +91,7 @@ class registerWithSap extends Module
                     
                     foreach ($addresses as $addr) {
                         if ($addr['addressType'] == 'E') {
-                            $id = Db::getInstance()->getValue("SELECT id_address FROM "._DB_PREFIX_."address WHERE address1 = '".$addr['address'] . "' AND lastname = '" .$addr['lastname']. "' AND firstname = '" .$addr['firstname'] . "'");
+                            $id = Db::getInstance()->getValue("SELECT id_address FROM "._DB_PREFIX_."address WHERE address1 = '".$params['address'] . "' AND lastname = '" .$params['lastname']. "' AND firstname = '" .$params['firstname'] . "'");
                             if(!empty($id) || $id == 0){
                                 $addressObj->id_customer = $params['idcustomer'];
                                 $addressObj->firstname = $params['firstname'];
@@ -143,7 +143,7 @@ class registerWithSap extends Module
                                             $prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
                                             if(is_array($prod)){
                                                 $product = new Product($prod['id_product']);
-                                                $product->quantity = $product->quantity+1;
+                                                $product->quantity = $product->quantity+$item['quantity'];
                                                 $product->active = true;
                                                 $product->update();
                                                 $cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);  
@@ -151,7 +151,7 @@ class registerWithSap extends Module
                                             }
                                         } else {
                                             $product = new Product($prod['id_product']);
-                                            $product->quantity = $product->quantity+1;
+                                            $product->quantity = $product->quantity+$item['quantity'];
                                             $product->active = true;
                                             $product->update();
                                             $cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
@@ -163,13 +163,12 @@ class registerWithSap extends Module
                                 }
                             } else {
                                 if ($ordersap['items']['quantity'] != 0) {
-                                    $prod = Product::searchByName($cart->id_lang, $ordersap['items']['itemCode']);
-
+                                    $prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$ordersap['items']['itemCode']."'");
                                     if (empty($prod)) {
                                         $sonda->loadProductByReferenceWithoutStock($item['itemCode']);
-                                        $prod = Product::searchByName($cart->id_lang, $item['itemCode']);
+                                        $prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$ordersap['items']['itemCode']."'");
                                         $product = new Product($prod[0]['id_product']);
-                                        $product->quantity = $product->quantity+1;
+                                        $product->quantity = $product->quantity+$item['quantity'];
                                         $product->active = true;
                                         $product->update();
                                         $cart->updateQty($item['quantity'], $prod[0]['id_product']);     
@@ -177,10 +176,10 @@ class registerWithSap extends Module
                                         die();
                                     } else {
                                         $product = new Product($prod[0]['id_product']);
-                                        $product->quantity = $product->quantity+1;
+                                        $product->quantity = $product->quantity+$ordersap['items']['quantity'];
                                         $product->active = true;
                                         $product->update();
-                                        $cart->updateQty($ordersap['items']['quantity'], $prod[0]['id_product']);   
+                                        $cart->updateQty($ordersap['items']['quantity'], $prod['id_product']);   
                                         $ordersap['total'] += $item['price'];
                                     }
                                 } else {
@@ -309,7 +308,7 @@ class registerWithSap extends Module
                                             $product->quantity = $product->quantity+1;
                                             $product->active = true;
                                             $product->update();
-                                            $cart->updateQty($item['quantity'], $prod[0]['id_product']);  
+                                            $cart->updateQty($item['quantity'], $prod['id_product']);  
                                             $ordersWithSap['total'] += $item['price'];
                                         }
                                     } else {
@@ -317,7 +316,7 @@ class registerWithSap extends Module
                                     }
                                 }
                             }catch(Exception $e){
-                                echo "";
+                                echo $e->getMessage();;
                             }
                         } else {
                             try{

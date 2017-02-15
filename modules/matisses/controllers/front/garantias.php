@@ -162,18 +162,18 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 			$garantias[$k]['id_request'] = $garantia['id_request'];
 			$garantias[$k]['code'] = $history['statusCode'];
 			$garantias[$k]['fecha']	= date('Y/m/d - H:i:s',$garantia['fecha']);
-			$garantias[$k]['history'][0]['fecha'] = date('Y/m/d - H:i:s',$garantia['fecha']);
+			$garantias[$k]['history'][0]['fecha'] = date('Y/m/d - H:i',$garantia['fecha']);
 			$garantias[$k]['history'][0]['description'] = 'Solicitud recibida';
 			$i = 1;
 			if(sizeof($history['history']) > 1){
 				foreach($history['history'] as $log){
-					$garantias[$k]['history'][$i]['fecha'] = date('Y/m/d - H:i:s',strtotime($log->fecha));
+					$garantias[$k]['history'][$i]['fecha'] = date('Y/m/d - H:i',strtotime($log->fecha));
 					$garantias[$k]['history'][$i]['description'] = $log->name;
 					$i++;
 				}
 			}
 			else{
-				$garantias[$k]['history'][$i]['fecha'] = date('Y/m/d - H:i:s',strtotime($history['history']->fecha));
+				$garantias[$k]['history'][$i]['fecha'] = date('Y/m/d - H:i',strtotime($history['history']->fecha));
 				$garantias[$k]['history'][$i]['description'] = $history['history']->name;
 			}
 		}
@@ -218,7 +218,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							$prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
 							if(is_array($prod)){
 								$product = new Product($prod['id_product']);
-								$product->quantity = $product->quantity+1;
+								$product->quantity = $product->quantity+$item['quantity'];
 								$product->active = true;
 								$product->update();
 								$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);  
@@ -226,11 +226,13 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 							}
 						} else {
 							$product = new Product($prod['id_product']);
-							$product->quantity = $product->quantity+1;
-							$product->active = true;
-							$product->update();
-							$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
-							$ordersap['total'] += $item['price'];
+							if(!empty($product)){
+								$product->quantity = $product->quantity+$item['quantity'];
+								$product->active = true;
+								$product->update();
+								$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
+								$ordersap['total'] += $item['price'];
+							}
 						}
 					} else {
 						unset($cart);
@@ -239,7 +241,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 					return;
 				}
 			}
-
+			die(print_r($cart->getProducts()));
 			// Create Orders
 			if (isset($cart)) {
 				$order = new Order();
@@ -454,9 +456,9 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 				}
 				foreach($imagenes as $k => $imagen)
 				{
-					if(strtolower(trim(pathinfo($imagen['name'], PATHINFO_EXTENSION))) != 'jpg')
+					if(!in_array(strtolower(trim(pathinfo($imagen['name'], PATHINFO_EXTENSION))), array('jpg','png','gif','jpeg')))
 					{
-						$this->errors[] = Tools::displayError('Una o mas imagenes no cumplen con el formato jpg');
+						$this->errors[] = Tools::displayError('Una o mas imagenes no cumplen con el formato adecuado');
 						break;
 					}
 					
