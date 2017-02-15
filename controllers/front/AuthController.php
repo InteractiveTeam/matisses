@@ -427,7 +427,7 @@ class AuthControllerCore extends FrontController
 		$surname = Tools::getValue('surname');
 		$charter = Tools::getValue('charter');
         $customer->email = $_POST['email'];
-        $customer->passwd = $_POST['passwd'];
+        $customer->passwd = md5($_POST['passwd']);
         $customer->medio = Tools::getValue('medio');
 		
 		
