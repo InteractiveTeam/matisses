@@ -221,7 +221,18 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 								$product->quantity = $product->quantity+$item['quantity'];
 								$product->active = true;
 								$product->update();
-								$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);  
+								Db::getInstance()->insert("cart_product",array(
+									'id_cart' => $cart->id,
+									'id_product' => $prod['id_product'],
+									'id_address_delivery' => $add,
+									'id_shop' => 1,
+									'id_bond' => 0,
+									'id_giftlist' => 0,
+									'id_product_attribute' => $prod['id_product_attribute'],
+									'quantity' => $item['quantity'],
+									'date_add' => date("Y-m-d H:i:s")
+								));
+								//$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);  
 								$ordersap['total'] += $item['price'];
 							}
 						} else {
@@ -230,7 +241,18 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 								$product->quantity = $product->quantity+$item['quantity'];
 								$product->active = true;
 								$product->update();
-								$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
+								Db::getInstance()->insert("cart_product",array(
+									'id_cart' => $cart->id,
+									'id_product' => $prod['id_product'],
+									'id_address_delivery' => $add,
+									'id_shop' => 1,
+									'id_bond' => 0,
+									'id_giftlist' => 0,
+									'id_product_attribute' => $prod['id_product_attribute'],
+									'quantity' => $item['quantity'],
+									'date_add' => date("Y-m-d H:i:s")
+								));
+								//$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
 								$ordersap['total'] += $item['price'];
 							}
 						}
@@ -241,7 +263,6 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 					return;
 				}
 			}
-			die(print_r($cart->getProducts()));
 			// Create Orders
 			if (isset($cart)) {
 				$order = new Order();
@@ -344,7 +365,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 		$addressObj = new Address();
 		foreach ($addresses as $addr) {
 			if ($addr['addressType'] == 'E') {
-                $id = Db::getInstance()->getValue("SELECT id_address FROM "._DB_PREFIX_."address WHERE address1 = '".$addr['address'] . "' AND lastname = '" .$params['lastname']. "' AND firstname = '" .$params['firstname'] . "'");
+                $id = Db::getInstance()->getValue("SELECT id_address FROM "._DB_PREFIX_."address WHERE alias = '".$addr['addressName'] . "' AND lastname = '" .$params['lastname']. "' AND firstname = '" .$params['firstname'] . "'");
                 if(!empty($id) || $id == 0){
                     $addressObj->id_customer = $params['idcustomer'];
                     $addressObj->firstname = $params['firstname'];
