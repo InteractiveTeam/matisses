@@ -191,6 +191,12 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 
 	public function registerOrder($ordersap){
 		//echo "<pre>"; print_r($ordersap); echo "</pre>";die();
+		$ref = array();
+		$sonda = new CargaProductos(true);
+		foreach($ordersap['items'] as $item){
+			array_push($ref,$item['itemCode']);
+		}
+		$sonda->loadProductByReferenceWithoutStock($ref);
 		$add = $this->registerAddress($this->context->customer->email);
 		if($add){
 			$ordersap['total'] = 0;
@@ -208,53 +214,28 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 			$cart->update();
 			Db::getInstance()->update('cart',array('id_factura' => $ordersap['invoiceNumber']),'id_cart = '.$cart->id);
 
-			$sonda = new CargaProductos(true);
 			foreach ($ordersap['items'] as $item) {
 				try{
 					if ($item['quantity'] != 0) {
 						$prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
-						if (empty($prod)) {
-							$sonda->loadProductByReferenceWithoutStock($item['itemCode']);
-							$prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
-							if(is_array($prod)){
-								$product = new Product($prod['id_product']);
-								$product->quantity = $product->quantity+$item['quantity'];
-								$product->active = true;
-								$product->update();
-								Db::getInstance()->insert("cart_product",array(
-									'id_cart' => $cart->id,
-									'id_product' => $prod['id_product'],
-									'id_address_delivery' => $add,
-									'id_shop' => 1,
-									'id_bond' => 0,
-									'id_giftlist' => 0,
-									'id_product_attribute' => $prod['id_product_attribute'],
-									'quantity' => $item['quantity'],
-									'date_add' => date("Y-m-d H:i:s")
-								));
-								//$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);  
-								$ordersap['total'] += $item['price'];
-							}
-						} else {
-							$product = new Product($prod['id_product']);
-							if(!empty($product)){
-								$product->quantity = $product->quantity+$item['quantity'];
-								$product->active = true;
-								$product->update();
-								Db::getInstance()->insert("cart_product",array(
-									'id_cart' => $cart->id,
-									'id_product' => $prod['id_product'],
-									'id_address_delivery' => $add,
-									'id_shop' => 1,
-									'id_bond' => 0,
-									'id_giftlist' => 0,
-									'id_product_attribute' => $prod['id_product_attribute'],
-									'quantity' => $item['quantity'],
-									'date_add' => date("Y-m-d H:i:s")
-								));
-								//$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
-								$ordersap['total'] += $item['price'];
-							}
+						//$product = new Product($prod['id_product']);
+						if(!empty($prod)){
+							/*$product->quantity = $product->quantity+$item['quantity'];
+							$product->active = true;
+							$product->update();*/
+							Db::getInstance()->insert("cart_product",array(
+								'id_cart' => $cart->id,
+								'id_product' => $prod['id_product'],
+								'id_address_delivery' => $add,
+								'id_shop' => 1,
+								'id_bond' => 0,
+								'id_giftlist' => 0,
+								'id_product_attribute' => $prod['id_product_attribute'],
+								'quantity' => $item['quantity'],
+								'date_add' => date("Y-m-d H:i:s")
+							));
+							//$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
+							$ordersap['total'] += $item['price'];
 						}
 					} else {
 						unset($cart);
@@ -361,12 +342,11 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
             'surname' => $this->context->customer->surname,
             'idcustomer' => $this->context->customer->id
         );
-
 		$addressObj = new Address();
 		foreach ($addresses as $addr) {
 			if ($addr['addressType'] == 'E') {
-                $id = Db::getInstance()->getValue("SELECT id_address FROM "._DB_PREFIX_."address WHERE alias = '".$addr['addressName'] . "' AND lastname = '" .$params['lastname']. "' AND firstname = '" .$params['firstname'] . "'");
-                if(!empty($id) || $id == 0){
+                $id = Db::getInstance()->getValue("SELECT id_address FROM "._DB_PREFIX_."address WHERE address1 = '".$addr['address'] . "' AND lastname = '" .$params['lastname']. "' AND firstname = '" .$params['firstname'] . "'");
+				if(empty($id) || $id == 0){
                     $addressObj->id_customer = $params['idcustomer'];
                     $addressObj->firstname = $params['firstname'];
                     $addressObj->secondname = $params['secondname'];
@@ -517,9 +497,9 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 					
 					foreach($imagenes as $k => $imagen)
 					{
-						if(strtolower(trim(pathinfo($imagen['name'], PATHINFO_EXTENSION))) != 'jpg')
+						if(!in_array(strtolower(trim(pathinfo($imagen['name'], PATHINFO_EXTENSION))), array('jpg','png','gif','jpeg')))
 						{
-							$this->errors[] = Tools::displayError('Una o mas imagenes no cumplen con el formato jpg');
+							$this->errors[] = Tools::displayError('Una o mas imagenes no cumplen con el formato adecuado');
 							break;
 						}
 						

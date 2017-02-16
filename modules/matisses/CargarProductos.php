@@ -15,7 +15,7 @@ class CargaProductos{
         $this->totalProducts = 'http://181.143.4.43:8280/WebIntegrator/webresources/iteminventario/consulta';
         $this->fiveMin = 'http://181.143.4.43:8280/WebIntegrator/webresources/iteminventario/consultaRecientes5M';
         $this->pStatus = 'http://181.143.4.43:8280/WebIntegrator/webresources/iteminventario/estado';
-        $this->sinSaldo = 'http://181.143.4.43:8280/WebIntegrator/webresources/iteminventario/consultaSinSaldo';
+        $this->sinSaldo = 'http://192.168.5.78:8280/WebIntegrator/webresources/iteminventario/consultaSinSaldo';
         $this->data = array();
         if(!$five){
             $this->loadProcess($this->totalProducts);
@@ -584,7 +584,7 @@ class CargaProductos{
     }
     
     public function loadProductByReferenceWithoutStock($ref){
-        $this->callService($this->sinSaldo,array($ref));
+        $this->callService($this->sinSaldo,$ref);
         $auxData = array();
         //asociamos todas la ref a un modelo
         foreach ($this->data as $key => $value) {
