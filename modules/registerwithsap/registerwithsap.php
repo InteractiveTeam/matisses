@@ -135,40 +135,64 @@ class registerWithSap extends Module
 
                             $sonda = new CargaProductos(true);
                             $ref = array();
-                            foreach($ordersap['items'] as $item){
-                                array_push($ref,$item['itemCode']);
+                            if(isset($ordersap['items']['itemCode']))
+                                $sonda->loadProductByReferenceWithoutStock(array($ordersap['items']['itemCode']));
+                            else{
+                                foreach($ordersap['items'] as $item){
+                                    array_push($ref,$item['itemCode']);
+                                }
+                                $sonda->loadProductByReferenceWithoutStock($ref);
                             }
                             $sonda->loadProductByReferenceWithoutStock($ref);
-                            foreach ($ordersap['items'] as $item) {
-                            try{
-                                if ($item['quantity'] != 0) {
-                                    $prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
-                                    //$product = new Product($prod['id_product']);
-                                    if(!empty($prod)){
-                                        /*$product->quantity = $product->quantity+$item['quantity'];
-                                        $product->active = true;
-                                        $product->update();*/
-                                        Db::getInstance()->insert("cart_product",array(
-                                            'id_cart' => $cart->id,
-                                            'id_product' => $prod['id_product'],
-                                            'id_address_delivery' => $add,
-                                            'id_shop' => 1,
-                                            'id_bond' => 0,
-                                            'id_giftlist' => 0,
-                                            'id_product_attribute' => $prod['id_product_attribute'],
-                                            'quantity' => $item['quantity'],
-                                            'date_add' => date("Y-m-d H:i:s")
-                                        ));
-                                        //$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
-                                        $ordersap['total'] += $item['price'];
-                                    }
-                                } else {
-                                    unset($cart);
+                            if(isset($ordersap['items']['itemCode'])){
+                                $prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$ordersap['items']['itemCode']."'");
+                                if(!empty($prod)){
+                                    Db::getInstance()->insert("cart_product",array(
+                                        'id_cart' => $cart->id,
+                                        'id_product' => $prod['id_product'],
+                                        'id_address_delivery' => $add,
+                                        'id_shop' => 1,
+                                        'id_bond' => 0,
+                                        'id_giftlist' => 0,
+                                        'id_product_attribute' => $prod['id_product_attribute'],
+                                        'quantity' => $ordersap['items']['quantity'],
+                                        'date_add' => date("Y-m-d H:i:s")
+                                    ));
                                 }
-                            }catch(Exception $e){
-                                return;
+                                //$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
+                                $ordersap['total'] += ($ordersap['items']['price'] * $ordersap['items']['quantity']);
+                            }else{
+                                foreach ($ordersap['items'] as $item) {
+                                    try{
+                                        if ($item['quantity'] != 0) {
+                                            $prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
+                                            //$product = new Product($prod['id_product']);
+                                            if(!empty($prod)){
+                                                /*$product->quantity = $product->quantity+$item['quantity'];
+                                                $product->active = true;
+                                                $product->update();*/
+                                                Db::getInstance()->insert("cart_product",array(
+                                                    'id_cart' => $cart->id,
+                                                    'id_product' => $prod['id_product'],
+                                                    'id_address_delivery' => $add,
+                                                    'id_shop' => 1,
+                                                    'id_bond' => 0,
+                                                    'id_giftlist' => 0,
+                                                    'id_product_attribute' => $prod['id_product_attribute'],
+                                                    'quantity' => $item['quantity'],
+                                                    'date_add' => date("Y-m-d H:i:s")
+                                                ));
+                                                //$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
+                                                $ordersap['total'] += ($item['price'] + $item['quantity']);
+                                            }
+                                        } else {
+                                            unset($cart);
+                                        }
+                                    }catch(Exception $e){
+                                        return;
+                                    }
+                                }
                             }
-                        }
 
                             // Create Orders
                             if (isset($cart)) {
@@ -208,8 +232,8 @@ class registerWithSap extends Module
                                 $order->mobile_theme = $cart->mobile_theme;
                                 $order->conversion_rate = $this->context->currency->conversion_rate;
                                 $order->total_paid_real = $ordersap['total'];
-                                $order->total_products = (float)$cart->getOrderTotal(false);
-                                $order->total_products_wt = (float)$cart->getOrderTotal(true);
+                                $order->total_products = $ordersap['total'];
+                                $order->total_products_wt = $ordersap['total'];
                                 $order->total_discounts_tax_excl = 0;
                                 $order->total_discounts_tax_incl = 0;
                                 $order->total_discounts = 0;
@@ -272,38 +296,61 @@ class registerWithSap extends Module
                         $ordersWithSap['total'] = 0;
 
                         $sonda = new CargaProductos(true);
-                        foreach($sapOrders['items'] as $item){
-                            array_push($ref,$item['itemCode']);
+                        if(isset(ordersWithSap['items']['itemCode']))
+                            $sonda->loadProductByReferenceWithoutStock(array($ordersWithSap['items']['itemCode']));
+                        else{
+                            foreach($ordersWithSap['items'] as $item){
+                                array_push($ref,$item['itemCode']);
+                            }
+                            $sonda->loadProductByReferenceWithoutStock($ref);
                         }
-                        $sonda->loadProductByReferenceWithoutStock($ref);
-                        foreach ($sapOrders['items'] as $item) {
-                            try{
-                                if ($item['quantity'] != 0) {
-                                    $prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
-                                    //$product = new Product($prod['id_product']);
-                                    if(!empty($prod)){
-                                        /*$product->quantity = $product->quantity+$item['quantity'];
-                                        $product->active = true;
-                                        $product->update();*/
-                                        Db::getInstance()->insert("cart_product",array(
-                                            'id_cart' => $cart->id,
-                                            'id_product' => $prod['id_product'],
-                                            'id_address_delivery' => $add,
-                                            'id_shop' => 1,
-                                            'id_bond' => 0,
-                                            'id_giftlist' => 0,
-                                            'id_product_attribute' => $prod['id_product_attribute'],
-                                            'quantity' => $item['quantity'],
-                                            'date_add' => date("Y-m-d H:i:s")
-                                        ));
-                                        //$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
-                                        $ordersap['total'] += $item['price'];
+                        if(isset($ordersWithSap['items']['itemCode'])){
+                            $prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$ordersWithSap['items']['itemCode']."'");
+                            if(!empty($prod)){
+                                Db::getInstance()->insert("cart_product",array(
+                                    'id_cart' => $cart->id,
+                                    'id_product' => $prod['id_product'],
+                                    'id_address_delivery' => $add,
+                                    'id_shop' => 1,
+                                    'id_bond' => 0,
+                                    'id_giftlist' => 0,
+                                    'id_product_attribute' => $prod['id_product_attribute'],
+                                    'quantity' => $ordersWithSap['items']['quantity'],
+                                    'date_add' => date("Y-m-d H:i:s")
+                                ));
+                            }
+                            //$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
+                            $ordersap['total'] += ($ordersWithSap['items']['price'] * $ordersWithSap['items']['quantity']);
+                        }else{
+                            foreach ($ordersWithSap['items'] as $item) {
+                                try{
+                                    if ($item['quantity'] != 0) {
+                                        $prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
+                                        //$product = new Product($prod['id_product']);
+                                        if(!empty($prod)){
+                                            /*$product->quantity = $product->quantity+$item['quantity'];
+                                            $product->active = true;
+                                            $product->update();*/
+                                            Db::getInstance()->insert("cart_product",array(
+                                                'id_cart' => $cart->id,
+                                                'id_product' => $prod['id_product'],
+                                                'id_address_delivery' => $add,
+                                                'id_shop' => 1,
+                                                'id_bond' => 0,
+                                                'id_giftlist' => 0,
+                                                'id_product_attribute' => $prod['id_product_attribute'],
+                                                'quantity' => $item['quantity'],
+                                                'date_add' => date("Y-m-d H:i:s")
+                                            ));
+                                            //$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
+                                            $ordersap['total'] += ($item['price'] * $item['quantity']);
+                                        }
+                                    } else {
+                                        unset($cart);
                                     }
-                                } else {
-                                    unset($cart);
+                                }catch(Exception $e){
+                                    return;
                                 }
-                            }catch(Exception $e){
-                                return;
                             }
                         }
                         // Create Orders
@@ -343,17 +390,17 @@ class registerWithSap extends Module
                             $order->gift_message = $cart->gift_message;
                             $order->mobile_theme = $cart->mobile_theme;
                             $order->conversion_rate = $this->context->currency->conversion_rate;
-                            $order->total_paid_real = $ordersWithSap['total'];
-                            $order->total_products = (float)$cart->getOrderTotal(false);
-                            $order->total_products_wt = (float)$cart->getOrderTotal(true);
+                            $order->total_paid_real = $ordersap['total'];
+                            $order->total_products = $ordersap['total'];
+                            $order->total_products_wt = $ordersap['total'];
                             $order->total_discounts_tax_excl = 0;
                             $order->total_discounts_tax_incl = 0;
                             $order->total_discounts = 0;
                             $order->total_shipping = 0;
                             $order->carrier_tax_rate = 0;
-                            $order->total_paid = $ordersWithSap['total'];
-                            $order->total_paid_tax_incl = $ordersWithSap['total'];
-                            $order->total_paid_tax_excl = $ordersWithSap['total'];
+                            $order->total_paid = $ordersap['total'];
+                            $order->total_paid_tax_incl = $ordersap['total'];
+                            $order->total_paid_tax_excl = $ordersap['total'];
                             $order->round_mode = 0;
                             $order->round_type = Configuration::get('PS_ROUND_TYPE');
                             $order->invoice_date = $ordersWithSap['documentDate'];

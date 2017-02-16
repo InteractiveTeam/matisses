@@ -190,13 +190,17 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 	}
 
 	public function registerOrder($ordersap){
-		//echo "<pre>"; print_r($ordersap); echo "</pre>";die();
 		$ref = array();
 		$sonda = new CargaProductos(true);
-		foreach($ordersap['items'] as $item){
-			array_push($ref,$item['itemCode']);
+		if(isset($ordersap['items']['itemCode']))
+			$sonda->loadProductByReferenceWithoutStock(array($ordersap['items']['itemCode']));
+		else{
+			foreach($ordersap['items'] as $item){
+				array_push($ref,$item['itemCode']);
+			}
+			$sonda->loadProductByReferenceWithoutStock($ref);
 		}
-		$sonda->loadProductByReferenceWithoutStock($ref);
+		//echo "<pre>"; print_r($ordersap); echo "</pre>";die();
 		$add = $this->registerAddress($this->context->customer->email);
 		if($add){
 			$ordersap['total'] = 0;
@@ -213,35 +217,54 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 			$this->context->cookie->id_cart = (int)($cart->id); 
 			$cart->update();
 			Db::getInstance()->update('cart',array('id_factura' => $ordersap['invoiceNumber']),'id_cart = '.$cart->id);
-
-			foreach ($ordersap['items'] as $item) {
-				try{
-					if ($item['quantity'] != 0) {
-						$prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
-						//$product = new Product($prod['id_product']);
-						if(!empty($prod)){
-							/*$product->quantity = $product->quantity+$item['quantity'];
-							$product->active = true;
-							$product->update();*/
-							Db::getInstance()->insert("cart_product",array(
-								'id_cart' => $cart->id,
-								'id_product' => $prod['id_product'],
-								'id_address_delivery' => $add,
-								'id_shop' => 1,
-								'id_bond' => 0,
-								'id_giftlist' => 0,
-								'id_product_attribute' => $prod['id_product_attribute'],
-								'quantity' => $item['quantity'],
-								'date_add' => date("Y-m-d H:i:s")
-							));
-							//$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
-							$ordersap['total'] += $item['price'];
+			
+			if(isset($ordersap['items']['itemCode'])){
+				$prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$ordersap['items']['itemCode']."'");
+				if(!empty($prod)){
+					Db::getInstance()->insert("cart_product",array(
+						'id_cart' => $cart->id,
+						'id_product' => $prod['id_product'],
+						'id_address_delivery' => $add,
+						'id_shop' => 1,
+						'id_bond' => 0,
+						'id_giftlist' => 0,
+						'id_product_attribute' => $prod['id_product_attribute'],
+						'quantity' => $ordersap['items']['quantity'],
+						'date_add' => date("Y-m-d H:i:s")
+					));
+				}
+				//$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
+				$ordersap['total'] += ($ordersap['items']['price'] * $ordersap['items']['quantity']);
+			}else{
+				foreach ($ordersap['items'] as $item) {
+					try{
+						if ($item['quantity'] != 0) {
+							$prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$item['itemCode']."'");
+							//$product = new Product($prod['id_product']);
+							if(!empty($prod)){
+								/*$product->quantity = $product->quantity+$item['quantity'];
+								$product->active = true;
+								$product->update();*/
+								Db::getInstance()->insert("cart_product",array(
+									'id_cart' => $cart->id,
+									'id_product' => $prod['id_product'],
+									'id_address_delivery' => $add,
+									'id_shop' => 1,
+									'id_bond' => 0,
+									'id_giftlist' => 0,
+									'id_product_attribute' => $prod['id_product_attribute'],
+									'quantity' => $item['quantity'],
+									'date_add' => date("Y-m-d H:i:s")
+								));
+								//$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
+								$ordersap['total'] += ($item['price'] + $item['quantity']);
+							}
+						} else {
+							unset($cart);
 						}
-					} else {
-						unset($cart);
+					}catch(Exception $e){
+						return;
 					}
-				}catch(Exception $e){
-					return;
 				}
 			}
 			// Create Orders
@@ -280,8 +303,8 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 				$order->mobile_theme = $cart->mobile_theme;
 				$order->conversion_rate = $this->context->currency->conversion_rate;
 				$order->total_paid_real = $ordersap['total'];
-				$order->total_products = (float)$cart->getOrderTotal(false);
-				$order->total_products_wt = (float)$cart->getOrderTotal(true);
+				$order->total_products = $ordersap['total'];
+				$order->total_products_wt = $ordersap['total'];
 				$order->total_discounts_tax_excl = 0;
 				$order->total_discounts_tax_incl = 0;
 				$order->total_discounts = 0;
