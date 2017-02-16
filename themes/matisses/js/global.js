@@ -821,4 +821,14 @@ $(document).ready(function(){
     
     $('.before-line, .after-line').css({ 'border-top-width':heightResultList/2, 'border-bottom-width':heightResultList/2 });
     
-})
+});
+
+//disable garantias button
+$(document).ready(function(){
+    $("#btn-garantias").click(function(){
+        var loc = $(this).attr('href');
+        window.location.href = loc; 
+        $.fancybox("Estamos cargando tus compras...");
+        $(this).removeAttr('href').addClass("disabled");
+    });
+});

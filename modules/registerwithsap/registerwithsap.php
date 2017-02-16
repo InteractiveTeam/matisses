@@ -143,7 +143,6 @@ class registerWithSap extends Module
                                 }
                                 $sonda->loadProductByReferenceWithoutStock($ref);
                             }
-                            $sonda->loadProductByReferenceWithoutStock($ref);
                             if(isset($ordersap['items']['itemCode'])){
                                 $prod = Db::getInstance()->getRow("SELECT * FROM " . _DB_PREFIX_ . "product_attribute WHERE reference = '".$ordersap['items']['itemCode']."'");
                                 if(!empty($prod)){
@@ -183,7 +182,7 @@ class registerWithSap extends Module
                                                     'date_add' => date("Y-m-d H:i:s")
                                                 ));
                                                 //$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
-                                                $ordersap['total'] += ($item['price'] + $item['quantity']);
+                                                $ordersap['total'] += ($item['price'] * $item['quantity']);
                                             }
                                         } else {
                                             unset($cart);
@@ -296,6 +295,7 @@ class registerWithSap extends Module
                         $ordersWithSap['total'] = 0;
 
                         $sonda = new CargaProductos(true);
+                        $ref = array();
                         if(isset(ordersWithSap['items']['itemCode']))
                             $sonda->loadProductByReferenceWithoutStock(array($ordersWithSap['items']['itemCode']));
                         else{

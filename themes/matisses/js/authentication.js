@@ -190,7 +190,8 @@ function submitFunction(email)
                     if (userToken) {
                         setTimeout(function(){
                             if (userToken.gender) { 
-                                $('#noSlide .radio-inline').find('#uniform-id_gender'+userToken.gender+' span').addClass('checked');
+                                $('#id_gender'+userToken.gender).prop('checked',true);
+                                $.uniform.update('#id_gender'+userToken.gender);
                             }
                             if (userToken.names) { 
                                 $('#noSlide #customer_firstname').val(userToken.names.split(' ')[0]); 
@@ -225,6 +226,20 @@ function submitFunction(email)
                                 $('#years option[value='+birthdate[0]+']').attr('selected','selected');
                                 $("#years").trigger("chosen:updated");                                
                             }
+
+                            $("#submitAccount").click(function(){
+                                $.fancybox({
+                                    'content':"Estamos creando tu cuenta",
+                                     showCloseButton:false,
+                                     closeClick  : false,
+                                     closeBtn: false,
+                                     helpers   : { 
+                                        overlay : {
+                                            closeClick: false,
+                                        }
+                                    }
+                                });
+                            });
                             
                         }, 800);
                     }

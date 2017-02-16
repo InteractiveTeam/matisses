@@ -257,7 +257,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 									'date_add' => date("Y-m-d H:i:s")
 								));
 								//$cart->updateQty($item['quantity'], $prod['id_product'],$prod['id_product_attribute']);   
-								$ordersap['total'] += ($item['price'] + $item['quantity']);
+								$ordersap['total'] += ($item['price'] * $item['quantity']);
 							}
 						} else {
 							unset($cart);

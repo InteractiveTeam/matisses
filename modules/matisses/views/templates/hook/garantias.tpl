@@ -18,7 +18,7 @@
             <h3>{l s='Iniciar nueva garantía' mod='matisses'}</h3>
             <p>{l s='Cuéntanos que sucede con el producto que compraste.' mod='matisses'}</p>
             <div class="footer-account">
-                <a class="btn btn-default btn-red" href="{$link->getModuleLink('matisses','garantias')}/nueva" title="Ingresar"> {l s='Ingresar' mod='matisses'}</a>
+                <a class="btn btn-default btn-red" href="{$link->getModuleLink('matisses','garantias')}/nueva" title="Ingresar" id="btn-garantias"> {l s='Ingresar' mod='matisses'}</a>
             </div>
         </div>
     </div>
