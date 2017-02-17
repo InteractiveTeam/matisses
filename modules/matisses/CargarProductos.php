@@ -25,6 +25,8 @@ class CargaProductos{
     public function loadProcess($url){
         if($_GET['five']){
             $this->printLog('Proceso 5 minutos');
+        }else{
+            $this->printLog('Sonda general');
         }
         try{
             $this->callService($url);
