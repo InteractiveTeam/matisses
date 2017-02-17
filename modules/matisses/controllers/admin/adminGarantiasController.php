@@ -194,7 +194,7 @@ class AdminGarantiasController extends ModuleAdminController
 					'name' => 'meses',
 					'lang' => false,
 					'required' => false,
-					'desc' => $this->l('Numero de meses permitodos para solicitar la garantia despues de la compra')
+					'desc' => $this->l('Numero de meses permitidos para solicitar la garantia despues de la compra')
 				),				
 				
 			),

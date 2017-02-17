@@ -534,7 +534,7 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 						
 						if($imagen['size']>Configuration::get("PS_PRODUCT_PICTURE_MAX_SIZE"))
 						{
-							$this->errors[] = Tools::displayError('Una o mas imagenes exceden el limite de carga permitodo');
+							$this->errors[] = Tools::displayError('Una o mas imagenes exceden el limite de carga permitido');
 							break;
 						}
 					}
