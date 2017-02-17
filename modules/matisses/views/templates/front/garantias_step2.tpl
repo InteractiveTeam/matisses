@@ -19,6 +19,7 @@
         <span>{l s='Máximo %s daños' sprintf=[$nrodanos]}</span>
         {if !empty($materials)}
         {foreach from=$materials item=row}
+			{if sizeof($row.damages) > 0}
             <div>
                 <a class="btn btn-default button btn-red material" data-id="{$row.id_value}" href="javascript:void(0)">
                     {$row.material}
@@ -33,8 +34,8 @@
                     </ul>
                 </div>
             </div>
-			
-            {/foreach}
+			{/if}
+		{/foreach}
             
             <div class="form-group">
                 <label for="asunto">{l s='Tipo de dano Reportado:'}</label>  <a href="javascript:void(0)" onclick="$('#tipo').val('')">{l s='Borrar'}</a>
