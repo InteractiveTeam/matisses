@@ -40,9 +40,11 @@
             <div class="form-group">
                 <label for="asunto">{l s='Tipo de dano Reportado:'}</label>  <a href="javascript:void(0)" onclick="$('#tipo').val('')">{l s='Borrar'}</a>
                 {if Tools::getValue('id-tipo') != ""}
-                    <input type="text" name="tipo" id="tipo" readonly="readonly" class="form-control" value="{Tools::getValue('tipo')}" />
+					<textarea class="grid_12 alpha omega form-control" name="tipo" cols="25" id="tipo" >{Tools::getValue('tipo')}</textarea>
+                    {*<input type="text" name="tipo" id="tipo" readonly="readonly" class="form-control" value="{Tools::getValue('tipo')}" />*}
                 {else}
-                    <input type="text" name="tipo" id="tipo" readonly="readonly" class="form-control" value="{$tipo}" />
+					<textarea class="grid_12 alpha omega form-control" name="tipo" cols="25" id="tipo" >{$tipo}</textarea>
+                    {*<input type="text" name="tipo" id="tipo" readonly="readonly" class="form-control" value="{$tipo}" />*}
                 {/if}
                 <input type="hidden" name"id-tipo" id="id-tipo"  value="{Tools::getValue('id-tipo')}"/>
             </div>  
