@@ -296,7 +296,7 @@ class registerWithSap extends Module
 
                         $sonda = new CargaProductos(true);
                         $ref = array();
-                        if(isset(ordersWithSap['items']['itemCode']))
+                        if(isset($ordersWithSap['items']['itemCode']))
                             $sonda->loadProductByReferenceWithoutStock(array($ordersWithSap['items']['itemCode']));
                         else{
                             foreach($ordersWithSap['items'] as $item){
