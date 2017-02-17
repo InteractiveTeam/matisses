@@ -12,10 +12,10 @@ class CargaProductos{
     private $sinSaldo;
     
     public function __construct($five,$reg = false){
-        $this->totalProducts = 'http://181.143.4.43:8280/WebIntegrator/webresources/iteminventario/consulta';
-        $this->fiveMin = 'http://181.143.4.43:8280/WebIntegrator/webresources/iteminventario/consultaRecientes5M';
-        $this->pStatus = 'http://181.143.4.43:8280/WebIntegrator/webresources/iteminventario/estado';
-        $this->sinSaldo = 'http://192.168.5.78:8280/WebIntegrator/webresources/iteminventario/consultaSinSaldo';
+        $this->totalProducts = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/consulta';
+        $this->fiveMin = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/consultaRecientes5M';
+        $this->pStatus = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/estado';
+        $this->sinSaldo = 'http://hercules.matisses.co:8280/WebIntegrator/webresources/iteminventario/consultaSinSaldo';
         $this->data = array();
         if(!$five){
             $this->loadProcess($this->totalProducts);
