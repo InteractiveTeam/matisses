@@ -47,6 +47,9 @@
     color: #777676;
     border: none;
     }
+    .module-matisses-garantias .history_price{
+    text-align: right;
+    }
     .module-matisses-garantias table .options a{
     color: #d7162f;
     text-decoration: underline;

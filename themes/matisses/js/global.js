@@ -828,7 +828,17 @@ $(document).ready(function(){
     $("#btn-garantias").click(function(){
         var loc = $(this).attr('href');
         window.location.href = loc; 
-        $.fancybox("Estamos cargando tus compras...");
+        $.fancybox({
+            content:"Estamos cargando tus compras...",
+            showCloseButton:false,
+            closeClick  : false,
+            closeBtn: false,
+            helpers   : { 
+                overlay : {
+                    closeClick: false,
+                }
+            }
+        });
         $(this).removeAttr('href').addClass("disabled");
     });
 });
