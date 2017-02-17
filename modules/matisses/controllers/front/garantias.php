@@ -190,19 +190,19 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 	}
 
 	public function registerOrder($ordersap){
-		$ref = array();
-		$sonda = new CargaProductos(true);
-		if(isset($ordersap['items']['itemCode']))
-			$sonda->loadProductByReferenceWithoutStock(array($ordersap['items']['itemCode']));
-		else{
-			foreach($ordersap['items'] as $item){
-				array_push($ref,$item['itemCode']);
-			}
-			$sonda->loadProductByReferenceWithoutStock($ref);
-		}
 		//echo "<pre>"; print_r($ordersap); echo "</pre>";die();
 		$add = $this->registerAddress($this->context->customer->email);
 		if($add){
+			$ref = array();
+			$sonda = new CargaProductos(true);
+			if(isset($ordersap['items']['itemCode']))
+				$sonda->loadProductByReferenceWithoutStock(array($ordersap['items']['itemCode']));
+			else{
+				foreach($ordersap['items'] as $item){
+					array_push($ref,$item['itemCode']);
+				}
+				$sonda->loadProductByReferenceWithoutStock($ref);
+			}
 			$ordersap['total'] = 0;
 			$cart = new Cart();
 			$cart->id_customer = $this->context->customer->id;
