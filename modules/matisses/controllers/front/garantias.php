@@ -708,7 +708,8 @@ class matissesgarantiasModuleFrontController extends ModuleFrontController
 												'nrodanos' => $nrodanos,
 												'rnrodanos' => $this->info['confgaran_danos'],
 												'errors' => $this->errors,
-                                                'materials' => $damages
+                                                'materials' => $damages,
+												'prodName' => $prod->name
 												
 											 ));
 		if($garantia)

@@ -30,11 +30,10 @@
         <li><strong>{l s="Tipo de daño:"}</strong>{$garantia.tipo}</li>
         <li><strong>{l s="Descripcion del daño:"}</strong><br />
          {$garantia.description_dano}</li>
-        <li><strong>{l s="Respuesta de matisses:"}</strong>
+        {*<li><strong>{l s="Respuesta de matisses:"}</strong>
           <textarea readonly="readonly" class="form-control">
-
-          </textarea>
-        </li>
+          </li>
+        </textarea>*}
       </ul>
 			<div class="linkGarantias">
 				<a class="btn btn-default button btn-red" href="{$link->getModuleLink('matisses','garantias')}/step2/producto/{$garantia.id_order}-{$garantia.id_product}-{$garantia.id_product_attribute}"> {l s='Modificar' mod='matisses'}</a>

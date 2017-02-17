@@ -12,7 +12,7 @@
 	<div class="container" id="step2">
   		<h1 class="page-heading">{l s='Garantías' mod='matisses'}</h1>
   		{include file="$tpl_dir./errors.tpl"}
- 		<h2 class="page-subheading"> {l s='Suministro de informacion' mod='matisses'}</h2>
+ 		<h2 class="page-subheading"> {l s='Suministro de informacion' mod='matisses'}: {$prodName[1]}</h2>
 
  		<div class="grid_4">
         <label>{l s='Seleccione el tipo de daño'}</label>
