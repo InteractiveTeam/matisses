@@ -119,7 +119,7 @@ $(document).ready(function(){
                 }
                 else{
                     $(".ax-mod-qty").attr("disabled", false);
-                    $(".ax-mod-qty").val(1);
+                    $(".ax-mod-qty").val(res.missing);
                 }
                 $.fancybox({
                     afterShow       :   function(){
