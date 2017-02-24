@@ -32,7 +32,7 @@ $module = new SendToAFriend();
 
 if (Tools::getValue('action') == 'sendToMyFriend' && Tools::getValue('secure_key') == $module->secure_key)
 {
-		$response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6LdmTB4TAAAAANE9nsQaDvJCKBBp7PNXaK1mcGVR&response=".Tools::getValue('g_recaptcha_response')."&remoteip=".$_SERVER['REMOTE_ADDR']);
+		$response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6LdfuxYUAAAAAKuZuJNp0DBgB19hK9eX8hizG6F3&response=".Tools::getValue('g_recaptcha_response')."&remoteip=".$_SERVER['REMOTE_ADDR']);
 		$obj = json_decode($response);
 		if($obj->success == false)
 		{

@@ -59,7 +59,7 @@
 							<input id="friend_email" class="form-control" name="friend_email" type="text" value=""/>
 						</p>
 					</div>
-					<div class="g-recaptcha" data-sitekey="6LdmTB4TAAAAAFX-jZj0FvdX0xyk4I0vBrfn2Zkh"></div>
+					<div class="g-recaptcha" data-sitekey="6LdfuxYUAAAAAHsy82q0evxs9difdFyIBwu9kVI_"></div>
 					<div class="submit">
 						<div class="col-xs-6 text1">
 							<a class="closefb button grey_btn" href="javascript:void(0)">
