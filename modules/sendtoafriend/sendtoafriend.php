@@ -85,6 +85,7 @@ class sendToAFriend extends Module
 		{
 			$this->context->controller->addCSS($this->_path.'sendtoafriend.css', 'all');
 			$this->context->controller->addJS($this->_path.'sendtoafriend.js');
+			$this->context->controller->addJS("https://www.google.com/recaptcha/api.js");
 		}
 	}
 }

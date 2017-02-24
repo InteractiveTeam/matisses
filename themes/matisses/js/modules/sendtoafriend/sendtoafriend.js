@@ -37,6 +37,7 @@ $(document).ready(function(){
 	$('#sendEmail').click(function(){
 		var name = $('#friend_name').val();
 		var email = $('#friend_email').val();
+		var g_recaptcha_response = $("#g-recaptcha-response").val();
 		if (name && email && !isNaN(id_product))
 		{
 			$.ajax({
@@ -48,7 +49,8 @@ $(document).ready(function(){
 					secure_key: stf_secure_key,
 					name: name, 
 					email: email, 
-					id_product: id_product
+					id_product: id_product,
+					g_recaptcha_response : g_recaptcha_response
 				},
 				dataType: "json",
 				success: function(result) {
