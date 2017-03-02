@@ -29,6 +29,7 @@
     	{hook h="displayMatSlider"}
         {hook h="displayMatAdvertisingHome"}
     </div>
+    {*
 
 	<div class="offers-products">
 		<div class="container">
@@ -53,6 +54,7 @@
             <div chaordic="bottom"></div>
 		</div>
     </div>
+    *}
 
 	{hook h="displayExperiencesHome"}
 
