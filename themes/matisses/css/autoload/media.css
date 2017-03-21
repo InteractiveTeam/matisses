@@ -5122,6 +5122,18 @@ html body .left-down-menu .sf-contener .menu-content > li > a {
 }
 
 
+@media screen and (max-width:1920px) {
+
+    body #slider #homepage-slider {
+        height: 60rem;
+        position: relative;
+    }
+    body .main-container #homepage-slider{
+    max-height: 53rem;
+}
+
+}
+
 
 
 /* iPhone 6 portrait */
