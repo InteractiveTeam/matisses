@@ -1495,7 +1495,7 @@ class matisses extends Module
 			if(!$reference)
 				return false;
 			
-				
+			/*Consultar inventario*/
 			$response 	= $this->wsmatisses_get_data('inventoryItem','listWebEnabledStock','sap',$this->array_to_xml(array('inventoryItemDTO'=>array('itemCode'=>$reference)),false));
 			$reference	= $response['inventoryItemDTO']['itemCode'];
 			require_once dirname(__FILE__)."/wsclasses/ws_product.php";
@@ -1709,7 +1709,7 @@ class matisses extends Module
 	{
 		if($params['status']=='ok'){
 			self::wsmatisses_registrar($params);
-            Hook::exec('actionGiftlistProccess',$params);
+            //Hook::exec('actionGiftlistProccess',$params);
         }
 			
 		if($params['status']=='fail' || $params['status']=='rejected')

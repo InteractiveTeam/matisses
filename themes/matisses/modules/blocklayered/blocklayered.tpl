@@ -72,7 +72,7 @@ param_product_url = '';
 					</ul>
 				</div>
 				{/if}
-                {if $category}
+                {if isset($category) && $category}
                     {assign var="cat" value=Category::getParents($category->id)}
                 {else}
                     {assign var="cat" value=Category::getParents(Tools::getValue('id_category'))}

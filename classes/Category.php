@@ -623,11 +623,11 @@ class CategoryCore extends ObjectModel
 		if(sizeof($childrens)>0) {
 			foreach($childrens as $k => $category) {
 				$childcategory = new Category($category['id_category']);
-                $sum = self::checkifshow($childcategory,$sum);                
+                $sum = $this->checkifshow($childcategory,$sum);                
 				//return self::checkifshow($childcategory,$sum);
 			}
 		}else{
-            $products = $cat->getProducts($this->context->language->id,null,null,null,null, true, true);
+            $products = $cat->getProducts(Context::getContext()->language->id,null,null,null,null, true, true);
             
             $products > 0  ? $sum = true : false;
             return $sum;			
