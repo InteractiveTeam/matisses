@@ -554,7 +554,7 @@ class matisses extends Module
 		$list = $Experiences->getExperiences();
 		foreach($list as $k => $exp)
 		{
-			$list[$k]['image'] = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/img/experiences/'.$exp['id_experience'].'-home.jpg';
+			$list[$k]['image'] = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/img/experiences/'.$exp['id_experience'].'-home.jpg'; 
 		}
 		$this->context->smarty->assign('experiences', $list);
 		return $this->display(__FILE__, 'views/templates/hook/experiences_home.tpl');
