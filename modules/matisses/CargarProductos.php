@@ -2,7 +2,7 @@
 mb_internal_encoding("UTF-8");
 set_time_limit(0);
 ini_set('memory_limit','1024M');
-include_once '../../config/config.inc.php';
+include_once _PS_CONFIG_DIR_ . 'config.inc.php';
 
 class CargaProductos{
     private $totalProducts;

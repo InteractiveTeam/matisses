@@ -10,7 +10,7 @@ class matisses extends Module
 		$this->tab 				= 'administration';
 		$this->version 			= '1.0'; 
 		$this->author 			= 'Arkix';
-		$this->token 			= Tools::getAdminTokenLite('AdminModules');
+		//$this->token 			= Tools::getAdminTokenLite('AdminModules');
 		$this->ht_file			= _PS_ROOT_DIR_.'/.htaccess';
 		parent::__construct();
 		$this->displayName 		= $this->l('Matisses');

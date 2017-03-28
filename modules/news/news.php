@@ -905,7 +905,6 @@ class News extends Module {
 		if($array)
 			return $realproducts;
 
-
         $this->smarty->assign(array(
             'catsProductsObj' => $catsProducts,
             'catsObj' => $cats_list,

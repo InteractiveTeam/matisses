@@ -264,45 +264,46 @@ class DispatcherCore
 		
 		
 		$url = array_filter(explode('/',$_SERVER['REQUEST_URI']));
-
-		switch(mb_strtolower($url[1]))
-		{
-			case 'blog':
+		if(!empty($url)){
+			switch(mb_strtolower($url[1]))
+			{
+				case 'blog':
+					
+					if(strstr($url[2],'page-'))
+					{
+						$oldpage = $url[2];
+						$url[2] = 'page';
+					}
+					
+					switch(mb_strtolower($url[2]))
+					{
+						case 'categoria': 
+							$_POST['module']  = 'news';
+							$this->controller = 'catg'; 
+							$category = explode('-',$url[3]);
+							$_POST['cat_news'] = $category[0];
+							$_POST['rewrite']  = $category[1]; 
+							$_POST['page_cat']  = str_replace('page-','',$url[4]);
+							$this->front_controller = self::FC_MODULE;
+						break;
+						case 'page':
+							$_POST['module']  = 'news';
+							$this->controller = 'list';
+							$_POST['page_cat'] = str_replace('page-','',$oldpage);
+							$this->front_controller = self::FC_MODULE;
+						break;
+					}
+				break;
 				
-				if(strstr($url[2],'page-'))
-				{
-					$oldpage = $url[2];
-					$url[2] = 'page';
-				}
-				
-				switch(mb_strtolower($url[2]))
-				{
-					case 'categoria': 
-						$_POST['module']  = 'news';
-						$this->controller = 'catg'; 
-						$category = explode('-',$url[3]);
-						$_POST['cat_news'] = $category[0];
-						$_POST['rewrite']  = $category[1]; 
-						$_POST['page_cat']  = str_replace('page-','',$url[4]);
-						$this->front_controller = self::FC_MODULE;
-					break;
-					case 'page':
-						$_POST['module']  = 'news';
-						$this->controller = 'list';
-						$_POST['page_cat'] = str_replace('page-','',$oldpage);
-						$this->front_controller = self::FC_MODULE;
-					break;
-				}
-			break;
-			
-			case 'garantias':
-				$_POST['module']  = 'matisses';
-				$this->controller = 'garantias';
-				$_POST['step']	  = $url[2];
-				$_POST['data']	  = $url[4];
-				$this->front_controller = self::FC_MODULE;
+				case 'garantias':
+					$_POST['module']  = 'matisses';
+					$this->controller = 'garantias';
+					$_POST['step']	  = $url[2];
+					$_POST['data']	  = $url[4];
+					$this->front_controller = self::FC_MODULE;
 
-			break;
+				break;
+			}
 		}
 
 

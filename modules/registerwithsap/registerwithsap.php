@@ -29,7 +29,6 @@ if (!defined('_PS_VERSION_'))
 
 require_once __DIR__ . '/dbregister.php';
 require_once _PS_MODULE_DIR_.'matisses/matisses.php';
-require_once _PS_MODULE_DIR_.'matisses/CargarProductos.php';
 
 class registerWithSap extends Module
 {
@@ -70,6 +69,7 @@ class registerWithSap extends Module
 	}
     
     public function hookcreateOrders($params){
+        require_once _PS_MODULE_DIR_.'matisses/CargarProductos.php';
         if (isset($params) && !empty($params)) {
             $validate = $this->checkByEmail($params['email']);
             

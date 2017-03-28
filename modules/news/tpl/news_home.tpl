@@ -4,23 +4,11 @@
 
         <div class="btn-title cf grid_12 alpha omega">
         	<h1>
-            	<a href="{$link->getModuleLink('news', 'list',
-                [
-                'cat_news' => "{$cat_produto}",
-                'page_cat' => 0,
-                'rewrite'  => "blog"
-                ]
-                ,false)}" alt="{l s='More' mod='news'}">
+            	<a href="{$link->getModuleLink('news', 'list')}" id="ax-more" alt="{l s='More' mod='news'}">
                  {l s='Blog' mod='news'}
                 </a>
             </h1>
-            <a class="blog-view-all button" href="{$link->getModuleLink('news', 'list',
-                [
-                'cat_news' => "{$cat_produto}",
-                'page_cat' => 0,
-                'rewrite'  => "{$cat_rewrite}"
-                ]
-                ,false)}" alt="{l s='More' mod='news'}" class="newsHomeMore">
+            <a class="blog-view-all button" href="{$link->getModuleLink('news', 'list')}" alt="{l s='More' mod='news'}" class="newsHomeMore">
                 {l s='Ver todos los artículos' mod='news'}
             </a>
 
