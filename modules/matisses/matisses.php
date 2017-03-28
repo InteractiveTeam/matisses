@@ -508,7 +508,7 @@ class matisses extends Module
 	{
 		$filters = $params['filters'];
 		
-		unset($keyfilter);
+		$keyfilter = null;
 		foreach($filters as $k => $filter)
 		{
 			if(!$keyfilter)
