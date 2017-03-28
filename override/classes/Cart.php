@@ -1616,7 +1616,7 @@ class Cart extends CartCore
 		if ($with_shipping /*|| $type == Cart::ONLY_DISCOUNTS*/)
 		{
             $shipping = $this->getTotalShippingCost(null, (boolean)$with_taxes);
-			if (is_null($products) && is_null($id_carrier))
+			if (!is_null($shipping) && is_null($products) && is_null($id_carrier))
 				$shipping_fees = $shipping->total;
 			else
 				$shipping_fees = $this->getPackageShippingCost($id_carrier, (bool)$with_taxes, null, $products);

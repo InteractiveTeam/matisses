@@ -28,9 +28,9 @@
 <div id="newsletter_block_left" class="block">
 	<h4 class="title_block">{l s='Newsletter' mod='blocknewsletter'}</h4>
 	<div class="block_content">
-	{if isset($msg) && $msg}
-		<p class="{if $nw_error}warning_inline{else}success_inline{/if}">{$msg}</p>
-	{/if}
+	
+		<p class="{if $nw_error}warning_inline{else}success_inline{/if}">{if isset($msg) && $msg}{$msg}asdasd{/if}</p>
+	
 		<form action="{$link->getPageLink('index', true)|escape:'html'}" method="post">
 			<p>
 				<input class="inputNew" id="newsletter-input" type="text" name="email" size="18" value="{if isset($value) && $value}{$value}{else}{l s='your e-mail' mod='blocknewsletter'}{/if}" />

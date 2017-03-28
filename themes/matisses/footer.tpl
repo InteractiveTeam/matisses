@@ -119,7 +119,7 @@
           <li><a href="{$link->getCMSLink(11)}">{l s='Términos y condiciones'}</a></li>
           <li><a href="{$link->getCMSLink(12)}">{l s='Política de manejo de datos'}</a></li>
           <li><a href="{$link->getCMSLink(13)}">{l s='Política de privacidad'}</a></li>
-          <li id="copyright"> <a class="copyright" href="{$base_url}" title="{l s='Matisses'}">© {l s='Todos los derechos reservados'} {l s='Matisses'} {$smarty.now|date_format:"%Y"}</a></li>
+          <li id="copyright"> <a class="copyright" href="{$link->getPageLink('index',true)}" title="{l s='Matisses'}">© {l s='Todos los derechos reservados'} {l s='Matisses'} {$smarty.now|date_format:"%Y"}</a></li>
         </ul>
       </div>
     </div>

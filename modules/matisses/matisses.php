@@ -473,34 +473,34 @@ class matisses extends Module
             $response 	= $this->wsmatisses_get_data('inventoryItem','quoteShipping','pruebas',$salesWarehouseDTO,true);
             if($response['return']['code']=='0101002')
                 $shipping_cost = $this->xml_to_array($response['return']['detail']);
-        }
-        /************************************************************
-        EL SIGUIENTE CAMPO VIENE RELACIONADO CON LA INCIDENCIA 36948
-        PARA EFECTOS DE DEBUG EN FUTUROS CASOS DONDE SE NECESITE
-        CONOCER EL ERROR QUE SE PRESENTE AL MOMENTO DE CONSULTAR EL 
-        ENVIO            
-        ************************************************************/
-        $errorMessage = $shipping_cost['shippingQuotationResultDTO']['errorMessage'];
-        /***********************************************************/
-        if($errorMessage){
-            $res = array(
-                'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
-                'error' => (!empty($errorMessage) ? true : false),
-                'cart_products' => count($cart->getProducts()),
-                'id_address' => $id_address
-            );
-        }else{
-            $res = array(
-                'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
-                'shippingCompany' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany'],
-                'error' => (!empty($errorMessage) ? true : false),
-                'cart_products' => count($cart->getProducts()),
-                'id_address' => $id_address
-            );
-        }
-            
-        Cache::store("cart_".$cart->id,$res);
-        return Tools::jsonEncode($res);
+			/************************************************************
+			EL SIGUIENTE CAMPO VIENE RELACIONADO CON LA INCIDENCIA 36948
+			PARA EFECTOS DE DEBUG EN FUTUROS CASOS DONDE SE NECESITE
+			CONOCER EL ERROR QUE SE PRESENTE AL MOMENTO DE CONSULTAR EL 
+			ENVIO            
+			************************************************************/
+			$errorMessage = $shipping_cost['shippingQuotationResultDTO']['errorMessage'];
+			/***********************************************************/
+			if($errorMessage){
+			$res = array(
+				'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
+				'error' => (!empty($errorMessage) ? true : false),
+				'cart_products' => count($cart->getProducts()),
+				'id_address' => $id_address
+			);
+		}else{
+			$res = array(
+				'total' => $shipping_cost['shippingQuotationResultDTO']['total'],
+				'shippingCompany' => $shipping_cost['shippingQuotationResultDTO']['shippingCompany'],
+				'error' => (!empty($errorMessage) ? true : false),
+				'cart_products' => count($cart->getProducts()),
+				'id_address' => $id_address
+			);
+		}
+			
+		Cache::store("cart_".$cart->id,$res);
+		return Tools::jsonEncode($res);
+		}
 	}
 	
 	
