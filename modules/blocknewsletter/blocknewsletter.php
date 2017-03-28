@@ -719,7 +719,7 @@ class Blocknewsletter extends Module
 						'nw_value' => isset($_POST['email']) ? pSQL($_POST['email']) : false,
 						'nw_error' => true,
 						'action' => $_POST['action'],
-						'msg' => false
+						'msg' => $this->error,
 					)
 				);
 			}

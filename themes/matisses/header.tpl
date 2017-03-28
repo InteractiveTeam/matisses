@@ -248,7 +248,7 @@ src="https://www.facebook.com/tr?id=146264512398308&ev=PageView&noscript=1"
 	              <ul id="menu" class="grid_10 menu-experiencias" style="color:black">
                     <li id="experiencias"><a href="{$link->getModuleLink('matisses','experiences')}">{l s='Experiencias'}</a></li>
 	                <li id="wishlist">{hook h="displayMatWishlist"}</li>
-	                <li id="giftlist"><a href="{$link->getModuleLink('giftlist','empezar')}"><span></span>{l s='Lista de regalos'}</a></li>
+	                <li id="giftlist"><a href="http://listaregalos.matisses.co/"><span></span>{l s='Lista de regalos'}</a></li>
 	              </ul>
             	</div>
           	</div>

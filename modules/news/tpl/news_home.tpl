@@ -49,7 +49,6 @@
                             [
                                 'id_news'  => "{$catsProductsObj[0][0]->id_news}",
                                 'cat_news' => "{$catsProductsObj[0][0]->id_cat}",
-                                'page_cat'     => "{$page}",
                                 'rewrite'  => "{$catsProductsObj[0][0]->rewrite}",
                                 'cat_rewrite'  => "{$catsProductsObj[0][0]->cat_rewrite}"
                              ]
@@ -69,7 +68,6 @@
                             [
                                 'id_news'  => "{$catsProductsObj[0][0]->id_news}",
                                 'cat_news' => "{$catsProductsObj[0][0]->id_cat}",
-                                'page_cat'     => "{$page}",
                                 'rewrite'  => "{$catsProductsObj[0][0]->rewrite}",
                                 'cat_rewrite'  => "{$catsProductsObj[0][0]->cat_rewrite}"
                              ]
@@ -96,7 +94,6 @@
                             [
                                 'id_news'  => "{$catsProductsObj[0][1]->id_news}",
                                 'cat_news' => "{$catsProductsObj[0][1]->id_cat}",
-                                'page_cat'     => "{$page}",
                                 'rewrite'  => "{$catsProductsObj[0][1]->rewrite}",
                                 'cat_rewrite'  => "{$catsProductsObj[0][1]->cat_rewrite}"
                              ]
@@ -115,7 +112,6 @@
                             [
                                 'id_news'  => "{$catsProductsObj[0][1]->id_news}",
                                 'cat_news' => "{$catsProductsObj[0][1]->id_cat}",
-                                'page_cat'     => "{$page}",
                                 'rewrite'  => "{$catsProductsObj[0][1]->rewrite}",
                                 'cat_rewrite'  => "{$catsProductsObj[0][1]->cat_rewrite}"
                              ]
@@ -137,7 +133,6 @@
                             [
                                 'id_news'  => "{$catsProductsObj[0][2]->id_news}",
                                 'cat_news' => "{$catsProductsObj[0][2]->id_cat}",
-                                'page_cat'     => "{$page}",
                                 'rewrite'  => "{$catsProductsObj[0][2]->rewrite}",
                                 'cat_rewrite'  => "{$catsProductsObj[0][2]->cat_rewrite}"
                              ]
@@ -156,7 +151,6 @@
                             [
                                 'id_news'  => "{$catsProductsObj[0][2]->id_news}",
                                 'cat_news' => "{$catsProductsObj[0][2]->id_cat}",
-                                'page_cat'     => "{$page}",
                                 'rewrite'  => "{$catsProductsObj[0][2]->rewrite}",
                                 'cat_rewrite'  => "{$catsProductsObj[0][2]->cat_rewrite}"
                              ]
