@@ -1488,6 +1488,12 @@
 }
 
 @media only screen and (max-width :1366px) {
+
+    html body #slider #homepage-slider {
+        height: 36rem;
+        position: relative;
+    }
+	
    .sf-contener ul.menu-experiencias {
         padding: 1.5625rem 0 1.0rem 0.625rem;
    }
