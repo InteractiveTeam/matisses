@@ -149,13 +149,24 @@ class AddressControllerCore extends FrontController
 	{
         $_POST['firstname'] = ToolsCore::ucwords($_POST['firstname']);
         $_POST['lastname'] = ToolsCore::ucwords($_POST['lastname']);
-        $_POST['secondname'] = ToolsCore::ucwords($_POST['secondname']);
-        $_POST['surname'] = ToolsCore::ucwords($_POST['surname']);
+        $_POST['secondname'] = isset($_POST['secondname']) ?ToolsCore::ucwords($_POST['secondname']) : "";
+        $_POST['surname'] = isset($_POST['surname']) ?ToolsCore::ucwords($_POST['surname']) : "";
 		$address = new Address();
+        $address->firstname = $_POST['firstname'];
+        $address->lastname = $_POST['lastname'];
         $address->secondname = $_POST['secondname'];
         $address->surname = $_POST['surname'];
 		$this->errors = $address->validateController();
 		$address->id_customer = (int)$this->context->customer->id;
+		$address->id_country = $_POST['id_country'];
+		$address->id_state = $_POST['id_state'];
+		$address->alias = $_POST['alias'];
+		$address->address1 = $_POST['address1'];
+		$address->address2 = $_POST['address2'];
+		$address->phone = $_POST['phone'];
+		$address->phone_mobile = $_POST['phone_mobile'];
+		$address->id_state = $_POST['id_state'];
+		$address->other = $_POST['other'];
 
 		// Check page token
 		if ($this->context->customer->isLogged() && !$this->isTokenValid())
@@ -191,6 +202,7 @@ class AddressControllerCore extends FrontController
 			elseif (!$country->isNeedDni())
 				$address->dni = null;
 		}
+		$address->id_country = $_POST['id_country'];
 		// Check if the alias exists
 		if (!$this->context->customer->is_guest && !empty($_POST['alias']) && (int)$this->context->customer->id > 0)
 		{
