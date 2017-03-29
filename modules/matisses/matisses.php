@@ -1343,7 +1343,7 @@ class matisses extends Module
 		$customer->id	= $InfCustomer[0]['id_customer'];
 		
 		$InfAddresses	= $customer->getAddresses((int)Configuration::get('PS_LANG_DEFAULT'));
-		$opt = $_POST['wsactualizar'] ? 'modify' : 'add';
+		$opt = isset($_POST['wsactualizar']) ? 'modify' : 'add';
 		$infoxml[0]['operation'] 		= $opt;
 		$infoxml[0]['source'] 			= 'prestashop';
 		$infoxml[0]['id'] 				= $InfCustomer[0]['charter'].'CL';
@@ -1380,14 +1380,15 @@ class matisses extends Module
 				break;
 			$cont++;
 		}
-		$infoxml[0]['addresses'] = $addresses;
+		$infoxml[0]['addresses'] = (isset($addresses) && !empty($addresses) ? $adresses : array()) ;
 		//print_r($infoxml);
 		//die();
 		$xml = new Template(dirname(__FILE__)."/xml/sap_customer.xml");
 		$xml->addParam('infoxml',$infoxml);
-		$xml = $xml->output();		
+		$xml = $xml->output();
+		//echo "<pre>"; echo htmlentities($xml); echo "</pre>";	die();
 		
- 		if($this->wsmatisses_client('customer',$opt,'prestashop',$xml))
+		if($this->wsmatisses_client('customer',$opt,'prestashop',$xml))
 			$this->wsmatisses_homologacion('customer','id',$customer->id,$infoxml[0]['id']);
 	}
 	
@@ -1916,17 +1917,22 @@ class matisses extends Module
 		if(!$origen) 	$error = $this->array_to_xml(array('response' => array('code'=>9002, 'detail'=>$this->l('Missing origin param'))));
 		if(!$datos) 	$error = $this->array_to_xml(array('response' => array('code'=>9003, 'detail'=>$this->l('Missing data param'))));
 		$wsdl 		= Configuration::get($this->name.'_UrlWs');
-		$client 	= new SoapClient($wsdl,array("trace"=>1,"exceptions"=>0));
+		print_r(get_headers($wsdl, 1));
+		//$client 	= new SoapClient($wsdl,array("trace"=>1,"exceptions"=>0));
 		$location 	= Configuration::get($this->name.'_LocationWs');
+		$client 	= new SoapClient($wsdl,array('location' => $location,"trace"=>1,"exceptions"=>1,'cache_wsdl' => WSDL_CACHE_NONE));
 		$request 	= $datos;
 		try{
-			$response = $client->__doRequest($datos, $request, $action, $version);
+			$response = $client->__doRequest($request, $location, $action, $version);
 			$return = true;
 		} catch(SoapFault $ex){
 			$response = $ex->getMessage();
 			$return = false;
-		} 
+		}
+				$xml = $request;
 		$this->log($objeto,$operacion,$origen,$xml,$response,$status,$error);
+
+		//echo "<pre>"; print_r($client); echo "</pre>";	die();
 		return $boolean ? $return : $response;
 	}
 	

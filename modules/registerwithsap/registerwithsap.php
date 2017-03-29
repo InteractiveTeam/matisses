@@ -84,7 +84,10 @@ class registerWithSap extends Module
                 
 
                 // Registering address
-                $addresses = $userSap['customerDTO']['addresses'];
+                if(isset($userSap['customerDTO']['addresses']))
+                    $addresses = $userSap['customerDTO']['addresses'];
+                else
+                    $addresses = array();
                 
                 
                 if (isset($addresses) && !empty($addresses)) {
