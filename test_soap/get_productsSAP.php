@@ -8,7 +8,7 @@ ini_set("default_socket_timeout", -1);
        print_r($result);
 
 try{
-	echo "<pre>";print_r(get_headers("http://181.143.4.46:8280/WebIntegrator/GenericFacade?wsdl"));echo "</pre>";
+	//echo "<pre>";print_r(get_headers("http://181.143.4.46:8280/WebIntegrator/GenericFacade?wsdl"));echo "</pre>";
 	$client = new SoapClient("http://181.143.4.46:8280/WebIntegrator/GenericFacade?wsdl",array('location' => "http://181.143.4.46:8280/WebIntegrator/GenericFacade"));
 									
 	//$client = new nusoap_client('http://181.143.4.46:8280/WebIntegrator/GenericFacade?wsdl','wsdl');

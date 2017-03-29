@@ -1917,7 +1917,7 @@ class matisses extends Module
 		if(!$origen) 	$error = $this->array_to_xml(array('response' => array('code'=>9002, 'detail'=>$this->l('Missing origin param'))));
 		if(!$datos) 	$error = $this->array_to_xml(array('response' => array('code'=>9003, 'detail'=>$this->l('Missing data param'))));
 		$wsdl 		= Configuration::get($this->name.'_UrlWs');
-		print_r(get_headers($wsdl, 1));
+		//print_r(get_headers($wsdl, 1));
 		//$client 	= new SoapClient($wsdl,array("trace"=>1,"exceptions"=>0));
 		$location 	= Configuration::get($this->name.'_LocationWs');
 		$client 	= new SoapClient($wsdl,array('location' => $location,"trace"=>1,"exceptions"=>1,'cache_wsdl' => WSDL_CACHE_NONE));
