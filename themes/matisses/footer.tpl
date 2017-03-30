@@ -140,6 +140,7 @@
 </footer>
 {/if}
 			{/if}
+  <script src="//www.livehelpnow.net/lhn/widgets/chatbutton/lhnchatbutton-current.min.js" type="text/javascript" id="lhnscript"></script>
 </div>
 <!-- #page -->
 {/if}

@@ -2655,7 +2655,7 @@ class matisses extends Module
         return StockAvailable::getQuantityAvailableByProduct((int)$id_prod,(int)$id_prod_attr);
     }
     
-    public function changeAttrDefault($id_prod,$id_prod_attr){    	
+    public static function changeAttrDefault($id_prod,$id_prod_attr){    	
         $stock = StockAvailable::getQuantityAvailableByProduct((int)$id_prod,(int)$id_prod_attr);
         if(!$stock){
         	$product = new ProductCore((int)$id_prod);
