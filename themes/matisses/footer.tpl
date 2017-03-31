@@ -96,13 +96,7 @@
         </div>
         <div class="footer-share">
           <div id="fb-root"></div>
-			<script>(function(d, s, id) {
-              var js, fjs = d.getElementsByTagName(s)[0];
-              if (d.getElementById(id)) return;
-              js = d.createElement(s); js.id = id;
-              js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5&appId=91447363386";
-              fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));</script>
+			
           <div class="share cf">
             <p>{l s='Síguenos en nuestras redes sociales'}</p>
             <div class="fb-like" data-href="https://www.matisses.co/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
@@ -143,6 +137,13 @@
   {*<script src="//www.livehelpnow.net/lhn/widgets/chatbutton/lhnchatbutton-current.min.js" type="text/javascript" id="lhnscript"></script>*}
   <script type="text/javascript" src="https://www.livehelpnow.net/lhn/scripts/livehelpnow.aspx?lhnid=24694&amp;iv=1&amp;ivid=0&amp;d=29011&amp;ver=5.3&amp;rnd=0.8177507956510826"></script>
 </div>
+<script>(function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5&appId=91447363386";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
 <!-- #page -->
 {/if}
 {include file="$tpl_dir./global.tpl"}

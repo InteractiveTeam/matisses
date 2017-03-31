@@ -148,13 +148,13 @@ class giftlist extends Module
 	}
 	public function hookDisplayCustomerAccount($params)
 	{
-	  $this->context->smarty->assign(
+	 /* $this->context->smarty->assign(
 	  		array(
 	  			'gift_link' =>  $this->context->link->getModuleLink('giftlist', 'listas'),
   				'search_link' => $this->context->link->getModuleLink('giftlist', 'buscar'),
   				'create_link' => $this->context->link->getModuleLink('giftlist', 'administrar'),
 	  		));
-	  return $this->display(__FILE__, 'giftlistbtn.tpl');
+	  return $this->display(__FILE__, 'giftlistbtn.tpl');*/
 	}
     
     
@@ -163,7 +163,7 @@ class giftlist extends Module
     */
 	public function hookDisplayProductButtons($params)
 	{
-		if($this->context->customer->isLogged()){
+		/*if($this->context->customer->isLogged()){
 			$sql = "SELECT id,name FROM "._DB_PREFIX_."gift_list WHERE id_creator = ".$this->context->customer->id . ";";
 			$this->context->smarty->assign(
 				array(
@@ -171,16 +171,16 @@ class giftlist extends Module
 						'list' => Db::getInstance()->executeS($sql)
 				));
 			return $this->display(__FILE__, 'addToListBtn.tpl');
-		}
+		}*/
 	}
     public function hookactionUpdateQuantity($params){
-        if($params['quantity'] == 0){
+       /* if($params['quantity'] == 0){
             $lists = DB::getInstance()->executeS('SELECT id_list FROM '._DB_PREFIX_.'list_product_bond WHERE id_product = '.$params['id_product'] . " GROUP BY id_list");
             foreach($lists as $l){
                 $params['id_list'] = $l['id_list'];
                 $this->outOfStock($params);
             }
-        }
+        }*/
     }
     
     
@@ -188,7 +188,7 @@ class giftlist extends Module
     * Validar si un producto perteneciente a una lista de regalos se quedo sin inventario, notificar al cliente.
     */
     public function outOfStock($params){
-        if($params['id_product_attribute'] == 0)
+        /*if($params['id_product_attribute'] == 0)
             if(!empty($_REQUEST['id_product_attribute']) && $_REQUEST['id_product_attribute'] != 0)
                 $params['id_product_attribute'] = $_REQUEST['id_product_attribute'];
         $l = new GiftListModel($params['id_list']);
@@ -225,7 +225,7 @@ class giftlist extends Module
             'name' => $customer->firstname.' '.$customer->lastname,
             'email' => $l->email
         );
-        $this->_sendEmail("out-stock","Producto agotado",$cust,$out);
+        $this->_sendEmail("out-stock","Producto agotado",$cust,$out);*/
     }
     
     public function hookActionProductInList($params){
@@ -237,7 +237,7 @@ class giftlist extends Module
     */
     public function hookactionCustomerAccountAdd($params){
         //get the email
-        echo $sql = "SELECT * FROM "._DB_PREFIX_."email_cocreator WHERE email = '".$params['newCustomer']->email."'";
+        /*echo $sql = "SELECT * FROM "._DB_PREFIX_."email_cocreator WHERE email = '".$params['newCustomer']->email."'";
         $res = Db::getInstance()->executeS($sql);
         if(!empty($res)){
             foreach($res as $row){
@@ -246,7 +246,7 @@ class giftlist extends Module
                 ),'id ='.$row['íd_list']);
             }
         }
-        Db::getInstance()->delete('email_cocreator', "email = '".$params['newCustomer']->email."'");
+        Db::getInstance()->delete('email_cocreator', "email = '".$params['newCustomer']->email."'");*/
         
     }
     
@@ -260,12 +260,12 @@ class giftlist extends Module
     * descuenta la cantidad comprada en la lista de regalos
     */
     public function hookactionGiftlistProccess($params){
-        $this->__verifyListInOrderBeforePayment($params['id_order']);//correo
-        $this->_updateStatesinList($params['id_order']);//estados
+        /*$this->__verifyListInOrderBeforePayment($params['id_order']);//correo
+        $this->_updateStatesinList($params['id_order']);//estados*/
     }
 
     private function _updateStatesinList($cart){
-        $sql = "SELECT * FROM "._DB_PREFIX_."cart_product WHERE id_cart = " . $cart;
+        /*$sql = "SELECT * FROM "._DB_PREFIX_."cart_product WHERE id_cart = " . $cart;
         $products = Db::getInstance()->executeS($sql);
         $sql = "SELECT id_customer FROM "._DB_PREFIX_."orders WHERE id_cart = ".$cart;
         $id_customer = Db::getInstance()->getValue($sql);
@@ -336,11 +336,11 @@ class giftlist extends Module
                         $this->_sendEmail('product-bought','¡Han comprado un producto para ti!',$cust,$params);
                 }
             }
-        }
+        }*/
     }
     
     private function __verifyListInOrderBeforePayment($cart){
-        $sql = "SELECT * FROM "._DB_PREFIX_."cart_product WHERE id_cart = " .$cart;
+       /* $sql = "SELECT * FROM "._DB_PREFIX_."cart_product WHERE id_cart = " .$cart;
         $products = Db::getInstance()->executeS($sql);
         $buyer = Db::getInstance()->getValue("SELECT id_customer FROM "._DB_PREFIX_."cart WHERE id_cart = ".$cart);
         $sql = "SELECT id_product FROM "._DB_PREFIX_."product WHERE reference = 'BOND-LIST'";
@@ -394,13 +394,13 @@ class giftlist extends Module
                     }
                 }
             }
-        }
+        }*/
     }
     
     
     
     private function _sendEmail($template,$subject,$customer,$params){
-        $id_shop = (int)Context::getContext()->shop->id;
+        /*$id_shop = (int)Context::getContext()->shop->id;
 		$id_lang = $this->context->language->id;
         try{
             MailCore::Send($id_lang, $template, sprintf(
@@ -409,12 +409,12 @@ class giftlist extends Module
             null, null, null,null, _MODULE_DIR_."giftlist/mails/", true, $id_shop);
         }catch(Exception $ex){
             die($ex->getMessage());
-        }
+        }*/
     }
 
 	private function __uninstallTabs($class_name)
 	{
-		try{
+		/*try{
 			$id_tab = (int)Tab::getIdFromClassName($class_name);
 			if ($id_tab)
 			{
@@ -424,12 +424,12 @@ class giftlist extends Module
 			return true;
 		}catch (Exception $e) {
 			return false;
-		}
+		}*/
 	}
 
 	private function __installTabs($class_name,$name,$parent=0,$module = null,$page=NULL,$title=NULL,$description=NULL, $url_rewrite=NULL)
 	{
-		try{
+		/*try{
 			$id_tab = (int)Tab::getIdFromClassName($class_name);
 			if(!$id_tab)
 			{
@@ -464,21 +464,21 @@ class giftlist extends Module
 
 		}catch (Exception $e) {
 			return false;
-		}
+		}*/
 	}
     
     public function hookModuleRoutes() {
-        return self::$moduleRoutes;
+        //return self::$moduleRoutes;
     }
 
 	public function hookDisplayBackOfficeHeader()
 	{
-		$this->context->controller->addCss(_MODULE_DIR_."giftlist/views/css/tab.css");
+		//$this->context->controller->addCss(_MODULE_DIR_."giftlist/views/css/tab.css");
 	}
 
     public function hookHeader($params)
     {
-        if(Dispatcher::getInstance()->getController() == "myaccount")
-            $this->context->controller->addJS((_MODULE_DIR_).'giftlist/views/js/ax-empezar.js');
+        /*if(Dispatcher::getInstance()->getController() == "myaccount")
+            $this->context->controller->addJS((_MODULE_DIR_).'giftlist/views/js/ax-empezar.js');*/
     }
 }
