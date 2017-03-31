@@ -170,7 +170,7 @@ class ws_product extends matisses
 
         if(!empty($_Row['id_product']) && !empty($_Row['id_product_attribute'])) {
             $dataRef = parent::wsmatisses_getInfoProduct($ref,false,true);
-            if($dataRef['codeStatus'] == 0101909){//No disponible para la web
+            if($dataRef['codeStatus'] == '0101909'){//No disponible para la web
                 $_Quantity = 0;
             }else{
                 if(isset($dataRef['stock']['warehouseCode'])){
