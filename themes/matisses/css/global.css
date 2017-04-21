@@ -1,5 +1,103 @@
 @charset "UTF-8";
 
+
+/*grid*/
+.grid_1 { width: 8.33333%; }
+.grid_2 { width: 16.66666%; }
+.grid_2-4 { width: 20%; }
+.grid_3 { width: 25%; }
+.grid_4 { width: 33.33333%; }
+.grid_5 { width: 41.66666%; }
+.grid_6 { width: 50%; }
+.grid_7 { width: 58.33333%; }
+.grid_8 { width: 66.66666%; }
+.grid_9 { width: 75%; }
+.grid_10 { width: 83.33333%; }
+.grid_11 { width: 91.66666%; }
+.grid_12 { width: 100%; }
+
+.grid_1,
+.grid_2,
+.grid_2-4,
+.grid_3,
+.grid_4,
+.grid_5,
+.grid_6,
+.grid_7,
+.grid_8,
+.grid_9,
+.grid_10,
+.grid_11,
+.grid_12 {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	display: block;
+	float: left;
+	margin: 0;
+	padding:0 15px;
+}
+
+.alpha{padding-left:0; }
+.omega{padding-right:0;}
+
+.container{
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.clear{
+	clear:both;
+	display:block;
+	overflow:hidden;
+	visibility:hidden;
+	width:0;
+	height:0
+}
+
+.clearfix:after{
+	clear:both;
+	content:' ';
+	display:block;
+	font-size:0;
+	line-height:0;
+	visibility:hidden;
+	width:0;
+	height:0
+}
+
+* html .clearfix,
+*:first-child+html .clearfix {
+	zoom:1
+}
+
+/* Mobile */
+@media screen and (max-width : 767px) {
+
+.grid_1,
+.grid_2,
+.grid_2-4,
+.grid_3,
+.grid_4,
+.grid_5,
+.grid_6,
+.grid_7,
+.grid_8,
+.grid_9,
+.grid_10,
+.grid_11,
+.grid_12 {
+	width:100%;
+}
+
+.alpha{padding:0;}
+.omega{padding:0;}
+
+}
+
+
+
 /*fuentes*/
 /*@font-face {
 font-family: 'condensed';
@@ -6439,4 +6537,31 @@ form .radio input{
 .ax-title-parents li{
     font-size: 1.5625rem;
     text-transform: uppercase;
+}
+
+/*
+	Autotolad minify
+*/
+.mhs.pluginBoxDivider {
+	border: 0px;
+}
+
+video {
+  max-width: 100%!important;
+  max-height: 100%!important;
+}
+
+.disable-hover {
+  pointer-events: none;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+	
+	.example {
+		background-image: url(../images/example2x.png);
+		-webkit-background-size:13px 13px;
+		-moz-background-size:13px 13px;
+		-o-background-size:13px 13px;
+		background-size:13px 13px;
+	}
 }
