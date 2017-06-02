@@ -27,7 +27,7 @@
 <div id="index" >
 	<div id="slider" class="slider cf">
     	{hook h="displayMatSlider"}
-        {hook h="displayMatAdvertisingHome"}
+      {hook h="displayMatAdvertisingHome"}
     </div>
     {*
 
@@ -55,14 +55,24 @@
 		</div>
     </div>
     *}
-
-	{hook h="displayExperiencesHome"}
-
-    <div class="zona-blog">
+	<div class="new-products">
+		{hook h="displayHomeTabContent"}
+	</div>
+	<div class="viewed-products">
 		<div class="container">
-			{hook h="displayMatBlog"}
+			<div class="row">
+				{hook h="displayMatShowesProducts"}
+			</div>
 		</div>
 	</div>
+
+{hook h="displayExperiencesHome"}
+
+<div class="zona-blog">
+<div class="container">
+{hook h="displayMatBlog"}
+</div>
+</div>
 </div>
 
 

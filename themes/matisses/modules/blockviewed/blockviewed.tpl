@@ -24,9 +24,12 @@
 *}
 <!-- Block Viewed products -->
 <div id="viewed-products_block_left" class="block">
-	<div class="header-viewed cf">
-		<div class="title_block">
-			<span>{l s='Productos Visualizados' mod='blockviewed'}</span>
+	<div class="btn-title cf grid_12 alpha omega">
+        	<h1>
+            	<a href="javascript:void(0)" id="ax-more" alt="More">
+                 {l s='Productos Visualizados' mod='blockviewed'}
+                </a>
+            </h1>
 		</div>
 		<div class="btns-viewed">
 			<div class="reload">
@@ -60,12 +63,15 @@
 									{$First->name|truncate:25:'...'|escape:'html':'UTF-8'}
 								</a>
 							</h2>
-	                        
 						</div>
-
-                        <div class="price">{convertPrice price=$First->price}</div>
-                        <div class="colors">{if $First->colors|count ==1} {$First->colors|count} {l s='Color'} {else} {$First->colors|count} {l s='Colores'} {/if}</div>
 						<!-- <p class="product-description">{$viewedProduct->description_short|strip_tags:'UTF-8'|truncate:60}</p> -->
+						<div class="content_price" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+							<span itemprop="price" class="price product-price">{convertPrice price=$First->price}</span>
+							<meta itemprop="priceCurrency" content="COP">
+							<div class="colors">
+								{if $First->colors|count ==1} {$First->colors|count} {l s='Color'} {else} {$First->colors|count} {l s='Colores'} {/if}
+							</div>
+						</div>
 					</div>
 				</li>
          </ul>
@@ -96,10 +102,14 @@
 									{$viewedProduct->name|truncate:25:'...'|escape:'html':'UTF-8'}
 								</a>
 							</h2>
-	                        <div class="colors">{if $viewedProduct->colors|count ==1} {$viewedProduct->colors|count} {l s='Color'} {else} {$viewedProduct->colors|count} {l s='Colores'} {/if}</div>
 						</div>
-
-                        <div class="price">{convertPrice price=$viewedProduct->price}</div>
+						<div class="content_price" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+							<span itemprop="price" class="price product-price">{convertPrice price=$viewedProduct->price}</span>
+							<meta itemprop="priceCurrency" content="COP">
+							<div class="colors">
+								{if $viewedProduct->colors|count ==1} {$viewedProduct->colors|count} {l s='Color'} {else} {$viewedProduct->colors|count} {l s='Colores'} {/if}
+							</div>
+						</div>
 
 						<!-- <p class="product-description">{$viewedProduct->description_short|strip_tags:'UTF-8'|truncate:60}</p> -->
 					</div>

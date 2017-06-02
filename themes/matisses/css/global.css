@@ -827,7 +827,7 @@ box-sizing: border-box;
 	}
 	.viewed-products ul li.first_item {
 	width: 17.1875rem;
-	border: 1px solid #ccc;
+	/*border: 1px solid #ccc;*/
 	margin-left: 0;
 	margin-right: 2.8125rem;
 	padding: 0 0.625rem 0.625rem 0.625rem;
@@ -1032,6 +1032,9 @@ box-sizing: border-box;
     .container .product .rate_wrap {
         padding: 1.25rem 0 0.9375rem;
     }
+	.new-products a.btn{
+		background-color: #fff;
+	}
 	/*btns-hover*/
 	.button-container .btn-default.showmore {
 	border-color: #fff;
