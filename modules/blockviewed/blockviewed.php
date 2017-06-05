@@ -58,7 +58,7 @@ class BlockViewed extends Module
 	
 	public function hookdisplayMatShowesProducts($params)
 	{
-		return $this->hookLeftColumn($params);
+		return $this->hookRightColumn($params);
 	}
 
 	public function getContent()
