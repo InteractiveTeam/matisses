@@ -151,6 +151,7 @@ class BlockNewProducts extends Module
 
 	public function hookdisplayHomeTabContent($params)
 	{
+		BlockNewProducts::$cache_new_products = $this->getNewProducts();
 		if (!$this->isCached('blocknewproducts_home.tpl', $this->getCacheId('blocknewproducts-home')))
 		{
 			$this->smarty->assign(array(

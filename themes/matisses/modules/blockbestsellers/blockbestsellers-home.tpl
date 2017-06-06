@@ -23,19 +23,24 @@
 * @license http://opensource.org/licenses/afl-3.0.php Academic Free License (AFL 3.0)
 * International Registered Trademark & Property of PrestaShop SA
 *}
-{if isset($best_sellers) && $best_sellers}
-<div id="wrap_best" class="tab-pane">
-<div class="inner_products">
-{include file="$tpl_dir./product-list.tpl" products=$best_sellers class='blockbestsellers' id='blockbestsellers'}
-</div>
-<div class="link_more">
-        	<a href="{$link->getPageLink('best-sales')|escape:'html'}" title="{l s='All best sellers' mod='blockbestsellers'}"  class="btn btn-default button button-small"><span>{l s='View more' mod='blockbestsellers'}</span></a>
-</div>
-</div>
-{else}
-<div id="wrap_best" class="tab-pane">
-<ul id="blockbestsellers" class="blockbestsellers">
-	<li class="alert alert-info">{l s='No best sellers at this time.' mod='blockbestsellers'}</li>
-</ul>
-</div>
+<div id="wrap_best" class="tab-pane {if !isset($best_sellers) || !$best_sellers} hidden {/if}">
+	{if isset($best_sellers) && $best_sellers}
+	<div class="btn-title cf grid_12 alpha omega">
+		<h1>
+			<a href="javascript:void(0)" id="ax-more" alt="More">
+				{l s='Más vendidos' mod='blockbestseller'}
+			</a>
+		</h1>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="inner_products">
+				{include file="$tpl_dir./product-list.tpl" products=$best_sellers class='blockbestsellers' id='blockbestsellers'}
+			</div>
+		</div>
+		<div class="link_more">
+			<a href="{$link->getPageLink('best-sales')|escape:'html'}" title="{l s='All best sellers' mod='blockbestsellers'}"  class="btn btn-default button button-small pull-right"><span>{l s='View more' mod='blockbestsellers'}</span></a>
+		</div>
+	</div>
 {/if}
+</div>

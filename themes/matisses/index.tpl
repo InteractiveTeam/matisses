@@ -54,10 +54,8 @@
             <div chaordic="bottom"></div>
 		</div>
     </div>
-    *}
-	<div class="new-products">
-		{hook h="displayHomeTabContent"}
-	</div>
+	*}
+	{hook h="displayHomeTabContent"}
 	<div class="viewed-products">
 		<div class="container">
 			<div class="row">
