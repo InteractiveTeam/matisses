@@ -22,7 +22,6 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-<pre>{$new_products|print_r}</pre>
 <div class="new-products {if !isset($new_products) || !$new_products}hidden{/if}">
 	{if isset($new_products) && $new_products}
 	<div class="container">
