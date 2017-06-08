@@ -56,11 +56,7 @@
     </div>
 	*}
 	<div class="viewed-products">
-		<div class="container">
-			<div class="row">
-				{hook h="displayMatShowesProducts"}
-			</div>
-		</div>
+		{hook h="displayMatShowesProducts"}
 	</div>
 	{hook h="displayHomeTabContent"}
 
