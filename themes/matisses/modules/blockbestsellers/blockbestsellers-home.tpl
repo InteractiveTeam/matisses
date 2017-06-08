@@ -23,7 +23,7 @@
 * @license http://opensource.org/licenses/afl-3.0.php Academic Free License (AFL 3.0)
 * International Registered Trademark & Property of PrestaShop SA
 *}
-<div id="wrap_best" class="tab-pane {if !isset($best_sellers) || !$best_sellers} hidden {/if}">
+<div id="wrap_best" class="wrap_best tab-pane {if !isset($best_sellers) || !$best_sellers} hidden {/if}">
 	{if isset($best_sellers) && $best_sellers}
 	<div class="btn-title cf grid_12 alpha omega">
 		<h1>

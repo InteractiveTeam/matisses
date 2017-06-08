@@ -55,7 +55,6 @@
 		</div>
     </div>
 	*}
-	{hook h="displayHomeTabContent"}
 	<div class="viewed-products">
 		<div class="container">
 			<div class="row">
@@ -63,6 +62,7 @@
 			</div>
 		</div>
 	</div>
+	{hook h="displayHomeTabContent"}
 
 {hook h="displayExperiencesHome"}
 

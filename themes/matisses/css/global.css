@@ -938,7 +938,11 @@ box-sizing: border-box;
 	.bx-next:hover {
 	background: url("../img/sprite-viewed.png") 5px -56px no-repeat #A80C20;
 	}
-
+	/*Mas vendidos*/
+	.wrap_best {
+	background: #FFF;
+	padding: 4.0625rem 0;
+	}
 	/*Nuevos productos*/
 	.new-products {
 	background: #f2f2f2;
