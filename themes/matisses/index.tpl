@@ -55,10 +55,10 @@
 		</div>
     </div>
 	*}
-	<div class="viewed-products">
-		{hook h="displayMatShowesProducts"}
-	</div>
-	{hook h="displayHomeTabContent"}
+
+{hook h="displayMatShowesProducts"}
+
+{hook h="displayHomeTabContent"}
 
 {hook h="displayExperiencesHome"}
 
