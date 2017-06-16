@@ -1030,6 +1030,9 @@ box-sizing: border-box;
 	display: inline-block;
 	vertical-align: top;
 	}
+	body#new-products footer, body#best-sales footer{
+		margin: 90px 0 0 0;
+	}
     .primary_block .pb-right-column .wrap_attr {
         display: none;
     }
