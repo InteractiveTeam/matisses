@@ -1036,9 +1036,6 @@ box-sizing: border-box;
     .container .product .rate_wrap {
         padding: 1.25rem 0 0.9375rem;
     }
-	.new-products a.btn{
-		background-color: #fff;
-	}
 	/*btns-hover*/
 	.button-container .btn-default.showmore {
 	border-color: #fff;
