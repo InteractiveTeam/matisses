@@ -27,7 +27,7 @@
 	{if isset($best_sellers) && $best_sellers}
 	<div class="btn-title cf grid_12 alpha omega">
 		<h1>
-			<a href="javascript:void(0)" id="ax-more" alt="More">
+			<a href="{$link->getPageLink('best-sales')|escape:'html'}" id="ax-more" alt="More">
 				{l s='Más vendidos' mod='blockbestseller'}
 			</a>
 		</h1>
