@@ -893,7 +893,7 @@ box-sizing: border-box;
 	float: right;
 	}
 	.btns-viewed {
-	width:53.125rem;
+	width:100%;
 	border-bottom: 1px solid #dbdbdb;
 	padding-bottom: 0.3125rem;
 	}
