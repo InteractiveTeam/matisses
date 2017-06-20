@@ -28,7 +28,7 @@
 	<div class="btn-title cf grid_12 alpha omega">
 		<h1>
 			<a href="{$link->getPageLink('best-sales')|escape:'html'}" id="ax-more" alt="More">
-				{l s='Más vendidos' mod='blockbestseller'}
+				{l s='Más vendido' mod='blockbestseller'}
 			</a>
 		</h1>
 	</div>

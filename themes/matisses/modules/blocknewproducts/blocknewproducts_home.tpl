@@ -30,7 +30,7 @@
 			<div id="wrap_new" class="tab-pane">
 				<div class="btn-title cf grid_12 alpha omega">
 					<h1>
-						<a href="http://local.matisses.com/nuevos-productos" id="ax-more" alt="More">
+						<a href="{$link->getPageLink('new-products')|escape:'html'}" id="ax-more" alt="More">
 							{l s='Nuevos productos' mod='blocknewproducts'}
 						</a>
 					</h1>
