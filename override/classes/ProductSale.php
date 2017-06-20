@@ -51,9 +51,9 @@ class ProductSale extends ProductSaleCore
 		if (!$result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql))
 			return false;
 
-        $colors = Product::getAttributesColorList($result);
 		foreach ($result as $key => $row){
             $tpl = $context->smarty->createTemplate(_PS_THEME_DIR_.'product-list-colors.tpl');
+            $colors = Product::getAttributesColorList($row);
             if (isset($colors[$row['id_product']]))
                 $tpl->assign(array(
                     'id_product' => $row['id_product'],

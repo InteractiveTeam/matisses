@@ -118,9 +118,9 @@ class Product extends ProductCore
 			Tools::orderbyPrice($result, $order_way);
 		if (!$result)
 			return false;
-        $colors = Product::getAttributesColorList($result);
 		$products_ids = array();
 		foreach ($result as $key => $row){
+        	$colors = Product::getAttributesColorList($row);
 			$products_ids[] = $row['id_product'];
             $tpl = $context->smarty->createTemplate(_PS_THEME_DIR_.'product-list-colors.tpl');
             if (isset($colors[$row['id_product']]))
