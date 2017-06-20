@@ -22,20 +22,27 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-{if isset($new_products) && $new_products}
-<div id="wrap_new" class="tab-pane">
-	<div class="inner_products">
-    
-	{include file="$tpl_dir./product-list.tpl" products=$new_products class='blocknewproducts' id='blocknewproducts'}
+<div class="new-products {if !isset($new_products) || !$new_products}hidden{/if}">
+	{if isset($new_products) && $new_products}
+	<div class="container">
+		{*Nuevos productos*}
+		<div class="row">
+			<div id="wrap_new" class="tab-pane">
+				<div class="btn-title cf grid_12 alpha omega">
+					<h1>
+						<a href="{$link->getPageLink('new-products')|escape:'html'}" id="ax-more" alt="More">
+							{l s='Nuevos productos' mod='blocknewproducts'}
+						</a>
+					</h1>
+				</div>
+				<div class="inner_products">
+					{include file="$tpl_dir./product-list.tpl" products=$new_products class='blocknewproducts' id='blocknewproducts'}
+				</div>
+				<div class="link_more">
+					<a href="{$link->getPageLink('new-products')|escape:'html'}" title="{l s='All new products' mod='blocknewproducts'}" class="btn btn-default button button-small pull-right">{l s='Ver más' mod='blocknewproducts'}</a>
+				</div>
+			</div>
+		</div>
 	</div>
-		<div class="link_more">
-                <a href="{$link->getPageLink('new-products')|escape:'html'}" title="{l s='All new products' mod='blocknewproducts'}" class="btn btn-default button button-small">{l s='View more' mod='blocknewproducts'}</a>
-       </div>
+	{/if}
 </div>
-{else}
-<div id="wrap_new" class="tab-pane">
-<ul id="blocknewproducts" class="blocknewproducts">
-	<li class="alert alert-info">{l s='No new products at this time.' mod='blocknewproducts'}</li>
-</ul>
-</div>
-{/if}

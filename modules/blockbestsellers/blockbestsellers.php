@@ -216,8 +216,10 @@ class BlockBestSellers extends Module
 
 	public function hookDisplayHomeTabContent($params)
 	{
+		BlockBestSellers::$cache_best_sellers = $this->getBestSellers($params);
 		if (!$this->isCached('blockbestsellers-home.tpl', $this->getCacheId('blockbestsellers-home')))
 		{
+			BlockBestSellers::$cache_best_sellers = $this->getBestSellers($params);
 			$this->smarty->assign(array(
 				'best_sellers' => BlockBestSellers::$cache_best_sellers,
 				'homeSize' => Image::getSize(ImageType::getFormatedName('home'))
